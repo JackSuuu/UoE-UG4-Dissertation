@@ -6,7 +6,15 @@
 **Duration:** 3–4 weeks
 **Builds on:** Phase 0 (`dissertation_exp/`, MLP BC + physics-guided residual correction, MuJoCo, completed) and Phase 1 draft benchmark plan (`Experiment_Phase_0.md`, Robosuite NutAssembly, Diffusion Policy)
 
-> ⚠️ Note on sources: This plan operationalizes the "CheckVLA + OrbiSim-Dynamics + Genesis" architecture as discussed. I have **not independently verified** that "OrbiSim-Dynamics" and "CheckVLA" correspond to specific published papers — treat their names/descriptions here as *design references*, not confirmed citations. Before writing them into the dissertation as related work, locate and check the actual papers (arXiv IDs, authors, venues) yourself. Genesis itself (`genesis-world`, GitHub: Genesis-Embodied-AI/Genesis) is real and should be verified against its official docs for current API/backend support.
+> ✅ Note on sources (updated 2026-09-24): Both prior-work papers are now confirmed as real, citable arXiv papers:
+> - **OrbiSim** — arXiv `2605.16395`, Jiajian Li et al. Redefines world models as fully differentiable physics engines, decoupled into OrbiSim-Dynamics + OrbiSim-Vision, enabling end-to-end differentiability.
+> - **CheckVLA** — arXiv `2607.26789`, Yushan Liu et al. Core mechanism: action-conditioned world model + calibrated-threshold trigger + latency-aware suffix repair. Ablating the action-conditioning drops timely recall from 77.9% to 48.6%.
+>
+> This means the contribution framing shifts from "design reference, not yet verified" to a precise, defensible claim:
+>
+> **Contribution statement:** Use Genesis as ground truth to validate OrbiSim-Dynamics as the core predictor component of a CheckVLA-style verifier, and to resolve OrbiSim-Dynamics' long-horizon differentiable-rollout systems bottleneck (memory growth under backprop-through-time).
+>
+> Genesis itself (`genesis-world`, GitHub: Genesis-Embodied-AI/Genesis) remains real and should still be checked against its official docs for current API/backend support — see §3.6 below for known differentiability limits that directly affect RQ1.
 
 ---
 
@@ -18,11 +26,13 @@ This targets three sub-questions with independent, falsifiable experiments:
 
 | Sub-question | What it tests |
 |---|---|
-| RQ1 | Does the OrbiSim-style fast predictor's forward rollout agree with Genesis ground truth well enough (state + gradient) to be trustworthy as a runtime verifier? |
-| RQ2 | Does CheckVLA-style intervention (trigger + correction) improve task success / reduce constraint violations vs. an uncorrected VLA baseline, under distribution shift (novel friction/mass/deformable stiffness)? |
+| RQ1 (narrowed) | Within the CheckVLA trigger logic specifically, does replacing the visual world-model predictor with OrbiSim-Dynamics' differentiable object-centric predictor produce **better-calibrated risk signals** (trigger precision/recall, timely-recall) and **earlier/more accurate repair timing**, relative to Genesis ground truth — and does this hold only within the subset of contact regimes where Genesis provides valid gradients (see §3.6 gradient path audit)? |
+| RQ2 | Does CheckVLA-style intervention (trigger + correction), instantiated with the OrbiSim-Dynamics predictor, improve task success / reduce constraint violations vs. (a) an uncorrected VLA baseline and (b) a CheckVLA variant using an observation-only / vision world-model predictor, under distribution shift (novel friction/mass/deformable stiffness)? |
 | RQ3 (systems contribution) | Do truncated checkpointing + adaptive gradient truncation + fast/slow dual-engine scheduling keep peak GPU memory and wall-clock latency bounded as horizon length increases, compared to naive full backprop-through-time in Genesis? |
 
 RQ3 is the "hard, systems" contribution that differentiates this from a pure-ML manipulation paper — it should be the centerpiece figure of Phase 1.
+
+**Why RQ1 was narrowed:** OrbiSim's own paper already reports predictor fidelity and RL control performance for OrbiSim-Dynamics in isolation, so re-measuring raw predictor accuracy would be a redundant, weaker replication. CheckVLA's paper already shows action-conditioned signals beat observation-only signals, but using a *visual* world model. The open, falsifiable, non-redundant question this dissertation can answer is narrower and more specific: does swapping in a *differentiable physics* predictor (OrbiSim-Dynamics) inside the CheckVLA trigger — instead of a visual world model — further improve calibration and repair timing, and where does that improvement break down due to Genesis's differentiability limits.
 
 ---
 
@@ -85,6 +95,22 @@ Reuse Phase 1 draft's Diffusion Policy (or the simpler MLP BC from Phase 0 if ti
 
 These three are independently testable ablations — see §4.
 
+### 3.6 Gradient path audit (new — do this first, Week 1)
+
+Genesis's differentiable-physics support has explicit, documented limits that directly bound what RQ1/RQ3 can measure:
+
+- Differentiable mode must be explicitly enabled per-object (`requires_grad=True`); it is not on by default.
+- **Peak memory under backprop-through-time grows linearly with horizon length** — this is exactly the systems problem RQ3 targets, but it means RQ1's "Gradient Agreement" metric is *coupled* to RQ3's memory/checkpointing work from day one, not a separable earlier step.
+- **Not all operations are differentiable.** Contact/collision resolution can return zero or undefined gradients in some regimes; elliptical friction cones are not supported in the differentiable path; the SAP (Semi-Analytic Primal) coupler does not support differentiation.
+
+**Action (Week 1, before RQ1 experiments start):** run a small audit sweep over Task A and Task B contact conditions, tagging each state/contact regime as `gradient-valid` or `gradient-invalid` (zero/NaN/undefined gradient from Genesis). Use this map to:
+1. Restrict RQ1's "Gradient Agreement" metric to `gradient-valid` regions only, and report the fraction of the OOD grid that falls outside valid coverage as a limitation.
+2. Scope CheckVLA's OrbiSim-Dynamics-based trigger to only claim gradient-based confidence inside `gradient-valid` regions; fall back to state-error-only confidence elsewhere.
+
+### 3.7 Baseline arm: vision world-model CheckVLA (new)
+
+To isolate the effect of swapping in OrbiSim-Dynamics (narrowed RQ1/RQ2), the evaluation must include a CheckVLA variant using an observation-only / vision world-model predictor (as in the original CheckVLA paper) as a direct baseline. Without this arm, there is no way to attribute improvements in trigger calibration or repair timing to the differentiable-physics predictor specifically, rather than to the CheckVLA scaffolding itself. This is now a required condition in the Week 4 evaluation grid (§5, §6).
+
 ---
 
 ## 4. Evaluation Metrics
@@ -93,14 +119,16 @@ These three are independently testable ablations — see §4.
 |---|---|---|
 | Success Rate (SR) | task completion % across OOD grid | RQ2 |
 | Constraint Violation Rate (CVR) | % episodes exceeding force/deformation thresholds | RQ2 |
-| Predictor Fidelity | state-space error (OrbiSim vs Genesis) over rollout horizon | RQ1 |
-| Gradient Agreement | cosine similarity of OrbiSim vs Genesis gradients at matched states | RQ1 |
+| Predictor Fidelity | state-space error (OrbiSim vs Genesis) over rollout horizon, **restricted to gradient-valid regions per §3.6 audit** | RQ1 |
+| Gradient Agreement | cosine similarity of OrbiSim vs Genesis gradients at matched states, **reported only within gradient-valid regions; coverage fraction reported separately** | RQ1 |
+| Trigger calibration (precision/recall, timely recall) | CheckVLA trigger accuracy vs. ground-truth violation, comparing OrbiSim-Dynamics predictor vs. vision-world-model predictor (§3.7) | RQ1, RQ2 |
 | Peak GPU memory (MB) vs horizon length | with/without checkpointing | RQ3 |
 | Wall-clock latency (ms/control step) | with/without fast/slow scheduling | RQ3 |
 | Gradient norm variance | with/without adaptive truncation | RQ3 |
 | Recovery Rate (RR) | reuse definition from `Experiment_Phase_0.md` §4 | RQ2, ties to Phase 0/1 |
 
 **Target claims to validate:**
+- OrbiSim-Dynamics-based CheckVLA trigger improves timely-recall and/or repair-timing accuracy vs. the vision-world-model CheckVLA baseline, within gradient-valid regions.
 - CheckVLA-triggered correction reduces CVR by ≥30% vs. uncorrected baseline under OOD shift.
 - Checkpointing reduces peak memory by ≥1 order of magnitude at horizon ≥100 steps, with SR/gradient-quality degradation <5%.
 - Fast/slow scheduling keeps control-loop latency within real-time budget (define target, e.g. <50ms/step) while Genesis sync latency stays decoupled from the hot loop.
@@ -109,26 +137,30 @@ These three are independently testable ablations — see §4.
 
 ## 5. Experimental Steps (3–4 week plan)
 
-### Week 1 — Genesis integration + control-task sanity check
+### Week 1 — Genesis integration + control-task sanity check + gradient path audit
 - Install Genesis on the GPU machine; verify rigid-body + MPM/soft-body demos run.
 - Port Task A (peg-in-hole) into Genesis; confirm parity with the existing MuJoCo/Robosuite version from Phase 0/1 (same friction/mass grid, same SR ballpark) — this is a *reproduction* checkpoint before trusting Genesis for anything new.
 - Stand up basic profiling: FPS, memory, per-step latency for rigid vs soft-body sim.
+- **Run the gradient path audit (§3.6):** sweep Task A/B contact conditions, tag `gradient-valid` vs `gradient-invalid` regions (zero/NaN/undefined gradients, unsupported friction-cone/coupler paths). This map gates what RQ1 can measure and where CheckVLA's OrbiSim-based confidence signal is trustworthy.
+- **Start a minimal checkpointing prototype in parallel (moved up from Week 3):** crude version — keep only the last ~5 physics states resident on GPU, offload the rest to CPU, recompute on backward pass. Goal at this stage is only to confirm it reduces peak memory at all; refine in Week 2.
 
-### Week 2 — OrbiSim-Dynamics predictor + CheckVLA trigger logic
+### Week 2 — OrbiSim-Dynamics predictor + CheckVLA trigger logic + checkpointing v1
 - Implement the fast object-centric predictor (distilled from short Genesis rollouts on Task A, then Task B).
-- Implement CheckVLA trigger conditions (deformation/force thresholds, confidence collapse).
-- Validate RQ1: predictor fidelity + gradient agreement vs Genesis on held-out rollouts.
+- Implement CheckVLA trigger conditions (deformation/force thresholds, confidence collapse), scoped to gradient-valid regions per the Week 1 audit.
+- Implement the vision-world-model CheckVLA baseline (§3.7) so RQ1/RQ2 have a direct comparison arm.
+- Validate narrowed RQ1: trigger calibration + repair-timing accuracy, OrbiSim-Dynamics vs vision-world-model predictor, within gradient-valid regions.
+- Refine the Week 1 checkpointing prototype into a real truncated-checkpointing implementation; get an early peak-memory-vs-horizon curve, even if rough.
 
-### Week 3 — Systems optimizations (RQ3) + Task B (deformable) integration
-- Implement truncated checkpointing; benchmark peak memory vs horizon length (with/without).
+### Week 3 — Remaining systems optimizations (RQ3) + Task B (deformable) integration
+- Finish benchmarking checkpointing (peak memory vs horizon length, with/without) using the Week 2 implementation.
 - Implement adaptive gradient truncation; benchmark gradient stability.
 - Implement fast/slow async scheduling; benchmark control-loop latency.
-- Bring up Task B (cloth folding) in Genesis; extend OOD grid to stiffness.
+- Bring up Task B (cloth folding) in Genesis; extend OOD grid to stiffness; re-run the gradient path audit for Task B's contact modes.
 
 ### Week 4 — Full evaluation grid + ablations + figures
-- Run full OOD grid (Task A + Task B) for: [uncorrected VLA baseline, Phase-0-style residual correction, full CheckVLA+OrbiSim+Genesis pipeline].
+- Run full OOD grid (Task A + Task B) for: [uncorrected VLA baseline, Phase-0-style residual correction, CheckVLA + vision-world-model predictor, CheckVLA + OrbiSim-Dynamics predictor (full pipeline)].
 - Run RQ3 ablations: [no checkpointing / checkpointing only / + adaptive truncation / + fast-slow scheduling — full system].
-- Generate figures (see §6) and write up results.
+- Generate figures (see §6) and write up results, including the gradient-valid coverage fraction as an explicit limitation.
 
 ---
 
@@ -136,12 +168,13 @@ These three are independently testable ablations — see §4.
 
 | Figure | Content | Maps to |
 |---|---|---|
-| Fig A | SR/CVR heatmap over OOD grid — baseline vs Phase-0 residual vs full pipeline | RQ2 |
-| Fig B | Predictor-vs-Genesis state error over rollout horizon (fidelity decay curve) | RQ1 |
+| Fig A | SR/CVR heatmap over OOD grid — baseline vs Phase-0 residual vs CheckVLA(vision) vs CheckVLA(OrbiSim-Dynamics) | RQ2 |
+| Fig B | Predictor-vs-Genesis state error over rollout horizon (fidelity decay curve), gradient-valid region annotated | RQ1 |
+| Fig B2 | Gradient-valid vs gradient-invalid coverage map over Task A/B contact conditions (audit result) | RQ1, RQ3 |
 | Fig C | Peak GPU memory vs horizon length — with/without checkpointing (log-scale) | RQ3 |
 | Fig D | Control-loop latency (ms/step) — with/without fast/slow scheduling | RQ3 |
 | Fig E | Gradient norm trace over a chaotic-contact episode — with/without adaptive truncation | RQ3 |
-| Fig F | CheckVLA trigger trace on one Task B episode: predicted deformation vs threshold vs intervention point | RQ2 |
+| Fig F | CheckVLA trigger trace on one Task B episode: predicted deformation vs threshold vs intervention point, OrbiSim-Dynamics vs vision-world-model predictor overlaid | RQ1, RQ2 |
 
 ---
 
@@ -164,22 +197,24 @@ These three are independently testable ablations — see §4.
 | Risk | Probability | Mitigation |
 |---|---|---|
 | Genesis install/build issues on target GPU | Medium | Budget Day 1–2 of Week 1 as buffer; fallback to Docker image if available; keep MuJoCo path as backup for Task A only |
-| OrbiSim-Dynamics distillation predictor doesn't match Genesis well (RQ1 fails) | Medium-High | Treat as a valid negative result — report fidelity limits, restrict CheckVLA triggers to regimes where predictor is validated |
+| Genesis's differentiable path lacks gradient support for key contact modes (elliptical friction cone, SAP coupler, some collision paths) | Medium-High | Week 1 gradient path audit (§3.6) makes this explicit up front; scope RQ1/CheckVLA gradient-based confidence to gradient-valid regions only, and report coverage fraction as a limitation rather than treating it as a late-discovered blocker |
+| OrbiSim-Dynamics distillation predictor doesn't match Genesis well within gradient-valid regions (narrowed RQ1 fails) | Medium-High | Treat as a valid negative result — report calibration limits, restrict CheckVLA triggers to regimes where predictor is validated |
 | Deformable task (Task B) too unstable/slow to iterate on in 1 week | Medium | Keep Task A as the primary result; Task B becomes a smaller-scale qualitative demo if time runs out |
-| Checkpointing/scheduling engineering takes longer than 1 week (this is real systems work) | High | This is the highest-risk, highest-value item — start a minimal version in Week 2 in parallel, not only Week 3 |
+| Checkpointing/scheduling engineering takes longer than 1 week (this is real systems work) | High | Highest-risk, highest-value item — minimal checkpointing prototype now starts Week 1 in parallel with the gradient audit, refined in Week 2, fully benchmarked in Week 3, rather than starting cold in Week 3 |
 | Cloud GPU cost/availability | Low-Medium | Confirm quota before Week 1; scope horizon lengths/episode counts to fit budget |
-| "OrbiSim-Dynamics"/"CheckVLA" naming doesn't match a real citable paper | Medium | Verify literature before final write-up (see note at top); rename as your own architecture if no exact match found, and cite the closest real prior work (e.g., differentiable object-centric contact models, runtime verification for RL) instead |
+| Missing baseline arm makes it impossible to attribute gains to OrbiSim-Dynamics specifically | Medium | Vision-world-model CheckVLA baseline (§3.7) is now a required Week 2 deliverable, not optional |
 
 ---
 
 ## 9. Deliverables at End of Phase 1
 
 1. Genesis-based Task A + Task B environments with reproducible OOD grids.
-2. OrbiSim-Dynamics predictor + CheckVLA trigger implementation with RQ1 fidelity report.
-3. Three systems optimizations (checkpointing, gradient stabilizer, fast/slow scheduling) each with an isolated ablation benchmark.
-4. Full SR/CVR comparison: baseline vs Phase-0 residual vs full pipeline, across OOD grid.
-5. Figures A–F, ready for inclusion in the dissertation systems-contribution chapter.
+2. Gradient path audit (§3.6): map of gradient-valid vs gradient-invalid contact regimes in Genesis for Task A/B.
+3. OrbiSim-Dynamics predictor + CheckVLA trigger implementation with narrowed-RQ1 calibration report, benchmarked against a vision-world-model CheckVLA baseline.
+4. Three systems optimizations (checkpointing, gradient stabilizer, fast/slow scheduling) each with an isolated ablation benchmark — checkpointing prototyped from Week 1, not Week 3.
+5. Full SR/CVR comparison: baseline vs Phase-0 residual vs CheckVLA(vision) vs CheckVLA(OrbiSim-Dynamics), across OOD grid.
+6. Figures A, B, B2, C–F, ready for inclusion in the dissertation systems-contribution chapter.
 
 ---
 
-*Last updated: 2026-09-22*
+*Last updated: 2026-09-24*
