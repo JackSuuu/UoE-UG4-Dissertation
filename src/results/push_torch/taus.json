@@ -1,0 +1,8 @@
+{
+  "alpha": 0.05,
+  "tau": {
+    "orbisim": 0.5,
+    "vision": 0.5,
+    "vision_noact": 0.5
+  }
+}

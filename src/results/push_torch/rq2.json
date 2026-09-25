@@ -1,0 +1,1002 @@
+{
+  "arms": [
+    "none",
+    "gt_shadow",
+    "checkvla_vision",
+    "checkvla_orbisim",
+    "checkvla_vision_noact"
+  ],
+  "per_cell": [
+    {
+      "cell": {
+        "friction": 0.2,
+        "mass": 0.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.75,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.11236671298320289,
+        "latency_ms_p95": 0.16433475429948882
+      },
+      "gt_shadow": {
+        "SR": 0.25,
+        "CVR": 0.0,
+        "RR": 0.3333333333333333,
+        "intervention_rate": 0.75,
+        "latency_ms_mean": 11.477970861960785,
+        "latency_ms_p95": 45.09561905142618
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.75,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.360267737636605,
+        "latency_ms_p95": 6.973058350558858
+      },
+      "checkvla_orbisim": {
+        "SR": 0.0,
+        "CVR": 0.5,
+        "RR": 0.0,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 23.00356659980025,
+        "latency_ms_p95": 181.78864375404373
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.75,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.629335425168392,
+        "latency_ms_p95": 7.071139896652311
+      }
+    },
+    {
+      "cell": {
+        "friction": 0.2,
+        "mass": 1.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.13641148798342329,
+        "latency_ms_p95": 0.20986315066693342
+      },
+      "gt_shadow": {
+        "SR": 0.125,
+        "CVR": 0.0,
+        "RR": 0.125,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 13.875965062288742,
+        "latency_ms_p95": 46.027072902506916
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.710946274870366,
+        "latency_ms_p95": 7.327221154628205
+      },
+      "checkvla_orbisim": {
+        "SR": 0.0,
+        "CVR": 0.375,
+        "RR": 0.0,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 5.0430677125405055,
+        "latency_ms_p95": 2.3260211495653493
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.6420770875993185,
+        "latency_ms_p95": 7.214594053220935
+      }
+    },
+    {
+      "cell": {
+        "friction": 0.2,
+        "mass": 1.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12244637500771205,
+        "latency_ms_p95": 0.15602469902660226
+      },
+      "gt_shadow": {
+        "SR": 0.125,
+        "CVR": 0.0,
+        "RR": 0.125,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 15.854529699845443,
+        "latency_ms_p95": 45.49023814834072
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.626898362992506,
+        "latency_ms_p95": 7.158752098621335
+      },
+      "checkvla_orbisim": {
+        "SR": 0.0,
+        "CVR": 0.125,
+        "RR": 0.0,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.841689063232479,
+        "latency_ms_p95": 2.1805919481266756
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.499816662289959,
+        "latency_ms_p95": 7.064535400422756
+      }
+    },
+    {
+      "cell": {
+        "friction": 0.2,
+        "mass": 2.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12083228748451802,
+        "latency_ms_p95": 0.174914550370886
+      },
+      "gt_shadow": {
+        "SR": 0.25,
+        "CVR": 0.25,
+        "RR": 0.25,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 17.565367225233786,
+        "latency_ms_p95": 45.98216105150641
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.993232837794494,
+        "latency_ms_p95": 7.4733767498400985
+      },
+      "checkvla_orbisim": {
+        "SR": 0.0,
+        "CVR": 0.375,
+        "RR": 0.0,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 5.008754137270444,
+        "latency_ms_p95": 2.2888431478349958
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.718307300070592,
+        "latency_ms_p95": 7.3310169518663315
+      }
+    },
+    {
+      "cell": {
+        "friction": 0.6,
+        "mass": 0.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12482816327974433,
+        "latency_ms_p95": 0.1797499982785666
+      },
+      "gt_shadow": {
+        "SR": 0.375,
+        "CVR": 0.0,
+        "RR": 0.42857142857142855,
+        "intervention_rate": 0.875,
+        "latency_ms_mean": 11.979636462638155,
+        "latency_ms_p95": 45.222632700097165
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.635642137734976,
+        "latency_ms_p95": 7.212129504114273
+      },
+      "checkvla_orbisim": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": 0.125,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.77281560024494,
+        "latency_ms_p95": 2.183456555212615
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.547879674781143,
+        "latency_ms_p95": 7.238383650110336
+      }
+    },
+    {
+      "cell": {
+        "friction": 0.6,
+        "mass": 1.0
+      },
+      "ood": false,
+      "none": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.1260119749531441,
+        "latency_ms_p95": 0.19021844673261512
+      },
+      "gt_shadow": {
+        "SR": 0.5,
+        "CVR": 0.0,
+        "RR": 0.5714285714285714,
+        "intervention_rate": 0.875,
+        "latency_ms_mean": 12.377626037414302,
+        "latency_ms_p95": 45.1097752989881
+      },
+      "checkvla_vision": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.591376587675768,
+        "latency_ms_p95": 7.220712800335605
+      },
+      "checkvla_orbisim": {
+        "SR": 0.375,
+        "CVR": 0.125,
+        "RR": 0.375,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.859066199787776,
+        "latency_ms_p95": 2.178391645429656
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.555287512946961,
+        "latency_ms_p95": 7.126575345682795
+      }
+    },
+    {
+      "cell": {
+        "friction": 0.6,
+        "mass": 1.5
+      },
+      "ood": false,
+      "none": {
+        "SR": 0.625,
+        "CVR": 0.625,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12801821185348672,
+        "latency_ms_p95": 0.19189584781997837
+      },
+      "gt_shadow": {
+        "SR": 0.875,
+        "CVR": 0.0,
+        "RR": 0.8333333333333334,
+        "intervention_rate": 0.75,
+        "latency_ms_mean": 12.056535362444265,
+        "latency_ms_p95": 45.04491009938647
+      },
+      "checkvla_vision": {
+        "SR": 0.625,
+        "CVR": 0.625,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.71573640056522,
+        "latency_ms_p95": 7.324222954775905
+      },
+      "checkvla_orbisim": {
+        "SR": 0.375,
+        "CVR": 0.5,
+        "RR": 0.375,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.981242687154008,
+        "latency_ms_p95": 2.2504339482111386
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.625,
+        "CVR": 0.625,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.730409925694403,
+        "latency_ms_p95": 7.320654500290402
+      }
+    },
+    {
+      "cell": {
+        "friction": 0.6,
+        "mass": 2.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.5,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12406826244841795,
+        "latency_ms_p95": 0.20483989901549648
+      },
+      "gt_shadow": {
+        "SR": 0.625,
+        "CVR": 0.0,
+        "RR": 0.4,
+        "intervention_rate": 0.625,
+        "latency_ms_mean": 11.954444350431004,
+        "latency_ms_p95": 45.16227115454967
+      },
+      "checkvla_vision": {
+        "SR": 0.5,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.629983812035789,
+        "latency_ms_p95": 7.270403501024703
+      },
+      "checkvla_orbisim": {
+        "SR": 0.125,
+        "CVR": 0.375,
+        "RR": 0.125,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.810541174265381,
+        "latency_ms_p95": 2.1707100993808126
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.5,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.557158299892762,
+        "latency_ms_p95": 7.070241347901174
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.0,
+        "mass": 0.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12113232542105834,
+        "latency_ms_p95": 0.17563750079716553
+      },
+      "gt_shadow": {
+        "SR": 0.25,
+        "CVR": 0.0,
+        "RR": 0.4,
+        "intervention_rate": 0.625,
+        "latency_ms_mean": 11.106717738039151,
+        "latency_ms_p95": 11.532910100140624
+      },
+      "checkvla_vision": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.692535912588937,
+        "latency_ms_p95": 7.300318450870691
+      },
+      "checkvla_orbisim": {
+        "SR": 0.25,
+        "CVR": 0.5,
+        "RR": 0.25,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.849094300061552,
+        "latency_ms_p95": 2.1115943978657015
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.738039050378575,
+        "latency_ms_p95": 7.250621144339675
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.0,
+        "mass": 1.0
+      },
+      "ood": false,
+      "none": {
+        "SR": 0.375,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.1227703006406955,
+        "latency_ms_p95": 0.22236670229176522
+      },
+      "gt_shadow": {
+        "SR": 0.5,
+        "CVR": 0.0,
+        "RR": 0.5714285714285714,
+        "intervention_rate": 0.875,
+        "latency_ms_mean": 12.422902638081723,
+        "latency_ms_p95": 45.10164759885811
+      },
+      "checkvla_vision": {
+        "SR": 0.375,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.773910912215797,
+        "latency_ms_p95": 7.404416995268548
+      },
+      "checkvla_orbisim": {
+        "SR": 0.375,
+        "CVR": 0.0,
+        "RR": 0.375,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 5.225450524903863,
+        "latency_ms_p95": 2.097758349555079
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.375,
+        "CVR": 0.5,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.972301037149009,
+        "latency_ms_p95": 7.7594160047738105
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.0,
+        "mass": 1.5
+      },
+      "ood": false,
+      "none": {
+        "SR": 0.375,
+        "CVR": 0.125,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.11945207552344073,
+        "latency_ms_p95": 0.1855764548963634
+      },
+      "gt_shadow": {
+        "SR": 0.375,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 0.375,
+        "latency_ms_mean": 11.075376075314125,
+        "latency_ms_p95": 11.655987502308463
+      },
+      "checkvla_vision": {
+        "SR": 0.375,
+        "CVR": 0.125,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.692793224374327,
+        "latency_ms_p95": 7.30163329426432
+      },
+      "checkvla_orbisim": {
+        "SR": 0.25,
+        "CVR": 0.125,
+        "RR": 0.25,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.866133837003872,
+        "latency_ms_p95": 2.164433653888409
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.375,
+        "CVR": 0.125,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.638442125404254,
+        "latency_ms_p95": 7.247510696106474
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.0,
+        "mass": 2.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.11947757475354592,
+        "latency_ms_p95": 0.16251905326498672
+      },
+      "gt_shadow": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 0.75,
+        "latency_ms_mean": 12.005944837710558,
+        "latency_ms_p95": 44.94317320277332
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.860906774636533,
+        "latency_ms_p95": 7.90448189691233
+      },
+      "checkvla_orbisim": {
+        "SR": 0.25,
+        "CVR": 0.0,
+        "RR": 0.25,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 5.000780749651312,
+        "latency_ms_p95": 2.2271431018452854
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.673961424439767,
+        "latency_ms_p95": 7.286922250932548
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.4,
+        "mass": 0.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.625,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12742027520289412,
+        "latency_ms_p95": 0.17426635095034723
+      },
+      "gt_shadow": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 0.625,
+        "latency_ms_mean": 11.42987661251027,
+        "latency_ms_p95": 44.236567000552895
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.625,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.884044762864505,
+        "latency_ms_p95": 7.6148562500748085
+      },
+      "checkvla_orbisim": {
+        "SR": 0.375,
+        "CVR": 0.75,
+        "RR": 0.375,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 5.002367687939113,
+        "latency_ms_p95": 2.1630368486512452
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.625,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.993085925932974,
+        "latency_ms_p95": 7.3458295009913845
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.4,
+        "mass": 1.0
+      },
+      "ood": false,
+      "none": {
+        "SR": 0.5,
+        "CVR": 0.25,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12479281213018112,
+        "latency_ms_p95": 0.17758924514055252
+      },
+      "gt_shadow": {
+        "SR": 0.625,
+        "CVR": 0.0,
+        "RR": 0.5,
+        "intervention_rate": 0.75,
+        "latency_ms_mean": 12.42555260005247,
+        "latency_ms_p95": 45.35668924654601
+      },
+      "checkvla_vision": {
+        "SR": 0.5,
+        "CVR": 0.25,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.680404674716556,
+        "latency_ms_p95": 7.159635101561435
+      },
+      "checkvla_orbisim": {
+        "SR": 0.25,
+        "CVR": 0.125,
+        "RR": 0.25,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.814962575164827,
+        "latency_ms_p95": 2.1775399000034668
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.5,
+        "CVR": 0.25,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.698439124829747,
+        "latency_ms_p95": 7.255768451432232
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.4,
+        "mass": 1.5
+      },
+      "ood": false,
+      "none": {
+        "SR": 0.25,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.11976610057899961,
+        "latency_ms_p95": 0.19568719944800247
+      },
+      "gt_shadow": {
+        "SR": 0.25,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 0.375,
+        "latency_ms_mean": 11.05677086252399,
+        "latency_ms_p95": 11.5562354465509
+      },
+      "checkvla_vision": {
+        "SR": 0.25,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.8199604749679565,
+        "latency_ms_p95": 7.674854202196002
+      },
+      "checkvla_orbisim": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.957555725104612,
+        "latency_ms_p95": 1.9709353993675904
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.25,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.692329112502193,
+        "latency_ms_p95": 7.306581896045827
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.4,
+        "mass": 2.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.10478796239112853,
+        "latency_ms_p95": 0.1490812486736104
+      },
+      "gt_shadow": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 0.375,
+        "latency_ms_mean": 11.85653598731733,
+        "latency_ms_p95": 44.70077529658738
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.423033324699645,
+        "latency_ms_p95": 6.815262796226307
+      },
+      "checkvla_orbisim": {
+        "SR": 0.125,
+        "CVR": 0.0,
+        "RR": 0.125,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.736777037669526,
+        "latency_ms_p95": 2.1359416456107283
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.557246375359682,
+        "latency_ms_p95": 7.030048254819121
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.8,
+        "mass": 0.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.125,
+        "CVR": 0.125,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.1217546998304897,
+        "latency_ms_p95": 0.18217500073660628
+      },
+      "gt_shadow": {
+        "SR": 0.125,
+        "CVR": 0.0,
+        "RR": 0.5,
+        "intervention_rate": 0.25,
+        "latency_ms_mean": 9.722096912355482,
+        "latency_ms_p95": 9.60471489597694
+      },
+      "checkvla_vision": {
+        "SR": 0.125,
+        "CVR": 0.125,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.570079087214253,
+        "latency_ms_p95": 7.169039251311915
+      },
+      "checkvla_orbisim": {
+        "SR": 0.125,
+        "CVR": 0.5,
+        "RR": 0.125,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.785755762713961,
+        "latency_ms_p95": 2.1289027554303175
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.125,
+        "CVR": 0.125,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.8200401249669085,
+        "latency_ms_p95": 7.339437198606902
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.8,
+        "mass": 1.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.625,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.1149964120486402,
+        "latency_ms_p95": 0.22649614547844976
+      },
+      "gt_shadow": {
+        "SR": 0.625,
+        "CVR": 0.0,
+        "RR": 0.3333333333333333,
+        "intervention_rate": 0.375,
+        "latency_ms_mean": 10.59415568724944,
+        "latency_ms_p95": 9.936841351736803
+      },
+      "checkvla_vision": {
+        "SR": 0.625,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.6467505005675775,
+        "latency_ms_p95": 7.131133651273558
+      },
+      "checkvla_orbisim": {
+        "SR": 0.25,
+        "CVR": 0.125,
+        "RR": 0.25,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.985606224818184,
+        "latency_ms_p95": 2.2515288517752197
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.625,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.663430750086263,
+        "latency_ms_p95": 7.166353848515428
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.8,
+        "mass": 1.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.11881246191478567,
+        "latency_ms_p95": 0.22256635093071964
+      },
+      "gt_shadow": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 0.25,
+        "latency_ms_mean": 10.963734912547807,
+        "latency_ms_p95": 11.572602398882637
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.598793762350397,
+        "latency_ms_p95": 7.284881248415331
+      },
+      "checkvla_orbisim": {
+        "SR": 0.125,
+        "CVR": 0.0,
+        "RR": 0.125,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.833868749938119,
+        "latency_ms_p95": 2.1363413507060613
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.500719149607903,
+        "latency_ms_p95": 7.069481549115153
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.8,
+        "mass": 2.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 0.12343284979579039,
+        "latency_ms_p95": 0.1683062506344868
+      },
+      "gt_shadow": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 0.625,
+        "latency_ms_mean": 13.236449399664707,
+        "latency_ms_p95": 45.24014819835429
+      },
+      "checkvla_vision": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.561604149646882,
+        "latency_ms_p95": 7.007968105608597
+      },
+      "checkvla_orbisim": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": 0.0,
+        "intervention_rate": 1.0,
+        "latency_ms_mean": 4.785369300680031,
+        "latency_ms_p95": 2.1740642514487263
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.0,
+        "CVR": 0.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "latency_ms_mean": 6.532009974853281,
+        "latency_ms_p95": 7.0814232512930175
+      }
+    }
+  ],
+  "pooled_ood": {
+    "none": {
+      "SR": 0.09821428571428571,
+      "CVR": 0.4375,
+      "RR": NaN,
+      "intervention_rate": 0.0,
+      "latency_ms_mean": 0.12091198932466796,
+      "latency_ms_p95": 0.1821982109374533,
+      "CVR_reduction_vs_none": 0.0
+    },
+    "gt_shadow": {
+      "SR": 0.19642857142857142,
+      "CVR": 0.017857142857142856,
+      "RR": 0.20680272108843537,
+      "intervention_rate": 0.6517857142857143,
+      "latency_ms_mean": 12.401673267842332,
+      "latency_ms_p95": 35.339123389530855,
+      "CVR_reduction_vs_none": 0.9591836734693877
+    },
+    "checkvla_vision": {
+      "SR": 0.09821428571428571,
+      "CVR": 0.4375,
+      "RR": NaN,
+      "intervention_rate": 0.0,
+      "latency_ms_mean": 6.656765674116676,
+      "latency_ms_p95": 7.260205929248643,
+      "CVR_reduction_vs_none": 0.0
+    },
+    "checkvla_orbisim": {
+      "SR": 0.125,
+      "CVR": 0.29464285714285715,
+      "RR": 0.125,
+      "intervention_rate": 1.0,
+      "latency_ms_mean": 6.1757181500589855,
+      "latency_ms_p95": 15.01905856124982,
+      "CVR_reduction_vs_none": 0.326530612244898
+    },
+    "checkvla_vision_noact": {
+      "SR": 0.09821428571428571,
+      "CVR": 0.4375,
+      "RR": NaN,
+      "intervention_rate": 0.0,
+      "latency_ms_mean": 6.648079087530538,
+      "latency_ms_p95": 7.182859164199077,
+      "CVR_reduction_vs_none": 0.0
+    }
+  },
+  "fig_f_cell": {
+    "friction": 0.2,
+    "mass": 2.0
+  }
+}
