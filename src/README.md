@@ -1,6 +1,6 @@
-# phase1_exp — Phase 1 experiment framework
+# src — Phase 1 experiment framework
 
-Code for `Experiment_plan_Phase_1.md`: VLA + OrbiSim-Dynamics + CheckVLA + Genesis.
+Code for `../notes/Experiment_plan_Phase_1.md`: VLA + OrbiSim-Dynamics + CheckVLA + Genesis.
 
 > **Status: this is a framework with STAND-IN components.** Every slot in the
 > system sits behind an interface (`interfaces.py`) and is picked in
@@ -36,6 +36,7 @@ checkvla/verifier.py   component-agnostic closed-loop Controller + episode runne
 adapters/              skeletons for the real components  <-- fill in on the server
 systems/               RQ3: checkpointed BPTT, gradient stabilizer, async scheduler
 experiments/           audit, collect, train, calibrate, rq1, rq2, rq3, figures
+demo/                  Genesis + Franka arm visual demo (mp4 / viewer)
 run_all.sh             whole pipeline for one task/backend
 ```
 
@@ -75,6 +76,21 @@ The probe records `valid / zero / nan / error(msg)` per cell and horizon, so an
 API mismatch shows up as `error` with the message instead of crashing. If
 building the scene fails, the functions to adapt are `_build`, `_read`,
 `_write`, `_contact_force`, `render_rgb` in `sims/genesis_push.py`.
+
+## Visual demo (Franka arm in Genesis)
+
+The experiment backends use a floating point-pusher (cheap, batched). For a
+demo with a real robot arm, `demo/genesis_franka_demo.py` puts a Franka Panda
+in the same Task A scene; its closed fingertips act as the pusher and policy
+actions are turned into joint targets via Genesis IK. **Written, not yet run.**
+
+```bash
+python demo/genesis_franka_demo.py --viewer                     # interactive window (needs display)
+python demo/genesis_franka_demo.py --record demo.mp4            # headless server -> mp4
+python demo/genesis_franka_demo.py --record ood.mp4 --policy bc --checkvla --friction 0.2 --mass 2.0
+```
+On a headless server, if rendering fails try `PYOPENGL_PLATFORM=egl`. For the
+interactive viewer over SSH you need X forwarding / VNC; recording is simpler.
 
 ## Running the pipeline
 

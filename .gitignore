@@ -1,4 +1,4 @@
 .DS_Store
 **/__pycache__/
 *.pyc
-phase1_exp/results/
+src/results/
