@@ -1,0 +1,5 @@
+torch>=2.1
+numpy
+matplotlib
+# Optional — Task A GT backend + gradient probe (needs an NVIDIA GPU for speed)
+# genesis-world
