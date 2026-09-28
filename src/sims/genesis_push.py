@@ -148,7 +148,7 @@ class GenesisPushEnv(Env):
         self._write(s)
 
     def reset(self, params=None, seed=0):
-        g = torch.Generator().manual_seed(seed)
+        g = torch.Generator(device=self.dev).manual_seed(seed)
         s0 = self.sim.init_state(self.n, g)
         self.scene.reset()
         self.set_state(s0)
@@ -193,9 +193,13 @@ def genesis_grad_probe(sim, mults: dict, horizon: int, n: int = 1, seed: int = 0
     try:
         gs = gs_init()
         env = GenesisPushEnv(sim, n, mults, requires_grad=True)
-        env.reset(seed=seed)
         if torch.cuda.is_available():
             torch.cuda.reset_peak_memory_stats()
+        # Set initial state directly without scene.reset() to preserve grad graph
+        g_gen = torch.Generator(device=env.dev).manual_seed(seed)
+        s0 = sim.init_state(n, g_gen)
+        env.set_state(s0)
+        # Set peg initial velocity as a differentiable tensor
         v0 = gs.tensor(np.tile([[0.3, 0.0, 0, 0, 0, 0]], (n, 1)).astype(np.float32),
                        requires_grad=True)
         env.peg.set_dofs_velocity(v0)
@@ -204,6 +208,14 @@ def genesis_grad_probe(sim, mults: dict, horizon: int, n: int = 1, seed: int = 0
             env.pusher.set_dofs_velocity(vel)
             env.scene.step()
         pos = env.peg.get_pos()
+        if not pos.requires_grad:
+            out.update(status="zero", grad_norm=0.0,
+                       msg="Genesis position tensor has no grad_fn — differentiable "
+                           "simulation may not propagate gradients through scene.step() "
+                           "in this genesis-world version")
+            if torch.cuda.is_available():
+                out["peak_mem_mb"] = torch.cuda.max_memory_allocated() / 2 ** 20
+            return out
         loss = ((pos[:, 0] - sim.target_x) ** 2).sum()
         loss.backward()
         g = v0.grad

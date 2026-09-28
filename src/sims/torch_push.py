@@ -64,7 +64,7 @@ class PushSim(FunctionalSim):
                 "mass": torch.tensor(0.5, device=d)}
 
     def init_state(self, n, gen):
-        u = torch.rand(n, 3, generator=gen).to(self.device)
+        u = torch.rand(n, 3, generator=gen, device=gen.device).to(self.device)
         bx = -0.02 + 0.04 * u[:, 0]
         by = -0.04 + 0.08 * u[:, 1]
         ty = -0.08 + 0.16 * u[:, 2]

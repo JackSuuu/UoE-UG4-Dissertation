@@ -105,7 +105,7 @@ class ClothSim(FunctionalSim):
         return torch.cat([x.reshape(B, -1), v.reshape(B, -1), tgt, start, t], 1)
 
     def init_state(self, n, gen):
-        u = torch.rand(n, 3, generator=gen).to(self.device)
+        u = torch.rand(n, 3, generator=gen, device=gen.device).to(self.device)
         shift = torch.cat([(u[:, :2] - 0.5) * 0.02, torch.zeros(n, 1, device=self.device)], 1)
         x = self.x0[None] + shift[:, None]
         v = torch.zeros_like(x)
