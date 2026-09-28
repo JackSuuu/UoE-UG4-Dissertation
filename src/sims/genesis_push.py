@@ -40,8 +40,12 @@ def gs_init(requires_grad_hint: bool = False):
 
 class GenesisPushEnv(Env):
     def __init__(self, sim, n: int, mults: dict, requires_grad: bool = False,
-                 dt_sub: float = 0.01, camera: bool = False, cam_res=(224, 224)):
+                 dt_sub: float = 0.01, camera: bool = False, cam_res=(224, 224),
+                 peg_shape: str | None = None, pusher_rho: float = 3e5):
         self.camera, self.cam_res = camera, cam_res
+        # box is required for gradients (see _build); otherwise keep the disk-like cylinder
+        peg_shape = peg_shape or ("box" if requires_grad else "cylinder")
+        self.peg_shape, self.pusher_rho = peg_shape, pusher_rho
         self.sim, self.n, self.mults = sim, n, dict(mults)
         self.requires_grad = requires_grad
         self.dt_sub = dt_sub
@@ -65,23 +69,37 @@ class GenesisPushEnv(Env):
         self.scene = gs.Scene(
             sim_options=gs.options.SimOptions(dt=self.dt_sub, substeps=4,
                                               requires_grad=self.requires_grad),
-            rigid_options=gs.options.RigidOptions(enable_collision=True),
+            # requires_grad in Genesis 1.4 needs approximate_implicitfast and no hibernation
+            rigid_options=gs.options.RigidOptions(
+                enable_collision=True,
+                integrator=gs.integrator.approximate_implicitfast,
+                use_hibernation=False),
             show_viewer=False,
         )
         self.scene.add_entity(gs.morphs.Plane(),
                               material=gs.materials.Rigid(friction=self.mu))
-        # density chosen so the cylinder has the requested mass
-        vol = np.pi * s.R_b ** 2 * h
+        # Peg shape: in Genesis 1.4 differentiable mode, cylinder-sphere contacts are
+        # not detected (the pusher passes straight through), while box-sphere contacts
+        # are, so the grad scene uses a square block of side 2*R_b.
+        if self.peg_shape == "box":
+            vol = (2 * s.R_b) ** 2 * h
+            peg_morph = gs.morphs.Box(size=(2 * s.R_b, 2 * s.R_b, h), pos=(0.0, 0.0, h / 2))
+        else:
+            vol = np.pi * s.R_b ** 2 * h
+            peg_morph = gs.morphs.Cylinder(radius=s.R_b, height=h, pos=(0.0, 0.0, h / 2))
+        # Genesis combines contact friction as max(mu_a, mu_b) (floor 0.01). The torch GT
+        # only has peg-floor friction, so every other body gets the 0.01 minimum.
         self.peg = self.scene.add_entity(
-            gs.morphs.Cylinder(radius=s.R_b, height=h, pos=(0.0, 0.0, h / 2)),
-            material=gs.materials.Rigid(rho=self.mass / vol, friction=self.mu))
+            peg_morph, material=gs.materials.Rigid(rho=self.mass / vol, friction=0.01))
+        # Pusher is velocity-driven every sub-step; it must be much heavier than the
+        # peg or contact impulses stop it (rho=5000 gave ~0.02 kg vs a 0.5 kg peg).
         self.pusher = self.scene.add_entity(
             gs.morphs.Sphere(radius=s.r_p, pos=(-0.05, 0.0, s.r_p)),
-            material=gs.materials.Rigid(rho=5000.0, friction=0.01))
+            material=gs.materials.Rigid(rho=self.pusher_rho, friction=0.01))
         self.wall = self.scene.add_entity(
             gs.morphs.Box(size=(0.02, 0.6, 0.06),
                           pos=(s.x_w + 0.01, 0.0, 0.03), fixed=True),
-            material=gs.materials.Rigid(friction=self.mu))
+            material=gs.materials.Rigid(friction=0.01))
         if self.camera:
             # top-down-ish camera for real-VLA policies (render_rgb)
             self.cam = self.scene.add_camera(res=self.cam_res, pos=(0.15, -0.45, 0.45),
@@ -181,50 +199,47 @@ class GenesisPushEnv(Env):
 # ---------------------------------------------------------------------------
 # Differentiability probe (used by experiments/audit_gradients.py & rq3)
 # ---------------------------------------------------------------------------
-def genesis_grad_probe(sim, mults: dict, horizon: int, n: int = 1, seed: int = 0):
+def genesis_grad_probe(sim, mults: dict, horizon: int, n: int = 1, seed: int = 0,
+                       peg_shape: str | None = None):
     """Try to backprop a task loss through a Genesis rigid rollout.
 
-    Returns dict(status in {valid, zero, nan, error}, grad_norm, msg, peak_mem_mb).
-    The gradient is taken w.r.t. the peg's initial velocity (the pattern used in
-    Genesis's differentiable-simulation docs). Unsupported paths raise or
-    return zeros — both are recorded, which *is* the audit result.
+    ``horizon`` counts Genesis sub-steps (``scene.step()`` calls). The pusher starts
+    behind the peg and is driven by a differentiable action chunk (one pusher
+    velocity per control step), so this is the same quantity the torch-GT audit
+    measures: dJ/d(actions). Genesis 1.4 pattern: read state with
+    ``entity.get_state()`` and differentiate with ``scene.backward(loss)``.
+
+    Returns dict(status in {valid, zero, nan, error}, grad_norm, msg, peak_mem_mb,
+    peg_dx) where peg_dx is how far the peg moved (0 => the pusher never
+    touched it, e.g. undetected contact).
     """
-    out = {"status": "error", "grad_norm": float("nan"), "msg": "", "peak_mem_mb": float("nan")}
+    out = {"status": "error", "grad_norm": float("nan"), "msg": "",
+           "peak_mem_mb": float("nan"), "peg_dx": float("nan")}
     try:
         gs = gs_init()
-        env = GenesisPushEnv(sim, n, mults, requires_grad=True)
+        env = GenesisPushEnv(sim, n, mults, requires_grad=True, peg_shape=peg_shape)
         if torch.cuda.is_available():
             torch.cuda.reset_peak_memory_stats()
-        # Set initial state directly without scene.reset() to preserve grad graph
-        g_gen = torch.Generator(device=env.dev).manual_seed(seed)
-        s0 = sim.init_state(n, g_gen)
-        env.set_state(s0)
-        # Set peg initial velocity as a differentiable tensor
-        v0 = gs.tensor(np.tile([[0.3, 0.0, 0, 0, 0, 0]], (n, 1)).astype(np.float32),
-                       requires_grad=True)
-        env.peg.set_dofs_velocity(v0)
-        for _ in range(horizon):
-            vel = gs.tensor(np.tile([[0.3, 0.0, 0, 0, 0, 0]], (n, 1)).astype(np.float32))
-            env.pusher.set_dofs_velocity(vel)
+        env.reset(seed=seed)
+        x0 = env.peg.get_pos()[:, 0].detach().clone()
+        n_ctrl = -(-horizon // env.n_sub)
+        A = gs.tensor(np.tile([0.3, 0.0], (n, n_ctrl, 1)).astype(np.float32), requires_grad=True)
+        zeros = torch.zeros(n, 4, device=env.dev)
+        for k in range(horizon):
+            env.pusher.set_dofs_velocity(torch.cat([A[:, k // env.n_sub], zeros], 1))
             env.scene.step()
-        pos = env.peg.get_pos()
-        if not pos.requires_grad:
-            out.update(status="zero", grad_norm=0.0,
-                       msg="Genesis position tensor has no grad_fn — differentiable "
-                           "simulation may not propagate gradients through scene.step() "
-                           "in this genesis-world version")
-            if torch.cuda.is_available():
-                out["peak_mem_mb"] = torch.cuda.max_memory_allocated() / 2 ** 20
-            return out
+        pos = env.peg.get_state().pos
+        out["peg_dx"] = float((pos[:, 0].detach() - x0).mean())
         loss = ((pos[:, 0] - sim.target_x) ** 2).sum()
-        loss.backward()
-        g = v0.grad
+        env.scene.backward(loss)
+        g = A.grad
         if g is None:
             out.update(status="zero", grad_norm=0.0, msg="grad is None")
         else:
             gn = float(torch.as_tensor(g).norm())
             out["grad_norm"] = gn
             out["status"] = "nan" if not np.isfinite(gn) else ("zero" if gn < 1e-10 else "valid")
+            out["msg"] = f"peg_shape={env.peg_shape} peg_dx={out['peg_dx']:.4f}"
         if torch.cuda.is_available():
             out["peak_mem_mb"] = torch.cuda.max_memory_allocated() / 2 ** 20
     except Exception as e:

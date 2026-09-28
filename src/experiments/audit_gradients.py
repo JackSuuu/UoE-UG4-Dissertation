@@ -85,11 +85,13 @@ def main():
             from sims.genesis_push import genesis_grad_probe
             gres = []
             for cell in ([{}] + [c for c in cells if c != {}][:3]):
-                for hz in args.probe_horizons:
-                    r = genesis_grad_probe(sim, cell, horizon=hz)
-                    r.update(cell=cell, horizon=hz)
-                    print(f"[audit/genesis] {cell} H={hz}: {r['status']} {r['msg'][:120]}")
-                    gres.append(r)
+                for shape in ("box", "cylinder"):
+                    for hz in args.probe_horizons:
+                        r = genesis_grad_probe(sim, cell, horizon=hz, peg_shape=shape)
+                        r.update(cell=cell, horizon=hz, peg_shape=shape)
+                        print(f"[audit/genesis] {cell} {shape:8s} H={hz}: {r['status']} "
+                              f"|g|={r['grad_norm']:.3e} {r['msg'][:100]}")
+                        gres.append(r)
             out["genesis"] = gres
     save_json(out, os.path.join(od, "audit.json"))
     print(f"[audit] overall torch-GT valid fraction: "

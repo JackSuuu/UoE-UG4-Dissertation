@@ -4,6 +4,8 @@
 # Order follows the plan: audit (W1) -> data/train (W2) -> calibrate -> RQ1 -> RQ2 -> RQ3 -> figures
 set -euo pipefail
 cd "$(dirname "$0")"
+# Single A5000 only: simulates an edge-device compute budget. Override with CUDA_VISIBLE_DEVICES=...
+export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0}
 TASK=${1:-push}; BACKEND=${2:-torch}; shift $(( $# > 2 ? 2 : $# )) || true
 A="--task $TASK --backend $BACKEND $*"
 GP=""; [ "$BACKEND" = "genesis" ] && GP="--genesis_probe"

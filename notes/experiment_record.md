@@ -7,6 +7,27 @@ Newest entry at the top.
 
 ## Sem 1 · Week 1 (w/c 28 Sep 2026) — Plan phase P1, Month 1
 
+### Update — Genesis bring-up (same week)
+Constraint adopted: **one A5000 only** (`run_all.sh` now defaults to `CUDA_VISIBLE_DEVICES=0`) to mimic local/edge compute.
+OrbiSim and CheckVLA code are **not public**, so both will be re-implemented from the papers ("OrbiSim-style", "CheckVLA-style").
+CheckVLA gap vs the paper: conformal calibration ✅, action-conditioned WM ✅, latency-aware hard prefixing ⚠️ (ours repairs the suffix by gradient descent), **event-driven keyframe banks ❌ missing**.
+
+**Genesis gradient audit** (`audit_gradients.py --backend genesis --genesis_probe --quick`), gradient of the task loss w.r.t. the pusher action chunk:
+
+| Peg shape | Status (all cells, H = 10/50/100 sub-steps) | \|dJ/dA\| | Peg displacement |
+|---|---|---|---|
+| box (side 2·R_b) | valid | 3e-2 – 1.3e-1 | 2.6 – 18 cm |
+| cylinder | zero | 0 | 0 (pusher passes through) |
+
+Findings:
+1. Genesis 1.4 rigid differentiable mode works: read state with `entity.get_state()` and differentiate with `scene.backward(loss)`. It requires the `approximate_implicitfast` integrator and no hibernation.
+2. **In differentiable mode, cylinder–sphere contacts are not detected.** Box–sphere, box–box and sphere–sphere contacts are detected and give non-zero action gradients. This is a gradient-path limitation for RQ1 (plan §3.6).
+3. The pusher was too light (≈0.02 kg vs a 0.5 kg peg) to push; it is now heavier. Genesis combines friction as `max(μa, μb)`, so only the floor carries μ.
+4. **Parity with the torch GT fails.** Same expert and initial states, nominal cell: SR torch 1.00 vs Genesis 0.06. The Genesis peg drifts sideways and goes around the end of the wall, for both box and cylinder, even after the friction fix. Cause not found yet. **Genesis cannot be used as GT for RQ1/RQ2 until this is fixed.**
+5. Cost at 16 envs: Genesis 34–52 ms/step vs torch GT 6–7 ms/step.
+
+Open decision: move Task A to a box peg in both simulators, or keep the torch disk and use the box only for the Genesis gradient audit (reported as a limitation).
+
 ### Decisions
 - **Main contribution: Direction A (differentiable verifier)**, with B (systems) as support and C as interpretation only, as recommended in plan §1.
 - RQ3 (systems) will draw on KTransformers (CPU/GPU hybrid inference, expert deferral, CUDA Graph) as the systems reference for later optimisation.
@@ -36,7 +57,7 @@ Smoke-test observations (quick sizes, stand-ins — indicative only):
 - rq3/sched: fast_only mean latency 127 ms, async 175 ms, sync 92 ms. **All above the 50 ms/step budget**, and async is slower than fast_only.
 
 ### Findings / issues
-1. **Genesis gradient probe is inconclusive.** After the fixes, every cell/horizon reports that the peg position tensor has no `grad_fn`. This may be caused by how the probe uses the Genesis 1.4 API rather than Genesis itself lacking a gradient path. It must not be reported as an audit result until the probe has been checked against the Genesis differentiable-simulation docs.
+1. ~~**Genesis gradient probe is inconclusive.**~~ **Resolved (see update below):** the probe was using the wrong API (`get_pos()` + `loss.backward()`). Genesis 1.4 rigid mode *is* differentiable.
 2. The main table in `audit_gradients.py --backend genesis` is still computed on the **torch GT**. Only the probe rows touch Genesis.
 3. The stand-in OrbiSim problem (known issue: under-predicts rare risk spikes) is still visible: AUROC is close to chance and tau is close to 0.
 4. The RQ3 `hybrid` / `deferral` parts are **not results yet**:
@@ -57,8 +78,9 @@ Smoke-test observations (quick sizes, stand-ins — indicative only):
 ### Not done yet (from plan §9 / M1)
 - [ ] Full-size `run_all.sh push torch` (no `--quick`)
 - [ ] `run_all.sh push genesis`
-- [ ] Fix the Genesis gradient probe against the Genesis 1.4 docs
-- [ ] Literature check: is OrbiSim (2605.16395) / CheckVLA (2607.26789) code public?
+- [x] Fix the Genesis gradient probe against the Genesis 1.4 docs
+- [ ] Genesis ↔ torch GT parity (peg lateral drift)
+- [x] Literature check: OrbiSim / CheckVLA code not public → re-implement from papers
 - [ ] Ask supervisor about lab robot / F/T sensor access (P4)
 - [ ] Confirm GPU budget
 - [ ] Wire BC + OrbiSim + CheckVLA and OOD physics into the web demo
