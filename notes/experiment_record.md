@@ -26,7 +26,18 @@ Findings:
 4. **Parity with the torch GT fails.** Same expert and initial states, nominal cell: SR torch 1.00 vs Genesis 0.06. The Genesis peg drifts sideways and goes around the end of the wall, for both box and cylinder, even after the friction fix. Cause not found yet. **Genesis cannot be used as GT for RQ1/RQ2 until this is fixed.**
 5. Cost at 16 envs: Genesis 34–52 ms/step vs torch GT 6–7 ms/step.
 
-Open decision: move Task A to a box peg in both simulators, or keep the torch disk and use the box only for the Genesis gradient audit (reported as a limitation).
+Decision (28 Sep): **Task A moves to a box peg in both simulators.** The torch GT needs a box–point contact model with rotation (yaw, yaw rate), so the state, obs, expert and predictors all change and must be retrained.
+
+**VLA timing.** No real VLA has been used yet; every "policy" so far is the BC stand-in. Plan:
+
+| Phase | When | What |
+|---|---|---|
+| Not yet | Sep–Oct | Prerequisites first: box Task A, Genesis parity, verifier working on BC |
+| Early integration | P1 · M2–M3 (Nov–Dec) | Engineering only: load candidate VLAs on one A5000 and measure memory and per-step latency (feeds the RQ3 resource envelope); wire `render_rgb()` and the Franka action mapping; collect Task A demos in Genesis for fine-tuning |
+| Transfer check | P2, after G2 (Mar–Apr 2027) | Verifier on top of the VLA on a subset of Task A cells: do the RQ1/RQ2 conclusions hold? |
+| Final | P5 (Jul–Aug 2027) | Thesis VLA results and demo video (VLA vs VLA + verifier) |
+
+Model choice (M2): CheckVLA verifies open-loop **action chunks**, so chunk-output VLAs are preferred over single-action OpenVLA-7B. Short-list 2–3 candidates and measure memory and latency on the A5000 before choosing.
 
 ### Decisions
 - **Main contribution: Direction A (differentiable verifier)**, with B (systems) as support and C as interpretation only, as recommended in plan §1.
@@ -87,6 +98,8 @@ Smoke-test observations (quick sizes, stand-ins — indicative only):
 - [ ] Turn the RQ3 hybrid/deferral prototypes into measured experiments
 
 ### Next week (Week 2) — proposed
-1. Full-size torch pipeline in the background → first real stand-in numbers.
-2. Rewrite the Genesis probe, then decide whether RQ1 gradient agreement can use Genesis.
-3. Code availability check for OrbiSim / CheckVLA.
+1. Task A → box peg: rewrite the torch GT contact model (add rotation), adapt the expert, then re-run Genesis ↔ torch parity.
+2. Once parity holds: Genesis gradient audit per contact regime (free / pusher_contact / wall_contact / stuck) → Fig B2.
+3. Full-size torch pipeline (no `--quick`) → first real stand-in numbers.
+4. Read the OrbiSim / CheckVLA papers and design the re-implementations (prep for M2).
+5. Ask supervisor about lab robot / F/T sensor access (P4).
