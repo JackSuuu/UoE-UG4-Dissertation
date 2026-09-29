@@ -80,21 +80,18 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
     probes = []
     g = torch.Generator().manual_seed(seed + 99)
     plan = torch.zeros(B, policy.H, policy.act_dim, device=dev)
-    plan_ptr = torch.zeros(B, dtype=torch.long, device=dev)
-    plan_left = torch.zeros(B, dtype=torch.long, device=dev)
+    plan_ptr, plan_left = 0, 0                      # uniform across envs: plain ints
     chunk = None
     for t in range(sim.T):
         img = env.render()
         if plan_left == 0:
             chunk = policy(obs, env.render_rgb() if needs_rgb else img)
             plan = chunk.clone()
-            plan_ptr = torch.zeros(B, dtype=torch.long, device=dev)
-            plan_left = torch.full_like(plan_left, min(chunk_k, chunk.shape[1]))
+            plan_ptr, plan_left = 0, min(chunk_k, chunk.shape[1])
         ctx = {"obs": obs, "obs_prev": obs_prev, "a_prev": a_prev,
                "img": img, "img_prev": img_prev, "state": env.get_state(), "instruction": None}
-        a = plan[torch.arange(B, device=dev), plan_ptr.clamp(max=plan.shape[1] - 1)]
-        plan_ptr = plan_ptr + 1
-        plan_left = plan_left - 1
+        a = plan[:, min(plan_ptr, plan.shape[1] - 1)]
+        plan_ptr, plan_left = plan_ptr + 1, plan_left - 1
         for k, v in verifiers.items():
             rec[k].append(v.score(ctx, chunk))
             mean, _ = v.predictor.risk(ctx, chunk)
