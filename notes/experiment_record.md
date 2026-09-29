@@ -7,6 +7,16 @@ Newest entry at the top.
 
 ## Sem 1 · Week 1 (w/c 28 Sep 2026) — Plan phase P1, Month 1
 
+### Update 29 Sep — plan revision
+`Experiment_plan_1year.md` revised (pending supervisor confirmation):
+- **Headline result = closed loop on a real VLA:** safe success with vs. without the verifier over the Task A OOD grid, plus the matching demo video. RQ1 explains the result and RQ3 shows it fits one A5000.
+- **New primary metric: safe success** (task completed **and** no violation). Reason: in the quick smoke run, `checkvla_orbisim` lowered CVR (0.46 → 0.31) but also SR (0.13 → 0.05). A verifier can look good on CVR alone just by being over-cautious.
+- **VLA moves earlier:** selection and integration in M2 (Nov), baseline VLA OOD numbers are part of G1. BC stays for the large RQ1/RQ3 sweeps.
+- RQ2 split into H2a (VLA + physics verifier beats VLA alone and VLA + vision verifier on safe success) and H2b (per-constraint-type advantage, as before).
+- New figures F0 (headline), F11 (demo video), F12 (VLA + verifier cost on one A5000). New risks: VLA too slow for one A5000; non-physical VLA failures; over-cautious verifier.
+
+Addendum to the Week 1 smoke-test numbers: the RQ1 gradient agreement between the stand-in OrbiSim and the torch GT was **negative** (cosine mean −0.29, median −0.45, n = 403). Stand-in and quick size, so not reportable, but it is another sign that the stand-in predictor is not usable as is.
+
 ### Update — Genesis bring-up (same week)
 Constraint adopted: **one A5000 only** (`run_all.sh` now defaults to `CUDA_VISIBLE_DEVICES=0`) to mimic local/edge compute.
 OrbiSim and CheckVLA code are **not public**, so both will be re-implemented from the papers ("OrbiSim-style", "CheckVLA-style").
@@ -100,6 +110,7 @@ Smoke-test observations (quick sizes, stand-ins — indicative only):
 ### Next week (Week 2) — proposed
 1. Task A → box peg: rewrite the torch GT contact model (add rotation), adapt the expert, then re-run Genesis ↔ torch parity.
 2. Once parity holds: Genesis gradient audit per contact regime (free / pusher_contact / wall_contact / stuck) → Fig B2.
-3. Full-size torch pipeline (no `--quick`) → first real stand-in numbers.
+3. Full-size torch pipeline (no `--quick`) → first real stand-in numbers; add **safe success** to `rq2_eval.py`.
 4. Read the OrbiSim / CheckVLA papers and design the re-implementations (prep for M2).
-5. Ask supervisor about lab robot / F/T sensor access (P4).
+5. Start the VLA short-list (chunk-output, fits one A5000 with the verifier).
+6. Supervisor: confirm the 29 Sep plan revision; ask about lab robot / F/T sensor access (P4).
