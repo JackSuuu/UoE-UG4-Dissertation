@@ -33,6 +33,12 @@ import torch.nn.functional as F
 
 
 class Normalizer(nn.Module):
+    # Floor on std. A degenerate dim (std ~ 0, e.g. a held-constant torque) used
+    # to be clamped to 1e-4, which turned any float noise in (x - x_prev)/std into
+    # a ~1e4 spike and silently killed training of every model that consumes the
+    # normalised delta. 1e-2 keeps such dims finite and near-zero.
+    STD_FLOOR = 1e-2
+
     def __init__(self, dim):
         super().__init__()
         self.register_buffer("mean", torch.zeros(dim))
@@ -41,7 +47,7 @@ class Normalizer(nn.Module):
     def fit(self, x):
         x = x.reshape(-1, x.shape[-1])
         self.mean.copy_(x.mean(0))
-        self.std.copy_(x.std(0).clamp(min=1e-4))
+        self.std.copy_(x.std(0).clamp(min=self.STD_FLOOR))
 
     def forward(self, x):
         return (x - self.mean) / self.std
