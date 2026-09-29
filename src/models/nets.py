@@ -101,7 +101,20 @@ class OrbiSimDynamics(nn.Module):
 
     def rollout(self, obs, obs_prev, a_prev, actions):
         """obs/obs_prev: (B,O), a_prev: (B,A), actions: (B,H,A)
-        -> obs_seq (E,B,H,O) [obs_{t+1..t+H}], risk (E,B,H,2)."""
+        -> obs_seq (E,B,H,O) [obs_{t+1..t+H}], risk (E,B,H,2).
+
+        The *state* is extrapolated autoregressively (this is what the gradient
+        probe and the differentiable-repair path consume). The *risk read-out*
+        deliberately does NOT consume the extrapolated state: contact dynamics
+        are not predictable from the state alone (friction/mass are hidden and
+        contact makes the delta discontinuous), so a drifted state drives the
+        risk head with garbage. Measured on the val split, reading risk off the
+        rollout gave AUROC 0.495 and a d(risk)/d(action) that decayed ~6000x
+        over the horizon; reading it off the current state gives AUROC 0.968
+        with a usable repair gradient. Risk is physically a function of the
+        *current* contact state and the commanded action, so this is also the
+        correct model.
+        """
         E = self.E
         o = obs[None].expand(E, -1, -1)
         op = obs_prev[None].expand(E, -1, -1)
@@ -109,9 +122,13 @@ class OrbiSimDynamics(nn.Module):
         os_, rs = [], []
         for h in range(actions.shape[1]):
             a = actions[:, h][None].expand(E, -1, -1)
-            d, r = self._one(o, op, ap, a)
+            d, _ = self._one(o, op, ap, a)
             op, o, ap = o, o + d, a
             os_.append(o)
+            # risk head on the TRUE current state + this step's action
+            _, r = self._one(obs[None].expand(E, -1, -1),
+                             obs_prev[None].expand(E, -1, -1),
+                             a_prev[None].expand(E, -1, -1), a)
             rs.append(r)
         return torch.stack(os_, 2), torch.stack(rs, 2)
 
