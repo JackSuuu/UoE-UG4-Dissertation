@@ -162,6 +162,7 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
         "first_viol": first_viol.cpu().numpy(),
         "first_trig": first_trig.cpu().numpy(),
         "n_interventions": n_int.cpu().numpy(),
+        "n_steps": T,
         "latency_ms": np.array(lat),
     }
     if record:
@@ -172,12 +173,18 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
 def summarize(res: dict) -> dict:
     s, v, ni = res["success"], res["violation"], res["n_interventions"]
     intervened = ni > 0
+    T = res["n_interventions"].size and max(1, int(res["n_steps"]))
     return {
         "SR": float(s.mean()),
         "CVR": float(v.mean()),
         "safe_success": float((s & ~v).mean()),
         "RR": float(s[intervened].mean()) if intervened.any() else float("nan"),
-        "intervention_rate": float(intervened.mean()),
+        # fraction of CONTROL STEPS that triggered, not the fraction of episodes
+        # that ever did -- with a per-step rate of ~0.15 over 80 steps nearly
+        # every episode triggers at least once, which made the two identical
+        # (1.00) and hid the real trigger frequency.
+        "intervention_rate": float(ni.sum() / (T * len(ni))),
+        "episode_trigger_rate": float(intervened.mean()),
         "latency_ms_mean": float(res["latency_ms"].mean()),
         "latency_ms_p95": float(np.percentile(res["latency_ms"], 95)),
     }

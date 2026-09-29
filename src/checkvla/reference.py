@@ -63,38 +63,43 @@ def suffix_repair(predictor, ctx, chunk, latency=1, iters=25, lr=0.1, lam=0.5,
 
 @torch.no_grad()
 def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
-                 scales=(0.75, 0.5, 0.3, 0.15, 0.05)):
-    """Gradient-free repair: take the largest uniform down-scale the predictor
-    accepts, where "accepts" is ``score <= min(margin, (1-drop)*score(chunk))``.
+                 scales=None, iters=6, floor=0.05):
+    """Gradient-free repair: uniform down-scale, bisected to the largest factor
+    whose predicted score clears ``target``.
 
-    Three deliberate choices, all measured on friction=0.2 / mass=1.5:
-      * uniform over the whole chunk, not just the suffix. Scaling only the
-        suffix leaves the committed prefix intact, and the GT risk of a chunk
-        scaled 1.0/0.75/0.5/0.15/0.0 falls 0.34/0.27/0.20/0.09/0.00, i.e. the
-        whole chunk has to shrink for the contact force to drop.
-      * an ABSOLUTE margin is not enough. The predictor carries a roughly
-        constant offset (predicted risk 0.412/0.413/0.415/0.421 at scales
-        1.0/0.9/0.75/0.5), so "first scale below 0.8" stops at 0.75 and leaves
-        the true risk at 0.27. The RELATIVE test is what actually certifies a
-        reduction: take the largest rung that clears both bounds.
-      * largest-safe rather than argmin. Argmin drives every chunk to the 0.05
-        rung (95% down-scaling): GT risk 0.34 -> 0.05, but the task stops
-        completing. ``drop`` sets how much certified reduction is enough.
+    ``target = min(margin, (1 - DROP) * score(chunk))``: a down-scale only counts
+    as a repair if the predictor certifies a *relative* reduction, because the
+    predictor carries a near-constant offset (predicted risk 0.412/0.413/0.415/
+    0.421 at scales 1.0/0.9/0.75/0.5) and an absolute margin alone would accept
+    the very first rung and leave the true risk untouched.
+
+    Three design points, each measured on friction=0.2 / mass=1.5:
+      * uniform over the whole chunk, not just the suffix -- scaling only the
+        suffix leaves the committed prefix's contact force in place, and the GT
+        risk of a chunk scaled 1.0/0.75/0.5/0.15/0.0 falls
+        0.34/0.27/0.20/0.09/0.00.
+      * bisection rather than a fixed ladder. With a ladder the repair was
+        discontinuous in the trigger threshold: at friction=1.0 tau 0.60/0.45/
+        0.35/0.25 gave CVR 0.00/0.26/0.00/0.00, i.e. lowering the threshold
+        sometimes *raised* the violation rate. The bisection makes the applied
+        factor a smooth function of the score, so the trade-off is monotone.
+      * largest factor that clears the target, never the argmin -- argmin pins
+        every chunk to the bottom rung (95% down-scaling), which stops the task
+        from completing.
 
     ``latency`` is kept in the signature for interface compatibility.
     """
     s0, _, _ = chunk_score(predictor, ctx, chunk, beta)
-    accept = torch.minimum(s0 * (1.0 - DROP), s0.new_full((), margin))
-    best = chunk.clone()
-    todo = torch.ones(chunk.shape[0], dtype=torch.bool, device=chunk.device)
-    for sc in scales:
-        cand = chunk * sc
-        s, _, _ = chunk_score(predictor, ctx, cand, beta)
-        ok = todo & (s <= accept)
-        best[ok] = cand[ok]
-        todo &= ~ok
-    best[todo] = chunk[todo] * scales[-1]
-    return best
+    target = torch.minimum(s0 * (1.0 - DROP), s0.new_full((), margin))
+    lo = torch.full_like(s0, floor)          # known to be conservative enough
+    hi = torch.ones_like(s0)                 # known to be too aggressive
+    for _ in range(iters):
+        mid = (lo + hi) / 2
+        s, _, _ = chunk_score(predictor, ctx, chunk * mid[:, None, None], beta)
+        safe = s <= target
+        lo = torch.where(safe, mid, lo)
+        hi = torch.where(safe, hi, mid)
+    return chunk * lo[:, None, None]
 
 
 class RefCheckVLA:
