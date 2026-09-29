@@ -79,12 +79,16 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
 
     Yet the gradient branch scores *lower* on the predictor (0.300 vs 0.256 --
     it wins on 29% of envs), so the old ``repair()`` picked it and threw away
-    the bisection's result: 1.193 -> 0.419. That single interaction is the
-    mechanism behind the RQ3 result where every gradient-stabiliser variant
-    measured worse than no repair at all (CVR 0.88 for none, 1.00 for both
-    clipping and relaxation): the gradient is not noisy, it is inert, and
-    nothing in the selection step knows the difference. Keeping it selectable
-    is worth it only as the ablation that explains that table.
+    the bisection's result: 1.193 -> 0.419. The gradient is not noisy here, it
+    is inert, and nothing in the selection step knew the difference.
+
+    Do not conflate this with the RQ3 ``stab`` table, which is a different code
+    path: that optimises the whole action sequence by direct BPTT through the
+    simulator, with no prefix and no verifier in the loop, and finds that
+    *unregularised* BPTT is the best of the three (final CVR 0.88, against 1.00
+    for both clipping and relaxation) -- over-regularising makes the steps
+    worse. Two distinct mechanisms, one shared conclusion: gradients through
+    this contact model are not worth optimising against.
 
     ``target = min(margin, (1 - DROP) * score(chunk))``: a down-scale only counts
     as a repair if the predictor certifies a *relative* reduction, because the
@@ -123,9 +127,7 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
     violates. Keep it as an ablation, not as the default.
 
     Note the gradient path (``suffix_repair``) has a hard prefix by construction
-    and is the same story: every gradient-stabiliser variant measured worse than
-    no repair at all (CVR 0.88 for none against 1.00 for both clipping and
-    relaxation), so that branch is kept only as a scored candidate.
+    and fails for the identical reason, which is why the branch is opt-in.
     """
     lat = int(min(latency, chunk.shape[1]))
     pre, suf = chunk[:, :lat], chunk[:, lat:]
@@ -173,19 +175,19 @@ class RefCheckVLA:
         """Bisected down-scale, with the gradient suffix repair as an optional
         candidate (off by default -- see ``scale_repair``).
 
-        History, because it is the mechanism behind the RQ3 gradient table. The
+        History, because it is where two separate defects were stacked. The
         gradient step alone is unsafe: on out-of-distribution cells the
         predictor's ranking of action magnitudes can invert, so a pure gradient
         descent walks toward larger actions and raised the true violation rate
         from 0.00 to 0.27. Adding a down-scale candidate and keeping whichever
         the predictor rates safest fixed that -- and then a second problem
-        surfaced. The gradient branch is *inert* rather than merely wrong, because
-        its hard prefix holds the one step that violates (measured GT
-        1.193 -> 1.193, against 0.125 for the bisection), yet it still scores
-        lower on the predictor, so the selection picked it and discarded the
-        bisection (1.193 -> 0.419). Neither branch is trustworthy on its own
-        score: one is inert and over-claims, the other is sound. That is why the
-        gradient branch is now opt-in.
+        surfaced underneath. The gradient branch is *inert* rather than merely
+        wrong, because its hard prefix holds the one step that violates
+        (measured GT 1.193 -> 1.193, against 0.125 for the bisection), yet it
+        still scores lower on the predictor, so the selection picked it and
+        discarded the bisection (1.193 -> 0.419). Neither branch is trustworthy
+        on its own score: one is inert and over-claims, the other is sound. That
+        is why the gradient branch is now opt-in.
         """
         cand = scale_repair(self.predictor, ctx, chunk, self.latency, self.beta,
                             self.margin, hard_prefix=self.hard_prefix)

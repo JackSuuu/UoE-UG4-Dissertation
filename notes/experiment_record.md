@@ -20,7 +20,17 @@ I had been treating the RQ3 gradient table (every stabiliser worse than no repai
 | `suffix_repair` (gradient, hard prefix) | **1.193 — unchanged** |
 | what `repair()` actually returned | 0.419 |
 
-The gradient branch does nothing *and still wins its own selection step*: it scores 0.300 against the bisection's 0.256 on the predictor, and takes that win on 29% of envs. So "keep whichever the predictor rates safer" was systematically discarding the sound repair in favour of the inert one. That is the mechanism behind the RQ3 table — not gradient noise, and nothing in the selection could have detected it, because the inert branch's score is a better *lie* than the sound branch's score is a truth.
+The gradient branch does nothing *and still wins its own selection step*: it scores 0.300 against the bisection's 0.256 on the predictor, and takes that win on 29% of envs. So "keep whichever the predictor rates safer" was systematically discarding the sound repair in favour of the inert one. Nothing in the selection could have detected this, because the inert branch's score is a better *lie* than the sound branch's score is a truth. This accounts for the 49% no-op rate in the repair audit.
+
+**It does not account for the RQ3 `stab` table, and I initially wrote that it did.** `rq3_systems.py:105` optimises the *whole* action sequence by direct BPTT through the simulator — no prefix held, no verifier in the loop — and reports CVR on the GT afterwards. It finds the opposite: *unregularised* BPTT is the best of the three (final CVR 0.88, against 1.00 for both clipping and relaxation), i.e. over-regularising the gradient makes the optimiser take worse steps. Two different mechanisms:
+
+| | RQ3 `stab` | `suffix_repair` |
+|---|---|---|
+| what is optimised | full action sequence, direct BPTT through the sim | chunk suffix, through the predictor |
+| why it fails | the gradient signal itself is poor; regularising it degrades the step | structurally cannot change the violating step (hard prefix) |
+| CVR | 0.88 unregularised vs 1.00 stabilised | GT risk 1.193 → 1.193 (inert) |
+
+One shared conclusion — gradients through this contact model are not worth optimising against — but the mechanisms are independent, and the repair path's failure is the more specific one. Keeping them apart matters for the write-up: fixing the gradient path would not have fixed the stab table, and vice versa.
 
 **Two code changes follow, both measured:**
 
