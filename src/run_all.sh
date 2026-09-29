@@ -41,6 +41,7 @@ if [ "$STAGE" = "all" ] || [ "$STAGE" = "eval" ]; then
   python experiments/rq3_systems.py     $A --part mem      # checkpointing early (plan: W1-2)
   python experiments/rq1_calibration.py $A --chunk_k $CHUNK_K
   python experiments/rq2_eval.py        $A --with_noact --chunk_k $CHUNK_K
+  python experiments/rq2_shift.py       $A --chunk_k $CHUNK_K
   python experiments/rq3_systems.py     $A --part stab --chunk_k $CHUNK_K
   python experiments/rq3_systems.py     $A --part sched --chunk_k $CHUNK_K
   python experiments/make_figures.py    $A
