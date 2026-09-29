@@ -70,6 +70,58 @@ The earlier "interventions create violations at nominal" was mostly small-sample
 - `run_all.sh` split into `build` (collect/train/calibrate) and `eval` (RQ1–3, figures); `--chunk_k` is separated and passed only to the eval scripts.
 - Full-size run launched in the background (`setsid nohup`, log `~/scratch/run_all_full.log`).
 
+### Update 29 Sep (night) — full pipeline ran; three defects found and fixed
+The first full-size run completed end to end (EXIT 0) but RQ1 reported **orbisim AUROC 0.372**, i.e. the privileged-state predictor was worse than chance while the pixel predictor scored 0.987. Chasing that down turned up three separate defects, each confirmed by an ablation before the fix.
+
+**(1) `Normalizer` std floor poisoned the predictor** (`models/nets.py`).
+`fit()` clamped std to `min=1e-4`. Obs dim 6 (`ty`) has an almost constant delta, so its std landed on 1e-4, and `_one` divides `(o - o_prev)` by that std — turning float noise into a ~1e4 spike. Every model consuming the normalised delta was poisoned; `VisionWM` never consumes it, which is exactly why it looked fine.
+Ablation on the val split, max-over-chunk risk AUROC vs the GT hot label:
+
+| std floor | read off rollout | read off true state |
+|---|---|---|
+| 1e-4 | 0.495 | 0.495 |
+| 1e-2 | 0.971 | 0.996 |
+
+After the fix, full 8k-iter training: val obs NMSE 0.55 (was 1.30, *worse* than predicting the mean), risk MAE 0.033 (was 0.10), AUROC 0.992 (was 0.372). A `w_obs` sweep (0.05/0.5/1.0) gave AUROC 0.99 throughout, so the pre-existing obs-loss weight was kept.
+
+**(2) The risk head was reading a state it had drifted away from.**
+`OrbiSimDynamics.rollout` extrapolated the state autoregressively and read risk off the extrapolated state. That cannot work here: contact dynamics are not predictable from the state alone — friction and mass are hidden generative parameters and contact makes the delta discontinuous. Measured 1-step delta NMSE: 0.77 with obs only, 0.48 *even with the true friction and mass*. So a drifted state is garbage input:
+
+| | before | after |
+|---|---|---|
+| AUROC | 0.495 | 0.976 |
+| abs d(risk)/d(action) per step | 1.65, 0.020, 0.010, 0.0049, 0.00027 | 0.80, 0.82, 0.79, 0.76, 0.84 |
+| pred risk at chunk x1.0 / x0.5 / x0.0 | 1.97 / 4.05 / 5.97 | 0.33 / 0.30 / 0.28 |
+
+The state rollout is kept — the gradient probe and the differentiable-repair path consume it — but risk is now read off the true current state plus each step's action, which is also the physically correct model: risk is a function of the current contact state and the commanded action.
+
+**(3) Repair optimised a surrogate whose ranking inverts off-distribution.**
+With AUROC 0.992 and a trigger rate near 1.0, RQ2 CVR still barely moved (0.272 → 0.266). On friction=0.2 / mass=1.5:
+
+| chunk scale | 1.0 | 0.9 | 0.75 | 0.5 | 0.3 | 0.15 | 0.0 |
+|---|---|---|---|---|---|---|---|
+| GT risk | 0.337 | 0.309 | 0.267 | 0.197 | 0.145 | 0.094 | 0.005 |
+| predicted risk | 0.412 | 0.413 | 0.415 | **0.421** | 0.369 | 0.249 | 0.122 |
+
+GT falls monotonically but the prediction *rises* over 1.0 → 0.5, so gradient descent walked toward larger actions: the chunk moved 164% and the true violation rate went 0.00 → 0.27. Fixes, each measured:
+- scale the whole chunk, not just the suffix (suffix-only scaling leaves the committed prefix's contact force; the full-chunk ladder is what moves it);
+- accept on a **relative** test `score <= min(margin, 0.75 * score(chunk))` — an absolute margin is useless because the predictor carries a near-constant offset, so "first scale below 0.8" stops at 0.75 and leaves GT risk at 0.27;
+- **bisect** the factor instead of walking a fixed ladder — with a ladder the repair was discontinuous in tau (at friction=1.0, tau 0.60/0.45/0.35/0.25 gave CVR 0.00/0.26/0.00/0.00, so lowering the threshold sometimes *raised* violations);
+- keep the gradient result but score it against the down-scale and take the safer of the two, so repair degrades to "be more conservative" rather than optimising a surrogate that stopped tracking reality.
+
+GT risk after repair, 256 envs per cell: friction 1.0/mass 1.0 0.413→0.154, friction 0.6/mass 1.0 0.338→0.115, friction 1.8/mass 0.5 0.441→0.138, friction 0.2/mass 1.5 0.337→0.092.
+
+**(4) Metric bug.** `summarize`'s `intervention_rate` was "did this episode ever trigger", which with a ~0.15 per-step rate over 80 steps is ~1.00 for every arm — it hid the real trigger frequency entirely. Now reported per control step, with `episode_trigger_rate` kept alongside.
+
+### Where this leaves the headline result — honest reading
+`gt_shadow` (repair by GT-guided down-scaling) reaches CVR 0.015 pooled over OOD cells against a 0.272 baseline, so **the safety mechanism works when the risk model is right**. The learned predictors improve on the baseline but do not approach that bound: on friction=0.2 / mass=1.5 the tau sweep gives CVR 0.74/0.43/0.71/0.78/0.55 at tau 0.60/0.45/0.35/0.25/0.15, against none 1.00 and gt_shadow 0.02.
+
+The reason is a property of the distilled predictor, not of the repair search: its training range is friction 0.5–1.5, and at friction 0.2 it cannot reliably rank down-scale factors. So the current stand-in supports the *mechanism* (detect → repair → safer) but not yet the *claim* that a distilled physics verifier closes most of the gap to a GT verifier. Two things would change that, in order of expected value:
+1. widen the predictor's training range to cover the deployment range (friction 0.3–1.5) and report the residual gap on a *held-out* perturbation axis — this is the standard fix and costs one data collection;
+2. report trigger calibration *per regime* rather than one global tau, so the conformal guarantee is stated on the distribution it was calibrated on instead of being extrapolated to friction 0.2.
+
+Both are honest experiments; neither is a bug fix, and both belong in the next run rather than being folded in silently here.
+
 ### Update 29 Sep — plan revision
 `Experiment_plan_1year.md` revised (pending supervisor confirmation):
 - **Headline result = closed loop on a real VLA:** safe success with vs. without the verifier over the Task A OOD grid, plus the matching demo video. RQ1 explains the result and RQ3 shows it fits one A5000.
