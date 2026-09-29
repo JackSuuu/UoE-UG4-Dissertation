@@ -7,6 +7,52 @@ Newest entry at the top.
 
 ## Sem 1 · Week 1 (w/c 28 Sep 2026) — Plan phase P1, Month 1
 
+### Update 29 Sep — Task A moved to a box peg with a two-fingertip pusher
+**torch GT (`sims/torch_push.py`) rewritten:**
+- Square peg (side 2·R_b) with yaw: state 8 → 10 dims `[…, th, w]` and obs 7 → 10 dims `[…, sin4th, cos4th, w/10]`. The new columns are appended, so existing indices are unchanged.
+- **Pusher = two fingertips** 3 cm apart along y, like a closed Franka gripper. Each has a box–point contact with Coulomb friction μ_p = 0.5. Wall contact is per corner; floor friction couples translation and rotation (ellipsoidal limit surface).
+- Seat clearance `gap` 2 mm → 6 mm (a yawed box is wider in x).
+- Expert: "align, then insert straight". Heading = +x plus a lateral correction atan(15·e_y); the pusher stays centred on the box's back face; it slows down on the remaining insertion depth.
+
+How we got there (expert on the torch GT, nominal cell):
+
+| Version | SR | Violation rate | Problem |
+|---|---|---|---|
+| Single frictionless point | 0.11 | 0.89 | Force only along the face normal; any angled push spins the box |
+| + fingertip friction | 0.09 | 0.91 | Near the seat, the expert steered sideways, cut through the box and spun it |
+| + hold near seat, 6 mm gap, straight final approach | 0.84 | 0.00 | Floor friction treated translation and rotation independently (over-damped rotation, did not match Genesis) |
+| Coupled floor friction | 0.12 | 0.00 | Single-point pushing of a box is unstable |
+| **Two fingertips, centred on the back face, μ_p = 0.5** | **1.00** | **0.00** | — |
+
+Final expert over the OOD grid (64 envs/cell): nominal and friction ≥ 0.6× → SR 0.83–1.00, violations ≈ 0; **low friction (0.2×) → violations 0.84–1.00**, the intended OOD failure. Gradients are finite (‖dJ/dA‖ ≈ 0.15 for both hard and smooth). μ_p = 1.0 was rejected: SR on light pegs dropped to 0.62–0.75 and the smooth gradients blew up to ~1e4.
+
+**Genesis (`sims/genesis_push.py`):** box peg, two-fingertip pusher as one MJCF body (density must be set in the MJCF; the material rho is ignored for MJCF bodies, which gave a 0.008 kg pusher), yaw and yaw rate in the state.
+
+**Parity (same 16 initial states, expert):**
+
+| Check | Result |
+|---|---|
+| Aligned box, straight push | identical (SR 1.00 both, y error 0) |
+| Floor friction only (slide / spin, no pusher) | matches |
+| Nominal cell, full task | torch SR 1.00 vs Genesis 0.50; mean position gap 3 cm (was 19 cm with the single-point pusher) |
+| Friction 1.8×, mass 2× | torch 0 violations vs Genesis 0.94 |
+
+Remaining parity gaps:
+1. **The force signal is defined differently.** torch uses max(fingertip normal force sum, wall force). Genesis uses the norm of the *net* contact force on the peg (including floor friction), which is also impulsive per step. Genesis needs per-contact forces (pusher–peg and wall–peg separately) before violation rates can be compared.
+2. Genesis corrects lateral error less well (nominal |e_y| 3.4 cm vs 0.4 cm).
+
+Earlier fix of the parity script: torch and Genesis had been reset with different random generators (CPU vs CUDA), so the Week 1 parity numbers compared different initial states.
+
+**Quick pipeline on the box Task A** (`run_all.sh push torch --quick`, stand-ins, not reportable): runs end to end (EXIT 0).
+- Expert violation rate at nominal 0.000; predictor training data has episode-violation rate 0.56.
+- Calibration: safe-chunk fraction dropped to 0.47 (disk: 0.91); stand-in OrbiSim tau ≈ 4e-11 (still degenerate).
+- RQ1 pooled AUROC: stand-in OrbiSim **0.31** (worse than chance), vision 0.58, vision_noact 0.52.
+- RQ2 pooled OOD CVR: none 0.41, gt_shadow 0.25 (−39%), checkvla_vision 0.45, checkvla_orbisim 0.44.
+- **Interventions create violations at nominal:** in the nominal cell `none` has CVR 0.00, but gt_shadow 0.38 and the CheckVLA arms 0.12–0.25. Repaired chunks seem to make the pusher strike the box. To investigate (repair size vs. loss of fingertip alignment); this is directly the "over-cautious / harmful verifier" risk.
+- RQ3/stab: log grad-norm variance 47 with no stabiliser (disk: 0.15); clip 18.5, relax 21.3. Box contacts are far more chaotic, so the stabiliser matters more here.
+- RQ3/sched: fast-only 18.8 ms, async 40.3 ms, sync (GT in the loop) 581 ms mean latency.
+- RQ3/mem: naive 17.7 MB vs checkpointing 3.6 MB at T=50.
+
 ### Update 29 Sep — plan revision
 `Experiment_plan_1year.md` revised (pending supervisor confirmation):
 - **Headline result = closed loop on a real VLA:** safe success with vs. without the verifier over the Task A OOD grid, plus the matching demo video. RQ1 explains the result and RQ3 shows it fits one A5000.
@@ -108,9 +154,10 @@ Smoke-test observations (quick sizes, stand-ins — indicative only):
 - [ ] Turn the RQ3 hybrid/deferral prototypes into measured experiments
 
 ### Next week (Week 2) — proposed
-1. Task A → box peg: rewrite the torch GT contact model (add rotation), adapt the expert, then re-run Genesis ↔ torch parity.
-2. Once parity holds: Genesis gradient audit per contact regime (free / pusher_contact / wall_contact / stuck) → Fig B2.
-3. Full-size torch pipeline (no `--quick`) → first real stand-in numbers; add **safe success** to `rq2_eval.py`.
-4. Read the OrbiSim / CheckVLA papers and design the re-implementations (prep for M2).
-5. Start the VLA short-list (chunk-output, fits one A5000 with the verifier).
-6. Supervisor: confirm the 29 Sep plan revision; ask about lab robot / F/T sensor access (P4).
+1. ~~Task A → box peg~~ ✅ (29 Sep). Finish Genesis ↔ torch parity: measure pusher–peg and wall–peg contact forces separately in Genesis; look into weaker lateral correction.
+2. Investigate why interventions (gt_shadow, CheckVLA repair) create violations at nominal on the box task.
+3. Genesis gradient audit per contact regime (free / pusher_contact / wall_contact / stuck) → Fig B2.
+4. Full-size torch pipeline (no `--quick`) → first real stand-in numbers; add **safe success** to `rq2_eval.py`; split `run_all.sh` into "build verifier" (collect/train/calibrate) and "evaluate" (RQ1–3).
+5. Read the OrbiSim / CheckVLA papers and design the re-implementations (prep for M2).
+6. Start the VLA short-list (chunk-output, fits one A5000 with the verifier; prefer models with LIBERO checkpoints for P2b).
+7. Supervisor: confirm the 29 Sep plan revision (incl. box Task A and the LIBERO benchmark); report the GPU 0 fault to the admin; ask about lab robot / F/T sensor access (P4).

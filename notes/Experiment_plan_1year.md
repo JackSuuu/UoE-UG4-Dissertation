@@ -11,6 +11,9 @@
 > 3. A real VLA moves from a late "transfer check" to the **main RQ2 policy**. Integration and model selection happen in M2 (Nov). BC stays as the cheap policy for large sweeps.
 > 4. **Task A uses a box peg** in both simulators (Genesis 1.4 differentiable mode does not detect cylinder–sphere contacts).
 > 5. **Compute budget: one RTX A5000 (24 GB)** for VLA + verifier together, to mimic local/edge compute.
+> 6. **Task A = box peg pushed by a two-fingertip pusher** (single-point pushing of a box is unstable; see `experiment_record.md`, 29 Sep).
+> 7. **Public VLA benchmark added (P2b / P5):** a subset of LIBERO tasks with physical perturbations (friction/mass) and force limits, current VLAs with vs. without the verifier. This follows how CheckVLA (RoboCasa365), SAFE (LIBERO, SimplerEnv) and OrbiSim (robosuite Push etc.) are evaluated.
+> 8. **Deformable scope (T3) made explicit:** a simple deformable task with a clear strain/force constraint (e.g. lift-and-fold one cloth corner without over-stretching, or press a soft object below a strain limit). Full garment folding with a VLA is out of scope: current folding VLAs rely on large real-robot datasets, and the physics predictor would need full cloth dynamics.
 
 ---
 
@@ -69,6 +72,7 @@ Core experiments and system optimisation run **in parallel, not in series**. Sys
 | **P1 Infrastructure** | 1–3 | Oct–Dec 2026 | Genesis integration, real components in place of stand-ins, gradient path audit, end-to-end predict → trigger → repair | **G1 (end Dec):** end-to-end loop runs in Genesis with real OrbiSim-Dynamics (or a justified substitute) |
 | **P2 Core experiments** | 4–7 | Jan–Apr 2027 | Vary horizon, task complexity, constraint type; measure signal quality & trigger effectiveness | **G2 (end Mar):** first reliability map for Task A; *h\** located or H1 rejected |
 | **P3 System optimisation** | 6–9 (parallel) | Mar–Jun 2027 | Checkpointing / truncation / scheduling ablations at the horizons P2 needs | **G3 (end Jun):** usable-envelope result (H3) |
+| **P2b Public VLA benchmark** | 7–10 (parallel) | Apr–Jul 2027 | LIBERO subset + physical perturbations and force limits; predictor retrained on robosuite state; current VLAs with vs. without verifier | **G2b (end Jul):** with/without-verifier results on the LIBERO subset, or a documented reason it could not transfer |
 | **P4 Real-data validation** | 8–10 | May–Jul 2027 | Offline trigger tests on real robot trajectories | **G4 (end Jul):** signal meaningful on real data, or a documented sim-to-real gap |
 | **P5 Converge & write** | 10–12 | Jul–Sep 2027 | Complementary experiments, figures, writing | Full thesis draft end Aug; final Sep |
 
@@ -88,7 +92,7 @@ Starting point: the `src/` framework (plug-in interfaces, stand-ins, Genesis bac
 | **M2** | Replace stand-ins: real OrbiSim-Dynamics via `adapters/orbisim_official.py` (or, if unavailable, a documented re-implementation following the paper — named "OrbiSim-style", not "OrbiSim"). Real/official CheckVLA logic if public; otherwise the reference verifier with its design written up (add event-driven keyframe banks; align hard prefixing with the paper). Risk head for the predictor (route a or b in the adapter). **VLA selection and integration:** short-list 2–3 chunk-output VLAs, measure memory and ms/step on one A5000, pick one; wire Genesis camera (`render_rgb`) and the Franka action mapping; collect Genesis Task A demos and fine-tune; baseline VLA (no verifier) on the OOD grid, with its failure causes classified. | Real components behind the interfaces; chosen VLA running in the loop with baseline OOD numbers |
 | **M3** | **Gradient path audit on Genesis** for Task A (rigid) and a Genesis-native deformable task (MPM/FEM, since PBD cloth is not differentiable). End-to-end loop on Genesis. Minimal checkpointing prototype started (the P3 system track starts early, as in the Phase-1 review). | Audit map (Fig B2); **G1** |
 
-Base policy decision (revised 2026-09-29): the **real VLA is the policy for the headline RQ2 runs** (with vs. without verifier, safe success). The BC proxy is kept for the large sweeps (RQ1 horizon × constraint × OOD, RQ3 ablations), where running thousands of VLA episodes is too slow on one A5000. Every BC-based conclusion used to explain the headline should be spot-checked on the VLA.
+Base policy decision (revised 2026-09-29): the **real VLA is the policy for the headline RQ2 runs** (with vs. without verifier, safe success). The BC proxy (behaviour cloning: a small network trained by supervised learning to imitate the scripted expert's action chunks; a VLA is the same idea at large scale with images and language) is kept for the large sweeps (RQ1 horizon × constraint × OOD, RQ3 ablations), where running thousands of VLA episodes is too slow on one A5000. Every BC-based conclusion used to explain the headline should be spot-checked on the VLA.
 
 ### P2 — Core experiments (Months 4–7)
 
@@ -98,7 +102,7 @@ A factorial design over the axes the RQs name. Every cell compares **physics pre
 |---|---|---|
 | Prediction horizon *h* | 5, 10, 20, 40, 80 steps | locate *h\** (H1) |
 | Constraint type | contact force · deformation/strain · contact-mode change (slip/stick, making/breaking contact) | H2 |
-| Task complexity | T1 rigid push-insertion → T2 multi-contact rigid (e.g. peg-in-hole with tight clearance) → T3 deformable (Genesis MPM/FEM) | increasing contact richness |
+| Task complexity | T1 rigid push-insertion (box peg, two-fingertip pusher) → T2 multi-contact rigid (e.g. peg-in-hole with tight clearance) → T3 simple deformable task with a strain/force limit (Genesis MPM/FEM; e.g. lift-and-fold one cloth corner, or press a soft object) | increasing contact richness; T3 is deliberately not full garment folding |
 | OOD shift | friction, mass, stiffness grids (from Phase 1), plus distance-to-training-range | calibration under shift |
 | Predictor | physics (OrbiSim-Dynamics) · vision WM · hybrid (physics state + visual residual) | the hybrid is optional, added if the first two are close |
 | Policy | VLA (headline arms: none / vision verifier / physics verifier) · BC (full sweep) | VLA on the informative cells only if one A5000 cannot cover the full grid |
@@ -122,6 +126,29 @@ The three components already exist in `src/systems/` as prototypes. P3 turns the
 
 Output: the **usable-resource envelope** (Fig: verifier quality vs memory budget × latency budget), answering H3.
 
+### P2b — Public VLA benchmark (Months 7–10, parallel with P3/P4)
+
+**Why:** reviewers expect results on a public benchmark with existing VLAs, as in related work:
+
+| Paper | Benchmark | Policies | Reported |
+|---|---|---|---|
+| CheckVLA (2607.26789) | RoboCasa365 (sim, 365 household mobile-manipulation tasks) | several VLAs under one training recipe | success rate vs. periodic replanning; timely recall at a matched 5% false-alarm rate; sim only |
+| SAFE (NeurIPS 2025) | LIBERO, SimplerEnv, plus real robot | OpenVLA, π0-FAST, … | failure-detection ROC-AUC, detection time |
+| OrbiSim (2605.16395) | robosuite Push, Isaac Lab Stack, AdaManip, Physion Drape | own policies | prediction fidelity, RL success |
+
+**Problem:** public benchmarks do not test physical constraints. Most failures are grasping or placement errors, which a physics verifier cannot fix.
+
+**Plan:** "LIBERO + physics":
+1. Choose a LIBERO subset where contact matters (pushing, placing, inserting). LIBERO runs on robosuite/MuJoCo, which exposes contact forces and lets us vary friction and mass.
+2. Add physical OOD perturbations (friction, mass) and per-task force limits; define safe success as in §4.
+3. Retrain the physics predictor on robosuite object state (same architecture as for Genesis; the vision WM likewise), and recalibrate tau per policy.
+4. Run 1–2 current VLAs that fit one A5000 (from the M2 short-list; e.g. OpenVLA-OFT or π0-FAST): none / vision verifier / physics verifier.
+5. Report safe success, SR, CVR, and the detection metrics used by CheckVLA/SAFE (timely recall at matched false-alarm rate, AUROC), so the numbers can be compared.
+
+**Why LIBERO rather than RoboCasa365:** LIBERO is the most common VLA benchmark, uses a fixed-base Franka (as our demo), and is lighter to run on one GPU. RoboCasa365 is mobile manipulation and heavier.
+
+**Prerequisites:** the chosen VLA runs in the loop (G1) and the Task A results have located where the physics signal is reliable (G2). If robosuite transfer fails, report the Task A results as the main evidence and the benchmark attempt as a limitation.
+
 ### P4 — Real-data validation (Months 8–10)
 
 Minimal and offline — **no full VLA closed loop on hardware**:
@@ -134,7 +161,7 @@ If no real data with force labels can be obtained by M6, P4 shrinks to a **sim-t
 ### P5 — Convergence & writing (Months 10–12)
 
 - Complementary experiments requested by the gates and supervisor feedback
-- Final VLA runs: headline with/without-verifier comparison on the chosen VLA over the Task A OOD grid (building on the P2 results)
+- Final VLA runs: headline with/without-verifier comparison on the chosen VLA over the Task A OOD grid (building on the P2 results), plus the final LIBERO + physics numbers (P2b)
 - Demo: Franka arm video in Genesis (`src/demo/`), normal vs OOD vs OOD + verifier
 - Writing: chapter plan in §7
 
@@ -153,6 +180,7 @@ If no real data with force labels can be obtained by M6, P4 shrinks to a **sim-t
 | **F0** | **Headline: safe success of the VLA over the OOD grid — none vs. vision verifier vs. physics verifier (with SR and CVR alongside)** | RQ2 (headline) |
 | F11 | Demo video: same seed and OOD cell, VLA without vs. with verifier (force, risk score and trigger overlaid); episode chosen to be representative of F0, not the best case | RQ2 |
 | F12 | VLA + verifier memory and ms/step on one A5000 vs. the 50 ms budget | RQ3 |
+| F13 | Public benchmark: LIBERO + physics subset — safe success, SR, CVR for none / vision / physics verifier on 1–2 VLAs, plus timely recall at matched false-alarm rate | RQ2 (P2b) |
 | F7 | Memory / latency vs horizon, with and without each optimisation | RQ3 |
 | F8 | Usable envelope: verifier quality vs resource budget | RQ3 |
 | F9 | Real-data offline trigger traces vs measured force | P4 |
@@ -172,6 +200,7 @@ If no real data with force labels can be obtained by M6, P4 shrinks to a **sim-t
 | System track | `systems/bptt.py`, `systems/scheduler.py` | Genesis-native checkpointing; latency sweeps |
 | Demo | `demo/genesis_franka_demo.py` (never run) | run; add target marker, OOD comparison video |
 | Real VLA policy | `adapters/openvla_policy.py` (skeleton, single-action OpenVLA) | M2: chunk-output VLA selection, camera + action mapping, fine-tuning on Genesis Task A demos |
+| Public benchmark | — | P2b: LIBERO install, physics perturbation + force-limit wrapper, robosuite state adapter for the predictor, eval script |
 | Real data | — | P4 |
 
 Known issue carried over: the stand-in predictor under-predicts rare risk spikes (fix written, unverified). Real predictors will need the same check: rare-event risk calibration is part of RQ1.
@@ -205,11 +234,14 @@ Known issue carried over: the stand-in predictor under-predicts rare risk spikes
 | VLA too large or slow for one A5000 alongside the verifier | Medium-High | Measure in M2 before choosing; prefer smaller chunk-output VLAs; run VLA arms only on informative cells; the gap to the 50 ms budget becomes an RQ3 result |
 | Base VLA fails in OOD cells for non-physical reasons (perception, grasping) | Medium | Classify failure causes in M2; fine-tune on Genesis Task A demos; report which failures the verifier can and cannot address |
 | Verifier lowers SR by making the policy over-cautious | Medium | Safe success as the primary metric, with SR and CVR reported next to it; tune the repair margin and conformal alpha on held-out cells |
+| Public-benchmark failures are not physical, so the verifier has nothing to fix | Medium-High | Choose contact-heavy LIBERO tasks and add physical perturbations; classify failure causes; report the split |
+| Predictor does not transfer to robosuite state | Medium | Same architecture retrained on robosuite; if it still fails, keep Task A as the main evidence and document the gap |
 
 **Gates:**
 - **G1 (end Dec 2026):** end-to-end loop on Genesis with real or justified components, **and the chosen VLA running in the loop with baseline (no-verifier) OOD numbers**. If the Genesis part is not met by mid-Jan → run P2 on the torch GT and treat Genesis as validation only.
 - **G2 (end Mar 2027):** *h\** located or H1 clearly rejected. If rejected → re-weight toward B.
 - **G3 (end Jun 2027):** usable envelope measured.
+- **G2b (end Jul 2027):** LIBERO + physics with/without-verifier results, or a documented reason the transfer failed.
 - **G4 (end Jul 2027):** real or sim-to-sim validation done.
 
 ---
@@ -222,5 +254,5 @@ Done in Week 1: main contribution decided (A); Genesis installed and gradient pr
 2. Genesis gradient audit per contact regime (Fig B2) once parity holds.
 3. Full-size torch pipeline (no `--quick`); add the **safe success** metric to `rq2_eval.py`.
 4. Read the OrbiSim / CheckVLA papers; design the OrbiSim-style and CheckVLA-style re-implementations.
-5. Start the VLA short-list (chunk-output models that could fit one A5000 with the verifier).
+5. Start the VLA short-list (chunk-output models that could fit one A5000 with the verifier). Also check which of them have LIBERO checkpoints, since that makes P2b cheaper.
 6. **Supervisor:** confirm the 2026-09-29 revision (VLA-centred headline, safe success); ask about lab robot / F/T sensor access for P4.

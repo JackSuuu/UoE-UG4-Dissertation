@@ -2,10 +2,10 @@
 Task A on Genesis (``genesis-world``) — GPU ground-truth backend.
 
 Mirrors ``sims/torch_push.py`` exactly in geometry and in the *state layout*
-``[bx, by, vx, vy, px, py, ty, t]`` so obs / render / success / expert are
+``[bx, by, vx, vy, px, py, ty, t, th, w]`` so obs / render / success / expert are
 re-used from ``PushSim`` and every experiment script is backend-agnostic.
 
-Scene: plane + dynamic cylinder peg (free joint) + kinematically driven
+Scene: plane + dynamic box peg (free joint) + kinematically driven
 sphere pusher (free joint, velocity set every sub-step) + fixed end-stop box.
 
 Physical parameters (friction / mass multipliers) are baked in at build time,
@@ -38,13 +38,35 @@ def gs_init(requires_grad_hint: bool = False):
     return gs
 
 
+def _pusher_mjcf(r_p: float, dy: float, rho: float) -> str:
+    """Write a one-body MJCF with two sphere fingertips and return its path.
+    The density must be set in the MJCF: the material rho is ignored for MJCF
+    bodies (the default gave a 0.008 kg pusher that the peg simply stopped)."""
+    import os
+    import tempfile
+    xml = f"""<mujoco model="two_finger_pusher">
+  <worldbody>
+    <body name="pusher">
+      <freejoint/>
+      <geom type="sphere" size="{r_p}" pos="0 {dy} 0" density="{rho}"/>
+      <geom type="sphere" size="{r_p}" pos="0 {-dy} 0" density="{rho}"/>
+    </body>
+  </worldbody>
+</mujoco>
+"""
+    path = os.path.join(tempfile.gettempdir(), f"two_finger_pusher_{r_p}_{dy}_{rho:g}.xml")
+    with open(path, "w") as f:
+        f.write(xml)
+    return path
+
+
 class GenesisPushEnv(Env):
     def __init__(self, sim, n: int, mults: dict, requires_grad: bool = False,
                  dt_sub: float = 0.01, camera: bool = False, cam_res=(224, 224),
                  peg_shape: str | None = None, pusher_rho: float = 3e5):
         self.camera, self.cam_res = camera, cam_res
-        # box is required for gradients (see _build); otherwise keep the disk-like cylinder
-        peg_shape = peg_shape or ("box" if requires_grad else "cylinder")
+        # Task A uses a box peg (torch GT too); "cylinder" is kept only for the audit
+        peg_shape = peg_shape or "box"
         self.peg_shape, self.pusher_rho = peg_shape, pusher_rho
         self.sim, self.n, self.mults = sim, n, dict(mults)
         self.requires_grad = requires_grad
@@ -78,24 +100,26 @@ class GenesisPushEnv(Env):
         )
         self.scene.add_entity(gs.morphs.Plane(),
                               material=gs.materials.Rigid(friction=self.mu))
-        # Peg shape: in Genesis 1.4 differentiable mode, cylinder-sphere contacts are
-        # not detected (the pusher passes straight through), while box-sphere contacts
-        # are, so the grad scene uses a square block of side 2*R_b.
+        # Peg: square block of side 2*R_b, same as the torch GT. In Genesis 1.4
+        # differentiable mode cylinder-sphere contacts are not detected (the pusher
+        # passes straight through), which is why Task A moved from a disk to a box.
         if self.peg_shape == "box":
             vol = (2 * s.R_b) ** 2 * h
             peg_morph = gs.morphs.Box(size=(2 * s.R_b, 2 * s.R_b, h), pos=(0.0, 0.0, h / 2))
         else:
             vol = np.pi * s.R_b ** 2 * h
             peg_morph = gs.morphs.Cylinder(radius=s.R_b, height=h, pos=(0.0, 0.0, h / 2))
-        # Genesis combines contact friction as max(mu_a, mu_b) (floor 0.01). The torch GT
-        # only has peg-floor friction, so every other body gets the 0.01 minimum.
+        # Genesis combines contact friction as max(mu_a, mu_b) (min 0.01). Matching the
+        # torch GT: peg-floor = mu (floor), peg-pusher = mu_p (pusher), peg-wall = 0.01.
         self.peg = self.scene.add_entity(
             peg_morph, material=gs.materials.Rigid(rho=self.mass / vol, friction=0.01))
         # Pusher is velocity-driven every sub-step; it must be much heavier than the
         # peg or contact impulses stop it (rho=5000 gave ~0.02 kg vs a 0.5 kg peg).
+        # Two fingertips (spheres at ±finger_dy along y) on one free body, like a
+        # closed gripper; the body origin is the pusher position p of the torch GT.
         self.pusher = self.scene.add_entity(
-            gs.morphs.Sphere(radius=s.r_p, pos=(-0.05, 0.0, s.r_p)),
-            material=gs.materials.Rigid(rho=self.pusher_rho, friction=0.01))
+            gs.morphs.MJCF(file=_pusher_mjcf(s.r_p, s.finger_dy, self.pusher_rho), pos=(-0.05, 0.0, s.r_p)),
+            material=gs.materials.Rigid(rho=self.pusher_rho, friction=s.mu_p))
         self.wall = self.scene.add_entity(
             gs.morphs.Box(size=(0.02, 0.6, 0.06),
                           pos=(s.x_w + 0.01, 0.0, 0.03), fixed=True),
@@ -114,7 +138,11 @@ class GenesisPushEnv(Env):
         pp = self._t(self.peg.get_pos())
         pv = self._t(self.peg.get_vel())
         qp = self._t(self.pusher.get_pos())
-        return pp, pv, qp
+        q = self._t(self.peg.get_quat())                        # wxyz
+        yaw = torch.atan2(2 * (q[:, 0] * q[:, 3] + q[:, 1] * q[:, 2]),
+                          1 - 2 * (q[:, 2] ** 2 + q[:, 3] ** 2))
+        wz = self._t(self.peg.get_ang())[:, 2]
+        return pp, pv, qp, yaw, wz
 
     def _write(self, s):
         n = self.n
@@ -122,10 +150,13 @@ class GenesisPushEnv(Env):
         peg_pos = torch.cat([s[:, 0:2], z + self.h / 2], 1)
         pus_pos = torch.cat([s[:, 4:6], z + self.sim.r_p], 1)
         self.peg.set_pos(peg_pos)
-        self.peg.set_quat(torch.tensor([1.0, 0, 0, 0], device=self.dev).repeat(n, 1))
+        half = s[:, 8] / 2                                     # yaw -> quaternion (wxyz)
+        zq = torch.zeros_like(half)
+        self.peg.set_quat(torch.stack([torch.cos(half), zq, zq, torch.sin(half)], 1))
         self.pusher.set_pos(pus_pos)
         vel = torch.zeros(n, 6, device=self.dev)
         vel[:, 0:2] = s[:, 2:4]
+        vel[:, 5] = s[:, 9]
         self.peg.set_dofs_velocity(vel)
         self.pusher.set_dofs_velocity(torch.zeros(n, 6, device=self.dev))
 
@@ -156,9 +187,9 @@ class GenesisPushEnv(Env):
 
     # ------------------------------------------------------------------
     def get_state(self):
-        pp, pv, qp = self._read()
+        pp, pv, qp, yaw, wz = self._read()
         return torch.stack([pp[:, 0], pp[:, 1], pv[:, 0], pv[:, 1],
-                            qp[:, 0], qp[:, 1], self.ty, self.t], 1)
+                            qp[:, 0], qp[:, 1], self.ty, self.t, yaw, wz], 1)
 
     def set_state(self, s):
         self.ty = s[:, 6].clone()
@@ -183,7 +214,7 @@ class GenesisPushEnv(Env):
             self.scene.step()
             f = self._contact_force()
             if f is None:
-                _, pv, _ = self._read()
+                _, pv, _, _, _ = self._read()
                 if v_prev is not None:
                     f = self.mass * torch.norm(pv[:, :2] - v_prev, dim=1) / self.dt_sub
                 else:

@@ -51,6 +51,13 @@ def to_np(x):
     return np.asarray(x)
 
 
+def peg_yaw_w(peg):
+    """Yaw angle and yaw rate of the peg (state columns 8, 9)."""
+    q = to_np(peg.get_quat()).reshape(-1)                 # wxyz
+    yaw = float(np.arctan2(2 * (q[0] * q[3] + q[1] * q[2]), 1 - 2 * (q[2] ** 2 + q[3] ** 2)))
+    return yaw, float(to_np(peg.get_ang()).reshape(-1)[2])
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--viewer", action="store_true", help="open the interactive Genesis viewer")
@@ -89,11 +96,12 @@ def main():
     scene.add_entity(gs.morphs.Plane(), material=gs.materials.Rigid(friction=mu))
     franka = scene.add_entity(gs.morphs.MJCF(file="xml/franka_emika_panda/panda.xml"))
     h = 0.03
-    vol = np.pi * sim.R_b ** 2 * h
+    vol = (2 * sim.R_b) ** 2 * h
     g = torch.Generator().manual_seed(args.seed)
     s0 = sim.init_state(1, g)[0].cpu().numpy()          # [bx,by,vx,vy,px,py,ty,t] task frame
     peg = scene.add_entity(
-        gs.morphs.Cylinder(radius=sim.R_b, height=h, pos=(X0 + s0[0], s0[1], h / 2)),
+        gs.morphs.Box(size=(2 * sim.R_b, 2 * sim.R_b, h), pos=(X0 + s0[0], s0[1], h / 2),
+                      euler=(0, 0, float(np.degrees(s0[8])))),
         material=gs.materials.Rigid(rho=mass / vol, friction=mu),
         surface=gs.surfaces.Default(color=(0.9, 0.5, 0.1)))
     scene.add_entity(
@@ -148,7 +156,8 @@ def main():
     def read_state(t, p_cmd):
         pp, pv = to_np(peg.get_pos()).reshape(-1), to_np(peg.get_vel()).reshape(-1)
         hp = to_np(hand.get_pos()).reshape(-1)
-        s = np.array([pp[0] - X0, pp[1], pv[0], pv[1], hp[0] - X0, hp[1], s0[6], t], np.float32)
+        yaw, wz = peg_yaw_w(peg)
+        s = np.array([pp[0] - X0, pp[1], pv[0], pv[1], hp[0] - X0, hp[1], s0[6], t, yaw, wz], np.float32)
         return torch.as_tensor(s, device=dev)[None]
 
     # ------------------------------------------------------------------ loop
