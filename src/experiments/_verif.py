@@ -58,12 +58,17 @@ def grad_probe(sim, params, state, chunk, orbisim, ctx, goal_dims):
 
 @torch.no_grad()
 def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
-                     grad_every=0, act_noise=0.0, chunk_k=1):
+                     grad_every=0, act_noise=0.0, chunk_k=1, ctrl_scales=()):
     """verifiers: {role: VerifierAdapter}. Uses verifier.score for trigger scores
     and verifier.predictor.risk for the raw predicted risk.
 
     chunk_k: steps between policy calls (open-loop chunk execution). chunk_k=1
     replans every step (closed-loop); chunk_k>1 executes each chunk open-loop.
+
+    ctrl_scales: if non-empty, additionally score every proposed chunk scaled by
+    each of these factors and record both the predicted and the GT chunk risk.
+    Measures *controllability* -- whether the signal repair's bisection search
+    actually walks down -- which AUROC does not capture.
     """
     obs = env.reset(params, seed)
     needs_rgb = bool(getattr(policy, "needs_rgb", False))
@@ -76,7 +81,8 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
     img_prev = env.render()
     rec = {k: [] for k in verifiers}
     rec_max = {k: [] for k in verifiers}
-    gt_chunk, step_risk, succ = [], [], None
+    rec_ctrl = {k: [] for k in verifiers} if ctrl_scales else {}
+    gt_chunk, gt_ctrl, step_risk, succ = [], [], [], None
     probes = []
     g = torch.Generator().manual_seed(seed + 99)
     plan = torch.zeros(B, policy.H, policy.act_dim, device=dev)
@@ -96,7 +102,18 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
             rec[k].append(v.score(ctx, chunk))
             mean, _ = v.predictor.risk(ctx, chunk)
             rec_max[k].append(mean.amax(dim=(1, 2)))
+            # Repair controllability: does the score actually fall when the
+            # chunk is scaled down? AUROC only measures detection, but the
+            # repair search bisects on exactly this signal, so a predictor can
+            # rank violations well and still be uncontrollable. Stacked within
+            # the timestep so the array comes out (B, T, n_scales) in scale order.
+            if ctrl_scales:
+                rec_ctrl[k].append(torch.stack([v.score(ctx, chunk * sc)
+                                                for sc in ctrl_scales], 1))
         gt_chunk.append(env.shadow_rollout(chunk).amax(dim=(1, 2)))
+        if ctrl_scales:
+            gt_ctrl.append(torch.stack(
+                [env.shadow_rollout(chunk * sc).amax(dim=(1, 2)) for sc in ctrl_scales], 1))
         if grad_every and t % grad_every == 0 and params is not None and can_probe:
             pr = grad_probe(sim, params, env.get_state(), chunk, probe_pred,
                             ctx, GOAL_DIMS[sim.name])
@@ -115,6 +132,10 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
         "step_risk": torch.stack(step_risk, 1).cpu().numpy(),
         "success": succ.cpu().numpy(),
     }
+    if ctrl_scales:
+        out["ctrl_scales"] = list(ctrl_scales)
+        out["ctrl_pred"] = {k: torch.stack(v, 1).cpu().numpy() for k, v in rec_ctrl.items()}
+        out["ctrl_gt"] = torch.stack(gt_ctrl, 1).cpu().numpy()   # (B, T, n_scales)
     if probes:
         out["probe"] = {
             "valid": torch.stack([p["valid"] for p in probes], 1).numpy(),
@@ -167,3 +188,39 @@ def trigger_metrics(scores, gt_chunk_risk, step_risk, tau, H, lead=1):
         "n_viol_episodes": int(ep_v.sum()),
         "n_steps_pos": int(lab.sum()),
     }
+
+
+def controllability(ctrl_pred, ctrl_gt):
+    """Can the repair search actually walk the predicted score down?
+
+    AUROC says "a violating chunk scores high". It says nothing about whether
+    halving the chunk lowers the score, which is the only thing the bisection in
+    ``scale_repair`` relies on. A predictor can therefore rank violations well
+    and still be useless for repair -- its response to action magnitude is flat
+    or even increasing, so the search converges on a scale that is not actually
+    safer.
+
+    ``ctrl_pred`` / ``ctrl_gt`` are (n, n_scales) arrays ordered by decreasing
+    chunk scale (1.0 first). Returns the fraction of monotone descents, the
+    mean relative drop from full scale to the smallest, and the same measured
+    against GT so the two can be compared directly.
+    """
+    p = np.asarray(ctrl_pred, dtype=float)
+    g = np.asarray(ctrl_gt, dtype=float)
+    n = p.shape[0]
+    if n == 0 or p.shape[1] < 2:
+        return {"pred_monotone": float("nan"), "pred_rel_drop": float("nan"),
+                "gt_monotone": float("nan"), "gt_rel_drop": float("nan"), "n": int(n)}
+
+    def _stats(x):
+        steps = x[:, :-1] > x[:, 1:]
+        mono = float(steps.mean())
+        # relative drop from scale 1.0 to the smallest scale, per row
+        denom = np.maximum(np.abs(x[:, 0]), 1e-6)
+        drop = float(((x[:, 0] - x[:, -1]) / denom).mean())
+        return mono, drop
+
+    pm, pd_ = _stats(p)
+    gm, gd = _stats(g)
+    return {"pred_monotone": pm, "pred_rel_drop": pd_,
+            "gt_monotone": gm, "gt_rel_drop": gd, "n": int(n)}

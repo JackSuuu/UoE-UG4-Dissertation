@@ -122,6 +122,48 @@ The reason is a property of the distilled predictor, not of the repair search: i
 
 Both are honest experiments; neither is a bug fix, and both belong in the next run rather than being folded in silently here.
 
+### Update 29 Sep (later) — run v5: the fixed predictor, and why detection ≠ repair
+
+Full pipeline re-run end-to-end with the corrected model so that tau is recalibrated against it (`run_all_v5.log`). tau: orbisim 0.597, vision 0.457, vision_noact 0.950.
+
+RQ1 (pooled over the OOD grid, chunk-level labels):
+
+| predictor | AUROC | precision | recall | timely |
+|---|---|---|---|---|
+| orbisim (privileged state) | 0.863 | 0.579 | 0.377 | 0.563 |
+| vision (pixels) | **0.991** | 0.795 | 0.934 | **1.00** |
+| vision_noact (action-blind ablation) | 0.750 | 0.257 | 0.233 | 0.850 |
+
+RQ2 (pooled OOD cells, `chunk_k=5`, 64 envs/cell):
+
+| arm | SR | CVR | CVR reduction | **safe success** |
+|---|---|---|---|---|
+| none (VLA alone) | 0.823 | 0.272 | – | 0.685 |
+| gt_shadow (GT risk upper bound) | 0.805 | 0.015 | −94.7% | 0.801 |
+| checkvla_vision | 0.843 | 0.271 | −0.4% | 0.695 |
+| checkvla_orbisim | 0.804 | 0.205 | −24.6% | **0.704** |
+| checkvla_vision_noact | 0.818 | 0.285 | +4.5% | 0.689 |
+
+**The main finding, and it is not the one I was looking for.** The pixel world model detects violations *better* than the privileged-state one (0.991 vs 0.863, timely recall 1.00 vs 0.56) yet its repair does nothing at all: −0.4% CVR. The state model detects worse but repairs 25% of the violations away. So detection quality and repair controllability are **two independent properties**, and the whole RQ1 metric set measures only the first. The privileged-state advantage shows up in the second — which is the one that determines safe success.
+
+Averaging per-step latency, `checkvla_orbisim` is 24–30 ms against `checkvla_vision` 451 ms, i.e. the cheap predictor is also the one that works.
+
+**Correction to the entry above.** I had compared the two risk read-outs (risk off the extrapolated state vs. off the current state) on a proxy — AUROC over uniformly sampled validation windows from the training episodes — and concluded from it that the current-state read-out was the better one (0.976 vs 0.495). The pipeline disagreed: under the RQ1 protocol the extrapolated-state read-out reaches AUROC 0.992 / risk-MAE 0.035, the current-state one 0.863 / 0.087. The proxy was the wrong distribution — RQ1 evaluates OOD cells with execution noise and a whole-chunk GT label, not in-distribution single windows. The conclusion "current-state read-out is better" was an artefact of measuring on the training distribution. The current-state read-out is nevertheless the one that has to stay, because the extrapolated state's gradient was noise (per-step |d(risk)/d(action)| 1.65 vs 0.00027) and repair with it was actively harmful. The open question is whether a read-out that anchors on the true state but *also* consumes the model's own predicted one-step delta can recover the ranking without giving up the usable gradient; that is now the top follow-up, measured with the RQ1 protocol rather than a proxy.
+
+RQ3 unchanged in structure, worse in one place: gradient clipping cuts log-grad-norm variance 38.1 → 21.2 but CVR goes **0.88 → 1.00** (and `relax` 17.4 with 39 spikes, also 1.00), i.e. every form of gradient-based repair tested is worse than not repairing. Consistent with the read-out finding above, and it means the gradient path is currently the weakest part of the method, not a supporting detail. Memory at T=400: naive 1742 MB vs checkpointed 47 MB (cos 1.000); truncating the checkpoint to save more costs accuracy (cos 0.968). Scheduling: fast_only 183 ms mean / 441 ms p95, async 145 ms / 447 ms at staleness 1.57, sync 466 ms / 1037 ms. At `chunk_k=5` the 183 ms amortises to 37 ms/step, inside the 50 ms budget; the sync verifier does not fit.
+
+### Update 29 Sep — new measurement: repair controllability
+
+Added `controllability()` to `_verif.py` and wired it into RQ1, because the v5 result above cannot be explained without it. It re-scores every proposed chunk at a ladder of scales (1.0, 0.75, 0.5, 0.25, 0.0) and reports (a) the fraction of monotone descents in the *predicted* score and (b) the mean relative drop, each next to the same quantity measured on the GT shadow rollout. Chunks are restricted to those the trigger actually acts on, since the controllability of a chunk that is never repaired is irrelevant. This is the direct test of whether AUROC is a sufficient proxy for safe success, and it is what the thesis should report alongside it.
+
+### Update 29 Sep — new experiment RQ2b: shift as the independent variable
+
+`experiments/rq2_shift.py`. The OOD grid asks *whether* the verifier helps at a fixed set of perturbed cells, which conflates "is the cell far from the predictor's training range" with "does the verifier help". RQ2b makes the shift magnitude the independent variable — the question a practitioner actually has. One OOD axis moves at a time, the other is held nominal, and the ladder spans the training range (friction 0.5–1.5) and continues past it. `shift` is the signed log-distance from the training range, so 0 is exactly in-distribution.
+
+A null result worth keeping: **the mass axis is not a breaking axis for this task at any value in 0.4–2.5** (safe 1.00, CVR 0.00 throughout, in-distribution and out). Only friction breaks the box task — a slippery box slides into the wall; a heavy one still tracks the pusher. The shift curve therefore carries information on one axis only, and the mass half of the OOD grid in RQ2 is padding.
+
+Caught by a `--quick` smoke test before it reached a full run: holding the other axis at nominal was first hard-coded to `"mass"`, which for the mass ladder produces `{"mass": v, "mass": 1.0}` → `{"mass": 1.0}`, so the entire second ladder silently re-evaluated the nominal cell (every rung reporting shift 0.00 and safe 1.00). The other axis is now derived from the ladder keys, with an assert on the ladder's arity.
+
 ### Update 29 Sep — plan revision
 `Experiment_plan_1year.md` revised (pending supervisor confirmation):
 - **Headline result = closed loop on a real VLA:** safe success with vs. without the verifier over the Task A OOD grid, plus the matching demo video. RQ1 explains the result and RQ3 shows it fits one A5000.

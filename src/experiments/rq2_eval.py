@@ -65,7 +65,8 @@ def main():
                 traces.setdefault(str(ci), {})[a] = {k: v[vi] for k, v in res["trace"].items()}
         results.append(entry)
         print(f"[rq2] {cell} " + " | ".join(
-            f"{a}: SR {entry[a]['SR']:.2f} CVR {entry[a]['CVR']:.2f} {entry[a]['latency_ms_mean']:.1f}ms"
+            f"{a}: SR {entry[a]['SR']:.2f} CVR {entry[a]['CVR']:.2f} "
+            f"safe {entry[a]['safe_success']:.2f} {entry[a]['latency_ms_mean']:.1f}ms"
             for a in arms))
 
     # pooled over OOD cells
@@ -83,7 +84,8 @@ def main():
         np.savez(os.path.join(od, "rq2_trace.npz"),
                  **{f"{a}__{k}": v for a, d in traces[str(worst)].items() for k, v in d.items()},
                  tau_orbisim=taus.get("orbisim", 1.0), tau_vision=taus.get("vision", 1.0))
-    print("[rq2] pooled OOD:", {a: {m: round(v[m], 3) for m in ("SR", "CVR", "CVR_reduction_vs_none")}
+    print("[rq2] pooled OOD:", {a: {m: round(v[m], 3) for m in
+                                    ("SR", "CVR", "safe_success", "CVR_reduction_vs_none")}
                                 for a, v in pooled.items()})
 
 

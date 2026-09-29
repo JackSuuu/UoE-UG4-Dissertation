@@ -17,7 +17,7 @@ import os
 import numpy as np
 
 from _common import CHUNK_H, base_parser, env_for_cell, load_policy, load_verifiers, setup
-from _verif import auroc, trigger_metrics, verifier_rollout
+from _verif import auroc, controllability, trigger_metrics, verifier_rollout
 from common import grid_cells, is_ood, load_json, save_json
 
 
@@ -27,6 +27,8 @@ def main():
     p.add_argument("--grad_every", type=int, default=5)
     p.add_argument("--chunk_k", type=int, default=5,
                    help="steps between policy calls (open-loop chunk execution)")
+    p.add_argument("--ctrl_scales", type=float, nargs="+", default=[1.0, 0.75, 0.5, 0.25, 0.0],
+                   help="chunk scales used to measure repair controllability")
     args = p.parse_args()
     dev, sim, od = setup(args)
     if args.quick:
@@ -37,13 +39,14 @@ def main():
     ge = args.grad_every if args.backend == "torch" else 0
 
     per_cell, pooled = [], {k: {"s": [], "g": [], "r": []} for k in preds}
+    ctrl = {}
     split = {k: {"valid": ([], []), "invalid": ([], [])} for k in preds}
     fid, cos_valid, cos_by_regime = [], [], {}
     trace = None
     for ci, cell in enumerate(grid_cells(args.task)):
         env, params = env_for_cell(args, args.n_envs, dev, cell)
         r = verifier_rollout(env, sim, policy, params, preds, seed=2000 + ci, grad_every=ge,
-                             chunk_k=args.chunk_k)
+                             chunk_k=args.chunk_k, ctrl_scales=tuple(args.ctrl_scales))
         entry = {"cell": cell, "ood": is_ood(args.task, cell),
                  "policy_SR": float(r["success"].mean()),
                  "policy_CVR": float((r["step_risk"] > 1).any(1).mean())}
@@ -55,6 +58,12 @@ def main():
             pooled[k]["s"].append(r["scores"][k])
             pooled[k]["g"].append(r["gt_chunk_risk"])
             pooled[k]["r"].append(r["step_risk"])
+            ctrl.setdefault(k, {"p": [], "g": []})
+            # only chunks the trigger would act on: controllability of a chunk
+            # that is never repaired is irrelevant
+            act = r["scores"][k] > taus[k]
+            ctrl[k]["p"].append(r["ctrl_pred"][k][act])
+            ctrl[k]["g"].append(r["ctrl_gt"][act])
         if "probe" in r:
             pr = r["probe"]
             t_idx = pr["t"]
@@ -94,7 +103,11 @@ def main():
                 sc, lb = np.concatenate(sc), np.concatenate(lb)
                 summary[k][f"auroc_grad_{part}"] = auroc(sc, lb)
                 summary[k][f"n_grad_{part}"] = int(len(sc))
-    out = {"tau": taus, "summary": summary, "per_cell": per_cell}
+        if ctrl.get(k):
+            summary[k].update(controllability(np.concatenate(ctrl[k]["p"]),
+                                              np.concatenate(ctrl[k]["g"])))
+    out = {"tau": taus, "summary": summary, "per_cell": per_cell,
+           "ctrl_scales": list(args.ctrl_scales)}
     if fid:
         F_ = np.concatenate(fid)
         C = np.concatenate(cos_valid)
@@ -108,6 +121,13 @@ def main():
                                                     if k not in ("cell",)})
     print("[rq1] pooled:", {k: {m: round(v[m], 3) for m in ("auroc", "precision", "recall",
                                                               "timely_recall")} for k, v in summary.items()})
+    print("[rq1] repair controllability (chunks the trigger acts on):")
+    for k, v in summary.items():
+        if "pred_monotone" in v:
+            print(f"       {k:14s} predicted score falls monotonically "
+                  f"{v['pred_monotone']:.2f} of the ladder, rel. drop {v['pred_rel_drop']:+.2f} "
+                  f"| GT {v['gt_monotone']:.2f}, rel. drop {v['gt_rel_drop']:+.2f} "
+                  f"(n={v['n']})", flush=True)
 
 
 if __name__ == "__main__":
