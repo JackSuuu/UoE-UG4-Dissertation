@@ -166,9 +166,10 @@ def part_sched(args, dev, sim, od):
     out = {"cell": cell, "slow_delay_ms": args.slow_delay_ms, "modes": {}}
     eng = AsyncEngine(args.task, args.backend, n, cell, params, dev, args.slow_delay_ms)
     ctrls = {
-        "fast_only": Controller(policy, sim, "checkvla", verifier=ver),
-        "async": Controller(policy, sim, "checkvla", verifier=ver, async_engine=eng),
-        "sync": Controller(policy, sim, "gt_shadow"),
+        "fast_only": Controller(policy, sim, "checkvla", verifier=ver, chunk_k=args.chunk_k),
+        "async": Controller(policy, sim, "checkvla", verifier=ver, async_engine=eng,
+                            chunk_k=args.chunk_k),
+        "sync": Controller(policy, sim, "gt_shadow", chunk_k=args.chunk_k),
     }
     try:
         for name, c in ctrls.items():
@@ -417,6 +418,8 @@ def main():
     p.add_argument("--opt_iters", type=int, default=30)
     p.add_argument("--opt_lr", type=float, default=0.05)
     p.add_argument("--slow_delay_ms", type=float, default=0.0)
+    p.add_argument("--chunk_k", type=int, default=5,
+                   help="steps between policy calls (open-loop chunk execution)")
     args = p.parse_args()
     dev, sim, od = setup(args)
     path = os.path.join(od, "rq3.json")

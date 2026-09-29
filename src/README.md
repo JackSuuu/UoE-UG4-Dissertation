@@ -101,6 +101,23 @@ bash run_all.sh cloth torch           # Task B
 bash run_all.sh push genesis          # Task A with Genesis GT (once it runs)
 bash run_all.sh push torch --quick    # tiny smoke-test sizes
 ```
+
+The pipeline is split into two stages:
+
+```bash
+bash run_all.sh build push torch      # collect data, train predictors, calibrate tau
+bash run_all.sh eval  push torch      # RQ1, RQ2, RQ3, figures
+```
+
+`build` produces the verifier (trained predictors + calibrated thresholds). `eval`
+loads it and runs the experiments. After changing the verifier's trigger/repair
+logic or swapping the policy, only `eval` needs to re-run.
+
+**Execution protocol (CheckVLA-style):** all arms execute action chunks open-loop.
+`--chunk_k` (default 5) is the number of steps between policy calls. The baseline
+(`none`) replans every `chunk_k` steps instead of every step, so the comparison
+against the verifier arms is fair. `chunk_k=1` gives closed-loop replanning.
+
 Component flags pass through, e.g. `bash run_all.sh push torch --orbisim_impl official`.
 Outputs go to `results/<task>_<backend>/` (json, npz, Fig A–F png/pdf).
 

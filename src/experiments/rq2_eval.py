@@ -23,13 +23,14 @@ from common import grid_cells, is_ood, load_json, save_json
 
 
 def build_controller(arm, policy, sim, od, dev, taus, args):
+    kw = dict(chunk_k=args.chunk_k)
     if arm == "none":
-        return Controller(policy, sim, "none")
+        return Controller(policy, sim, "none", **kw)
     if arm == "gt_shadow":
-        return Controller(policy, sim, "gt_shadow", commit=args.commit)
+        return Controller(policy, sim, "gt_shadow", commit=args.commit, **kw)
     role = arm.replace("checkvla_", "")
     ver = build_verifier(args, load_predictor(args, od, role, dev, sim), sim, taus[role])
-    return Controller(policy, sim, "checkvla", verifier=ver)
+    return Controller(policy, sim, "checkvla", verifier=ver, **kw)
 
 
 def main():
@@ -37,6 +38,8 @@ def main():
     p.add_argument("--n_envs", type=int, default=64)
     p.add_argument("--with_noact", action="store_true")
     p.add_argument("--arms", nargs="+", default=None)
+    p.add_argument("--chunk_k", type=int, default=5,
+                   help="steps between policy calls (open-loop chunk execution)")
     args = p.parse_args()
     dev, sim, od = setup(args)
     if args.quick:

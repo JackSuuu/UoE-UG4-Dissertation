@@ -22,6 +22,8 @@ def main():
     p.add_argument("--alpha", type=float, default=0.05)
     p.add_argument("--n_cells", type=int, default=6)
     p.add_argument("--n_envs", type=int, default=64)
+    p.add_argument("--chunk_k", type=int, default=5,
+                   help="steps between policy calls (open-loop chunk execution)")
     args = p.parse_args()
     dev, sim, od = setup(args)
     if args.quick:
@@ -34,7 +36,8 @@ def main():
     for c in range(args.n_cells):
         cell = {k: float(rng.uniform(*v)) for k, v in ranges.items()}
         env, params = env_for_cell(args, args.n_envs, dev, cell)
-        r = verifier_rollout(env, sim, policy, params, preds, seed=1000 + c, act_noise=0.1)
+        r = verifier_rollout(env, sim, policy, params, preds, seed=1000 + c, act_noise=0.1,
+                             chunk_k=args.chunk_k)
         safe = r["gt_chunk_risk"] <= 1.0
         for k in preds:
             scores[k].append(r["scores"][k][safe])

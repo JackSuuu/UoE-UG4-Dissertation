@@ -26,7 +26,7 @@ from checkvla.reference import calibrate_tau, chunk_score, suffix_repair  # noqa
 
 class Controller:
     def __init__(self, policy, sim, mode="none", verifier=None, commit=5,
-                 async_engine=None, instruction=None):
+                 async_engine=None, instruction=None, chunk_k=None):
         assert mode in ("none", "gt_shadow", "checkvla")
         assert mode != "checkvla" or verifier is not None
         self.policy, self.sim, self.mode = policy, sim, mode
@@ -34,6 +34,9 @@ class Controller:
         self.commit = verifier.commit if verifier is not None else commit
         self.async_engine = async_engine
         self.instruction = instruction
+        # chunk_k: steps between policy calls (open-loop chunk execution).
+        # All arms use the same value so the comparison is fair. Default: commit.
+        self.chunk_k = chunk_k if chunk_k is not None else self.commit
         self.needs_img = bool(getattr(policy, "needs_img", False)) or bool(
             verifier is not None and getattr(verifier.predictor, "needs_img", False))
         self.needs_rgb = bool(getattr(policy, "needs_rgb", False))
@@ -57,10 +60,10 @@ class Controller:
             ctx["rgb"] = env.render_rgb()          # real VLA camera frames
         return ctx
 
-    def _set_plan(self, mask, chunks):
+    def _set_plan(self, mask, chunks, steps=None):
         self.plan[mask] = chunks
         self.plan_ptr[mask] = 0
-        self.plan_left[mask] = min(self.commit, self.plan.shape[1])
+        self.plan_left[mask] = min(steps or self.commit, self.plan.shape[1])
 
     @torch.no_grad()
     def act(self, env, obs):
@@ -100,6 +103,12 @@ class Controller:
                 best[todo] = chunk[todo] * 0.15
                 self._set_plan(viol, best[viol])
             info["trig"] = viol
+
+        elif self.mode == "none" and (~using_plan).any():
+            # Open-loop chunk execution: run the chunk for chunk_k steps before
+            # replanning. This matches the CheckVLA setting where a VLA executes
+            # action chunks open-loop.
+            self._set_plan(~using_plan, chunk[~using_plan], steps=self.chunk_k)
 
         use = self.plan_left > 0
         a = torch.where(use[:, None],
@@ -166,6 +175,7 @@ def summarize(res: dict) -> dict:
     return {
         "SR": float(s.mean()),
         "CVR": float(v.mean()),
+        "safe_success": float((s & ~v).mean()),
         "RR": float(s[intervened].mean()) if intervened.any() else float("nan"),
         "intervention_rate": float(intervened.mean()),
         "latency_ms_mean": float(res["latency_ms"].mean()),

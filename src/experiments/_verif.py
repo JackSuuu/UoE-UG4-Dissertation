@@ -58,9 +58,13 @@ def grad_probe(sim, params, state, chunk, orbisim, ctx, goal_dims):
 
 @torch.no_grad()
 def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
-                     grad_every=0, act_noise=0.0):
+                     grad_every=0, act_noise=0.0, chunk_k=1):
     """verifiers: {role: VerifierAdapter}. Uses verifier.score for trigger scores
-    and verifier.predictor.risk for the raw predicted risk."""
+    and verifier.predictor.risk for the raw predicted risk.
+
+    chunk_k: steps between policy calls (open-loop chunk execution). chunk_k=1
+    replans every step (closed-loop); chunk_k>1 executes each chunk open-loop.
+    """
     obs = env.reset(params, seed)
     needs_rgb = bool(getattr(policy, "needs_rgb", False))
     probe_pred = verifiers["orbisim"].predictor if "orbisim" in verifiers else None
@@ -75,11 +79,22 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
     gt_chunk, step_risk, succ = [], [], None
     probes = []
     g = torch.Generator().manual_seed(seed + 99)
+    plan = torch.zeros(B, policy.H, policy.act_dim, device=dev)
+    plan_ptr = torch.zeros(B, dtype=torch.long, device=dev)
+    plan_left = torch.zeros(B, dtype=torch.long, device=dev)
+    chunk = None
     for t in range(sim.T):
         img = env.render()
+        if plan_left == 0:
+            chunk = policy(obs, env.render_rgb() if needs_rgb else img)
+            plan = chunk.clone()
+            plan_ptr = torch.zeros(B, dtype=torch.long, device=dev)
+            plan_left = torch.full_like(plan_left, min(chunk_k, chunk.shape[1]))
         ctx = {"obs": obs, "obs_prev": obs_prev, "a_prev": a_prev,
                "img": img, "img_prev": img_prev, "state": env.get_state(), "instruction": None}
-        chunk = policy(obs, env.render_rgb() if needs_rgb else img)
+        a = plan[torch.arange(B, device=dev), plan_ptr.clamp(max=plan.shape[1] - 1)]
+        plan_ptr = plan_ptr + 1
+        plan_left = plan_left - 1
         for k, v in verifiers.items():
             rec[k].append(v.score(ctx, chunk))
             mean, _ = v.predictor.risk(ctx, chunk)
@@ -90,7 +105,6 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
                             ctx, GOAL_DIMS[sim.name])
             pr["t"] = t
             probes.append({k: (v.cpu() if torch.is_tensor(v) else v) for k, v in pr.items()})
-        a = chunk[:, 0]
         if act_noise > 0:
             a = (a + act_noise * sim.max_vel * torch.randn(a.shape, generator=g).to(dev)
                  ).clamp(-sim.max_vel, sim.max_vel)

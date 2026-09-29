@@ -53,6 +53,23 @@ Earlier fix of the parity script: torch and Genesis had been reset with differen
 - RQ3/sched: fast-only 18.8 ms, async 40.3 ms, sync (GT in the loop) 581 ms mean latency.
 - RQ3/mem: naive 17.7 MB vs checkpointing 3.6 MB at T=50.
 
+### Update 29 Sep (later) — execution protocol fixed to CheckVLA-style open-loop chunks
+**Problem found:** the baseline `none` was replanning every step (closed-loop), while CheckVLA studies VLA policies executing action chunks open-loop. On the box task this matters a lot (64 envs/cell):
+
+| Execution | Nominal SR / CVR | Low friction + heavy peg SR / CVR |
+|---|---|---|
+| `none`, replan every step | 0.84 / 0.03 | 0.67 / 0.81 |
+| `none`, open-loop chunk k=5 | 0.27 / 0.73 | 0.00 / 1.00 |
+| `gt_shadow` (GT check + repair) | 0.83 / 0.08 | 0.53 / **0.38** |
+
+The earlier "interventions create violations at nominal" was mostly small-sample noise (quick: 8 envs/cell). The real issue was the protocol mismatch. The GT verifier upper bound is strong: CVR 0.81 → 0.38 in the hardest cell.
+
+**Changes:**
+- `Controller` and `verifier_rollout` now execute chunks open-loop for `--chunk_k` steps (default 5) in **all** arms, including the baseline. `chunk_k=1` gives closed-loop replanning.
+- `safe_success` (success with no violation) added to `summarize` as the primary metric.
+- `run_all.sh` split into `build` (collect/train/calibrate) and `eval` (RQ1–3, figures); `--chunk_k` is separated and passed only to the eval scripts.
+- Full-size run launched in the background (`setsid nohup`, log `~/scratch/run_all_full.log`).
+
 ### Update 29 Sep — plan revision
 `Experiment_plan_1year.md` revised (pending supervisor confirmation):
 - **Headline result = closed loop on a real VLA:** safe success with vs. without the verifier over the Task A OOD grid, plus the matching demo video. RQ1 explains the result and RQ3 shows it fits one A5000.

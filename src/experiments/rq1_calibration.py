@@ -25,6 +25,8 @@ def main():
     p = base_parser(__doc__)
     p.add_argument("--n_envs", type=int, default=64)
     p.add_argument("--grad_every", type=int, default=5)
+    p.add_argument("--chunk_k", type=int, default=5,
+                   help="steps between policy calls (open-loop chunk execution)")
     args = p.parse_args()
     dev, sim, od = setup(args)
     if args.quick:
@@ -40,7 +42,8 @@ def main():
     trace = None
     for ci, cell in enumerate(grid_cells(args.task)):
         env, params = env_for_cell(args, args.n_envs, dev, cell)
-        r = verifier_rollout(env, sim, policy, params, preds, seed=2000 + ci, grad_every=ge)
+        r = verifier_rollout(env, sim, policy, params, preds, seed=2000 + ci, grad_every=ge,
+                             chunk_k=args.chunk_k)
         entry = {"cell": cell, "ood": is_ood(args.task, cell),
                  "policy_SR": float(r["success"].mean()),
                  "policy_CVR": float((r["step_risk"] > 1).any(1).mean())}
