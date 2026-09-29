@@ -43,6 +43,49 @@ The rest of this document assumes **A main / B support / C light**.
 
 ---
 
+## 1a. Revised 30 Sep (start of Week 2) — what the first week of measurements changed
+
+Four things are now settled by data rather than by argument. Three of them contradict earlier parts of this document.
+
+**1. Genesis is demoted from GT engine to optional cross-check.** Two blocking measurements: with the same expert and initial states, SR is 1.00 in torch and 0.06 in Genesis (the peg drifts sideways and goes around the end of the wall, for both box and cylinder, cause still unknown), and it costs 34–52 ms/step against torch's 6–7. Neither is fixable inside the budget we have. **The GT remains the hand-written differentiable torch sim** (`sims/torch_push.py`: box peg, two fingertips, 10-d state, analytic box–point contact). Genesis is retained only as a *transfer* target for P2b: if the predictor transfers to it, that is evidence the learned signal is physics rather than torch-sim artefact. This is a downgrade in ambition and an upgrade in honesty — the earlier plan assumed Genesis would be the differentiable engine inside the loop, and the measurements say it cannot be trusted to be.
+
+**2. The verifier is a distilled surrogate, not the physics engine run in the loop.** This is a real divergence from how A was originally framed ("use Genesis as an analytical world model"). In practice we *train* the risk model: `OrbiSimDynamics` is an MLP ensemble (hidden 256 × E=5, 15000 iterations) and `VisionWM` is a GRU. The engine is only the GT the surrogate is scored against. Consequences to accept rather than hide:
+- the contribution becomes *"a cheap differentiable physics surrogate that can be run in the VLA loop, and a characterisation of when its signal is trustworthy"* — which is closer to OrbiSim's own distillation claim than to "run the engine inline";
+- the verifier reads true simulator state (friction and mass stay hidden), so it is **privileged**. This must be stated wherever the VLA framing is used, and P2b's LIBERO transfer is what tests whether it survives without privilege;
+- the surrogate is 24–30 ms/step against the vision model's 451 ms, so the cheap predictor is also the one that works — a systems result, reported as such.
+
+**3. CheckVLA's gradient branch and hard prefix are both inert on this task, and that is now measured rather than assumed.** `suffix_repair` holds a hard prefix, and the violating contact is the *first* step of the chunk, so it cannot change the one thing that matters: GT risk 1.193 → 1.193, against 0.125 for the bisected down-scale on the same chunks. It nonetheless scores *lower* on the predictor (0.300 vs 0.256, winning on 29% of envs), so the "keep whichever the predictor rates safer" selection picked it and discarded the bisection (1.193 → 0.419). That single interaction is the mechanism behind the RQ3 result where all three gradient stabilisers were worse than no repair (CVR 0.88 none, 1.00 clip, 1.00 relax): the gradient is not noisy, it is inert, and nothing in the selection step could tell. Both are now off by default (`--use_grad`, `--hard_prefix`) and kept only as the ablations that explain those tables. Measured on friction 0.2/mass 1.5 with 128 envs: bisection 1.073 → 0.105, with the gradient branch 1.073 → 0.333.
+
+**4. What we may claim about the headline, and what we may not.** The current claim is *not* "the privileged predictor repairs better" — the repair audit falsifies that: per intervention the vision model lowers the true risk of the chunk it executes by 41.4% against orbisim's 28.9%, with half the no-op rate. The claim is that the two differ in **how conservative they are** (interventions 3721 vs 1394; recall 0.934 vs 0.377; lead 8.8 vs 5.2 steps), and a CVR comparison taken at each predictor's own calibrated tau is **confounded by that**. `rq2_matched_tau.py` exists to remove the confound; until it is in, the orbisim-over-vision gap is suggestive, not established.
+
+---
+
+## 1b. How this differs from CheckVLA (30 Sep)
+
+CheckVLA's code is not public, so this is a comparison of *claims and mechanisms* against the paper, and is stated as such in the write-up. It is written here because the Week-1 plan described A as "CheckVLA with a physics predictor swapped in", which understates the difference in both directions.
+
+| | CheckVLA (2607.26789) | This thesis |
+|---|---|---|
+| **Verifier signal** | frozen visual world model; risk = distance between predicted and observed features | differentiable physics surrogate; risk = a **named physical quantity** (contact force / penetration) against a threshold |
+| **What a violation means** | latent feature divergence — not identifiable or nameable | a specific constraint, so violations are **attributable and countable per constraint type** |
+| **Required privilege** | pixels only — deployable as-is | reads true simulator state (friction/mass stay hidden) — **privileged**. A real disadvantage; the LIBERO transfer is the test that could remove it |
+| **Response to a violation** | discard the chunk, re-query the policy (replanning) | **repair before execution**: bisected down-scale certified by the same signal, so the task still completes |
+| **Cost** | visual WM rollout | 24–30 ms/step vs 451 ms — and the cheap one is also the accurate one (RQ1), a systems finding in its own right |
+| **Question asked** | does runtime verification improve success? | **when is the verifier's signal trustworthy enough to act on?** |
+| **Evidence produced** | end-to-end benchmark comparison | mechanism-level: reliability map, repair audit, rate-matched comparison, controllability, shift boundary, resource envelope |
+
+**The one-sentence delta.** CheckVLA asks *whether* a visual world model can catch failures; we ask *when* a physics-derived risk signal is calibrated enough to be acted on, we measure that boundary explicitly, and we ship a repair operator certified by the same signal. The headline artefact is the boundary, not a win.
+
+**Three findings that CheckVLA's design could not have produced, and which are the actual novelty:**
+
+1. **AUROC does not predict safety.** The pixel model detects better (AUROC 0.991, timely recall 1.00) and buys −0.4% CVR; the state model detects worse (0.863, 0.56) and buys −24.6%. Ranked by detection quality the conclusion comes out backwards. Any work that reports detection metrics as evidence of safety will get this ordering wrong.
+2. **The mechanism is trigger calibration, not repair quality.** Per intervention the pixel model is the *better* repairer (true risk of the executed chunk −41.4% vs −28.9%, half the no-op rate) and still loses, purely because it fires 2.7× more often. The gap is conformal-calibration granularity — a per-regime τ, not a better model. This is a finding about how to use *any* verifier, CheckVLA's included.
+3. **CheckVLA's own two components are inert when the violating contact is the first action of the chunk** — the latency-aware hard prefix and the gradient repair fail for the same reason (neither can change the step that violates), and the gradient branch *over-claims* on the score while changing nothing, so a "keep whichever scores safer" selection picks it. Reproducing a published mechanism faithfully is what surfaced this; a from-scratch design would have avoided the bug instead of measuring it.
+
+**What we must not claim:** that the physics verifier wins *because it is physics*. On the metric that should matter most (CVR reduction at a fair operating point) the two predictors are not yet separated, and the honest statement is "we can characterise the difference, not yet exploit it". Claiming physics-beats-vision before the rate-matched comparison lands would be exactly the confound we identified.
+
+---
+
 ## 2. Core research question
 
 > **In long-horizon, contact-rich manipulation, how does the quality of the signal from a differentiable physics predictor — used as the core of a runtime verifier — change with task complexity, prediction horizon and constraint type? And what system-level design keeps that signal usable within acceptable resource cost?**
@@ -69,7 +112,8 @@ Core experiments and system optimisation run **in parallel, not in series**. Sys
 
 | Phase | Months | Calendar | Main task | Milestone / gate |
 |---|---|---|---|---|
-| **P1 Infrastructure** | 1–3 | Oct–Dec 2026 | Genesis integration, real components in place of stand-ins, gradient path audit, end-to-end predict → trigger → repair | **G1 (end Dec):** end-to-end loop runs in Genesis with real OrbiSim-Dynamics (or a justified substitute) |
+| **P1 Infrastructure** | 1–3 | Oct–Dec 2026 | Real components in place of stand-ins (especially a real VLA policy), gradient path audit, end-to-end predict → trigger → repair. **GT stays the hand-written differentiable torch sim; Genesis is demoted to an optional cross-check** (see §1a) | **G1 (end Dec):** end-to-end loop runs with a real VLA policy as the actor |
+| **P2a Releasable physics benchmark** | 2–4 | Nov 2026 – Jan 2027 | Freeze Task A into a runnable protocol with the actor as an argument; ≥2 actors on the same verifier | **G1b (end Feb):** third party reproduces in ≤2 h on one A5000, or demoted to internal protocol |
 | **P2 Core experiments** | 4–7 | Jan–Apr 2027 | Vary horizon, task complexity, constraint type; measure signal quality & trigger effectiveness | **G2 (end Mar):** first reliability map for Task A; *h\** located or H1 rejected |
 | **P3 System optimisation** | 6–9 (parallel) | Mar–Jun 2027 | Checkpointing / truncation / scheduling ablations at the horizons P2 needs | **G3 (end Jun):** usable-envelope result (H3) |
 | **P2b Public VLA benchmark** | 7–10 (parallel) | Apr–Jul 2027 | LIBERO subset + physical perturbations and force limits; predictor retrained on robosuite state; current VLAs with vs. without verifier | **G2b (end Jul):** with/without-verifier results on the LIBERO subset, or a documented reason it could not transfer |
@@ -88,7 +132,7 @@ Starting point: the `src/` framework (plug-in interfaces, stand-ins, Genesis bac
 
 | Month | Work | Output |
 |---|---|---|
-| **M1** | Run Genesis on the server: `audit_gradients.py --backend genesis --genesis_probe`, Franka demo recording. Fix API issues. **Decide main contribution (§1).** Literature check: is OrbiSim / CheckVLA code public? **Task A → box peg in the torch GT and Genesis; Genesis ↔ torch parity.** | Genesis working; Franka demo mp4; decision recorded; box Task A with parity |
+| **M1** | ~~Run Genesis on the server~~, Franka demo recording. **Decide main contribution (§1).** Literature check: is OrbiSim / CheckVLA code public? **Task A → box peg in the torch GT; Genesis ↔ torch parity.** | Decision recorded; box Task A in the torch GT. **Parity failed (30 Sep) → Genesis demoted, see §1a.1** |
 | **M2** | Replace stand-ins: real OrbiSim-Dynamics via `adapters/orbisim_official.py` (or, if unavailable, a documented re-implementation following the paper — named "OrbiSim-style", not "OrbiSim"). Real/official CheckVLA logic if public; otherwise the reference verifier with its design written up (add event-driven keyframe banks; align hard prefixing with the paper). Risk head for the predictor (route a or b in the adapter). **VLA selection and integration:** short-list 2–3 chunk-output VLAs, measure memory and ms/step on one A5000, pick one; wire Genesis camera (`render_rgb`) and the Franka action mapping; collect Genesis Task A demos and fine-tune; baseline VLA (no verifier) on the OOD grid, with its failure causes classified. | Real components behind the interfaces; chosen VLA running in the loop with baseline OOD numbers |
 | **M3** | **Gradient path audit on Genesis** for Task A (rigid) and a Genesis-native deformable task (MPM/FEM, since PBD cloth is not differentiable). End-to-end loop on Genesis. Minimal checkpointing prototype started (the P3 system track starts early, as in the Phase-1 review). | Audit map (Fig B2); **G1** |
 
@@ -149,6 +193,26 @@ Output: the **usable-resource envelope** (Fig: verifier quality vs memory budget
 
 **Prerequisites:** the chosen VLA runs in the loop (G1) and the Task A results have located where the physics signal is reliable (G2). If robosuite transfer fails, report the Task A results as the main evidence and the benchmark attempt as a limitation.
 
+### P2a — Releasable physics-constraint benchmark (Months 2–4, **before** P2b, not after)
+
+Introduced 30 Sep. The problem with going straight to P2b is that it couples three unknowns — a VLA we have never run, a new simulator, and a new benchmark — so a failure in any of them costs a semester and the failure is diagnosed slowly. P2a removes the two unknowns we control.
+
+**What it is:** the Task A setting, frozen into a benchmark protocol that others can run, with the actor treated as a variable rather than part of the task. Released as `physicsbench-push` (or similar): seeded initial states, the published friction × mass perturbation grid, fixed episode length and success/violation predicates, and an eval harness taking a policy as an argument.
+
+**Why it is a contribution and not just our testbed:** CheckVLA evaluates on RoboCasa365, which contains **no physical constraints** — its failures are grasping and placement errors that no physics verifier can address. There is therefore no public benchmark on which a physics verifier can be shown to help. Producing one, together with the honest split of which failures a physics verifier *can* and *cannot* fix, is a standalone contribution and it is the one most likely to be cited.
+
+**Actor ladder** (each row is an arm, same protocol, same verifier — the verifier is never retrained per actor):
+1. scripted expert (sanity: verifier must not break a correct policy)
+2. `bc` (current stand-in — the row every later arm is compared against)
+3. small chunk-output VLA, run open-loop over `chunk_k` like every other arm
+4. the VLA used in P2b, if time permits
+
+**Numbers to produce:** safe success / SR / CVR per actor × per perturbation cell, plus the detection metrics (AUROC, timely recall at matched false-alarm rate) and the resource cost. The interesting result is the *interaction*: the same verifier helps a weak actor more than a strong one, because a strong actor's failures are less often physical. That is a claim about verifier scope, and it is only visible with ≥2 actors — which is why a single-actor testbed could never have shown it.
+
+**Decision gate G1b (end Feb 2027):** if the harness is not runnable by others (documented, one-command, ≤2 h on one A5000), it stays an internal protocol and P2b carries the external-validity burden alone.
+
+**Prerequisites:** none beyond what already runs. This is the cheapest credible external artifact in the plan.
+
 ### P4 — Real-data validation (Months 8–10)
 
 Minimal and offline — **no full VLA closed loop on hardware**:
@@ -172,7 +236,8 @@ If no real data with force labels can be obtained by M6, P4 shrinks to a **sim-t
 | Figure | Content | RQ |
 |---|---|---|
 | F1 | System diagram: policy → predictor → verifier → repair; fast/slow engines | — |
-| F2 | Gradient path audit map (Genesis), per task × contact regime | RQ1 |
+| F2 | Gradient path audit map, per task × contact regime (torch GT; Genesis columns only where the probe ran) | RQ1 |
+| **F6b** | **P2a: safe success by actor × perturbation cell** — the same verifier on 2–4 actors, showing the gain depends on how physical the actor's failures are | RQ2 (P2a) |
 | F3 | **Reliability map:** AUROC / calibration vs horizon × constraint type, physics vs vision | RQ1 (headline) |
 | F4 | Fidelity and gradient-agreement decay vs horizon, with *h\** marked | RQ1 |
 | F5 | Trigger lead time & repair success per constraint type | RQ2 |
@@ -193,7 +258,8 @@ If no real data with force labels can be obtained by M6, P4 shrinks to a **sim-t
 | Needed | Exists in `src/` | Gap |
 |---|---|---|
 | Plug-in interfaces for policy / predictor / verifier / GT | `interfaces.py`, `registry.py` | — |
-| Genesis GT | `sims/genesis_push.py` (Task A, never run) | run and fix; add T2 and a differentiable deformable task (MPM/FEM) |
+| **GT engine** | `sims/torch_push.py` — hand-written differentiable box–point contact (the working GT); `sims/genesis_push.py` (parity fails, 30 Sep) | T2 multi-contact; Genesis demoted to optional transfer target, not a deliverable |
+| Releasable benchmark (P2a) | `experiments/rq2_eval.py` arms + the OOD grid already do most of it | freeze protocol, seed the initial states, take the actor as an argument, one-command harness, docs |
 | Real OrbiSim / CheckVLA | adapter templates only | M2 |
 | Gradient path audit | `experiments/audit_gradients.py` (torch GT + Genesis probe) | per-regime Genesis audit |
 | RQ1/RQ2 metrics | `rq1_calibration.py`, `rq2_eval.py` | horizon & constraint-type sweeps, calibration curves/ECE, repair success |
@@ -225,7 +291,8 @@ Known issue carried over: the stand-in predictor under-predicts rare risk spikes
 | Risk | Probability | Mitigation / fallback |
 |---|---|---|
 | OrbiSim / CheckVLA code not public | Medium-High | Documented re-implementations named "OrbiSim-style" / "CheckVLA-style"; the contribution statement is about *differentiable physics predictors* as a class, with OrbiSim as the reference design |
-| Genesis gradients unavailable for key contact modes | Medium-High | The audit makes it a finding, not a blocker; claims restricted to gradient-valid regions; torch GT as differentiable fallback |
+| ~~Genesis gradients unavailable for key contact modes~~ | **Realised (30 Sep)** | Genesis parity fails (SR 0.06 vs 1.00) and it is 5× slower. Not mitigated — *removed from scope*. torch GT is the engine; Genesis is an optional transfer target for P2b |
+| A releasable benchmark cannot be made reproducible by others | Medium | G1b forces a one-command ≤2 h harness on one A5000, or P2a is demoted to an internal protocol rather than a claimed artefact |
 | Differentiable deformable task in Genesis too unstable | Medium | T3 reduced to a smaller qualitative study; T1/T2 carry RQ1/RQ2 |
 | H1 rejected (no clear *h\**, physics ≈ vision everywhere) | Medium | Still a publishable negative result; pivot the main contribution to B (system envelope) at G2 |
 | No real data with force labels | Medium | Sim-to-sim transfer study (see P4) |
@@ -238,7 +305,8 @@ Known issue carried over: the stand-in predictor under-predicts rare risk spikes
 | Predictor does not transfer to robosuite state | Medium | Same architecture retrained on robosuite; if it still fails, keep Task A as the main evidence and document the gap |
 
 **Gates:**
-- **G1 (end Dec 2026):** end-to-end loop on Genesis with real or justified components, **and the chosen VLA running in the loop with baseline (no-verifier) OOD numbers**. If the Genesis part is not met by mid-Jan → run P2 on the torch GT and treat Genesis as validation only.
+- **G1 (end Dec 2026):** end-to-end loop on the torch GT with real or justified components, **and the chosen VLA running in the loop with baseline (no-verifier) OOD numbers**. The Genesis half of the original gate is removed (30 Sep, §1a.1).
+- **G1b (end Feb 2027):** P2a harness runnable by a third party in ≤2 h on one A5000, else demoted to an internal protocol.
 - **G2 (end Mar 2027):** *h\** located or H1 clearly rejected. If rejected → re-weight toward B.
 - **G3 (end Jun 2027):** usable envelope measured.
 - **G2b (end Jul 2027):** LIBERO + physics with/without-verifier results, or a documented reason the transfer failed.
@@ -248,11 +316,13 @@ Known issue carried over: the stand-in predictor under-predicts rare risk spikes
 
 ## 9. Immediate next steps (next 2–3 weeks)
 
-Done in Week 1: main contribution decided (A); Genesis installed and gradient probe working; OrbiSim / CheckVLA code confirmed not public; compute fixed to one A5000. See `experiment_record.md`.
+Done in Week 1: main contribution decided (A); Genesis installed and gradient probe working; OrbiSim / CheckVLA code confirmed not public; compute fixed to one A5000.
 
-1. **Task A → box peg:** rewrite the torch GT contact model with rotation, adapt the expert, re-run Genesis ↔ torch parity.
-2. Genesis gradient audit per contact regime (Fig B2) once parity holds.
-3. Full-size torch pipeline (no `--quick`); add the **safe success** metric to `rq2_eval.py`.
-4. Read the OrbiSim / CheckVLA papers; design the OrbiSim-style and CheckVLA-style re-implementations.
-5. Start the VLA short-list (chunk-output models that could fit one A5000 with the verifier). Also check which of them have LIBERO checkpoints, since that makes P2b cheaper.
-6. **Supervisor:** confirm the 2026-09-29 revision (VLA-centred headline, safe success); ask about lab robot / F/T sensor access for P4.
+**Done in Week 2** (see `experiment_record.md` for the measurements): full torch pipeline at 64 envs with the safe-success metric; orbiim / vision / vision_noact trained and conformally calibrated; RQ1 (detection + controllability), RQ2 (pooled OOD, 5 arms), RQ2b (shift ladder), RQ3 (memory + scheduling), the repair audit, and the two empty-step defects in the normaliser and the rollout risk. Genesis parity measured and failed → demoted (§1a.1). The gradient repair branch and the hard prefix both measured inert → off by default (§1a.3). Peak latency is 183 ms/step mean, 441 ms p95, so the 50 ms budget is **not** met at `chunk_k=1` but amortises to ~37 ms/step at `chunk_k=5`.
+
+1. **Run the rate-matched τ sweep** (`experiments/rq2_matched_tau.py`). The headline orbisim-over-vision gap is confounded by the two predictors' different conservatism until this lands; it is the single highest-value thing outstanding. Smoke test in progress.
+2. **Freeze the P2a protocol** (P2a, new): seed the initial states, make the actor a harness argument, write the one-command entry point, add the scripted-expert arm. This is the cheapest credible external artefact and it needs no new dependency.
+3. **Start the VLA short-list properly** — this is now the only thing between us and "the verifier is on a VLA", and everything downstream (P2b, F0, F13) depends on it. Measure one candidate's memory and step latency *with the verifier resident* on the A5000 before committing, since 3.6× over budget is the current state.
+4. Read out ablation (`scratch/readout_ablation.py`, written but never run at full scale): current-state vs extrapolated-state vs delta read-out. Note the trap recorded in `experiment_record.md` — the extrapolated read-out loses on uniformly sampled validation windows and wins under the real RQ1 protocol, so this must be judged on the RQ1 protocol only.
+5. Any change to `models/nets.py` requires retraining both predictors (~300 s each) or the results silently use stale weights.
+6. **Supervisor:** confirm the 30 Sep revision (Genesis out, surrogate framing, P2a ahead of P2b, contribution delta in §1b); report the GPU-0 fault (`ERR!`/`N/A`) to the admin; ask about lab robot / F/T sensor access for P4.

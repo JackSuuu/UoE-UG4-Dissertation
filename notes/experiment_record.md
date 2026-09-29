@@ -5,6 +5,46 @@ Newest entry at the top.
 
 ---
 
+## Sem 1 · Week 2 (w/c 5 Oct 2026) — Plan phase P1, Month 1
+
+### Update 30 Sep — CheckVLA's gradient branch and hard prefix are both *inert*, and that explains a week of contradictory results
+
+I had been treating the RQ3 gradient table (every stabiliser worse than no repair: CVR 0.88 none / 1.00 clip / 1.00 relax) and the repair audit (orbisim: 49% of interventions are no-ops) as two separate oddities. They are the same bug, and finding it came from implementing CheckVLA's latency-aware hard prefix rather than from any experiment.
+
+`suffix_repair` holds a hard prefix by construction: `prefix = chunk[:, :latency].detach()`. Our risk label is the max over the chunk, and the violating contact is the **first** step of the chunk — so the gradient branch is not optimising badly, it is optimising the only thing it is allowed to move while the one thing that matters stays fixed. Measured, 128 envs, predictor `orbisim`, friction 0.2 / mass 1.5, τ forced to 0 so the same proposed chunks are compared:
+
+| repair candidate | GT risk of the executed chunk |
+|---|---|
+| as proposed | 1.193 |
+| `scale_repair` (bisected down-scale) | **0.125** |
+| `suffix_repair` (gradient, hard prefix) | **1.193 — unchanged** |
+| what `repair()` actually returned | 0.419 |
+
+The gradient branch does nothing *and still wins its own selection step*: it scores 0.300 against the bisection's 0.256 on the predictor, and takes that win on 29% of envs. So "keep whichever the predictor rates safer" was systematically discarding the sound repair in favour of the inert one. That is the mechanism behind the RQ3 table — not gradient noise, and nothing in the selection could have detected it, because the inert branch's score is a better *lie* than the sound branch's score is a truth.
+
+**Two code changes follow, both measured:**
+
+- `scale_repair(..., hard_prefix=)` — implemented CheckVLA's constraint on the path actually used, to test whether the same pathology applies there. It does, and worse: GT 1.004 → 0.110 (−89%, cleared 0.99) without the prefix against 1.004 → 0.708 (−29.5%, cleared 0.68) with it. The bisection drives the suffix to ×0.10, nearly a dead stop, and still cannot clear the limit, because it is forbidden from touching the violating step. Same at friction 1.0/mass 1.0: 0.136 vs 0.540. **Default off, kept as an ablation** (`--hard_prefix`).
+- The gradient branch is now opt-in (`--use_grad`, default off). Default path: GT 1.073 → 0.105; with the gradient branch re-enabled: 1.073 → 0.333.
+
+I had recommended this change on 30 Sep morning on the reasoning that "already-dispatched actions cannot be changed, and that constraint holds for a down-scale too". **That recommendation was wrong and the measurement is why.** CheckVLA's constraint encodes the assumption that the dispatched prefix is not the problem. On this task it is exactly the problem. The generalisable form of the finding is not "drop the hard prefix" but: *a latency-aware repair is only sound if the risk is not concentrated in the committed prefix*, which is a property of the task and belongs in a check, not in a constant.
+
+Also corrected in the same pass: the RQ1 reading in the Week-1 entry below ("detection and repair are two independent capabilities, and the privileged-state advantage shows up in the second") — the repair audit falsifies it, see the audit entry. And Fig G's title and axes were rewritten around intervention count rather than a detection-vs-repair framing that no longer holds.
+
+### Update 30 Sep — Week-2 orientation
+
+Where things stand after the full-size run. Recorded here because three plan-level decisions this week came from measurement rather than argument, and the reasoning needs to survive:
+
+1. **Genesis is out.** SR 0.06 against torch's 1.00 on the same expert and initial states, for both box and cylinder, and 34–52 ms/step against torch's 6–7. Not a bug to fix inside the budget — the engine cannot be trusted to be the GT, and it cannot fit the loop. `Experiment_plan_1year.md` §1a.1 records the demotion; the torch GT carries every result. Genesis survives only as a *transfer* target (does the predictor hold up in a different engine?), which is a smaller and honest question.
+2. **The verifier is a distilled surrogate, not the engine in the loop.** This diverges from how A was first written ("use Genesis as an analytical world model"). `OrbiSimDynamics` is an MLP ensemble trained for 15000 iterations; `VisionWM` is a GRU. The engine is only the GT the surrogate is scored against. §1a.2 states the consequences: the contribution is closer to OrbiSim's own distillation claim than to running an engine inline, the verifier is **privileged** (true state, friction/mass hidden) and this must be stated wherever the VLA framing is used, and the surrogate's 24–30 ms/step against the vision model's 451 ms makes the cheap predictor also the accurate one.
+3. **The headline claim has to be narrowed.** The repair audit says the pixel model is the better repairer per intervention and the state model still wins on CVR, purely by firing 2.7× less often. So the claim is not "physics repairs better" — it is that the two differ in conservatism, and a CVR comparison at each predictor's own τ is confounded. `experiments/rq2_matched_tau.py` removes the confound and is the highest-value thing outstanding.
+
+New in the plan this week: **P2a**, a releasable physics-constraint benchmark, placed *before* P2b. The reason is that P2b couples three unknowns (a VLA never run, a new simulator, a new benchmark) so a failure in any of them costs a semester and is diagnosed slowly. P2a freezes what already runs into a protocol where the *actor* is the variable, needs no new dependency, and has a claimable artefact: CheckVLA evaluates on RoboCasa365, which has no physical constraints, so there is currently no public benchmark on which a physics verifier can be shown to help. G1b (end Feb) forces a one-command ≤2 h reproduction or demotes it to an internal protocol.
+
+**Still the empty step:** every experiment runs `policy=bc`. `--policy openvela` exists in `registry.py` and has never been run. P2a's actor ladder (scripted expert → `bc` → small chunk-output VLA → P2b's VLA) is the cheapest way to make that step real, and it is now step 2 of the immediate next steps rather than a Month-2 item.
+
+---
+
 ## Sem 1 · Week 1 (w/c 28 Sep 2026) — Plan phase P1, Month 1
 
 ### Update 29 Sep — Task A moved to a box peg with a two-fingertip pusher
@@ -144,13 +184,50 @@ RQ2 (pooled OOD cells, `chunk_k=5`, 64 envs/cell):
 | checkvla_orbisim | 0.804 | 0.205 | −24.6% | **0.704** |
 | checkvla_vision_noact | 0.818 | 0.285 | +4.5% | 0.689 |
 
-**The main finding, and it is not the one I was looking for.** The pixel world model detects violations *better* than the privileged-state one (0.991 vs 0.863, timely recall 1.00 vs 0.56) yet its repair does nothing at all: −0.4% CVR. The state model detects worse but repairs 25% of the violations away. So detection quality and repair controllability are **two independent properties**, and the whole RQ1 metric set measures only the first. The privileged-state advantage shows up in the second — which is the one that determines safe success.
+**The main finding, and it is not the one I was looking for.** The pixel world model detects violations *better* than the privileged-state one (0.991 vs 0.863, timely recall 1.00 vs 0.56) yet its repair does nothing at all: −0.4% CVR. The state model detects worse but repairs 25% of the violations away. So detection quality and repair quality are **not the same axis**, and the RQ1 metric set measures only the first.
+
+⚠️ **Superseded by the repair audit below.** My first reading of this was "detection and repair are two independent capabilities, and the privileged-state advantage shows up in the second". The audit falsifies that: per intervention the *pixel* model is the better repairer (41.4% vs 28.9% GT-risk drop, half the no-op rate). What actually separates them is how often they fire. The correct statement is that the two differ in conservatism, and comparing CVR at each predictor's own tau is confounded by it. See "repair audit" below.
 
 Averaging per-step latency, `checkvla_orbisim` is 24–30 ms against `checkvla_vision` 451 ms, i.e. the cheap predictor is also the one that works.
 
 **Correction to the entry above.** I had compared the two risk read-outs (risk off the extrapolated state vs. off the current state) on a proxy — AUROC over uniformly sampled validation windows from the training episodes — and concluded from it that the current-state read-out was the better one (0.976 vs 0.495). The pipeline disagreed: under the RQ1 protocol the extrapolated-state read-out reaches AUROC 0.992 / risk-MAE 0.035, the current-state one 0.863 / 0.087. The proxy was the wrong distribution — RQ1 evaluates OOD cells with execution noise and a whole-chunk GT label, not in-distribution single windows. The conclusion "current-state read-out is better" was an artefact of measuring on the training distribution. The current-state read-out is nevertheless the one that has to stay, because the extrapolated state's gradient was noise (per-step |d(risk)/d(action)| 1.65 vs 0.00027) and repair with it was actively harmful. The open question is whether a read-out that anchors on the true state but *also* consumes the model's own predicted one-step delta can recover the ranking without giving up the usable gradient; that is now the top follow-up, measured with the RQ1 protocol rather than a proxy.
 
 RQ3 unchanged in structure, worse in one place: gradient clipping cuts log-grad-norm variance 38.1 → 21.2 but CVR goes **0.88 → 1.00** (and `relax` 17.4 with 39 spikes, also 1.00), i.e. every form of gradient-based repair tested is worse than not repairing. Consistent with the read-out finding above, and it means the gradient path is currently the weakest part of the method, not a supporting detail. Memory at T=400: naive 1742 MB vs checkpointed 47 MB (cos 1.000); truncating the checkpoint to save more costs accuracy (cos 0.968). Scheduling: fast_only 183 ms mean / 441 ms p95, async 145 ms / 447 ms at staleness 1.57, sync 466 ms / 1037 ms. At `chunk_k=5` the 183 ms amortises to 37 ms/step, inside the 50 ms budget; the sync verifier does not fit.
+
+### Update 29 Sep — repair audit: the gap is *when to intervene*, not *how well*
+
+Added an audit that, on every intervention, shadow-rolls the chunk that was **executed** alongside the chunk the policy **proposed**, and reports the drop in GT risk between them. Trigger rate, AUROC, timely recall and controllability all describe the verifier; none of them say whether the repair changed the real dynamics. Kept out of `Controller.act` so it never contaminates the reported latency (a shadow rollout costs ~5 real steps, which is why `gt_shadow`'s 320 ms is not a deployable number — it is an upper bound only).
+
+| arm | GT risk proposed → executed | drop | cleared | **no-op** | magnitude | n |
+|---|---|---|---|---|---|---|
+| gt_shadow | 2.289 → 0.741 | +63.2% | 0.94 | 0.01 | ×0.67 | 665 |
+| checkvla_vision | 0.691 → 0.408 | **+41.4%** | 0.90 | 0.24 | ×0.51 | 3721 |
+| checkvla_orbisim | 0.650 → 0.392 | +28.9% | 0.91 | **0.49** | ×0.78 | 1394 |
+| checkvla_vision_noact | 0.765 → 0.765 | +0.0% | 0.82 | 1.00 | ×1.00 | 2606 |
+
+**This overturns the reading I gave an hour earlier.** I had guessed orbisim won by intervening *less* — a calibration story. It is not that. Per intervention, vision is the **better repairer**: it lowers the true risk of the chunk it executes by 41.4% against orbisim's 28.9%, and half as many of its interventions are no-ops. It still loses, by 24.6% to 0.4% of CVR, because it fires 3721 times to orbisim's 1394 at recall 0.934 with 8.8 steps of lead — i.e. on chunks that were never going to violate. Its SR is the highest of any arm (0.843, above the 0.823 baseline) and its CVR is unchanged: the extra interventions push the box differently without removing a violation.
+
+So the correct claim is **not** "the privileged-state model repairs better" (per-intervention it does not). It is that the two predictors differ in *how conservative they are*, and the CVR comparison at each predictor's own calibrated tau is confounded by that. The follow-up is a rate-matched sweep (`experiments/rq2_matched_tau.py`): sweep tau for each predictor and compare at a common intervention rate, so the comparison cannot be won by a looser threshold.
+
+Sanity check on the whole audit chain: `vision_noact` returns `mag ×1.00`, `no-op 1.00`, drop +0.0% — the action-blind model never moves the chunk, because its score is insensitive to the action and the bisection has no signal to follow, so it returns the input. Any audit bug that silently broke the chunk would not produce that.
+
+**Controllability result, which also refuted the hypothesis that motivated it.** Descending fraction of the scale ladder (1.0/0.75/0.5/0.25/0.0) on chunks the trigger acts on: orbisim 0.93, **vision 0.87**, vision_noact 0.00. Vision is nearly as controllable as orbisim, so "its signal is flat" is not the explanation either. The action-blind ablation at 0.00 is the metric behaving correctly. First version reported a *relative* drop, which is meaningless here: the predicted score carries a near-constant offset and can be near zero on individual chunks, so the denominator is unbounded — it reported means of −2127 and −593. Replaced with a Spearman correlation of score against scale.
+
+### Update 29 Sep — RQ2b: the shift ladder (an honest boundary result)
+
+The OOD grid asks *whether* the verifier helps at a fixed set of perturbed cells, which conflates "how far is this cell from the training range" with "is the verifier good". RQ2b makes shift magnitude the independent variable: one OOD axis moves at a time, the other is held nominal, the ladder spans the training range (friction 0.5–1.5) and continues past it, and `shift` is the signed log-distance from that range so 0 is exactly in-distribution.
+
+| distance from training range | n cells | none | gt_shadow | checkvla_orbisim | checkvla_vision |
+|---|---|---|---|---|---|
+| in-dist | 11 | 0.99 | 1.00 | 0.99 | 1.00 |
+| near | 2 | 0.91 | 0.95 | 0.94 | 0.95 |
+| far | 7 | 0.67 | **0.82** | 0.70 | **0.65** |
+
+This is a negative result and it is the honest boundary of the method. Inside the range the verifier is unnecessary (everything is 1.00 — nothing violates). Outside it the GT verifier's advantage opens up (+15 points) while the distilled ones do not help at all: orbisim +3, and **vision is 2 points *worse* than no verifier at all**. Friction 0.2 is the clearest case — none 0.03 safe / CVR 0.95, gt_shadow 0.31 / 0.05, orbisim 0.11 / 0.58, vision 0.06 / 0.94. The learned predictor cannot rank down-scale factors at friction 0.2, which is outside the range it was trained on; the *mechanism* still works, the distilled *risk model* does not.
+
+**Mass is not a breaking axis for this task.** Over the whole ladder 0.4–2.5, safe success stays 0.95–1.00 and CVR at 0.00–0.03, in-distribution and out. Only friction breaks the box task — a slippery box slides into the wall; a heavy one still tracks the pusher. So the mass half of the RQ2 OOD grid is padding, and the shift curve carries information on one axis only. Worth stating in the write-up, because it also means "distribution shift" is not a scalar here and a single shift number would be misleading.
+
+Caught by a `--quick` smoke test before it reached a full run: holding the other axis at nominal was first hard-coded to `"mass"`, which for the mass ladder produces `{"mass": v, "mass": 1.0}` → `{"mass": 1.0}`, so the entire second ladder silently re-evaluated the nominal cell (every rung reporting shift 0.00 and safe 1.00). The other axis is now derived from the ladder keys, with an assert on the ladder's arity.
 
 ### Update 29 Sep — new measurement: repair controllability
 

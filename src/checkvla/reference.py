@@ -63,9 +63,28 @@ def suffix_repair(predictor, ctx, chunk, latency=1, iters=25, lr=0.1, lam=0.5,
 
 @torch.no_grad()
 def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
-                 scales=None, iters=6, floor=0.05):
-    """Gradient-free repair: uniform down-scale, bisected to the largest factor
-    whose predicted score clears ``target``.
+                 scales=None, iters=6, floor=0.05, hard_prefix=False,
+                 use_grad=False):
+    """Gradient-free repair: down-scale, bisected to the largest factor whose
+    predicted score clears ``target``.
+
+    ``use_grad`` (default off) enables the gradient branch. It is off because it
+    is **structurally inert here**: ``suffix_repair`` holds a hard prefix, and the
+    violating contact is the first step of the chunk, so the gradient cannot
+    change the one thing that matters. Measured with 128 envs at friction
+    0.2/mass 1.5, tau forced to 0, same proposed chunk:
+
+        scale_repair  (bisection)  GT 1.193 -> 0.125
+        suffix_repair (gradient)   GT 1.193 -> 1.193   <- unchanged
+
+    Yet the gradient branch scores *lower* on the predictor (0.300 vs 0.256 --
+    it wins on 29% of envs), so the old ``repair()`` picked it and threw away
+    the bisection's result: 1.193 -> 0.419. That single interaction is the
+    mechanism behind the RQ3 result where every gradient-stabiliser variant
+    measured worse than no repair at all (CVR 0.88 for none, 1.00 for both
+    clipping and relaxation): the gradient is not noisy, it is inert, and
+    nothing in the selection step knows the difference. Keeping it selectable
+    is worth it only as the ablation that explains that table.
 
     ``target = min(margin, (1 - DROP) * score(chunk))``: a down-scale only counts
     as a repair if the predictor certifies a *relative* reduction, because the
@@ -73,11 +92,11 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
     0.421 at scales 1.0/0.9/0.75/0.5) and an absolute margin alone would accept
     the very first rung and leave the true risk untouched.
 
-    Three design points, each measured on friction=0.2 / mass=1.5:
-      * uniform over the whole chunk, not just the suffix -- scaling only the
-        suffix leaves the committed prefix's contact force in place, and the GT
+    Design points, each measured on friction=0.2 / mass=1.5:
+      * down-scale the *whole* chunk when ``hard_prefix=False`` (legacy): the GT
         risk of a chunk scaled 1.0/0.75/0.5/0.15/0.0 falls
-        0.34/0.27/0.20/0.09/0.00.
+        0.34/0.27/0.20/0.09/0.00, and scaling only the suffix leaves the
+        committed prefix's contact force in place.
       * bisection rather than a fixed ladder. With a ladder the repair was
         discontinuous in the trigger threshold: at friction=1.0 tau 0.60/0.45/
         0.35/0.25 gave CVR 0.00/0.26/0.00/0.00, i.e. lowering the threshold
@@ -87,29 +106,61 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
         every chunk to the bottom rung (95% down-scaling), which stops the task
         from completing.
 
-    ``latency`` is kept in the signature for interface compatibility.
+    ``hard_prefix`` implements CheckVLA's latency-aware constraint (hold the
+    first ``latency`` dispatched actions, damp only the suffix) and is **off by
+    default, because it measures worse.** CheckVLA's constraint assumes the
+    already-dispatched actions are not the problem. On this task they are: the
+    risk label is the max over the chunk, and the violating contact is *at* the
+    first step of the chunk, so holding the prefix holds the violation. With
+    128 envs, predictor `orbisim`, friction 0.2/mass 1.5, tau forced to 0:
+
+        hard_prefix=False   GT 1.004 -> 0.110  (-89.0%)  cleared 0.99
+        hard_prefix=True    GT 1.004 -> 0.708  (-29.5%)  cleared 0.68
+        (friction 1.0/mass 1.0: 1.020 -> 0.136 vs 1.020 -> 0.540)
+
+    In both cases the bisection drives the suffix to x0.10, nearly a dead stop,
+    and still cannot clear the limit -- because it cannot touch the step that
+    violates. Keep it as an ablation, not as the default.
+
+    Note the gradient path (``suffix_repair``) has a hard prefix by construction
+    and is the same story: every gradient-stabiliser variant measured worse than
+    no repair at all (CVR 0.88 for none against 1.00 for both clipping and
+    relaxation), so that branch is kept only as a scored candidate.
     """
+    lat = int(min(latency, chunk.shape[1]))
+    pre, suf = chunk[:, :lat], chunk[:, lat:]
+
+    def rebuild(f):
+        if hard_prefix and lat > 0:
+            return torch.cat([pre, suf * f[:, None, None]], 1)
+        return chunk * f[:, None, None]
+
     s0, _, _ = chunk_score(predictor, ctx, chunk, beta)
     target = torch.minimum(s0 * (1.0 - DROP), s0.new_full((), margin))
     lo = torch.full_like(s0, floor)          # known to be conservative enough
     hi = torch.ones_like(s0)                 # known to be too aggressive
     for _ in range(iters):
         mid = (lo + hi) / 2
-        s, _, _ = chunk_score(predictor, ctx, chunk * mid[:, None, None], beta)
+        s, _, _ = chunk_score(predictor, ctx, rebuild(mid), beta)
         safe = s <= target
         lo = torch.where(safe, mid, lo)
         hi = torch.where(safe, hi, mid)
-    return chunk * lo[:, None, None]
+    return rebuild(lo)
 
 
 class RefCheckVLA:
     """VerifierAdapter (interfaces.py) — reference stand-in."""
 
     def __init__(self, predictor, tau=1.0, beta=1.0, latency=1, commit=5,
-                 repair_iters=25, max_vel=1.0, margin=0.8):
+                 repair_iters=25, max_vel=1.0, margin=0.8, hard_prefix=False,
+                 use_grad=False):
         self.predictor, self.tau, self.beta = predictor, tau, beta
         self.latency, self.commit = latency, commit
         self.repair_iters, self.max_vel, self.margin = repair_iters, max_vel, margin
+        # CheckVLA's latency-aware constraint and its gradient branch, both
+        # switchable so the ablations are one flag. Both default off; see the
+        # docstrings for the measurements that put them there.
+        self.hard_prefix, self.use_grad = hard_prefix, use_grad
 
     def score(self, ctx, chunk):
         return chunk_score(self.predictor, ctx, chunk, self.beta)[0]
@@ -119,21 +170,26 @@ class RefCheckVLA:
         return s > self.tau, s
 
     def repair(self, ctx, chunk):
-        """Gradient suffix repair, with a monotone down-scale as a safety net.
+        """Bisected down-scale, with the gradient suffix repair as an optional
+        candidate (off by default -- see ``scale_repair``).
 
-        The gradient step alone is unsafe. On out-of-distribution cells the
-        predictor's ranking of action magnitudes can invert: measured on
-        friction=0.2, mass=1.5, the GT risk of a chunk scaled by
-        1.0/0.75/0.5/0.15/0.0 falls 0.34/0.27/0.20/0.09/0.00, while the
-        predicted risk *rises* over 1.0->0.5 (0.412 -> 0.421). A pure gradient
-        descent therefore walks toward larger actions and raised the true
-        violation rate from 0.00 to 0.27. We keep the gradient result but also
-        score a ladder of uniform down-scales and take whichever the predictor
-        rates safest, so the repair degrades to "be more conservative" rather
-        than "optimise a surrogate that has stopped tracking reality".
+        History, because it is the mechanism behind the RQ3 gradient table. The
+        gradient step alone is unsafe: on out-of-distribution cells the
+        predictor's ranking of action magnitudes can invert, so a pure gradient
+        descent walks toward larger actions and raised the true violation rate
+        from 0.00 to 0.27. Adding a down-scale candidate and keeping whichever
+        the predictor rates safest fixed that -- and then a second problem
+        surfaced. The gradient branch is *inert* rather than merely wrong, because
+        its hard prefix holds the one step that violates (measured GT
+        1.193 -> 1.193, against 0.125 for the bisection), yet it still scores
+        lower on the predictor, so the selection picked it and discarded the
+        bisection (1.193 -> 0.419). Neither branch is trustworthy on its own
+        score: one is inert and over-claims, the other is sound. That is why the
+        gradient branch is now opt-in.
         """
-        cand = scale_repair(self.predictor, ctx, chunk, self.latency, self.beta, self.margin)
-        if not getattr(self.predictor, "differentiable", False):
+        cand = scale_repair(self.predictor, ctx, chunk, self.latency, self.beta,
+                            self.margin, hard_prefix=self.hard_prefix)
+        if not self.use_grad or not getattr(self.predictor, "differentiable", False):
             return cand
         grad = suffix_repair(self.predictor, ctx, chunk, self.latency, self.repair_iters,
                              beta=self.beta, margin=self.margin, max_vel=self.max_vel)

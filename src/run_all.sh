@@ -42,6 +42,13 @@ if [ "$STAGE" = "all" ] || [ "$STAGE" = "eval" ]; then
   python experiments/rq1_calibration.py $A --chunk_k $CHUNK_K
   python experiments/rq2_eval.py        $A --with_noact --chunk_k $CHUNK_K
   python experiments/rq2_shift.py       $A --chunk_k $CHUNK_K
+  # Rate-matched tau sweep: 2 arms x 6 rates, so ~2.4x the rq2_eval cost. It is
+  # in the default path because the headline orbisim-over-vision gap is
+  # confounded by the two predictors' different conservatism until this lands.
+  # SKIP_MATCHED_TAU=1 bash run_all.sh eval ... omits it.
+  if [ -z "${SKIP_MATCHED_TAU:-}" ]; then
+    python experiments/rq2_matched_tau.py $A --chunk_k $CHUNK_K
+  fi
   python experiments/rq3_systems.py     $A --part stab --chunk_k $CHUNK_K
   python experiments/rq3_systems.py     $A --part sched --chunk_k $CHUNK_K
   python experiments/make_figures.py    $A

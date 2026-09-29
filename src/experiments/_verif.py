@@ -200,6 +200,17 @@ def trigger_metrics(scores, gt_chunk_risk, step_risk, tau, H, lead=1):
     }
 
 
+def summary_keys(entries):
+    """Union of keys across per-cell summary dicts.
+
+    Arms carry optional keys (the repair audit appears only where the arm
+    actually intervened), so one cell's key set is not a valid template for
+    another's -- pooling over ``entries[0]`` drops or crashes on exactly the
+    cells where the arm was most conservative.
+    """
+    return {k for e in entries for k in e}
+
+
 def controllability(ctrl_pred, ctrl_gt):
     """Can the repair search actually walk the predicted score down?
 

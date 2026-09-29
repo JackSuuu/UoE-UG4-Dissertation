@@ -74,7 +74,14 @@ def main():
     pooled = {}
     for a in arms:
         ood = [r[a] for r in results if r["ood"]] or [r[a] for r in results]
-        pooled[a] = {m: float(np.nanmean([x[m] for x in ood])) for m in ood[0]}
+        # union, not ood[0]: arms carry optional keys (the repair audit appears
+        # only where the arm actually intervened), so one arm's key set is not
+        # a valid template for another's cells
+        keys = {k for x in ood for k in x}
+        pooled[a] = {m: float(np.nanmean([x.get(m, np.nan) for x in ood])) for m in keys}
+        # intervention counts add, they do not average
+        if "n_interventions" in keys:
+            pooled[a]["n_interventions"] = int(sum(x.get("n_interventions", 0) for x in ood))
     base = pooled.get("none", {}).get("CVR", np.nan)
     for a in arms:
         pooled[a]["CVR_reduction_vs_none"] = float(1 - pooled[a]["CVR"] / base) if base > 0 else float("nan")
@@ -88,6 +95,14 @@ def main():
     print("[rq2] pooled OOD:", {a: {m: round(v[m], 3) for m in
                                     ("SR", "CVR", "safe_success", "CVR_reduction_vs_none")}
                                 for a, v in pooled.items()})
+    print("[rq2] repair audit - GT risk of the chunk actually executed:")
+    for a in arms:
+        v = pooled[a]
+        if np.isfinite(v.get("gt_risk_rel_drop", np.nan)):
+            print(f"       {a:22s} GT risk {v['gt_risk_proposed']:.3f} -> "
+                  f"{v['gt_risk_applied']:.3f} ({100 * v['gt_risk_rel_drop']:+.1f}%)  "
+                  f"cleared {v['frac_cleared']:.2f}  no-op {v['frac_ineffective']:.2f}  "
+                  f"mag x{v['mag_ratio_mean']:.2f}  n={v['n_interventions']}", flush=True)
 
 
 if __name__ == "__main__":

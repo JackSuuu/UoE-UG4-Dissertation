@@ -210,6 +210,16 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
             "frac_ineffective": float((ga >= gp - 1e-3).mean()),
             "mag_ratio_mean": float(mr.mean()),
         }
+    elif audit_repair:
+        # Always emit the keys, even with nothing to report. A cell where the
+        # arm never triggered has no repair_audit dict at all, and any pooling
+        # that walks one arm's key set over every cell then dies with a KeyError
+        # -- i.e. exactly the cells where the arm was most conservative are the
+        # ones that disappear.
+        out["repair_audit"] = {"n_interventions": 0, "gt_risk_proposed": float("nan"),
+                               "gt_risk_applied": float("nan"), "gt_risk_rel_drop": float("nan"),
+                               "frac_cleared": float("nan"), "frac_ineffective": float("nan"),
+                               "mag_ratio_mean": float("nan")}
     return out
 
 

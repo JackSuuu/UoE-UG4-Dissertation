@@ -73,7 +73,9 @@ def build_verifier(args, predictor, sim, tau=float("inf")):
     kw = dict(tau=tau, latency=getattr(args, "latency", 1), commit=getattr(args, "commit", 5))
     if impl == "ref":
         from checkvla.reference import RefCheckVLA
-        return RefCheckVLA(predictor, max_vel=sim.max_vel, **kw)
+        return RefCheckVLA(predictor, max_vel=sim.max_vel,
+                           hard_prefix=bool(getattr(args, "hard_prefix", 0)),
+                           use_grad=bool(getattr(args, "use_grad", 0)), **kw)
     if impl == "official":
         from adapters.checkvla_official import CheckVLAOfficial
         return CheckVLAOfficial(predictor, sim=sim, **kw)
@@ -88,6 +90,19 @@ def add_component_args(p):
     g.add_argument("--vision_impl", choices=["standin", "official"], default="standin")
     g.add_argument("--verifier", choices=["ref", "official"], default="ref")
     g.add_argument("--latency", type=int, default=1)
+    g.add_argument("--hard_prefix", type=int, default=0,
+                   help="CheckVLA's latency-aware constraint: hold the first "
+                        "`latency` dispatched actions, damp only the suffix. "
+                        "Off by default — measured worse here, since the "
+                        "violating contact is at the first step of the chunk. "
+                        "Kept for the ablation.")
+    g.add_argument("--use_grad", type=int, default=0,
+                   help="also consider the gradient suffix repair and keep "
+                        "whichever the predictor rates safer. Off by default: "
+                        "that branch holds a hard prefix, so it cannot change "
+                        "the violating step, yet still scores lower on the "
+                        "predictor and wins the selection. Kept for the "
+                        "ablation that explains the RQ3 gradient table.")
     g.add_argument("--commit", type=int, default=5)
     g.add_argument("--roles", nargs="+", default=list(PREDICTOR_ROLES),
                    help="predictor roles to evaluate")

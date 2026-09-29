@@ -213,15 +213,18 @@ def fig_f(task, od):
 
 
 def fig_g(task, od):
-    """Detection and repair are separate capabilities (plan §5, RQ1/RQ2 join).
+    """AUROC does not predict CVR reduction (plan §5, RQ1/RQ2 join).
 
     Left: AUROC (can it *detect* a violating chunk) next to the CVR reduction it
-    actually buys in RQ2. The two do not rank the predictors the same way -- the
-    pixel model detects better and repairs nothing.
+    buys in RQ2, and next to the number that actually explains the ordering --
+    the intervention count. The pixel model has the best AUROC and buys nothing,
+    because it fires 2.7x as often as the state model. Ranked by AUROC the
+    conclusion is backwards.
 
     Right: the mechanism. Mean predicted chunk score as the chunk is scaled
     down, which is exactly the curve repair's bisection walks. A flat or rising
-    curve means the search has no signal to follow, whatever the AUROC.
+    curve means the search has no signal to follow, whatever the AUROC. The
+    action-blind ablation is the control: it is flat at zero.
     """
     p1, p2 = os.path.join(od, "rq1.json"), os.path.join(od, "rq2.json")
     if not (os.path.exists(p1) and os.path.exists(p2)):
@@ -231,19 +234,27 @@ def fig_g(task, od):
     preds = [k for k in S if k in R and k != "none"]
     if not preds:
         return
-    fig, (ax, bx) = plt.subplots(1, 2, figsize=(9, 3.2))
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(10, 3.2))
     x = np.arange(len(preds))
-    w = 0.38
+    w = 0.28
     au = [S[k].get("auroc", np.nan) for k in preds]
     rd = [100 * R[k].get("CVR_reduction_vs_none", np.nan) for k in preds]
-    ax.bar(x - w / 2, au, w, label="detection: AUROC (RQ1)")
-    ax.bar(x + w / 2, rd, w, label="repair: CVR reduction (RQ2, %)")
-    for i in range(len(preds)):
-        ax.text(i - w / 2, au[i], f"{au[i]:.2f}", ha="center", va="bottom", fontsize=7)
-        ax.text(i + w / 2, rd[i], f"{rd[i]:.0f}%", ha="center", va="bottom", fontsize=7)
+    # normalised to the largest, so the three bars are readable on one axis:
+    # AUROC is a 0-1 score while CVR reduction is a percentage
+    nint = [R[k].get("n_interventions", np.nan) for k in preds]
+    mx = max([v for v in nint if v == v] or [1]) or 1
+    ni = [100 * (v / mx if v == v else np.nan) for v in nint]
+    for off, vals, lab in ((-w, au, "AUROC (RQ1)"),
+                           (0.0, rd, "CVR reduction (RQ2)"),
+                           (w, ni, "interventions (rel.)")):
+        ax.bar(x + off, vals, w, label=lab)
+        for i, v in enumerate(vals):
+            if v == v:
+                ax.text(i + off, v, f"{v:.0f}" if lab.endswith("rel.)") else f"{v:.2f}",
+                        ha="center", va="bottom", fontsize=6)
     ax.set_xticks(x); ax.set_xticklabels(preds, fontsize=8)
-    ax.set_ylim(0, 115); ax.legend(fontsize=7, loc="upper right")
-    ax.set_title("Detection does not imply repair", fontsize=9)
+    ax.set_ylim(0, 118); ax.legend(fontsize=7, loc="upper left")
+    ax.set_title("AUROC does not predict the CVR reduction", fontsize=9)
 
     C = d1.get("ctrl_curve", {})
     if C:
