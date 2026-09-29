@@ -58,7 +58,8 @@ def grad_probe(sim, params, state, chunk, orbisim, ctx, goal_dims):
 
 @torch.no_grad()
 def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
-                     grad_every=0, act_noise=0.0, chunk_k=1, ctrl_scales=()):
+                     grad_every=0, act_noise=0.0, chunk_k=1, ctrl_scales=(),
+                     ctrl_every=5):
     """verifiers: {role: VerifierAdapter}. Uses verifier.score for trigger scores
     and verifier.predictor.risk for the raw predicted risk.
 
@@ -69,6 +70,12 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
     each of these factors and record both the predicted and the GT chunk risk.
     Measures *controllability* -- whether the signal repair's bisection search
     actually walks down -- which AUROC does not capture.
+
+    ctrl_every: measure it on every ctrl_every'th step only. Controllability is
+    a property of the predictor's response curve, not of individual chunks, so
+    subsampling costs almost no precision -- and it has to be subsampled,
+    because a GT shadow rollout is ~5x a real step, so probing every step would
+    add several times the cost of the whole rest of the experiment.
     """
     obs = env.reset(params, seed)
     needs_rgb = bool(getattr(policy, "needs_rgb", False))
@@ -102,16 +109,19 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
             rec[k].append(v.score(ctx, chunk))
             mean, _ = v.predictor.risk(ctx, chunk)
             rec_max[k].append(mean.amax(dim=(1, 2)))
-            # Repair controllability: does the score actually fall when the
-            # chunk is scaled down? AUROC only measures detection, but the
-            # repair search bisects on exactly this signal, so a predictor can
-            # rank violations well and still be uncontrollable. Stacked within
-            # the timestep so the array comes out (B, T, n_scales) in scale order.
-            if ctrl_scales:
+        probe_ctrl = bool(ctrl_scales) and (t % ctrl_every == 0)
+        if probe_ctrl:
+            for k, v in verifiers.items():
+                # Repair controllability: does the score actually fall when the
+                # chunk is scaled down? AUROC only measures detection, but the
+                # repair search bisects on exactly this signal, so a predictor
+                # can rank violations well and still be uncontrollable. Stacked
+                # within the timestep so the array is (B, T', n_scales), in the
+                # order of ctrl_scales.
                 rec_ctrl[k].append(torch.stack([v.score(ctx, chunk * sc)
                                                 for sc in ctrl_scales], 1))
         gt_chunk.append(env.shadow_rollout(chunk).amax(dim=(1, 2)))
-        if ctrl_scales:
+        if probe_ctrl:
             gt_ctrl.append(torch.stack(
                 [env.shadow_rollout(chunk * sc).amax(dim=(1, 2)) for sc in ctrl_scales], 1))
         if grad_every and t % grad_every == 0 and params is not None and can_probe:
@@ -201,26 +211,41 @@ def controllability(ctrl_pred, ctrl_gt):
     safer.
 
     ``ctrl_pred`` / ``ctrl_gt`` are (n, n_scales) arrays ordered by decreasing
-    chunk scale (1.0 first). Returns the fraction of monotone descents, the
-    mean relative drop from full scale to the smallest, and the same measured
-    against GT so the two can be compared directly.
+    chunk scale (1.0 first). Returns the fraction of monotone descents and a
+    Spearman correlation of score against scale (negative = falls as the chunk
+    shrinks, which is what the bisection needs), next to the same two measured
+    on GT.
+
+    A *relative* drop is deliberately not reported. The predicted score carries
+    a near-constant offset and can be near zero at full scale on individual
+    chunks, so (s[0]-s[-1])/s[0] has an unbounded denominator: on real chunks
+    it produced means of -2127 and -593, which say nothing. Spearman and the
+    monotone fraction are scale-free and stable.
     """
     p = np.asarray(ctrl_pred, dtype=float)
     g = np.asarray(ctrl_gt, dtype=float)
     n = p.shape[0]
     if n == 0 or p.shape[1] < 2:
-        return {"pred_monotone": float("nan"), "pred_rel_drop": float("nan"),
-                "gt_monotone": float("nan"), "gt_rel_drop": float("nan"), "n": int(n)}
+        return {"pred_monotone": float("nan"), "pred_spearman": float("nan"),
+                "gt_monotone": float("nan"), "gt_spearman": float("nan"), "n": int(n)}
 
     def _stats(x):
-        steps = x[:, :-1] > x[:, 1:]
-        mono = float(steps.mean())
-        # relative drop from scale 1.0 to the smallest scale, per row
-        denom = np.maximum(np.abs(x[:, 0]), 1e-6)
-        drop = float(((x[:, 0] - x[:, -1]) / denom).mean())
-        return mono, drop
+        mono = float((x[:, :-1] > x[:, 1:]).mean())
+        rho = []
+        for row in x:
+            if np.ptp(row) > 0:
+                rho.append(_spearman(row, np.arange(len(row))))
+        return mono, float(np.mean(rho)) if rho else float("nan")
 
-    pm, pd_ = _stats(p)
-    gm, gd = _stats(g)
-    return {"pred_monotone": pm, "pred_rel_drop": pd_,
-            "gt_monotone": gm, "gt_rel_drop": gd, "n": int(n)}
+    pm, pr = _stats(p)
+    gm, gr = _stats(g)
+    return {"pred_monotone": pm, "pred_spearman": pr,
+            "gt_monotone": gm, "gt_spearman": gr, "n": int(n)}
+
+
+def _spearman(a, b):
+    ra = np.argsort(np.argsort(a)).astype(float)
+    rb = np.argsort(np.argsort(b)).astype(float)
+    ra -= ra.mean(); rb -= rb.mean()
+    d = np.sqrt((ra ** 2).sum() * (rb ** 2).sum())
+    return float((ra * rb).sum() / d) if d > 0 else float("nan")

@@ -1,8 +1,14 @@
 {
   "alpha": 0.05,
   "tau": {
-    "orbisim": 0.5,
-    "vision": 0.5,
-    "vision_noact": 0.5
+    "orbisim": 0.5973566174507141,
+    "vision": 0.4570658504962921,
+    "vision_noact": 0.9501030445098877
+  },
+  "impl": {
+    "orbisim": "standin",
+    "vision": "standin",
+    "verifier": "ref",
+    "policy": "bc"
   }
 }

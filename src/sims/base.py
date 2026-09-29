@@ -112,8 +112,28 @@ class Env:
             "(GenesisPushEnv(camera=True)) or add one.")
 
     @torch.no_grad()
-    def shadow_rollout(self, chunk: torch.Tensor) -> torch.Tensor:
-        """Non-destructive GT rollout of an action chunk (B,H,A) -> risk (B,H,2)."""
+    def shadow_rollout(self, chunk: torch.Tensor, mask=None) -> torch.Tensor:
+        """Non-destructive GT rollout of an action chunk (B,H,A) -> risk (B,H,2).
+
+        ``mask`` restricts the rollout to a subset of the batch: a cheaper and
+        cleaner way to audit an intervention than cloning the whole environment
+        for one env. The subset is stepped on its own copy of the state, so the
+        live state is never touched. Without a mask the whole-batch form is used,
+        which snapshots and restores.
+        """
+        if mask is not None:
+            st = self.get_state()
+            sub = st[mask] if torch.is_tensor(st) else \
+                {k: v[mask] for k, v in st.items()}
+            pr = self.params
+            if isinstance(pr, dict):
+                pr = {k: (v[mask] if torch.is_tensor(v) and v.dim() > 0
+                          and v.shape[0] == self.n else v) for k, v in pr.items()}
+            risks = []
+            for h in range(chunk.shape[1]):
+                sub, r = self.sim.step(sub, chunk[:, h], pr)
+                risks.append(r)
+            return torch.stack(risks, 1)
         snap = self.get_state().clone()
         risks = []
         for h in range(chunk.shape[1]):

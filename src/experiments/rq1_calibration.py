@@ -29,6 +29,9 @@ def main():
                    help="steps between policy calls (open-loop chunk execution)")
     p.add_argument("--ctrl_scales", type=float, nargs="+", default=[1.0, 0.75, 0.5, 0.25, 0.0],
                    help="chunk scales used to measure repair controllability")
+    p.add_argument("--ctrl_every", type=int, default=5,
+                   help="measure controllability every Nth step (a GT shadow "
+                        "rollout costs ~5 steps, so probing every step is unaffordable)")
     args = p.parse_args()
     dev, sim, od = setup(args)
     if args.quick:
@@ -46,7 +49,8 @@ def main():
     for ci, cell in enumerate(grid_cells(args.task)):
         env, params = env_for_cell(args, args.n_envs, dev, cell)
         r = verifier_rollout(env, sim, policy, params, preds, seed=2000 + ci, grad_every=ge,
-                             chunk_k=args.chunk_k, ctrl_scales=tuple(args.ctrl_scales))
+                             chunk_k=args.chunk_k, ctrl_scales=tuple(args.ctrl_scales),
+                             ctrl_every=args.ctrl_every)
         entry = {"cell": cell, "ood": is_ood(args.task, cell),
                  "policy_SR": float(r["success"].mean()),
                  "policy_CVR": float((r["step_risk"] > 1).any(1).mean())}
@@ -60,8 +64,11 @@ def main():
             pooled[k]["r"].append(r["step_risk"])
             ctrl.setdefault(k, {"p": [], "g": []})
             # only chunks the trigger would act on: controllability of a chunk
-            # that is never repaired is irrelevant
-            act = r["scores"][k] > taus[k]
+            # that is never repaired is irrelevant. ctrl_pred/ctrl_gt are
+            # subsampled to every ctrl_every'th step, so index them with the
+            # same mask rather than the full-length scores.
+            sc_all = r["scores"][k]
+            act = sc_all[:, ::args.ctrl_every] > taus[k]
             ctrl[k]["p"].append(r["ctrl_pred"][k][act])
             ctrl[k]["g"].append(r["ctrl_gt"][act])
         if "probe" in r:
@@ -107,7 +114,11 @@ def main():
             summary[k].update(controllability(np.concatenate(ctrl[k]["p"]),
                                               np.concatenate(ctrl[k]["g"])))
     out = {"tau": taus, "summary": summary, "per_cell": per_cell,
-           "ctrl_scales": list(args.ctrl_scales)}
+           "ctrl_scales": list(args.ctrl_scales), "ctrl_every": args.ctrl_every,
+           "ctrl_curve": {"scales": list(args.ctrl_scales),
+                          **{k: {"pred": np.mean(np.concatenate(ctrl[k]["p"]), 0).tolist(),
+                                 "gt": np.mean(np.concatenate(ctrl[k]["g"]), 0).tolist()}
+                             for k in preds if ctrl.get(k)}}}
     if fid:
         F_ = np.concatenate(fid)
         C = np.concatenate(cos_valid)
@@ -117,6 +128,13 @@ def main():
                                  "by_regime": {k: float(np.concatenate(v).mean()) if sum(len(x) for x in v) else float("nan")
                                                for k, v in cos_by_regime.items()}}
     save_json(out, os.path.join(od, "rq1.json"))
+    # raw controllability samples, so the Fig G response curve can be
+    # regenerated without paying for another 40-minute rollout
+    if ctrl:
+        np.savez(os.path.join(od, "rq1_ctrl.npz"),
+                 scales=np.array(args.ctrl_scales),
+                 **{f"pred_{k}": np.concatenate(ctrl[k]["p"]) for k in ctrl},
+                 **{f"gt_{k}": np.concatenate(ctrl[k]["g"]) for k in ctrl})
     np.savez(os.path.join(od, "rq1_trace.npz"), **{k: np.asarray(v) for k, v in trace.items()
                                                     if k not in ("cell",)})
     print("[rq1] pooled:", {k: {m: round(v[m], 3) for m in ("auroc", "precision", "recall",
@@ -124,9 +142,9 @@ def main():
     print("[rq1] repair controllability (chunks the trigger acts on):")
     for k, v in summary.items():
         if "pred_monotone" in v:
-            print(f"       {k:14s} predicted score falls monotonically "
-                  f"{v['pred_monotone']:.2f} of the ladder, rel. drop {v['pred_rel_drop']:+.2f} "
-                  f"| GT {v['gt_monotone']:.2f}, rel. drop {v['gt_rel_drop']:+.2f} "
+            print(f"       {k:14s} predicted score descends on {v['pred_monotone']:.2f} of the "
+                  f"ladder, Spearman {v['pred_spearman']:+.2f} "
+                  f"| GT {v['gt_monotone']:.2f}, Spearman {v['gt_spearman']:+.2f} "
                   f"(n={v['n']})", flush=True)
 
 

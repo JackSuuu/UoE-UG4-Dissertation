@@ -14,44 +14,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
-        "CVR": 0.75,
+        "SR": 0.421875,
+        "CVR": 0.875,
+        "safe_success": 0.09375,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.11236671298320289,
-        "latency_ms_p95": 0.16433475429948882
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 2.7494688518345356,
+        "latency_ms_p95": 1.058645360171795
       },
       "gt_shadow": {
-        "SR": 0.25,
-        "CVR": 0.0,
+        "SR": 0.4375,
+        "CVR": 0.03125,
+        "safe_success": 0.421875,
+        "RR": 0.4375,
+        "intervention_rate": 0.0283203125,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 506.44045383669436,
+        "latency_ms_p95": 1059.9619081243873
+      },
+      "checkvla_vision": {
+        "SR": 0.609375,
+        "CVR": 0.875,
+        "safe_success": 0.09375,
+        "RR": 0.6129032258064516,
+        "intervention_rate": 0.04042968899011612,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 356.249815877527,
+        "latency_ms_p95": 527.2707540541887
+      },
+      "checkvla_orbisim": {
+        "SR": 0.375,
+        "CVR": 0.609375,
+        "safe_success": 0.0625,
+        "RR": 0.3548387096774194,
+        "intervention_rate": 0.03398437425494194,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 280.1307669375092,
+        "latency_ms_p95": 447.9940436780453
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.359375,
+        "CVR": 0.90625,
+        "safe_success": 0.046875,
         "RR": 0.3333333333333333,
-        "intervention_rate": 0.75,
-        "latency_ms_mean": 11.477970861960785,
-        "latency_ms_p95": 45.09561905142618
-      },
-      "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.75,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.360267737636605,
-        "latency_ms_p95": 6.973058350558858
-      },
-      "checkvla_orbisim": {
-        "SR": 0.0,
-        "CVR": 0.5,
-        "RR": 0.0,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 23.00356659980025,
-        "latency_ms_p95": 181.78864375404373
-      },
-      "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 0.75,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.629335425168392,
-        "latency_ms_p95": 7.071139896652311
+        "intervention_rate": 0.03105468675494194,
+        "episode_trigger_rate": 0.890625,
+        "latency_ms_mean": 232.79123920947313,
+        "latency_ms_p95": 491.3889126852155
       }
     },
     {
@@ -61,44 +71,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
-        "CVR": 0.875,
+        "SR": 0.578125,
+        "CVR": 0.890625,
+        "safe_success": 0.0625,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.13641148798342329,
-        "latency_ms_p95": 0.20986315066693342
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.6942720618098974,
+        "latency_ms_p95": 1.0483577847480774
       },
       "gt_shadow": {
-        "SR": 0.125,
-        "CVR": 0.0,
-        "RR": 0.125,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 13.875965062288742,
-        "latency_ms_p95": 46.027072902506916
+        "SR": 0.390625,
+        "CVR": 0.109375,
+        "safe_success": 0.359375,
+        "RR": 0.390625,
+        "intervention_rate": 0.03554687649011612,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 670.1185298152268,
+        "latency_ms_p95": 1028.3725185319781
       },
       "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.875,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.710946274870366,
-        "latency_ms_p95": 7.327221154628205
+        "SR": 0.640625,
+        "CVR": 0.890625,
+        "safe_success": 0.09375,
+        "RR": 0.6612903225806451,
+        "intervention_rate": 0.03359375149011612,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 284.2709038872272,
+        "latency_ms_p95": 497.6608581840992
       },
       "checkvla_orbisim": {
-        "SR": 0.0,
-        "CVR": 0.375,
-        "RR": 0.0,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 5.0430677125405055,
-        "latency_ms_p95": 2.3260211495653493
+        "SR": 0.4375,
+        "CVR": 0.59375,
+        "safe_success": 0.109375,
+        "RR": 0.4262295081967213,
+        "intervention_rate": 0.03593749925494194,
+        "episode_trigger_rate": 0.953125,
+        "latency_ms_mean": 233.19222810678184,
+        "latency_ms_p95": 446.22943960130215
       },
       "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 0.875,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.6420770875993185,
-        "latency_ms_p95": 7.214594053220935
+        "SR": 0.515625,
+        "CVR": 0.9375,
+        "safe_success": 0.03125,
+        "RR": 0.5333333333333333,
+        "intervention_rate": 0.03242187574505806,
+        "episode_trigger_rate": 0.9375,
+        "latency_ms_mean": 234.53151280991733,
+        "latency_ms_p95": 492.65032801777124
       }
     },
     {
@@ -108,44 +128,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
-        "CVR": 0.875,
+        "SR": 0.515625,
+        "CVR": 1.0,
+        "safe_success": 0.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12244637500771205,
-        "latency_ms_p95": 0.15602469902660226
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.7427484728395939,
+        "latency_ms_p95": 1.0725164785981178
       },
       "gt_shadow": {
-        "SR": 0.125,
-        "CVR": 0.0,
-        "RR": 0.125,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 15.854529699845443,
-        "latency_ms_p95": 45.49023814834072
+        "SR": 0.40625,
+        "CVR": 0.015625,
+        "safe_success": 0.40625,
+        "RR": 0.40625,
+        "intervention_rate": 0.03046875074505806,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 552.4036765564233,
+        "latency_ms_p95": 1039.5861284807324
       },
       "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.875,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.626898362992506,
-        "latency_ms_p95": 7.158752098621335
+        "SR": 0.546875,
+        "CVR": 0.984375,
+        "safe_success": 0.0,
+        "RR": 0.5645161290322581,
+        "intervention_rate": 0.03300781175494194,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 293.2833693455905,
+        "latency_ms_p95": 510.272023640573
       },
       "checkvla_orbisim": {
-        "SR": 0.0,
-        "CVR": 0.125,
-        "RR": 0.0,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.841689063232479,
-        "latency_ms_p95": 2.1805919481266756
+        "SR": 0.453125,
+        "CVR": 0.734375,
+        "safe_success": 0.109375,
+        "RR": 0.4444444444444444,
+        "intervention_rate": 0.03261718899011612,
+        "episode_trigger_rate": 0.984375,
+        "latency_ms_mean": 278.1306483782828,
+        "latency_ms_p95": 435.7001133263111
       },
       "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 0.875,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.499816662289959,
-        "latency_ms_p95": 7.064535400422756
+        "SR": 0.578125,
+        "CVR": 0.984375,
+        "safe_success": 0.015625,
+        "RR": 0.5666666666666667,
+        "intervention_rate": 0.03945312649011612,
+        "episode_trigger_rate": 0.9375,
+        "latency_ms_mean": 388.0954339168966,
+        "latency_ms_p95": 496.5332943946123
       }
     },
     {
@@ -155,44 +185,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
+        "SR": 0.5625,
         "CVR": 1.0,
+        "safe_success": 0.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12083228748451802,
-        "latency_ms_p95": 0.174914550370886
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.7398338057100773,
+        "latency_ms_p95": 1.1171521618962288
       },
       "gt_shadow": {
-        "SR": 0.25,
-        "CVR": 0.25,
-        "RR": 0.25,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 17.565367225233786,
-        "latency_ms_p95": 45.98216105150641
+        "SR": 0.4375,
+        "CVR": 0.015625,
+        "safe_success": 0.4375,
+        "RR": 0.4375,
+        "intervention_rate": 0.0302734375,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 471.675767051056,
+        "latency_ms_p95": 1032.183631695807
       },
       "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 1.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.993232837794494,
-        "latency_ms_p95": 7.4733767498400985
+        "SR": 0.46875,
+        "CVR": 0.953125,
+        "safe_success": 0.03125,
+        "RR": 0.47619047619047616,
+        "intervention_rate": 0.0341796875,
+        "episode_trigger_rate": 0.984375,
+        "latency_ms_mean": 309.80322854593396,
+        "latency_ms_p95": 527.699333243072
       },
       "checkvla_orbisim": {
-        "SR": 0.0,
-        "CVR": 0.375,
-        "RR": 0.0,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 5.008754137270444,
-        "latency_ms_p95": 2.2888431478349958
+        "SR": 0.421875,
+        "CVR": 0.890625,
+        "safe_success": 0.03125,
+        "RR": 0.421875,
+        "intervention_rate": 0.0361328125,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 238.36881443858147,
+        "latency_ms_p95": 440.5991204082966
       },
       "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 1.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.718307300070592,
-        "latency_ms_p95": 7.3310169518663315
+        "SR": 0.453125,
+        "CVR": 0.984375,
+        "safe_success": 0.015625,
+        "RR": 0.45161290322580644,
+        "intervention_rate": 0.03535156324505806,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 245.94858065247536,
+        "latency_ms_p95": 490.43294060975313
       }
     },
     {
@@ -202,44 +242,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
-        "CVR": 0.875,
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12482816327974433,
-        "latency_ms_p95": 0.1797499982785666
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.7349645253270864,
+        "latency_ms_p95": 1.0676510632038116
       },
       "gt_shadow": {
-        "SR": 0.375,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.42857142857142855,
-        "intervention_rate": 0.875,
-        "latency_ms_mean": 11.979636462638155,
-        "latency_ms_p95": 45.222632700097165
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.00019531250291038305,
+        "episode_trigger_rate": 0.015625,
+        "latency_ms_mean": 213.27263745479286,
+        "latency_ms_p95": 214.6596958860755
       },
       "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.875,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.635642137734976,
-        "latency_ms_p95": 7.212129504114273
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.014843749813735485,
+        "episode_trigger_rate": 0.734375,
+        "latency_ms_mean": 129.5717068016529,
+        "latency_ms_p95": 503.26009299606085
       },
       "checkvla_orbisim": {
-        "SR": 0.125,
-        "CVR": 0.5,
-        "RR": 0.125,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.77281560024494,
-        "latency_ms_p95": 2.183456555212615
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.006640625186264515,
+        "episode_trigger_rate": 0.5,
+        "latency_ms_mean": 36.09622810035944,
+        "latency_ms_p95": 373.45522716641426
       },
       "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 0.875,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.547879674781143,
-        "latency_ms_p95": 7.238383650110336
+        "SR": 0.984375,
+        "CVR": 0.015625,
+        "safe_success": 0.984375,
+        "RR": 0.9824561403508771,
+        "intervention_rate": 0.02031249925494194,
+        "episode_trigger_rate": 0.890625,
+        "latency_ms_mean": 143.6252550687641,
+        "latency_ms_p95": 489.86748214811087
       }
     },
     {
@@ -249,44 +299,54 @@
       },
       "ood": false,
       "none": {
-        "SR": 0.125,
-        "CVR": 0.5,
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.1260119749531441,
-        "latency_ms_p95": 0.19021844673261512
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.7478128653019667,
+        "latency_ms_p95": 1.0796766728162766
       },
       "gt_shadow": {
-        "SR": 0.5,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.5714285714285714,
-        "intervention_rate": 0.875,
-        "latency_ms_mean": 12.377626037414302,
-        "latency_ms_p95": 45.1097752989881
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 205.45519199222326,
+        "latency_ms_p95": 222.17809930443764
       },
       "checkvla_vision": {
-        "SR": 0.125,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.591376587675768,
-        "latency_ms_p95": 7.220712800335605
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.0146484375,
+        "episode_trigger_rate": 0.6875,
+        "latency_ms_mean": 191.61471943370998,
+        "latency_ms_p95": 506.9805508479476
       },
       "checkvla_orbisim": {
-        "SR": 0.375,
-        "CVR": 0.125,
-        "RR": 0.375,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.859066199787776,
-        "latency_ms_p95": 2.178391645429656
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.007617187686264515,
+        "episode_trigger_rate": 0.5625,
+        "latency_ms_mean": 41.48296839557588,
+        "latency_ms_p95": 391.45898297429073
       },
       "checkvla_vision_noact": {
-        "SR": 0.125,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.555287512946961,
-        "latency_ms_p95": 7.126575345682795
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.02167968824505806,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 112.9648722242564,
+        "latency_ms_p95": 484.518626332283
       }
     },
     {
@@ -296,44 +356,54 @@
       },
       "ood": false,
       "none": {
-        "SR": 0.625,
-        "CVR": 0.625,
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12801821185348672,
-        "latency_ms_p95": 0.19189584781997837
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.7417873945087194,
+        "latency_ms_p95": 1.077277585864067
       },
       "gt_shadow": {
-        "SR": 0.875,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.8333333333333334,
-        "intervention_rate": 0.75,
-        "latency_ms_mean": 12.056535362444265,
-        "latency_ms_p95": 45.04491009938647
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 205.22759929299355,
+        "latency_ms_p95": 211.06684040278193
       },
       "checkvla_vision": {
-        "SR": 0.625,
-        "CVR": 0.625,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.71573640056522,
-        "latency_ms_p95": 7.324222954775905
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.01679687574505806,
+        "episode_trigger_rate": 0.859375,
+        "latency_ms_mean": 134.03703179210424,
+        "latency_ms_p95": 495.4760069027543
       },
       "checkvla_orbisim": {
-        "SR": 0.375,
-        "CVR": 0.5,
-        "RR": 0.375,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.981242687154008,
-        "latency_ms_p95": 2.2504339482111386
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.008984374813735485,
+        "episode_trigger_rate": 0.671875,
+        "latency_ms_mean": 35.38771569728851,
+        "latency_ms_p95": 376.03310849517584
       },
       "checkvla_vision_noact": {
-        "SR": 0.625,
-        "CVR": 0.625,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.730409925694403,
-        "latency_ms_p95": 7.320654500290402
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.0205078125,
+        "episode_trigger_rate": 0.921875,
+        "latency_ms_mean": 127.090401109308,
+        "latency_ms_p95": 491.29556082189083
       }
     },
     {
@@ -343,44 +413,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.5,
-        "CVR": 0.5,
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12406826244841795,
-        "latency_ms_p95": 0.20483989901549648
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.716899149119854,
+        "latency_ms_p95": 1.0537825524806976
       },
       "gt_shadow": {
-        "SR": 0.625,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.4,
-        "intervention_rate": 0.625,
-        "latency_ms_mean": 11.954444350431004,
-        "latency_ms_p95": 45.16227115454967
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 204.91632386110723,
+        "latency_ms_p95": 211.68569680303335
       },
       "checkvla_vision": {
-        "SR": 0.5,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.629983812035789,
-        "latency_ms_p95": 7.270403501024703
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.01699218712747097,
+        "episode_trigger_rate": 0.875,
+        "latency_ms_mean": 135.5023060925305,
+        "latency_ms_p95": 505.76485954225063
       },
       "checkvla_orbisim": {
-        "SR": 0.125,
-        "CVR": 0.375,
-        "RR": 0.125,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.810541174265381,
-        "latency_ms_p95": 2.1707100993808126
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.0126953125,
+        "episode_trigger_rate": 0.953125,
+        "latency_ms_mean": 55.948529532179236,
+        "latency_ms_p95": 429.13449350744486
       },
       "checkvla_vision_noact": {
-        "SR": 0.5,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.557158299892762,
-        "latency_ms_p95": 7.070241347901174
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.02578124962747097,
+        "episode_trigger_rate": 0.953125,
+        "latency_ms_mean": 167.63314208947122,
+        "latency_ms_p95": 489.06684163957834
       }
     },
     {
@@ -390,44 +470,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.125,
-        "CVR": 0.5,
+        "SR": 0.890625,
+        "CVR": 0.015625,
+        "safe_success": 0.890625,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12113232542105834,
-        "latency_ms_p95": 0.17563750079716553
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.7393361534923315,
+        "latency_ms_p95": 1.0769488289952278
       },
       "gt_shadow": {
-        "SR": 0.25,
+        "SR": 0.96875,
         "CVR": 0.0,
-        "RR": 0.4,
-        "intervention_rate": 0.625,
-        "latency_ms_mean": 11.106717738039151,
-        "latency_ms_p95": 11.532910100140624
+        "safe_success": 0.96875,
+        "RR": 0.0,
+        "intervention_rate": 0.0005859375232830644,
+        "episode_trigger_rate": 0.03125,
+        "latency_ms_mean": 226.26537983305752,
+        "latency_ms_p95": 223.20454586297274
       },
       "checkvla_vision": {
-        "SR": 0.125,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.692535912588937,
-        "latency_ms_p95": 7.300318450870691
+        "SR": 0.9375,
+        "CVR": 0.0,
+        "safe_success": 0.9375,
+        "RR": 0.9375,
+        "intervention_rate": 0.05488281324505806,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 466.2061660550535,
+        "latency_ms_p95": 513.4430715814233
       },
       "checkvla_orbisim": {
-        "SR": 0.25,
-        "CVR": 0.5,
-        "RR": 0.25,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.849094300061552,
-        "latency_ms_p95": 2.1115943978657015
+        "SR": 0.953125,
+        "CVR": 0.015625,
+        "safe_success": 0.953125,
+        "RR": 0.9508196721311475,
+        "intervention_rate": 0.013867187313735485,
+        "episode_trigger_rate": 0.953125,
+        "latency_ms_mean": 80.52028729580343,
+        "latency_ms_p95": 436.73741444945335
       },
       "checkvla_vision_noact": {
-        "SR": 0.125,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.738039050378575,
-        "latency_ms_p95": 7.250621144339675
+        "SR": 0.96875,
+        "CVR": 0.015625,
+        "safe_success": 0.96875,
+        "RR": 0.9666666666666667,
+        "intervention_rate": 0.02226562425494194,
+        "episode_trigger_rate": 0.9375,
+        "latency_ms_mean": 157.77116296812892,
+        "latency_ms_p95": 495.89205756783485
       }
     },
     {
@@ -437,44 +527,54 @@
       },
       "ood": false,
       "none": {
-        "SR": 0.375,
-        "CVR": 0.5,
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.1227703006406955,
-        "latency_ms_p95": 0.22236670229176522
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.7428414188325405,
+        "latency_ms_p95": 1.0750699788331985
       },
       "gt_shadow": {
-        "SR": 0.5,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.5714285714285714,
-        "intervention_rate": 0.875,
-        "latency_ms_mean": 12.422902638081723,
-        "latency_ms_p95": 45.10164759885811
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 203.79728227853775,
+        "latency_ms_p95": 210.34430172294378
       },
       "checkvla_vision": {
-        "SR": 0.375,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.773910912215797,
-        "latency_ms_p95": 7.404416995268548
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.05585937574505806,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 399.9767848290503,
+        "latency_ms_p95": 510.253450833261
       },
       "checkvla_orbisim": {
-        "SR": 0.375,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.375,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 5.225450524903863,
-        "latency_ms_p95": 2.097758349555079
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.01210937462747097,
+        "episode_trigger_rate": 0.9375,
+        "latency_ms_mean": 40.875099366530776,
+        "latency_ms_p95": 376.87616907060146
       },
       "checkvla_vision_noact": {
-        "SR": 0.375,
-        "CVR": 0.5,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.972301037149009,
-        "latency_ms_p95": 7.7594160047738105
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.02656250074505806,
+        "episode_trigger_rate": 0.953125,
+        "latency_ms_mean": 174.24610937014222,
+        "latency_ms_p95": 492.47070979326963
       }
     },
     {
@@ -484,44 +584,54 @@
       },
       "ood": false,
       "none": {
-        "SR": 0.375,
-        "CVR": 0.125,
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.11945207552344073,
-        "latency_ms_p95": 0.1855764548963634
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.716220261529088,
+        "latency_ms_p95": 1.0475479066371918
       },
       "gt_shadow": {
-        "SR": 0.375,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 0.375,
-        "latency_ms_mean": 11.075376075314125,
-        "latency_ms_p95": 11.655987502308463
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 205.04893534816802,
+        "latency_ms_p95": 222.42670450359583
       },
       "checkvla_vision": {
-        "SR": 0.375,
-        "CVR": 0.125,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.692793224374327,
-        "latency_ms_p95": 7.30163329426432
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.05546874925494194,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 421.42341304570436,
+        "latency_ms_p95": 508.57264176011086
       },
       "checkvla_orbisim": {
-        "SR": 0.25,
-        "CVR": 0.125,
-        "RR": 0.25,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.866133837003872,
-        "latency_ms_p95": 2.164433653888409
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.01132812537252903,
+        "episode_trigger_rate": 0.90625,
+        "latency_ms_mean": 30.20669878460467,
+        "latency_ms_p95": 377.5377742946148
       },
       "checkvla_vision_noact": {
-        "SR": 0.375,
-        "CVR": 0.125,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.638442125404254,
-        "latency_ms_p95": 7.247510696106474
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.0283203125,
+        "episode_trigger_rate": 0.953125,
+        "latency_ms_mean": 203.95285906270146,
+        "latency_ms_p95": 491.8682435527444
       }
     },
     {
@@ -531,44 +641,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.11947757475354592,
-        "latency_ms_p95": 0.16251905326498672
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.4642438143491745,
+        "latency_ms_p95": 0.5753582343459129
       },
       "gt_shadow": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 0.75,
-        "latency_ms_mean": 12.005944837710558,
-        "latency_ms_p95": 44.94317320277332
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 217.187503259629,
+        "latency_ms_p95": 229.18843757361174
       },
       "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.860906774636533,
-        "latency_ms_p95": 7.90448189691233
+        "SR": 0.984375,
+        "CVR": 0.015625,
+        "safe_success": 0.984375,
+        "RR": 0.984375,
+        "intervention_rate": 0.07187499850988388,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 452.89580849930644,
+        "latency_ms_p95": 514.259896427393
       },
       "checkvla_orbisim": {
-        "SR": 0.25,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.25,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 5.000780749651312,
-        "latency_ms_p95": 2.2271431018452854
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.012890624813735485,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 41.63635177537799,
+        "latency_ms_p95": 385.8342805877326
       },
       "checkvla_vision_noact": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.673961424439767,
-        "latency_ms_p95": 7.286922250932548
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.03925781324505806,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 222.39875169470906,
+        "latency_ms_p95": 493.9733425155282
       }
     },
     {
@@ -578,279 +698,339 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
-        "CVR": 0.625,
+        "SR": 0.8125,
+        "CVR": 0.015625,
+        "safe_success": 0.8125,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12742027520289412,
-        "latency_ms_p95": 0.17426635095034723
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.4599309992045164,
+        "latency_ms_p95": 0.5715399980545044
       },
       "gt_shadow": {
-        "SR": 0.0,
+        "SR": 0.84375,
         "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 0.625,
-        "latency_ms_mean": 11.42987661251027,
-        "latency_ms_p95": 44.236567000552895
-      },
-      "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.625,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.884044762864505,
-        "latency_ms_p95": 7.6148562500748085
-      },
-      "checkvla_orbisim": {
-        "SR": 0.375,
-        "CVR": 0.75,
-        "RR": 0.375,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 5.002367687939113,
-        "latency_ms_p95": 2.1630368486512452
-      },
-      "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 0.625,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.993085925932974,
-        "latency_ms_p95": 7.3458295009913845
-      }
-    },
-    {
-      "cell": {
-        "friction": 1.4,
-        "mass": 1.0
-      },
-      "ood": false,
-      "none": {
-        "SR": 0.5,
-        "CVR": 0.25,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12479281213018112,
-        "latency_ms_p95": 0.17758924514055252
-      },
-      "gt_shadow": {
-        "SR": 0.625,
-        "CVR": 0.0,
-        "RR": 0.5,
-        "intervention_rate": 0.75,
-        "latency_ms_mean": 12.42555260005247,
-        "latency_ms_p95": 45.35668924654601
-      },
-      "checkvla_vision": {
-        "SR": 0.5,
-        "CVR": 0.25,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.680404674716556,
-        "latency_ms_p95": 7.159635101561435
-      },
-      "checkvla_orbisim": {
-        "SR": 0.25,
-        "CVR": 0.125,
-        "RR": 0.25,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.814962575164827,
-        "latency_ms_p95": 2.1775399000034668
-      },
-      "checkvla_vision_noact": {
-        "SR": 0.5,
-        "CVR": 0.25,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.698439124829747,
-        "latency_ms_p95": 7.255768451432232
-      }
-    },
-    {
-      "cell": {
-        "friction": 1.4,
-        "mass": 1.5
-      },
-      "ood": false,
-      "none": {
-        "SR": 0.25,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 0.11976610057899961,
-        "latency_ms_p95": 0.19568719944800247
-      },
-      "gt_shadow": {
-        "SR": 0.25,
-        "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 0.375,
-        "latency_ms_mean": 11.05677086252399,
-        "latency_ms_p95": 11.5562354465509
-      },
-      "checkvla_vision": {
-        "SR": 0.25,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.8199604749679565,
-        "latency_ms_p95": 7.674854202196002
-      },
-      "checkvla_orbisim": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.957555725104612,
-        "latency_ms_p95": 1.9709353993675904
-      },
-      "checkvla_vision_noact": {
-        "SR": 0.25,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.692329112502193,
-        "latency_ms_p95": 7.306581896045827
-      }
-    },
-    {
-      "cell": {
-        "friction": 1.4,
-        "mass": 2.0
-      },
-      "ood": true,
-      "none": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 0.10478796239112853,
-        "latency_ms_p95": 0.1490812486736104
-      },
-      "gt_shadow": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 0.375,
-        "latency_ms_mean": 11.85653598731733,
-        "latency_ms_p95": 44.70077529658738
-      },
-      "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.423033324699645,
-        "latency_ms_p95": 6.815262796226307
-      },
-      "checkvla_orbisim": {
-        "SR": 0.125,
-        "CVR": 0.0,
-        "RR": 0.125,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.736777037669526,
-        "latency_ms_p95": 2.1359416456107283
-      },
-      "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.557246375359682,
-        "latency_ms_p95": 7.030048254819121
-      }
-    },
-    {
-      "cell": {
-        "friction": 1.8,
-        "mass": 0.5
-      },
-      "ood": true,
-      "none": {
-        "SR": 0.125,
-        "CVR": 0.125,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 0.1217546998304897,
-        "latency_ms_p95": 0.18217500073660628
-      },
-      "gt_shadow": {
-        "SR": 0.125,
-        "CVR": 0.0,
-        "RR": 0.5,
-        "intervention_rate": 0.25,
-        "latency_ms_mean": 9.722096912355482,
-        "latency_ms_p95": 9.60471489597694
-      },
-      "checkvla_vision": {
-        "SR": 0.125,
-        "CVR": 0.125,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.570079087214253,
-        "latency_ms_p95": 7.169039251311915
-      },
-      "checkvla_orbisim": {
-        "SR": 0.125,
-        "CVR": 0.5,
-        "RR": 0.125,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.785755762713961,
-        "latency_ms_p95": 2.1289027554303175
-      },
-      "checkvla_vision_noact": {
-        "SR": 0.125,
-        "CVR": 0.125,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.8200401249669085,
-        "latency_ms_p95": 7.339437198606902
-      }
-    },
-    {
-      "cell": {
-        "friction": 1.8,
-        "mass": 1.0
-      },
-      "ood": true,
-      "none": {
-        "SR": 0.625,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 0.1149964120486402,
-        "latency_ms_p95": 0.22649614547844976
-      },
-      "gt_shadow": {
-        "SR": 0.625,
-        "CVR": 0.0,
+        "safe_success": 0.84375,
         "RR": 0.3333333333333333,
-        "intervention_rate": 0.375,
-        "latency_ms_mean": 10.59415568724944,
-        "latency_ms_p95": 9.936841351736803
+        "intervention_rate": 0.0005859375232830644,
+        "episode_trigger_rate": 0.046875,
+        "latency_ms_mean": 232.83620942384005,
+        "latency_ms_p95": 210.50773970782757
       },
       "checkvla_vision": {
-        "SR": 0.625,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.6467505005675775,
-        "latency_ms_p95": 7.131133651273558
+        "SR": 0.859375,
+        "CVR": 0.015625,
+        "safe_success": 0.859375,
+        "RR": 0.8870967741935484,
+        "intervention_rate": 0.05644531175494194,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 450.5911839194596,
+        "latency_ms_p95": 507.7600158751011
       },
       "checkvla_orbisim": {
-        "SR": 0.25,
-        "CVR": 0.125,
-        "RR": 0.25,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.985606224818184,
-        "latency_ms_p95": 2.2515288517752197
+        "SR": 0.828125,
+        "CVR": 0.0,
+        "safe_success": 0.828125,
+        "RR": 0.8947368421052632,
+        "intervention_rate": 0.01503906212747097,
+        "episode_trigger_rate": 0.890625,
+        "latency_ms_mean": 82.90273235179484,
+        "latency_ms_p95": 434.4419814646244
       },
       "checkvla_vision_noact": {
-        "SR": 0.625,
+        "SR": 0.8125,
+        "CVR": 0.046875,
+        "safe_success": 0.8125,
+        "RR": 0.8421052631578947,
+        "intervention_rate": 0.0234375,
+        "episode_trigger_rate": 0.890625,
+        "latency_ms_mean": 255.32962116412818,
+        "latency_ms_p95": 487.5563330948353
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.4,
+        "mass": 1.0
+      },
+      "ood": false,
+      "none": {
+        "SR": 1.0,
         "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 6.663430750086263,
-        "latency_ms_p95": 7.166353848515428
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.4574638791382313,
+        "latency_ms_p95": 0.563824363052845
+      },
+      "gt_shadow": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 203.98865612223744,
+        "latency_ms_p95": 204.6554334461689
+      },
+      "checkvla_vision": {
+        "SR": 0.984375,
+        "CVR": 0.0,
+        "safe_success": 0.984375,
+        "RR": 0.984375,
+        "intervention_rate": 0.0654296875,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 436.2513315398246,
+        "latency_ms_p95": 503.15571427345276
+      },
+      "checkvla_orbisim": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.01328125037252903,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 39.33121100999415,
+        "latency_ms_p95": 378.4557182341814
+      },
+      "checkvla_vision_noact": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.03144531324505806,
+        "episode_trigger_rate": 0.953125,
+        "latency_ms_mean": 222.68793657422066,
+        "latency_ms_p95": 496.4269174262881
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.4,
+        "mass": 1.5
+      },
+      "ood": false,
+      "none": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.4585114773362875,
+        "latency_ms_p95": 0.5677437409758568
+      },
+      "gt_shadow": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.0003906250058207661,
+        "episode_trigger_rate": 0.015625,
+        "latency_ms_mean": 224.8642127495259,
+        "latency_ms_p95": 211.94985248148438
+      },
+      "checkvla_vision": {
+        "SR": 0.984375,
+        "CVR": 0.0,
+        "safe_success": 0.984375,
+        "RR": 0.984375,
+        "intervention_rate": 0.06679687649011612,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 461.26003796234727,
+        "latency_ms_p95": 515.3669638559222
+      },
+      "checkvla_orbisim": {
+        "SR": 0.984375,
+        "CVR": 0.0,
+        "safe_success": 0.984375,
+        "RR": 0.984375,
+        "intervention_rate": 0.01406249962747097,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 77.97262123785913,
+        "latency_ms_p95": 436.50303930044174
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.984375,
+        "CVR": 0.015625,
+        "safe_success": 0.984375,
+        "RR": 0.984375,
+        "intervention_rate": 0.03535156324505806,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 243.89258841983974,
+        "latency_ms_p95": 488.2727885618806
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.4,
+        "mass": 2.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.4760526120662689,
+        "latency_ms_p95": 0.6047001108527184
+      },
+      "gt_shadow": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 203.79604510962963,
+        "latency_ms_p95": 209.54601336270568
+      },
+      "checkvla_vision": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.07753906399011612,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 462.49226350337267,
+        "latency_ms_p95": 520.3528983518481
+      },
+      "checkvla_orbisim": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.012500000186264515,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 24.514340749010444,
+        "latency_ms_p95": 25.096455030142213
+      },
+      "checkvla_vision_noact": {
+        "SR": 1.0,
+        "CVR": 0.0,
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.05546874925494194,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 295.02082117833197,
+        "latency_ms_p95": 512.3638963326812
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.8,
+        "mass": 0.5
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.765625,
+        "CVR": 0.0,
+        "safe_success": 0.765625,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.4669929388910532,
+        "latency_ms_p95": 0.583435595035553
+      },
+      "gt_shadow": {
+        "SR": 0.84375,
+        "CVR": 0.03125,
+        "safe_success": 0.84375,
+        "RR": 0.0,
+        "intervention_rate": 0.0029296875,
+        "episode_trigger_rate": 0.046875,
+        "latency_ms_mean": 326.55393490567803,
+        "latency_ms_p95": 1016.3492960855365
+      },
+      "checkvla_vision": {
+        "SR": 0.828125,
+        "CVR": 0.015625,
+        "safe_success": 0.828125,
+        "RR": 0.8548387096774194,
+        "intervention_rate": 0.05136718600988388,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 418.47246405668557,
+        "latency_ms_p95": 507.6580544933677
+      },
+      "checkvla_orbisim": {
+        "SR": 0.84375,
+        "CVR": 0.0,
+        "safe_success": 0.84375,
+        "RR": 0.9152542372881356,
+        "intervention_rate": 0.01875000074505806,
+        "episode_trigger_rate": 0.921875,
+        "latency_ms_mean": 132.21236923709512,
+        "latency_ms_p95": 442.4123225733638
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.84375,
+        "CVR": 0.046875,
+        "safe_success": 0.84375,
+        "RR": 0.9215686274509803,
+        "intervention_rate": 0.01953125,
+        "episode_trigger_rate": 0.796875,
+        "latency_ms_mean": 189.0078304335475,
+        "latency_ms_p95": 501.41710489988327
+      }
+    },
+    {
+      "cell": {
+        "friction": 1.8,
+        "mass": 1.0
+      },
+      "ood": true,
+      "none": {
+        "SR": 0.96875,
+        "CVR": 0.015625,
+        "safe_success": 0.96875,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.46742591075599194,
+        "latency_ms_p95": 0.5780685693025589
+      },
+      "gt_shadow": {
+        "SR": 0.9375,
+        "CVR": 0.0,
+        "safe_success": 0.9375,
+        "RR": 0.0,
+        "intervention_rate": 0.0007812500116415322,
+        "episode_trigger_rate": 0.03125,
+        "latency_ms_mean": 243.61996320076287,
+        "latency_ms_p95": 251.90747082233204
+      },
+      "checkvla_vision": {
+        "SR": 0.96875,
+        "CVR": 0.0,
+        "safe_success": 0.96875,
+        "RR": 1.0,
+        "intervention_rate": 0.07402344048023224,
+        "episode_trigger_rate": 0.96875,
+        "latency_ms_mean": 497.4290906917304,
+        "latency_ms_p95": 517.1662176027894
+      },
+      "checkvla_orbisim": {
+        "SR": 0.9375,
+        "CVR": 0.015625,
+        "safe_success": 0.9375,
+        "RR": 0.9523809523809523,
+        "intervention_rate": 0.01621093787252903,
+        "episode_trigger_rate": 0.984375,
+        "latency_ms_mean": 74.44204678758979,
+        "latency_ms_p95": 398.61418809741724
+      },
+      "checkvla_vision_noact": {
+        "SR": 0.9375,
+        "CVR": 0.03125,
+        "safe_success": 0.9375,
+        "RR": 0.9649122807017544,
+        "intervention_rate": 0.02675781212747097,
+        "episode_trigger_rate": 0.890625,
+        "latency_ms_mean": 246.02318843826652,
+        "latency_ms_p95": 492.20220297574997
       }
     },
     {
@@ -860,44 +1040,54 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.11881246191478567,
-        "latency_ms_p95": 0.22256635093071964
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.46159918420016766,
+        "latency_ms_p95": 0.5735279992222786
       },
       "gt_shadow": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 0.25,
-        "latency_ms_mean": 10.963734912547807,
-        "latency_ms_p95": 11.572602398882637
+        "safe_success": 1.0,
+        "RR": NaN,
+        "intervention_rate": 0.0,
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 203.46832587383687,
+        "latency_ms_p95": 220.2233660966158
       },
       "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.598793762350397,
-        "latency_ms_p95": 7.284881248415331
+        "SR": 0.984375,
+        "CVR": 0.015625,
+        "safe_success": 0.96875,
+        "RR": 0.984375,
+        "intervention_rate": 0.07382812350988388,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 451.28237903118134,
+        "latency_ms_p95": 517.1533938497305
       },
       "checkvla_orbisim": {
-        "SR": 0.125,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.125,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.833868749938119,
-        "latency_ms_p95": 2.1363413507060613
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.012500000186264515,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 30.28369122184813,
+        "latency_ms_p95": 377.71112229675055
       },
       "checkvla_vision_noact": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.500719149607903,
-        "latency_ms_p95": 7.069481549115153
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.0556640625,
+        "episode_trigger_rate": 0.984375,
+        "latency_ms_mean": 327.82116970047355,
+        "latency_ms_p95": 507.3601622134447
       }
     },
     {
@@ -907,96 +1097,116 @@
       },
       "ood": true,
       "none": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
+        "safe_success": 1.0,
         "RR": NaN,
         "intervention_rate": 0.0,
-        "latency_ms_mean": 0.12343284979579039,
-        "latency_ms_p95": 0.1683062506344868
+        "episode_trigger_rate": 0.0,
+        "latency_ms_mean": 0.4617436323314905,
+        "latency_ms_p95": 0.578811950981617
       },
       "gt_shadow": {
-        "SR": 0.0,
+        "SR": 1.0,
         "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 0.625,
-        "latency_ms_mean": 13.236449399664707,
-        "latency_ms_p95": 45.24014819835429
+        "safe_success": 1.0,
+        "RR": 1.0,
+        "intervention_rate": 0.00019531250291038305,
+        "episode_trigger_rate": 0.015625,
+        "latency_ms_mean": 215.20365602336824,
+        "latency_ms_p95": 210.35313978791237
       },
       "checkvla_vision": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.561604149646882,
-        "latency_ms_p95": 7.007968105608597
+        "SR": 0.96875,
+        "CVR": 0.03125,
+        "safe_success": 0.96875,
+        "RR": 0.96875,
+        "intervention_rate": 0.09375,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 451.25336311757565,
+        "latency_ms_p95": 512.6543078571558
       },
       "checkvla_orbisim": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": 0.0,
-        "intervention_rate": 1.0,
-        "latency_ms_mean": 4.785369300680031,
-        "latency_ms_p95": 2.1740642514487263
+        "SR": 1.0,
+        "CVR": 0.015625,
+        "safe_success": 0.984375,
+        "RR": 1.0,
+        "intervention_rate": 0.012500000186264515,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 24.44646288640797,
+        "latency_ms_p95": 24.408580921589294
       },
       "checkvla_vision_noact": {
-        "SR": 0.0,
-        "CVR": 0.0,
-        "RR": NaN,
-        "intervention_rate": 0.0,
-        "latency_ms_mean": 6.532009974853281,
-        "latency_ms_p95": 7.0814232512930175
+        "SR": 1.0,
+        "CVR": 0.015625,
+        "safe_success": 0.984375,
+        "RR": 1.0,
+        "intervention_rate": 0.08222655951976776,
+        "episode_trigger_rate": 1.0,
+        "latency_ms_mean": 358.17009336315095,
+        "latency_ms_p95": 502.0072367042303
       }
     }
   ],
   "pooled_ood": {
     "none": {
-      "SR": 0.09821428571428571,
-      "CVR": 0.4375,
+      "SR": 0.8225446428571429,
+      "CVR": 0.27232142857142855,
+      "safe_success": 0.6852678571428571,
       "RR": NaN,
       "intervention_rate": 0.0,
-      "latency_ms_mean": 0.12091198932466796,
-      "latency_ms_p95": 0.1821982109374533,
+      "episode_trigger_rate": 0.0,
+      "latency_ms_mean": 0.7411080079951456,
+      "latency_ms_p95": 0.82574976342065,
       "CVR_reduction_vs_none": 0.0
     },
     "gt_shadow": {
-      "SR": 0.19642857142857142,
-      "CVR": 0.017857142857142856,
-      "RR": 0.20680272108843537,
-      "intervention_rate": 0.6517857142857143,
-      "latency_ms_mean": 12.401673267842332,
-      "latency_ms_p95": 35.339123389530855,
-      "CVR_reduction_vs_none": 0.9591836734693877
+      "SR": 0.8046875,
+      "CVR": 0.014508928571428572,
+      "safe_success": 0.8013392857142857,
+      "RR": 0.4005208333333334,
+      "intervention_rate": 0.009277343914228757,
+      "episode_trigger_rate": 0.29910714285714285,
+      "latency_ms_mean": 320.5541718717931,
+      "latency_ms_p95": 511.26639920153775,
+      "CVR_reduction_vs_none": 0.9467213114754098
     },
     "checkvla_vision": {
-      "SR": 0.09821428571428571,
-      "CVR": 0.4375,
-      "RR": NaN,
-      "intervention_rate": 0.0,
-      "latency_ms_mean": 6.656765674116676,
-      "latency_ms_p95": 7.260205929248643,
-      "CVR_reduction_vs_none": 0.0
+      "SR": 0.8426339285714286,
+      "CVR": 0.27120535714285715,
+      "safe_success": 0.6953125,
+      "RR": 0.8522739741057713,
+      "intervention_rate": 0.051911272441170046,
+      "episode_trigger_rate": 0.9575892857142857,
+      "latency_ms_mean": 368.5217178160591,
+      "latency_ms_p95": 513.0268412642181,
+      "CVR_reduction_vs_none": 0.004098360655737543
     },
     "checkvla_orbisim": {
-      "SR": 0.125,
-      "CVR": 0.29464285714285715,
-      "RR": 0.125,
-      "intervention_rate": 1.0,
-      "latency_ms_mean": 6.1757181500589855,
-      "latency_ms_p95": 15.01905856124982,
-      "CVR_reduction_vs_none": 0.326530612244898
+      "SR": 0.8035714285714286,
+      "CVR": 0.20535714285714285,
+      "safe_success": 0.7042410714285714,
+      "RR": 0.8114699547302917,
+      "intervention_rate": 0.01944754472268479,
+      "episode_trigger_rate": 0.9363839285714286,
+      "latency_ms_mean": 115.20182127133012,
+      "latency_ms_p95": 364.169198793492,
+      "CVR_reduction_vs_none": 0.24590163934426224
     },
     "checkvla_vision_noact": {
-      "SR": 0.09821428571428571,
-      "CVR": 0.4375,
-      "RR": NaN,
-      "intervention_rate": 0.0,
-      "latency_ms_mean": 6.648079087530538,
-      "latency_ms_p95": 7.182859164199077,
-      "CVR_reduction_vs_none": 0.0
+      "SR": 0.8180803571428571,
+      "CVR": 0.2845982142857143,
+      "safe_success": 0.6886160714285714,
+      "RR": 0.8259039439205225,
+      "intervention_rate": 0.03635602657284055,
+      "episode_trigger_rate": 0.9341517857142857,
+      "latency_ms_mean": 247.44055733483816,
+      "latency_ms_p95": 495.90800969994496,
+      "CVR_reduction_vs_none": -0.04508196721311486
     }
   },
   "fig_f_cell": {
     "friction": 0.2,
-    "mass": 2.0
+    "mass": 1.5
   }
 }

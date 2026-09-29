@@ -212,11 +212,60 @@ def fig_f(task, od):
     savefig(fig, od, "figF_trigger_trace")
 
 
+def fig_g(task, od):
+    """Detection and repair are separate capabilities (plan §5, RQ1/RQ2 join).
+
+    Left: AUROC (can it *detect* a violating chunk) next to the CVR reduction it
+    actually buys in RQ2. The two do not rank the predictors the same way -- the
+    pixel model detects better and repairs nothing.
+
+    Right: the mechanism. Mean predicted chunk score as the chunk is scaled
+    down, which is exactly the curve repair's bisection walks. A flat or rising
+    curve means the search has no signal to follow, whatever the AUROC.
+    """
+    p1, p2 = os.path.join(od, "rq1.json"), os.path.join(od, "rq2.json")
+    if not (os.path.exists(p1) and os.path.exists(p2)):
+        return
+    d1 = load_json(p1)
+    S, R = d1["summary"], load_json(p2)["pooled"]
+    preds = [k for k in S if k in R and k != "none"]
+    if not preds:
+        return
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(9, 3.2))
+    x = np.arange(len(preds))
+    w = 0.38
+    au = [S[k].get("auroc", np.nan) for k in preds]
+    rd = [100 * R[k].get("CVR_reduction_vs_none", np.nan) for k in preds]
+    ax.bar(x - w / 2, au, w, label="detection: AUROC (RQ1)")
+    ax.bar(x + w / 2, rd, w, label="repair: CVR reduction (RQ2, %)")
+    for i in range(len(preds)):
+        ax.text(i - w / 2, au[i], f"{au[i]:.2f}", ha="center", va="bottom", fontsize=7)
+        ax.text(i + w / 2, rd[i], f"{rd[i]:.0f}%", ha="center", va="bottom", fontsize=7)
+    ax.set_xticks(x); ax.set_xticklabels(preds, fontsize=8)
+    ax.set_ylim(0, 115); ax.legend(fontsize=7, loc="upper right")
+    ax.set_title("Detection does not imply repair", fontsize=9)
+
+    C = d1.get("ctrl_curve", {})
+    if C:
+        for k in preds:
+            if k in C:
+                ln, = bx.plot(C["scales"], np.asarray(C[k]["pred"]) * 100, "o-",
+                              label=f"{k} predicted")
+                bx.plot(C["scales"], np.asarray(C[k]["gt"]) * 100, "--", alpha=.5,
+                        color=ln.get_color(), label=f"{k} GT")
+        bx.invert_xaxis()
+        bx.set_xlabel("chunk scale (1.0 = as proposed)")
+        bx.set_ylabel("mean chunk score")
+        bx.set_title("Controllability: what repair bisects on", fontsize=9)
+        bx.legend(fontsize=6, ncol=2)
+    savefig(fig, od, "figG_detection_vs_repair")
+
+
 def main():
     p = base_parser(__doc__)
     args = p.parse_args()
     od = out_dir(args.task, args.backend)
-    for f in (fig_a, fig_b, fig_b2, fig_c, fig_d, fig_e, fig_f):
+    for f in (fig_a, fig_b, fig_b2, fig_c, fig_d, fig_e, fig_f, fig_g):
         try:
             f(args.task, od)
         except Exception as e:   # keep going: figures are independent

@@ -58,7 +58,8 @@ def main():
         entry = {"cell": cell, "ood": is_ood(args.task, cell)}
         for a, c in ctrls.items():
             res = run_episodes(env, sim, c, params, seed=3000 + ci,
-                               record=a.startswith("checkvla"))
+                               record=a.startswith("checkvla"),
+                               audit_repair=a != "none")
             entry[a] = summarize(res)
             if "trace" in res:
                 vi = int(np.argmax(res["violation"])) if res["violation"].any() else 0

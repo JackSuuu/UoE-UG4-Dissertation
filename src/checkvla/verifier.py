@@ -72,7 +72,8 @@ class Controller:
         ctx = self._ctx(env, obs)
         chunk = self.policy(obs, ctx.get("rgb" if self.needs_rgb else "img"), self.instruction)
         info = {"trig": torch.zeros(B, dtype=torch.bool, device=dev),
-                "score": torch.zeros(B, device=dev)}
+                "score": torch.zeros(B, device=dev),
+                "applied": None}
         using_plan = self.plan_left > 0
 
         if self.mode == "checkvla":
@@ -86,7 +87,13 @@ class Controller:
             if trig.any():
                 idx = trig.nonzero().squeeze(1)
                 sub = {k: (v[idx] if torch.is_tensor(v) else v) for k, v in ctx.items()}
-                self._set_plan(trig, self.verifier.repair(sub, chunk[idx]))
+                rep = self.verifier.repair(sub, chunk[idx])
+                self._set_plan(trig, rep)
+                # the chunk that will actually be executed, for the repair audit
+                # (kept out of the hot path: the audit itself runs in run_episodes)
+                ap = chunk.clone()
+                ap[idx] = rep
+                info["applied"] = ap
             info["trig"] = trig
 
         elif self.mode == "gt_shadow":
@@ -102,6 +109,9 @@ class Controller:
                     todo &= ~ok
                 best[todo] = chunk[todo] * 0.15
                 self._set_plan(viol, best[viol])
+                ap = chunk.clone()
+                ap[viol] = best[viol]
+                info["applied"] = ap
             info["trig"] = viol
 
         elif self.mode == "none" and (~using_plan).any():
@@ -128,8 +138,17 @@ def _sync(device):
 
 
 @torch.no_grad()
-def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False):
-    """Roll out env.n parallel episodes. Returns per-episode metric arrays."""
+def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False,
+                 audit_repair=False):
+    """Roll out env.n parallel episodes. Returns per-episode metric arrays.
+
+    audit_repair: on every intervention, shadow-roll the chunk that was
+    *executed* alongside the chunk the policy *proposed*. The ratio of their GT
+    risks is the only direct measure of whether the repair changed anything on
+    the real dynamics -- a predictor can fire often, look controllable, and
+    still leave the true risk of the executed chunk untouched. Kept out of
+    Controller.act so it never contaminates the reported latency.
+    """
     T = T or sim.T
     obs = env.reset(params, seed)
     controller.reset(env, obs)
@@ -139,6 +158,7 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
     first_trig = torch.full((B,), -1, dtype=torch.long, device=dev)
     n_int = torch.zeros(B, device=dev)
     lat, rec = [], {"risk": [], "score": [], "trig": []}
+    audit = {"gt_applied": [], "gt_proposed": [], "mag_ratio": []}
     success = torch.zeros(B, dtype=torch.bool, device=dev)
     for t in range(T):
         _sync(dev)
@@ -146,6 +166,13 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
         a, info = controller.act(env, obs)
         _sync(dev)
         lat.append((time.perf_counter() - t0) * 1e3)
+        if audit_repair and info.get("applied") is not None:
+            m = info["trig"]
+            ap, pr = info["applied"][m], info["chunk"][m]
+            audit["gt_applied"].append(env.shadow_rollout(ap, mask=m).amax(dim=(1, 2)).cpu())
+            audit["gt_proposed"].append(env.shadow_rollout(pr, mask=m).amax(dim=(1, 2)).cpu())
+            audit["mag_ratio"].append((ap.norm(dim=(1, 2))
+                                       / pr.norm(dim=(1, 2)).clamp_min(1e-8)).cpu())
         obs, risk, success = env.step(a)
         v = risk.amax(1) > 1.0
         first_viol = torch.where(v & (first_viol < 0), torch.full_like(first_viol, t), first_viol)
@@ -167,6 +194,22 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
     }
     if record:
         out["trace"] = {k: torch.stack(v, 1).numpy() for k, v in rec.items()}
+    if audit_repair and audit["gt_applied"]:
+        ga = torch.cat(audit["gt_applied"]).numpy()
+        gp = torch.cat(audit["gt_proposed"]).numpy()
+        mr = torch.cat(audit["mag_ratio"]).numpy()
+        out["repair_audit"] = {
+            "n_interventions": int(ga.size),
+            "gt_risk_proposed": float(gp.mean()),
+            "gt_risk_applied": float(ga.mean()),
+            # relative reduction of the TRUE risk of the chunk actually executed
+            "gt_risk_rel_drop": float((gp - ga).mean() / max(gp.mean(), 1e-8)),
+            # fraction of interventions that pushed the true risk below the limit
+            "frac_cleared": float((ga <= 1.0).mean()),
+            # fraction of interventions that were no-ops on the true dynamics
+            "frac_ineffective": float((ga >= gp - 1e-3).mean()),
+            "mag_ratio_mean": float(mr.mean()),
+        }
     return out
 
 
@@ -174,7 +217,7 @@ def summarize(res: dict) -> dict:
     s, v, ni = res["success"], res["violation"], res["n_interventions"]
     intervened = ni > 0
     T = res["n_interventions"].size and max(1, int(res["n_steps"]))
-    return {
+    out = {
         "SR": float(s.mean()),
         "CVR": float(v.mean()),
         "safe_success": float((s & ~v).mean()),
@@ -188,3 +231,6 @@ def summarize(res: dict) -> dict:
         "latency_ms_mean": float(res["latency_ms"].mean()),
         "latency_ms_p95": float(np.percentile(res["latency_ms"], 95)),
     }
+    if "repair_audit" in res:
+        out.update(res["repair_audit"])
+    return out
