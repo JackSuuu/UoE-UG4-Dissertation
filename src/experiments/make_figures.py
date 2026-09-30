@@ -335,6 +335,10 @@ def fig_h(task, od):
 
 def main():
     p = base_parser(__doc__)
+    p.add_argument("--chunk_k", type=int, default=None,
+                   help="accepted and ignored: figures read the JSON the "
+                        "evaluation wrote, but the driver passes the same "
+                        "flags to every stage")
     args = p.parse_args()
     od = out_dir(args.task, args.backend)
     for f in (fig_a, fig_b, fig_b2, fig_c, fig_d, fig_e, fig_f, fig_g, fig_h):

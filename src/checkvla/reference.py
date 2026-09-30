@@ -64,7 +64,7 @@ def suffix_repair(predictor, ctx, chunk, latency=1, iters=25, lr=0.1, lam=0.5,
 @torch.no_grad()
 def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
                  scales=None, iters=6, floor=0.05, hard_prefix=False,
-                 use_grad=False):
+                 use_grad=False, abstain=True, return_mask=False, resp_frac=0.02):
     """Gradient-free repair: down-scale, bisected to the largest factor whose
     predicted score clears ``target``.
 
@@ -128,6 +128,48 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
 
     Note the gradient path (``suffix_repair``) has a hard prefix by construction
     and fails for the identical reason, which is why the branch is opt-in.
+
+    ``abstain`` (default on) is a correctness guard, not a tuning knob. The
+    bisection seeds ``lo = floor`` on the assumption that scaling to ``floor`` is
+    already conservative enough. That assumption is false for a predictor that
+    does not respond to the action: the score is then constant in the scale, no
+    rung clears ``target``, the accept test never passes, and the search falls
+    straight through to the floor. Measured on that arm (``vision_noact``):
+    magnitude ratio x0.05, and CVR 0.278 against a 0.272 baseline with SR -0.057 --
+    it stops the task without preventing anything.
+
+    **The guard tests responsiveness, not certification.** The obvious predicate
+    is "no rung cleared the target, so abstain", and it is wrong: ``margin`` (0.8)
+    is deliberately stricter than the constraint limit (1.0) so that the repair
+    *disarms* the trigger, and a predictor carrying a large near-constant offset
+    cannot always reach it. That version was implemented and measured, and it
+    abstained on 45% of orbisim's own interventions -- magnitude ratio 0.63
+    instead of 0.34, CVR 0.92 instead of 0.70 on the stress cell. It silently
+    disabled the verifier it was meant to protect. Adding a second accept
+    criterion at ``tau`` did not rescue it either, because a damped chunk the
+    predictor still scores above ``tau`` is frequently the best available action
+    (the v6 audit puts orbisim's floor damping at -28.9% true risk).
+
+    What actually distinguishes the broken arm is that the search has no signal:
+    the objective does not vary with the variable being searched. So the guard
+    measures the score at the floor and abstains when the scale moves it by less
+    than ``resp_eps`` relative. One extra predictor call per intervention.
+
+        orbisim      score 0.431 / 0.429 / 0.201 at scale 1.0 / 0.5 / 0.05
+        vision       score 0.395 / 0.299 / 0.237
+        vision_noact score 0.453 / 0.453 / 0.453   <- unresponsive, abstain
+
+    Abstention is then the honest response: the search certified nothing, so the
+    runtime gets its proposed chunk back rather than an arbitrary near-stop that
+    a reader would score as a maximal repair. The repair audit surfaces the
+    change without extra plumbing -- an abstaining arm shows ``mag_ratio_mean``
+    1.00 and ``frac_ineffective`` 1.00. And because the predicate is
+    responsiveness, the guard is provably inert on any predictor that responds,
+    so the working arms are bit-unchanged.
+
+    ``return_mask`` hands back the per-row flag so a caller holding several
+    candidate repairs can make the abstention dominate all of them rather than
+    only the bisection's.
     """
     lat = int(min(latency, chunk.shape[1]))
     pre, suf = chunk[:, :lat], chunk[:, lat:]
@@ -139,7 +181,7 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
 
     s0, _, _ = chunk_score(predictor, ctx, chunk, beta)
     target = torch.minimum(s0 * (1.0 - DROP), s0.new_full((), margin))
-    lo = torch.full_like(s0, floor)          # known to be conservative enough
+    lo = torch.full_like(s0, floor)          # assumed conservative enough
     hi = torch.ones_like(s0)                 # known to be too aggressive
     for _ in range(iters):
         mid = (lo + hi) / 2
@@ -147,7 +189,18 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
         safe = s <= target
         lo = torch.where(safe, mid, lo)
         hi = torch.where(safe, hi, mid)
-    return rebuild(lo)
+    out = rebuild(lo)
+
+    # Responsiveness of the objective to the variable being searched, as a
+    # fraction of the score itself. An absolute epsilon does not work: the
+    # action-blind arm still wobbles by ~0.002, which clears any epsilon small
+    # enough to be safe and lets it through. The measured separation is wide
+    # (53% / 40% / 0.0%), so the threshold is not knife-edge.
+    sf, _, _ = chunk_score(predictor, ctx, rebuild(torch.full_like(s0, floor)), beta)
+    responsive = (s0 - sf) > resp_frac * s0.abs()
+    if return_mask:                     # report the true flag, not the applied one
+        return out, responsive
+    return torch.where(responsive[:, None, None], out, chunk) if abstain else out
 
 
 class RefCheckVLA:
@@ -155,7 +208,7 @@ class RefCheckVLA:
 
     def __init__(self, predictor, tau=1.0, beta=1.0, latency=1, commit=5,
                  repair_iters=25, max_vel=1.0, margin=0.8, hard_prefix=False,
-                 use_grad=False):
+                 use_grad=False, abstain=True, resp_frac=0.02):
         self.predictor, self.tau, self.beta = predictor, tau, beta
         self.latency, self.commit = latency, commit
         self.repair_iters, self.max_vel, self.margin = repair_iters, max_vel, margin
@@ -163,6 +216,14 @@ class RefCheckVLA:
         # switchable so the ablations are one flag. Both default off; see the
         # docstrings for the measurements that put them there.
         self.hard_prefix, self.use_grad = hard_prefix, use_grad
+        # Abstention guard: return the proposed chunk unchanged when the search
+        # certifies no scale. A correctness fix, not a knob -- see scale_repair.
+        self.abstain = abstain
+        self.resp_frac = resp_frac
+        # Interventions where the guard fired. Reported so abstention is visible
+        # rather than inferred from SR/CVR, which cannot resolve a change this
+        # small on 64 episodes.
+        self.n_abstain = 0
 
     def score(self, ctx, chunk):
         return chunk_score(self.predictor, ctx, chunk, self.beta)[0]
@@ -189,12 +250,21 @@ class RefCheckVLA:
         on its own score: one is inert and over-claims, the other is sound. That
         is why the gradient branch is now opt-in.
         """
-        cand = scale_repair(self.predictor, ctx, chunk, self.latency, self.beta,
-                            self.margin, hard_prefix=self.hard_prefix)
-        if not self.use_grad or not getattr(self.predictor, "differentiable", False):
-            return cand
-        grad = suffix_repair(self.predictor, ctx, chunk, self.latency, self.repair_iters,
-                             beta=self.beta, margin=self.margin, max_vel=self.max_vel)
-        s_grad, _, _ = chunk_score(self.predictor, ctx, grad, self.beta)
-        s_cand, _, _ = chunk_score(self.predictor, ctx, cand, self.beta)
-        return torch.where((s_grad <= s_cand)[:, None, None], grad, cand)
+        cand, cleared = scale_repair(self.predictor, ctx, chunk, self.latency,
+                                     self.beta, self.margin,
+                                     hard_prefix=self.hard_prefix, abstain=False,
+                                     return_mask=True,
+                                     resp_frac=self.resp_frac)
+        best = cand
+        if self.use_grad and getattr(self.predictor, "differentiable", False):
+            grad = suffix_repair(self.predictor, ctx, chunk, self.latency, self.repair_iters,
+                                 beta=self.beta, margin=self.margin, max_vel=self.max_vel)
+            s_grad, _, _ = chunk_score(self.predictor, ctx, grad, self.beta)
+            s_cand, _, _ = chunk_score(self.predictor, ctx, cand, self.beta)
+            best = torch.where((s_grad <= s_cand)[:, None, None], grad, cand)
+        # The guard is applied here, after the selection, so it covers the
+        # gradient branch too. If the predictor does not respond to the
+        # down-scale, the gradient candidate is not a repair either -- it only
+        # ever scores lower because it barely moves the chunk.
+        self.n_abstain += int((~cleared).sum())
+        return torch.where(cleared[:, None, None], best, chunk) if self.abstain else best

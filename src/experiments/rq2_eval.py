@@ -102,7 +102,8 @@ def main():
             print(f"       {a:22s} GT risk {v['gt_risk_proposed']:.3f} -> "
                   f"{v['gt_risk_applied']:.3f} ({100 * v['gt_risk_rel_drop']:+.1f}%)  "
                   f"cleared {v['frac_cleared']:.2f}  no-op {v['frac_ineffective']:.2f}  "
-                  f"mag x{v['mag_ratio_mean']:.2f}  n={v['n_interventions']}", flush=True)
+                  f"mag x{v['mag_ratio_mean']:.2f}  abst {v.get('frac_abstain', float('nan')):.2f}"
+                  f"  n={v['n_interventions']}", flush=True)
 
 
 if __name__ == "__main__":

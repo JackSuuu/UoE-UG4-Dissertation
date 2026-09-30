@@ -75,7 +75,8 @@ def build_verifier(args, predictor, sim, tau=float("inf")):
         from checkvla.reference import RefCheckVLA
         return RefCheckVLA(predictor, max_vel=sim.max_vel,
                            hard_prefix=bool(getattr(args, "hard_prefix", 0)),
-                           use_grad=bool(getattr(args, "use_grad", 0)), **kw)
+                           use_grad=bool(getattr(args, "use_grad", 0)),
+                           abstain=bool(getattr(args, "abstain", 1)), **kw)
     if impl == "official":
         from adapters.checkvla_official import CheckVLAOfficial
         return CheckVLAOfficial(predictor, sim=sim, **kw)
@@ -103,6 +104,15 @@ def add_component_args(p):
                         "the violating step, yet still scores lower on the "
                         "predictor and wins the selection. Kept for the "
                         "ablation that explains the RQ3 gradient table.")
+    g.add_argument("--abstain", type=int, default=1,
+                   help="return the proposed chunk unchanged when the bisection "
+                        "certifies no scale, instead of falling through to the "
+                        "floor. On by default: the floor is only conservative if "
+                        "the predictor responds to the action, and an "
+                        "action-blind one drives the search to a near-stop that "
+                        "was never certified (measured on vision_noact: "
+                        "magnitude x0.05, CVR 0.278 vs 0.272 baseline, SR "
+                        "-0.057). Set to 0 to reproduce that defect.")
     g.add_argument("--commit", type=int, default=5)
     g.add_argument("--roles", nargs="+", default=list(PREDICTOR_ROLES),
                    help="predictor roles to evaluate")
