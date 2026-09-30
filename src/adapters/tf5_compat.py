@@ -60,6 +60,13 @@ __all__ = [
     "resolve_model_class",
     "build_architecture",
     "setup_hf_offline",
+    "greedy_decode",
+    "tokens_to_bins",
+    "bins_to_action",
+    "make_bin_centers",
+    "prepare_prompt_ids",
+    "action_token_slice",
+    "check_decode_agreement",
     "load_processor",
     "compat_report",
 ]
@@ -296,6 +303,210 @@ def setup_hf_offline() -> None:
     """
     os.environ["HF_HUB_OFFLINE"] = "1"
     os.environ.setdefault("TOKENIZERS_PARALLELISM", "false")
+
+
+# ---------------------------------------------------------------------------
+# 4. GenerationMixin.generate is unusable on this checkpoint, and fails silently
+# ---------------------------------------------------------------------------
+# The measured symptom, on 5.17, from real weights and a real frame:
+#
+#   generate(..., max_new_tokens=7)  ->  [31872] * 7
+#   per-step argmax of its own scores ->  31872 at every step
+#   per-step max logit                ->  4.719 at every step, to 3 decimals
+#   the model's own last-position logit at step 0 -> 11.062
+#   a hand-written greedy loop over the same forward -> [31744, 31999, 31955,
+#       31842, 31856, 31871, 31872]
+#
+# Seven autoregressive steps over seven different prefixes cannot produce an
+# identical distribution to three decimals, so generate is scoring a constant.
+# The constant's logit scale does not match the model's either, so it is not
+# reading the right tensor: the shape of it is OpenVLA's cached-generation
+# branch, which is entered on ``input_ids.shape[1] == 1``, runs the LLM on one
+# token with no cache, and **ignores pixel_values entirely**.
+#
+# Why this one matters more than the other three: it does not raise. It returns a
+# plausible, finite, in-range 7-D action. Fed to the noise control in
+# tests/, that action is bit-identical across every input, and the natural
+# reading -- "a 256-bin head collapses to the middle bin on an
+# out-of-distribution task, so zero-shot is worthless and fine-tuning is
+# mandatory" -- is a fabrication. The bins from a real decode are
+# [255, 0, 44, 157, 143, 128, 127], which is not a collapse. Anything concluded
+# from this checkpoint's generate() output before this was found is void.
+#
+# The supported path is :func:`greedy_decode` below, which is the decode a chunk
+# head replaces anyway. generate() is left in place and unpatched on purpose:
+# patching it to look right would mean reimplementing 5.x's cache handling
+# inside someone else's forward signature, and the failure mode of getting that
+# subtly wrong is the same silent one.
+
+ACTION_TOKEN_BLOCK = (31536, 32064)   # the 256 bins occupy the top of the vocab
+
+# Token that terminates the instruction in OpenVLA's training format.
+# predict_action appends it when the prompt does not already end with it, so a
+# decode that skips it is conditioning on a format the model never saw. The
+# consequence of getting it wrong is different action bins and no error.
+PROMPT_END_TOKEN = 29871
+
+
+def prepare_prompt_ids(input_ids):
+    """Append the training-format terminator, exactly as predict_action does.
+
+    Kept separate from the decode rather than folded into it, because it is a
+    property of the *prompt* and getting it wrong is silent: the model answers a
+    differently-formatted question and returns a plausible action.
+    """
+    if not torch.all(input_ids[:, -1] == PROMPT_END_TOKEN):
+        pad = torch.full((1, 1), PROMPT_END_TOKEN, dtype=torch.long,
+                         device=input_ids.device)
+        input_ids = torch.cat((input_ids, pad), dim=1)
+    return input_ids
+
+
+def make_bin_centers(n_action_bins: int = 256):
+    """OpenVLA's bin centres, from ``np.linspace(-1, 1, n_bins)`` midpoints.
+
+    This returns **n_bins - 1** values, not n_bins: the 256 numbers are *edges* of
+    255 intervals, and the clip in predict_action is therefore to
+    ``bin_centers.shape[0] - 1`` = 254. Clipping to 255 instead is an off-by-one
+    that reaches past the end of the array.
+    """
+    import numpy as np
+    bins = np.linspace(-1, 1, n_action_bins)
+    return (bins[:-1] + bins[1:]) / 2.0
+
+
+def tokens_to_bins(tokens, vocab_size: int, n_action_bins: int = 256):
+    """OpenVLA's own token -> bin map, verbatim from ``predict_action``.
+
+    ``discretized = vocab_size - token``, then ``- 1``, then clipped to
+    ``[0, bin_centers.shape[0] - 1]``. Reproduced here so the reference decode is
+    comparable to predict_action without a 15 GB model in the loop, and so a
+    change to the arithmetic shows up in a cheap test rather than a 7B forward.
+
+    The clip is load-bearing: without it a low token id maps to a bin of ~31744
+    and, after unnormalisation, to an action a hundred times outside the
+    pretraining dataset's range.
+    """
+    import numpy as np
+    n_centres = len(make_bin_centers(n_action_bins))
+    return np.clip(vocab_size - np.asarray(tokens) - 1, a_min=0, a_max=n_centres - 1)
+
+
+def bins_to_action(bins, q01, q99, mask=None, n_action_bins: int = 256):
+    """Bin index -> the pretraining dataset's real units, as predict_action does.
+
+    ``0.5 * (centre + 1) * (q99 - q01) + q01``, with masked dimensions left in
+    normalised units. ``q01``/``q99`` come from the checkpoint's ``norm_stats`` and
+    describe the *dataset's* action space -- for bridge_orig, end-effector deltas
+    in metres, not this sim's m/s. Converting between the two is
+    ``adapters.openvla_policy``'s job and is deliberately not guessed here.
+    """
+    import numpy as np
+    norm = make_bin_centers(n_action_bins)[np.asarray(bins)]
+    lo = np.asarray(q01, dtype=np.float64)
+    hi = np.asarray(q99, dtype=np.float64)
+    out = 0.5 * (norm + 1) * (hi - lo) + lo
+    return out if mask is None else np.where(np.asarray(mask, dtype=bool), out, norm)
+
+
+def greedy_decode(model, input_ids, pixel_values, attention_mask=None,
+                  n_tokens: int = 7, use_cache: bool = False,
+                  add_prompt_end: bool = True, return_logits: bool = False):
+    """Greedy-decode ``n_tokens`` action tokens, one forward pass per step.
+
+    This is the ground truth for what this checkpoint does, and the reference
+    :func:`check_decode_agreement` holds any faster path against.
+
+    Deliberately implemented as plain repeated forwards over the *full* sequence
+    rather than through a cache. The uncached path goes through OpenVLA's
+    multimodal branch, which is the branch that actually uses ``pixel_values``;
+    the cached branch is the one that ignores them, and reimplementing cache
+    plumbing for a 7-token decode buys nothing when a chunk head removes the loop
+    altogether. Costs ~7 forwards, which for a 7-token decode is the same order as
+    the cached version once the KV transfer is counted.
+
+    ``return_logits`` also returns the full logit row at each step, not just the
+    argmax. This matters for measurement, not for decoding: a greedy decode is one
+    deterministic sample from a 255-way categorical per dimension, so a per-input
+    difference in the *action* conflates a change in what the head wants with a
+    change in which bin wins the argmax. Two inputs can have near-identical
+    actions and very different logit rows -- notably when a small perturbation
+    fails to flip an argmax with a large margin. Measuring "what does the head
+    respond to" on the action alone cannot tell those apart; the logits can.
+    """
+    if add_prompt_end:
+        input_ids = prepare_prompt_ids(input_ids)
+    ids = input_ids
+    if attention_mask is None:
+        attention_mask = torch.ones_like(ids)
+    out_tokens = []
+    logit_rows = []
+    past = None
+    for _ in range(n_tokens):
+        with torch.no_grad():
+            o = model(input_ids=ids, attention_mask=attention_mask,
+                      pixel_values=pixel_values if past is None else None,
+                      past_key_values=past, use_cache=use_cache)
+        row = o.logits[0, -1].float()
+        logit_rows.append(row.cpu())
+        nxt = int(row.argmax())
+        out_tokens.append(nxt)
+        ids = torch.cat([ids, torch.tensor([[nxt]], device=ids.device)], dim=1)
+        attention_mask = torch.cat(
+            [attention_mask, torch.ones_like(attention_mask[:, :1])], dim=1)
+        if use_cache:
+            past = o.past_key_values
+    tokens = torch.tensor(out_tokens, dtype=torch.long, device=input_ids.device)
+    if return_logits:
+        return tokens, torch.stack(logit_rows)      # (n_tokens, vocab)
+    return tokens
+
+
+def action_token_slice(vocab_size: int, n_action_bins: int = 256):
+    """Index range of the discretised action tokens inside the vocabulary.
+
+    The bins occupy the top of the vocab, and ``predict_action`` inverts the order
+    (``vocab_size - token``), so the block is contiguous and descending. Restricted
+    to this block when measuring what the head responds to, because the remaining
+    ~31.8k logits are text tokens whose movement says nothing about the action.
+    """
+    import numpy as np
+    n_centres = len(make_bin_centers(n_action_bins))
+    lo = vocab_size - 1 - (n_centres - 1)          # smallest token -> top bin
+    hi = vocab_size - 1 - 0                        # largest token -> bin 0
+    return np.arange(lo, hi + 1)
+
+
+def check_decode_agreement(model, input_ids, pixel_values, vocab_size: int,
+                           n_tokens: int = 7, tol: int = 0) -> dict:
+    """Compare a decode path against the uncached ground truth, token by token.
+
+    ``tol`` is the number of positions allowed to differ. Zero is the only
+    defensible setting for a deterministic greedy decode: any disagreement means
+    one of the two paths is reading something the other is not, and "mostly the
+    same" is not a property a decode can have.
+    """
+    ref = greedy_decode(model, input_ids, pixel_values, n_tokens=n_tokens)
+    try:
+        gen = model.generate(input_ids, max_new_tokens=n_tokens, do_sample=False)
+        got = gen[0, -n_tokens:]
+        agreed = int((gen[0, -n_tokens:] == ref).sum())
+    except Exception as e:                       # a crash is also a disagreement
+        got, agreed = None, 0
+        gen_err = f"{type(e).__name__}: {str(e)[:80]}"
+    else:
+        gen_err = None
+    return {
+        "reference_tokens": ref.tolist(),
+        "reference_bins": tokens_to_bins(ref.tolist(), vocab_size).tolist(),
+        "generate_tokens": None if got is None else got.tolist(),
+        "generate_bins": (None if got is None
+                          else tokens_to_bins(got.tolist(), vocab_size).tolist()),
+        "agreeing_positions": agreed,
+        "of": n_tokens,
+        "generate_error": gen_err,
+        "generate_is_usable": agreed == n_tokens - tol,
+    }
 
 
 def load_processor(snapshot: str):
