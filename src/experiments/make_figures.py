@@ -230,18 +230,21 @@ def fig_g(task, od):
     if not (os.path.exists(p1) and os.path.exists(p2)):
         return
     d1 = load_json(p1)
-    S, R = d1["summary"], load_json(p2)["pooled"]
-    preds = [k for k in S if k in R and k != "none"]
+    # rq1 keys predictors by bare role ("orbisim"), rq2 by arm name
+    # ("checkvla_orbisim"); join on the role so the join can never silently
+    # come out empty again.
+    S, R = d1["summary"], load_json(p2)["pooled_ood"]
+    preds = [k for k in S if f"checkvla_{k}" in R]
     if not preds:
         return
     fig, (ax, bx) = plt.subplots(1, 2, figsize=(10, 3.2))
     x = np.arange(len(preds))
     w = 0.28
     au = [S[k].get("auroc", np.nan) for k in preds]
-    rd = [100 * R[k].get("CVR_reduction_vs_none", np.nan) for k in preds]
+    rd = [100 * R[f"checkvla_{k}"].get("CVR_reduction_vs_none", np.nan) for k in preds]
     # normalised to the largest, so the three bars are readable on one axis:
     # AUROC is a 0-1 score while CVR reduction is a percentage
-    nint = [R[k].get("n_interventions", np.nan) for k in preds]
+    nint = [R[f"checkvla_{k}"].get("n_interventions", np.nan) for k in preds]
     mx = max([v for v in nint if v == v] or [1]) or 1
     ni = [100 * (v / mx if v == v else np.nan) for v in nint]
     for off, vals, lab in ((-w, au, "AUROC (RQ1)"),
@@ -272,11 +275,69 @@ def fig_g(task, od):
     savefig(fig, od, "figG_detection_vs_repair")
 
 
+def fig_h(task, od):
+    """Rate-matched CVR / safe-success curves (RQ2, the confound-removal figure).
+
+    The headline table compares each predictor at *its own* split-conformal tau,
+    so a gap there confounds "better risk model" with "looser threshold" --
+    vision's calibrated tau fires 3x as often as orbisim's (rate 0.065 vs 0.022).
+    Here each predictor's threshold is swept and the x-axis is the *measured*
+    intervention rate, so the comparison is at equal intervention cost.
+
+    Plotted points are the measured sweep points, not the interpolated
+    at_rate() rows: the vision rate-tau curve is much steeper (fitted exponent
+    -2.61 vs -2.16) and jumps 0.019 -> 0.134 between two of its own measured
+    points, so interpolating inside that gap would draw a curve the data does
+    not constrain. Where a predictor has no measured point, it has none drawn.
+
+    Read-off: orbisim reaches CVR 0.156 at rate 0.029, a 32% reduction at
+    unchanged SR. vision's measured points never beat the no-verifier baseline
+    (0.262) at any rate that leaves the task intact -- its next point is rate
+    0.134, where it has driven SR to 0.42. Its CVR=0.012 point at rate 0.193
+    is not a win: SR is 0.046, so it "prevents" violations by never acting.
+    """
+    p = os.path.join(od, "rq2_matched_tau.json")
+    p2 = os.path.join(od, "rq2.json")
+    if not (os.path.exists(p) and os.path.exists(p2)):
+        return
+    d = load_json(p)
+    base = load_json(p2)["pooled_ood"].get("none", {}).get("CVR", np.nan)
+    base_safe = load_json(p2)["pooled_ood"].get("none", {}).get("safe_success", np.nan)
+    arms = [a for a in d["arms"] if a in d.get("sweep", {})]
+
+    fig, axs = plt.subplots(1, 2, figsize=(9.6, 3.4))
+    for ax, key, ylab, ref in ((axs[0], "CVR", "violation rate (CVR)", base),
+                               (axs[1], "safe_success", "safe success", base_safe)):
+        if ref == ref:
+            ax.axhline(ref, color="k", ls=":", lw=1.0, label="no verifier")
+        for a in arms:
+            role = a.replace("checkvla_", "")
+            sw = [q for q in d["sweep"][a] if q.get("pooled")]
+            pts = sorted((q["pooled"]["intervention_rate"], q["pooled"][key])
+                         for q in sw if q["pooled"][key] == q["pooled"][key])
+            xs, ys = zip(*pts) if pts else ((), ())
+            ax.plot(xs, ys, "o-", ms=3.5, label=role)
+            cal = [q for q in sw if q.get("target_rate") is None]
+            if cal:
+                cp = cal[0]["pooled"]
+                ax.scatter([cp["intervention_rate"]], [cp[key]], marker="*", s=110,
+                           zorder=5, edgecolor="k", linewidth=0.6)
+        ax.set_xscale("log")
+        ax.set_xlabel("measured intervention rate")
+        ax.set_ylabel(ylab)
+        ax.set_ylim(-0.03, 1.03)
+    axs[0].set_title("CVR at matched intervention rate", fontsize=9)
+    axs[1].set_title("safe success at matched rate  ($*$ = own calibrated $\\tau$)",
+                     fontsize=9)
+    axs[1].legend(fontsize=7, loc="lower left")
+    savefig(fig, od, "figH_rate_matched")
+
+
 def main():
     p = base_parser(__doc__)
     args = p.parse_args()
     od = out_dir(args.task, args.backend)
-    for f in (fig_a, fig_b, fig_b2, fig_c, fig_d, fig_e, fig_f, fig_g):
+    for f in (fig_a, fig_b, fig_b2, fig_c, fig_d, fig_e, fig_f, fig_g, fig_h):
         try:
             f(args.task, od)
         except Exception as e:   # keep going: figures are independent
