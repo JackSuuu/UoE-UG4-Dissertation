@@ -215,6 +215,12 @@ Introduced 30 Sep. The problem with going straight to P2b is that it couples thr
 
 **Prerequisites:** none beyond what already runs. This is the cheapest credible external artifact in the plan.
 
+**Camera status (30 Sep, done).** The blocker for actors 3–4 was that `Env.render_rgb` raised `NotImplementedError` for the torch backend, so the VLA had no input and Genesis — the *optional* cross-check — could not be made to carry it. `sims/camera.py` is now a batched analytic ray-cast renderer on the torch GT: a table plane plus five yaw-oriented boxes (peg, two fingertips, gripper body, end-stop wall), Lambert + Blinn-Phong, per-env randomised appearance. It is a **pure renderer** — reads the state tensor, returns pixels, never writes `self.state` and never calls `sim.step` — so no result already computed with `--backend torch` is affected by its presence. The wall and the printed seat are in the scene on purpose: the thesis is about the contact-force constraint at the end-stop, so a camera that hid the wall could not support the claim.
+
+Whether the camera is *worth having* is measured, not asserted (`src/tests/test_camera_observability.py`): a ridge from pixels to each task variable, fitted on 2048 states and scored on 1024 unseen. Held-out R² **0.974** for `bx`, **0.979** for `by` and `ty`, and **0.974** for the gap `x_w − bx` — the clearance the constraint actually depends on. Yaw is 0.40, as it should be, since a square is symmetric under 90°. The same test asserts the complementary fact, which is the more useful one for the argument: **friction and mass are invisible** (R² −0.087, −0.070). They are not in the state tensor, so they cannot appear in the image, and a visual policy therefore cannot substitute for the privileged physics signal. That is a claim about the *design*, and it is now falsifiable.
+
+Cost, 64 envs at 224×224 on one A5000: **42 ms** at `ss=1`, 146 ms at `ss=2`, so `ss` defaults to 1 — supersampling is 3.5× for smoother edges, and 146 ms is 29 ms/step even amortised over a 5-step chunk, i.e. more than half the 50 ms budget spent on antialiasing. The frame is cached per chunk (the same reason the policy is called once per chunk), which `src/tests/test_rgb_cache.py` verifies is action-identical to rendering every step, at 5.0× fewer rendered rows.
+
 ### P4 — Real-data validation (Months 8–10)
 
 Minimal and offline — **no full VLA closed loop on hardware**:
@@ -267,7 +273,7 @@ If no real data with force labels can be obtained by M6, P4 shrinks to a **sim-t
 | RQ1/RQ2 metrics | `rq1_calibration.py`, `rq2_eval.py` | horizon & constraint-type sweeps, calibration curves/ECE, repair success |
 | System track | `systems/bptt.py`, `systems/scheduler.py` | Genesis-native checkpointing; latency sweeps |
 | Demo | `demo/genesis_franka_demo.py` (never run) | run; add target marker, OOD comparison video |
-| Real VLA policy | `adapters/openvla_policy.py` (skeleton, single-action OpenVLA) | M2: chunk-output VLA selection, camera + action mapping, fine-tuning on Genesis Task A demos |
+| Real VLA policy | `adapters/openvla_policy.py` (skeleton, single-action OpenVLA) | M2: chunk-output VLA selection, fine-tuning; **camera now done** (`sims/camera.py`, gap 0.974 held out, friction/mass provably invisible) — remaining: 2-D velocity action → EE-delta mapping, demos |
 | Public benchmark | — | P2b: LIBERO install, physics perturbation + force-limit wrapper, robosuite state adapter for the predictor, eval script |
 | Real data | — | P4 |
 
