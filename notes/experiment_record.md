@@ -7,6 +7,54 @@ Newest entry at the top.
 
 ## Sem 1 · Week 2 (w/c 5 Oct 2026) — Plan phase P1, Month 1
 
+### Update 1 Oct (overnight, run v6) — the confound is removed, and the physics-signal claim survives it
+
+Full re-evaluation after the repair-path fix, plus the new rate-matched threshold experiment. Every `checkvla_*` number in the v5 table was produced with the inert gradient branch enabled and is now superseded; `none` and `gt_shadow` are unchanged (0.685 / 0.801 safe) because they never call `repair`.
+
+**Headline, pooled OOD (14 cells, chunk_k=5):**
+
+| arm | SR | CVR | CVR red. | safe success | interventions |
+|---|---|---|---|---|---|
+| `none` | 0.823 | 0.272 | — | 0.685 | — |
+| `gt_shadow` (oracle) | 0.805 | 0.015 | −94.7% | **0.801** | 665 |
+| `checkvla_orbisim` | 0.805 | 0.204 | −25.0% | **0.705** | 1572 |
+| `checkvla_vision` | 0.754 | 0.268 | −1.6% | 0.623 | 4641 |
+| `checkvla_vision_noact` | 0.766 | 0.278 | +2.0% | 0.571 | 4288 |
+
+The fix moved the two arms in *opposite* directions, which is itself the result. `orbisim` was barely affected (safe 0.704 → 0.705) because bisection was usually winning the selection anyway. `vision` got substantially worse (0.695 → 0.623, SR 0.843 → 0.754): with the inert branch gone it now depends on bisection alone, which over-damps — mean magnitude ratio ×0.28 against orbisim's ×0.48. `vision_noact` got worse still (0.689 → 0.571). So the v5 near-tie between the two predictors was an artefact of the gradient branch flattering the worse one.
+
+**The confound, and the experiment that removes it.** Each predictor is split-conformally calibrated on its own score distribution, and the two distributions are not comparable — at their own calibrated τ, vision intervenes on 6.5% of steps against orbisim's 2.2%. The headline table therefore compares them at *different cost*, so "physics beats vision" was confounded with "vision fires three times as often". `rq2_matched_tau.py` sweeps τ per predictor and records the **measured** intervention rate, inverting a power law fitted to round 1 to land on the requested rates (a single quantile of the uncorrected pool undershoots by 4–20× because intervening damps the actions and lowers every later score).
+
+| measured rate | orbisim CVR / safe | vision CVR / safe |
+|---|---|---|
+| 0.010 | 0.254 / 0.712 | 0.261 / 0.713 |
+| 0.020 | **0.209** / 0.717 | 0.265 / 0.711 |
+| 0.040 | **0.177** / 0.709 | 0.265 / 0.681 |
+| 0.080 | 0.252 / 0.642 | 0.255 / 0.573 |
+| 0.160 | — | 0.129 / 0.193 |
+
+The gap **survives matching and widens with rate**. At its own calibrated τ (τ 0.597 → rate 0.0217) orbisim gets CVR 0.204 / safe 0.715; vision at its own (τ 0.457 → rate 0.0651) gets CVR 0.265 / safe 0.644 — worse than doing nothing, while spending 3× the interventions.
+
+Two further readings from the same curve, both more interesting than the ordering itself:
+
+- **vision has no useful operating point.** Its measured points never beat the 0.262 baseline at any rate that leaves the task intact; its next point up is rate 0.134, where SR has collapsed to 0.42. Suppression beating the task is a real failure mode of a verifier, and it is invisible to CVR alone.
+- **vision can drive CVR to 0.012 — by never acting** (rate 0.193, SR 0.046). CVR is gameable by doing nothing, which is why safe success is the headline metric. This is the cleanest possible motivation for the metric choice.
+
+Fig H (`figH_rate_matched`) plots the **measured** sweep points, not the `at_rate()` interpolations. vision's fitted rate–τ exponent is −2.61 against orbisim's −2.16 and it jumps 0.019 → 0.134 between two of its own measured points; drawing a curve through that gap would assert resolution the data does not have. The r=0.005 and r=0.160 orbisim rows are absent for the same reason (no measured point in range) and are left blank.
+
+**Two results that changed the plan:**
+
+1. **The 50 ms budget is met.** `rq3_sched` fast_only: **30.2 ms mean / 45.9 ms p95** on the stress cell (friction 0.2, mass 2.0), against 183/441 in v5. The gradient branch was doing 25 BPTT iterations per intervention and was the entire reason the budget was missed. The oracle `sync` mode remains 494 ms / 1103 p95 — still not deployable, as always. **The systems blocker is gone**, which removes one of the three arguments against going to a VLA.
+2. **The gradient audit says the GT gradient is useless exactly where it matters.** Overall valid fraction 0.306, but by regime: `free` 0.70–1.00, `pusher_contact` 0.29–0.85, **`wall_contact` 0.00–0.19**, `stuck` 0.00–0.02. The violating regime has the *worst* gradient validity. This is the mechanistic reason the gradient branch could never work here, and it is independent of the hard-prefix argument.
+
+**Unchanged and still true:** RQ1 still ranks detection the other way (vision AUROC 0.991 / timely recall 1.00 vs orbisim 0.863 / 0.563). Detection quality does not predict the safety outcome, now demonstrated under rate matching rather than by confound. Shift ladder: in-dist 0.993 / 0.991 / 0.899, near 0.906 / 0.938 / 0.812, far 0.665 / 0.699 / 0.578 for none / orbisim / vision — the learned gain lives in the friction 0.2–0.6 band, and vision is now clearly *worse than no verifier* in every band.
+
+**A defect found, not fixed:** `vision_noact`'s magnitude ratio collapses to the 0.05 floor. For an action-insensitive predictor the score is constant in the scale, so the bisection's accept test `score ≤ min(margin, 0.75·score₀)` can never be satisfied and the search falls through to the floor. It damps the task to a near stop without preventing anything (CVR 0.278 vs baseline 0.272, SR −0.057). Harmless to the conclusions — it is the ablation's own control and it fails as expected — but it is a real bug in `scale_repair` and should be guarded before submission.
+
+**Decision taken from these results: go to a VLA, not more mechanism tuning.** Reasoning in `Experiment_plan_1year.md` §9. Short version: the claim we wanted is now defensible and further cells or seeds will not change the story; the remaining risk to the thesis is that nothing in it is a VLA. Two cheap defect fixes go in first.
+
+Two figure bugs fixed in the same pass: `fig_g` had been silently producing nothing since it was written (rq1 keys predictors by bare role `orbisim`, rq2 by arm name `checkvla_orbisim`, so the join was empty and it returned before plotting), and `make_figures.py` did not accept `--chunk_k`.
+
 ### Update 30 Sep — CheckVLA's gradient branch and hard prefix are both *inert*, and that explains a week of contradictory results
 
 I had been treating the RQ3 gradient table (every stabiliser worse than no repair: CVR 0.88 none / 1.00 clip / 1.00 relax) and the repair audit (orbisim: 49% of interventions are no-ops) as two separate oddities. They are the same bug, and finding it came from implementing CheckVLA's latency-aware hard prefix rather than from any experiment.
