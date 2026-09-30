@@ -42,9 +42,19 @@ def setup(args):
 
 
 def env_for_cell(args, n, dev, cell):
-    """Build (env, params) for one OOD cell (dict of multipliers)."""
+    """Build (env, params) for one OOD cell (dict of multipliers).
+
+    The camera is built for any policy that declares ``needs_rgb``. It is a pure
+    renderer, so switching it on cannot move a physics result -- but it does cost
+    42 ms per render for 64 envs, so it stays off for every arm that cannot use
+    it rather than being paid for and discarded.
+    """
+    pol = getattr(args, "policy", "bc")
+    wants = pol != "bc" and getattr(args, "vla_model", None) is not None
     env = make_env(args.task, args.backend, n, dev, cell,
-                   camera=getattr(args, "policy", "bc") == "openvla")
+                   camera=wants or bool(getattr(args, "camera", 0)),
+                   cam_res=int(getattr(args, "cam_res", 224)),
+                   cam_ss=int(getattr(args, "cam_ss", 1)))
     params = env.sim.make_params(n, cell) if args.backend == "torch" else None
     return env, params
 

@@ -52,16 +52,47 @@ class Controller:
         self.plan_left = torch.zeros(B, dtype=torch.long, device=dev)
         self.chunk = torch.zeros(B, H, A, device=dev)   # last *proposed* chunk
         self.score = torch.zeros(B, device=dev)
+        self.rgb = torch.zeros(B, 3, 1, 1, device=dev)  # last *rendered* frame
         self.n_policy_calls = 0
         self.n_policy_rows = 0
+        self.n_render_calls = 0
+        self.n_render_rows = 0
 
-    def _ctx(self, env, obs):
+    def _ctx(self, env, obs, rows=None):
+        """Build the component context. ``rows`` restricts the camera to the rows
+        that will call the policy this step; the rest keep the cached frame.
+
+        Rendering is cached per chunk for the same reason the policy call is: a
+        7B VLA's camera frame is used once per ``chunk_k`` steps, so rendering it
+        every step is (chunk_k - 1)/chunk_k waste -- and the renderer is not
+        cheap, 42 ms for 64 envs at 224x224 ss=1, which is most of the per-step
+        budget on its own. The cached frame is a faithful input to the policy
+        because the policy only ever sees it on the step it was rendered: the
+        mid-chunk rows are executing from ``self.plan`` and never read the frame.
+        """
         ctx = {"obs": obs, "obs_prev": self.obs_prev, "a_prev": self.a_prev,
                "state": env.get_state(), "instruction": self.instruction}
         if self.needs_img:
             ctx["img"], ctx["img_prev"] = env.render(), self.img_prev
         if self.needs_rgb:
-            ctx["rgb"] = env.render_rgb()          # real VLA camera frames
+            if rows is not None and rows.numel() == 0:
+                # every row is mid-chunk: no policy call, so no new frame. Calling
+                # the renderer with an empty batch still costs a dispatch and a
+                # launch, and would make n_render_calls disagree with
+                # n_policy_calls, which is the number that explains the latency.
+                ctx["rgb"] = self.rgb
+            else:
+                f = env.render_rgb(rows=rows)
+                self.n_render_calls += 1
+                self.n_render_rows += f.shape[0]
+                if self.rgb.shape[1:] != f.shape[1:]:
+                    # first render this episode: the placeholder buffer is (B,3,1,1)
+                    self.rgb = torch.zeros_like(f)
+                if rows is None:
+                    self.rgb = f
+                else:
+                    self.rgb[rows] = f
+                ctx["rgb"] = self.rgb
         return ctx
 
     def _set_plan(self, mask, chunks, steps=None):
@@ -73,7 +104,6 @@ class Controller:
     def act(self, env, obs):
         B, dev = obs.shape[0], obs.device
         ar = torch.arange(B, device=dev)
-        ctx = self._ctx(env, obs)
         # Call the policy only for rows whose chunk is exhausted. Rows mid-chunk
         # execute from ``self.plan`` and their freshly proposed chunk would be
         # discarded, so for a 7B VLA that is (chunk_k - 1)/chunk_k of the
@@ -81,12 +111,15 @@ class Controller:
         # (both the trigger and the async poll are masked by ``using_plan``), so
         # this is a pure latency change for the learned arms -- but it moves the
         # reported step latency, so it is counted here and asserted in RQ3.
+        # ``rows`` is computed before ``_ctx`` so the camera also renders only
+        # those rows; the rest reuse the frame cached at their last replan.
         free = self.plan_left <= 0
+        rows = free.nonzero().squeeze(1)
+        ctx = self._ctx(env, obs, rows=rows)
         info = {"trig": torch.zeros(B, dtype=torch.bool, device=dev),
                 "score": torch.zeros(B, device=dev),
                 "applied": None}
         using_plan = self.plan_left > 0
-        rows = free.nonzero().squeeze(1)
         if rows.numel() == 0:
             chunk = self.chunk
         else:
@@ -251,6 +284,14 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
     v = getattr(controller, "verifier", None)
     n_ab = getattr(v, "n_abstain", 0) if v is not None else 0
     out["n_abstain"] = int(n_ab - n_ab0)
+    # Same argument for the policy and the camera: report the calls and the rows
+    # they touched, not just the resulting latency, because on a VLA actor the
+    # count is the number that explains the number. n_steps*B is the cost of the
+    # uncached version, so these are directly comparable to it.
+    out["n_policy_calls"] = int(getattr(controller, "n_policy_calls", 0))
+    out["n_policy_rows"] = int(getattr(controller, "n_policy_rows", 0))
+    out["n_render_calls"] = int(getattr(controller, "n_render_calls", 0))
+    out["n_render_rows"] = int(getattr(controller, "n_render_rows", 0))
     if record:
         out["trace"] = {k: torch.stack(v, 1).numpy() for k, v in rec.items()}
     if audit_repair and audit["gt_applied"]:

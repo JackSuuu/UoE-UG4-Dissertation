@@ -2,3 +2,6 @@
 **/__pycache__/
 *.pyc
 src/results/
+# contact sheets the camera test writes; regenerate with tests/test_camera.py
+camera_frames*.png
+src/camera_frames*.png

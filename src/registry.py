@@ -87,6 +87,17 @@ def add_component_args(p):
     g = p.add_argument_group("components (see registry.py)")
     g.add_argument("--policy", choices=["bc", "openvla"], default="bc")
     g.add_argument("--vla_model", default="openvla/openvla-7b")
+    g.add_argument("--camera", type=int, default=0,
+                   help="build the torch GT's RGB camera even for a non-VLA arm "
+                        "(for a visibility/observability audit). Automatically on "
+                        "for --policy openvla, which is its only consumer.")
+    g.add_argument("--cam_res", type=int, default=224,
+                   help="camera resolution; 224 is what a VLA expects, 32 what "
+                        "the VisionWM baseline consumes")
+    g.add_argument("--cam_ss", type=int, default=1,
+                   help="camera supersampling. 1 (default) costs 42 ms for 64 "
+                        "envs at 224x224; 2 costs 146 ms for smoother edges and "
+                        "is a 3.5x cost, so it is not on by default")
     g.add_argument("--orbisim_impl", choices=["standin", "official"], default="standin")
     g.add_argument("--vision_impl", choices=["standin", "official"], default="standin")
     g.add_argument("--verifier", choices=["ref", "official"], default="ref")

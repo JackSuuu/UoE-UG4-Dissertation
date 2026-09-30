@@ -105,11 +105,24 @@ class Env:
     def render(self):
         return self.sim.render(self.get_state())
 
-    def render_rgb(self):
-        """Photo-realistic RGB frames (B,3,h,w) for a real VLA policy."""
-        raise NotImplementedError(
-            f"{type(self).__name__} has no RGB camera; use the Genesis backend "
-            "(GenesisPushEnv(camera=True)) or add one.")
+    def render_rgb(self, res=None, ss=None, return_mat=False, rows=None):
+        """Perspective RGB frames (B,3,h,w) float in [0,1] for a real VLA policy.
+
+        Backed by :mod:`sims.camera`, which is a pure renderer: read-only on the
+        state, so it cannot perturb the dynamics or the reported risk.
+        ``return_mat`` additionally returns the (B,h,w) material map, for tests.
+        ``rows`` renders only a subset of the batch, so the Controller can spend
+        the render on the rows that are about to call the policy and reuse the
+        cached frame elsewhere.
+        """
+        if self.cam is None:
+            raise NotImplementedError(
+                f"{type(self).__name__} was built without a camera; pass "
+                "camera=True (registry --policy openvla does this).")
+        st = self.get_state()
+        if rows is not None:
+            st = st[rows]
+        return self.cam.render(st, res=res, ss=ss, return_mat=return_mat, rows=rows)
 
     @torch.no_grad()
     def shadow_rollout(self, chunk: torch.Tensor, mask=None) -> torch.Tensor:
@@ -144,15 +157,29 @@ class Env:
 
 
 class TorchEnv(Env):
-    def __init__(self, sim: FunctionalSim, n: int):
+    def __init__(self, sim: FunctionalSim, n: int, camera: bool = False,
+                 cam_res: int = 224, cam_ss: int = 1, cam_seed: int = 0):
         self.sim, self.n = sim, n
         self.state = None
         self.params = None
+        # The camera is a pure renderer (sims/camera.py): it reads the state and
+        # returns pixels, so switching it on cannot move any physics result. It
+        # is off by default because a VLA is the only consumer and rendering
+        # every step would be pure waste for every other arm.
+        self.cam = None
+        if camera:
+            from sims.camera import PushCamera
+            self.cam = PushCamera(sim, sim.device, res=cam_res, ss=cam_ss,
+                                  seed=cam_seed, n=n)
 
     def reset(self, params, seed=0):
         g = torch.Generator().manual_seed(seed)
         self.params = params
         self.state = self.sim.init_state(self.n, g)
+        if self.cam is not None:
+            # same generator, so one seed fixes the appearance along with the
+            # initial states and a rerun reproduces the pixels exactly
+            self.cam.reset_appearance(self.n, g)
         return self.sim.obs(self.state)
 
     @torch.no_grad()
@@ -178,15 +205,20 @@ def make_sim(task: str, device):
 
 
 def make_env(task: str, backend: str, n: int, device, mults: dict | None = None,
-             camera: bool = False):
+             camera: bool = False, cam_res: int = 224, cam_ss: int = 1,
+             cam_seed: int = 0):
     """Build a GT environment. ``mults`` = physical-parameter multipliers.
 
     Genesis scenes bake physical parameters in at build time, so the Genesis
     env is built per OOD cell; the torch env takes params at reset().
+    ``camera*`` configure the pure RGB renderer (see sims/camera.py); the torch
+    camera follows the episode seed, so ``cam_seed`` only matters before the
+    first ``reset``.
     """
     sim = make_sim(task, device)
     if backend == "torch":
-        return TorchEnv(sim, n)
+        return TorchEnv(sim, n, camera=camera, cam_res=cam_res, cam_ss=cam_ss,
+                        cam_seed=cam_seed)
     if backend == "genesis":
         if task != "push":
             raise NotImplementedError(
