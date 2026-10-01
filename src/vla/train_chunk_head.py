@@ -59,12 +59,14 @@ def main():
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--val_frac", type=float, default=0.1)
     ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--done_keep", type=float, default=0.1,
-                    help="fraction of 'already finished' frames (all-zero target "
-                         "chunk) to keep. ~45%% of demo frames are the expert "
-                         "standing still after seating the block; kept in full they "
-                         "pull the head towards small velocities. Some are kept so "
-                         "the policy still learns to stop.")
+    ap.add_argument("--done_keep", type=float, default=1.0,
+                    help="fraction of 'already seated' frames (all-zero target chunk) "
+                         "to keep. Keep them all. Measured: keeping 10%% left the head "
+                         "creeping forward at the seat on 36%% of frames (error "
+                         "0.018 m/s vs 0.0035 with all kept) while push-phase error "
+                         "was unchanged, so the feared bias towards slow pushing did "
+                         "not exist and the subsampling removed exactly the frames "
+                         "that teach the head to stop.")
     args = ap.parse_args()
 
     torch.manual_seed(args.seed)
