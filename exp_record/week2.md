@@ -4,6 +4,32 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 1 Oct (night) — OpenVLA headline, 10-step chunk: the mechanism works on a VLA; the learned predictor helps where it was trained and hurts outside
+
+Full grid, 64 envs × 20 cells, OpenVLA `vis` actor with a 10-step head (`rq2_openvla_vis_h10.json`):
+
+| arm | SR | CVR | safe | Δ safe |
+|---|---|---|---|---|
+| `none` | 0.852 | 0.359 | 0.596 | — |
+| `gt_shadow` (oracle) | 0.746 | 0.073 | **0.727** | **+0.131** |
+| `checkvla_orbisim` | 0.749 | 0.294 | 0.549 | −0.047 |
+| `checkvla_vision` | 0.785 | 0.387 | 0.519 | −0.077 |
+
+**The oracle now helps the VLA as much as it helped `bc`** (+0.131 vs +0.116). With the 5-step head it gave +0.014. So the chunk-length diagnosis is confirmed in closed loop: the verifier mechanism works on a VLA, provided its lookahead exceeds the commitment horizon.
+
+**Split by band:**
+
+| band | `none` | oracle | `checkvla_orbisim` |
+|---|---|---|---|
+| friction 0.2× (target band) | 0.020 | 0.500 | **0.172** |
+| friction ≥ 0.6× | 0.870 | 0.852 | 0.769 |
+
+In the target band the learned verifier helps the VLA 8.6× and captures 31% of the oracle's headroom. The net loss is entirely in the normal-friction band, concentrated in the **heavy cells**, where it *raises* CVR while the oracle removes it: friction 1.4×/mass 2.0× 0.27 → 0.45 (oracle 0.03); 1.8×/2.0× 0.25 → 0.39 (oracle 0.03).
+
+**Cause: those cells are outside the predictor's training range.** `PREDICTOR_TRAIN_RANGES['push'] = friction 0.5–1.5, mass 0.6–1.6`. Mass 2.0× and friction 1.8× are outside it. With `bc` this never mattered, because `bc` never approached the limit there. OpenVLA does, which exposes the blind spot. Mass was never meant to be the OOD axis: it is not a breaking axis for the expert (RQ2b), so its range is a coverage gap, not a deliberate test.
+
+A smaller, separate cost: repair lowers SR in the normal band even for the oracle (0.935 → 0.856). Slowed chunks leave the VLA in states it handles less well.
+
 ### Update 1 Oct (late) — first OpenVLA headline was confounded: the verifier only looks as far ahead as the actor's chunk
 
 **Headline run, OpenVLA `vis` actor with a 5-step head** (64 envs × 20 cells, pooled OOD, `rq2_openvla_vis.json`):
