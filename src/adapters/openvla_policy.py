@@ -92,6 +92,10 @@ class OpenVLAPolicy:
             self.sd = ck["feat_sd"].to(self.dev)
             if ck["H"] < H:
                 raise ActionMapError(f"head emits {ck['H']} steps, chunk needs {H}")
+            # The controller sizes its chunk buffer from policy.H and the verifier
+            # scores that whole chunk, so H is the head's length (its lookahead).
+            # The constructor's H is only the minimum: chunk_k steps get executed.
+            self.H = ck["H"]
 
     # -- planar_head -------------------------------------------------------
     @torch.no_grad()
