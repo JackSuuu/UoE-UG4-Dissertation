@@ -90,6 +90,10 @@ def add_component_args(p):
     g = p.add_argument_group("components (see registry.py)")
     g.add_argument("--policy", choices=["bc", "openvla"], default="bc")
     g.add_argument("--vla_model", default="openvla/openvla-7b")
+    g.add_argument("--tag", default="",
+                   help="suffix for result files (rq2_<tag>.json). Defaults to the "
+                        "policy name for any non-bc policy, so a VLA run cannot "
+                        "overwrite the bc results")
     g.add_argument("--vla_head_path", default="~/scratch/openvla_chunk_head.pt",
                    help="Path to trained chunk head (.pt) for action_mode=planar_head")
     g.add_argument("--action_mode", choices=["planar_head", "native_head"], default="planar_head",

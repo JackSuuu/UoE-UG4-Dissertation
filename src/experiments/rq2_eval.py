@@ -86,10 +86,17 @@ def main():
     for a in arms:
         pooled[a]["CVR_reduction_vs_none"] = float(1 - pooled[a]["CVR"] / base) if base > 0 else float("nan")
     worst = int(np.argmax([r["none"]["CVR"] if "none" in r else 0 for r in results]))
+    # The results dir also holds the trained predictors and taus, so it cannot
+    # move; only the result files are renamed. A non-bc policy always gets a
+    # tag, so a VLA run can never overwrite the bc headline table.
+    tag = getattr(args, "tag", "") or ("" if args.policy == "bc" else args.policy)
+    sfx = f"_{tag}" if tag else ""
     save_json({"arms": arms, "per_cell": results, "pooled_ood": pooled,
-               "fig_f_cell": results[worst]["cell"]}, os.path.join(od, "rq2.json"))
+               "policy": args.policy, "fig_f_cell": results[worst]["cell"]},
+              os.path.join(od, f"rq2{sfx}.json"))
+    print(f"[rq2] wrote {os.path.join(od, f'rq2{sfx}.json')}")
     if str(worst) in traces:
-        np.savez(os.path.join(od, "rq2_trace.npz"),
+        np.savez(os.path.join(od, f"rq2_trace{sfx}.npz"),
                  **{f"{a}__{k}": v for a, d in traces[str(worst)].items() for k, v in d.items()},
                  tau_orbisim=taus.get("orbisim", 1.0), tau_vision=taus.get("vision", 1.0))
     print("[rq2] pooled OOD:", {a: {m: round(v[m], 3) for m in
