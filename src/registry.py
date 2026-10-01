@@ -45,7 +45,10 @@ def build_policy(args, od, dev, sim):
         return BCPolicyAdapter(load_model(BCPolicy, os.path.join(od, "bc_policy.pt"), dev))
     if impl == "openvla":
         from adapters.openvla_policy import OpenVLAPolicy
-        return OpenVLAPolicy(sim, dev, model_id=getattr(args, "vla_model", "openvla/openvla-7b"))
+        return OpenVLAPolicy(
+            sim, dev, H=getattr(args, "chunk_k", 5),
+            head_path=getattr(args, "vla_head_path", "~/scratch/openvla_chunk_head.pt"),
+            action_mode=getattr(args, "action_mode", "planar_head"))
     raise ValueError(f"unknown policy impl {impl}")
 
 
@@ -87,6 +90,10 @@ def add_component_args(p):
     g = p.add_argument_group("components (see registry.py)")
     g.add_argument("--policy", choices=["bc", "openvla"], default="bc")
     g.add_argument("--vla_model", default="openvla/openvla-7b")
+    g.add_argument("--vla_head_path", default="~/scratch/openvla_chunk_head.pt",
+                   help="Path to trained chunk head (.pt) for action_mode=planar_head")
+    g.add_argument("--action_mode", choices=["planar_head", "native_head"], default="planar_head",
+                   help="planar_head: trained Hx2 chunk head (default); native_head: original 7-D discretised head with explicit mapping")
     g.add_argument("--camera", type=int, default=0,
                    help="build the torch GT's RGB camera even for a non-VLA arm "
                         "(for a visibility/observability audit). Automatically on "

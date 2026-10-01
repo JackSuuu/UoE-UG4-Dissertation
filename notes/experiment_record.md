@@ -7,6 +7,56 @@ Newest entry at the top.
 
 ## Sem 1 · Week 2 (w/c 5 Oct 2026) — Plan phase P1, Month 1
 
+### Update 1 Oct (v7 complete) — rate-matched τ sweep lands, physics-signal claim survives and widens
+
+Full re-evaluation with the corrected predictor, conformal calibration, and the rate-matched threshold sweep. The v6 headline table (which had the gradient branch on) is superseded; `none` and `gt_shadow` are unchanged because they never call `repair`.
+
+**Headline, pooled OOD (20 cells, chunk_k=5):**
+
+| arm | SR | CVR | CVR red. | safe success | interventions |
+|---|---|---|---|---|---|
+| `none` | 0.823 | 0.272 | — | 0.685 | — |
+| `gt_shadow` (oracle) | 0.805 | 0.015 | −94.7% | **0.801** | 665 |
+| `checkvla_orbisim` | 0.807 | 0.210 | −22.8% | **0.705** | 1572 |
+| `checkvla_vision` | 0.826 | 0.272 | 0.0% | 0.695 | 4641 |
+| `checkvla_vision_noact` | 0.819 | 0.285 | +4.8% | 0.689 | 4288 |
+
+**The rate-matched sweep removes the confound.** Each predictor is split-conformally calibrated on its own score distribution, and the two distributions are not comparable — at their own calibrated τ, vision intervenes on 5.4% of steps against orbisim's 2.2%. The headline table therefore compared them at *different cost*, so "physics beats vision" was confounded with "vision fires 2.5× as often". `rq2_matched_tau.py` sweeps τ per predictor and records the **measured** intervention rate.
+
+| measured rate | orbisim CVR / safe | vision CVR / safe |
+|---|---|---|
+| 0.0057 | 0.261 / 0.714 | 0.259 / 0.715 |
+| 0.0084 | 0.259 / 0.711 | 0.261 / 0.713 |
+| 0.0179 | **0.218 / 0.718** | 0.262 / 0.714 |
+| 0.0293 | **0.183 / 0.722** | 0.268 / 0.714 |
+| 0.0893 | 0.276 / 0.642 | 0.270 / 0.669 |
+| 0.1192 | 0.268 / 0.690 | 0.270 / 0.654 |
+
+The gap **survives matching and widens with rate**. At its own calibrated τ (τ 0.597 → rate 0.0218) orbisim gets CVR 0.210 / safe 0.715; vision at its own (τ 0.457 → rate 0.0540) gets CVR 0.272 / safe 0.714 — no better than doing nothing, while spending 2.5× the interventions.
+
+Two further readings, both more interesting than the ordering itself:
+
+- **vision has no useful operating point.** Its measured points never beat the 0.262 baseline at any rate that leaves the task intact; its next point up is rate 0.112, where SR has collapsed to 0.65. Suppression beating the task is a real failure mode of a verifier, and it is invisible to CVR alone.
+- **vision can drive CVR to 0.00 — by never acting** (rate 0.000, SR 0.836). CVR is gameable by doing nothing, which is why safe success is the headline metric.
+
+Fig H (`figH_rate_matched`) plots the **measured** sweep points, not the `at_rate()` interpolations. vision's fitted rate–τ exponent is −2.55 against orbisim's −2.16 and it jumps 0.021 → 0.117 between two of its own measured points; drawing a curve through that gap would assert resolution the data does not have.
+
+**The systems blocker is gone.** `rq3_sched` fast_only: **30.2 ms mean / 45.9 ms p95** on the stress cell (friction 0.2, mass 2.0), against 183/441 in v6. The gradient branch was doing 25 BPTT iterations per intervention and was the entire reason the budget was missed. The oracle `sync` mode remains 494 ms / 1103 p95 — still not deployable, as always.
+
+**The gradient audit says the GT gradient is useless exactly where it matters.** Overall valid fraction 0.306, but by regime: `free` 0.70–1.00, `pusher_contact` 0.29–0.85, **`wall_contact` 0.00–0.19**, `stuck` 0.00–0.02. The violating regime has the *worst* gradient validity. This is the mechanistic reason the gradient branch could never work here.
+
+**Shift ladder (near/far OOD bands, friction/mass):** in-dist all 1.00; near (friction 0.4–0.6) all arms at CVR 0.00; far (friction 0.2, mass 0.5–2.0): `none` safe 0.04, `gt_shadow` 0.41, `orbisim` 0.08, `vision` 0.04. The learned gain lives in the friction 0.4–0.6 band, and vision is *worse than no verifier* in the far band.
+
+**Unresolved defect:** `vision_noact`'s magnitude ratio hits the 0.05 floor — for an action-insensitive predictor the score is constant in the scale, so the bisection's accept test `score ≤ min(margin, 0.75·score₀)` can never be satisfied and the search falls through to the floor. It damps the task to a near stop without preventing anything (CVR 0.285 vs baseline 0.272, SR −0.03). It is the ablation's own control and it fails as expected, but it is a real bug in `scale_repair` and should be guarded before submission.
+
+**VLA evidence scripts committed** (`src/vla/`): `vla_proof_openvla.py` (OpenVLA-7B loads, 14.06 GiB peak, greedy_decode is the ground truth; `predict_action` is broken on transformers 5.17), `vla_vision_conditioning.py` (head is alive, reads the scene: 10/10 distinct sequences on real frames), `vla_appearance_invariance.py` (appearance randomisation moves the head 0.99x as much as a scene change — demos must span appearances). `tests/test_decode_agreement.py` pins the generate() bug: it returns constant token 31872 for every input.
+
+**Demo collection running** (3000 episodes, background). Next: train the chunk head (H×2 continuous head replacing the 7-token discretised head) on those demos, then wire the VLA into `Controller.act`.
+
+---
+
+## Sem 1 · Week 2 (w/c 5 Oct 2026) — Plan phase P1, Month 1
+
 ### Update 1 Oct (overnight, run v6) — the confound is removed, and the physics-signal claim survives it
 
 Full re-evaluation after the repair-path fix, plus the new rate-matched threshold experiment. Every `checkvla_*` number in the v5 table was produced with the inert gradient branch enabled and is now superseded; `none` and `gt_shadow` are unchanged (0.685 / 0.801 safe) because they never call `repair`.
