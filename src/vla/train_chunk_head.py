@@ -59,6 +59,10 @@ def main():
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--val_frac", type=float, default=0.1)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--extra", nargs="*", default=[],
+                    help="DAgger files (vla/dagger.py). Added to the training set "
+                         "only; validation stays on the held-out expert episodes so "
+                         "R^2 is comparable across rounds.")
     ap.add_argument("--done_keep", type=float, default=1.0,
                     help="fraction of 'already seated' frames (all-zero target chunk) "
                          "to keep. Keep them all. Measured: keeping 10%% left the head "
@@ -88,6 +92,12 @@ def main():
     print(f"feature={args.feature}  train {tr.sum()} frames / {len(eps) - len(val_eps)} eps"
           f"  val {va.sum()} frames / {len(val_eps)} eps", flush=True)
 
+    for path in args.extra:
+        with h5py.File(os.path.expanduser(path), "r") as g:
+            Xe, Ye = g[args.feature][:].astype(np.float32), g["target"][:]
+        X, Y = np.concatenate([X, Xe]), np.concatenate([Y, Ye])
+        tr, va = np.concatenate([tr, np.ones(len(Ye), bool)]), np.concatenate([va, np.zeros(len(Ye), bool)])
+        print(f"  + {len(Ye)} DAgger frames from {path} (train only)", flush=True)
     mu, sd = X[tr].mean(0), X[tr].std(0) + 1e-6
     Xn = (X - mu) / sd
 

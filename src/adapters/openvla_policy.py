@@ -103,14 +103,16 @@ class OpenVLAPolicy:
         frames = frames.permute(0, 2, 3, 1).cpu().numpy()
         pil = [Image.fromarray(f) for f in frames]
         inp = self.proc([self.prompt] * len(pil), pil).to(self.dev)
+        pv = inp["pixel_values"].to(torch.bfloat16)
+        if self.feature == "vis":
+            # projector(vision_backbone(pixels)) is exactly what the full forward
+            # returns as projector_features (modeling_prismatic.py:366-369), so
+            # the 7B LLM is skipped rather than run and discarded.
+            return self.model.projector(self.model.vision_backbone(pv)).float().mean(1)
         ids = tf5_compat.prepare_prompt_ids(inp["input_ids"][:1]).repeat(len(pil), 1)
         o = self.model(input_ids=ids, attention_mask=torch.ones_like(ids),
-                       pixel_values=inp["pixel_values"].to(torch.bfloat16),
-                       use_cache=False, output_hidden_states=True,
-                       output_projector_features=True)
-        if self.feature == "llm":
-            return o.hidden_states[-1][:, -1].float()
-        return o.projector_features.float().mean(1)
+                       pixel_values=pv, use_cache=False, output_hidden_states=True)
+        return o.hidden_states[-1][:, -1].float()
 
     # -- native_head -------------------------------------------------------
     def _map_action(self, a7) -> torch.Tensor:

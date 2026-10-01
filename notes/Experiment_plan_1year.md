@@ -160,6 +160,15 @@ Measurements for every cell:
 
 Order: M4 T1 all axes → M5 T2 → M6–7 T3. After **G2 (end Mar)**, T2/T3 cover only the informative axis levels, pruned by what T1 showed.
 
+**Long-horizon behaviour of the repair (added 1 Oct).** Not yet measured; the current task is single-stage, 80 steps, and every result is SR/CVR at that fixed length. Two things to keep apart:
+- *Task length is not prediction length.* The verifier re-anchors on the true state every chunk and predicts only `chunk_k` steps ahead, so prediction error does not compound over the task. Fidelity decay (H1, *h\**) is a property of the **chunk length**, which is what the horizon axis above sweeps.
+- *What does compound is the repair.* Each intervention only shrinks the chunk; over many chunks the delays add up. At a fixed time budget that turns into lost SR (over-damping, already seen at mis-calibrated τ: vision at rate 0.19 drives CVR to 0.01 at SR 0.05).
+
+Planned measurements:
+1. **Multi-stage task** (T1-long: push through 2–3 seats in sequence, T = 200–400) with **time-to-success** and cumulative lost progress Σ(1 − scale)·|a| reported alongside SR/CVR, with and without the verifier.
+2. **Stall detector:** after k consecutive shrinking repairs, escalate (best-of-N candidate or re-query the policy) instead of shrinking again.
+3. **Risk + progress selection** over best-of-N candidates (see `exp_record/week2.md`, SEAL note), so a direction change is available and standing still is never the optimum.
+
 ### P3 — System optimisation (Months 6–9, parallel with P2)
 
 The three components already exist in `src/systems/` as prototypes. P3 turns them into a studied system:

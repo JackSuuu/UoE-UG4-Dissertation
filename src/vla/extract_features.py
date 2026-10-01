@@ -60,6 +60,11 @@ def main():
     ap.add_argument("--stride", type=int, default=2)
     ap.add_argument("--max_episodes", type=int, default=None)
     ap.add_argument("--batch", type=int, default=8)
+    ap.add_argument("--vis_only", action="store_true",
+                    help="compute only vis, via projector(vision_backbone(px)), the "
+                         "exact path the policy uses at run time. The full forward's "
+                         "projector_features differ slightly (bf16 kernel paths), so a "
+                         "head meant for the fast path must be trained on it.")
     args = ap.parse_args()
 
     dev = torch.device("cuda:0")
@@ -92,6 +97,16 @@ def main():
         imgs = [Image.fromarray(src["obs"][r]) for r in rows]
         inp = proc([PROMPT] * len(rows), imgs).to(dev)
         ids = tf5_compat.prepare_prompt_ids(inp["input_ids"][:1]).repeat(len(rows), 1)
+        if args.vis_only:
+            with torch.no_grad():
+                pv = inp["pixel_values"].to(torch.bfloat16)
+                vis = model.projector(model.vision_backbone(pv)).float().mean(1).cpu().numpy()
+            with h5py.File(out, "a") as f:
+                f["vis"][s:s + len(rows)] = vis
+            done = s + len(rows)
+            if (s // args.batch) % 200 == 0:
+                print(f"  {done}/{len(idx)}  {time.time() - t0:.0f}s", flush=True)
+            continue
         with torch.no_grad():
             o = model(input_ids=ids, attention_mask=torch.ones_like(ids),
                       pixel_values=inp["pixel_values"].to(torch.bfloat16),
