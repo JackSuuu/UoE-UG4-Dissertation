@@ -4,6 +4,27 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 1 Oct (night) — DAgger fixes most of the llm head's non-physical failures; headline OpenVLA run launched
+
+**DAgger round 1** (`src/vla/dagger.py`). The llm-readout policy drove 1024 episodes at nominal physics. The scripted expert labelled every state it reached with its own 5-step chunk, from a cloned sim: 16,384 labelled policy states. Retrained with these added to training only. Held-out R² on expert episodes is unchanged (0.947 → 0.949), so the original skill is kept. Ridge falls to 0.632 (a linear map cannot fit expert and off-track states together; the MLP can).
+
+Closed loop, actor only, `--quick` (8 envs/cell), split by physics:
+
+| actor | friction ≥ 0.6×: SR / CVR / safe | friction 0.2×: SR / CVR / safe |
+|---|---|---|
+| `bc` | 0.95 / 0.01 / 0.95 | 0.62 / 0.97 / 0.03 |
+| OpenVLA `vis` | 0.91 / 0.08 / 0.88 | 0.62 / 1.00 / 0.00 |
+| OpenVLA `llm` | 0.58 / 0.52 / 0.47 | 0.44 / 0.94 / 0.06 |
+| OpenVLA `llm` + DAgger r1 | 0.80 / 0.27 / 0.66 | 0.50 / 1.00 / 0.00 |
+
+DAgger moves the llm head's failures from "cannot push" towards "fails only when physics changes", which is the profile the verifier needs. Not yet good enough (0.66 vs 0.88 for `vis`), so round 2 is running. At friction 0.2× every actor is near zero safe success: that band is where the verifier has to earn its place.
+
+**Feature parity: code is exact; the residual is cross-process numerics.** Three explanations were tested and ruled out in turn: full forward vs vision-only path (the two extraction files agree, 57/64 rows bit-identical); batch size (≤ 0.0006 m/s action gap); image preprocessing (pixels identical). The decisive test: in one process, the policy's `features()` and the extraction code give identical features (cosine 1.000000, action gap 0) for both readouts. Both differ from a file written by another process by cosine 0.999875 for `vis` (max action gap 0.005 m/s, ~0.25 mm/step, half the head's own error). No cudnn/TF32 flag is set anywhere in `src/`. `tests/test_feature_parity.py` now gates on code parity and only *reports* the cross-process gap.
+
+Two mistakes to record. The re-extraction of `vis` features on the "fast path" was unnecessary (it was based on a wrong diagnosis). And I moved the parity threshold twice after seeing data before stepping back and asking what the test should actually guard.
+
+**Headline run launched:** OpenVLA `vis` actor, full grid (64 envs × 20 cells), arms `none` / `gt_shadow` / `checkvla_orbisim` / `checkvla_vision`, results to `rq2_openvla_vis.json`. The `vis` readout skips the 7B LLM (8.6 vs 59 ms per frame); the llm actor joins once DAgger brings it up.
+
 ### Update 1 Oct (evening) — first closed-loop OpenVLA actor: the vision readout works, the LLM readout fails in distribution
 
 Chunk heads trained on the cached OpenVLA features (54k frames, 3000 episodes; validation = 300 held-out *episodes*).
