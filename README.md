@@ -12,6 +12,6 @@ Undergraduate (UG4) dissertation project — University of Edinburgh.
   - `Experiment_Phase_0.md` — Phase 0/1 benchmark plan (Robosuite NutAssembly, Diffusion Policy, OOD friction/mass evaluation)
   - `Experiment_plan_Phase_1.md` — Phase 1 plan: CheckVLA + OrbiSim-Dynamics + Genesis execution-time physical verification
   - `Experiment_plan_1year.md` — current one-year plan (Oct 2026 – Sep 2027): differentiable verifier as main contribution; headline = VLA with vs. without verifier (safe success), revised 2026-09-29
-  - `experiment_record.md` — weekly experiment progress log
   - `note.md` — working notes
+- `exp_record/` — experiment progress log, one file per week (see `exp_record/README.md`)
 - `src/` — Phase 1 experiment framework (see `src/README.md`)

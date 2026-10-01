@@ -59,6 +59,12 @@ def main():
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--val_frac", type=float, default=0.1)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--done_keep", type=float, default=0.1,
+                    help="fraction of 'already finished' frames (all-zero target "
+                         "chunk) to keep. ~45%% of demo frames are the expert "
+                         "standing still after seating the block; kept in full they "
+                         "pull the head towards small velocities. Some are kept so "
+                         "the policy still learns to stop.")
     args = ap.parse_args()
 
     torch.manual_seed(args.seed)
@@ -68,6 +74,11 @@ def main():
         ep = f["episode"][:]
         H = int(f.attrs["H"])
     rng = np.random.default_rng(args.seed)
+    done = np.abs(Y).reshape(len(Y), -1).max(1) == 0
+    keep = ~done | (rng.random(len(Y)) < args.done_keep)
+    print(f"finished-frame fraction {done.mean():.2f}; keeping {args.done_keep:.0%} "
+          f"of them -> {keep.sum()} of {len(Y)} frames", flush=True)
+    X, Y, ep = X[keep], Y[keep], ep[keep]
     eps = np.unique(ep)
     val_eps = rng.choice(eps, max(1, int(len(eps) * args.val_frac)), replace=False)
     va = np.isin(ep, val_eps)
