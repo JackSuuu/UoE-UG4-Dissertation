@@ -4,6 +4,31 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 1 Oct (late) — first OpenVLA headline was confounded: the verifier only looks as far ahead as the actor's chunk
+
+**Headline run, OpenVLA `vis` actor with a 5-step head** (64 envs × 20 cells, pooled OOD, `rq2_openvla_vis.json`):
+
+| arm | SR | CVR | safe |
+|---|---|---|---|
+| `none` | 0.830 | 0.395 | 0.576 |
+| `gt_shadow` (oracle) | 0.720 | 0.265 | 0.590 |
+| `checkvla_orbisim` | 0.740 | 0.354 | 0.504 |
+| `checkvla_vision` | 0.792 | 0.402 | 0.511 |
+
+Even the oracle barely helped (+0.014; with `bc` it gave +0.116), and at friction 0.2× it cleared only 49% of its interventions (`bc`: 94%). If the oracle cannot help, predictor accuracy is not the problem.
+
+**Diagnosis (`src/vla/diag_recoverable.py`).** At each chunk boundary of a policy-only rollout, the true simulator replays the proposed chunk, the chunk scaled to 25%, and an all-zero chunk. At friction 0.2× the **first violating chunk of an episode is almost never recoverable, even by stopping**: 0.02–0.09 for OpenVLA and 0.00 for `bc`. The peg coasts and the pusher can only push, so momentum from earlier chunks has already decided the strike.
+
+That holds for `bc` too, so it does not explain the gap until the lookahead is accounted for. **`bc` proposes H = 10 and executes 5; the 5-step OpenVLA head proposed 5**, and the policy also truncated its output to `chunk_k`. Every verifier, oracle included, scores the whole proposed chunk, so its lookahead *is* the actor's chunk length. With 5 steps it sees the strike only once it is committed. This is my design error (H chosen without noticing it sets the verifier's lookahead). It is also a substantive result: **the verifier's lookahead must exceed the physics' commitment horizon**, a concrete instance of *h\** that is now measurable.
+
+**Separate, smaller effect:** in heavy cells OpenVLA violates where `bc` never does (friction 1.8×, mass 2.0×: 32 violating chunks vs 0; 62% fixable by scaling). There the learned verifier made things worse (CVR 0.23 → 0.50) while the oracle fixed them (0.03). Likely cause: the predictor faces OpenVLA's state distribution, which `bc` never produced. τ was calibrated on `bc` (`taus.json` `policy: bc`). Per-policy recalibration was in the plan and has not been done.
+
+**Fixes in progress.**
+- Heads retrained with 10-step targets (`target10`, rebuilt from the demo actions. No episode moves after step 23, so zero-padding past step 39 is exact): `vis` R² 0.981, `llm` 0.950.
+- The policy now returns the full chunk.
+- Headline rerun with the 10-step `vis` head → `rq2_openvla_vis_h10.json`.
+- DAgger restarted for the 10-step `llm` head (5-step labels cannot be reused). The old 5-step DAgger showed the method works: policy SR at nominal during collection 0.59 (round 1) → 0.87 (round 2).
+
 ### Update 1 Oct (night) — DAgger fixes most of the llm head's non-physical failures; headline OpenVLA run launched
 
 **DAgger round 1** (`src/vla/dagger.py`). The llm-readout policy drove 1024 episodes at nominal physics. The scripted expert labelled every state it reached with its own 5-step chunk, from a cloned sim: 16,384 labelled policy states. Retrained with these added to training only. Held-out R² on expert episodes is unchanged (0.947 → 0.949), so the original skill is kept. Ridge falls to 0.632 (a linear map cannot fit expert and off-track states together; the MLP can).

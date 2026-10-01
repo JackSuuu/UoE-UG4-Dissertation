@@ -59,6 +59,10 @@ def main():
     ap.add_argument("--lr", type=float, default=3e-4)
     ap.add_argument("--val_frac", type=float, default=0.1)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--target", default="target",
+                    help="target dataset: 'target' (H=5) or 'target10' (H=10). The "
+                         "verifier looks as far ahead as the proposed chunk is long, so "
+                         "H sets its lookahead, not just the execution length.")
     ap.add_argument("--extra", nargs="*", default=[],
                     help="DAgger files (vla/dagger.py). Added to the training set "
                          "only; validation stays on the held-out expert episodes so "
@@ -76,9 +80,9 @@ def main():
     torch.manual_seed(args.seed)
     with h5py.File(os.path.expanduser(args.features), "r") as f:
         X = f[args.feature][:].astype(np.float32)
-        Y = f["target"][:]
+        Y = f[args.target][:]
         ep = f["episode"][:]
-        H = int(f.attrs["H"])
+        H = Y.shape[1]
     rng = np.random.default_rng(args.seed)
     done = np.abs(Y).reshape(len(Y), -1).max(1) == 0
     keep = ~done | (rng.random(len(Y)) < args.done_keep)

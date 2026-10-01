@@ -139,7 +139,12 @@ class OpenVLAPolicy:
             raise RuntimeError("OpenVLAPolicy needs RGB frames: env.render_rgb()")
         if self.action_mode == "planar_head":
             x = (self.features(img) - self.mu) / self.sd
-            a = self.head(x)[:, : self.H]
+            # Return the head's full chunk, not just the chunk_k steps that get
+            # executed: the verifier scores the whole proposed chunk, so its
+            # lookahead is the chunk length. Truncating to chunk_k=5 left even the
+            # oracle verifier unable to see a low-friction wall strike coming
+            # (first violations ~0% recoverable 5 steps out); bc proposes 10.
+            a = self.head(x)
         else:
             # Single action per image via the reference decode, repeated over the
             # chunk. Kept only as an ablation: a repeated action has no chunk
