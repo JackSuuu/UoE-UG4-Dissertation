@@ -4,6 +4,25 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Note 1 Oct — related verifiers: SEAL (Wu et al., ICRA 2026) and IVE (Lee et al., CoRL 2025)
+
+Literature positioning, read from the method sections, not the abstracts.
+
+**SEAL** ("Do What You Say", arXiv 2510.16281). A reasoning VLA (π0 + text plans) writes a plan, then acts; the actions often fail the plan, worst under OOD. Runtime steering is **Hypothesize → Predict → Verify**: sample K=10 action sequences from the same VLA, predict each outcome, score it 0/1 with GPT-4o against the text plan, execute the first that passes (early exit). 94–97% ID, up to +15% on compositional tasks, 347 ms per decision; gains grow with K, with diminishing returns. **In simulation the Predict step uses parallel instances of the true simulator**, i.e. an oracle equivalent to our `gt_shadow` arm. A learned world model is left as future work. Self-reported limits: bounded by the base policy's proposals; the VLM misjudges fine-grained gripper–object contact.
+
+**IVE** ("Imagine, Verify, Execute", arXiv 2505.07815). Not a VLA safety method; autonomous *exploration* for data collection. A VLM imagines scene-graph transitions; a VLM verifier judges feasibility using recent interaction history and returns yes/no + reason + suggested correction. Their ablation: removing the verifier degrades exploration only slightly; memory and explorer matter more.
+
+**Positioning.** Three verifier types: semantic outcome-vs-plan (SEAL), feasibility (IVE), quantitative physical constraint (ours). Only ours checks a quantity that is invisible in pixels. We have evidence for that: friction/mass are not decodable from the camera (held-out R² −0.087 / −0.070), and SEAL itself reports VLM failures on fine contact. Our contribution is the step SEAL defers: replace the oracle simulator in Predict with a 30 ms learned surrogate and measure what is lost (`gt_shadow` 0.801 vs `checkvla_orbisim` 0.705 safe success).
+
+**To adopt, by value:**
+1. **Best-of-N candidates** scored by the physics verifier. Fixes the `scale_repair` limitation (it can only shrink, so it fails when risk is not monotone in magnitude). Needs candidate diversity: the chunk head is deterministic, so train an ensemble of heads on the cached features (minutes). Gives a safe-success-vs-K curve.
+2. **Select on risk *and* progress**, not risk alone. Safety-only selection rewards not moving (measured: vision drives CVR to 0 at SR 0.05). The predictor already rolls the state forward, so predicted advance toward the seat is available.
+3. **History-conditioned verification** (IVE's memory, turned into calibration). Compare predicted vs observed outcomes over recent steps to adapt τ online or infer friction. Targets the weakest result: far-OOD friction 0.2, learned 0.08 vs oracle 0.41 safe success.
+4. **Visual-OOD stress test** (SEAL's taxonomy; they find viewpoint/background shifts hurt VLAs most). With our renderer: shift viewpoint/appearance. Expect the VLA and the vision verifier to degrade and the state-based physics verifier not to.
+5. **Structured feedback** on each intervention: constraint, step, predicted force, repair taken. This is F10, the interpretation layer.
+
+**Not adopted:** a VLM as verifier. Over the 50 ms budget by >7×, and blind to contact force.
+
 ### Update 1 Oct (later) — VLA actor pipeline: demos collected, features extracting
 
 The OpenVLA-7B actor needs a head that emits an H×2 world-frame velocity chunk in one forward pass (`planar_head`). The pipeline is now demos → frozen-backbone feature cache → small MLP head → the same `Controller` and verifier as every other arm.
