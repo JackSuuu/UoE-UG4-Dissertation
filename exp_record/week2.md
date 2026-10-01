@@ -4,6 +4,37 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 1 Oct (evening) — first closed-loop OpenVLA actor: the vision readout works, the LLM readout fails in distribution
+
+Chunk heads trained on the cached OpenVLA features (54k frames, 3000 episodes; validation = 300 held-out *episodes*).
+
+**Open loop, held-out R² of the next 5 actions** (mean predictor ≈ 0.00 in every case, so the split is not leaking):
+
+| readout | ridge | MLP head |
+|---|---|---|
+| `llm` — LLM last-layer hidden state, last prompt token | 0.852 | 0.947 |
+| `vis` — mean projected image patch, before the LLM | 0.946 | 0.979 |
+
+The pre-LLM visual feature beats the post-LLM one. For this control task, 32 LLM layers and a last-token readout lose spatial information rather than add it.
+
+**A mistake of mine, measured and reverted.** I had subsampled the "already seated" frames (all-zero target, 38% of frames) to 10%, expecting them to bias the head towards slow pushing. Error by episode phase on held-out episodes showed the opposite. Push-phase error was unchanged (0.0096 vs 0.0106 m/s), but at the seat the head crept forward on **36%** of frames (error 0.018 m/s) against **2%** (0.0035) with all frames kept. Creeping into a seated block builds wall force. `--done_keep` now defaults to 1.0. A global R² hid this; the per-phase table found it.
+
+**Closed loop, actor only (arm `none`), `--quick` (8 envs × 20 cells), pooled OOD:**
+
+| actor | SR | CVR | safe success |
+|---|---|---|---|
+| `bc` (reference) | 0.839 | 0.286 | 0.670 |
+| OpenVLA `vis`, 10% seated frames | 0.723 | 0.402 | 0.554 |
+| **OpenVLA `vis`, all frames** | **0.812** | **0.357** | **0.589** |
+| OpenVLA `llm`, 10% seated frames | 0.393 | 0.714 | 0.214 |
+| OpenVLA `llm`, all frames | 0.554 | 0.643 | 0.339 |
+
+**Per cell (the part that matters):** `vis` matches `bc` in distribution (SR 1.00 / CVR 0.00 on almost every cell with friction ≥ 0.6×) and fails mainly at friction 0.2×, the designed physical OOD failure the verifier exists to catch. `llm` fails **at nominal physics** too (friction 1.0×, mass 1.0×, the demo physics: SR 0.50, CVR 0.50). Its failures are not physical. They are closed-loop covariate shift (open-loop R² 0.947 does not survive compounding), which a physics verifier cannot fix.
+
+This is the plan's §2 precondition ("check that the base VLA's failures in the OOD cells are mainly physical") applied for the first time: `vis` passes and `llm` does not. It is also the P2a actor × verifier interaction, now available from data rather than argument.
+
+Caveats: 8 envs per cell, so per-cell SR moves in steps of 0.125 and is indicative only. The pooled numbers average over OOD cells.
+
 ### Note 1 Oct — related verifiers: SEAL (Wu et al., ICRA 2026) and IVE (Lee et al., CoRL 2025)
 
 Literature positioning, read from the method sections, not the abstracts.
