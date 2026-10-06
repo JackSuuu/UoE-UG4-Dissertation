@@ -12,7 +12,7 @@ import os
 import numpy as np
 import torch
 
-from _common import base_parser, env_for_cell, load_policy, load_verifiers, setup
+from _common import train_ranges, base_parser, env_for_cell, load_policy, load_verifiers, setup
 from _verif import verifier_rollout
 from common import PREDICTOR_TRAIN_RANGES, load_json, save_json
 
@@ -31,7 +31,7 @@ def main():
     policy = load_policy(args, od, dev, sim)
     preds = load_verifiers(args, od, dev, sim)          # tau=inf while calibrating
     rng = np.random.default_rng(args.seed + 1)
-    ranges = PREDICTOR_TRAIN_RANGES[args.task]
+    ranges = train_ranges(args)
     scores = {k: [] for k in preds}
     for c in range(args.n_cells):
         cell = {k: float(rng.uniform(*v)) for k, v in ranges.items()}

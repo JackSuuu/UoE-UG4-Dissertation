@@ -9,7 +9,7 @@ if ROOT not in sys.path:
 
 import torch  # noqa: E402
 
-from common import get_device, out_dir, seed_all  # noqa: E402
+from common import PREDICTOR_TRAIN_RANGES, get_device, out_dir, seed_all  # noqa: E402
 from registry import (PREDICTOR_ROLES, add_component_args, build_policy,  # noqa: E402
                       build_predictor, build_verifier)
 from sims.base import make_env, make_sim  # noqa: E402
@@ -26,15 +26,31 @@ def base_parser(desc=""):
     p.add_argument("--device", default="auto")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--quick", action="store_true", help="tiny sizes for a smoke test")
+    p.add_argument("--variant", default="",
+                   help="write/read artefacts in results/<task>_<backend>_<variant>, so a "
+                        "retrained predictor never overwrites the one the bc results use")
+    p.add_argument("--train_mass", type=float, nargs=2, default=None,
+                   help="override the predictor's mass training range (collection and "
+                        "tau calibration only). The evaluation's OOD definition (is_ood) "
+                        "deliberately keeps PREDICTOR_TRAIN_RANGES, so pooled-OOD numbers "
+                        "stay comparable across predictors")
     add_component_args(p)
     return p
+
+
+def train_ranges(args):
+    """Predictor training ranges for collection and calibration, with overrides."""
+    r = dict(PREDICTOR_TRAIN_RANGES[args.task])
+    if getattr(args, "train_mass", None):
+        r["mass"] = tuple(args.train_mass)
+    return r
 
 
 def setup(args):
     seed_all(args.seed)
     dev = get_device(args.device)
     sim = make_sim(args.task, dev)
-    od = out_dir(args.task, args.backend)
+    od = out_dir(args.task, args.backend + (f"_{args.variant}" if getattr(args, "variant", "") else ""))
     print(f"[setup] task={args.task} backend={args.backend} device={dev} out={od} | "
           f"policy={args.policy} orbisim={args.orbisim_impl} vision={args.vision_impl} "
           f"verifier={args.verifier}")

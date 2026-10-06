@@ -14,7 +14,7 @@ import os
 import numpy as np
 import torch
 
-from _common import base_parser, setup, env_for_cell
+from _common import train_ranges, base_parser, setup, env_for_cell
 from common import PREDICTOR_TRAIN_RANGES
 
 
@@ -60,7 +60,7 @@ def main():
           f"{(R.amax((1, 2)) > 1).float().mean():.3f}")
 
     # ---------------- predictor data over a param range ----------------
-    ranges = PREDICTOR_TRAIN_RANGES[args.task]
+    ranges = train_ranges(args)
     out, pars = [], []
     for b in range(0, args.n_dyn, args.batch):
         n = args.batch
