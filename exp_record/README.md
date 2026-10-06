@@ -7,7 +7,8 @@ one file per week. Inside a file, the newest entry is at the top.
 | week | dates | file | main events |
 |---|---|---|---|
 | 1 | to 29 Sep 2026 | [week1.md](week1.md) | Genesis bring-up and demotion; Task A → box peg, two-fingertip pusher; open-loop chunk protocol; three pipeline defects; v5; repair audit; RQ2b shift ladder |
-| 2 | from 30 Sep 2026 | [week2.md](week2.md) | CheckVLA's gradient branch and hard prefix are inert; v6/v7; rate-matched τ (physics beats vision at matched cost); OpenVLA-7B on transformers 5.x; demo + feature pipeline for the VLA actor |
+| 2 | 30 Sep – 4 Oct 2026 | [week2.md](week2.md) | CheckVLA's gradient branch and hard prefix are inert; v6/v7; rate-matched τ; OpenVLA-7B on transformers 5.x; demo + feature pipeline; chunk heads; DAgger; first OpenVLA headline (confounded by 5-step chunk, fixed at 10: oracle +0.131) |
+| 3 | from 5 Oct 2026 | [week3.md](week3.md) | full 7B VLA passes the physical-failure check after DAgger; predictor coverage fix (mass 0.5–2.0, + VLA states) |
 
 ## Conventions
 
