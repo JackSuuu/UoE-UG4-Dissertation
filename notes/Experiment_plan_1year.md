@@ -343,3 +343,122 @@ Done in Week 1: main contribution decided (A); Genesis installed and gradient pr
 4. Read out ablation (`scratch/readout_ablation.py`, written but never run at full scale): current-state vs extrapolated-state vs delta read-out. Note the trap recorded in `exp_record/week1.md` — the extrapolated read-out loses on uniformly sampled validation windows and wins under the real RQ1 protocol, so this must be judged on the RQ1 protocol only.
 5. Any change to `models/nets.py` requires retraining both predictors (~300 s each) or the results silently use stale weights.
 6. **Supervisor:** confirm the 30 Sep revision (Genesis out, surrogate framing, P2a ahead of P2b, contribution delta in §1b); report the GPU-0 fault (`ERR!`/`N/A`) to the admin; ask about lab robot / F/T sensor access for P4.
+
+---
+
+## 10. Web Viewer & Real Robot Integration (P4)
+
+**Current demo**: `demo/genesis_web_streamer.py` serves MJPEG stream on port 8080 — shows Genesis simulation in browser.
+
+**To add real Franka visibility in same viewer:**
+1. **Franka driver**: Install `frankapy` or `franka_ros` on lab machine
+2. **State bridge**: Franka joint states → our `TorchEnv` state format (10-D: bx,by,vx,vy,px,py,ty,th,w)
+3. **Verifier integration**: Franka state → physics predictor → risk score → verifier action → Franka command
+4. **Unified web viewer**: Extend `genesis_web_streamer.py` to show:
+   - Left: Franka camera (first-person + third-person)
+   - Right: Genesis sim mirror (verifier's internal prediction)
+   - Overlay: risk score, trigger status, verifier action vs policy action
+   - Timeline: risk score history, intervention markers
+
+**Franka state mapping needed:**
+```
+Franka joint states (7) + gripper (1) 
+  → IK → EE pose (x,y,z, quat) 
+  → Project to 2D plane → our state [bx, by, vx, vy, px, py, ty, th, w]
+```
+
+---
+
+## Long-Horizon Task Pipeline (LIBERO / Real Tasks)
+
+**Target tasks (from your examples):**
+
+| Task | Subtasks | Physical Constraints |
+|---|---|---|
+| **Prepare Coffee** | 1. Pick mug from cabinet 2. Place under dispenser 3. Press start button | Grip force < 5N, no spill, button press < 10N |
+| **Pan Transfer** | 1. Pick up pan 2. Dump vegetables onto plate 3. Return pan to stove | Pan tilt < 30°, dump force < 10N, placement accuracy 2cm |
+
+**Required extensions:**
+
+| Component | Current | Needed for Long-Horizon |
+|---|---|---|
+| **Policy** | Chunk H=10 open-loop | Hierarchical: high-level planner (subtask seq) + low-level chunk policy |
+| **Verifier** | Single risk scalar (contact force) | Multi-constraint: grip force, tilt angle, contact force, joint limits |
+| **State** | 10D (box push) | Full Franka state (joint pos/vel + EE pose + gripper) + object poses |
+| **Repair** | Single chunk scaling | Subtask-level re-planning + within-chunk scaling |
+| **Camera** | Fixed tabletop | Multi-view: wrist + third-person + overhead |
+
+**Immediate next steps for long-horizon:**
+1. **Define constraint set** for each LIBERO task (force limits, joint limits, tilt limits)
+2. **Extend predictor** to multi-output: (contact_force, grip_force, tilt_angle, joint_vel)
+3. **Extend verifier** to multi-constraint trigger + multi-dimensional repair
+4. **Collect LIBERO demos** with force annotations (or use existing LIBERO demos + sim physics)
+5. **Build hierarchical policy**: high-level LLM planner → subgoal sequence → chunk policy per subtask
+
+---
+
+## Real Robot Integration (Franka) — P4
+
+**Current demo viewer**: `demo/genesis_web_streamer.py` → MJPEG stream on port 8080 (Genesis sim only)
+
+**To add real Franka in same viewer:**
+
+| Component | Status | Action |
+|---|---|---|
+| Franka driver | ❌ | Install `frankapy` or `franka_ros` on lab machine |
+| State bridge | ❌ | Franka joint states → our `TorchEnv` state format (10-D) |
+| Force/torque sensor | ❌ | Mount F/T sensor on wrist; read into verifier |
+| Real→Sim sync | ❌ | Franka state → Genesis sim mirror (for verifier prediction) |
+| Unified web viewer | ⚠️ | Extend `genesis_web_streamer.py` to dual pane (Franka cam + Genesis mirror) |
+
+**Web viewer extension** (`demo/genesis_web_streamer.py` → `demo/unified_viewer.py`):
+```
+Left pane:  Franka wrist cam (first-person) + third-person cam
+Right pane: Genesis sim mirror (verifier's internal prediction)
+Overlay:    Risk score bar, trigger indicator, verifier action vs policy action
+Timeline:   Risk score history, intervention markers, verifier decisions
+```
+
+**Franka state mapping needed:**
+```
+Franka joint positions (7) + gripper (1) 
+  → IK → EE pose (x,y,z, quat) 
+  → project to 2D plane → our state [bx, by, vx, vy, px, py, ty, th, w]
+```
+
+---
+
+## Updated Immediate Next Steps (Week 4+)
+
+| Priority | Task | Owner | ETA |
+|---|---|---|---|
+| 1 | Wait for `llm` headline with mass2 predictor (running) | — | Tonight |
+| 2 | Record final `llm` + mass2 headline numbers | Me | Tonight |
+| 3 | **If heavy cells still bad**: retrain predictor with mass 2.5×, per-cell τ | Me | This week |
+| 3b | Implement Best-of-N candidates (P1) | Me | Next week |
+| 4 | Implement stall detector (P2) | Me | Next week |
+| 5 | Write paper (F0, F1, F2, F3 figures ready) | You + Me | Next 2 weeks |
+| 6 | **P2b**: LIBERO subset + physics perturbations | Me | After paper draft |
+| 7 | **Franka access**: Ask supervisor for lab robot / F/T sensor | You | This week |
+| 8 | Build unified web viewer (Franka + Genesis) | Me | After paper draft |
+
+---
+
+## Long-Horizon Demo Targets (Post-Paper)
+
+| Phase | Target | Demo |
+|---|---|---|
+| **Phase 1** (post-paper) | LIBERO subset + physics verifier | Push/Place/Insert with force limits |
+| **Phase 2** | Real Franka + verifier | Box push + verifier on real robot |
+| **Phase 3** | Coffee task | Pick mug → place under dispenser → press button |
+| **Phase 4** | Pan Transfer | Pick pan → dump veg → return to stove |
+
+**Web viewer for demos:** Extend `genesis_web_streamer.py` → `unified_viewer.py` with dual-pane (Real Franka | Genesis mirror) + risk overlay + timeline.
+
+---
+
+**Bottom line**: Pipeline works end-to-end. Core experiments done. Paper-writing phase starts now. Next milestones: (1) final headline numbers, (2) paper draft, (3) LIBERO transfer, (4) real Franka access.
+
+---
+
+**Bottom line**: Pipeline works end-to-end. Core experiments done. Paper-writing phase starts now. Next milestones: (1) final headline numbers, (2) paper draft, (3) LIBERO transfer, (4) real Franka access.
