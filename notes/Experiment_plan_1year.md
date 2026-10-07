@@ -444,6 +444,57 @@ Franka joint positions (7) + gripper (1)
 
 ---
 
+## Algorithm Improvements (Priority Queue)
+
+| Priority | Issue | Solution | Status |
+|---|---|---|---|
+| **P0** | Heavy cells (mass 2.0×) verifier increases violations | 1) Extend mass range to 2.5× 2) Per-cell τ calibration 3) Add VLA states to training | IN PROGRESS |
+| **P1** | Only brakes, never steers | Best-of-N candidates + risk+progress joint selection (from SEAL) | PLANNED |
+| **P2** | Stall under repeated triggers | Stall detector: after k consecutive shrinks, escalate to re-plan | PLANNED |
+| — | Kernel optimization | NOT NEEDED (verifier 30ms, bottleneck is 7B VLA at 59ms) | WONT FIX |
+
+---
+
+## Complex Benchmark: P2b LIBERO + Physics (Proving Framework Value)
+
+**Goal**: Demonstrate the verifier framework works on real manipulation tasks with physical constraints, not just the toy box-push task.
+
+### LIBERO Task Selection (Contact-Intensive Subset)
+| LIBERO Task | Why | Physical Constraints |
+|---|---|---|
+| `PickAndPlace` | Grasp + transport + place | Grip force < 5N, no drop |
+| `Insert` | Peg-in-hole, tight clearance | Insertion force < 15N, alignment |
+| `Push` | Planar push with obstacles | Contact force < 10N, no slip |
+| `Stack` | Stack objects stably | Stack stability, no topple |
+| `OpenDrawer` | Articulated object | Pull force < 15N, no jerk |
+
+### Required Extensions for LIBERO
+| Component | Current (Box Push) | LIBERO Extension |
+|---|---|---|
+| **Physics Predictor** | MLP ensemble (state+action → contact force) | Multi-output: contact_force, grip_force, tilt, joint_torque |
+| **Verifier** | Single risk scalar + bisect scale | Multi-constraint: per-constraint risk, per-constraint repair |
+| **State Representation** | 10D (box push) | Full Franka state (joint pos/vel + EE pose + gripper) + object poses |
+| **Repair** | Uniform chunk scaling | Per-constraint repair + subtask re-planning |
+| **Policy** | Chunk H=10 open-loop | Hierarchical: LLM planner → subtask seq → chunk policy |
+| **Constraints** | Contact force only | Grip force, tilt, contact force, joint limits, collision |
+
+### LIBERO Physics Perturbations
+| Parameter | Range | Purpose |
+|---|---|---|
+| Friction (table/object) | 0.3–1.5× | Slip, stick-slip, grasp stability |
+| Mass (objects) | 0.5–2.5× | Inertia, momentum, grasp force |
+| Stiffness (soft objects) | 0.5–2.0× | Deformation, compliance |
+
+### Evaluation Metrics (per task)
+| Metric | Definition |
+|---|---|
+| **Safe Success** | Task success AND no constraint violation |
+| **Constraint Violation Rate** | Per-constraint violation frequency |
+| **Intervention Rate** | Verifier triggers per episode |
+| **Time-to-Success** | Wall-clock time (penalizes over-cautious) |
+
+---
+
 ## Long-Horizon Demo Targets (Post-Paper)
 
 | Phase | Target | Demo |
