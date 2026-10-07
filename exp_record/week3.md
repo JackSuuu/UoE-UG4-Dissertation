@@ -4,7 +4,39 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
-### Update 6 Oct — the full 7B VLA now passes the "failures are physical" check; predictor coverage fix running
+### Update 7 Oct — Predictor coverage fix complete; full VLA headline with two predictor versions
+
+**Mass-2 predictor (A) headline** (`rq2_openvla_vis_h10.json` in `push_torch_mass2`, mass 0.5–2.0, τ on OpenVLA):
+
+| arm | SR | CVR | safe | Δ safe vs none |
+|---|---|---|---|---|
+| `none` | 0.852 | 0.359 | 0.596 | — |
+| `gt_shadow` (oracle) | 0.746 | 0.073 | **0.727** | **+0.131** |
+| `checkvla_orbisim` | 0.749 | 0.294 | 0.549 | −0.047 |
+| `checkvla_vision` | 0.785 | 0.387 | 0.519 | −0.077 |
+
+**Split by band:**
+
+| band | `none` | oracle | `checkvla_orbisim` |
+|---|---|---|---|
+| friction 0.2× (target band) | 0.020 | 0.500 | **0.172** |
+| friction ≥ 0.6× | 0.870 | 0.852 | 0.769 |
+
+In the target band the learned verifier helps the VLA **8.6×** and captures **31% of the oracle's headroom**. The net loss is entirely in the normal-friction band, concentrated in the **heavy cells**, where it *raises* CVR while the oracle removes it: friction 1.4×/mass 2.0× 0.27 → 0.45 (oracle 0.03); 1.8×/2.0× 0.25 → 0.39 (oracle 0.03).
+
+**Mass-2+vla predictor (B) headline** (`push_torch_mass2vla`, same mass range + VLA states added to training):
+
+| arm | SR | CVR | safe | Δ safe vs A |
+|---|---|---|---|---|
+| `checkvla_orbisim` | 0.743 | 0.292 | 0.548 | −0.001 |
+
+VLA-driven data gave **no measurable improvement** (0.549 → 0.548). The coverage gap was the dominant factor; VLA states added marginal benefit.
+
+**Per-policy recalibration:** τ recalibrated on OpenVLA rollouts (was on `bc`). `is_ood()` keeps original ranges (friction 0.5–1.5, mass 0.6–1.6), so pooled-OOD numbers stay comparable across predictors. `friction 0.2×` remains a true OOD test.
+
+---
+
+### Update 6 Oct (late) — full VLA actor passes "failures are physical" check after DAgger
 
 **`llm` actor (full OpenVLA, LLM readout), 10-step head + DAgger rounds 1 and 2** (each round: the current policy drives 1024 episodes at nominal physics, the expert labels every visited state with its 10-step chunk from a cloned sim). Policy SR at nominal during collection: 0.60 (round 1), 0.90 (round 2). Closed loop, actor only, `--quick`:
 
