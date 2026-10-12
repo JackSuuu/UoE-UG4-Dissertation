@@ -4,6 +4,35 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 12 Oct — Intervention branches complete; architecture and algorithm evaluation
+
+**Completion verified:** `branch_intervention_branch_20261012_a/summary.json` is `complete=true`, all eight cells saved, and launcher/Python processes exited normally. Every whole-batch unmodified control replay and unselected-row parity check passed. Rechecked the audit-summary hash, all eight raw branch hashes, exactly one skip per selected episode and saved NPZ/summary outcomes. No new efficacy run or training was performed for this evaluation.
+
+| Hindsight-selected bisection group | n | original SR / CVR / safe counts | after one skipped intervention: SR / CVR / safe counts |
+|---|---:|---|---|
+| Paired safe harms | 12 | 9 / 12 / 0 | 11 / 0 / 11 |
+| Paired safe rescues | 8 | 8 / 0 / 8 | 7 / 8 / 0 |
+
+Skipping the first execution-changing repair eliminated all 12 harms' violations; 11 regained safe task completion and one remained unsuccessful. All eight rescues lost safety after the skip. These are diagnostic, outcome-selected rows from the validation grid; 11/12 is not an estimated deployable rescue rate, and net 11−8 is not a new method's improvement. Full-grid validation SR/CVR/safe-success and paired CIs remain as reported below.
+
+**Causal scope:** with initial state/history/proposal matched and the subsequent policy/verifier held fixed as functions, changing one early repair changes later safety outcomes in both directions. This establishes a total effect of that intervention plus downstream replanning, not a decomposition into inertia, contact geometry, policy response or later verifier actions. Original harm trajectories first violated 5–8 steps after the intervention; after skipping, seven rescue trajectories first violate 4–8 steps later, while the remaining rescue (cell 12, row 23) violates 46 steps later. A short safe prefix is insufficient, and H10 open-loop safety is not identical to closed-loop continuation value.
+
+**Threshold discrimination check:** first-intervention learned max-risk scores span 0.5634–0.9440 for harms and 0.5610–0.7873 for rescues (current τ=0.5554924). A single monotone threshold cannot suppress all these harms while preserving all these rescues; this does not exclude an average benefit from recalibration. All 12 harms' original H10 chunks are GT-safe; seven of eight rescues' original H10 chunks are unsafe, but the long-delay rescue is H10-safe. This supports improving predictive discrimination while retaining useful anticipation, rather than suppressing interventions wholesale.
+
+**Framework assessment:** evaluation/replay infrastructure is now useful for mechanism work. End-to-end learned-verifier efficacy remains unestablished across independent seed sets: confirmation gave small positive deltas; this validation remains below baseline point estimates. The branch supplies stronger evidence for intervention discrimination and temporal consequences as design priorities. It does not prove a specific neural architecture will improve safe success. Current predictor risk is order-insensitive, runtime feedback is one-step observation/action context, repair is scale-only, and the controller does not assess the policy-conditioned consequences beyond its committed prefix.
+
+**Recommended first architecture ablation:** direct causal sequence-risk prediction: initialize a small recurrent latent from the existing obs/previous-obs/previous-action context, update it with each candidate action, and emit per-step physical risk. This conditions step j on actions 1…j without feeding back drifted predicted observations. Retain H10/k5, the eight scales, information access and ensemble size. Use matched-data, approximately parameter-matched static-risk versus GRU-risk controls with the same training loss/budget and a common unchanged state/progress predictor; retain the original frozen checkpoint as an anchor. Splitting the risk/state networks must be common to the matched new controls, not silently confounded with temporal representation. Longer history, event/ranking losses and larger candidate families are separate later ablations.
+
+**Training protocol concern from source inspection:** `train.py:train_orbisim` fits normalizers using all `DynWindows.O` before its episode train/validation split is used for batches. This is an internal held-out normalization leak, not evidence of leakage into the separate current audit grid. Future matched-data training must fit statistics on training episodes only and keep all branches/candidates from an episode within the same split. Generate fresh disjoint training-seed policy decisions/candidate labels; audit validation labels and these 20 selected outcomes never become training targets. Recalibrate new scores on independent calibration episodes. Confirmation/final-test remain excluded from tuning.
+
+**Algorithm sequence:** first compare risk formulations while keeping controller/repair rules fixed. Next, with the model fixed, calibrate/report execution-prefix R5 separately from counterfactual lookahead R10 and ablate the intervention gate; retain anticipation. Then test candidate acceptance based on absolute risk, paired risk improvement and minimal modification, with original proposal included, rather than relying exclusively on a fixed 25% surrogate-score drop. Marginal ensemble uncertainty is not a calibrated paired improvement bound. Any later continuation/recoverability value head needs separate policy/controller-versioned branch targets and fresh data; do not relabel open-loop H10 risk as closed-loop value.
+
+**Repair/feedback gate:** no-safe-scale cases warrant same-state zero/retreat and earlier-decision witnesses before adding directional repair. Keep candidate count and execution opportunities matched. Add longer motion/action history independently; force/contact sensing is a separate information intervention. Gradient optimization stays a later ablation after verifying finite-perturbation and true-risk ranking reliability. Everyday drawer/holder task feasibility remains appropriate in parallel, but manipulation transfer and faster inner loops require task-native labels, new predictor/calibration and classical information/control-matched feedback baselines.
+
+**Synchronization:** detailed Chinese design, ablation order and gates are in `core_research_plan.md`. This is a results-backed design recommendation; the proposed risk architecture, gate and continuation head have not been implemented or trained.
+
+---
+
 ### Update 12 Oct — Full audit completed; CPU attribution and skip-one-intervention branch launched
 
 **Completed:** `verifier_audit_20261012_a` finished all 20 cells × 32 episodes × four arms (80 raw NPZs). `summary.json` has `complete=true`; every arm replay matched source outcomes/cadence and actual five-step prefix risk. The original detached processes exited normally. Previous entries saying the audit is active describe earlier checks, not its latest state.

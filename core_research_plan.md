@@ -50,11 +50,43 @@
 - **时序表达有明确限制，但尚无净收益因果证据。** Bisection 的 11,186 个顺序探针 score 全部不变，1,838 个真实 H10 safety labels 改变。探针相关且可能 off-policy；用于约束 architecture hypothesis，不作为新增 runtime candidates。
 - **不能把主要瓶颈直接归为 progress ranking。** Bisection 的 learned-accepted、GT-prefix-safe 候选中，2,208 个 decision 有 ≥2 个可比选项，只有 9 个的 predicted-progress choice GT regret >1 mm；triggered 子集为 9/297。这是经过 filter/GT safety 条件化后的局部 goal-distance proxy，不证明总体 progress 准确或 task success 可预测。
 
-**当前最小诊断实验：** 已 detached 启动 `intervention_branch_20261012_a`。只用原 validation 的 bisection arm，覆盖其全部 12 harms + 8 rescues（8 cells），在每个 episode 首次 execution-changing intervention 时跳过一次修复，之后仍运行同一个 frozen verifier。所有 32 rows 保留；先做整 batch 未修改 replay control，再验证 branch 前及未选中 rows 一致、H10/k5/microbatch 8 不变。Selection 使用 hindsight outcome 是离线诊断，不是可部署的 skip rule，结果不能写作新方法 SR。日志 `~/scratch/intervention_branch_20261012_a.log`；尚不把 launch 当 completed 证据。
+**最小诊断实验已完成：** `intervention_branch_20261012_a` 完成全部 8 cells，覆盖原 validation bisection 的全部 12 harms + 8 rescues。在每个 episode 首次 execution-changing intervention 时跳过一次修复，之后仍运行同一个 frozen verifier；所有 32 rows 保留。整 batch control replay、branch 前与未选中 rows 一致性、H10/k5/microbatch 8 检查全部通过；复核 summary/audit/raw hashes 和 NPZ outcomes 一致。12 个 harms 跳过后全部不再 violation，11 个恢复 safe success；剩余 1 个仍未完成。8 个 rescues 跳过后全部 violation，7 个仍完成、1 个失败。进程正常退出。Selection 使用 hindsight outcome 是离线诊断，不能把 11/12 或 11−8 换算成可部署新方法的收益。
 
 **分支结果后的选择条件：** 如果跳过首个干预能反转 harms，需要先设计能降低不必要干预的 temporal/rollout-conditioned risk ablation，并同时检查 rescues 是否损失；若 harms 不反转，检查后续 interventions/接触轨迹再归因。若某些 case 到当前 decision 已无安全 scale，先用 zero-action / bounded retreat 等离线 witness 或更早 decision branches 区分 finite-action-set 不足与 intervention timing，不能直接上线更大 candidate set。Contact history、directional repair 与 inner-loop 改动暂不合并实施。
 
 **防止数据泄漏：** Audit 的 validation labels 只用于诊断与设计选择，不进入拟合。若 temporal risk ablation 获批，另行生成 disjoint training-seed trajectories/candidates；旧 formulation 与新架构用相同 training-only data、coverage 和预算训练，在独立 calibration 上重新定阈值，再在未用于训练的 validation 上比较。Confirmation 16000+ 与 final-test 46000+ 不用于调参。History length、risk head、repair freedom 与 cadence 逐项隔离。
+
+### 完成 counterfactual 后的 architecture / algorithm 路线（12 Oct）
+
+**框架评价：** evaluation/replay 基础设施已能支持可信诊断；learned-verifier 的稳定净收益仍未建立。这里的 branch 支持一个具体因果结论：在选中的冻结 validation 轨迹上，单次早期修复及其后续闭环后果既能造成 safety loss，也能避免 safety loss；它没有隔离物理惯性、姿态、接触、后续 policy proposal 与后续 verifier 决策各自的贡献。主瓶颈应表述为 **intervention discrimination + temporal consequences**，不是“所有修复无效”或“已证明换 temporal head 必然有效”。
+
+**已有 score 不能靠一个阈值完美分开这些 cases。** 首次干预的当前 score：12 harms 为 0.5634–0.9440，8 rescues 为 0.5610–0.7873，当前 τ=0.55549。区间交错，因此高分才干预的单一阈值无法同时去掉所有这些 harms 并保留所有这些 rescues；不排除普通 calibration 改善平均结果。12 harms 的原 H10 全 safe，7/8 rescues 的原 H10 unsafe，但还有一个 H10-safe rescue 在跳过后 46 control steps 才违规：H10 open-loop 风险仍不等于长期 closed-loop utility。
+
+**第一项 architecture ablation：direct causal action-sequence risk。**
+
+```text
+当前 obs、obs_prev、a_prev → context encoder → z0
+candidate a1 → GRU(z0,a1) → z1 → risk1
+candidate a2 → GRU(z1,a2) → z2 → risk2
+... → z10 → risk10
+```
+
+- 第一版保留相同观测信息、ensemble 规模、H10/k5 与固定八个 scale；选小型 GRU，不先增加 Transformer、force sensing 或 history length。也可把 causal action-prefix MLP/TCN 留作后续替代，但不同时 sweep 多种结构。
+- `risk_j` 依赖 `a_1…a_j` 和观测 context，不只依赖 `a_j`；不依赖尚未可靠的 autoregressive predicted observation，也不直接重启旧 rollout-risk 分支。分步物理风险与 ensemble 输出保持可微，兼容现有 predictor interface。
+- 为隔离表示作用，建立 static-risk control 与 sequence-risk head，在同一新 training-only candidate dataset、相近参数量、同一损失/步数/ensemble/校准协议下训练；两者共用不变的 state/progress predictor。另保留原 frozen model 作 anchor。不要把单独拆出 risk head、换数据、换 objective 的收益都归给 GRU。
+- 数据从 disjoint training seeds 的真实 OpenVLA decision states 产生，覆盖原 proposal、既定 scales、修复后能到达的状态及 safe/near-contact/unsafe transitions；两结构的 coverage 相同。整个 episode 及其 branches/candidates 同属一个 split，normalizer 只 fit training episodes；不能沿用 `train.py` 中用全部 train/val observations fit normalizer 的写法作为新严格 held-out 协议。
+- 第一轮用匹配的 per-step risk regression；接触事件 BCE / within-state ranking loss 后续分别 ablate。先检验 early warning、prefix/H10 recall–false-trigger tradeoff、candidate ranking、校准与闭环 safe success，而不是只优化 global MAE/AUROC。
+
+**第二项 algorithm ablation：separate immediate risk, anticipation, and intervention value。**
+
+- 从同一逐步 risk trace 分别得到 execution-prefix `R5` 与 open-loop lookahead `R10`，各自校准。保留 H10 anticipation：原 rescues 的多数 first-divergence prefix 本来就 safe，不能一律改成 prefix-only trigger。
+- Candidate set 必须含原 proposal。触发后，比较 candidate 的绝对物理风险、相对风险改善、修改量和任务进度；不能只追求 `min(0.8,0.75*s0)` 这样的 surrogate 相对降幅。无合格 candidate 时记录 unsupported/abstain，返回原动作也不宣称 safety guarantee。
+- 最小试验先保持 sequence model 和 candidate budget 固定，比较原 trigger/acceptance 与 independently calibrated prefix+lookahead gate；随后单独测试 paired risk-improvement margin/minimal-change selection。Ensemble spread 是未校准的 disagreement，不称概率保证；paired candidate improvement 需要独立校准，不能把两个边际 confidence 分数相减当有效置信下界。
+- 更长期的 architecture 目标是 **closed-loop continuation / recoverability value**：执行 candidate 前 5 步后，接回固定版本 policy/controller，对 future violation 与 completion 做分开预测。用新 training-seed states 的 paired branches 监督，而非当前 20 个 outcome-selected cases。它与 `R10` 的训练目标和标签必须分开。先做短 continuation 诊断，再决定是否值得训练 value head，不立即做完整 MPC 或在线 GT 搜索。
+
+**第三项：history 与 repair expressiveness，按诊断独立推进。** 历史输入先用已有观测/动作的较长 window 推断隐含 dynamics；force/contact sensing 是额外信息，另做 information-matched ablation。对首次违规时八个 scale 均 unsafe 的 cases，离线比较 same-state zero action、bounded retreat，以及前一 decision 的相同动作集合，区分有限候选不足与介入过晚；仅有局部可救 witness 仍不等于整条任务可完成。确有方向动作必要时，再比较固定预算的 directional family 与 scale-only，而非简单追加更多候选。Grad repair 需等 score 的 finite-perturbation/GT ranking 与 constrained optimization audit 通过，再作为单独算法比较。
+
+**实施顺序与成功 gate：** `frozen anchor → matched-data static / sequence risk → fixed-model gate ablation → history OR bounded directional repair → independent final test → one daily precision-contact task`。先预定 practically meaningful safe-success 目标，再检查多训练 seeds、paired harm/rescue、SR/CVR/safe 与固定物理网格 CI；改善 detector 指标但闭环无净收益就不推广。日常任务仍先调查轻柔关抽屉或杯瓶入窄槽 baseline；新增快内环需匹配 classical feedback/impedance baseline，不归功于 learned verifier。
 
 ## Week 4 当前结论与优先级（2026-10-12；覆盖下面启动状态）
 
