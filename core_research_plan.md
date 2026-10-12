@@ -38,6 +38,30 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
+## 正在执行：matched-data temporal-risk validation（2026-10-12）
+
+**不是笼统地把 verifier 做大。** 当前证据支持三个待分别解决的瓶颈：risk 对 action order 的表示不足、intervention 的后续闭环影响、finite scale family 在部分 decision 无解。第一轮仅验证时序表示，尚不改变 runtime trigger/repair 算法、历史长度或 sensing 权限。
+
+**已实现并启动 `sequence_risk_20261012_a`：**
+
+- `src/models/sequence_risk.py`：static MLP 与 causal GRU risk ensembles（E=5）。Static hidden=157，共 269,265 trainable parameters；GRU hidden=128，共 269,450，差约 0.07%。相同 obs / obs_prev / a_prev context、normalizers、两维物理 risk outputs；GRU 的第 j 步仅依赖 context 和前 j 个动作。两者共用 frozen state/progress dynamics。原 checkpoint 保留作 anchor。
+- `src/experiments/validate_sequence_risk.py`：fresh collection → 同数据训练 → independent calibration → audit same-state validation → 全网格闭环 validation。12×32=384 training episodes（seeds 71000–71011），4×32=128 development（72000–72003），4×32=128 calibration（73000–73003）。参数分布保留现有 predictor training ranges：friction multipliers [0.5,1.5]、mass [0.6,1.6]；没有顺带扩大 OOD coverage。
+- Train/dev batch 交替使用 uncorrected policy 与 frozen bisection，覆盖其 reachable states；calibration 仅 uncorrected OpenVLA、无 execution noise。在每个真实 decision 离线标注原 proposal 和同一组八个 scales 的 H10 risks，不把 GT labels 放入 controller。训练 normalizer 仅 fit train decisions；episode 和全部 candidates 不跨 split。
+- 两架构分别跑训练 seeds 0/1/2，各 3,000 steps、batch 256、同一 per-step MSE（risk target clip=3）、30% hot-decision sampling、相同 optimizer/LR schedule/批次。固定末次 checkpoint、全部 seeds 报告，不挑最好 seed。参数/步数匹配不等于 FLOPs 或 wall-clock 匹配，因此另外记录各结构 training time。
+- 每个新 head 独立用 calibration 的 safe original H10 decision scores 校准 α=0.05。完整模型仍是 frozen OpenVLA-7B + H10 DAgger×2 head、forward microbatch=8、chunk_k=5；bisection 原规则保持一致。此轮 candidate dataset 固定八个 scales；bisection runtime 仍使用原六次连续 search，插值泛化是两模型共有的额外测试，不冒充离散执行。
+- Offline validation 在原 audit 的 baseline/frozen trajectories 上同状态比较 prefix/H10 detection、safe-trigger rate、candidate ranking；这部分仅 evaluation，不参与拟合。之后 20 cells×32 episodes，baseline、frozen anchor、3 static、3 GRU 共 8 arms；none/frozen 必须逐 episode 重现原 validation。报告各 training seed 的 SR/CVR/safe、paired rescue/harm、fixed-grid CI 与 sequence-vs-static 直接配对差值。16000+ confirmation 和 46000+ final-test 不用于选择。
+
+**验证与运行状态：** 8 项新测试 + 29 项原 audit/cadence/candidate tests 全通过；CPU end-to-end BC smoke 完成；offline smoke 的 frozen prefix counts 精确复现 59 true triggers / 86 misses / 337 safe-proposal triggers。Smoke 不构成架构有效性证据。正式实验 detached launcher PID `587112`，日志 `~/scratch/sequence_risk_20261012_a.log`，输出 `src/results/push_torch/sequence_risk_20261012_a/`，GPU UUID `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`；启动时尚无正式训练/evaluation 结果。
+
+**结果如何决定下一步：** 若 GRU 只降低 MAE、未改善 same-state discrimination/ranking 或闭环 safe success，不能升为默认；若 same-state 明显改善但闭环仍失败，下一项固定模型测试 intervention gate/continuation，而非立刻增宽网络；若 static 与 GRU 都改善且差异不明，则主要收益可能来自 policy-matched data 或 risk/state 解耦，不能声称 temporal novelty；若均失败，检查 coverage、隐藏 dynamics/history 与候选可控性。
+
+### 进入 LIBERO / simulated arm / physical robot 的 gate
+
+1. **LIBERO 单任务 baseline feasibility 可以现在准备。** 它是 action/camera/robot-controller/checkpoint 兼容性与可重复 rollout 检查，不要求先证明 verifier gain。当前 pushing 的 2D velocity head 不能直接控制机械臂；需要任务匹配的 policy/checkpoint、EE/gripper action adapter、task-native success 和 MuJoCo contact labels。环境检查：MuJoCo 3.14.0 可用，robosuite/LIBERO/RoboCasa 当前未安装；兼容性未验证，不在共享 base 中贸然替换依赖。
+2. **正式 verifier transfer 的 prospective go/no-go。** 本轮结果出来前登记工程目标：相对 policy-alone 的 pooled OOD safe success 至少 **+3 pp**，独立 episode 测试的 fixed-grid paired 95% CI 下界 >0；3 个 training seeds 均报告且点估计方向一致，再以第二组独立 episode seeds 复核方向。SR 下降超过 2 pp 或关键 stress cells 明显退化，需重新分析，不单靠 pooled gain 推进。这是项目资源分配目标，不是统计定理、安全认证或 benchmark 通用标准；本轮 validation 只做筛选，不能代替独立测试。
+3. **LIBERO verifier transfer 仍是新的实验。** 重建 state/action/contact adapters，重新采集训练标签、训练并校准；首先一个 baseline 能进入接触阶段的任务，对照相同 sensing/control/candidate budget，再扩展任务。Pushing 通过 gate 只说明值得迁移，不保证 LIBERO 有效；信息量增加与快内环须有 matched classical feedback/impedance 对照。
+4. **真实机械臂继续后置。** 先在目标 embodiment 的 simulated arm 上证明可重复任务完成和 verifier 净收益，验证实际可取得的 proprioception/object/contact 输入、动作单位/坐标系/频率及真实接口。硬件阶段另定范围与实验协议；没有某个 pushing SR 达标就自动进入 hardware 的规则，也不要求仿真达到不现实的 100% success。
+
 ## 完整 audit 后的 cause-first gate（2026-10-12）
 
 **状态更新：** `verifier_audit_20261012_a` 已完成全部 20 cells / 80 arm replays，`summary.json` 为 `complete=true`。全部 outcomes、cadence 和执行 prefix risk 检查通过；此前“audit 正运行”段落为当天历史状态。CPU attribution artifact：`src/results/push_torch/audit_attribution_20261012_a/{analysis.json,report.md}`。这不是新的 efficacy 实验，validation headline 不变。
