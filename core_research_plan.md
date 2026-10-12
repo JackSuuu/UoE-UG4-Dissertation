@@ -38,7 +38,23 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 最新结论：temporal-risk validation 失败，转入 gate × repair 因果诊断（2026-10-12）
+## 最新结论：闭环 gate × repair 诊断完成，优先学习 event gate（2026-10-12）
+
+`risk_controller_diagnosis_20261012_a` 已完成 **20 cells × 11 arms**，原 launcher/Python PID 591432/591435 已退出。220 个 raw hashes、episode outcomes、risk trace→violation、cadence，以及 none/三个 L/L 的 source replay 均复核通过。本次状态检查没有启动新训练。下节的 launch/pending 描述是历史状态。
+
+**关键结果（14 OOD cells，448 episodes/arm）：** none SR/CVR/safe = **87.05/29.24/65.63%**。保持 repair 只换 GT gate：frozen **80.80/8.04/77.46%**，static_s0 **83.71/8.04/78.79%**，sequence_s0 **81.25/8.48/76.79%**；相对 none 的 safe rescue/harm 分别为 **53/0、59/0、50/0**。GRU G/L 相对其 L/L 的 safe delta **+35.49 pp [+31.25,+39.73]**、rescue/harm **162/3**；仅换 repair 评分的 L/G 为 **+6.70 pp [+3.79,+9.60]**、**39/9**。固定网格 paired CI、仅新模型 s0 diagnostic，不是三 seed efficacy 验证。G/G safe=76.12%，不是方法上界。
+
+**解释边界：** 当前最强的 tested lever 是 event detection / gating 及其后续闭环效应；repair 也有影响。GT gate 同时替换风险估计与 learned-quantile threshold 为真 H10>1，未分离 calibration 与 representation；且可访问隐藏 dynamics，不能证明现有 observation context 足以学到同等 gate。GT-gated arms 仍牺牲 **3.35–6.25 pp SR**；GRU G/L 相对 none 的 ΔSR=**−5.80 [−8.48,−3.35] pp**、ΔCVR=**−20.76 [−23.21,−18.30] pp**、Δsafe=**+11.16 [+8.93,+13.62] pp**。不以 privileged 收益通过 learned-verifier transfer gate。
+
+**下一步顺序：**
+1. 先登记并实施 fresh **training-only contact/event coverage pilot**，物理 train ranges 保持当前范围；从可达 near-contact 与 post-repair states 采集原 proposals/八个 scales，记录 collector 干预。按 episode/branches 划分，train-only normalization。报告 safe-contact、R5-unsafe、H10-only-unsafe 的独立 episode 数，不能以相关 windows 充数。生产训练前预登记 coverage 数量与多样性验收条件；当前未声称满足。
+2. Runtime 拆成 **learned event gate → frozen original repair predictor/rule**。监督 `y5=max(r[:5])>1`、`y10=max(r[:10])>1`，保留 anticipation；GT 只用于离线 labels，隐藏物理参数不作为 learned gate 输入。
+3. 同一合格数据先重训 regression-gate controls 隔离 coverage 改动，再分别 ablate event-aware objective；保留 matched static/causal 架构、信息/参数/预算与固定 repair。不混改数据、loss、gate、history 与候选空间。重点看 matched false-trigger rate 下 recall/precision 和 contact-stage calibration，不只看 MAE。
+4. 在独立 dev/calibration 上预登记 threshold-selection rule，再跑闭环 SR/CVR/safe + paired rescue/harm。若可靠 gating 仍伤 completion，再单独测试 acceptance/continuation；若 event discrimination 仍差，检验 observability/history。方法冻结后才做 independent confirmation。
+
+完整记录：[closed-loop factorial completion](exp_record/sequence_risk_20261012.md#completion-update-closed-loop-factorial-diagnosis)。LIBERO baseline feasibility 可独立准备；正式 verifier transfer/hardware 继续后置。
+
+## 已完成：temporal-risk validation 失败与离线因果诊断（2026-10-12）
 
 `sequence_risk_20261012_a` 已完成全部 20 cells × 8 arms；**不推广 static 或 GRU 新模型**。14 OOD cells、每 arm 448 episodes：none SR/CVR/safe = **87.05/29.24/65.63%**，frozen = **84.60/28.79/64.73%**；static 三 seeds 的 safe = **53.57/51.34/53.57%**，GRU = **41.29/36.83/47.32%**。GRU−static 的 paired safe delta 为 **−12.28 [−16.52,−8.04] / −14.51 [−18.75,−10.27] / −6.25 [−10.27,−2.23] pp**；区间条件于固定网格，三个训练 seeds 使用相同 evaluation episodes，不能当作三组独立样本。完整 SR/CVR、rescue/harm、CIs 见 [temporal-risk postmortem](exp_record/sequence_risk_20261012.md)。ID cells 也明显退化，不能只归因于 OOD。
 

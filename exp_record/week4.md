@@ -4,6 +4,18 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 12 Oct — Closed-loop gate × repair diagnosis complete: event gating is the main tested lever
+
+`risk_controller_diagnosis_20261012_a` completed all **20 cells × 11 arms × 32 episodes**; PIDs 591432/591435 exited. Independently checked 220 raw hashes, episode vectors, violations against recorded risk traces, cadence, and none/L/L replay parity. Full tables and next protocol are in [the updated postmortem](sequence_risk_20261012.md#completion-update-closed-loop-factorial-diagnosis).
+
+OOD n=448/arm, SR/CVR/safe (%): none **87.05/29.24/65.63**; G/G **82.59/12.05/76.12**; frozen G/L **80.80/8.04/77.46**, static s0 G/L **83.71/8.04/78.79**, sequence s0 G/L **81.25/8.48/76.79**. Their safe rescue/harm versus none are **47/0**, **53/0**, **59/0**, **50/0**, respectively. Sequence s0 L/G is only **85.49/47.32/47.99**, rescue/harm **6/85**, compared with its L/L **83.71/54.24/41.29**, **6/115**.
+
+Sequence G/L improves safe success over L/L by **+35.49 pp [+31.25,+39.73]**, paired rescue/harm **162/3**; L/G improves by **+6.70 pp [+3.79,+9.60]**, **39/9**. G/L improves versus none by **+11.16 pp [+8.93,+13.62]**, but SR drops **−5.80 pp [−8.48,−3.35]** while CVR drops **−20.76 pp [−23.21,−18.30]**. These are fixed-grid paired 95% intervals and privileged diagnostic effects, not learned-method gains. The G gate replaces estimator and threshold semantics together (exact H10 event >1); it does not isolate calibration from representation. GT has hidden-parameter/full-state access, so learnability from current observations remains open.
+
+**Direction:** prioritize an independently trained event gate with **frozen original repair**, beginning with a fresh training-only contact/event-coverage pilot. Separate R5 and H10 event labels; require meaningful independent episode diversity, retain static/causal controls, and isolate data coverage from event-loss changes. Register calibration/selection rules on disjoint dev/calibration data. Do not conflate lower violation with retained completion or use GT diagnostic gains to claim transfer readiness. No new training job was launched in this completion review; main plan synchronized.
+
+---
+
 ### Update 12 Oct — Temporal-risk experiment complete: strong negative result; factorial diagnosis launched
 
 **Decision:** neither new head is promoted. Full results, uncertainty, integrity checks, data coverage and causal limits are recorded in [sequence_risk_20261012.md](sequence_risk_20261012.md). All 20 cells × 8 arms completed; baseline and frozen anchor reproduce prior episode outcomes. This is validation, not independent confirmation.

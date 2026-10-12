@@ -1,5 +1,45 @@
 # Temporal-risk validation: negative result and controller diagnosis (12 Oct 2026)
 
+## Completion update: closed-loop factorial diagnosis
+
+`risk_controller_diagnosis_20261012_a` has completed **20 cells × 11 arms × 32 episodes**; `summary.json` is complete and launcher/Python PIDs 591432/591435 have exited. Rechecked all **220 raw NPZ hashes, saved episode vectors, violations against recorded risk traces and H10/k5 cadence counts**, plus none and all three L/L arms against the original experiment. All passed. The launch/pending statements below are historical.
+
+Pooled OOD n=448 per arm. Percentages below; rescue/harm and safe deltas are relative to policy-alone. L = learned; G = exact simulator. The G gate explicitly replaces both the risk estimator and its learned-quantile decision rule with the exact physical H10 event `risk > 1`; these results do not isolate model error from threshold semantics.
+
+| Arm | SR | CVR | Safe success | Safe rescue / harm | Δ safe [paired 95% CI], pp |
+|---|---:|---:|---:|---:|---:|
+| None | 87.05 | 29.24 | 65.63 | — | — |
+| G/G | 82.59 | 12.05 | 76.12 | 47 / 0 | +10.49 [+8.04, +12.95] |
+| Frozen L/L | 84.60 | 28.79 | 64.73 | 8 / 12 | −0.89 [−2.90, +0.89] |
+| Frozen G/L | 80.80 | 8.04 | 77.46 | 53 / 0 | +11.83 [+9.38, +14.29] |
+| Frozen L/G | 86.61 | 27.23 | 66.52 | 5 / 1 | +0.89 [+0.00, +2.01] |
+| Static s0 L/L | 82.37 | 39.96 | 53.57 | 2 / 56 | −12.05 [−14.73, −9.37] |
+| Static s0 G/L | 83.71 | 8.04 | 78.79 | 59 / 0 | +13.17 [+10.49, +15.62] |
+| Static s0 L/G | 83.48 | 42.63 | 51.79 | 2 / 64 | −13.84 [−16.52, −11.38] |
+| Sequence s0 L/L | 83.71 | 54.24 | 41.29 | 6 / 115 | −24.33 [−28.12, −20.76] |
+| Sequence s0 G/L | 81.25 | 8.48 | 76.79 | 50 / 0 | +11.16 [+8.93, +13.62] |
+| Sequence s0 L/G | 85.49 | 47.32 | 47.99 | 6 / 85 | −17.63 [−20.98, −14.29] |
+
+Direct safe-success differences versus the corresponding L/L:
+
+- Frozen: G/L **+12.72 pp [+9.82,+15.40]**, rescue/harm **59/2**; L/G **+1.79 pp [approximately 0,+3.57]**, **13/5**.
+- Static s0: G/L **+25.22 pp [+21.43,+29.02]**, **115/2**; L/G **−1.79 pp [−4.91,+1.12]**, **21/29**.
+- Sequence s0: G/L **+35.49 pp [+31.25,+39.73]**, **162/3**; L/G **+6.70 pp [+3.79,+9.60]**, **39/9**.
+
+Intervals remain conditional on this fixed parameter grid, using paired episode bootstrap; this diagnostic ran only training seed 0 for the new architectures. Replacing the gate is the largest tested lever for all three heads. Repair-score correction also helps the GRU, so repair is not irrelevant. Exact repair is not uniformly superior with an unchanged search/acceptance rule, and G/G is not a performance upper bound. Privileged GT uses hidden physical parameters and full simulator state, so it does not prove an equally effective learned gate can be inferred from the allowed one-step observation context.
+
+Completion remains a separate bottleneck: G/L SR is **3.35–6.25 pp below policy-alone**; for sequence G/L, ΔSR is **−5.80 pp [−8.48,−3.35]** and ΔCVR **−20.76 pp [−23.21,−18.30]**. Zero observed safe harms against none on this cohort is not a safety guarantee. These privileged diagnostic gains do not meet the learned-verifier transfer gate or justify hardware transfer.
+
+### Next priority: learn the event gate while freezing repair
+
+1. First perform a fresh **training-only contact/event coverage pilot**, retaining the current physical training ranges. Sample reachable near-contact and post-repair states with explicitly recorded collector interventions, original proposals and the same eight scales. Keep entire episodes/branches in one split and normalizers train-only. Measure independent episode counts for safe-contact, R5-unsafe and H10-only-unsafe events; correlated windows must not substitute for event diversity. Validation audit labels remain diagnosis-only. Choose numerical coverage criteria prospectively in the pilot protocol before production training; none are claimed already satisfied.
+2. Make the runtime interface **learned event gate → frozen original repair predictor/rule**. Supervision distinguishes `y5 = max(risk[:5]) > 1` and `y10 = max(risk[:10]) > 1`, retaining anticipation. Hidden simulator parameters are offline labels only. Separate the gate's decision objective from the repair score's magnitude/ranking objective.
+3. On the same accepted training data, first retrain matched regression-gate controls to isolate coverage effects, then compare an event-aware gate objective with unchanged architectures, information, parameter/budget controls and repair. Static and causal controls remain necessary. Longer history, physics-parameter inference and directional candidates remain separate ablations.
+4. Use disjoint development/calibration episodes to assess event recall at matched safe-trigger rates, precision, calibration and robustness across contact stages. Register threshold-selection rules before inspecting the next closed-loop validation. If boundary discrimination remains weak, test whether the allowed observation context is sufficient rather than endlessly tuning a single threshold.
+5. Evaluate closed-loop SR/CVR/safe success and paired rescue/harm. Gate improvements that sacrifice completion still require a separate acceptance/continuation study; current H10 labels are not policy-conditioned continuation targets. Independent confirmation comes only after a validation-selected method is frozen.
+
+No subsequent training job has been launched by this completion review. The immediate work item is the coverage-pilot and gate-ablation protocol, not a wider GRU or a larger candidate sweep.
+
 ## Decision
 
 Do not promote either newly trained head. All three GRUs are worse than their matched static controls in closed-loop safe success, although their development regression and same-state candidate ranking are better. Stop architecture expansion; isolate event detection/gating from repair and continuation first. This rejects the tested model/data/loss/calibration/controller combination, not every temporal architecture or every verifier approach.
