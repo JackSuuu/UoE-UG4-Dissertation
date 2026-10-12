@@ -203,12 +203,63 @@ def scale_repair(predictor, ctx, chunk, latency=1, beta=1.0, margin=0.8,
     return torch.where(responsive[:, None, None], out, chunk) if abstain else out
 
 
+@torch.no_grad()
+def candidate_repair(predictor, ctx, chunk, beta=1.0, margin=0.8,
+                     mode='discrete', scales=(1.0, 0.85, 0.7, 0.55, 0.4, 0.25, 0.15, 0.05),
+                     execution_horizon=5, latency=1, hard_prefix=False, resp_frac=0.02):
+    """Validation ablation: risk-filtered scales, with optional learned progress.
+
+    Uses the SAME relative-risk target as bisection, not a safety certificate.
+    Unlike legacy bisection, a candidate must actually clear that target;
+    if none does, return the original proposal and report abstention. All
+    candidates are scored explicitly (no monotonicity assumption). Progress
+    is negative ensemble-mean goal distance at the execution horizon, using
+    predicted obs[:, :2] (push only). No GT rollout/hidden parameters are read.
+    Ties prefer the smallest modification. Both modes evaluate eight risks;
+    progress mode additionally uses learned state rollouts. Candidate budget
+    is fixed in the driver, and additional predictor work is not hidden.
+    """
+    if mode not in ('discrete', 'progress'):
+        raise ValueError(f'unknown candidate selection mode: {mode}')
+    if execution_horizon <= 0 or execution_horizon > chunk.shape[1]:
+        raise ValueError('execution_horizon must be within the proposal')
+    scales = tuple(float(s) for s in scales)
+    if not scales or scales[0] != 1.0 or any(not 0 < s <= 1 for s in scales):
+        raise ValueError('scales must start with original (1.0) and lie in (0, 1]')
+    if any(a <= b for a, b in zip(scales, scales[1:])):
+        raise ValueError('scales must be strictly descending')
+    candidates, scores, progress = [], [], []
+    for scale in scales:
+        cand = chunk * scale
+        if hard_prefix:
+            cand[:, :min(latency, chunk.shape[1])] = chunk[:, :min(latency, chunk.shape[1])]
+        candidates.append(cand)
+        scores.append(chunk_score(predictor, ctx, cand, beta)[0])
+        if mode == 'progress':
+            obs_seq, _ = predictor.rollout(ctx['obs'], ctx['obs_prev'], ctx['a_prev'], cand)
+            progress.append(-obs_seq[:, :, execution_horizon - 1, :2].norm(dim=-1).mean(0))
+    score = torch.stack(scores, 1)
+    target = torch.minimum(score[:, 0] * (1 - DROP), score.new_full((), margin))
+    accepted = torch.isfinite(score) & (score <= target[:, None])
+    responsive = (score[:, 0] - score[:, -1]) > resp_frac * score[:, 0].abs()
+    if mode == 'progress':
+        objective = torch.stack(progress, 1)
+        accepted &= torch.isfinite(objective)
+    else:
+        objective = score.new_tensor(scales).expand_as(score)
+    chosen = objective.masked_fill(~accepted, -torch.inf).argmax(1)
+    repaired = torch.stack(candidates, 1)[torch.arange(chunk.shape[0], device=chunk.device), chosen]
+    usable = responsive & accepted.any(1)
+    return torch.where(usable[:, None, None], repaired, chunk), usable
+
+
 class RefCheckVLA:
     """VerifierAdapter (interfaces.py) — reference stand-in."""
 
     def __init__(self, predictor, tau=1.0, beta=1.0, latency=1, commit=5,
                  repair_iters=25, max_vel=1.0, margin=0.8, hard_prefix=False,
-                 use_grad=False, abstain=True, resp_frac=0.02):
+                  use_grad=False, abstain=True, resp_frac=0.02,
+                  repair_mode='bisection', execution_horizon=5):
         self.predictor, self.tau, self.beta = predictor, tau, beta
         self.latency, self.commit = latency, commit
         self.repair_iters, self.max_vel, self.margin = repair_iters, max_vel, margin
@@ -220,6 +271,11 @@ class RefCheckVLA:
         # certifies no scale. A correctness fix, not a knob -- see scale_repair.
         self.abstain = abstain
         self.resp_frac = resp_frac
+        if repair_mode not in ('bisection', 'discrete', 'progress'):
+            raise ValueError(f'unknown repair mode: {repair_mode}')
+        if repair_mode != 'bisection' and (use_grad or not abstain):
+            raise ValueError('candidate repair requires abstention and no gradient branch')
+        self.repair_mode, self.execution_horizon = repair_mode, execution_horizon
         # Interventions where the guard fired. Reported so abstention is visible
         # rather than inferred from SR/CVR, which cannot resolve a change this
         # small on 64 episodes.
@@ -250,6 +306,13 @@ class RefCheckVLA:
         on its own score: one is inert and over-claims, the other is sound. That
         is why the gradient branch is now opt-in.
         """
+        if self.repair_mode != 'bisection':
+            best, usable = candidate_repair(
+                self.predictor, ctx, chunk, self.beta, self.margin,
+                mode=self.repair_mode, execution_horizon=self.execution_horizon,
+                latency=self.latency, hard_prefix=self.hard_prefix, resp_frac=self.resp_frac)
+            self.n_abstain += int((~usable).sum())
+            return best
         cand, cleared = scale_repair(self.predictor, ctx, chunk, self.latency,
                                      self.beta, self.margin,
                                      hard_prefix=self.hard_prefix, abstain=False,

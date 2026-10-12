@@ -90,13 +90,14 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
     rec_max = {k: [] for k in verifiers}
     rec_ctrl = {k: [] for k in verifiers} if ctrl_scales else {}
     gt_chunk, gt_ctrl, step_risk, succ = [], [], [], None
-    probes = []
+    probes, decision_steps = [], []
     g = torch.Generator().manual_seed(seed + 99)
     plan = torch.zeros(B, policy.H, policy.act_dim, device=dev)
     plan_ptr, plan_left = 0, 0                      # uniform across envs: plain ints
     chunk = None
     for t in range(sim.T):
         img = env.render()
+        decision_steps.append(plan_left == 0)
         if plan_left == 0:
             chunk = policy(obs, env.render_rgb() if needs_rgb else img)
             plan = chunk.clone()
@@ -141,6 +142,9 @@ def verifier_rollout(env, sim, policy, params, verifiers: dict, seed=0,
         "gt_chunk_risk": torch.stack(gt_chunk, 1).cpu().numpy(),
         "step_risk": torch.stack(step_risk, 1).cpu().numpy(),
         "success": succ.cpu().numpy(),
+        # Mid-chunk scores use a stale proposal from the previous decision;
+        # they are useful diagnostic traces, not deployable trigger samples.
+        "decision_mask": np.broadcast_to(np.asarray(decision_steps), (B, sim.T)).copy(),
     }
     if ctrl_scales:
         out["ctrl_scales"] = list(ctrl_scales)

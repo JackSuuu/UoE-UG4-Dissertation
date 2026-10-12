@@ -1,5 +1,6 @@
 """Shared helpers for experiment scripts."""
 import argparse
+import hashlib
 import os
 import sys
 
@@ -33,7 +34,10 @@ def base_parser(desc=""):
                    help="override the predictor's mass training range (collection and "
                         "tau calibration only). The evaluation's OOD definition (is_ood) "
                         "deliberately keeps PREDICTOR_TRAIN_RANGES, so pooled-OOD numbers "
-                        "stay comparable across predictors")
+                         "stay comparable across predictors")
+    p.add_argument("--calibration_path", default="",
+                   help="explicit threshold JSON input/output; default: artefact-dir/taus.json. "
+                        "Use an actor-specific path to preserve existing calibration")
     add_component_args(p)
     return p
 
@@ -55,6 +59,46 @@ def setup(args):
           f"policy={args.policy} orbisim={args.orbisim_impl} vision={args.vision_impl} "
           f"verifier={args.verifier}")
     return dev, sim, od
+
+
+def calibration_path(args, od):
+    path = getattr(args, "calibration_path", "") or os.path.join(od, "taus.json")
+    return os.path.abspath(os.path.expanduser(path))
+
+
+def experiment_metadata(args, od, policy, thresholds_path=None):
+    """Persist actual artefact paths/hashes, not just a possibly misleading tag."""
+    from checkvla.verifier import CONTROLLER_PROTOCOL
+
+    paths = {role: os.path.join(od, f"{role}.pt") for role in args.roles}
+    if args.policy == "bc":
+        paths["policy"] = os.path.join(od, "bc_policy.pt")
+    else:
+        paths["policy_head"] = os.path.expanduser(args.vla_head_path)
+    if thresholds_path:
+        paths["calibration"] = thresholds_path
+    if getattr(args, 'legacy_calibration_path', ''):
+        paths['legacy_calibration'] = args.legacy_calibration_path
+    # Source provenance is important while other experiments are being edited.
+    for rel in ('checkvla/reference.py', 'checkvla/verifier.py', 'registry.py',
+                'models/nets.py', 'adapters/openvla_policy.py', 'sims/torch_push.py',
+                'experiments/rq2_eval.py', 'experiments/_paired.py', 'experiments/_common.py'):
+        paths['source:' + rel] = os.path.join(ROOT, rel)
+    artefacts = {}
+    for name, path in paths.items():
+        path = os.path.abspath(path)
+        if not os.path.isfile(path):
+            continue
+        digest = hashlib.sha256()
+        with open(path, "rb") as f:
+            for block in iter(lambda: f.read(1024 * 1024), b""):
+                digest.update(block)
+        artefacts[name] = {"path": path, "sha256": digest.hexdigest()}
+    return {"args": vars(args).copy(), "artifact_dir": os.path.abspath(od),
+            "controller_protocol": CONTROLLER_PROTOCOL,
+            "proposal_horizon": policy.H,
+            "execution_horizon": min(args.chunk_k, policy.H),
+            "artifacts": artefacts}
 
 
 def env_for_cell(args, n, dev, cell):

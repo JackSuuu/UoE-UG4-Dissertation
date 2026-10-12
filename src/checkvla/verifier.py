@@ -23,6 +23,8 @@ import torch
 # re-exported for backwards compatibility
 from checkvla.reference import calibrate_tau, chunk_score, suffix_repair  # noqa: F401
 
+CONTROLLER_PROTOCOL = "matched_open_loop_v2"
+
 
 class Controller:
     def __init__(self, policy, sim, mode="none", verifier=None, commit=5,
@@ -37,6 +39,8 @@ class Controller:
         # chunk_k: steps between policy calls (open-loop chunk execution).
         # All arms use the same value so the comparison is fair. Default: commit.
         self.chunk_k = chunk_k if chunk_k is not None else self.commit
+        if self.chunk_k < 1:
+            raise ValueError("chunk_k must be positive")
         self.needs_img = bool(getattr(policy, "needs_img", False)) or bool(
             verifier is not None and getattr(verifier.predictor, "needs_img", False))
         self.needs_rgb = bool(getattr(policy, "needs_rgb", False))
@@ -117,6 +121,7 @@ class Controller:
         rows = free.nonzero().squeeze(1)
         ctx = self._ctx(env, obs, rows=rows)
         info = {"trig": torch.zeros(B, dtype=torch.bool, device=dev),
+                "decision": free.clone(),
                 "score": torch.zeros(B, device=dev),
                 "applied": None}
         using_plan = self.plan_left > 0
@@ -131,6 +136,10 @@ class Controller:
                              self.instruction)
             chunk = self.chunk
             chunk[rows] = pc.to(chunk.device)
+            # Every arm commits the proposal, including rows that do NOT
+            # trigger. Previously only the none arm cached these rows; learned
+            # and oracle arms silently replanned every step until a trigger.
+            self._set_plan(rows, chunk[rows], steps=self.chunk_k)
 
         if self.mode == "checkvla":
             # Score only the rows that could actually intervene. ``trig`` was
@@ -157,7 +166,7 @@ class Controller:
                 idx = trig.nonzero().squeeze(1)
                 sub = {k: (v[idx] if torch.is_tensor(v) else v) for k, v in ctx.items()}
                 rep = self.verifier.repair(sub, chunk[idx])
-                self._set_plan(trig, rep)
+                self._set_plan(trig, rep, steps=self.chunk_k)
                 # the chunk that will actually be executed, for the repair audit
                 # (kept out of the hot path: the audit itself runs in run_episodes)
                 ap = chunk.clone()
@@ -188,17 +197,11 @@ class Controller:
                     best[ok] = cand[ok]
                     todo &= ~ok
                 best[todo] = chunk[todo] * 0.15
-                self._set_plan(viol, best[viol])
+                self._set_plan(viol, best[viol], steps=self.chunk_k)
                 ap = chunk.clone()
                 ap[viol] = best[viol]
                 info["applied"] = ap
             info["trig"] = viol
-
-        elif self.mode == "none" and rows.numel():
-            # Open-loop chunk execution: run the chunk for chunk_k steps before
-            # replanning. This matches the CheckVLA setting where a VLA executes
-            # action chunks open-loop.
-            self._set_plan(rows, chunk[rows], steps=self.chunk_k)
 
         use = self.plan_left > 0
         # ``chunk[:, 0]`` is only read where ``use`` is False, i.e. exactly the
@@ -241,6 +244,11 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
     viol_any = torch.zeros(B, dtype=torch.bool, device=dev)
     first_viol = torch.full((B,), -1, dtype=torch.long, device=dev)
     first_trig = torch.full((B,), -1, dtype=torch.long, device=dev)
+    first_success = torch.full((B,), -1, dtype=torch.long, device=dev)
+    n_decisions = torch.zeros(B, device=dev)
+    stall_decisions = torch.zeros(B, device=dev)
+    stall_streak = torch.zeros(B, dtype=torch.long, device=dev)
+    previous_distance = obs[:, :2].norm(dim=1)
     n_int = torch.zeros(B, device=dev)
     lat, rec = [], {"risk": [], "score": [], "trig": []}
     audit = {"gt_applied": [], "gt_proposed": [], "mag_ratio": []}
@@ -249,6 +257,17 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
         _sync(dev)
         t0 = time.perf_counter()
         a, info = controller.act(env, obs)
+        decision = info.get('decision', torch.zeros(B, dtype=torch.bool, device=dev))
+        n_decisions += decision.float()
+        if getattr(sim, 'name', None) == 'push' and t > 0:
+            distance = obs[:, :2].norm(dim=1)
+            # Diagnostic only: three consecutive decisions without 1 mm of
+            # goal-distance reduction while outside the success region.
+            stalled = (previous_distance - distance < 0.001) & (distance > sim.success_tol)
+            stall_streak = torch.where(decision, torch.where(stalled, stall_streak + 1,
+                                                            torch.zeros_like(stall_streak)), stall_streak)
+            stall_decisions += (decision & (stall_streak >= 3)).float()
+            previous_distance = torch.where(decision, distance, previous_distance)
         _sync(dev)
         lat.append((time.perf_counter() - t0) * 1e3)
         if audit_repair and info.get("applied") is not None:
@@ -259,6 +278,8 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
             audit["mag_ratio"].append((ap.norm(dim=(1, 2))
                                        / pr.norm(dim=(1, 2)).clamp_min(1e-8)).cpu())
         obs, risk, success = env.step(a)
+        first_success = torch.where(success & (first_success < 0),
+                                    torch.full_like(first_success, t), first_success)
         v = risk.amax(1) > 1.0
         first_viol = torch.where(v & (first_viol < 0), torch.full_like(first_viol, t), first_viol)
         first_trig = torch.where(info["trig"] & (first_trig < 0), torch.full_like(first_trig, t), first_trig)
@@ -276,7 +297,12 @@ def run_episodes(env, sim, controller, params=None, seed=0, T=None, record=False
         "n_interventions": n_int.cpu().numpy(),
         "n_steps": T,
         "latency_ms": np.array(lat),
+        "first_success": first_success.cpu().numpy(),
+        "n_decisions": n_decisions.cpu().numpy(),
+        "stall_decisions": stall_decisions.cpu().numpy(),
     }
+    if hasattr(sim, 'task_cost'):
+        out['final_task_cost'] = sim.task_cost(env.get_state()).detach().cpu().numpy()
     # Abstention rate. Reported because SR/CVR on 64 episodes cannot resolve a
     # change this small: the guard's whole design is that it fires on ~0% of a
     # responsive predictor's interventions and ~100% of an action-blind one's,
@@ -348,4 +374,10 @@ def summarize(res: dict) -> dict:
     }
     if "repair_audit" in res:
         out.update(res["repair_audit"])
+    for key in ("n_policy_calls", "n_policy_rows", "n_render_calls", "n_render_rows"):
+        out[key] = int(res.get(key, 0))
+    if 'final_task_cost' in res:
+        out['final_task_cost'] = float(res['final_task_cost'].mean())
+    if 'n_decisions' in res:
+        out['stall_decision_rate'] = float(res['stall_decisions'].sum() / max(res['n_decisions'].sum(), 1))
     return out

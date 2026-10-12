@@ -47,7 +47,8 @@ def build_policy(args, od, dev, sim):
         from adapters.openvla_policy import OpenVLAPolicy
         return OpenVLAPolicy(
             sim, dev, H=getattr(args, "chunk_k", 5),
-            head_path=getattr(args, "vla_head_path", "~/scratch/openvla_chunk_head.pt"),
+             head_path=getattr(args, "vla_head_path", "~/scratch/openvla_chunk_head.pt"),
+            inference_batch_size=getattr(args, "vla_batch_size", 0),
             action_mode=getattr(args, "action_mode", "planar_head"))
     raise ValueError(f"unknown policy impl {impl}")
 
@@ -76,7 +77,12 @@ def build_verifier(args, predictor, sim, tau=float("inf")):
     kw = dict(tau=tau, latency=getattr(args, "latency", 1), commit=getattr(args, "commit", 5))
     if impl == "ref":
         from checkvla.reference import RefCheckVLA
+        repair_mode = getattr(args, 'repair_mode', 'bisection')
+        if repair_mode == 'progress' and (sim.name != 'push' or not hasattr(predictor, 'rollout')):
+            raise ValueError('progress ablation requires push obs and a learned state rollout')
         return RefCheckVLA(predictor, max_vel=sim.max_vel,
+                           repair_mode=repair_mode,
+                           execution_horizon=getattr(args, 'chunk_k', 5),
                            hard_prefix=bool(getattr(args, "hard_prefix", 0)),
                            use_grad=bool(getattr(args, "use_grad", 0)),
                            abstain=bool(getattr(args, "abstain", 1)), **kw)
@@ -95,7 +101,10 @@ def add_component_args(p):
                         "policy name for any non-bc policy, so a VLA run cannot "
                         "overwrite the bc results")
     g.add_argument("--vla_head_path", default="~/scratch/openvla_chunk_head.pt",
-                   help="Path to trained chunk head (.pt) for action_mode=planar_head")
+                    help="Path to trained chunk head (.pt) for action_mode=planar_head")
+    g.add_argument("--vla_batch_size", type=int, default=0,
+                   help="maximum images per OpenVLA forward; 0 means full batch. "
+                        "Use 8 for expanded episode batches on a 24 GB GPU")
     g.add_argument("--action_mode", choices=["planar_head", "native_head"], default="planar_head",
                    help="planar_head: trained Hx2 chunk head (default); native_head: original 7-D discretised head with explicit mapping")
     g.add_argument("--camera", type=int, default=0,
@@ -136,6 +145,8 @@ def add_component_args(p):
                         "magnitude x0.05, CVR 0.278 vs 0.272 baseline, SR "
                         "-0.057). Set to 0 to reproduce that defect.")
     g.add_argument("--commit", type=int, default=5)
+    g.add_argument('--repair_mode', choices=['bisection', 'discrete', 'progress'], default='bisection',
+                   help='validation-only repair ablation; progress needs push state predictor')
     g.add_argument("--roles", nargs="+", default=list(PREDICTOR_ROLES),
                    help="predictor roles to evaluate")
     return p

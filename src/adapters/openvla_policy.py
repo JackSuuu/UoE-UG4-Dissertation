@@ -45,12 +45,16 @@ class OpenVLAPolicy:
     needs_rgb = True
 
     def __init__(self, sim, device, H=5, head_path="~/scratch/openvla_chunk_head.pt",
-                 instruction=None, action_mode="planar_head", axes=("dx", "dy"),
-                 metres_per_unit=None, control_dt=None, unnorm_key="bridge_orig",
-                 **_ignored):
+                  instruction=None, action_mode="planar_head", axes=("dx", "dy"),
+                  metres_per_unit=None, control_dt=None, unnorm_key="bridge_orig",
+                  inference_batch_size=0,
+                  **_ignored):
         # Validate the cheap arguments before touching a 15 GB checkpoint, so a
         # wrong convention fails in microseconds (and tests run without a GPU).
         self.sim, self.dev, self.H = sim, torch.device(device), H
+        if inference_batch_size < 0:
+            raise ValueError("inference_batch_size must be nonnegative")
+        self.inference_batch_size = inference_batch_size
         self.act_dim = sim.act_dim
         if action_mode not in ("planar_head", "native_head"):
             raise ValueError(f"unknown action_mode {action_mode!r}")
@@ -142,7 +146,11 @@ class OpenVLAPolicy:
         if img is None:
             raise RuntimeError("OpenVLAPolicy needs RGB frames: env.render_rgb()")
         if self.action_mode == "planar_head":
-            x = (self.features(img) - self.mu) / self.sd
+            batch_size = self.inference_batch_size or img.shape[0]
+            # Bound 7B activation memory independently of the number of parallel
+            # episodes. All comparison arms use the same explicit microbatch.
+            features = torch.cat([self.features(part) for part in img.split(batch_size)], 0)
+            x = (features - self.mu) / self.sd
             # Return the head's full chunk, not just the chunk_k steps that get
             # executed: the verifier scores the whole proposed chunk, so its
             # lookahead is the chunk length. Truncating to chunk_k=5 left even the
