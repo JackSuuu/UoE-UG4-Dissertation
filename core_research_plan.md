@@ -40,6 +40,12 @@
 
 ## 最新结论：闭环 gate × repair 诊断完成，优先学习 event gate（2026-10-12）
 
+**当前运行：** `event_gate_coverage_20261012_a` 已通过 `setsid nohup` detached 启动，launcher PID `598105`，日志 `~/scratch/event_gate_coverage_20261012_a.log`。当前执行 coverage collection，gate training 尚未启动；下面的“本次状态检查没有启动新训练”指前次 factorial 完成检查。Pilot 是否通过仍待正式数据。
+
+**下一项实验已实现：event-gate coverage pilot。** 先用 disjoint training/design-dev seeds 验证 event coverage，之后才决定 gate training。Train seeds 74000–74003 共 128 root episodes，dev seeds 75000–75001 共 64 roots；每个 root 配对 none / frozen / 单次 bounded drive / 单次 brake，共 768 trajectories，不能按 768 独立 roots 统计。Physical ranges、full OpenVLA H10/k5/microbatch8、八个 labelled scales 保持不变。Collector pulse 只读当前 goal gap 与预采样常量，GT future labels 不进入 collector 决策；这是训练数据探索，不是扩大 deployment action family。
+
+**预登记 coverage screen：** original proposals、pre-first-violation scope、跨 branches 按 root 去重。Train 至少 immediate/anticipation-only/safe-contact **32/24/64 roots**，dev 至少 **16/12/32 roots**；friction/mass 四个固定 strata 每类至少 train 2/dev 1 root。达不到则修正 collector，再训练不自动触发；达到也只是 pilot feasibility，不是独立测试或部署许可。45 项测试与 CPU end-to-end smoke 已通过。详细 protocol：[event_gate_coverage_20261012.md](exp_record/event_gate_coverage_20261012.md)。
+
 `risk_controller_diagnosis_20261012_a` 已完成 **20 cells × 11 arms**，原 launcher/Python PID 591432/591435 已退出。220 个 raw hashes、episode outcomes、risk trace→violation、cadence，以及 none/三个 L/L 的 source replay 均复核通过。本次状态检查没有启动新训练。下节的 launch/pending 描述是历史状态。
 
 **关键结果（14 OOD cells，448 episodes/arm）：** none SR/CVR/safe = **87.05/29.24/65.63%**。保持 repair 只换 GT gate：frozen **80.80/8.04/77.46%**，static_s0 **83.71/8.04/78.79%**，sequence_s0 **81.25/8.48/76.79%**；相对 none 的 safe rescue/harm 分别为 **53/0、59/0、50/0**。GRU G/L 相对其 L/L 的 safe delta **+35.49 pp [+31.25,+39.73]**、rescue/harm **162/3**；仅换 repair 评分的 L/G 为 **+6.70 pp [+3.79,+9.60]**、**39/9**。固定网格 paired CI、仅新模型 s0 diagnostic，不是三 seed efficacy 验证。G/G safe=76.12%，不是方法上界。

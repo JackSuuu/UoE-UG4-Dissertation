@@ -4,6 +4,18 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 12 Oct — Event-gate coverage pilot implemented with prospective root-level criteria
+
+**Production launched:** `event_gate_coverage_20261012_a`, detached launcher PID `598105`, healthy GPU UUID `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`, `setsid nohup` with stdin `/dev/null`. Log `~/scratch/event_gate_coverage_20261012_a.log`; output under `src/results/push_torch/event_gate_coverage_20261012_a/`. Collection is active; no gate fitting or new efficacy result yet.
+
+Proceeding from the completed factorial diagnosis to a **coverage pilot**, before another gate training run. [Registered protocol](event_gate_coverage_20261012.md): 128 train and 64 design-dev root initializations, each paired across policy-alone, frozen verifier, one bounded drive pulse and one bounded brake pulse. Total 768 trajectories, with branch correlation explicitly grouped by root; same physical ranges, full OpenVLA H10/k5/microbatch8 and eight labelled scales. Pulse decisions use current observed goal gap and seeded constants, not future GT labels. No runtime action-family expansion is claimed.
+
+Screen original proposals before prior violation; require train immediate/anticipation-only/safe-contact coverage in at least **32/24/64 unique roots**, dev **16/12/32**, with all four physical strata represented (minimum 2 train / 1 dev root per event/stratum). Criteria are recorded before production labels and are pilot feasibility thresholds, not efficacy guarantees. Preserve paired initialization/proposal/parameter agreement and exact executed-prefix label checks. Do not train automatically on insufficient coverage. After coverage, separately test event gates with frozen original repair, matching static/causal controls and separating data from loss changes.
+
+**Verification:** three new tests plus 42 existing targeted tests pass (**45 total**); final eight-batch CPU BC smoke completed and correctly rejected insufficient tiny-sample coverage. Files: `collect_event_gate_pilot.py`, corresponding launcher and tests. Production launch status follows in the dedicated protocol record.
+
+---
+
 ### Update 12 Oct — Closed-loop gate × repair diagnosis complete: event gating is the main tested lever
 
 `risk_controller_diagnosis_20261012_a` completed all **20 cells × 11 arms × 32 episodes**; PIDs 591432/591435 exited. Independently checked 220 raw hashes, episode vectors, violations against recorded risk traces, cadence, and none/L/L replay parity. Full tables and next protocol are in [the updated postmortem](sequence_risk_20261012.md#completion-update-closed-loop-factorial-diagnosis).
