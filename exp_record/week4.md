@@ -4,6 +4,22 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 12 Oct — Temporal-risk experiment complete: strong negative result; factorial diagnosis launched
+
+**Decision:** neither new head is promoted. Full results, uncertainty, integrity checks, data coverage and causal limits are recorded in [sequence_risk_20261012.md](sequence_risk_20261012.md). All 20 cells × 8 arms completed; baseline and frozen anchor reproduce prior episode outcomes. This is validation, not independent confirmation.
+
+OOD n=448/arm, SR/CVR/safe (%): none **87.05/29.24/65.63**; frozen **84.60/28.79/64.73**; static s0/s1/s2 **82.37/39.96/53.57**, **84.60/43.08/51.34**, **81.92/38.17/53.57**; sequence s0/s1/s2 **83.71/54.24/41.29**, **80.80/57.37/36.83**, **83.93/47.10/47.32**. Safe rescue/harm versus none: frozen **8/12**, static **2/56, 2/66, 1/55**, sequence **6/115, 7/136, 9/91**. Direct sequence-minus-static safe deltas: **−12.28 [−16.52,−8.04]**, **−14.51 [−18.75,−10.27]**, **−6.25 [−10.27,−2.23] pp** (paired fixed-grid 95% CIs). Training seeds share evaluation episodes; they do not triple independent n. ID cells also regress substantially.
+
+**Diagnosis:** GRU improves development MAE and fixed-state candidate ordering, but its H10 unsafe recall is only 9.68–11.69% on the policy-alone OOD trajectory, versus 26.21% for the frozen anchor. New training has just **20 unsafe originals / 6,144 decisions**, zero H10-only unsafe originals, and **152 unsafe scale candidates / 49,152** across 34 episodes. Development's 100% recall is based on just two R5 / three H10 unsafe originals. This is inadequate evidence for detection readiness, despite matched training budgets.
+
+**Completed offline factorial diagnosis:** on the same 5,572 baseline pre-violation OOD states, replacing only GRU gating with exact H10 risk raises local H10 rescues from **17/17/19 to 107/107/107**; replacing only repair scoring gives **18/18/20**. Exact gate+repair yields 110/248 H10 and 16/131 R5 local rescues under the same bisection rule. These are local counterfactuals, not closed-loop success estimates or global controllability bounds. Responsiveness still permits repairs above their own relative target (51/69/73 GRU cases). Prioritize detection/gating and subsequent trajectory consequences, rather than model width.
+
+**Implementation and verification:** added `analyze_sequence_risk.py`, `diagnose_risk_controller.py`, launcher and five tests; **42 tests pass**, and the new 11-arm CPU BC end-to-end smoke completes. The offline CPU attempt `_a` stopped on strict simulator-label parity; successful `sequence_diagnosis_20261012_b` uses the source CUDA GPU and passes per-cell label agreement. No source checkpoints, thresholds or controller files were edited. Integrity checks include source/data/model hashes, split isolation, exact train-only normalizers, baseline replay, cadence and outcome aggregates.
+
+**Next run launched:** `risk_controller_diagnosis_20261012_a`, launcher PID **591432**, healthy GPU `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`, `setsid nohup` with `/dev/null` stdin. Log `~/scratch/risk_controller_diagnosis_20261012_a.log`. Eleven arms: none, shared exact gate/exact repair, and L/L, G/L, L/G for frozen/static_s0/sequence_s0. Seed 0 is a diagnostic convention, not best-seed selection. All 20 validation cells, n=32, full OpenVLA H10/k5/microbatch8; same six-step bisection/relative target/abstention. Exact gate uses physical risk >1, not a learned score quantile. None/L/L must replay existing outcomes. Privileged diagnosis only; formal factorial results remain pending. Plan synchronized; no new verifier-transfer readiness claim.
+
+---
+
 ### Update 12 Oct — Temporal-risk architecture implemented and matched-data experiment launched
 
 **Task:** address the representation bottleneck first, rather than jointly changing detection, action freedom and feedback. Added `models/sequence_risk.py`, `experiments/validate_sequence_risk.py`, `tests/test_sequence_risk.py` and `scripts/validate_sequence_risk.sh`. Existing weights, thresholds, controller and source-hashed files remain intact.

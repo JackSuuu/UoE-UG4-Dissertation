@@ -38,11 +38,28 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 正在执行：matched-data temporal-risk validation（2026-10-12）
+## 最新结论：temporal-risk validation 失败，转入 gate × repair 因果诊断（2026-10-12）
+
+`sequence_risk_20261012_a` 已完成全部 20 cells × 8 arms；**不推广 static 或 GRU 新模型**。14 OOD cells、每 arm 448 episodes：none SR/CVR/safe = **87.05/29.24/65.63%**，frozen = **84.60/28.79/64.73%**；static 三 seeds 的 safe = **53.57/51.34/53.57%**，GRU = **41.29/36.83/47.32%**。GRU−static 的 paired safe delta 为 **−12.28 [−16.52,−8.04] / −14.51 [−18.75,−10.27] / −6.25 [−10.27,−2.23] pp**；区间条件于固定网格，三个训练 seeds 使用相同 evaluation episodes，不能当作三组独立样本。完整 SR/CVR、rescue/harm、CIs 见 [temporal-risk postmortem](exp_record/sequence_risk_20261012.md)。ID cells 也明显退化，不能只归因于 OOD。
+
+**已核实的原因线索：**
+
+1. **表示 proxy 改善不等于干预有效。** GRU development MAE 与 same-state candidate ranking 更好，但 baseline 固定轨迹上的 H10 unsafe trigger recall 仅 9.68–11.69%，static 为 2.42–3.23%，frozen 为 26.21%。在相同 3,050 个 GT safety-boundary candidate pairs 上，GRU 排序错误 370–443 对，static 702–906 对；固定 GT denominator、prediction ties 单独报告。改善 within-state ordering 不能替代 across-state detection。
+2. **当前新数据没有充分覆盖 hazard。** Train 6,144 个 originals 只有 20 个 H10 unsafe，而且全部 R5 unsafe；原 proposal 中缺失 H10-only anticipation examples。49,152 个 scale candidates 只有 152 unsafe，来自 34 episodes。Dev unsafe originals 仅 H10=3、R5=2，因此 100% dev recall 不足以支持可靠性结论。30% hot-decision sampling 并未解决 event diversity；也没有覆盖新模型干预后的所有 reachable states。
+3. **离线交叉替换优先指向 gate。** 新增 `sequence_diagnosis_20261012_b` 在 baseline pre-first-violation 的 5,572 个 OOD states，保持同一 repair rule，仅把 gate 换成 GT H10>1：GRU H10 local rescues 从 17/17/19 增至 107/107/107；仅把 repair score 换为 GT 则为 18/18/20。GT gate+GT repair 为 110/248 H10、16/131 R5 local rescues；不是闭环收益，也不是全 action space 上界。不能把 GT H10 risk 写成 continuation value。
+4. **算法风险仍在。** GRU 有 51/69/73 次 execution-changing repair 未达到自身 relative target；responsiveness 不等于 accepted safety。同状态 L/L 没有诱发新的 R5 violation，却存在严重闭环 harms，必须检查干预后的状态分布与后续 replanning，不能只靠当前 chunk 的局部指标。
+
+**下一步已实现并启动：** `risk_controller_diagnosis_20261012_a`，policy-alone + frozen/static_s0/sequence_s0 各自 L/L、G/L、L/G + 共享 G/G，共 11 arms × 20 cells × 32 episodes。L/G 分别指 learned/GT gate 或 repair；GT gate 是物理阈值 1，learned gate 保留各自 τ，GT repair 只替换评分，六次 bisection、relative target、floor、abstention、H10/k5/microbatch8 不变。s0 是诊断约定，不挑最佳 seed；正式架构结论仍需其余 seeds。None 和 L/L 必须复现原结果。此项使用 privileged GT 做 component diagnosis，不作为可部署方法或公平 information-budget efficacy 对照。
+
+**停止盲目扩架构：** 先根据闭环 G/L 与 L/G 的 paired outcomes 定位 gate/repair；若 G/G 也弱，再分开检验 candidate family、acceptance 和 continuation。再训练前先登记 train/dev 的独立 hazard episode 与 anticipation coverage 验收，保持 static control；data collection、event loss、gate 与 action freedom 分步改变。当前不进入 verifier 正式迁移，LIBERO baseline feasibility 可独立准备。
+
+**状态与验证：** source/artifact/dataset/checkpoint hashes、episode split、train-only normalizers、baseline replay/cadence/outcomes 全复核通过；42 项测试与 11-arm BC smoke 通过。离线 `_a` CPU 尝试因 simulator 数值 parity 不符停止，`_b` 使用原 CUDA 设备并逐 cell 严格通过；未放宽容差。正式闭环 launcher PID `591432`，日志 `~/scratch/risk_controller_diagnosis_20261012_a.log`，`setsid nohup` detached；本条记录时结果尚待完成。
+
+## 已完成：matched-data temporal-risk validation 配置（2026-10-12）
 
 **不是笼统地把 verifier 做大。** 当前证据支持三个待分别解决的瓶颈：risk 对 action order 的表示不足、intervention 的后续闭环影响、finite scale family 在部分 decision 无解。第一轮仅验证时序表示，尚不改变 runtime trigger/repair 算法、历史长度或 sensing 权限。
 
-**已实现并启动 `sequence_risk_20261012_a`：**
+**已实现并完成 `sequence_risk_20261012_a`：**
 
 - `src/models/sequence_risk.py`：static MLP 与 causal GRU risk ensembles（E=5）。Static hidden=157，共 269,265 trainable parameters；GRU hidden=128，共 269,450，差约 0.07%。相同 obs / obs_prev / a_prev context、normalizers、两维物理 risk outputs；GRU 的第 j 步仅依赖 context 和前 j 个动作。两者共用 frozen state/progress dynamics。原 checkpoint 保留作 anchor。
 - `src/experiments/validate_sequence_risk.py`：fresh collection → 同数据训练 → independent calibration → audit same-state validation → 全网格闭环 validation。12×32=384 training episodes（seeds 71000–71011），4×32=128 development（72000–72003），4×32=128 calibration（73000–73003）。参数分布保留现有 predictor training ranges：friction multipliers [0.5,1.5]、mass [0.6,1.6]；没有顺带扩大 OOD coverage。
@@ -51,7 +68,7 @@
 - 每个新 head 独立用 calibration 的 safe original H10 decision scores 校准 α=0.05。完整模型仍是 frozen OpenVLA-7B + H10 DAgger×2 head、forward microbatch=8、chunk_k=5；bisection 原规则保持一致。此轮 candidate dataset 固定八个 scales；bisection runtime 仍使用原六次连续 search，插值泛化是两模型共有的额外测试，不冒充离散执行。
 - Offline validation 在原 audit 的 baseline/frozen trajectories 上同状态比较 prefix/H10 detection、safe-trigger rate、candidate ranking；这部分仅 evaluation，不参与拟合。之后 20 cells×32 episodes，baseline、frozen anchor、3 static、3 GRU 共 8 arms；none/frozen 必须逐 episode 重现原 validation。报告各 training seed 的 SR/CVR/safe、paired rescue/harm、fixed-grid CI 与 sequence-vs-static 直接配对差值。16000+ confirmation 和 46000+ final-test 不用于选择。
 
-**验证与运行状态：** 8 项新测试 + 29 项原 audit/cadence/candidate tests 全通过；CPU end-to-end BC smoke 完成；offline smoke 的 frozen prefix counts 精确复现 59 true triggers / 86 misses / 337 safe-proposal triggers。Smoke 不构成架构有效性证据。正式实验 detached launcher PID `587112`，日志 `~/scratch/sequence_risk_20261012_a.log`，输出 `src/results/push_torch/sequence_risk_20261012_a/`，GPU UUID `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`；启动时尚无正式训练/evaluation 结果。
+**验证与运行状态：** 8 项新测试 + 29 项原 audit/cadence/candidate tests 全通过；CPU end-to-end BC smoke 完成；offline smoke 的 frozen prefix counts 精确复现 59 true triggers / 86 misses / 337 safe-proposal triggers。Smoke 不构成架构有效性证据。正式实验原 launcher PID `587112` 已退出，`status.json` 为 `complete=true`；日志 `~/scratch/sequence_risk_20261012_a.log`，输出 `src/results/push_torch/sequence_risk_20261012_a/`，GPU UUID `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`。负结果与后续诊断以上一节为准。
 
 **结果如何决定下一步：** 若 GRU 只降低 MAE、未改善 same-state discrimination/ranking 或闭环 safe success，不能升为默认；若 same-state 明显改善但闭环仍失败，下一项固定模型测试 intervention gate/continuation，而非立刻增宽网络；若 static 与 GRU 都改善且差异不明，则主要收益可能来自 policy-matched data 或 risk/state 解耦，不能声称 temporal novelty；若均失败，检查 coverage、隐藏 dynamics/history 与候选可控性。
 
