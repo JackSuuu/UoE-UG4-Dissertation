@@ -38,6 +38,24 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
+## 完整 audit 后的 cause-first gate（2026-10-12）
+
+**状态更新：** `verifier_audit_20261012_a` 已完成全部 20 cells / 80 arm replays，`summary.json` 为 `complete=true`。全部 outcomes、cadence 和执行 prefix risk 检查通过；此前“audit 正运行”段落为当天历史状态。CPU attribution artifact：`src/results/push_torch/audit_attribution_20261012_a/{analysis.json,report.md}`。这不是新的 efficacy 实验，validation headline 不变。
+
+**主要证据（14 OOD cells，448 episodes/arm；以下以 bisection 为主）：**
+
+- **Detection 与可控性并存。** 145 个 unsafe five-step proposals 中触发 59、漏检 86；86 次漏检仅 14 次存在安全 scale，72 次八个候选均 unsafe。129 个实际首次违规 episode 中，107 个在该 decision 没有安全 scale，22 个有；后者分为 14 次漏检和 8 次触发后仍 unsafe。不能把“无安全 scale”写成任意动作均无解，更不能将这类局部计数当作新算法的全局收益上界。
+- **H10 不能替代执行标签。** H10 unsafe proposals 为 265，触发 78、漏检 187；95 次漏检存在安全 scale。Step 6–10 是不 replanning 的 counterfactual，不能把 H10 miss 数直接当实际 episode recall。396 次触发中有 337 个原 proposal prefix-safe，其中 318 个 H10 也 safe；prefix-safe lookahead trigger 不自动等于误干预或 causally harmful。
+- **Harm 是后续安全损失，而非单纯 stall。** Bisection paired rescue/harm = 8/12；12 个 harms 全部 violation，只有 3 个同时 success loss。12 个首次 execution divergence 都与 baseline state/proposal 一致、原 H10 safe、修复后 prefix safe，但在 5–8 control steps 后首次违规。Discrete/progress 的 9 个 harms 同样全部 safety loss，仅各 2 个同时 success loss。局部风险下降不能证明整条闭环轨迹更安全；当前不能宣称减速是唯一原因。
+- **时序表达有明确限制，但尚无净收益因果证据。** Bisection 的 11,186 个顺序探针 score 全部不变，1,838 个真实 H10 safety labels 改变。探针相关且可能 off-policy；用于约束 architecture hypothesis，不作为新增 runtime candidates。
+- **不能把主要瓶颈直接归为 progress ranking。** Bisection 的 learned-accepted、GT-prefix-safe 候选中，2,208 个 decision 有 ≥2 个可比选项，只有 9 个的 predicted-progress choice GT regret >1 mm；triggered 子集为 9/297。这是经过 filter/GT safety 条件化后的局部 goal-distance proxy，不证明总体 progress 准确或 task success 可预测。
+
+**当前最小诊断实验：** 已 detached 启动 `intervention_branch_20261012_a`。只用原 validation 的 bisection arm，覆盖其全部 12 harms + 8 rescues（8 cells），在每个 episode 首次 execution-changing intervention 时跳过一次修复，之后仍运行同一个 frozen verifier。所有 32 rows 保留；先做整 batch 未修改 replay control，再验证 branch 前及未选中 rows 一致、H10/k5/microbatch 8 不变。Selection 使用 hindsight outcome 是离线诊断，不是可部署的 skip rule，结果不能写作新方法 SR。日志 `~/scratch/intervention_branch_20261012_a.log`；尚不把 launch 当 completed 证据。
+
+**分支结果后的选择条件：** 如果跳过首个干预能反转 harms，需要先设计能降低不必要干预的 temporal/rollout-conditioned risk ablation，并同时检查 rescues 是否损失；若 harms 不反转，检查后续 interventions/接触轨迹再归因。若某些 case 到当前 decision 已无安全 scale，先用 zero-action / bounded retreat 等离线 witness 或更早 decision branches 区分 finite-action-set 不足与 intervention timing，不能直接上线更大 candidate set。Contact history、directional repair 与 inner-loop 改动暂不合并实施。
+
+**防止数据泄漏：** Audit 的 validation labels 只用于诊断与设计选择，不进入拟合。若 temporal risk ablation 获批，另行生成 disjoint training-seed trajectories/candidates；旧 formulation 与新架构用相同 training-only data、coverage 和预算训练，在独立 calibration 上重新定阈值，再在未用于训练的 validation 上比较。Confirmation 16000+ 与 final-test 46000+ 不用于调参。History length、risk head、repair freedom 与 cadence 逐项隔离。
+
 ## Week 4 当前结论与优先级（2026-10-12；覆盖下面启动状态）
 
 **Audit 已启动（本日后续更新）：** `scripts/audit_verifier_validation.sh` 复放原 candidate validation 的全部 20 cells × 32 episodes × 4 arms；不改权重、τ 或 controller，不使用 confirmation/final-test 做选择。记录每个 decision 的 5-step/H10 真实与预测 risk、candidate ranking/progress、same-state repair counterfactual，以及动作顺序探针。逐 episode outcomes、cadence 和实际执行 prefix risk 必须与原结果一致，否则停止。保留 seated/zero-action stages；原因未能唯一确定时继续做局部/整条轨迹 counterfactual，不先认定需要新 head。日志 `~/scratch/verifier_audit_20261012_a.log`，执行记录见 `exp_record/week4.md`。下文“无进程”指此前结果检查时的状态。

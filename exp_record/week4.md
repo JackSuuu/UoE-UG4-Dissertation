@@ -4,6 +4,43 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 12 Oct — Full audit completed; CPU attribution and skip-one-intervention branch launched
+
+**Completed:** `verifier_audit_20261012_a` finished all 20 cells × 32 episodes × four arms (80 raw NPZs). `summary.json` has `complete=true`; every arm replay matched source outcomes/cadence and actual five-step prefix risk. The original detached processes exited normally. Previous entries saying the audit is active describe earlier checks, not its latest state.
+
+**Reproducible attribution:** new CPU-only `src/experiments/analyze_verifier_audit.py` requires a completed full-grid validation audit and verifies the source hash, raw episode outcomes and prefix/live labels. It hashes all raw inputs and emits stage-conditioned decision diagnostics, one witness per first actual violation, terminal harm/success-loss/safety-loss flags, and first execution divergence from the paired baseline. Output: `src/results/push_torch/audit_attribution_20261012_a/analysis.json` and `report.md`. Raw artifacts remain local/ignored. No predictor fitting, threshold search or deployment/controller change occurred.
+
+**Pooled OOD outcomes reproduced, n=448/arm:**
+
+| arm | SR % | CVR % | safe success % | paired safe rescue / harm | safe delta pp [fixed-grid paired 95% CI] |
+|---|---:|---:|---:|---:|---|
+| none | 87.05 | 29.24 | 65.625 | — | — |
+| bisection | 84.60 | 28.79 | 64.73 | 8 / 12 | −0.89 [−2.68,+0.89] |
+| discrete | 84.15 | 29.24 | 64.73 | 5 / 9 | −0.89 [−2.46,+0.67] |
+| progress | 84.82 | 29.02 | 65.18 | 7 / 9 | −0.45 [−2.23,+1.34] |
+
+Intervals are copied from the frozen validation source, not newly inferred from correlated audit decisions. This replay is not independent efficacy evidence.
+
+**Local five-step evidence (own arm trajectories, all stages before first violation including its decision):** bisection has 145 unsafe proposals, 59 true triggers and 86 misses. Of the misses, 14 have a truly safe tested scale and 72 do not. Triggered execution still unsafe with a safe scale available: 8; without one: 35. Its 129 actually violating OOD episodes partition at their first violating decision as 14 missed-with-safe-scale, 72 missed-without-safe-scale, 8 triggered-with-safe-scale and 35 triggered-without-safe-scale. Thus 107/129 have no safe choice among the eight tested scales at that boundary. This is not proof that all actions are unsafe, nor an end-to-end upper bound for a new detector: earlier decisions could alter the reachable state. Discrete/progress first-violation categories are 14/73/6/38 and 14/73/5/38 respectively, in the same order.
+
+**Lookahead and trigger mismatch:** bisection H10 labels have 265 unsafe proposals, 78 true triggers and 187 misses; 95 misses have a safe scale. Its 396 scoped triggers include 337 prefix-safe proposals, of which 318 are also H10-safe. Prefix-safe triggers may legitimately anticipate beyond step five; full-H safety is still only continuing that chunk without later replanning. Neither category alone identifies causally harmful intervention. Bisection risk-ranking inversions are 18,712/92,045 comparable prefix candidate pairs (~20.3%); pairs are correlated local samples, not 92,045 independent trials.
+
+**Paired trajectory witnesses change the diagnosis:** all 12 bisection safe-harm episodes have later violations; only three also lose terminal success. All nine discrete and nine progress harms have later violations; only two in each arm also lose success. At every harm's first execution-changing intervention, state/proposal match baseline, the original H10 proposal is GT-safe, and the applied prefix is GT-safe. The first actual violation follows 5–8 control steps later. The intervention increases five-step goal distance by roughly 10–42 mm in these harms. This is compatible with altered contact/replanning trajectories, not a demonstration that slowing down uniquely caused the violation. Zero local induced-prefix hazards does NOT exonerate later harm. For bisection rescues, 7/8 first-divergence original H10 proposals are unsafe despite 7/8 having safe prefixes; useful anticipation and unnecessary intervention must be distinguished, not simply disabled together.
+
+**Representation and progress:** all 11,186 bisection order-probe pairs preserve predicted full-H max score; 1,838 change true safety label, and 3,605 change true risk by >0.1. These are correlated reversed/half-shifted offline chunks, possibly off-policy. They establish order-insensitivity, not its contribution to safe-success loss. Among ≥2 learned-accepted AND GT-prefix-safe scales, >1 mm predicted-choice progress regret occurs in 9/2,208 bisection decisions, 5/2,181 discrete decisions and 7/2,228 progress decisions. The triggered subsets are 9/297, 5/302 and 6/329. This conditional goal-distance result does not vindicate overall progress prediction or task-completion semantics; it offers little support for making a larger progress head the immediate fix.
+
+**Next minimal counterfactual, launched but not yet completed:** `src/experiments/audit_intervention_branch.py` and `scripts/audit_intervention_branch.sh` select ALL bisection pooled-OOD paired harms/rescues (12+8 rows across cells 0,1,2,3,7,12,15,19). Skip exactly its first execution-changing intervention per selected episode, then continue the original frozen verifier. Preserve the whole original 32-row batch, renderer/appearance generation, forward microbatch 8 and H10/k5; first reproduce the unmodified whole-batch replay per cell and require unaffected-row outcomes and pre-branch state/proposal/plan agreement. The diagnostic updates cached plan, current action and previous-action history together without changing pointers/cadence. Hindsight outcome selection is offline only: no outcome label or simulator future enters a deployment rule. Results will measure harm reversibility and lost rescues under this particular one-shot intervention, NOT a deployable method's SR.
+
+**Detached launch:** launcher PID `584133`; healthy GPU UUID `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`; launched with `setsid nohup` and stdin `/dev/null`, offline model loading and CPU thread caps. Log `~/scratch/intervention_branch_20261012_a.log`; output `src/results/push_torch/branch_intervention_branch_20261012_a/`. Startup reached CUDA setup/model loading; version warnings alone are not a replay failure. Branch efficacy/attribution claims await checked per-cell/final outputs.
+
+**Subsequent partial check:** Python PID `584136` remains active; cells 0 and 1 completed (2/8), with unmodified replay controls and unselected-row parity passing. Among these cells' three original harms, skipping the first divergent intervention restored safe success in two; the third avoided violation but still failed completion. All five original rescues in these cells lost safety (and hence safe success) after the skip. These hindsight-selected local branch cases are not independent efficacy trials or the final result. They already rule out treating blanket intervention suppression as a demonstrated fix. Full result still pending.
+
+**Tests:** seven new attribution/skip-branch tests (including full synthetic control/branch, unselected-row parity, exactly-once skip and action-history/pointer semantics), seven existing audit tests, five cadence tests and ten candidate/pairing tests pass: 29 total.
+
+**Design gate:** first distinguish unnecessary safe-lookahead intervention from useful anticipation via the paired branches. Then select one minimal risk/temporal or timing/repair ablation, not a combined redesign. If no safe scale is present, test zero/retreat or earlier-decision offline witnesses before declaring a richer action family necessary. Any training uses new disjoint training-seed data; audit validation labels are not training targets. Matched-data old/new formulation comparisons and independent recalibration are required; confirmation/final-test remain excluded from tuning. The authoritative Chinese update is in `core_research_plan.md`.
+
+---
+
 ### Update 12 Oct — Research focus: architecture-first precision contact in everyday manipulation
 
 **User/supervision direction:** focus on fine, contact-sensitive work grounded in everyday life, rather than only an industrial insertion example or a broad kitchen composite task. The contribution remains the differentiable physics verifier and constrained local-repair architecture. Larger MLPs, more data, wider physics ranges or more candidates alone are not the main research objective.
