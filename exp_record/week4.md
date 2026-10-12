@@ -1,0 +1,93 @@
+# Week 4 (12–18 Oct 2026) — Verifier reliability before simulated-arm transfer
+
+Newest entry at the top. Index and conventions: [README.md](README.md).
+
+---
+
+### Update 12 Oct — Research focus: architecture-first precision contact in everyday manipulation
+
+**User/supervision direction:** focus on fine, contact-sensitive work grounded in everyday life, rather than only an industrial insertion example or a broad kitchen composite task. The contribution remains the differentiable physics verifier and constrained local-repair architecture. Larger MLPs, more data, wider physics ranges or more candidates alone are not the main research objective.
+
+**Candidate shortlist, not verified benchmark IDs:** gently close a drawer/cabinet to its seated endpoint; accurately place a cup/bottle into a narrow holder/storage slot; align and seat a storage-container lid; press an appliance button to its effective travel without over-pushing. First investigate the drawer/closure and constrained-placement candidates, then choose only one with credible geometry/contact labels, compatible policy/control conventions and a baseline able to reach the contact stage. Lid compliance/snap-fit, airtight sealing and appliance functionality are not assumed to exist. Peg/connector insertion may support mechanism stress testing; daily-life contact manipulation should anchor the eventual demo. Kitchen composite tasks remain later options.
+
+**Architecture questions:** (1) Can the risk representation distinguish action order and anticipate future contact rather than repeatedly scoring current-state actions? (2) Is current motion context sufficient to infer dynamics, or is longer motion/contact feedback history required? (3) Is the finite repair family expressive enough to align, retreat and resume, or does it merely brake? (4) Does the progress signal track actual completion/contact stage rather than just goal distance? (5) Are intervention opportunities too coarse for the contact dynamics, and what matched control/feedback baselines are needed if the architecture changes cadence?
+
+**Partial audit evidence, explicitly limited:** the first full replay cell (friction 0.2 / mass 0.5, n=32) matched original outcomes and prefix risks for all four arms. In the bisection arm, 448 pre-first-violation action-order probe pairs preserve the learned full-H score within 1e-5; 89 change the true full-H violation label, and 158 change true risk by more than 0.1. At the same cell, 23/25 GT-unsafe five-step proposals did not trigger, with 2 true triggers and 12 triggers on prefix-safe proposals. Prefix-safe triggers can still be legitimate lookahead anticipation, not automatically false alarms. These decisions/probes are correlated samples from one cell, not independent trials or the pooled audit result. The reordered chunks may be outside normal policy proposals. They demonstrate a representational limitation and detection mismatch to investigate, not that this explains all failures. At the latest log check, cells 0 and 1 had all four replay arms saved and cell 2 was partially saved; the audit was still running, not complete.
+
+**Current versus proposed architecture:** current state/action history is one step; force/torque history is not a predictor input. Current repair is scale-based, with gradient and hard-prefix branches off. The intended design space is `VLA intent/proposal → observed motion/contact history → temporal physics verification → constrained local repair → execution → new feedback`. Longer history, direct chunk-risk prediction, directional/retraction repair, contact-stage progress and faster feedback are hypotheses, not implemented components or guaranteed improvements. Simulator force labels are not evidence of real sensor feedback. EE pose and object/contact sensing must be specified separately.
+
+**Audit-to-design gate:** finish the frozen validation replay; organize findings as mechanism, supporting evidence, unresolved alternatives and smallest isolating ablation. If existing safe candidates are misranked, address prediction/ranking; if the finite set has no useful candidate, investigate a richer but bounded repair family; if temporal representation is implicated, compare a temporal formulation against the existing formulation retrained on identical data. Use targeted trajectory counterfactuals where local witnesses do not explain final harm/rescue. Do not launch all changes together or default to scale-up.
+
+**Fairness and task validity:** retain H10/chunk_k=5 for the active audit and current arms. Future inner-loop/feedback changes require matched information and control opportunities, plus an appropriate classical feedback/impedance baseline. Declare privileged state access, keep true mass/friction hidden from runtime prediction, and control data/candidate budgets. Validate simulator contact/solver behavior and task-native success/risk definitions before imposing thresholds. Report SR/CVR/safe success, paired harm/rescue and uncertainty, supplemented by alignment/travel/contact-stage metrics where valid. Benchmark task IDs, checkpoint/action adapters and dependencies remain unverified; public tasks and custom precision variants must be labelled separately.
+
+**Plan synchronization:** the authoritative Chinese scope/design section is at the top of `core_research_plan.md`; this English record preserves the decision and evidence. Continue the active audit without changing its source artifacts or thresholds. No new training, algorithm switch, task implementation, physical robot work or verifier transfer is authorized/claimed by this direction update. The documentation push is separate from pending local implementation changes.
+
+---
+
+### Update 12 Oct — Frozen validation decision replay audit launched; no algorithm changes
+
+**Purpose:** identify evidence for specific failure mechanisms before designing another algorithm. This is an offline audit, not a new efficacy sweep, training run, threshold search, or benchmark transfer. All existing weights, calibration files and controller logic remain unchanged.
+
+**Source and scope:** replay `rq2_candidate_validation_20261009_a.json` only (validation seeds 26000–26019, n=32/cell, all 20 cells, all original 32 episode rows). Arms are policy alone, bisection, discrete repair and progress repair. Preserve full OpenVLA `llm` H10 DAgger×2, original forward microbatch 8, and execution horizon 5. Confirmation/test sources are explicitly rejected by the audit script. Replay all rows, including seated/zero-action stages, rather than subsetting interesting episodes and inadvertently changing initial-state/appearance generation or inference batch math.
+
+**Implemented:** `src/experiments/audit_verifier.py` and `_audit.py`. At actual policy decisions, snapshot current state, observation history, proposal, selected plan and trigger. For each fixed candidate scale, record learned per-step risk, learned goal-distance prediction, functional simulator per-step risk and true goal distance at steps 5 and 10. Record the applied chunk identically. GT future labels are offline only and never enter Controller or candidate selection. Simulator state equality is checked after labelling; prefix GT labels must reproduce actual executed risks. Each replay must match the original episode success, violation, first violation/trigger/success, intervention counts and final task costs, plus policy-call cadence. A mismatch fails the run rather than being silently treated as evidence.
+
+**Diagnostic questions:** decision-level detection confusion over prefix vs lookahead; misses where a truly safe scale exists; selected unsafe repairs despite an available safe scale; no safe option within the finite scale set; originally safe proposals made unsafe by repair in a same-state local counterfactual; predicted acceptance versus true safety; candidate risk-order inversions; learned-progress regret among comparable candidates. Primary summary counts use decisions up to first episode violation and retain both seated and unseated stages; all later records remain in NPZs for inspection. Safety after five executed steps does not imply safety under later replanning. These categories overlap and are not exclusive full-episode causal explanations.
+
+**Temporal-order probe:** reverse and circularly shift the proposed action sequence offline, retaining its action multiset. Test whether the full-H learned score remains unchanged while true risk or its violation label changes. The current risk formulation's full-H score is order-invariant by construction (also checked by a unit test); frequency and importance on these trajectories still require audit labels. These diagnostic probes are not proposed runtime repairs and may be outside the policy's normal proposal distribution. A witness demonstrates a representational limitation, not by itself that this limitation caused a particular original-policy failure.
+
+**Outputs:** per-cell/per-arm compressed NPZs contain raw state/context/action/risk/progress traces, outcome timing, and paired safe-harm/rescue flags. Partial cell and run summaries are saved atomically. Completed summary reports pooled OOD counts with explicit decision scope; audit runtime is not reported as policy latency. Artifact/source hashes are checked before replay; source result and new audit code hashes are recorded. Diagnostic tolerances (not control constraints) are recorded: risk pair-ranking tie tolerance 1e-4, order-score tolerance 1e-5, true order-risk difference 0.1, progress regret 1 mm. Do not tune runtime thresholds from these post-hoc labels.
+
+**Checks:** seven new audit CPU tests pass, as do the existing five cadence and ten candidate/pairing tests (22 total). A one-cell, five-arm BC implementation replay (n=4) completed, reproduced source outcomes and actual prefix risks, and saved raw/pooled diagnostic outputs. It is a pipeline check, not OpenVLA causal evidence. Python compilation and shell syntax checks passed.
+
+**Launch:** `scripts/audit_verifier_validation.sh`, run `verifier_audit_20261012_a`, detached with `setsid nohup ... < /dev/null`, offline model loading, healthy GPU UUID `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`. Launcher PID 579005, Python PID 579008. Log `/home/ami/scratch/verifier_audit_20261012_a.log`; outputs `src/results/push_torch/audit_verifier_audit_20261012_a/`. At the startup check the process was alive and model initialization warnings were present; no completed OpenVLA replay cell had yet been observed.
+
+**Next:** require replay agreement, inspect pooled diagnostics and matched harm/rescue cases, then use specific counterfactual replay branches if a full-episode attribution remains ambiguous. Only afterwards choose the smallest relevant algorithm ablation. Direct chunk-risk prediction, longer history and recovery are hypotheses, not preselected solutions. Reserved final-test seed base 46000 remains unused.
+
+---
+
+### Update 12 Oct — Expanded confirmation shows only a small gain; candidate repair has no established net benefit
+
+**Status:** both detached jobs completed, final JSON files have `complete=true` and 20/20 cells, and neither launcher nor evaluation process remains active. Checked actual checkpoint/calibration/source SHA-256 against current files: no missing or changed artifacts. All arms use `matched_open_loop_v2`, full OpenVLA-7B `llm` H10 DAgger×2, `chunk_k=5`. Cadence is 16 policy calls and 1,024 policy rows per cell for confirmation, 16 calls and 512 rows for candidate validation. No predictor retraining took place in these experiments.
+
+#### 1. Independent fixed-method confirmation
+
+Result: `src/results/push_torch/rq2_verifier_confirmation_20261009_a.json`. Seeds 16000–16019, n=64/cell; 1,280 episodes/arm on the full grid, 896 episodes/arm over 14 pooled OOD cells.
+
+| Arm | SR | CVR | Safe success | Paired safe delta vs none (percentage points; 95% CI) | Safe rescue / harm |
+|---|---:|---:|---:|---:|---:|
+| Policy alone | 84.71% | 31.92% | 62.28% | — | — |
+| Physics, frozen decision taus | 82.92% | 28.35% | 63.50% | +1.23 [+0.11, +2.46] | 21 / 10 |
+| Physics, frozen legacy taus | 83.48% | 28.35% | 63.84% | +1.56 [+0.45, +2.68] | 20 / 6 |
+| Finite-horizon GT shadow reference | 81.36% | 8.71% | 77.01% | +14.73 [+12.72, +16.85] | 133 / 1 |
+
+These are within-cell paired-episode bootstrap intervals (4,000 draws) conditional on this fixed parameter grid. They are not guarantees on new tasks/OOD distributions, nor a correction for multiple comparisons. The learned verifier has a small positive signal in confirmation, not the large robust improvement needed for the intended contribution. Decision-tau physics also reduces task success by 1.79 pp (paired SR CI −3.24 to −0.33 pp). The earlier n=8 signal (+3.6–4.5 pp safe success) overestimated the gain observed here.
+
+**Bands (descriptive/post-hoc):** at friction 0.2, safe success is baseline 4.30%, physics decision-tau 8.59%, GT shadow 42.19%; learned CVR remains 83.59%. On the other ten OOD cells, baseline and decision-tau physics both achieve 85.47% safe success (7 rescues / 7 harms), versus GT shadow 90.94%. In the friction 1.8 / mass 2.0 cell, decision-tau physics lowers safe success from 76.56% to 68.75%, with 0 rescues / 5 harms; CVR rises from 18.75% to 26.56%. Do not tune thresholds by these true parameter labels.
+
+**Trigger timing:** among 254 violating OOD episodes in the decision-tau learned arm, 157 (61.8%) violate before their first trigger or never trigger; 34 never trigger. This is a trajectory-level timing observation, not a decision-level recall estimate and not proof that prediction error is the only cause. Common cadence, forecast horizon, score calibration and modeled action controllability must be disentangled by replaying the preceding policy decisions. Mean GT risk reduction on triggered chunks is 34.7%, but that local audit does not imply prevention of the first episode violation. Triggered-chunk risk averages are also selected on the verifier's trigger and cannot establish global detection precision.
+
+#### 2. Candidate-repair algorithm validation
+
+Result: `src/results/push_torch/rq2_candidate_validation_20261009_a.json`. Seeds 26000–26019, n=32/cell; 640 episodes/arm on the full grid, 448 pooled OOD. Fixed original predictor and decision-only taus.
+
+| Arm | SR | CVR | Safe success | Paired safe delta vs none (pp; 95% CI) | Safe rescue / harm |
+|---|---:|---:|---:|---:|---:|
+| Policy alone | 87.05% | 29.24% | 65.63% | — | — |
+| Current bisection | 84.60% | 28.79% | 64.73% | −0.89 [−2.68, +0.89] | 8 / 12 |
+| Discrete minimal modification | 84.15% | 29.24% | 64.73% | −0.89 [−2.46, +0.67] | 5 / 9 |
+| Risk-filtered learned progress | 84.82% | 29.02% | 65.18% | −0.45 [−2.23, +1.34] | 7 / 9 |
+
+Progress vs bisection adds 0.45 pp safe success (5 rescues / 3 harms; independently recomputed paired CI −0.67 to +1.57 pp). Progress vs discrete adds 0.45 pp (only 2 extra safe successes, no paired harms); this is not a substantive demonstrated improvement. All three methods remain below the policy-alone point estimate. Progress increases the local mean GT risk reduction from 33.2% to 38.1%, but that does not translate into positive overall safe success. Stall decision rates are 6.77% baseline, 7.52% bisection, 7.56% discrete, 7.46% progress: no demonstrated stall reduction. Current stall is a diagnostic proxy, not a cause attribution.
+
+At friction 1.8 / mass 2.0, baseline safe success is 93.75%, bisection 75.00%, discrete/progress 84.38%. Repeated harm in this band makes it a useful validation replay target, not a license for a cell-specific runtime rule. Results from the two seed sets must not be compared as though their baseline difficulty were identical.
+
+#### 3. Week 4 priorities — proposed, not yet launched
+
+1. **Decision-level replay audit on validation trajectories.** Replay decisions before first violations, false triggers on GT-safe proposals, and matched harm/rescue trajectories. For the same eight candidate scales, compare learned vs simulator risk over both the actual five-step execution prefix and ten-step lookahead. Audit risk ranking, predicted vs true progress, whether a candidate actually meets its target, and whether the best available scale can prevent violation. Keep privileged GT labels offline only. Do not conclude that progress drift, late detection, or stall is the sole bottleneck from aggregate rates.
+2. **If the audit confirms temporal-risk mismatch, train a direct chunk-risk head.** Current `OrbiSimDynamics.rollout` computes risk from the same current context for every proposed action, while its state rollout is autoregressive. Thus H10 does not by itself establish correct future contact anticipation. Use simulator-labelled full candidate chunks to predict per-step risk directly from current motion context plus the complete action sequence, avoiding state-rollout drift in the risk path. Retain differentiability and hidden friction/mass; distinguish executed-prefix and lookahead labels. Compare the existing risk formulation retrained on the same candidate dataset against the new formulation, to separate data coverage from temporal-model effects. Do not simply increase MLP width or reopen the old autoregressive-risk branch.
+3. **Isolate history conditioning next, if needed.** The existing predictor already sees one previous observation/action. Test a longer history separately to infer hidden dynamics from observed response; never input true mass/friction. Keep repair mechanism fixed while testing the risk model, and recalibrate new scores on independent calibration episodes rather than reusing old taus or tuning on test cells.
+4. **Only then revisit repair/recovery.** Keep candidate/progress as ablations, not the promoted default. If reliable risk/progress ranking is achieved but repair still stalls, test stall recovery with explicitly defined proposals. No simultaneous risk-head, candidate-source and recovery changes.
+5. **Freeze before final testing and transfer.** Reserved final-test seed base 46000 remains unused. Report SR/CVR/safe success, paired rescue/harm, bands and uncertainty. Verifier transfer to LIBERO remains gated on stable, practically meaningful net benefit. LIBERO dependency/checkpoint/baseline feasibility may be prepared separately; physical robots and kernel optimization remain deferred.
+
+**No new long job was launched during this results inspection.** Week 4 recording and the root plan were updated; existing experiment artifacts and uncommitted user work are preserved.
