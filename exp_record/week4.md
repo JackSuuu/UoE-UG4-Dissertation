@@ -4,6 +4,14 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — R5 objective experiment registered; user authorizes execution
+
+[Numerical protocol](immediate_gate_20261013.md) freezes fresh roots76000/77000/78000,24collection batches/768trajectories, per-split root/bin support criteria and automatic stop. On support pass only: paired regression/event training with identical initialization/minibatches,3seeds×3000updates, then9arms×20validation cells×32episodes with original H10 repair frozen. Frozen-H10 and frozen-R5 controls expose horizon/calibration effects. No confirmation/final roots consumed. New-vs-frozen is not called a pure data-only contrast because legacy training procedure differs; event-vs-regression is the matched objective contrast.
+
+All57 semantic tests pass, including5 new boundary tests. CPU smoke `immediate_gate_smoke_20261013_b` completed all stages and verified5raw artifacts; synthetic training labels are explicitly marked and never used as efficacy evidence. Earlier smoke `_a` stopped because its tiny BC training collection had zero unsafe originals; this motivated the explicit smoke-only fixture, with production eligibility unchanged. Actual launch status is recorded separately; the protocol and implementation must be committed before production collection.
+
+---
+
 ### Update 13 Oct — Research reset: one gate hypothesis, no new branch launch
 
 The user correctly challenged the growing collection of loosely connected experiments. [The mainline decision](research_mainline_20261013.md) now supersedes the SEAL candidate-study next-step sketch. One objective: learned-verifier **safe task-completion gain over the same full OpenVLA**, with matched observations/control and bounded SR loss. Early BC/vis results, privileged GT gains, cadence-confounded results, small samples and corrected full-actor confirmation must not be conflated. The corrected896-episode confirmation's+1.23pp learned safe gain remains valid, but is small and not consistent in direction on the448-episode validation cohort; the new+2.01pp ramp increment is relative to the old verifier, not to policy.

@@ -9,6 +9,8 @@
 
 **唯一问题：在相同完整OpenVLA、观测权限和执行机会下，learned physics verifier能否通过正确识别需要干预的动作，提高安全任务完成率，同时不明显牺牲任务成功？** 先在固定box-push任务证明，再转移到一个生活化接触任务。架构、SEAL和更复杂任务是手段，不是并行研究目标。[英文决策与证据链](exp_record/research_mainline_20261013.md)。本节覆盖下文所有“下一步”“当前主线”和SEAL启动建议；历史协议/结果不改写。
 
+**13 Oct执行更新（用户已授权运行）：** [R5数值协议](exp_record/immediate_gate_20261013.md)与实现已形成：fresh train/dev/calibration roots76000/77000/78000；固定24batches/768trajectories，none/frozen/单次brake_ramp三个collector；即时违规与安全接触支持逐split/physics-bin先验检查，失败自动停止。通过才训练regression/event各3seeds，严格共享初始化、采样与3000updates，冻结原repair；加原H10和frozen-R5控制，共9arms×20cells×32episodes。57测试通过，CPU端到端smoke已完成（合成训练fixture仅验证管线，不是效果证据）。本条覆盖下文“本次不启动”的先前决策状态；实际launch另记于week4。独立测试不动。
+
 **为什么早期看起来好：** 早期BC/stand-in、vis与full OpenVLA混在叙述中；历史v5 learned safe约68.5→70.4%，大幅68.5→80.1%属于GT。旧controller还存在none每5步replan、非trigger verifier每步replan的不公平，10月8日才完整修复；不能断言这个bug解释全部历史收益。修正后n8/cell的+3.6～4.5pp信号，在独立896 OOD episodes上变成+1.23[+0.11,+2.46]pp（decision tau），safe rescue/harm21/10、SR−1.79pp；另一448验证cohort为−0.89pp。小正收益仍有效，但“大幅、稳定、完整VLA的learned收益已经证明”从未成立。最近ramp相对原verifier+2.01pp，仍非相对policy的稳定净收益。
 
 **已选瓶颈：干预判定gate。** GT gate＋原learned repair safe77.46%，原gate＋原repair64.73%，policy65.63%；这是最强的已测组件替换证据，但GT同时改变估计与阈值语义并使用隐藏物理，未证明可学习性，且SR仍损失。连续修复伤害已获得有限改进，GRU失败、anticipation采集失败也已记录，不再每个现象各开一条线。
