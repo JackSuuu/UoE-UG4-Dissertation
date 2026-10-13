@@ -11,6 +11,8 @@
 
 **13 Oct执行更新（用户已授权运行）：** [R5数值协议](exp_record/immediate_gate_20261013.md)与实现已形成：fresh train/dev/calibration roots76000/77000/78000；固定24batches/768trajectories，none/frozen/单次brake_ramp三个collector；即时违规与安全接触支持逐split/physics-bin先验检查，失败自动停止。通过才训练regression/event各3seeds，严格共享初始化、采样与3000updates，冻结原repair；加原H10和frozen-R5控制，共9arms×20cells×32episodes。57测试通过，CPU端到端smoke已完成（合成训练fixture仅验证管线，不是效果证据）。本条覆盖下文“本次不启动”的先前决策状态；实际launch另记于week4。独立测试不动。
 
+**面向精细操作的架构检查：** [代码与证据评审](exp_record/architecture_review_20261013.md)。优先①将event gate与continuous physical repair评分解耦（本轮正在检验）；②只有残余错误支持representation问题时，才设计小型可观测接触状态＋causal action-prefix预测，不能把失败的GRU重跑说成新突破；③若检测改善但完成仍损失，再设计到位/对齐/续接感知的repair，不能只最小化一小段风险。当前obs没有force-history、原GRU也不是measured-history estimator。当前success只要求位置误差<2cm及平动速度<.05m/s，未直接检查yaw/depth/dwell，6mm几何不等于6mm精度已被成功指标验证。生活化迁移前需冻结真正精度/稳定完成条件；本轮指标和任务不改。这些建议不构成并行启动授权。
+
 **为什么早期看起来好：** 早期BC/stand-in、vis与full OpenVLA混在叙述中；历史v5 learned safe约68.5→70.4%，大幅68.5→80.1%属于GT。旧controller还存在none每5步replan、非trigger verifier每步replan的不公平，10月8日才完整修复；不能断言这个bug解释全部历史收益。修正后n8/cell的+3.6～4.5pp信号，在独立896 OOD episodes上变成+1.23[+0.11,+2.46]pp（decision tau），safe rescue/harm21/10、SR−1.79pp；另一448验证cohort为−0.89pp。小正收益仍有效，但“大幅、稳定、完整VLA的learned收益已经证明”从未成立。最近ramp相对原verifier+2.01pp，仍非相对policy的稳定净收益。
 
 **已选瓶颈：干预判定gate。** GT gate＋原learned repair safe77.46%，原gate＋原repair64.73%，policy65.63%；这是最强的已测组件替换证据，但GT同时改变估计与阈值语义并使用隐藏物理，未证明可学习性，且SR仍损失。连续修复伤害已获得有限改进，GRU失败、anticipation采集失败也已记录，不再每个现象各开一条线。

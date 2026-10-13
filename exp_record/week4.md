@@ -4,6 +4,24 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — R5 study launched on three healthy GPUs; architecture review completed
+
+Production `immediate_gate_20261013_a` launched at15:49UTC from preregistration/implementation commit **`a4b468e`** (pushed before launch). Detached coordinator PID675479; collection workers675483/675484/675485 on healthy GPU UUIDs `3f4f72ef…` / `99b39a1b…` / `c164f9d9…`. Verified coordinator SID675479 and stdin `/dev/null`; all3workers were alive in full-OpenVLA loading at the initial check. This is a launch statement, not a support/training/efficacy result. The coordinator automatically enforces collection→support→training→evaluation→integrity; support failure stops it before training.
+
+Subsequent startup verification: all3 GPUs reached full-actor inference (~15.9GB each); independently checked the first12completed batches/24artifact hashes, applied-prefix labels against actual live risk, previous-violation masks and frozen code hashes. The first32roots/split already show that immediate positives are concentrated in the brake-resumption collector (train32,dev31,calibration30roots); natural/frozen positives are0/0/1roots respectively. This is **collector-induced R5 support**, not evidence of natural H10 anticipation or deployed gain. Collector-stratified reporting and the closed-loop validation are essential; no protocol is changed in response.
+
+```bash
+setsid nohup /home/ami/miniconda3/bin/python -u scripts/run_immediate_gate.py \
+  --run immediate_gate_20261013_a \
+  > /home/ami/scratch/immediate_gate_20261013_a.log 2>&1 < /dev/null &
+```
+
+Launch manifest: `/home/ami/scratch/immediate_gate_20261013_a_launch.json`. Progress/artifacts: `src/results/push_torch/immediate_gate_20261013_a/coordinator.json`, split collection manifests, then `support.json`, training summaries and final `summary.json`. New code/protocol files are frozen by hashes; documentation status updates do not change those files.
+
+[Architecture review](architecture_review_20261013.md) ties suggestions to precision completion: decoupled gate/continuous repair now; compact observed-contact/causal-prefix representation only if justified by residual misses; completion/continuation-aware repair only if detection improves but task completion does not. Important task-metric finding: present success is position<2cm and speed<.05m/s, with no explicit yaw/depth/dwell success requirement. The6mm geometry is not a demonstrated6mm precision metric. Future transfer requires an explicit mechanically valid precision-success definition. No new architecture/task branch launched.
+
+---
+
 ### Update 13 Oct — R5 objective experiment registered; user authorizes execution
 
 [Numerical protocol](immediate_gate_20261013.md) freezes fresh roots76000/77000/78000,24collection batches/768trajectories, per-split root/bin support criteria and automatic stop. On support pass only: paired regression/event training with identical initialization/minibatches,3seeds×3000updates, then9arms×20validation cells×32episodes with original H10 repair frozen. Frozen-H10 and frozen-R5 controls expose horizon/calibration effects. No confirmation/final roots consumed. New-vs-frozen is not called a pure data-only contrast because legacy training procedure differs; event-vs-regression is the matched objective contrast.
