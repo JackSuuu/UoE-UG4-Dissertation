@@ -4,6 +4,14 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — User confirms task-first acceptance; target-simulator feasibility audited
+
+[Decision and source audit](simulation_task_first_20261013.md): stop making another toy-task fine-tuning variation the immediate milestone. First establish a complete single-task robot-simulation policy baseline, then test bounded privileged physical intervention on the same task, then demonstrate learned efficacy. This revises execution priority without erasing negative results or treating oracle gains as learnability.
+
+Verified official LIBERO-Goal task `open_the_middle_drawer_of_the_cabinet` and the public task-suite full7B checkpoint (HF revision `fa5ae1e7509348889295bba8e08621d8b55e9baf`). This is the first integration target, not a measured task result or a certified precision metric. Local MuJoCo3.14.0 exists; LIBERO/robosuite and task weights do not. Existing planar H10 adapter is incompatible with the7D Panda OSC action convention; official H1evaluation can only be a feasibility baseline, never a matched H10/k5 verifier comparison. Dependency pins/native TF5decode require checks before additive-only setup. No new installation, weight download, training or rollout launched during this audit.
+
+---
+
 ### Update 13 Oct — R5 study complete: all event gates harm policy-relative safe completion
 
 [Completion report](immediate_gate_results_20261013.md):24collection batches,3paired training seeds and180evaluation batches/5760trajectories complete; all workers exited. Independently verified48collection artifacts,180evaluation NPZs,40baseline replay batches, episode/live-risk/trigger reconstruction, source hashes, disjoint roots and cadence/query accounting. Aggregate SHA256 `20b19983a239ed8795d39f4c6aa019752158b2a98198ef8cd165deebb51dadcd`.

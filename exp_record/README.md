@@ -4,7 +4,7 @@ Running log of experiment progress against
 [`core_research_plan.md`](../core_research_plan.md),
 one file per week. Inside a file, the newest entry is at the top.
 
-**Current research decision:** [One question, one active gate intervention](research_mainline_20261013.md). This supersedes the SEAL next-step sketch and older architecture priority lists; completed experimental results remain unchanged.
+**Current research decision:** [Complete target-simulation tasks first](simulation_task_first_20261013.md). Establish one task/actor baseline and physical-intervention feasibility before further verifier training. This supersedes immediate gate-fine-tuning priorities in [the earlier mainline reset](research_mainline_20261013.md); completed experimental results remain unchanged.
 
 **Latest completed study:** [R5 results](immediate_gate_results_20261013.md): partial event-vs-regression signal, all new gates fail policy-relative safe completion; no promotion or new experiment. The [frozen numerical protocol](immediate_gate_20261013.md) remains unchanged.
 

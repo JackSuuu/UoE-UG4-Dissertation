@@ -5,7 +5,13 @@
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
 **Last updated:** 2026-10-13
 
-## 唯一当前主线：学会正确干预，证明安全任务完成净收益（2026-10-13，优先于下文）
+## 唯一当前主线：以目标仿真完整任务为验收（2026-10-13，优先于下文）
+
+**最新用户确认：最终操作任务做不好，继续优化微调实验没有意义。** 当前下一步改为：①先跑通一个机械臂仿真任务及完整OpenVLA正常任务baseline；②在相同任务验证有限预算的准确物理干预能否提高完整安全完成率；③有机制可行性后，再训练/验证learned物理预测与修复贡献。此决定覆盖下文“简单任务learned收益证明后才做任何目标任务可行性”的执行顺序，以及原模型初始化微调建议；不抹去R5负结果，不把换benchmark算改进。[英文决策与兼容性核查](exp_record/simulation_task_first_20261013.md)。
+
+**已核查的首个接入目标：** LIBERO-Goal `open_the_middle_drawer_of_the_cabinet`，官方BDDL与公开full7B任务checkpoint均存在；任务是打开中层抽屉，不是先前举例的轻柔关闭。先验证端到端完成，再核实joint到位/稳定及接触力标准；原Open predicate不自动等于精细/轻柔完成。当前仅MuJoCo已装，LIBERO/robosuite未装，任务checkpoint未缓存。现有二维H10头不能直接控制Panda；官方native H1 baseline可先作可行性复现，但不能与H10/k5 verifier混比，也不能重复单步动作假装真实H10。共享base只允许增量依赖，须先解决TF5 native decode与旧sim依赖兼容性。本次完成核查与优先级同步，未启动新训练/rollout。
+
+### 保留的研究问题与实验沿革（当前执行顺序以上述用户确认为准）
 
 **唯一问题：在相同完整OpenVLA、观测权限和执行机会下，learned physics verifier能否通过正确识别需要干预的动作，提高安全任务完成率，同时不明显牺牲任务成功？** 先在固定box-push任务证明，再转移到一个生活化接触任务。架构、SEAL和更复杂任务是手段，不是并行研究目标。[英文决策与证据链](exp_record/research_mainline_20261013.md)。本节覆盖下文所有“下一步”“当前主线”和SEAL启动建议；历史协议/结果不改写。
 
