@@ -4,6 +4,12 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Continuation complete: released placement1/3; alignment and re-contact failures identified
+
+[Verified results and trajectory audit](libero_continuation_results_20261013.md). Root0passes at313steps; roots1/2reach520without completing. All original-prefix tokens/actions/states agree exactly;25substeps/interval, geometric conditions/dwell and video lengths verified. Root1never fits the full footprint and remains in gripper contact after grasping. Root2passes all conditions for6intervals, then renewed gripper contact interrupts stability. Root0establishes one detached seated placement but not intentional gripper opening or safe retreat. Next mechanism design must compare physics-guided repair against simple matched phase/termination controls; no learned gain or safety rate claimed. All jobs complete, no new intervention/training launched.
+
+---
+
 ### Update 13 Oct — Full-policy continuation launched with geometry/release/dwell acceptance
 
 [Protocol](libero_continuation_protocol_20261013.md), [implementation and checks](libero_continuation_launch_20261013.md). Protocol/source `9f39e2b` pushed before three detached workers launched; same roots/actor/control and520total policy steps. Native success no longer terminates the rollout.5tests pass,185step original replay matches every state exactly with substep instrumentation. A separate synthetic placed-book fixture passes60intervals, demonstrating metric satisfiability only. Its native predicate is false, so geometry-aware completion must be presented as an alternative task acceptance rather than a nested benchmark metric. Full-policy outcomes pending at this entry; no physics intervention or training launched.

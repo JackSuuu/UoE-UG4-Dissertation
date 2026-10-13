@@ -7,6 +7,8 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+**最新续跑完成（覆盖下文运行中状态）：** [完整结果](exp_record/libero_continuation_results_20261013.md)。native-ever3/3，几何/脱离/稳定1s完成1/3：root0在313步通过，root1/2均到520步未通过；所有原baseline重合prefix的tokens/actions相同、state误差0，子步/视频/判据独立核验通过。root1始终未完整进入目标隔间且抓取后保持夹爪接触；root2曾全部条件通过0.3s，随后夹爪重新接触并破坏稳定。root0证明存在能完成的新验收例子，但末动作仍close，不能称为主动open-gripper release或安全撤离。下一项机制诊断应围绕对齐和完成后继续执行，加入匹配的简单停止/保持/撤离控制，防止把终止逻辑收益冒充learned physics收益。force数值尚未数值收敛/阈值认证，CVR/safe仍null。当前无实验运行，未启动新训练或干预。
+
 **最新续跑实施（覆盖下文无实验运行状态）：** [冻结协议](exp_record/libero_continuation_protocol_20261013.md)与代码`9f39e2b`在launch前提交推送，3条同初始状态full7B H1/k1续跑已在健康GPU1/2/3启动，总预算仍每条520policy steps。几何入后隔间＋底部到位＋全部子步脱离夹爪＋慢速/支撑连续1s才计released placement；native成功仅记录事件。[实施/检查](exp_record/libero_continuation_launch_20261013.md)。5项测试通过；185步原轨迹加入监测后state完全相同；独立无VLA的合成正确放置fixture满足60个连续interval，确认判据在真实模型中可满足。该fixture的native predicate反而false，说明几何判据是替代性任务验收，不是native-success的逻辑子集，两者须分别报告。当前续跑结果待核验，不宣称安全提升。
 
 **最新pilot已完成（覆盖下文启动状态）：** [结果与判据纠正](exp_record/libero_baseline_results_20261013.md)。3条native成功，185/229/166步；所有artifact长度/映射/hash核验通过。但三条终态夹爪都仍闭合并接触书本，未证明释放后稳定放置。源码追踪确认SiteObjectState.check_contact恒True，因此该In实际上只检查reference-point进区域，先前协议对“必须接触caddy”的解读不成立（以结果erratum纠正，冻结协议不改写）。native3/3不等于完整精细安全完成，CVR/safe/严格precision仍null。下一步先冻结继续执行＋松手/几何/稳定判据的有限baseline续跑，不能直接训练verifier。当前无实验运行。
