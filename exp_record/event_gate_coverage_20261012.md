@@ -1,5 +1,49 @@
 # Event-gate coverage pilot protocol (12 Oct 2026)
 
+## Completion review — 13 Oct 2026
+
+**Complete, coverage screen failed.** All 24 batches / 768 trajectories finished normally; launcher/Python 598105/598108 are no longer running. No gate training was started. The launch section below is historical.
+
+`analyze_event_gate_pilot.py` independently verified **48 artifact hashes**, recomputed coverage, paired initial states/proposals/parameters, 16-decision cadence, prior-violation masks from live traces, executed-prefix parity and train/dev root isolation. Reproducible report: `src/results/push_torch/event_gate_coverage_20261012_a/analysis.json`. This review uses stored labels and traces; it does not claim a fresh simulator relabeling audit.
+
+| Unique roots, original proposal before prior violation | Train observed / required | Design-dev observed / required |
+|---|---:|---:|
+| Immediate R5 unsafe | **33 / 32** | **15 / 16** |
+| Anticipation-only (R5 safe, H10 unsafe) | **0 / 24** | **1 / 12** |
+| Safe contact | **126 / 64** | **64 / 32** |
+
+Train immediate and safe-contact also pass their four-stratum criteria. Anticipation fails both count and diversity criteria. Across collectors, immediate root counts are none/frozen/drive/brake = **4/7/8/26 train**, **0/0/7/14 dev**; these are overlapping paired roots, not additive independent counts. Only brake yields a pre-violation anticipatory original, on one dev root. Broadening to any of eight scales still gives only **one train root** (none) and **one dev root** (brake), so candidate aggregation cannot repair the coverage deficit.
+
+### Collector attribution
+
+- **Drive overshoots the usable collection region:** of 125 train and 64 dev pulses applied before prior violation, **117/125 (93.6%)** and **57/64 (89.1%)** first violate during the five-step pulse itself. Drive produces four anticipatory original decisions per split only *after* prior violation; these do not satisfy the registered pre-violation objective. Final drive CVR is 97.66%/100%.
+- **Brake yields immediate hazards but almost no anticipation:** 26 train / 14 dev immediate roots; only **1/125 train** and **1/64 dev** pre-violation pulses first violate during the pulse. Later policy behavior is therefore worth investigating, but no particular re-contact mechanism has yet been established.
+- Velocity bounds alone did not prevent the exploration pulse from immediately overloading contact. More violating collector trajectories are not equivalent to more usable original-proposal event labels. This is a failed collector design, not a new learned-verifier efficacy failure; no new gate has been fitted.
+
+### Collector outcomes and paired uncertainty
+
+These are in-range **training/design-data collector outcomes**, not OOD efficacy estimates. SR/CVR/safe are percentages; deltas and 95% intervals are percentage points versus the paired none branch. Bootstrap resamples root pairs within each split (4,000 draws); branches are not independent observations. Zero-width intervals for identical observed outcomes do not imply zero population uncertainty.
+
+| Split / collector | SR / CVR / safe | Safe rescue / harm | ΔSR [95% CI] | ΔCVR [95% CI] | Δsafe [95% CI] |
+|---|---|---|---|---|---|
+| Train none (n128) | 96.09 / 3.13 / 93.75 | — | — | — | — |
+| Train frozen | 95.31 / 1.56 / 93.75 | 0 / 0 | −0.78 [−2.34,0] | −1.56 [−3.91,0] | 0 [0,0] |
+| Train drive | 23.44 / 97.66 / 2.34 | 0 / 117 | −72.66 [−80.47,−64.06] | +94.53 [90.63,98.44] | −91.41 [−96.09,−85.94] |
+| Train brake | 96.09 / 21.09 / 77.34 | 1 / 22 | 0 [0,0] | +17.97 [10.94,25.00] | −16.41 [−23.44,−9.38] |
+| Dev none (n64) | 93.75 / 0 / 93.75 | — | — | — | — |
+| Dev frozen | 93.75 / 0 / 93.75 | 0 / 0 | 0 [0,0] | 0 [0,0] | 0 [0,0] |
+| Dev drive | 21.88 / 100 / 0 | 0 / 60 | −71.88 [−82.81,−60.94] | +100 [100,100] | −93.75 [−98.44,−87.50] |
+| Dev brake | 92.19 / 23.44 / 70.31 | 0 / 15 | −1.56 [−4.69,0] | +23.44 [14.02,34.38] | −23.44 [−34.38,−14.02] |
+
+### Next experiment: boundary-reachability before production collection
+
+1. First use this pilot's **training-only** saved pre-pulse states to diagnose the onset/amplitude response of a small fixed set of weaker, gradual five-step perturbations and braking/re-contact branches. Measure survival through the pulse and the next unchanged OpenVLA proposal's R5/H10 events. Preserve actual executed history, RGB rendering and H10/k5; simulated state teleportation or edited velocity is not a reachable-state witness. Selecting branches from offline labels is collector design only, never learned-runtime GT feedback.
+2. The tested hypothesis is **the current onset/amplitude jumps directly into violation rather than reaching a pre-violation anticipatory region**. Earlier onset, weaker amplitude and gradual ramps are hypotheses to compare, not established fixes. Register their numerical schedules and screening/stop rules before obtaining new labels. Keep none and current brake references; root-group all branches. Do not blindly scale this failed drive collector or count post-violation windows as successful anticipation coverage.
+3. If a reachable anticipatory region is found, freeze the observation-only collector rule and run a fresh train/design-dev pilot at the original physics ranges with the same root-level coverage criteria. If not, test whether anticipation is scarce under these in-range reachable states versus whether the collector fails to reach it; do not silently broaden physics ranges or relabel R5 hazards as H10-only.
+4. Only after adequate coverage, run matched coverage-only regression controls followed by event-aware gate objectives, with original repair frozen and fresh calibration. Report SR/CVR/safe, paired rescue/harm and uncertainty before transfer decisions.
+
+This review adds analysis and updates the plan; **no new collection or training job was launched**. The v2 numerical protocol remains to be registered.
+
 ## Question and decision
 
 Can a fixed, bounded collector intervention produce diverse **reachable, pre-violation states** on which the unchanged OpenVLA's original proposal contains immediate or anticipatory contact hazards, without expanding the physical training ranges?

@@ -38,9 +38,13 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 最新结论：闭环 gate × repair 诊断完成，优先学习 event gate（2026-10-12）
+## 最新结论：coverage pilot 完成但未通过，先诊断预警状态可达性（2026-10-13）
 
-**当前运行：** `event_gate_coverage_20261012_a` 已通过 `setsid nohup` detached 启动，launcher PID `598105`，日志 `~/scratch/event_gate_coverage_20261012_a.log`。当前执行 coverage collection，gate training 尚未启动；下面的“本次状态检查没有启动新训练”指前次 factorial 完成检查。Pilot 是否通过仍待正式数据。
+**当前状态：** `event_gate_coverage_20261012_a` 已完成 **24/24 batches、768 trajectories**，PID `598105/598108` 已退出；没有 collection/training job 在运行。独立复核 48 artifact hashes、coverage、配对 initial state/proposal/params、cadence、live trace→prior violation、executed-prefix parity 与 split isolation 均通过。没有启动新 gate training。
+
+**Coverage 实测（独立 root 去重）：** train immediate/anticipation-only/safe-contact **33/0/126**，要求 **32/24/64**；dev **15/1/64**，要求 **16/12/32**。提前预警严重不足，不能用大量 safe windows 或 post-violation events 替代。Drive 在违规前施加的 pulses 中，train **117/125**、dev **57/64** 在该五步内就首次违规；它主要直接制造违规，未留下足够下一决策可预警的状态。Brake 提供 train/dev **26/14 immediate roots**，但 anticipation 仅 **0/1**。这是 collector failure，不是新 gate efficacy 结果。
+
+**紧接着做什么：** 用本轮 training-only pre-pulse states 做小规模 boundary-reachability diagnosis，比较更早 onset、更弱/渐变五步扰动及 brake/re-contact，先测 pulse survival 和下一次原 OpenVLA proposal 的 R5/H10 event。保留 full actor、实际 history/RGB、H10/k5；数值 schedules/stop rules 先登记，不能任意编辑 state 伪造可达性。找到有效区域后冻结 observation-only collector，在 fresh splits 按原 coverage 标准重试；若仍没有 anticipation，检验 in-range event support 与采集可达性，不能只扩大数据量、偷偷改 physics ranges 或拿 audit labels 训练。之后才做 frozen-repair 的 coverage-only regression / event-aware gate 对照。本次只完成分析与计划同步，v2 尚未启动。
 
 **下一项实验已实现：event-gate coverage pilot。** 先用 disjoint training/design-dev seeds 验证 event coverage，之后才决定 gate training。Train seeds 74000–74003 共 128 root episodes，dev seeds 75000–75001 共 64 roots；每个 root 配对 none / frozen / 单次 bounded drive / 单次 brake，共 768 trajectories，不能按 768 独立 roots 统计。Physical ranges、full OpenVLA H10/k5/microbatch8、八个 labelled scales 保持不变。Collector pulse 只读当前 goal gap 与预采样常量，GT future labels 不进入 collector 决策；这是训练数据探索，不是扩大 deployment action family。
 

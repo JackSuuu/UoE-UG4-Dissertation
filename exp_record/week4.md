@@ -4,7 +4,19 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Coverage pilot fails anticipation screen; drive pulses mostly violate immediately
+
+All **24 batches / 768 trajectories** of `event_gate_coverage_20261012_a` completed; PIDs 598105/598108 exited. Recomputed 48 artifact hashes, coverage, paired initialization/proposals/parameters, cadence, prior-violation masks, executed-prefix parity and root split isolation. Reproducible analysis: `analyze_event_gate_pilot.py` and run-local `analysis.json`.
+
+Unique original-proposal pre-violation event roots, immediate/anticipation-only/safe-contact: train **33/0/126** versus required **32/24/64**; dev **15/1/64** versus **16/12/32**. Coverage screen **fails**. Drive first violates during **117/125 train** and **57/64 dev** pre-violation pulses. Brake supplies **26/14 immediate roots**, but **0/1 anticipatory roots**. Any-scale aggregation also leaves anticipation essentially absent. More collector violations do not imply usable gate supervision.
+
+Full collector SR/CVR/safe, paired rescue/harm and root-paired 95% intervals are in the [completion review](event_gate_coverage_20261012.md#completion-review--13-oct-2026). These are in-range data-collector outcomes, not new verifier efficacy results. Next: pre-register a small training-only boundary-reachability diagnosis of earlier/weaker/gradual pulses and braking/re-contact, with actual history and H10/k5 preserved. Freeze a revised observation-only collector only after measuring pulse survival and next-policy anticipation; re-pilot on fresh roots before fitting gates. **No new job launched in this review.**
+
+---
+
 ### Update 12 Oct — Event-gate coverage pilot implemented with prospective root-level criteria
+
+**Historical launch entry; superseded by the 13 Oct completion review above.**
 
 **Production launched:** `event_gate_coverage_20261012_a`, detached launcher PID `598105`, healthy GPU UUID `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`, `setsid nohup` with stdin `/dev/null`. Log `~/scratch/event_gate_coverage_20261012_a.log`; output under `src/results/push_torch/event_gate_coverage_20261012_a/`. Collection is active; no gate fitting or new efficacy result yet.
 
