@@ -39,6 +39,12 @@ def main():
             assert np.isfinite(archive['states']).all()
         with imageio.get_reader(episode / 'rollout.mp4') as video:
             assert video.count_frames() == len(steps) + 1
+            imageio.imwrite(episode / 'final.png', video.get_data(len(steps)))
+        terminal = steps[-1]
+        result['terminal_gripper_command'] = terminal['action'][-1]
+        result['terminal_book_gripper_contact'] = any(
+            'black_book' in str(contact) and 'gripper' in str(contact)
+            for contact in terminal['contacts_endpoint'])
         for path in [worker / 'manifest.json', episode / 'result.json', episode / 'steps.jsonl',
                      episode / 'states.npz', episode / 'rollout.mp4', episode / 'model.xml']:
             hashes[str(path.relative_to(args.run))] = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -61,6 +67,7 @@ def main():
         video = f'worker_{i}/episode_{i:03d}/rollout.mp4'
         cards.append(f'<section><h2>Initial state {i}: {"native success" if row["native_success"] else "not completed"}</h2>'
                      f'<p>{row["policy_steps"]} policy steps</p>'
+                     f'<p>Terminal book/gripper contact: {row["terminal_book_gripper_contact"]}</p>'
                      f'<video controls preload="metadata" src="{html.escape(video)}"></video></section>')
     (args.run / 'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8">'
         '<title>LIBERO book/caddy feasibility</title><style>body{max-width:1000px;margin:40px auto;'

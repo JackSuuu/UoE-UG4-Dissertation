@@ -8,6 +8,8 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **Implementation:** [LIBERO full7B integration and pilot launch](libero_integration_20261013.md), with [frozen native-action feasibility protocol](libero_baseline_protocol_20261013.md).
 
+**Latest pilot outcome:** [Native3/3; released stable placement remains unestablished](libero_baseline_results_20261013.md). Includes the site-predicate contact erratum and the next continuation-baseline requirement.
+
 **Latest completed study:** [R5 results](immediate_gate_results_20261013.md): partial event-vs-regression signal, all new gates fail policy-relative safe completion; no promotion or new experiment. The [frozen numerical protocol](immediate_gate_20261013.md) remains unchanged.
 
 | week | dates | file | main events |

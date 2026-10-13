@@ -4,6 +4,12 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Pilot completed: native3/3, but release/stable placement not established
+
+[Results and source-interpretation erratum](libero_baseline_results_20261013.md). All three workers completed, native success at185/229/166steps; artifact verification passed and a local HTML video report was produced. Terminal commands remain closed and book/gripper contacts persist in all three. Deeper predicate tracing found `SiteObjectState.check_contact` always returns True, so this task does not require actual caddy contact despite the generic `In` call. The frozen protocol's contact interpretation is corrected in the results, without rewriting the protocol. Next is a bounded continuation/release/stability baseline protocol, before physics intervention or learned training. CVR/safe/strict precision remain unmeasured. No jobs remain running.
+
+---
+
 ### Update 13 Oct — LIBERO full7B baseline integrated; three complete pilot episodes launched
 
 [Implementation and checks](libero_integration_20261013.md), [frozen pilot protocol](libero_baseline_protocol_20261013.md). Environment and native-model one-action smokes passed; full checkpoint strict loading and exact upstream image preprocessing verified. Project-local adapters resolve two MuJoCo3.14/robosuite1.4.1 ABI changes.12unittest checks and standalone TF5/action-map checks passed. Protocol/runner commit `bf7c6c6` pushed before launching three fixed development initial states on healthy GPUs1/2/3 with detached `setsid nohup` workers. Pilot root `/home/ami/scratch/libero_book_pilot_20261013_a`; completion/results pending at this entry. No learned training/intervention launched. Actual collision geometry and predicate limitations recorded; native SR must remain distinct from stable precision and safety.

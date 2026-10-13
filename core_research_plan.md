@@ -7,6 +7,8 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+**最新pilot已完成（覆盖下文启动状态）：** [结果与判据纠正](exp_record/libero_baseline_results_20261013.md)。3条native成功，185/229/166步；所有artifact长度/映射/hash核验通过。但三条终态夹爪都仍闭合并接触书本，未证明释放后稳定放置。源码追踪确认SiteObjectState.check_contact恒True，因此该In实际上只检查reference-point进区域，先前协议对“必须接触caddy”的解读不成立（以结果erratum纠正，冻结协议不改写）。native3/3不等于完整精细安全完成，CVR/safe/严格precision仍null。下一步先冻结继续执行＋松手/几何/稳定判据的有限baseline续跑，不能直接训练verifier。当前无实验运行。
+
 **13 Oct实施进展：** 已接通LIBERO书本入收纳盒任务：Panda/OSC、官方initial states、完整任务full7B权重、native7D动作、官方图像预处理及视频/状态/接触记录。环境smoke和真实模型单动作smoke通过，预处理与官方函数逐像素一致；2项新sim ABI测试＋10项已有闭环测试通过，独立TF5/action-map检查通过。[实现记录](exp_record/libero_integration_20261013.md)。[3条完整任务pilot协议](exp_record/libero_baseline_protocol_20261013.md)与代码已在launch前提交`bf7c6c6`，开发initial indices0/1/2分别在健康GPU1/2/3持久化启动；当前本条只记录启动，不宣称完成率。H1/k1仅验证task-capable baseline，不能替代H10/k5匹配研究。现有In判据不要求松手/完整几何容纳/稳定；CVR、safe与严格precision暂记null，后续依据实际轨迹与mechanics冻结。未启动learned训练或物理干预实验。
 
 **最新范围确认：先证明本地VLA执行闭环有效，LLM与端云协同只列future work。** 核心贡献目标是“物理预测/验证与必要的局部修正，能否在观测/执行/动力学存在不确定性时提高完整、精确、安全的任务完成”。具体loss、微调、网络或repair算法可以按证据调整，不能把某个训练技巧当成必须实现的主线。成功的VLA实例支持执行层逻辑，不自动证明LLM通用性或真实世界安全保证。[范围、任务与噪声设计](exp_record/local_vla_scope_20261013.md)。
