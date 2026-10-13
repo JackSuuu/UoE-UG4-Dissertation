@@ -38,13 +38,27 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 最新结论：coverage pilot 完成但未通过，先诊断预警状态可达性（2026-10-13）
+## 当前实验：三 GPU 配对 boundary/gate diagnosis 已启动（2026-10-13）
 
-**当前状态：** `event_gate_coverage_20261012_a` 已完成 **24/24 batches、768 trajectories**，PID `598105/598108` 已退出；没有 collection/training job 在运行。独立复核 48 artifact hashes、coverage、配对 initial state/proposal/params、cadence、live trace→prior violation、executed-prefix parity 与 split isolation 均通过。没有启动新 gate training。
+**直接目标：** 分别检验 (1) collector 是否跳过可预警区域；(2) frozen risk score 是否有辨别力、只是 threshold 不适合；(3) action-order 表示是否存在可测结构盲点。先收证据，再决定采集、event objective、calibration 或 architecture 的改动。不是直接扩大网络或再训练失败的 GRU。
+
+**预登记并启动：** [event_boundary_20261013.md](exp_record/event_boundary_20261013.md)，实现/协议 commit `e103cfd` 在生产 launch 前完成。三个健康 RTX A5000 并行 early/middle/late goal-gap onset **0.20/0.12/0.06 m**，launcher PIDs **662796/662797/662798**；run IDs `event_boundary_20261013_a_{early,middle,late}`，各自日志 `~/scratch/<run_id>.log`。通过 `setsid nohup`、stdin `/dev/null`、离线加载与 CPU thread caps 持久运行，结束后自动做每个 shard 的分析。
+
+**Matched design：** 每个 onset 跑 none / hard_drive / hard_brake / gain1.10 / x-ramp0.03 / x-ramp0.06 / brake-ramp-to0.25 七种 collector，全部最多一次五步干预。复用 **128 training-only roots**（74000–74003），从 reset 完整重放以保留可达性、实际 history 与 RGB；共 **84 batches、2,688 trajectories**，不能当成 2,688 独立 roots。H10/k5、full actor/microbatch8、八 scale labels 与 physics ranges 保持冻结，none 必须重现 pilot source。48 tests 与七 arm CPU smoke/自动分析已通过。
+
+**启动复核：** 三个 shard 均完成首个 none batch（检查时合计 **3/84**），通过原 pilot replay；跨三个 GPU 的首批 state/context/proposal/eight-scale labels/七模型 scores/reverse labels 与 scores 均 **bit-exact** 一致。Python PIDs early/middle/late `662806/662807/662805` 正常运行。
+
+**Primary screen：** 每种 onset/collector 在 post-pulse、pre-first-violation scope 至少 **24 anticipation roots**，四 physics strata 每个 ≥2，且 pre-violation pulse survival ≥90%。同时报告下一决策/以后决策、SR/CVR/safe、paired rescue/harm 和 CI。固定预算结束，不自动放宽标准、扩充范围或启动训练；通过后仍需 fresh train/dev collector pilot 才能做 production gate training。
+
+**算法/架构定位：** 原 frozen predictor + static/sequence 全部三 seeds 仅作 observers。64 root fit /64 root diagnostic-check 分组比较原 tau 与 nominal 1%/5% safe-score thresholds，报告实际 false triggers、recall/precision 与 root-bootstrap CI；positive roots<12 或 safe roots<32 标为证据不足。另对每个 original proposal 做离线 reverse-order probe，检查 GT event 改变而模型 max-score 不变；不执行、不加入 runtime candidate budget、不计作原 proposal coverage。Threshold 改善支持先测试 calibration/event-gate；score 仍差需先 matched data/loss 对照；order blind spot 支持受控 order-aware 表示实验，但不能据此直接提升旧 GRU。更长 history/隐变量识别只在覆盖和 event objective 检验后再做。
+
+## 已完成：coverage pilot 未通过（2026-10-13）
+
+**Pilot 状态：** `event_gate_coverage_20261012_a` 已完成 **24/24 batches、768 trajectories**，PID `598105/598108` 已退出。独立复核 48 artifact hashes、coverage、配对 initial state/proposal/params、cadence、live trace→prior violation、executed-prefix parity 与 split isolation 均通过。没有启动新 gate training；后续 boundary diagnosis 运行状态见上节。
 
 **Coverage 实测（独立 root 去重）：** train immediate/anticipation-only/safe-contact **33/0/126**，要求 **32/24/64**；dev **15/1/64**，要求 **16/12/32**。提前预警严重不足，不能用大量 safe windows 或 post-violation events 替代。Drive 在违规前施加的 pulses 中，train **117/125**、dev **57/64** 在该五步内就首次违规；它主要直接制造违规，未留下足够下一决策可预警的状态。Brake 提供 train/dev **26/14 immediate roots**，但 anticipation 仅 **0/1**。这是 collector failure，不是新 gate efficacy 结果。
 
-**紧接着做什么：** 用本轮 training-only pre-pulse states 做小规模 boundary-reachability diagnosis，比较更早 onset、更弱/渐变五步扰动及 brake/re-contact，先测 pulse survival 和下一次原 OpenVLA proposal 的 R5/H10 event。保留 full actor、实际 history/RGB、H10/k5；数值 schedules/stop rules 先登记，不能任意编辑 state 伪造可达性。找到有效区域后冻结 observation-only collector，在 fresh splits 按原 coverage 标准重试；若仍没有 anticipation，检验 in-range event support 与采集可达性，不能只扩大数据量、偷偷改 physics ranges 或拿 audit labels 训练。之后才做 frozen-repair 的 coverage-only regression / event-aware gate 对照。本次只完成分析与计划同步，v2 尚未启动。
+**Completion review 提出的方向（现已实现为上节实验）：** 用本轮 training-only roots 做 boundary-reachability diagnosis，比较更早 onset、更弱/渐变五步扰动及 brake/re-contact，先测 pulse survival 和下一次原 OpenVLA proposal 的 R5/H10 event。保留 full actor、实际 history/RGB、H10/k5；数值 schedules/stop rules 先登记，不能任意编辑 state 伪造可达性。找到有效区域后冻结 observation-only collector，在 fresh splits 按原 coverage 标准重试；若仍没有 anticipation，检验 in-range event support 与采集可达性，不能只扩大数据量、偷偷改 physics ranges 或拿 audit labels 训练。之后才做 frozen-repair 的 coverage-only regression / event-aware gate 对照。
 
 **下一项实验已实现：event-gate coverage pilot。** 先用 disjoint training/design-dev seeds 验证 event coverage，之后才决定 gate training。Train seeds 74000–74003 共 128 root episodes，dev seeds 75000–75001 共 64 roots；每个 root 配对 none / frozen / 单次 bounded drive / 单次 brake，共 768 trajectories，不能按 768 独立 roots 统计。Physical ranges、full OpenVLA H10/k5/microbatch8、八个 labelled scales 保持不变。Collector pulse 只读当前 goal gap 与预采样常量，GT future labels 不进入 collector 决策；这是训练数据探索，不是扩大 deployment action family。
 

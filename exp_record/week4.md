@@ -4,6 +4,26 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Three-GPU boundary/gate diagnosis registered and launched
+
+[Fixed protocol and decision map](event_boundary_20261013.md), committed as `e103cfd` before launch. Test collector overshoot, threshold versus score discrimination, and action-order blindness before selecting an algorithm/architecture change. Three CUDA-health-checked RTX A5000s run identical seven-arm designs at observed gap onsets **.20/.12/.06 m**. All use the same **128 training roots** (74000–74003), complete replay from reset, full frozen OpenVLA H10/k5/microbatch8, existing physics ranges and eight scale labels. **84 batches / 2,688 trajectories**, not 2,688 independent roots.
+
+| Shard / run suffix | GPU UUID | Detached launcher PID |
+|---|---|---:|
+| `event_boundary_20261013_a_early` | `GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0` | 662796 |
+| `event_boundary_20261013_a_middle` | `GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8` | 662797 |
+| `event_boundary_20261013_a_late` | `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b` | 662798 |
+
+Logs: `~/scratch/<run_id>.log`; outputs: `src/results/push_torch/<run_id>/`. Each launcher uses `setsid nohup`, stdin `/dev/null`, offline loading and thread caps, and automatically runs per-shard analysis after successful collection. Launch manifest: `~/scratch/event_boundary_20261013_a_launch.json`. Current state is production collection, not a completed result.
+
+**Startup verified:** each shard completed its first none batch (**3/84 batches at this check**) and passed original-pilot replay. Separately compared all three GPUs' saved first-batch state, measured context, proposals, eight-scale labels, all seven model scores, and reversed-action labels/scores: **bit-exact cross-GPU parity**. Python PIDs early/middle/late **662806/662807/662805** were active. These checks establish successful matched execution, not a coverage result.
+
+**Readout:** post-pulse pre-violation anticipatory root coverage, pulse survival, collector SR/CVR/safe and paired rescue/harm/CIs. Feasibility screen ≥24 anticipatory roots, ≥2 per physics stratum, ≥90% pulse survival. Observe original predictor and all six static/GRU checkpoints without changing collector decisions. Use root-disjoint 64/64 diagnostic threshold-fit/check halves, actual safe-trigger rates, recall/precision and cluster CIs; sparse endpoints cannot decide model quality. Offline reversed-order probes are never executed or counted as original-policy coverage. No automatic gate training or method promotion.
+
+**Verification:** **48 targeted tests passed**. Seven-arm CPU BC smoke `event_boundary_smoke_20261013_a` completed collection, frozen-model scores, order probes and automatic analysis; source OpenVLA replay is additionally enforced in production on each GPU. No dependencies changed. Next decisions follow the registered data/threshold/objective/representation decision map rather than unconditional architecture replacement.
+
+---
+
 ### Update 13 Oct — Coverage pilot fails anticipation screen; drive pulses mostly violate immediately
 
 All **24 batches / 768 trajectories** of `event_gate_coverage_20261012_a` completed; PIDs 598105/598108 exited. Recomputed 48 artifact hashes, coverage, paired initialization/proposals/parameters, cadence, prior-violation masks, executed-prefix parity and root split isolation. Reproducible analysis: `analyze_event_gate_pilot.py` and run-local `analysis.json`.
