@@ -9,6 +9,10 @@
 
 **唯一问题：在相同完整OpenVLA、观测权限和执行机会下，learned physics verifier能否通过正确识别需要干预的动作，提高安全任务完成率，同时不明显牺牲任务成功？** 先在固定box-push任务证明，再转移到一个生活化接触任务。架构、SEAL和更复杂任务是手段，不是并行研究目标。[英文决策与证据链](exp_record/research_mainline_20261013.md)。本节覆盖下文所有“下一步”“当前主线”和SEAL启动建议；历史协议/结果不改写。
 
+**13 Oct完成结论（覆盖下文R5计划/运行状态）：** [完整R5结果](exp_record/immediate_gate_results_20261013.md)。24采集batches、3配对训练seeds、180闭环batches/5760trajectories全部完成并独立核验。event相对同数据regression safe分别+1.34[−2.01,+4.91]/+3.35[−0.45,+7.14]/+4.24[+0.67,+7.81]pp，仅点估计方向一致，未通过全seed正CI标准。相对policy则safe−10.71/−11.83/−7.81pp（全部CI上界<0），CVR+10.27/+11.61/+7.37pp，safe rescue/harm3/51、1/54、2/37；ID也明显退步。**本配置不提升、不进入独立确认，停止该loss-only分支；目前没有新的实验启动。** 原direct/ramp仅保留既有reference，不将其称为已满足整体目标。
+
+**失败解释的边界：** R5数值support通过，但128个训练即时事件决策中120来自手工brake-resumption，natural仅3、frozen仅5；dev62个正例全来自brake-resumption，原H10/R5 gate本就62/62检出。event达到100%dev recall未证明补上原gate的真实漏检。大部分safe harm包含新增违规（47/51、52/54、35/37），并非只是保守导致任务没完成；触发频率也并未普遍大幅增加。证据支持“该数据/架构/阈值规则下单换event objective不够”，不能单独断言全因data、threshold或网络容量。support对自然危险/漏检机制的代表性不足需明确记录，不能据此再自动放宽标准或广泛扫collector。下一项研究必须另有单一失效证据与预定停止规则，架构建议不是自动排队任务。
+
 **13 Oct执行更新（用户已授权运行）：** [R5数值协议](exp_record/immediate_gate_20261013.md)与实现已形成：fresh train/dev/calibration roots76000/77000/78000；固定24batches/768trajectories，none/frozen/单次brake_ramp三个collector；即时违规与安全接触支持逐split/physics-bin先验检查，失败自动停止。通过才训练regression/event各3seeds，严格共享初始化、采样与3000updates，冻结原repair；加原H10和frozen-R5控制，共9arms×20cells×32episodes。57测试通过，CPU端到端smoke已完成（合成训练fixture仅验证管线，不是效果证据）。本条覆盖下文“本次不启动”的先前决策状态；实际launch另记于week4。独立测试不动。
 
 **面向精细操作的架构检查：** [代码与证据评审](exp_record/architecture_review_20261013.md)。优先①将event gate与continuous physical repair评分解耦（本轮正在检验）；②只有残余错误支持representation问题时，才设计小型可观测接触状态＋causal action-prefix预测，不能把失败的GRU重跑说成新突破；③若检测改善但完成仍损失，再设计到位/对齐/续接感知的repair，不能只最小化一小段风险。当前obs没有force-history、原GRU也不是measured-history estimator。当前success只要求位置误差<2cm及平动速度<.05m/s，未直接检查yaw/depth/dwell，6mm几何不等于6mm精度已被成功指标验证。生活化迁移前需冻结真正精度/稳定完成条件；本轮指标和任务不改。这些建议不构成并行启动授权。

@@ -6,7 +6,7 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **Current research decision:** [One question, one active gate intervention](research_mainline_20261013.md). This supersedes the SEAL next-step sketch and older architecture priority lists; completed experimental results remain unchanged.
 
-**Active numerical protocol:** [R5 matched regression/event objectives](immediate_gate_20261013.md), with support-before-training and original repair frozen.
+**Latest completed study:** [R5 results](immediate_gate_results_20261013.md): partial event-vs-regression signal, all new gates fail policy-relative safe completion; no promotion or new experiment. The [frozen numerical protocol](immediate_gate_20261013.md) remains unchanged.
 
 | week | dates | file | main events |
 |---|---|---|---|

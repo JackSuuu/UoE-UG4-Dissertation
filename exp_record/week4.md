@@ -4,6 +4,16 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — R5 study complete: all event gates harm policy-relative safe completion
+
+[Completion report](immediate_gate_results_20261013.md):24collection batches,3paired training seeds and180evaluation batches/5760trajectories complete; all workers exited. Independently verified48collection artifacts,180evaluation NPZs,40baseline replay batches, episode/live-risk/trigger reconstruction, source hashes, disjoint roots and cadence/query accounting. Aggregate SHA256 `20b19983a239ed8795d39f4c6aa019752158b2a98198ef8cd165deebb51dadcd`.
+
+OOD n448/arm: policy SR/CVR/safe87.05/29.24/65.63%; frozen84.60/28.79/64.73%; event s0/s1/s2 safe54.91/53.79/57.81%, CVR39.51/40.85/36.61%. Event vs policy Δsafe−10.71[−13.62,−7.81]/−11.83[−14.96,−8.93]/−7.81[−10.27,−5.36]pp, rescue/harm3/51,1/54,2/37. Event vs matched regression+1.34[−2.01,+4.91]/+3.35[−0.45,+7.14]/+4.24[+0.67,+7.81]pp: point direction passes, all-seedCI and policy-relative screens fail. ID also regresses.
+
+R5 support passed, but120/128positive training decisions and all62dev positives came from handcrafted brake-resumption. Both frozen gates already detect62/62dev events. Event recall100%versus regression88.7–91.9%does not demonstrate coverage of old-gate misses. Most safe harms include new violations rather than just completion loss; trigger frequency alone is not an adequate explanation. Close this configuration without promotion, tuning or independent confirmation. No new experiment launched; the following launch/progress entries are historical.
+
+---
+
 ### Update 13 Oct — R5 study launched on three healthy GPUs; architecture review completed
 
 Production `immediate_gate_20261013_a` launched at15:49UTC from preregistration/implementation commit **`a4b468e`** (pushed before launch). Detached coordinator PID675479; collection workers675483/675484/675485 on healthy GPU UUIDs `3f4f72ef…` / `99b39a1b…` / `c164f9d9…`. Verified coordinator SID675479 and stdin `/dev/null`; all3workers were alive in full-OpenVLA loading at the initial check. This is a launch statement, not a support/training/efficacy result. The coordinator automatically enforces collection→support→training→evaluation→integrity; support failure stops it before training.
