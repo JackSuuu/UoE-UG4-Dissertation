@@ -3,7 +3,7 @@
 **Dissertation:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization
 **Replaces:** `Experiment_plan_Phase_1.md` (3–4 week validation plan). That plan remains the blueprint for Months 1–3 infrastructure.
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
-**Last updated:** 2026-10-12
+**Last updated:** 2026-10-13
 
 ## 当前主线：日常生活中的精细接触操作，architecture-first（2026-10-12）
 
@@ -38,7 +38,17 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 当前主线与运行实验：直接验证 repair-aware transition 算法（2026-10-13）
+## 最新完成与下一步：repair transition 有增量收益，评估 SEAL-inspired recovery（2026-10-13）
+
+**正式完成：180/180 batches、5,760 trajectories，三worker均已退出，当前没有该轮GPU任务。** 180 raw hashes、全部episode vectors、live-risk违规重建、prefix-label parity和三份shard hashes独立复核通过。[完整结果与SEAL接入评估](exp_record/repair_transition_results_20261013.md)。以下进度/launch描述保留作历史记录，以本段为准。
+
+**结论：** learned ramp相对原verifier safe **+2.01[+0.89,+3.35]pp**、safe rescue/harm9/0，恢复原12 harms中7个并保留8/8 rescues；但相对policy仅+1.12[−0.67,+2.68]pp、SR−2.23pp，未过整体收益门槛。固定混合与ramp差异不显著；pause safe64.51%，虽减少局部跳变/违规，却未恢复任何原harm。GT ramp相对GT direct safe仅+0.45[−1.12,+2.01]pp、rescue/harm8/6。保留ramp为有希望的component/control，不宣称独立确认或普适衔接机制，不继续广泛调ramp。
+
+**SEAL可以借鉴，但接入重点应是新的可恢复动作候选及验证。** 官方`NVlabs/actalign`和`NVlabs/Libero-10-r`代码已公开，当前官方README的reasoning-policy checkpoints仍标TBD；本机尚无LIBERO/robosuite/RoboCasa。原SEAL是reasoning π0＋随机候选＋真实simulator预测＋VLM计划一致性判断、variable horizon，不能直接当作当前deterministic OpenVLA H10/k5的一个开关。50ms latency目标当前后置，不作为否决理由。完整官方复现还需checkpoint/训练资源及接口兼容性；不能直接覆盖shared base依赖。
+
+**建议下一项有限实验（设计草案，未launch）：** 固定K=8，scale-only与等预算非共线候选（侧向纠正/退让再接触等）对照；先在新training roots验证“是否存在安全且恢复policy后仍完成的候选”，GT branch仅诊断，不进入训练/runtime；有witness再比较同候选集的learned与GT selector，隔离candidate coverage与ranking/gating。过去scale/progress没有净收益，并未测试真正转向/再接触；反过来也不能据此声称新候选一定有效。完整数值/roots/control-query预算须在新标签前登记。R5/H10 event gate与anticipation coverage问题仍保留，不能用候选扩展掩盖漏检。长期生活化架构可组合语义进度验证与物理约束验证，正式transfer仍需learned efficacy。
+
+## 历史启动与进度：直接验证 repair-aware transition 算法（2026-10-13）
 
 **进度复核（启动约46分钟）：** 检查时171/180 batches完成，shard2正常结束，其余两张GPU仍运行，完整aggregate尚未生成。none/direct/ramp/flat在全部20cells已完成，80 raw hashes及outcomes/live-risk flags通过独立复核。OOD448：SR/CVR/safe(%)，none87.05/29.24/65.63，direct84.60/28.79/64.73，ramp84.82/26.79/66.74，flat85.04/26.56/66.52。Ramp vs direct safe **+2.01[+0.89,+3.35]pp**、safe rescue/harm9/0，恢复原12 harms中的7个且保留原8 rescues全部；SR+0.22[−0.67,+1.12]pp。相对none safe仅+1.12[−0.67,+2.68]pp、rescue/harm10/5，SR−2.23pp；相对flat safe+0.22[−0.45,+0.89]pp。因此已有修复衔接的增量验证证据，但未达到整体learned收益标准，也未证明渐变优于固定混合。等待pause/GT controls及最终完整校验；这是已用于设计的validation，非独立确认。
 

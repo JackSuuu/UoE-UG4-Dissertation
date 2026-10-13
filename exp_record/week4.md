@@ -4,6 +4,16 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Repair-transition complete; incremental gain, overall efficacy still unestablished
+
+**180/180 batches /5,760 trajectories complete**, all workers exited normally. Independently rechecked180 NPZ hashes, all episode vectors, live-risk violation flags, prefix-label parity and three shard-summary hashes. Full results, uncertainty, stress review and SEAL feasibility: [completion report](repair_transition_results_20261013.md). This completion supersedes the following launch/progress entries.
+
+OOD n448/arm SR/CVR/safe(%): policy87.05/29.24/65.63; learned direct84.60/28.79/64.73; ramp84.82/26.79/66.74; flat85.04/26.56/66.52; pause85.04/29.24/64.51. Ramp vs direct Δsafe+2.01[+0.89,+3.35]pp, safe rescue/harm9/0, restores7/12 original harms and preserves8/8 original rescues. Ramp vs policy Δsafe+1.12[−0.67,+2.68]pp, rescue/harm10/5, ΔSR−2.23pp: **incremental screen passes; broader efficacy screen fails**. Ramp vs flat remains inconclusive. Pause reduces local jump/incidents but restores0/12 original harms and does not improve task-level safe success. GT ramp vs GT direct Δsafe+0.45[−1.12,+2.01]pp, rescue/harm8/6: continuity is not a universal repair solution. All results reuse validation roots, not independent confirmation.
+
+**SEAL assessment:** checked official paper/project and repositories `NVlabs/actalign`, `NVlabs/Libero-10-r`. Code is public; documented pretrained reasoning-model checkpoints remainTBD. Local actor is deterministic full OpenVLA+H10 planar head, not a text-plan-conditioned stochastic reasoning policy. Local LIBERO/robosuite/RoboCasa are absent. Recommend a bounded SEAL-inspired **fixed-K=8 non-collinear candidate + continuation-witness audit** before learned selection, retaining scale-only controls and hidden-physics isolation. The previous failed scale/progress experiment is not evidence against all steering/re-contact candidates, but no new candidate benefit is established. Official variable-horizon simulator/VLM semantic verification is a distinct comparison and cannot stand in for learned contact-force verification. No new jobs started; no broad smoothing sweep planned.
+
+---
+
 ### Update 13 Oct — Actual-verifier transition ablation launched; tie the next algorithm to measured harms
 
 **Progress review (171/180 batches at status check, ~46 min):** shard2 completed54/54 and exited normally; shards0/1 active at59/63 and58/63. The aggregate is not yet complete. All20 cells already contain none/learned_direct/learned_ramp/learned_flat; independently verified their80 raw hashes, episode vectors and live-risk violation flags. This permits a complete-cohort primary comparison, while pause/GT controls and final aggregate checks remain pending.
