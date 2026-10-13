@@ -38,9 +38,25 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 最新结果：boundary/gate diagnosis 全部完成，定位 policy-resumption hazard（2026-10-13）
+## 当前主线与运行实验：直接验证 repair-aware transition 算法（2026-10-13）
 
-**当前状态：** 三 GPU 全部完成 **84/84 batches、2,688 trajectories、128 shared training roots**，自动分析完成，launcher/Python 均已退出；本次没有启动新 job。168 raw hashes、analysis→source hashes、四个 none batches 跨三个 GPU 的 state/context/proposal/labels/七模型 scores/order probes 均复核通过，跨 GPU bit-exact。详细结果：[event_boundary_results_20261013.md](exp_record/event_boundary_results_20261013.md)。下面启动记录为历史状态。
+**研究问题仍然是：learned physics verifier 能否稳定提高安全任务完成率。** 最近两轮 boundary/coverage 实验解释了采集失败，并没有证明 framework 改善；不再沿着 collector 参数无限扩展。当前已有证据：(1) learned gate 是主要已测瓶颈，GT-gate 替换收益大，但 learnability 未证明；(2) 静态 max-score 有 action-order 盲点，但 GRU order-sensitive 并没有带来有效检测；(3) 原 verifier 的真实干预既救回也伤害任务，修复如何改变下一决策值得直接验证。因此算法/架构改动必须对应具体证据，而非“多做实验”本身。
+
+**实际 verifier premise audit：** 14 OOD cells/448 episodes 中129个违规、12个相对 none 的 safe harms；340个 pre-violation post-repair decisions。16个首次违规发生于实际修改动作后的下一段，**包含全部12 harms**；其中直接恢复原动作的段只有7个违规、包含4 harms，且没有一个是该段第一步违规。另8 harms 在继续修复的段里。不能把 collector 的“恢复第一步就危险”当成真实 verifier 的已证机制；本轮改测连续 repaired decision chunks 的衔接。
+
+**算法已经实现并启动：** repair-aware prefix shaping → unchanged gate → unchanged repair。用上一条实际执行 velocity 与“上一段是否被 repair 真正修改”这一 bit，下一决策将前5步按0.2/0.4/0.6/0.8/1.0逐渐衔接回新proposal，再评分；后5步不变。对照原direct、固定0.6混合、pause5steps，检验是否只是降速/拖延。Transform本身不反复触发，只有新的实际repair才re-arm；abstention/no-op不触发。不是检查之后偷偷改动作，也不增加gate查询/候选搜索。
+
+**实验与资源：** [预登记协议](exp_record/repair_transition_20261013.md)，commit `0318a41` 在正式launch前完成。固定20-cell validation seeds26000–26019、full OpenVLA H10/k5/microbatch8。9 arms = none + learned gate×4 transitions + GT gate×4 transitions；repair均用原frozen predictor。180 arm batches/5,760 trajectories，640 paired roots（OOD448/ID192），不作为独立confirmation。三GPU按cell index mod3分7/7/6cells，全方法都在每个cell配对。Run `repair_transition_20261013_a`，launcher PIDs **671696/671697/671698**；日志 `~/scratch/repair_transition_20261013_a_shard{0,1,2}.log`。`setsid nohup`/stdin `/dev/null`持久运行，最后完成的worker自动合并，不启动训练。
+
+**预先规定怎么判断：** primary固定learned_ramp，报告SR/CVR/safe、paired rescue/harm、CI及原12 harms恢复/8 rescues保留；与original、policy、flat/pause分别比较。Incremental证据要求vsoriginal safe paired95% lower>0，且SR下降不超过2pp；整体候选仍需vsnone ≥+3pp safe、positive CI、SR损失≤2pp及stress review，随后还须独立验证。局部更平滑/更安全不算task-level改进；只有GT有效不算learned成功；无效则停止这组衔接规则，回到gate数据/目标/观测问题，不无限调ramp。
+
+**算法与架构顺序：** 现在隔离controller continuity算法（模型/阈值冻结）；gate仍需coverage-only regression→event-aware objective、独立R5/H10监督与frozen repair对照；若合格覆盖和event loss后仍失败，再检验order-sensitive representation/更长实际history或dynamics-context。现有static order blindness不等于旧GRU可用，更不支持直接扩大网络。52项测试、9-arm CPU smoke和自动汇总已通过。
+
+**启动验证：** 三个worker各自首个none arm已完成（检查时 **3/180 batches**），outcomes/live risk均复现source factorial。Python PIDs shard0/1/2为 `671707/671705/671706`，均在运行；尚无pooled新方法结论。
+
+## 已完成结果：boundary/gate diagnosis，定位 collector policy-resumption hazard（2026-10-13）
+
+**该轮状态：** 三 GPU 全部完成 **84/84 batches、2,688 trajectories、128 shared training roots**，自动分析完成，原launcher/Python 均已退出；该次completion review没有启动job，现有新任务见上节。168 raw hashes、analysis→source hashes、四个 none batches 跨三个 GPU 的 state/context/proposal/labels/七模型 scores/order probes 均复核通过，跨 GPU bit-exact。详细结果：[event_boundary_results_20261013.md](exp_record/event_boundary_results_20261013.md)。下面启动记录为历史状态。
 
 **Primary screen 全失败：** 18 个 perturbed onset/arm 每组 anticipation 至多 **3 roots**（要求24），跨组去重仅 **5 roots**，紧接 pulse 的下一 decision anticipation 为 **0**。弱/渐变扰动大多不在 pulse 内违规，说明“加速太猛”只能解释先前失败的一部分，继续扩大同类 sweep 没有充分依据。
 

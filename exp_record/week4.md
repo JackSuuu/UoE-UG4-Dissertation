@@ -4,6 +4,32 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Actual-verifier transition ablation launched; tie the next algorithm to measured harms
+
+The collector-only resumption proposal is superseded by a **direct framework ablation**, [registered before launch](repair_transition_20261013.md), implementation/protocol commit `0318a41`. The target is safe task completion under the actual learned verifier, not another exploration-coverage sweep.
+
+**Premise audit:** original frozen learned verifier OOD n448 has 129 violations /12 safe harms; 340 pre-violation post-repair decisions. Sixteen first violations occur in the chunk immediately after an execution-changing repair, including **all 12 harms**. Only seven occur in a direct-release chunk (four harms), with **zero first-step release violations**. Eight harms occur while repair continues. This narrows the hypothesis to adjacent repaired chunks; it does not transplant the collector's first-step-failure mechanism to the verifier. Saved audit: `src/results/push_torch/repair_transition_20261013_a/actual_repair_audit.json`, with source hashes and per-cell attribution.
+
+**Algorithm:** when the previous real repair changed execution, blend the new proposal's committed prefix from the previous executed velocity with weights .2/.4/.6/.8/1.0 **before** unchanged gate/repair. Keep the suffix unchanged. Controls are direct, constant .6 blend and five-step pause; transforms do not re-arm themselves, and no-op/abstention does not arm one. No neural weights, thresholds, bisection budget or H10/k5 opportunity changes. Exactly one gate query per decision and eight repair risk queries per triggered row are asserted.
+
+**Nine arms:** policy alone; learned gate×four transitions; privileged GT gate×four transitions, all with original learned repair. Primary fixed as learned_ramp. Twenty validation cells (seeds26000–26019), n640/arm, n448 OOD; **180 batches /5,760 trajectories**, not independent confirmation. Three health-checked RTX A5000s divide cells by index modulo3, with all nine methods paired on each cell:
+
+| Shard | Cells / arm batches | GPU UUID | Detached launcher |
+|---|---|---|---:|
+| 0 | 7 /63 | `GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0` | 671696 |
+| 1 | 7 /63 | `GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8` | 671697 |
+| 2 | 6 /54 | `GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b` | 671698 |
+
+Shared run root `src/results/push_torch/repair_transition_20261013_a/`; logs `~/scratch/repair_transition_20261013_a_shard{0,1,2}.log`; launcher manifest `~/scratch/repair_transition_20261013_a_launch.json`. `setsid nohup`, stdin `/dev/null`, offline loading and thread caps preserve jobs across SSH exit. The last completed worker aggregates once under an exclusive lock. Current state is startup/collection; no result claimed.
+
+**Startup check:** all three workers completed their first none arm (**3/180 arm batches** at this check), matching source factorial episode outcomes and live risk traces. Python PIDs shard0/1/2 **671707/671705/671706** are active. The first cells are deliberately the original stress-grid cells, not a selected favorable subset; partial per-cell metrics are not pooled efficacy results.
+
+**Decision:** report SR/CVR/safe, paired rescue/harm/CIs, original-harm reversal and rescue retention. Incremental benefit requires positive paired lower bound vs direct and ≤2pp SR loss; the broader ≥3pp safe gain vs policy/positive CI/completion/stress requirements remain separate. GT-only benefits are diagnostic. Smoother traces without task-level gain fail the objective. If the fixed rule fails, stop this transition family and return to event-gate data/objective/observability; no unbounded ramp tuning.
+
+**Checks:** four new semantic/controller tests plus existing suite: **52 tests pass**. Nine-arm CPU BC smoke `repair_transition_smoke_20261013_a` completed source-independent rollout, gate/repair query accounting, prefix parity, pre-branch matching and automatic aggregate analysis. Production enforces none/learned_direct/gt_direct replay against the prior factorial. No dependencies changed or model training started.
+
+---
+
 ### Update 13 Oct — Boundary diagnosis complete: anticipation still sparse; hazards concentrate at policy resumption
 
 All three shards completed **84/84 batches, 2,688 trajectories over 128 paired training roots**, including automatic analysis. Launcher/Python processes exited. Rechecked **168 raw hashes**, analysis→source hashes, and all four none batches' **bit-exact cross-GPU** state/context/proposal/labels/seven-model scores/order probes.
