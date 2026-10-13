@@ -1,5 +1,7 @@
 # Repair-transition completion and SEAL adoption assessment — 13 Oct 2026
 
+**Subsequent priority decision:** the measurements below stand; the proposed SEAL-inspired next study is **parked**, superseded by [the single-mainline gate decision](research_mainline_20261013.md). Feasibility does not imply research priority.
+
 ## Completion and integrity
 
 Run `repair_transition_20261013_a` completed **180/180 arm batches, 5,760 trajectories**, all20 validation cells ×9 arms ×32 episodes. These are640 paired roots, not5,760 independent samples; OOD n448, ID n192 per arm. All three detached launchers/workers exited. No experimental job from this run remains active.

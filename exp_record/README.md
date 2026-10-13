@@ -4,6 +4,8 @@ Running log of experiment progress against
 [`core_research_plan.md`](../core_research_plan.md),
 one file per week. Inside a file, the newest entry is at the top.
 
+**Current research decision:** [One question, one active gate intervention](research_mainline_20261013.md). This supersedes the SEAL next-step sketch and older architecture priority lists; completed experimental results remain unchanged.
+
 | week | dates | file | main events |
 |---|---|---|---|
 | 1 | to 29 Sep 2026 | [week1.md](week1.md) | Genesis bring-up and demotion; Task A → box peg, two-fingertip pusher; open-loop chunk protocol; three pipeline defects; v5; repair audit; RQ2b shift ladder |

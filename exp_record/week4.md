@@ -4,6 +4,14 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Research reset: one gate hypothesis, no new branch launch
+
+The user correctly challenged the growing collection of loosely connected experiments. [The mainline decision](research_mainline_20261013.md) now supersedes the SEAL candidate-study next-step sketch. One objective: learned-verifier **safe task-completion gain over the same full OpenVLA**, with matched observations/control and bounded SR loss. Early BC/vis results, privileged GT gains, cadence-confounded results, small samples and corrected full-actor confirmation must not be conflated. The corrected896-episode confirmation's+1.23pp learned safe gain remains valid, but is small and not consistent in direction on the448-episode validation cohort; the new+2.01pp ramp increment is relative to the old verifier, not to policy.
+
+**Single next intervention:** a bounded R5 immediate-event gate-objective comparison with original repair frozen, separating same-data regression from event loss. Exact collection/support/integration/calibration rules require preregistration; this is not a launch-ready protocol. H10 anticipation support remains failed/blocked and cannot be replaced by R5 success. If the bounded fresh-support check fails, stop and explicitly revise scope rather than opening another collector/SEAL/GRU branch. All final judgments use SR/CVR/safe, paired rescue/harm and uncertainty. SEAL, candidate expansion, smoothing sweeps, larger temporal architectures and full verifier transfer are parked. No new job launched.
+
+---
+
 ### Update 13 Oct — Repair-transition complete; incremental gain, overall efficacy still unestablished
 
 **180/180 batches /5,760 trajectories complete**, all workers exited normally. Independently rechecked180 NPZ hashes, all episode vectors, live-risk violation flags, prefix-label parity and three shard-summary hashes. Full results, uncertainty, stress review and SEAL feasibility: [completion report](repair_transition_results_20261013.md). This completion supersedes the following launch/progress entries.

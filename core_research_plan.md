@@ -5,7 +5,23 @@
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
 **Last updated:** 2026-10-13
 
-## 当前主线：日常生活中的精细接触操作，architecture-first（2026-10-12）
+## 唯一当前主线：学会正确干预，证明安全任务完成净收益（2026-10-13，优先于下文）
+
+**唯一问题：在相同完整OpenVLA、观测权限和执行机会下，learned physics verifier能否通过正确识别需要干预的动作，提高安全任务完成率，同时不明显牺牲任务成功？** 先在固定box-push任务证明，再转移到一个生活化接触任务。架构、SEAL和更复杂任务是手段，不是并行研究目标。[英文决策与证据链](exp_record/research_mainline_20261013.md)。本节覆盖下文所有“下一步”“当前主线”和SEAL启动建议；历史协议/结果不改写。
+
+**为什么早期看起来好：** 早期BC/stand-in、vis与full OpenVLA混在叙述中；历史v5 learned safe约68.5→70.4%，大幅68.5→80.1%属于GT。旧controller还存在none每5步replan、非trigger verifier每步replan的不公平，10月8日才完整修复；不能断言这个bug解释全部历史收益。修正后n8/cell的+3.6～4.5pp信号，在独立896 OOD episodes上变成+1.23[+0.11,+2.46]pp（decision tau），safe rescue/harm21/10、SR−1.79pp；另一448验证cohort为−0.89pp。小正收益仍有效，但“大幅、稳定、完整VLA的learned收益已经证明”从未成立。最近ramp相对原verifier+2.01pp，仍非相对policy的稳定净收益。
+
+**已选瓶颈：干预判定gate。** GT gate＋原learned repair safe77.46%，原gate＋原repair64.73%，policy65.63%；这是最强的已测组件替换证据，但GT同时改变估计与阈值语义并使用隐藏物理，未证明可学习性，且SR仍损失。连续修复伤害已获得有限改进，GRU失败、anticipation采集失败也已记录，不再每个现象各开一条线。
+
+**下一项只改gate的学习目标，冻结repair：** 先形成一份有数值预算/停止条件的R5即时事件gate对照协议：frozen原gate、相同新合规训练数据上的regression control、同数据同结构/输入预算的event-loss gate；full actor/H10/k5、原repair、隐藏参数隔离保持固定。原direct为归因比较，ramp保留完成结果，首轮不同时组合新的repair。全部训练seeds与闭环SR/CVR/safe、paired rescue/harm及CI报告。R5有效不等于H10预警有效。
+
+**数据阻塞必须直说：** 现有两轮collector没有合格H10-only anticipation support，完整H10 gate训练仍blocked。R5新研究也必须先按新协议预定数值检查fresh train/dev/calibration支持，不能把旧pilot偷偷改判合格。该固定预算检查若失败就停止并明确调整研究范围，不继续广泛collector扫参、不放宽标准、不扩physics ranges、不转而启动SEAL/新GRU来绕过。若支持通过才做一次匹配loss对照；检测指标改善但闭环无收益仍不算主线成功。
+
+**统一验收：** 相对policy OOD safe≥+3pp、独立paired95% lower>0，SR损失≤2pp，stress review及既定多seed/第二cohort要求保留。未达到则不能把component增量、oracle收益或低CVR包装成framework成功。已用confirmation不能重复充当新独立测试。
+
+**当前暂停：** SEAL候选扩展、继续调平滑、更大/更长history架构、广泛coverage sweep、完整生活化verifier迁移。SEAL只在明确需要更有表达力的repair时重新讨论。本次不启动新GPU任务；即时交付是上述唯一gate对照的可检验协议，而不是又一组支线实验。以后每个实验必须先写清“哪个已测问题→只改什么→什么闭环结果算成功→失败在哪里停止”。
+
+## 长期任务与历史架构假设（2026-10-12，非当前并行主线）
 
 **研究定位：** 在日常 manipulation 的接触阶段，用可验证的物理反馈与时序预测帮助 VLA 安全、精确地完成任务，而不只是避免一次碰撞。主贡献仍为 **differentiable physics verifier / constrained local repair architecture**；单纯扩大 MLP、训练范围或候选数量不作为主贡献。系统优化支持可运行性，解释层支持诊断；真实机械臂仍后置。
 
@@ -36,9 +52,9 @@
 
 **Benchmark 与边界：** LIBERO / RoboCasa365 / robosuite-MuJoCo 是待核实载体，不预设具备上述几何、接触、液体或热学语义。公开任务与自定义 precision variants 明确分开；实际 IDs、checkpoint/action conventions 和依赖确认后再决定。公开论文 SR 与我们的 safe success 不混表；当前实现不是官方 CheckVLA reproduction，也不是 SEAL semantic verifier。Box push 保留为 audit/ablation testbed，不作为最终生活化展示。
 
-**文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
+**文档权威性：** 文件顶部“唯一当前主线”决定执行优先级；本节保留长期任务与历史假设。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 最新完成与下一步：repair transition 有增量收益，评估 SEAL-inspired recovery（2026-10-13）
+## 已完成结果与已暂停的SEAL下一步草案（2026-10-13）
 
 **正式完成：180/180 batches、5,760 trajectories，三worker均已退出，当前没有该轮GPU任务。** 180 raw hashes、全部episode vectors、live-risk违规重建、prefix-label parity和三份shard hashes独立复核通过。[完整结果与SEAL接入评估](exp_record/repair_transition_results_20261013.md)。以下进度/launch描述保留作历史记录，以本段为准。
 
