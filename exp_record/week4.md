@@ -4,6 +4,14 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Scope fixed to local VLA; precision tasks and noise treatment specified
+
+The user clarified the broader physical-verification vision and then explicitly limited current work to **local VLA execution**; LLM planning/edge-cloud collaboration are future work. [Scope and task decision](local_vla_scope_20261013.md) separates target-simulator training data from held-out evaluation, physical state/uncertainty estimation from “removing noise,” and full-task benefit from model fine-tuning alone.
+
+Checked official BDDL for book-in-caddy (LIBERO-10, In predicate), bowl-in-drawer-and-close (In+Close), and bottle-on-rack (On, not verified tight insertion). Recommend book-in-caddy as the first precision-oriented candidate, drawer composite second, square-nut placement as a later controlled mechanism task. Actual geometry/force/precision acceptance still needs local validation. Checked public full7B LIBERO-10 checkpoint revision `80970322773f81baa2e22fe495d0487b93a05cfa`. Drawer-opening remains an optional integration smoke, not the final precision demonstration. No benchmark installation, training, rollout or LLM implementation started in this scope update.
+
+---
+
 ### Update 13 Oct — User confirms task-first acceptance; target-simulator feasibility audited
 
 [Decision and source audit](simulation_task_first_20261013.md): stop making another toy-task fine-tuning variation the immediate milestone. First establish a complete single-task robot-simulation policy baseline, then test bounded privileged physical intervention on the same task, then demonstrate learned efficacy. This revises execution priority without erasing negative results or treating oracle gains as learnability.

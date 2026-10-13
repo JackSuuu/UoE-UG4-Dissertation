@@ -5,7 +5,15 @@
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
 **Last updated:** 2026-10-13
 
-## 唯一当前主线：以目标仿真完整任务为验收（2026-10-13，优先于下文）
+## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
+
+**最新范围确认：先证明本地VLA执行闭环有效，LLM与端云协同只列future work。** 核心贡献目标是“物理预测/验证与必要的局部修正，能否在观测/执行/动力学存在不确定性时提高完整、精确、安全的任务完成”。具体loss、微调、网络或repair算法可以按证据调整，不能把某个训练技巧当成必须实现的主线。成功的VLA实例支持执行层逻辑，不自动证明LLM通用性或真实世界安全保证。[范围、任务与噪声设计](exp_record/local_vla_scope_20261013.md)。
+
+**精细任务选择（逐个推进）：** 首选LIBERO-10“将书放入收纳盒后隔间”（确切ID和In目标已核实；实际间隙/碰撞与精度判据仍需检查）；第二候选“碗放入底层抽屉并关闭”（In＋Close目标已核实，轻柔/稳定到位需独立物理指标）；robosuite `NutAssemblySquare`作为后续受控对齐接触机制任务，现有成功条件并非严格精度认证，且task-matched VLA未核实。官方LIBERO-10 full7B checkpoint公开可用，未有本地rollout结果。先前“打开中层抽屉”降为可选接口smoke，不代表最终精细任务。只接通一个primary，不并行扩多套环境。
+
+**数据与noise原则：** 用目标场景的独立training roots采集真实策略成功/失效及有机制依据的干预数据，拟合/校准物理预测与修正；现有audit/validation/final outcomes不变成训练标签。先固定task-capable VLA，避免同时微调actor和verifier后无法归因。不是“消除noise”，而是区分观测误差、执行误差、隐藏动力学与数值误差，用允许的观测history估计状态及不确定性，预测→执行→反馈更新；真实mass/friction不进learned runtime。先无噪声baseline，再预登记单因素及组合扰动，配对初始状态和外生噪声，相同观测/控制机会，验收完整task SR/CVR/safe与精度、稳定完成、rescue/harm及CI。force阈值/precision容差须由可核验mechanics决定，不能用事后挑noise强度制造收益。
+
+### 已确认的task-first执行路径与接入检查
 
 **最新用户确认：最终操作任务做不好，继续优化微调实验没有意义。** 当前下一步改为：①先跑通一个机械臂仿真任务及完整OpenVLA正常任务baseline；②在相同任务验证有限预算的准确物理干预能否提高完整安全完成率；③有机制可行性后，再训练/验证learned物理预测与修复贡献。此决定覆盖下文“简单任务learned收益证明后才做任何目标任务可行性”的执行顺序，以及原模型初始化微调建议；不抹去R5负结果，不把换benchmark算改进。[英文决策与兼容性核查](exp_record/simulation_task_first_20261013.md)。
 
