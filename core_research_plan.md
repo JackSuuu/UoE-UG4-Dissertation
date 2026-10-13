@@ -40,6 +40,8 @@
 
 ## 当前主线与运行实验：直接验证 repair-aware transition 算法（2026-10-13）
 
+**进度复核（启动约46分钟）：** 检查时171/180 batches完成，shard2正常结束，其余两张GPU仍运行，完整aggregate尚未生成。none/direct/ramp/flat在全部20cells已完成，80 raw hashes及outcomes/live-risk flags通过独立复核。OOD448：SR/CVR/safe(%)，none87.05/29.24/65.63，direct84.60/28.79/64.73，ramp84.82/26.79/66.74，flat85.04/26.56/66.52。Ramp vs direct safe **+2.01[+0.89,+3.35]pp**、safe rescue/harm9/0，恢复原12 harms中的7个且保留原8 rescues全部；SR+0.22[−0.67,+1.12]pp。相对none safe仅+1.12[−0.67,+2.68]pp、rescue/harm10/5，SR−2.23pp；相对flat safe+0.22[−0.45,+0.89]pp。因此已有修复衔接的增量验证证据，但未达到整体learned收益标准，也未证明渐变优于固定混合。等待pause/GT controls及最终完整校验；这是已用于设计的validation，非独立确认。
+
 **研究问题仍然是：learned physics verifier 能否稳定提高安全任务完成率。** 最近两轮 boundary/coverage 实验解释了采集失败，并没有证明 framework 改善；不再沿着 collector 参数无限扩展。当前已有证据：(1) learned gate 是主要已测瓶颈，GT-gate 替换收益大，但 learnability 未证明；(2) 静态 max-score 有 action-order 盲点，但 GRU order-sensitive 并没有带来有效检测；(3) 原 verifier 的真实干预既救回也伤害任务，修复如何改变下一决策值得直接验证。因此算法/架构改动必须对应具体证据，而非“多做实验”本身。
 
 **实际 verifier premise audit：** 14 OOD cells/448 episodes 中129个违规、12个相对 none 的 safe harms；340个 pre-violation post-repair decisions。16个首次违规发生于实际修改动作后的下一段，**包含全部12 harms**；其中直接恢复原动作的段只有7个违规、包含4 harms，且没有一个是该段第一步违规。另8 harms 在继续修复的段里。不能把 collector 的“恢复第一步就危险”当成真实 verifier 的已证机制；本轮改测连续 repaired decision chunks 的衔接。
