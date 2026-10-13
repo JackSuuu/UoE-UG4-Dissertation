@@ -4,6 +4,12 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Full-policy continuation launched with geometry/release/dwell acceptance
+
+[Protocol](libero_continuation_protocol_20261013.md), [implementation and checks](libero_continuation_launch_20261013.md). Protocol/source `9f39e2b` pushed before three detached workers launched; same roots/actor/control and520total policy steps. Native success no longer terminates the rollout.5tests pass,185step original replay matches every state exactly with substep instrumentation. A separate synthetic placed-book fixture passes60intervals, demonstrating metric satisfiability only. Its native predicate is false, so geometry-aware completion must be presented as an alternative task acceptance rather than a nested benchmark metric. Full-policy outcomes pending at this entry; no physics intervention or training launched.
+
+---
+
 ### Update 13 Oct — Pilot completed: native3/3, but release/stable placement not established
 
 [Results and source-interpretation erratum](libero_baseline_results_20261013.md). All three workers completed, native success at185/229/166steps; artifact verification passed and a local HTML video report was produced. Terminal commands remain closed and book/gripper contacts persist in all three. Deeper predicate tracing found `SiteObjectState.check_contact` always returns True, so this task does not require actual caddy contact despite the generic `In` call. The frozen protocol's contact interpretation is corrected in the results, without rewriting the protocol. Next is a bounded continuation/release/stability baseline protocol, before physics intervention or learned training. CVR/safe/strict precision remain unmeasured. No jobs remain running.

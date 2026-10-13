@@ -10,6 +10,8 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **Latest pilot outcome:** [Native3/3; released stable placement remains unestablished](libero_baseline_results_20261013.md). Includes the site-predicate contact erratum and the next continuation-baseline requirement.
 
+**Active continuation:** [Geometry/release/dwell baseline launch and checks](libero_continuation_launch_20261013.md), [frozen protocol](libero_continuation_protocol_20261013.md).
+
 **Latest completed study:** [R5 results](immediate_gate_results_20261013.md): partial event-vs-regression signal, all new gates fail policy-relative safe completion; no promotion or new experiment. The [frozen numerical protocol](immediate_gate_20261013.md) remains unchanged.
 
 | week | dates | file | main events |
