@@ -6,6 +6,8 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **Current research decision:** [Local VLA precision execution with physical feedback under uncertainty](local_vla_scope_20261013.md). LLM/edge-cloud are future work. Establish one task/actor baseline and physical-intervention feasibility under [the task-first sequence](simulation_task_first_20261013.md) before further verifier training. This supersedes immediate gate-fine-tuning priorities in [the earlier mainline reset](research_mainline_20261013.md); completed experimental results remain unchanged.
 
+**Implementation:** [LIBERO full7B integration and pilot launch](libero_integration_20261013.md), with [frozen native-action feasibility protocol](libero_baseline_protocol_20261013.md).
+
 **Latest completed study:** [R5 results](immediate_gate_results_20261013.md): partial event-vs-regression signal, all new gates fail policy-relative safe completion; no promotion or new experiment. The [frozen numerical protocol](immediate_gate_20261013.md) remains unchanged.
 
 | week | dates | file | main events |

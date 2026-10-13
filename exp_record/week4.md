@@ -4,6 +4,12 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — LIBERO full7B baseline integrated; three complete pilot episodes launched
+
+[Implementation and checks](libero_integration_20261013.md), [frozen pilot protocol](libero_baseline_protocol_20261013.md). Environment and native-model one-action smokes passed; full checkpoint strict loading and exact upstream image preprocessing verified. Project-local adapters resolve two MuJoCo3.14/robosuite1.4.1 ABI changes.12unittest checks and standalone TF5/action-map checks passed. Protocol/runner commit `bf7c6c6` pushed before launching three fixed development initial states on healthy GPUs1/2/3 with detached `setsid nohup` workers. Pilot root `/home/ami/scratch/libero_book_pilot_20261013_a`; completion/results pending at this entry. No learned training/intervention launched. Actual collision geometry and predicate limitations recorded; native SR must remain distinct from stable precision and safety.
+
+---
+
 ### Update 13 Oct — Scope fixed to local VLA; precision tasks and noise treatment specified
 
 The user clarified the broader physical-verification vision and then explicitly limited current work to **local VLA execution**; LLM planning/edge-cloud collaboration are future work. [Scope and task decision](local_vla_scope_20261013.md) separates target-simulator training data from held-out evaluation, physical state/uncertainty estimation from “removing noise,” and full-task benefit from model fine-tuning alone.
