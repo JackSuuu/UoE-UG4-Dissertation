@@ -38,7 +38,17 @@
 
 **文档权威性：** 本节及 Week 4 measured results 覆盖下文历史时间表与早期推断。后续章节保留设计沿革；旧 cadence-confounded 数字、未复核 literature claims、计划状态或 hypothetical benchmark 不能作为当前有效性/完成状态证据。实现与实验 artifact 状态以版本化代码和 `exp_record/week4.md` 为准。
 
-## 当前实验：三 GPU 配对 boundary/gate diagnosis 已启动（2026-10-13）
+## 最新结果：boundary/gate diagnosis 全部完成，定位 policy-resumption hazard（2026-10-13）
+
+**当前状态：** 三 GPU 全部完成 **84/84 batches、2,688 trajectories、128 shared training roots**，自动分析完成，launcher/Python 均已退出；本次没有启动新 job。168 raw hashes、analysis→source hashes、四个 none batches 跨三个 GPU 的 state/context/proposal/labels/七模型 scores/order probes 均复核通过，跨 GPU bit-exact。详细结果：[event_boundary_results_20261013.md](exp_record/event_boundary_results_20261013.md)。下面启动记录为历史状态。
+
+**Primary screen 全失败：** 18 个 perturbed onset/arm 每组 anticipation 至多 **3 roots**（要求24），跨组去重仅 **5 roots**，紧接 pulse 的下一 decision anticipation 为 **0**。弱/渐变扰动大多不在 pulse 内违规，说明“加速太猛”只能解释先前失败的一部分，继续扩大同类 sweep 没有充分依据。
+
+**新定位：恢复 policy 时的立即危险。** Early brake_ramp 的 pulse survival=100%，但 **125 roots** 在下一次原 OpenVLA proposal 的第一个执行 step 就违规；early hard_brake 有114个 next-decision immediate events，其中69个在第一步。原 predictor 在 early hard_brake diagnostic-check roots 的 recall **90% [81.97,96.83]**，static 三 seeds **20–25%**、GRU **3.33–11.67%**；本轮测试的 safe-score recalibration 未救回新 heads。None-state action reversal 在272 decisions/126 roots改变H10 event，而原 predictor/static max-score均不变；GRU能感知顺序仍未可靠识别真实事件。因此不能直接推论“加GRU就解决”或“只调阈值即可”。
+
+**下一步目标修正：** 先登记 training-only paired resumption-transition diagnosis，定位 pulse结束处的接触状态/动作跳变，再对照原恢复、固定预算渐变衔接及 pause/re-contact；保留实际history与k5。接触重建/时间状态错配等机制目前仍是假说。Immediate-event data/loss 对照与 anticipation-support 问题明确分开；未通过原标准，不自动训练完整 H10 gate，不拿R5结果冒充预警成功。架构改动随后在 matched data/loss/budget 下验证。
+
+## 实验设计与启动记录：三 GPU boundary/gate diagnosis（现已完成）
 
 **直接目标：** 分别检验 (1) collector 是否跳过可预警区域；(2) frozen risk score 是否有辨别力、只是 threshold 不适合；(3) action-order 表示是否存在可测结构盲点。先收证据，再决定采集、event objective、calibration 或 architecture 的改动。不是直接扩大网络或再训练失败的 GRU。
 

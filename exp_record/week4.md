@@ -4,7 +4,21 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 13 Oct — Boundary diagnosis complete: anticipation still sparse; hazards concentrate at policy resumption
+
+All three shards completed **84/84 batches, 2,688 trajectories over 128 paired training roots**, including automatic analysis. Launcher/Python processes exited. Rechecked **168 raw hashes**, analysis→source hashes, and all four none batches' **bit-exact cross-GPU** state/context/proposal/labels/seven-model scores/order probes.
+
+All 18 perturbed onset/arm combinations fail the registered screen: at most **3 anticipatory roots per arm**, only **5 unique roots across all combinations**, and **0** at the first post-pulse decision. Weaker/gradual pulses largely survive, so direct pulse overshoot is not the entire explanation. Early brake_ramp survives 100% of pulses but yields **125 distinct roots whose next original-policy proposal violates at its first executed step**. The mechanism of this policy-resumption hazard still needs a paired test.
+
+On adequate immediate-event cohorts, the tested safe-score recalibration does not repair the new heads' low recall. Original predictor and static heads are invariant on **272 none-state reversal event flips /126 roots**, while GRU is order-sensitive but still poorly detects actual resumption events. Full uncertainty, collector SR/CVR/safe and paired rescue/harm are in [the completion report](event_boundary_results_20261013.md). These are reused training-root diagnostics, not new learned-method efficacy results.
+
+**Next direction:** register a targeted resumption-transition comparison and localize the contact/action discontinuity; avoid another indiscriminate sweep. Immediate-event learning controls and anticipation-support diagnosis must have separate, explicit scopes. **No new job or training launched in this check.** The numerical protocol remains unchanged.
+
+---
+
 ### Update 13 Oct — Three-GPU boundary/gate diagnosis registered and launched
+
+**Historical launch entry, superseded by the completion review above.**
 
 [Fixed protocol and decision map](event_boundary_20261013.md), committed as `e103cfd` before launch. Test collector overshoot, threshold versus score discrimination, and action-order blindness before selecting an algorithm/architecture change. Three CUDA-health-checked RTX A5000s run identical seven-arm designs at observed gap onsets **.20/.12/.06 m**. All use the same **128 training roots** (74000–74003), complete replay from reset, full frozen OpenVLA H10/k5/microbatch8, existing physics ranges and eight scale labels. **84 batches / 2,688 trajectories**, not 2,688 independent roots.
 
