@@ -4,6 +4,18 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 14 Oct — User locks five-layer guardrail architecture and long-task progression
+
+[Architecture lock](libero_framework_design_20261014.md), [implementation handoff](libero_five_layer_implementation_20261014.md). Fixed layers: high-level subgoals, frozen OpenVLA backbone, risk/event monitor, dual-mode gate, bounded local repair. Operational thesis framing is runtime physical safety/affordance monitoring and contact/phase-transition repair; no requirement for a large physics engine or RL repair network. Future algorithm edits stay within these layers and matched ablations. The current preservation diagnostic is a subsystem probe, not already the full architecture.
+
+Next single sequential long-task target is LIBERO-10bowl-in-bottom-drawer-and-close. Pinned BDDL starts the drawer open and requires bothCloseandIn; use grasp/align/place-release/clear/close/final-retention stages, not an invented mandatory initial opening step. Current robot checkpoint isH1; a native chunk/replan comparison is not yet available and cannot be manufactured by action repetition or same-frame deterministic requery. Contact/collision definitions and realistic observation provenance remain explicit experimental requirements.
+
+All24preservation`_b`rollouts have finished (worker exits0/0/0). Postprocessing hit `MemoryError` because `list(imageio_reader)`uses the FFmpeg reader's effectively unbounded length hint. Changed to a frame comprehension, matching the earlier working review exporter; rerunning independent verification/rendering. This is a postprocessing correction, not new rollouts or retuned algorithm parameters.
+
+**Final verification passed:** [results](libero_preservation_results_20261014.md). All acceptance/action/forecast/prefix/budget/tail/state/video checks pass;216raw artifact hashes and six four-method2x videos generated. Acquisition VLA/hold/retreat/physics=2/6,3/6,2/6,3/6; completed-and-retained=1/6,2/6,1/6,1/6. All arms native-ever6/6. Physics rescues root2relative to VLA but ties hold on acquisition and loses root5retention relative to hold; it is not promoted as physics-specific efficacy. Roots1/3/4never trigger this late preservation module. These findings guide layer3–5implementation within the locked architecture. Original supervisor failure log preserved alongside successful postprocess-recovery record. No rollout/training remains active.
+
+---
+
 ### Update 14 Oct — Preservation `_a` aborted on camera identity; local EGL fix and matched restart
 
 [Failure, regression and restart record](libero_preservation_renderer_fix_20261014.md). Root2/physics decision190matched complete integration/controller state but not camera images. Supervisor stopped all workers before roots3–5began. Consecutive recorded-action replay reproduced it without VLA inference: robosuite1.4.1does not rebind EGL context per render after branch creation/closure. Project-local per-draw binding passed18branches/three consecutive decisions; an eight-decision corrected-prefix regression precedes a full24episode restart under the frozen protocol. Original single-decision smoke did not cover this lifecycle. Preserved and independently checked eight completed partial arms; no complete physics efficacy comparison is available. All100aborted/reproduction artifacts are archived for LFS recovery. No algorithmic constants were retuned from these partial outcomes.

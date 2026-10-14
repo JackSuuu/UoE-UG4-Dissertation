@@ -7,6 +7,20 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+### 14 Oct用户锁定：五层架构与长序列验证（最高优先级）
+
+**架构固定为：高层子目标 → 冻结OpenVLA骨干 → 风险与事件边界监测 → 双模门控决策 → 局部修复模块。** 权威定义已写入[framework design](exp_record/libero_framework_design_20261014.md)，[逐层改动与下一任务实施顺序](exp_record/libero_five_layer_implementation_20261014.md)。后续只在这五层内部根据证据修正、做匹配消融，不再更换主架构或铺开新研究方向。高层先用共享的任务milestone状态机；双模明确为正常跟踪／接触与阶段转换管理；修复限有界Retract、Re-align、Slow Approach，优先几何启发式，必要时小残差，不训练复杂大规模RL修复器。
+
+**论文定位：** Runtime Physical Safety & Affordance Monitoring + Contact/Phase Transition Repair，作为围绕冻结VLA的轻量Physical Guardrail。几何、接触转换和实测进展支持面向执行的有限“物理理解”；不要求PINN/V-JEPA/完整神经3D引擎，也不把规则监测写成已学习动力学或通用物理推理。算力效率、安全与效果必须实测，不预先承诺最高效率、成绩或正结果。
+
+**当前数据正确定位与已完成结果：** 旧native3/3不等于真实完整任务100%；释放稳定放置仅1/3，当前book/caddy本来就在`libero_10`。preservation是五层中的局部机制探针，不是完整五层实现。`_b`24条rollout三个worker均exit0；已修复汇总阶段MP4 reader长度提示引起的预分配错误，在同一批数据上独立复核全部通过并生成6个四方法2倍速视频。[完整结果](exp_record/libero_preservation_results_20261014.md)：VLA/hold/retreat/physics放置完成分别2/6、3/6、2/6、3/6；完成且40步actor续跑末20步保持分别1/6、2/6、1/6、1/6。native全部6/6，CVR/safe仍null。physics相对hold没有完成率优势且保持较差；只支持在固定第3–5层补早期事件覆盖和阶段感知handoff，不宣称框架胜出。全部root0–5仅开发，当前无rollout/训练在运行。
+
+**唯一下一long-horizon任务：** `KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it`。已核对BDDL：抽屉初始Open，终态要求Close与In同时满足；依次验证抓取→对齐运输→放入释放→夹爪撤出→关抽屉→保持，不虚构“必须先开抽屉”。先完成当前诊断归档，再接五层phase/event/gate/repair接口、核查此任务判据/actor能力，最后冻结同观测/预算/停止规则的原策略、Gate-only/Replan-only、Event-Gated+Local Repair对照。
+
+**动作与指标实事求是：** 当前checkpoint是nativeH1，不能称原生open-loop chunk；真实task-compatible chunk提议及actor-only归因尚需解决，历史H10/k5不被悄悄替换。每帧调用H1后又在同帧replan是退化消融，不拿来填三组正式chunk表。碰撞率须先固定允许/禁止contact-pair×phase及事件分母，不能将正常抓取/支撑接触算违规；force/CVR/safe在阈值和数值稳定性核验前仍null。扰动强度和split事先登记，不人为削弱baseline制造差距。
+
+### 以下为按时间累积的实施记录；活动状态以上述最新条目为准
+
 **14 Oct运行中止与修复（更新下方启动状态）：** `_a`在root2/physics第二次前瞻decision190因相机hash不一致自动停止全部worker；integration/controller一致，尚无完整框架对比结果，root3–5尚未执行。原因是robosuite1.4.1多环境渲染未重新绑定EGL context，首个单次smoke没覆盖分支销毁后的下一次主环境图像。已添加本地逐render绑定，连续3次/18分支检查通过；补测实际修正后prefix重放后，按原冻结协议在新目录`libero_preservation_20261014_b`重跑全部24轨迹。[故障、修复及中止数据说明](exp_record/libero_preservation_renderer_fix_20261014.md)。中止的100文件归档进入Git LFS；没有利用部分结果改候选/阈值/打分。
 
 **修复验收通过：** 连续8次/48分支检查154.5s全部通过，候选选择`[0,0,0,0,2,2,2,2]`覆盖修正后历史重放；完整integration/controller/相机、live不变性、预测首步=执行首步均精确一致，未放宽像素校验。7项单测仍通过。此为接口回归探针，不是新的效能结果。

@@ -1,5 +1,45 @@
 # Task-grounded framework comparison and architecture decision — 14 Oct 2026
 
+## Authoritative architecture lock — user decision, 14 Oct 2026
+
+**LOCKED: high-level subgoals → frozen OpenVLA backbone → risk/event-boundary monitoring → dual-mode gating → bounded local repair.** This explicit five-layer contract now governs implementation and thesis narrative. Earlier sections below remain the historical evidence/design review; prospective model suggestions there are not additional research tracks. Failures lead to changes **within these five layers**, followed by matched ablations, rather than replacing the architecture or expanding the task/model menu.
+
+| Layer | Fixed responsibility | First implementation / evidence boundary |
+|---|---|---|
+| 1. High-level subgoals | Track task milestones and legitimate contact/phase transitions; provide goal context and transition conditions | Small task-specific milestone/state machine shared across comparison arms. No separate LLM planner is required. A completed subgoal is not a completed whole task. Preserve the canonical task instruction initially; any phase-prompt change must be shared across arms and evaluated as such. |
+| 2. Frozen OpenVLA backbone | Produce the nominal robot action/proposal from current images and task instruction | Same checkpoint, preprocessing and controller mapping in all arms. The available robot adapter produces nativeH1, not genuine chunks. Proposal/cadence compatibility must be established before advertising a chunk experiment. |
+| 3. Risk and event-boundary monitor | Combine measured-history clearance/relative motion, contact-mode change, progress/stagnation and uncertainty into named events | Keep acquisition, task-progress loss and forbidden contact distinct. Inputs must come from explicitly declared sensor/state-estimation paths; exact simulator geometry/contact is a privileged implementation, not silently image-derived understanding. |
+| 4. Dual-mode gate | Route execution between **nominal tracking** and **contact/transition management**, including controlled return to the actor | Nominal mode continues proposals or requests task-boundary replanning. Contact/transition mode handles physical-risk/progress events and invokes bounded repair. Use causal entry/exit conditions, hysteresis and a bounded repair budget; keep mode state across VLA handoff. `continue/replan/repair` are routing actions, not three architecture modes. |
+| 5. Local repair | Apply small task-compatible pose/gripper corrections and hand control back only when phase-aware exit conditions hold | Geometric retract, re-align and slow approach; a small residual policy only if needed by observed failures. No large RL repair network. Open-gripper and retreat actions are conditional, not universally safe. Evaluate subsequent actor execution and the remaining task. |
+
+The running preservation diagnostic implements **only a narrow subsystem probe**: a frozen actor, valid-placement trigger, bounded candidates and optional privileged forecasts. It is not yet the complete five-layer framework: it lacks a full task milestone controller, early alignment/stagnation event routing and persistent dual-mode handoff logic. Its positive or negative results constrain layers3–5, not the architecture choice itself.
+
+### Locked narrative and claim discipline
+
+The thesis operationalizes execution-relevant physical understanding as **Runtime Physical Safety & Affordance Monitoring and Contact/Phase Transition Repair**: a lightweight **physical guardrail** grounded in geometry, contact transitions and observed action response. A PINN, V-JEPA or full neural3D simulator is not required to implement these functions. A learned predictor is optional within layer3, not a prerequisite for every valid guardrail contribution.
+
+Call this an operational, task-bounded notion of physical understanding. Do not claim the approach is universally the lightest/most efficient, possesses general physical reasoning, provides certified safety, or reconstructs hidden dynamics without comparative evidence. Rule-based guardrails, measured-state estimators and learned predictions must be named accurately. More efficient monitoring and improved task completion are testable hypotheses, not guaranteed marks or promised outcomes. A geometric monitor alone is not evidence for a learned-physics contribution.
+
+### Locked experiment families
+
+1. **Frozen VLA execution baseline.** A genuine open-loop chunk baseline only when the same frozen actor/proposal adapter actually supplies genuine task-capable chunks.
+2. **Gate-only / replan-only.** Fixed-cadence and event-triggered replanning controls, with the same high-level milestones/observations and no local repair. Fixed and event variants remain separately labeled.
+3. **Event-gated + local repair.** The same actor, milestone logic, monitor and opportunity/query/candidate caps, adding bounded layer5repair and persistent phase-aware handoff.
+
+Retain a matched simple geometric/phase-control ablation so that extra state information or a stop/retreat rule cannot be mislabeled as prediction benefit. First compare event+repair against event-only to attribute repair; compare fixed-rate against event-only to attribute scheduling with query/observation budgets reported and matched controls. Preserve the already frozen four-arm oracle diagnostic independently; do not rename it as these three new families.
+
+**Cadence honesty is mandatory:** the current OpenVLA robot checkpoint emits one action; querying that same deterministic policy again on the same H1observation is not an informative replan-only ablation. Repeating an H1action or collecting future actions using intervening simulator states does not produce an open-loop VLA chunk. The historical H10/k5protocol remains intact. A task-compatible genuine chunk adapter, shared by all new arms and accompanied by an actor-only attribution baseline, must pass capability tests before the requested chunk table can be populated. If a nativeH1study is chosen instead, register it explicitly as a different protocol and make replanning semantics non-degenerate; do not silently relabel it as chunking.
+
+### Fixed long-horizon progression
+
+Finish and archive the current book/caddy diagnostic. The next single sequential target is `KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it` in the pinned suite's **`libero_10`** registry. The current book/caddy task is already in that suite; adding stages, rather than merely changing the suite name, is the relevant progression. This pinned checkout has no separate `libero_long`registry key.
+
+The bowl task's BDDL starts the bottom drawer **open**, with terminal conjunction`Close(drawer) AND In(bowl, drawer)`. Thus the initial milestone sequence is grasp → transport/align → insert/release → clear gripper → close drawer → verify final retention. Opening the drawer is a recovery prerequisite if necessary, not a fictitious required initial stage. Confirm the policy's capability and audit native/geometry/contact predicates before full comparison. Hold additional tasks until this task's registered comparison is complete; added disturbances must be bounded, justified and frozen before evaluation rather than chosen to manufacture a gain.
+
+Report full task SR, stage completion/transition errors, episode-level unintended-collision rate with a specified denominator, contact-event frequency, interventions/replans, paired rescue/harm and uncertainty. Separate necessary grasp/support/handle contact from forbidden or damaging contact. Do not call all contact a collision or conflate collision incidence with validated CVR/safe success. Safety thresholds, pair/phase classification and numerical sensitivity must be validated before populating those metrics.
+
+See [the concrete layer-by-layer implementation and long-task handoff plan](libero_five_layer_implementation_20261014.md). This lock is a design decision, not a claim that all five layers have already been implemented or evaluated.
+
 ## Current evidence, not an efficacy claim
 
 All baseline/continuation jobs have finished; no learned verifier has been evaluated on this robot task. Frozen full OpenVLA native H1/k1 reaches native success on3/3development roots, but released seated1second completion is1/3 (descriptive Wilson95%6.15–79.23%; fixed development cases). The3/3native metric is not a valid substitute. Root0requires313steps; root1never fits the full collision-box footprint; root2meets all placement conditions for0.3seconds then resumes book/gripper contact. Exact prefix replay rules out the new measurement code as the cause of changed outcomes. Safety/CVR remain unmeasured, not zero.

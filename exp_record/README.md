@@ -14,7 +14,9 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **14 Oct review:** [Accelerated videos, causal diagnostics and physics-specific comparison/architecture design](libero_framework_design_20261014.md). Next is a bounded privileged-vs-simple-control mechanism protocol, before learned training.
 
-**Current preservation study:** [Protocol](libero_preservation_protocol_20261014.md), [initial launch](libero_preservation_launch_20261014.md), [renderer failure/fix/restart](libero_preservation_renderer_fix_20261014.md). `_a`aborted on camera identity; local EGL rebinding passes eight consecutive decisions/48branches including changed-prefix replay. Full matched restart `_b` is active after `ec9ff87`; still privileged H1/k1, not learned efficacy.
+**Authoritative architecture:** [User-locked five layers](libero_framework_design_20261014.md#authoritative-architecture-lock--user-decision-14-oct-2026), [concrete implementation and bowl/drawer long-task plan](libero_five_layer_implementation_20261014.md). High-level subgoals → frozen OpenVLA → risk/event monitoring → dual-mode gate → bounded local repair.
+
+**Completed preservation study:** [Verified results](libero_preservation_results_20261014.md), [protocol](libero_preservation_protocol_20261014.md), [initial launch](libero_preservation_launch_20261014.md), [renderer failure/fix/restart](libero_preservation_renderer_fix_20261014.md). All24`_b`rollouts and independent checks complete, six method-comparison videos generated. Acquisition VLA/hold/retreat/physics=2/6,3/6,2/6,3/6; completed-and-retained=1/6,2/6,1/6,1/6. No physics advantage over hold. Still a privileged H1/k1 subsystem diagnostic, not the full five-layer implementation or learned efficacy.
 
 **Recovery and attribution:** [GitHub backup, baseline clarification and staged generalization](recovery_and_generalization_20261014.md); [download videos / restore artifacts](../backups/README.md).
 

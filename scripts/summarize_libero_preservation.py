@@ -150,7 +150,9 @@ def render(run, index, rows_by_arm):
     frames = {}
     for arm in ARMS:
         with imageio.get_reader(run/f'root_{index}'/arm/'rollout.mp4') as reader:
-            frames[arm] = list(reader)
+            # FFmpeg readers may advertise an effectively unbounded __len__;
+            # list(reader) uses that hint to preallocate and can MemoryError.
+            frames[arm] = [frame for frame in reader]
     name = f'root_{index}_methods_2x.mp4'
     with imageio.get_writer(output/name, fps=40, codec='libx264',
                            ffmpeg_params=['-movflags','+faststart']) as writer:

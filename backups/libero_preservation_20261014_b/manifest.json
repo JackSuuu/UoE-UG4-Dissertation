@@ -1,0 +1,1305 @@
+{
+  "schema": 1,
+  "source_run": "/home/ami/scratch/libero_preservation_20261014_b",
+  "launch": {
+    "status": "failed",
+    "start": 1791978948.2306616,
+    "supervisor": 749068,
+    "git": "ec9ff87df13bda3890bf4bf9552da81c0033da67",
+    "smoke": "/home/ami/scratch/libero_preservation_smoke_20261014_c.json",
+    "GPUs": {
+      "0": [
+        "GPU-c9938b31-33b0-e02f-24c5-88bd6fbe19ad",
+        5
+      ],
+      "1": [
+        "GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0",
+        5
+      ],
+      "2": [
+        "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8",
+        5
+      ],
+      "3": [
+        "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b",
+        5
+      ]
+    },
+    "workers": [
+      {
+        "gpu": 1,
+        "roots": [
+          0,
+          3
+        ],
+        "pid": 749073,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_libero_preservation.py",
+          "--indices",
+          "0",
+          "3",
+          "--snapshot",
+          "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "--root",
+          "/home/ami/scratch/LIBERO",
+          "--out",
+          "/home/ami/scratch/libero_preservation_20261014_b"
+        ],
+        "exit_code": 0
+      },
+      {
+        "gpu": 2,
+        "roots": [
+          1,
+          4
+        ],
+        "pid": 749074,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_libero_preservation.py",
+          "--indices",
+          "1",
+          "4",
+          "--snapshot",
+          "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "--root",
+          "/home/ami/scratch/LIBERO",
+          "--out",
+          "/home/ami/scratch/libero_preservation_20261014_b"
+        ],
+        "exit_code": 0
+      },
+      {
+        "gpu": 3,
+        "roots": [
+          2,
+          5
+        ],
+        "pid": 749075,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_libero_preservation.py",
+          "--indices",
+          "2",
+          "5",
+          "--snapshot",
+          "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "--root",
+          "/home/ami/scratch/LIBERO",
+          "--out",
+          "/home/ami/scratch/libero_preservation_20261014_b"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "error": "CalledProcessError(1, ['/home/ami/miniconda3/bin/python', '/home/ami/UoE-UG4-Dissertation/scripts/summarize_libero_preservation.py', '/home/ami/scratch/libero_preservation_20261014_b'])",
+    "end": 1791982326.2513711
+  },
+  "privileged": true,
+  "learned_predictor": false,
+  "archives": [
+    {
+      "file": "archives/libero_preservation_20261014_b.tar.gz",
+      "bytes": 89054423,
+      "sha256": "1b069eba658c518b459f12a2cf459be14b891ab99427383682cbf28412950fc1",
+      "members": [
+        {
+          "path": "scratch/libero_preservation_20261014_b/gpu_1.log",
+          "bytes": 40338,
+          "sha256": "a947be78d31f314e03cae4caabfda7e1a886b04c048aff944f9f97f27ff932e6"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/gpu_2.log",
+          "bytes": 23104,
+          "sha256": "bd64bb72b6e90cf58cd37c191dece12b3e858431f0157fc78a1596493dbe742e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/gpu_3.log",
+          "bytes": 42790,
+          "sha256": "d16e8c1b79f943c9476d8252d6ac9269b1ddb31504a324853d02588b842ff95a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/index.html",
+          "bytes": 886,
+          "sha256": "8a02abb4b77646a72fdf91f1ce5274f8c33b03015f0627600ea6373510aaed0a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/launch.json",
+          "bytes": 2641,
+          "sha256": "1e5c33500de9e09e73439e86a9c3022fcd9c9f7f83bed772ba76bdb6d76bc686"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/postprocess_recovery.json",
+          "bytes": 1058,
+          "sha256": "75d0150e6ea9043c259daef73e9b29df8ae629ea55af652ff400b595f6aaedd1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/review/preview_root_2.png",
+          "bytes": 442534,
+          "sha256": "9025e56e793d582098ce08e5d410462a74b2bfcb08ed2278758fe57876ce0d9d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/review/root_0_methods_2x.mp4",
+          "bytes": 795160,
+          "sha256": "3c1205a90aae97dd8089292d5056f33014bb76137028f7fc9b48eff20461da93"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/review/root_1_methods_2x.mp4",
+          "bytes": 929766,
+          "sha256": "01f9e319af3d7de2658b8679e18c91e3126d055cc5116c1472a5122f864ce1cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/review/root_2_methods_2x.mp4",
+          "bytes": 691153,
+          "sha256": "56ba32cf9fda2e48d350ee8f535f25e2c9b217b0e0f4c290ab8acc7ddd9ec8f1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/review/root_3_methods_2x.mp4",
+          "bytes": 817232,
+          "sha256": "8cf8752d1a78b6e3f644481f3eb79582f910594b03a350128a8142f6ae9d8406"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/review/root_4_methods_2x.mp4",
+          "bytes": 918906,
+          "sha256": "212dec88762104a22993592278c0c888744d7b1e2d0de5aa9822807757d9dd7c"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/review/root_5_methods_2x.mp4",
+          "bytes": 558210,
+          "sha256": "e999c7e928e7c7a1f80a000041c90260007f027ff2b98c56fffa27d2bd16ac02"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/decisions.jsonl",
+          "bytes": 10162,
+          "sha256": "3e6dff74426b8b55dfe5687a242887678b35d3d0fddb399f2c3d8c789d6538ba"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/manifest.json",
+          "bytes": 2243,
+          "sha256": "ed1a7e98396db127bb16bcb6efeeae50583895204c4364f06a3c1fb410a54454"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/policy_input.png",
+          "bytes": 52494,
+          "sha256": "96aff27676f8a26483c60cef4fe7c6cfb30763973686dc7b03c448099f1248c7"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/result.json",
+          "bytes": 1760,
+          "sha256": "4300b0d6220c98ce472f4140436f915338fa857b50c0aa128bc70dbdb4e3f1f9"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/rollout.mp4",
+          "bytes": 136476,
+          "sha256": "3e2f9efebcbe5fd56f0c5c1c449d7f3aa76cdb475ce66f41cd49bd402465cb88"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/states.npz",
+          "bytes": 112789,
+          "sha256": "c7f062084672340dc2a20045d3bcd350c7af4af1244ecc9a5d137669eaa589bd"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/steps.jsonl",
+          "bytes": 535431,
+          "sha256": "86107ec8bfc07adf4a7e2fde33ad4ae2c8eb3b9b844820ff79df28d3dbf4c2d9"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/hold/substeps.jsonl",
+          "bytes": 9712274,
+          "sha256": "9261981ad4e8d39966831ab65dbc00bf519057ab521d696923dc1bc30e542f5e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/decisions.jsonl",
+          "bytes": 568263,
+          "sha256": "2fa23a3212768d38980d420fc2fe6fb24611f37d932ddce0aa1da1c493113e4d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/manifest.json",
+          "bytes": 2246,
+          "sha256": "1617732e16424537fe79e17283372ec9c8fcfd9dd2619c8c9b07486f9ba4d82f"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/policy_input.png",
+          "bytes": 52494,
+          "sha256": "96aff27676f8a26483c60cef4fe7c6cfb30763973686dc7b03c448099f1248c7"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/result.json",
+          "bytes": 1768,
+          "sha256": "17985162f68b5dd4581fe0b572ea98a5ea73fc00471679446a79e03dce372e94"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/rollout.mp4",
+          "bytes": 136390,
+          "sha256": "4203b2a005a2a1bead2c98a8b1d5dea48fb0b9b94b23847022f253f6afd2371a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/states.npz",
+          "bytes": 112794,
+          "sha256": "7ae921fc42d452aeffc78ed1993cdc53e4f1b5aabead46dfefa4c3860af3657a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/steps.jsonl",
+          "bytes": 537565,
+          "sha256": "f30bac1cb1fc13a199def094b5710ce2f04664eb6a59b6db909e15f63225240f"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/physics/substeps.jsonl",
+          "bytes": 9732841,
+          "sha256": "cb7d6fb60a22a3212be95b7f6ceb6ed04282f44116d8929b025ecdccab1c7d71"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/decisions.jsonl",
+          "bytes": 10160,
+          "sha256": "a6ed37e9402fad078078392848e33fc61b05f732074c1065f70b484f23d16ce2"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/manifest.json",
+          "bytes": 2246,
+          "sha256": "650b2c89a0ed4f814b23c67d0cc4a69de1780809016549f327a5a0700f58719e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/policy_input.png",
+          "bytes": 52494,
+          "sha256": "96aff27676f8a26483c60cef4fe7c6cfb30763973686dc7b03c448099f1248c7"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/result.json",
+          "bytes": 1766,
+          "sha256": "89f287784490863f1458c3fbbfcf1254918824de6ddf3d74c3d2f10104d6694b"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/rollout.mp4",
+          "bytes": 174811,
+          "sha256": "a6c43251c2e5396909067b395db3e1e9b6e6962777c3fead6aeccf2863f264f2"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/states.npz",
+          "bytes": 167896,
+          "sha256": "0a3c53c6cf49d22ee21c85eab5f0a307a27ba7f22299220a5c8d089f327331ab"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/steps.jsonl",
+          "bytes": 791209,
+          "sha256": "ed83589198ff7a52937cde066a2f1a1ef7a9d04350b104c1af8932ef20834eef"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/retreat/substeps.jsonl",
+          "bytes": 15470010,
+          "sha256": "e9f349ab48e957493d7495a29aeb94cb0e2bced966acf19353a3001547785d88"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/decisions.jsonl",
+          "bytes": 10131,
+          "sha256": "0667f38115948526a919cc508b39f3a0f6dfc99d81c70a340845aeb147032833"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/manifest.json",
+          "bytes": 2241,
+          "sha256": "fd2bebd8049bf6b00844ebc2211a2b77e3ebe0637f3b6d031f3ba77ee92a1721"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/policy_input.png",
+          "bytes": 52494,
+          "sha256": "96aff27676f8a26483c60cef4fe7c6cfb30763973686dc7b03c448099f1248c7"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/result.json",
+          "bytes": 1758,
+          "sha256": "b0e5c51fc670353f77469e9e19e16e4c34e5631870befa64c2290d063b0b6dc9"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/rollout.mp4",
+          "bytes": 136390,
+          "sha256": "4203b2a005a2a1bead2c98a8b1d5dea48fb0b9b94b23847022f253f6afd2371a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/states.npz",
+          "bytes": 112794,
+          "sha256": "7ae921fc42d452aeffc78ed1993cdc53e4f1b5aabead46dfefa4c3860af3657a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/steps.jsonl",
+          "bytes": 537565,
+          "sha256": "f30bac1cb1fc13a199def094b5710ce2f04664eb6a59b6db909e15f63225240f"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_0/vla/substeps.jsonl",
+          "bytes": 9732841,
+          "sha256": "cb7d6fb60a22a3212be95b7f6ceb6ed04282f44116d8929b025ecdccab1c7d71"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/manifest.json",
+          "bytes": 2243,
+          "sha256": "6d101aa140d402c8509eab2b8ed08d478697e990b40b7377d3e97d3779e631cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/policy_input.png",
+          "bytes": 52649,
+          "sha256": "7d1bee4bac853997df23579a665df1d8dbd1216dd3f06613ed9562e66712dc9d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/result.json",
+          "bytes": 1758,
+          "sha256": "64fc56402ede87370b0963fa9566d72534baad605bd0368620cf2ae48de137fa"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/rollout.mp4",
+          "bytes": 196098,
+          "sha256": "0ed830f975ce5df9df42ce8c695ff8d62ad7d13adf658d4d5cb080d85d7ecc91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/states.npz",
+          "bytes": 167845,
+          "sha256": "4f0dd0971fb2be67534594258e501a41102743a71e6e87f2cc77d726ab582183"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/steps.jsonl",
+          "bytes": 792654,
+          "sha256": "54d2b39c85962ed8182f8ef79acc2631dbe2668bda668f498fc0fb7b1656e148"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/hold/substeps.jsonl",
+          "bytes": 19144782,
+          "sha256": "2d62d8abc9f84d0ee4c7e5d25d3e3660a06b1b1b0d25387ae58ac2045c9d6285"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/manifest.json",
+          "bytes": 2246,
+          "sha256": "fa0d36112782e0010aec794426ed6a364a54fe4301e0e3031be257b40853e089"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/policy_input.png",
+          "bytes": 52649,
+          "sha256": "7d1bee4bac853997df23579a665df1d8dbd1216dd3f06613ed9562e66712dc9d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/result.json",
+          "bytes": 1761,
+          "sha256": "7c7019db785effe801ed1a8bb6b87be9c906454d8b6d3f971521224e7a6c9b9f"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/rollout.mp4",
+          "bytes": 196098,
+          "sha256": "0ed830f975ce5df9df42ce8c695ff8d62ad7d13adf658d4d5cb080d85d7ecc91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/states.npz",
+          "bytes": 167845,
+          "sha256": "4f0dd0971fb2be67534594258e501a41102743a71e6e87f2cc77d726ab582183"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/steps.jsonl",
+          "bytes": 792654,
+          "sha256": "54d2b39c85962ed8182f8ef79acc2631dbe2668bda668f498fc0fb7b1656e148"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/physics/substeps.jsonl",
+          "bytes": 19144782,
+          "sha256": "2d62d8abc9f84d0ee4c7e5d25d3e3660a06b1b1b0d25387ae58ac2045c9d6285"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/manifest.json",
+          "bytes": 2245,
+          "sha256": "0f03fb9753ca85397dd6985bad4d74d0f0b5fa6ecbd743c13acb86b4ba4f6006"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/policy_input.png",
+          "bytes": 52649,
+          "sha256": "7d1bee4bac853997df23579a665df1d8dbd1216dd3f06613ed9562e66712dc9d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/result.json",
+          "bytes": 1761,
+          "sha256": "fa7c5ed6aa500ab4e270a9cf538d12fdb43adf6109e50ba2395043504059fb1d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/rollout.mp4",
+          "bytes": 196098,
+          "sha256": "0ed830f975ce5df9df42ce8c695ff8d62ad7d13adf658d4d5cb080d85d7ecc91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/states.npz",
+          "bytes": 167845,
+          "sha256": "4f0dd0971fb2be67534594258e501a41102743a71e6e87f2cc77d726ab582183"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/steps.jsonl",
+          "bytes": 792654,
+          "sha256": "54d2b39c85962ed8182f8ef79acc2631dbe2668bda668f498fc0fb7b1656e148"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/retreat/substeps.jsonl",
+          "bytes": 19144782,
+          "sha256": "2d62d8abc9f84d0ee4c7e5d25d3e3660a06b1b1b0d25387ae58ac2045c9d6285"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/manifest.json",
+          "bytes": 2242,
+          "sha256": "043295c5edd551575860a1bf348a943b54f640df2b5d58993f7083f664ff2a7f"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/policy_input.png",
+          "bytes": 52649,
+          "sha256": "7d1bee4bac853997df23579a665df1d8dbd1216dd3f06613ed9562e66712dc9d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/result.json",
+          "bytes": 1757,
+          "sha256": "efa497879906ac031540d22eaad0722202eaf7da1e89a21b0eee05ec5aab73a3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/rollout.mp4",
+          "bytes": 196098,
+          "sha256": "0ed830f975ce5df9df42ce8c695ff8d62ad7d13adf658d4d5cb080d85d7ecc91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/states.npz",
+          "bytes": 167845,
+          "sha256": "4f0dd0971fb2be67534594258e501a41102743a71e6e87f2cc77d726ab582183"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/steps.jsonl",
+          "bytes": 792654,
+          "sha256": "54d2b39c85962ed8182f8ef79acc2631dbe2668bda668f498fc0fb7b1656e148"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_1/vla/substeps.jsonl",
+          "bytes": 19144782,
+          "sha256": "2d62d8abc9f84d0ee4c7e5d25d3e3660a06b1b1b0d25387ae58ac2045c9d6285"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/decisions.jsonl",
+          "bytes": 9611,
+          "sha256": "f71a3802fdf57bcc9e7eaa83532a55dd0aabb2b76aa6233ba81874202a77e47a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/manifest.json",
+          "bytes": 2242,
+          "sha256": "06fd8edd3b55b17a421386454679ac8673f5a968e4f23d4b47cbe75ac37bb3f4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/policy_input.png",
+          "bytes": 52292,
+          "sha256": "0f01d804a4706dcad15b4e9f4ba5416c6356933d71726782e596e83dac58c01a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/result.json",
+          "bytes": 1756,
+          "sha256": "a38e52580f541fad257b4aad6c6e0a3df21364954917b0a4ff976b2699bffec5"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/rollout.mp4",
+          "bytes": 100373,
+          "sha256": "c2986d9f4633ce81dc2c67fdf70271a8418871508f914012b2615d2810c6f09f"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/states.npz",
+          "bytes": 79367,
+          "sha256": "a903f242429ae0fe244eb3d4a106074f186f8965c5f31382dae7c400b36b3ed9"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/steps.jsonl",
+          "bytes": 374922,
+          "sha256": "c7e7219691db176f032df6e1e5e92d27754a3ee108aaf221c6e4ddcf98e9c8f3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/hold/substeps.jsonl",
+          "bytes": 5333750,
+          "sha256": "825ccbeeafd0335ad14108f8eda8a1f13767a1210fbb62d1e3057fb1819a7f96"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/decisions.jsonl",
+          "bytes": 539983,
+          "sha256": "dbbf266dbc35d2011d05a4d7a141a41b73fa4476b21f5c20b7911b54cd2247a6"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/manifest.json",
+          "bytes": 2244,
+          "sha256": "f7f3b56d9dafb640faacbca79af35dec39503d05900a8d59e5960aed8b7196ec"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/policy_input.png",
+          "bytes": 52292,
+          "sha256": "0f01d804a4706dcad15b4e9f4ba5416c6356933d71726782e596e83dac58c01a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/result.json",
+          "bytes": 1771,
+          "sha256": "161c6cf541c6df396c9a4e276b5607398afea540c52bc3b3d58ec211d71a22de"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/rollout.mp4",
+          "bytes": 100575,
+          "sha256": "4971ff96b87de3b1d29ff6c67cfe81c0f847e34d75c98a135e24597b8df7b146"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/states.npz",
+          "bytes": 79394,
+          "sha256": "3fb49dbf82ffab7a6c575b80091517cb8189d41494e306d59ff655ddedfca43e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/steps.jsonl",
+          "bytes": 376119,
+          "sha256": "20efb5636cfaa0d9f7b6e28621c3ed89e8228ea48c2c426784e269f077973ca5"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/physics/substeps.jsonl",
+          "bytes": 5341042,
+          "sha256": "d56eef10e79e5a79baec0ccad5e347a2fca4557f031695621598a620213a8025"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/decisions.jsonl",
+          "bytes": 9585,
+          "sha256": "ffc03a3f0e06266086368555b512156aacd52c54071e9aae09ccabda59abff90"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/manifest.json",
+          "bytes": 2246,
+          "sha256": "a02e4744f28de693407dfaea4207ab3fb4d3287aa25ed87f1dd43602ca85278c"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/policy_input.png",
+          "bytes": 52292,
+          "sha256": "0f01d804a4706dcad15b4e9f4ba5416c6356933d71726782e596e83dac58c01a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/result.json",
+          "bytes": 1764,
+          "sha256": "214ab5a73c45ffae78c58027cbf644e7c568f3e5c3de65a47544aff2c5248958"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/rollout.mp4",
+          "bytes": 99466,
+          "sha256": "e0be3bd6cfd921b6af154013a4dfeca53b71e715570d72e3a3ed49524f885cd4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/states.npz",
+          "bytes": 79411,
+          "sha256": "e28497ad8aa9f6f2538c1b5998d2215a2a3f85f364d2d7be3a023117746f50ca"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/steps.jsonl",
+          "bytes": 374932,
+          "sha256": "86f500dcaef6f21255fe89f341a88dff24bcc94df5c3140b47032ae8e13e9ed3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/retreat/substeps.jsonl",
+          "bytes": 5672903,
+          "sha256": "349af441bca73dce2bd92615f205d76874d9da6bc5e6387f6933dd2da610cf55"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/decisions.jsonl",
+          "bytes": 10059,
+          "sha256": "032f26aeb2a616774f1011989021decdbf25fe95678af518de49367523acdecd"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/manifest.json",
+          "bytes": 2242,
+          "sha256": "4130d8587731bbeb24985a53e07568cd8ebf276887ac59abc0bcafd838f41d1d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/policy_input.png",
+          "bytes": 52292,
+          "sha256": "0f01d804a4706dcad15b4e9f4ba5416c6356933d71726782e596e83dac58c01a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/result.json",
+          "bytes": 1759,
+          "sha256": "a308b30c166dd2e191f4d4cd77e9db23cec7eb4082a064be813f18d277e2d551"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/rollout.mp4",
+          "bytes": 140665,
+          "sha256": "7be25708b8c8148357db7dd9b14d81601500ae86e675990651ef299f9168a775"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/states.npz",
+          "bytes": 165981,
+          "sha256": "e80ba32427d662cae76f2fd61b03b61e8e14d6baccdacc3dcf8619233f2985dc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/steps.jsonl",
+          "bytes": 794536,
+          "sha256": "3be5cfcd140c6ed7e3073609b0eb53dcad900f42a91cba8c57f1bb05e8e4119b"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_2/vla/substeps.jsonl",
+          "bytes": 15826705,
+          "sha256": "03424fcc4e44a8a5536aae16786f5690caea5d8e6106be863976dc551708d787"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/manifest.json",
+          "bytes": 2243,
+          "sha256": "4cdee2dc57d04d201ccbd830651fefb27227418c32729f203f86813f58bbb545"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/policy_input.png",
+          "bytes": 51964,
+          "sha256": "ee71a09e039829652306d47a19748ce9d465fcb2a14590400326bf3f7c74e8cb"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/result.json",
+          "bytes": 1753,
+          "sha256": "8c1003af835f3599131e753b558168da6f5409506a69786d30c08a45dc2aecce"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/rollout.mp4",
+          "bytes": 166728,
+          "sha256": "5a2f77d18d0a482d77cd222d6097fa848d1f9f76f592ec490a9a3d578f059e89"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/states.npz",
+          "bytes": 168297,
+          "sha256": "cdff65fc0d09448942c4bddd1717baf02797d97ae933b4deea3e3e844c280a4a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/steps.jsonl",
+          "bytes": 794943,
+          "sha256": "1099510b2cfdd9ecdd7e15410aa8844632a133897230bff3929199ba7fdf42a3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/hold/substeps.jsonl",
+          "bytes": 16514318,
+          "sha256": "adcb2014d8154fd251303980b7e86aafd4baa00a6d57704acdc8ebc714285c3e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/manifest.json",
+          "bytes": 2245,
+          "sha256": "1b2368e0460ac4c45d9e1e008f7a147d9f383a900a345fc05a48344af181f2c9"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/policy_input.png",
+          "bytes": 51964,
+          "sha256": "ee71a09e039829652306d47a19748ce9d465fcb2a14590400326bf3f7c74e8cb"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/result.json",
+          "bytes": 1756,
+          "sha256": "caacf6f298396bcdf8ac70850c92a6b9b1985adf5527178370b97505cd0039c6"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/rollout.mp4",
+          "bytes": 166728,
+          "sha256": "5a2f77d18d0a482d77cd222d6097fa848d1f9f76f592ec490a9a3d578f059e89"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/states.npz",
+          "bytes": 168297,
+          "sha256": "cdff65fc0d09448942c4bddd1717baf02797d97ae933b4deea3e3e844c280a4a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/steps.jsonl",
+          "bytes": 794943,
+          "sha256": "1099510b2cfdd9ecdd7e15410aa8844632a133897230bff3929199ba7fdf42a3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/physics/substeps.jsonl",
+          "bytes": 16514318,
+          "sha256": "adcb2014d8154fd251303980b7e86aafd4baa00a6d57704acdc8ebc714285c3e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/manifest.json",
+          "bytes": 2246,
+          "sha256": "8f47b2e330f3992659738af36d03b67cfaabf4f463d78c67bb52e16d07749a98"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/policy_input.png",
+          "bytes": 51964,
+          "sha256": "ee71a09e039829652306d47a19748ce9d465fcb2a14590400326bf3f7c74e8cb"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/result.json",
+          "bytes": 1756,
+          "sha256": "f52c24a18ddd2c979607c34c97873914aef7806e51dc8f983b6effb97a4cbaa3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/rollout.mp4",
+          "bytes": 166728,
+          "sha256": "5a2f77d18d0a482d77cd222d6097fa848d1f9f76f592ec490a9a3d578f059e89"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/states.npz",
+          "bytes": 168297,
+          "sha256": "cdff65fc0d09448942c4bddd1717baf02797d97ae933b4deea3e3e844c280a4a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/steps.jsonl",
+          "bytes": 794943,
+          "sha256": "1099510b2cfdd9ecdd7e15410aa8844632a133897230bff3929199ba7fdf42a3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/retreat/substeps.jsonl",
+          "bytes": 16514318,
+          "sha256": "adcb2014d8154fd251303980b7e86aafd4baa00a6d57704acdc8ebc714285c3e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/manifest.json",
+          "bytes": 2241,
+          "sha256": "72b1e313255afbc26a6c8f96cc7a0fdf2b0290fc18b21eb7afd91a00b46b7327"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/policy_input.png",
+          "bytes": 51964,
+          "sha256": "ee71a09e039829652306d47a19748ce9d465fcb2a14590400326bf3f7c74e8cb"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/result.json",
+          "bytes": 1752,
+          "sha256": "2f22709fc3cbfdca66cbe95475e10a0f2ec798884a4eda1fbca4b4de49c00fad"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/rollout.mp4",
+          "bytes": 166728,
+          "sha256": "5a2f77d18d0a482d77cd222d6097fa848d1f9f76f592ec490a9a3d578f059e89"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/states.npz",
+          "bytes": 168297,
+          "sha256": "cdff65fc0d09448942c4bddd1717baf02797d97ae933b4deea3e3e844c280a4a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/steps.jsonl",
+          "bytes": 794943,
+          "sha256": "1099510b2cfdd9ecdd7e15410aa8844632a133897230bff3929199ba7fdf42a3"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_3/vla/substeps.jsonl",
+          "bytes": 16514318,
+          "sha256": "adcb2014d8154fd251303980b7e86aafd4baa00a6d57704acdc8ebc714285c3e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/manifest.json",
+          "bytes": 2242,
+          "sha256": "4fdc80fad6e4dbb5842b25b45df4da0883a7bb9b31ace8bebcc9886a76bc3957"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/policy_input.png",
+          "bytes": 52375,
+          "sha256": "d72b9d1121d102cad0c23dacc2bab96c52c7474f1cd3ab13671184cb50412322"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/result.json",
+          "bytes": 1757,
+          "sha256": "2070cbf7bceb0e7365107d5140162b1bae8f02d8dee5571776c76c548721ff33"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/rollout.mp4",
+          "bytes": 192686,
+          "sha256": "2d9c2b303d4607025f03d3670587bbd40c47caa6e227a636892e0a5f93c7bae2"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/states.npz",
+          "bytes": 168349,
+          "sha256": "a05718e8a2d5e1e2aecc83ddf74e8a2db2d16e8e44214a7023e0d7b1b67d91c1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/steps.jsonl",
+          "bytes": 792424,
+          "sha256": "7ec2b6fc48daf378ac2f33b4f2502dc1128a0e45c116444975875ac9c263b444"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/hold/substeps.jsonl",
+          "bytes": 16776710,
+          "sha256": "2f4f41245939bca5b90bfa3f561804de3a7e101475931fcaee1090742a52c5b4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/manifest.json",
+          "bytes": 2245,
+          "sha256": "bb658bc697317418d4f07b57ff0aebc8a9587620ffd6dc62cb761d1f94e76c6b"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/policy_input.png",
+          "bytes": 52375,
+          "sha256": "d72b9d1121d102cad0c23dacc2bab96c52c7474f1cd3ab13671184cb50412322"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/result.json",
+          "bytes": 1760,
+          "sha256": "59f1644a69502027b7d556770cdfd4e24719d7cf6d61cf0db1bd5b154a0f5a4a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/rollout.mp4",
+          "bytes": 192686,
+          "sha256": "2d9c2b303d4607025f03d3670587bbd40c47caa6e227a636892e0a5f93c7bae2"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/states.npz",
+          "bytes": 168349,
+          "sha256": "a05718e8a2d5e1e2aecc83ddf74e8a2db2d16e8e44214a7023e0d7b1b67d91c1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/steps.jsonl",
+          "bytes": 792424,
+          "sha256": "7ec2b6fc48daf378ac2f33b4f2502dc1128a0e45c116444975875ac9c263b444"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/physics/substeps.jsonl",
+          "bytes": 16776710,
+          "sha256": "2f4f41245939bca5b90bfa3f561804de3a7e101475931fcaee1090742a52c5b4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/manifest.json",
+          "bytes": 2246,
+          "sha256": "d924a8924effbd372cc26d53a5d3eea4e23d81300974973210792657d9de912e"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/policy_input.png",
+          "bytes": 52375,
+          "sha256": "d72b9d1121d102cad0c23dacc2bab96c52c7474f1cd3ab13671184cb50412322"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/result.json",
+          "bytes": 1760,
+          "sha256": "9285e4ac7fbe99b67428667d731c14bf95545381ea3bfe6f793cf39f1e23850d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/rollout.mp4",
+          "bytes": 192686,
+          "sha256": "2d9c2b303d4607025f03d3670587bbd40c47caa6e227a636892e0a5f93c7bae2"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/states.npz",
+          "bytes": 168349,
+          "sha256": "a05718e8a2d5e1e2aecc83ddf74e8a2db2d16e8e44214a7023e0d7b1b67d91c1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/steps.jsonl",
+          "bytes": 792424,
+          "sha256": "7ec2b6fc48daf378ac2f33b4f2502dc1128a0e45c116444975875ac9c263b444"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/retreat/substeps.jsonl",
+          "bytes": 16776710,
+          "sha256": "2f4f41245939bca5b90bfa3f561804de3a7e101475931fcaee1090742a52c5b4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/decisions.jsonl",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/manifest.json",
+          "bytes": 2241,
+          "sha256": "d32a0d9f6aee3e56aa12c1a5966c1dd0cad203b0487cab8273a9a26f2c1b1919"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/policy_input.png",
+          "bytes": 52375,
+          "sha256": "d72b9d1121d102cad0c23dacc2bab96c52c7474f1cd3ab13671184cb50412322"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/result.json",
+          "bytes": 1756,
+          "sha256": "df8a28ca6ab1ff73e58fa4439d25315ed119cdf9f4fd138fff86480475349009"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/rollout.mp4",
+          "bytes": 192686,
+          "sha256": "2d9c2b303d4607025f03d3670587bbd40c47caa6e227a636892e0a5f93c7bae2"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/states.npz",
+          "bytes": 168349,
+          "sha256": "a05718e8a2d5e1e2aecc83ddf74e8a2db2d16e8e44214a7023e0d7b1b67d91c1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/steps.jsonl",
+          "bytes": 792424,
+          "sha256": "7ec2b6fc48daf378ac2f33b4f2502dc1128a0e45c116444975875ac9c263b444"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_4/vla/substeps.jsonl",
+          "bytes": 16776710,
+          "sha256": "2f4f41245939bca5b90bfa3f561804de3a7e101475931fcaee1090742a52c5b4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/decisions.jsonl",
+          "bytes": 9591,
+          "sha256": "fa0b0733d23657319c8b726737389a042afebd45129ace1076cec3daa9ec9e2d"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/manifest.json",
+          "bytes": 2243,
+          "sha256": "8552164a8fe3320d47aceffe112240beade990362328511bd4e0bb77815d0329"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/policy_input.png",
+          "bytes": 52061,
+          "sha256": "857db07182b343f76401b444eadd2ce37a946a0353501681f925ce00ee83eb91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/result.json",
+          "bytes": 1759,
+          "sha256": "5266dd2ae284405799a3596f94106be90f60035e239c315dc3448e416dd32118"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/rollout.mp4",
+          "bytes": 108751,
+          "sha256": "d56143d223f5d9c21ea01fda9208bb4c4a9df2ced694d49d46bbcc257d0a4509"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/states.npz",
+          "bytes": 83248,
+          "sha256": "edb32503bc8f593656abf6f26af18e161990abbbe7d278d5d7df06297c7f25a1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/steps.jsonl",
+          "bytes": 396362,
+          "sha256": "352c40dc04dab53b24a12a80a16aea094d8e9767dbab197a2e1252d56989ac1c"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/hold/substeps.jsonl",
+          "bytes": 7482861,
+          "sha256": "f754694fa06d71b6acd68d023856598d99d70606597474cc545d55dc380a0c98"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/decisions.jsonl",
+          "bytes": 539881,
+          "sha256": "443b8848b45e9f6337766df2862fc500ee7a530540949cf7b25bd427ca20efe4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/manifest.json",
+          "bytes": 2246,
+          "sha256": "c764b667784958fc14c8c092e9fb0bd752c536b394bf5e267256b23af653b359"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/policy_input.png",
+          "bytes": 52061,
+          "sha256": "857db07182b343f76401b444eadd2ce37a946a0353501681f925ce00ee83eb91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/result.json",
+          "bytes": 1765,
+          "sha256": "78e7d4d355112d739e4501f08c63d7e8eee4b487517da1c730162fda50953e42"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/rollout.mp4",
+          "bytes": 111070,
+          "sha256": "7d2525d5701981963e35f786d2619bde23a84d269599cbfa7ca8530b13af074c"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/states.npz",
+          "bytes": 83609,
+          "sha256": "1a6f91e14cba2bb89a508767e3c281c8ea14e5abd3ce196f43b57746bbcf5243"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/steps.jsonl",
+          "bytes": 398435,
+          "sha256": "8d5eb15c98e14ea8a1b2f586184c51b2e8f58e38972793cbeecbed750c88da6b"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/physics/substeps.jsonl",
+          "bytes": 7457204,
+          "sha256": "e665c3b891a7c8f7c38ac52fd723b471fafeba300b26b3997923980a7548487b"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/decisions.jsonl",
+          "bytes": 9645,
+          "sha256": "84005ec4bd8cd1c6ec05ce5c18444162b814848afaf754c2669870dca0fb60d2"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/manifest.json",
+          "bytes": 2246,
+          "sha256": "5a34e6d1de3fb0a50ab0a34820598eae70c9001faab46bcce94c108ecd3514d4"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/policy_input.png",
+          "bytes": 52061,
+          "sha256": "857db07182b343f76401b444eadd2ce37a946a0353501681f925ce00ee83eb91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/result.json",
+          "bytes": 1762,
+          "sha256": "4053b4094fccdd0f88b02215423fe37ee90922516fa7f729f441db0e154c3f15"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/rollout.mp4",
+          "bytes": 108603,
+          "sha256": "d90d3e9e683f96e85ba1625557dec2ffd653330393298f196fde5421440bea19"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/states.npz",
+          "bytes": 83242,
+          "sha256": "4a12915338c7fee2ff5b253cc197a36f55c77d4975ea29a4c5d8ba3ae05b79c7"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/steps.jsonl",
+          "bytes": 396360,
+          "sha256": "e62aeb5ea13c3855476a0490f9c59f50c6c8cd25083b2902720978f360facee1"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/retreat/substeps.jsonl",
+          "bytes": 7421287,
+          "sha256": "e6294b5f22d659f2d191b5dc357961eb8c398bcb981b180778f01f1dd84e4b86"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/decisions.jsonl",
+          "bytes": 9608,
+          "sha256": "50e7851b14d79353852d77b80655c0b848acc503c94182b1891c1f719d62042a"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/manifest.json",
+          "bytes": 2240,
+          "sha256": "6b92e03ffc7cc78bf8d5a9a8dc914b1485e5a58603475711874c2456724b9821"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/policy_input.png",
+          "bytes": 52061,
+          "sha256": "857db07182b343f76401b444eadd2ce37a946a0353501681f925ce00ee83eb91"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/result.json",
+          "bytes": 1755,
+          "sha256": "f14a8be6a496c0089133d91c31fd9e653115c6c7cdd21eaee1295e4caaea0e99"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/rollout.mp4",
+          "bytes": 111070,
+          "sha256": "7d2525d5701981963e35f786d2619bde23a84d269599cbfa7ca8530b13af074c"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/states.npz",
+          "bytes": 83609,
+          "sha256": "1a6f91e14cba2bb89a508767e3c281c8ea14e5abd3ce196f43b57746bbcf5243"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/steps.jsonl",
+          "bytes": 398435,
+          "sha256": "8d5eb15c98e14ea8a1b2f586184c51b2e8f58e38972793cbeecbed750c88da6b"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/root_5/vla/substeps.jsonl",
+          "bytes": 7457204,
+          "sha256": "e665c3b891a7c8f7c38ac52fd723b471fafeba300b26b3997923980a7548487b"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b/verified_summary.json",
+          "bytes": 78624,
+          "sha256": "79fa9a0602bddcbb7e5860b9f169945098d9effc8e78e99ad29995a1358c9333"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b_supervisor.log",
+          "bytes": 1584,
+          "sha256": "ddf8610c8a86512605ae102a4eedfb54d5b6f02812776cc5febac990677f2e65"
+        },
+        {
+          "path": "scratch/libero_preservation_20261014_b_postprocess.log",
+          "bytes": 6592,
+          "sha256": "69f150be44a94f61e37a2d831ce8a680998d2d1557dd0b5a1a5ec9438608e2a7"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "file": "videos/root_0_methods_2x.mp4",
+      "bytes": 795160,
+      "sha256": "3c1205a90aae97dd8089292d5056f33014bb76137028f7fc9b48eff20461da93"
+    },
+    {
+      "file": "videos/root_1_methods_2x.mp4",
+      "bytes": 929766,
+      "sha256": "01f9e319af3d7de2658b8679e18c91e3126d055cc5116c1472a5122f864ce1cc"
+    },
+    {
+      "file": "videos/root_2_methods_2x.mp4",
+      "bytes": 691153,
+      "sha256": "56ba32cf9fda2e48d350ee8f535f25e2c9b217b0e0f4c290ab8acc7ddd9ec8f1"
+    },
+    {
+      "file": "videos/root_3_methods_2x.mp4",
+      "bytes": 817232,
+      "sha256": "8cf8752d1a78b6e3f644481f3eb79582f910594b03a350128a8142f6ae9d8406"
+    },
+    {
+      "file": "videos/root_4_methods_2x.mp4",
+      "bytes": 918906,
+      "sha256": "212dec88762104a22993592278c0c888744d7b1e2d0de5aa9822807757d9dd7c"
+    },
+    {
+      "file": "videos/root_5_methods_2x.mp4",
+      "bytes": 558210,
+      "sha256": "e999c7e928e7c7a1f80a000041c90260007f027ff2b98c56fffa27d2bd16ac02"
+    }
+  ]
+}

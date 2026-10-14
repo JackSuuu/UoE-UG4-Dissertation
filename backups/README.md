@@ -6,6 +6,8 @@
 
 **Later diagnostic archive:** [aborted preservation run `_a`](libero_preservation_abort_20261014_a/manifest.json), including100raw/log files. This incomplete run was stopped by a camera-context integrity check; it is not a framework-efficacy result. [Failure and correction](../exp_record/libero_preservation_renderer_fix_20261014.md). The same `verify`/`restore` commands below accept this archive's directory instead of `backups/20261014`.
 
+**Completed four-method study:** [preservation `_b` archive manifest](libero_preservation_20261014_b/manifest.json), [verified results](../exp_record/libero_preservation_results_20261014.md), [root2method-comparison2x MP4](libero_preservation_20261014_b/videos/root_2_methods_2x.mp4). All24episodes and six comparison videos are included. These new videos compare VLA, hold, retreat and an **accurate-simulator selector**, not a learned predictor or the full five-layer framework. Original supervisor failure status reflects a subsequently fixed video-aggregation error; restored `postprocess_recovery.json` and `verified_summary.json` establish successful verification without rewriting the original log.
+
 ## View/download
 
 - [All three roots, 2x simulated-time playback](20261014/videos/all_roots_2x.mp4)
