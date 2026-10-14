@@ -11,6 +11,8 @@
 
 **备份已远端恢复验证：** `f33915a`包含14个LFS对象/2.45GB，重新从GitHub克隆下载并完整恢复1,674文件均通过SHA256；LIBERO固定submodule及任务初始状态hash一致。见[恢复报告](backups/remote_recovery_verified_20261014.json)。预训练7B权重仍依赖固定HF revision重新下载。
 
+**当前运行状态：** `libero_preservation_20261014_a`已在`b9d7a31`推送后启动；supervisor743321，健康GPU1/2/3worker743325/743326/743327，root分配0/3、1/4、2/5。24条开发对照待完成；自动汇总通过后导出方法对比2倍速MP4。此前“无实验运行”的状态仅对应历史continuation结束时。
+
 **14 Oct归因澄清与泛化顺序：** continuation的worker0/1/2全部是冻结OpenVLA baseline；物理模块仅作诊断/验收，尚未嵌入动作选择或修复闭环。worker2视频中的调整不能归因于我们的框架，且其短暂放好后再接触，未通过1s稳定验收。先在单一book/caddy场景完成匹配的VLA／简单控制／准确物理前瞻机制对照，再按证据逐项调整算法。泛化证据先来自未见root及预注册的观测/执行噪声、隐藏动力学条件，最后冻结方法到第二任务；同任务3个开发worker不是泛化，第二任务追加训练属于适配而非zero-shot。研究恢复入口见[Git LFS备份、视频和固定LIBERO submodule](backups/README.md)。
 
 **14 Oct审查与下一项方法决策（优先于下文历史建议）：** [场景检测、公平对照与架构设计](exp_record/libero_framework_design_20261014.md)。全部rollout已完成，当前released placement仅1/3，尚无机器人任务的learned框架效果证据。已生成全部3条轨迹的2倍速独立MP4及13.025s并排总览，并接入汇总脚本的自动导出；视频按仿真时间加速，包含geometry/脱离/dwell/re-contact诊断，不是方法对比。当前history规则在root2于step188观察到placement opportunity、194观察到re-contact；不是提前6步预测成功。简单slow-contact stall规则漏掉root1，不通过事后调阈值宣称解决。

@@ -14,7 +14,7 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **14 Oct review:** [Accelerated videos, causal diagnostics and physics-specific comparison/architecture design](libero_framework_design_20261014.md). Next is a bounded privileged-vs-simple-control mechanism protocol, before learned training.
 
-**Current registered execution:** [Preservation mechanism protocol](libero_preservation_protocol_20261014.md), [checks and launch](libero_preservation_launch_20261014.md): VLA / hold-open / retreat-open / accurate-physics selector on six development roots. Exact branch smoke passed; still privileged H1/k1, not learned efficacy.
+**Current active execution:** [Preservation mechanism protocol](libero_preservation_protocol_20261014.md), [checks and launch](libero_preservation_launch_20261014.md): VLA / hold-open / retreat-open / accurate-physics selector on six development roots. Launched after `b9d7a31` on GPUs1/2/3; outcomes pending. Exact branch smoke passed; still privileged H1/k1, not learned efficacy.
 
 **Recovery and attribution:** [GitHub backup, baseline clarification and staged generalization](recovery_and_generalization_20261014.md); [download videos / restore artifacts](../backups/README.md).
 
