@@ -7,6 +7,16 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+### 14 Oct最新实施：D1定向阶段交接实验与可观测决策链
+
+**研究问题唯一化：** 已放入并获得支撑之后，按实测“释放→净空→交还控制”执行局部修复，能否改善后续真实VLA关抽屉及完整任务完成？[冻结D1协议](exp_record/libero_drawer_target_protocol_20261014.md)、[实现与运行记录](exp_record/libero_drawer_target_launch_20261014.md)。五层接口已接通：共享子目标tracker→冻结OpenVLA→接触/几何/历史monitor→正常/接触转换gate→有界hold-open/向抽屉外撤离。此次只检验release-to-close机制；早期对齐/停滞仅记录，不堆叠新干预算法。
+
+**有针对性的对照与止损：** drawer任务开发root0/1/2；先跑三条原VLA确认目标事件和事件后失败。若事件不可达，或所有到达事件的baseline均已完整成功，按预登记停止，不跑无效重复对照、不事后改阈值。存在事件后失败才在全部三root比较VLA、gate+hold/open、固定10hold+30外撤、实测阶段条件repair，最多12轨迹，每条600步、修复最多40步、每步都查同一H1actor。hold/open明确含夹爪释放，不伪称无动作的纯gate或H1重规划。主要比较phase-repair对两个简单控制的完整关抽屉/释放保持收益和误伤。
+
+**用户要求的显式可观测链已实现：** 每步落盘`decision_trace.jsonl`，按“t−1前实测证据→子目标→事件判据/阈值/连续次数→门控模式/原因/剩余预算→原动作vs实际动作→t执行后结果→handoff条件”完整记录；视频同步overlay，HTML可点击事件跳到对应帧。离线从原root逐动作精确replay重建并核对链，解释来自实际执行条件，不事后编造理由。
+
+**判据与预检：** bowl使用40个collision boxes完整角点，夹爪含mesh和pad的完整碰撞顶点；native In仅参考点、Close为q>0。真实仿真正例可满足完整关抽屉+支撑+脱离1s，部分越界反例虽native In却被完整几何拒绝；3环境instrumented/uninstrumented integration/controller/camera完全一致。16项单测通过；短合成动作端到端导出/精确回放通过，最终trace修订的四arm复检也通过，source/protocol hash与待启动版本一致，3份预检报告已入backups。它们不是actor成功率数据。当前仍是privileged规则护栏、H1/k1，Collision/CVR/safe仍null，不训练新模型。
+
 ### 14 Oct用户锁定：五层架构与长序列验证（最高优先级）
 
 **架构固定为：高层子目标 → 冻结OpenVLA骨干 → 风险与事件边界监测 → 双模门控决策 → 局部修复模块。** 权威定义已写入[framework design](exp_record/libero_framework_design_20261014.md)，[逐层改动与下一任务实施顺序](exp_record/libero_five_layer_implementation_20261014.md)。后续只在这五层内部根据证据修正、做匹配消融，不再更换主架构或铺开新研究方向。高层先用共享的任务milestone状态机；双模明确为正常跟踪／接触与阶段转换管理；修复限有界Retract、Re-align、Slow Approach，优先几何启发式，必要时小残差，不训练复杂大规模RL修复器。

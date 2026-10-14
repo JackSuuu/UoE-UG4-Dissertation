@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "synthetic_noop_fixture_only": true,
+  "episodes": 12,
+  "control_steps_per_episode": 8,
+  "exact_replay": true,
+  "decision_trace_recomputed": true,
+  "four_panel_videos": 3,
+  "clickable_trace_pages": 3,
+  "not_a_policy_or_task_efficacy_result": true
+}

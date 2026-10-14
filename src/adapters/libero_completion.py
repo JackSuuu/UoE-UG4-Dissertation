@@ -93,8 +93,9 @@ class CompletionMonitor:
 
 class ContactRecorder:
     """Observe existing mj_step calls without extra forward/step/control calls."""
-    def __init__(self, sim):
+    def __init__(self, sim, keywords=('black_book', 'desk_caddy')):
         self.sim = sim
+        self.keywords = tuple(keywords)
         self.original_step = sim.step
         self.samples = []
         sim.step = self.step
@@ -107,7 +108,7 @@ class ContactRecorder:
             c = self.sim.data.contact[i]
             a = self.sim.model.geom_id2name(c.geom1) or ''
             b = self.sim.model.geom_id2name(c.geom2) or ''
-            if not any(k in a + b for k in ('black_book', 'desk_caddy')):
+            if not any(k in a + b for k in self.keywords):
                 continue
             wrench = np.zeros(6)
             mujoco.mj_contactForce(self.sim.model._model, self.sim.data._data, i, wrench)

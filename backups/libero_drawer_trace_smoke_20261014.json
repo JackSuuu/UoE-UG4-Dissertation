@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "synthetic_noop_fixture_only": true,
+  "episodes": 4,
+  "control_steps_per_episode": 8,
+  "exact_replay": true,
+  "decision_trace_recomputed": true,
+  "four_panel_videos": 1,
+  "clickable_trace_pages": 1,
+  "source_sha256": {
+    "scripts/run_libero_drawer.py": "a7e6c0c4e1d2c3430eeaa2b003f29eeb9f0008394891be60d0c40b0cd4ca12ed",
+    "scripts/run_libero_baseline.py": "79f9792956cfba5af4e4203d90a6ecfcc90272cbe85f8b1efa42dac814541379",
+    "src/adapters/libero_drawer.py": "94a39ce6d60f7924b3d5d61416bf6ec5f80e928af6740dd48ca8a92098a69d39",
+    "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+  },
+  "protocol_sha256": "3f7e2784a70f916e11ff051eb9009bdcb4998f85194da62d27331557e60bd827",
+  "not_a_policy_or_task_efficacy_result": true
+}

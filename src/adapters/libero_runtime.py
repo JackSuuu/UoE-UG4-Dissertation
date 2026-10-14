@@ -24,18 +24,18 @@ def configure(root):
     return base
 
 
-def make_env(root, init_index=0):
+def make_env(root, init_index=0, task=TASK):
     base = configure(root)
     import torch
     patch_joint_addresses()
     patch_mass_matrix()
     from libero.libero.envs import OffScreenRenderEnv
     env = OffScreenRenderEnv(
-        bddl_file_name=str(base / 'bddl_files/libero_10' / (TASK + '.bddl')),
+        bddl_file_name=str(base / 'bddl_files/libero_10' / (task + '.bddl')),
         camera_heights=256, camera_widths=256)
     env.seed(0)
     env.reset()
-    states = torch.load(base / 'init_files/libero_10' / (TASK + '.pruned_init'),
+    states = torch.load(base / 'init_files/libero_10' / (task + '.pruned_init'),
                         weights_only=False)
     obs = env.set_init_state(states[init_index])
     return env, obs

@@ -4,6 +4,14 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 14 Oct — D1 targeted release-to-close implementation with observable reasoning
+
+[Frozen protocol](libero_drawer_target_protocol_20261014.md), [implementation/preflight/launch](libero_drawer_target_launch_20261014.md). User authorized targeted execution within the fixed architecture and required observable intervention reasoning. Added five-layer nativeH1integration for the bowl/drawer task, with registered original/hold-open/timed-repair/phase-repair controls and an explicit baseline target-coverage/post-event-headroom prerequisite. No model training or noise sweep. The per-step causal proof records actual evidence, predicates, routing reason, nominal/executed action, observed result and handoff condition; streaming video overlays and clickable HTML expose it. Full action replay checks these proofs against real original-root states, contacts and camera/controller hashes.
+
+Metric audit: native containment is point-based; complete physical acceptance uses all40bowl boxes, moving drawer wall/floor/shelf bounds, contact-based release/support and joint/bowl stability for1s. Real-simulator positive/negative fixtures and measurement nonmutation/replay passed. Sixteen unit checks cover new and historical behavior. Short synthetic software fixtures are explicitly not actor efficacy data. Task roots0–2are development; future calibration/train/confirmation reservations are in the protocol. The next launched experiment will decide whether phase-aware handoff adds benefit beyond both simple controls, not merely whether any intervention beats VLA.
+
+---
+
 ### Update 14 Oct — User locks five-layer guardrail architecture and long-task progression
 
 [Architecture lock](libero_framework_design_20261014.md), [implementation handoff](libero_five_layer_implementation_20261014.md). Fixed layers: high-level subgoals, frozen OpenVLA backbone, risk/event monitor, dual-mode gate, bounded local repair. Operational thesis framing is runtime physical safety/affordance monitoring and contact/phase-transition repair; no requirement for a large physics engine or RL repair network. Future algorithm edits stay within these layers and matched ablations. The current preservation diagnostic is a subsystem probe, not already the full architecture.

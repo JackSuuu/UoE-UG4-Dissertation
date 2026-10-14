@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "checks": [
+    "exact state/controller/image replay with and without monitoring, 3 environments",
+    "physically settled closed+contained+supported+released bowl reaches 1s dwell",
+    "native point-inside / collision footprint-outside counterexample rejected"
+  ],
+  "fixture_only": true,
+  "lower": [
+    -0.0992349853777298,
+    -0.06483000000000001,
+    0.02083
+  ],
+  "upper": [
+    0.1062649853777298,
+    0.08721000000000001,
+    0.07817237166207462
+  ],
+  "final_fixture": {
+    "bowl_gripper": false,
+    "cabinet_gripper": false,
+    "bowl_supported": true,
+    "max_bowl_cabinet_penetration": 2.0026614780543462e-08,
+    "native_in": true,
+    "closed": true,
+    "native_success": true,
+    "bowl_min": [
+      -0.049598548132608215,
+      -0.04259393593499505,
+      0.02082997998099534
+    ],
+    "bowl_max": [
+      0.057408653282332564,
+      0.06460600437141378,
+      0.07137191187336478
+    ],
+    "drawer_lower": [
+      -0.0992349853777298,
+      -0.06483000000000001,
+      0.02083
+    ],
+    "drawer_upper": [
+      0.1062649853777298,
+      0.08721000000000001,
+      0.07817237166207462
+    ],
+    "drawer_q": 0.00299997611602123,
+    "drawer_speed": -7.961494774705091e-09,
+    "linear_speed": 7.960240904026707e-09,
+    "angular_speed": 3.371562492822514e-08,
+    "relative_speed": 9.103713309178035e-11,
+    "retained": true,
+    "gripper_front_margin": 0.14168850839030367,
+    "gripper_above_margin": 0.1842765777719667,
+    "clear": true,
+    "outward_world": [
+      -0.0,
+      -1.0,
+      -0.0
+    ],
+    "conditions": {
+      "native": true,
+      "full_footprint": true,
+      "seated": true,
+      "supported": true,
+      "vertical_fit": true,
+      "released": true,
+      "shallow": true,
+      "slow": true
+    },
+    "candidate": true,
+    "alignment_error": 0.0004312591100793704
+  },
+  "source_sha256": {
+    "smoke_libero_drawer.py": "e92ff874d6f742dafc4ec0781bac9f955f79baaca3321e46464c06d7d00b33d6",
+    "libero_drawer.py": "94a39ce6d60f7924b3d5d61416bf6ec5f80e928af6740dd48ca8a92098a69d39"
+  }
+}
