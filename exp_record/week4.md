@@ -14,6 +14,8 @@ All24preservation`_b`rollouts have finished (worker exits0/0/0). Postprocessing 
 
 **Final verification passed:** [results](libero_preservation_results_20261014.md). All acceptance/action/forecast/prefix/budget/tail/state/video checks pass;216raw artifact hashes and six four-method2x videos generated. Acquisition VLA/hold/retreat/physics=2/6,3/6,2/6,3/6; completed-and-retained=1/6,2/6,1/6,1/6. All arms native-ever6/6. Physics rescues root2relative to VLA but ties hold on acquisition and loses root5retention relative to hold; it is not promoted as physics-specific efficacy. Roots1/3/4never trigger this late preservation module. These findings guide layer3–5implementation within the locked architecture. Original supervisor failure log preserved alongside successful postprocess-recovery record. No rollout/training remains active.
 
+Architecture lock, results and seven new LFS objects pushed as `037f73c`. Remote download/full recovery then verified all232archived source files and six standalone comparison videos (93.8MB stored LFS content). The user’s pre-existing planning-note edit remains uncommitted.
+
 ---
 
 ### Update 14 Oct — Preservation `_a` aborted on camera identity; local EGL fix and matched restart

@@ -1,0 +1,9 @@
+{
+  "commit": "037f73c",
+  "remote_download_and_full_restore": "passed",
+  "source_files": 232,
+  "archives": 1,
+  "standalone_videos": 6,
+  "lfs_bytes": 93764850,
+  "destination": "/tmp/opencode/restored-libero-preservation-20261014_b"
+}

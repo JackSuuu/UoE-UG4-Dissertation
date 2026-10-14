@@ -8,6 +8,8 @@
 
 **Completed four-method study:** [preservation `_b` archive manifest](libero_preservation_20261014_b/manifest.json), [verified results](../exp_record/libero_preservation_results_20261014.md), [root2method-comparison2x MP4](libero_preservation_20261014_b/videos/root_2_methods_2x.mp4). All24episodes and six comparison videos are included. These new videos compare VLA, hold, retreat and an **accurate-simulator selector**, not a learned predictor or the full five-layer framework. Original supervisor failure status reflects a subsequently fixed video-aggregation error; restored `postprocess_recovery.json` and `verified_summary.json` establish successful verification without rewriting the original log.
 
+[This new archive is also remotely verified](libero_preservation_b_remote_verified_20261014.json): all232source files fully restored from GitHub; six standalone videos hash-checked.
+
 ## View/download
 
 - [All three roots, 2x simulated-time playback](20261014/videos/all_roots_2x.mp4)
