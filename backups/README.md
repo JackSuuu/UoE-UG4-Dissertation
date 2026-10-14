@@ -2,6 +2,8 @@
 
 **Snapshot: 14 October 2026.** These robot videos show the **frozen full OpenVLA baseline**, with diagnostic overlays. There is **no physics-prediction action selector or repair enabled**. Worker 2 briefly places the book, then re-contacts it and fails the one-second released-placement criterion. Apparent visual corrections are the VLA's own actions.
 
+**[Remote recovery verified](remote_recovery_verified_20261014.json):** fresh GitHub clone + independent LFS download + complete extraction recovered all 1,674 source files with matching SHA256. All 14 LFS objects (2.45 GB) and the pinned LIBERO submodule were retrieved successfully.
+
 ## View/download
 
 - [All three roots, 2x simulated-time playback](20261014/videos/all_roots_2x.mp4)

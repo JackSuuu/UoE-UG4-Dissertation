@@ -1,0 +1,13 @@
+{
+  "remote": "git@github.com:JackSuuu/UoE-UG4-Dissertation.git",
+  "recovered_commit": "f33915a72a01125cda6afe294248547847c741d9",
+  "verification": "Fresh GitHub clone, independent LFS download, lfs fsck, full extraction and per-file SHA256",
+  "archives": 10,
+  "videos": 4,
+  "source_files": 1674,
+  "lfs_bytes": 2449423402,
+  "libero_revision": "8f1084e3132a39270c3a13ebe37270a43ece2a01",
+  "initial_state_sha256": "6cd3937ba18d64e72223222af36888d26ea201840415adbc4dae590454d0a5a8",
+  "restored_directory": "/tmp/opencode/restored-research-20261014",
+  "weights_mirrored": false
+}
