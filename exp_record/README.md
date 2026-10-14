@@ -12,6 +12,8 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **Completed continuation:** [Released placement1/3 and failure-stage audit](libero_continuation_results_20261013.md), [launch and checks](libero_continuation_launch_20261013.md), [frozen protocol](libero_continuation_protocol_20261013.md). No active rollout/training job remains.
 
+**14 Oct review:** [Accelerated videos, causal diagnostics and physics-specific comparison/architecture design](libero_framework_design_20261014.md). Next is a bounded privileged-vs-simple-control mechanism protocol, before learned training.
+
 **Latest completed study:** [R5 results](immediate_gate_results_20261013.md): partial event-vs-regression signal, all new gates fail policy-relative safe completion; no promotion or new experiment. The [frozen numerical protocol](immediate_gate_20261013.md) remains unchanged.
 
 | week | dates | file | main events |

@@ -108,6 +108,9 @@ def main():
     print(json.dumps({k:v for k,v in summary.items() if k not in ['episodes','artifact_sha256']},indent=2))
     for row in results:
         print(json.dumps({k:v for k,v in row.items() if k != 'final'},indent=2))
+    # Produce an accelerated, annotated MP4 after every verified complete run.
+    from render_libero_review import render
+    render(a.run, speed=2.)
 
 
 if __name__ == '__main__':

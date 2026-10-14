@@ -4,6 +4,14 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 14 Oct — Accelerated MP4 review delivered; physics-specific comparison designed
+
+[Evidence-linked framework design](libero_framework_design_20261014.md). Rechecked completed artifacts and no active rollout/training jobs. Added causal geometry/contact diagnostic timelines plus individually annotated2x MP4s and a13.025s three-panel overview, all original frames retained at40fps. Automatic review export now follows continuation aggregation. Re-ran artifact/condition/prefix/frame verification and the complete video-generation hook successfully. Outputs at `/home/ami/scratch/libero_continuation_20261013_a/review/`; raw runs preserved. Current desktop browser is disconnected, so no browser preview was claimed.
+
+Root2shows a measurable placement-preservation opportunity before later re-contact, but retrospective timing is not predictive accuracy. A conservative slow-contact stall rule misses root1; no retrospective threshold sweep. Proposed comparison fixes actor/information/candidate/control budgets and requires physics prediction to beat a strong shared-detector geometric/phase controller, not merely VLA alone. Exact-simulator selector is a privileged mechanism stage before learned replacement. Architecture direction is small measured-history/contact/progress prediction plus bounded pose/gripper repair; no larger model, GRU, actor fine-tuning or new collector launched. H1pilot versus formal genuineH10/k5, runtime perception access and force-label convergence remain explicit protocol gates.
+
+---
+
 ### Update 13 Oct — Continuation complete: released placement1/3; alignment and re-contact failures identified
 
 [Verified results and trajectory audit](libero_continuation_results_20261013.md). Root0passes at313steps; roots1/2reach520without completing. All original-prefix tokens/actions/states agree exactly;25substeps/interval, geometric conditions/dwell and video lengths verified. Root1never fits the full footprint and remains in gripper contact after grasping. Root2passes all conditions for6intervals, then renewed gripper contact interrupts stability. Root0establishes one detached seated placement but not intentional gripper opening or safe retreat. Next mechanism design must compare physics-guided repair against simple matched phase/termination controls; no learned gain or safety rate claimed. All jobs complete, no new intervention/training launched.

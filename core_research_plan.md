@@ -3,9 +3,15 @@
 **Dissertation:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization
 **Replaces:** `Experiment_plan_Phase_1.md` (3–4 week validation plan). That plan remains the blueprint for Months 1–3 infrastructure.
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
-**Last updated:** 2026-10-13
+**Last updated:** 2026-10-14
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
+
+**14 Oct审查与下一项方法决策（优先于下文历史建议）：** [场景检测、公平对照与架构设计](exp_record/libero_framework_design_20261014.md)。全部rollout已完成，当前released placement仅1/3，尚无机器人任务的learned框架效果证据。已生成全部3条轨迹的2倍速独立MP4及13.025s并排总览，并接入汇总脚本的自动导出；视频按仿真时间加速，包含geometry/脱离/dwell/re-contact诊断，不是方法对比。当前history规则在root2于step188观察到placement opportunity、194观察到re-contact；不是提前6步预测成功。简单slow-contact stall规则漏掉root1，不通过事后调阈值宣称解决。
+
+**下一步比较的必要结构：** 固定同一full7B actor/观测权限/状态估计/候选动作/反馈与预算，比较A原VLA、B共享检测器＋简单phase/geometry/撤离控制、O准确物理前瞻选择（privileged机制诊断），只有O优于B且完整续跑有净收益才做L允许观测输入的learned预测替代。L必须同时优于A与B，不能把多观测、简单终止逻辑或更大候选预算算物理预测贡献。先冻结一个小预算机制协议，不自动扩collector或训练；force/impulse阈值与数值敏感性仍待核实，CVR/safe不能补造。
+
+**有证据依据的架构方向：** 从固定当前context的scalar risk转向短段实测history→接触/任务状态及不确定性→因果动作条件的相对pose/velocity/contact/progress预测；先小型residual模型与有限候选，不默认GRU/大模型。repair要能表达有界横向/姿态/撤离及明确gripper分支，不能仅缩小原动作。保留gate/event与连续repair目标的单位分离，并检查actor恢复执行后的完成。当前H1只作机制诊断；正式H10/k5研究仍须真实任务兼容H10提议和基线可行性，不能重复H1凑数。真实sim几何/contact仅诊断或训练标签，不能偷偷变成learned runtime输入。具体实现和效果须由后续匹配实验验证，本次未训练/启动新干预实验。
 
 **最新续跑完成（覆盖下文运行中状态）：** [完整结果](exp_record/libero_continuation_results_20261013.md)。native-ever3/3，几何/脱离/稳定1s完成1/3：root0在313步通过，root1/2均到520步未通过；所有原baseline重合prefix的tokens/actions相同、state误差0，子步/视频/判据独立核验通过。root1始终未完整进入目标隔间且抓取后保持夹爪接触；root2曾全部条件通过0.3s，随后夹爪重新接触并破坏稳定。root0证明存在能完成的新验收例子，但末动作仍close，不能称为主动open-gripper release或安全撤离。下一项机制诊断应围绕对齐和完成后继续执行，加入匹配的简单停止/保持/撤离控制，防止把终止逻辑收益冒充learned physics收益。force数值尚未数值收敛/阈值认证，CVR/safe仍null。当前无实验运行，未启动新训练或干预。
 
