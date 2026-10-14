@@ -9,6 +9,8 @@
 
 ### 14 Oct最新实施：D1定向阶段交接实验与可观测决策链
 
+**已实际启动：** `d3889e2`实现/冻结协议/预检已推GitHub，随后启动`libero_drawer_target_20261014_a`。脱离SSH的supervisor779352；健康GPU1/2/3对应root0/1/2、baseline worker779356/779357/779358，当前阶段`baseline_target_coverage`。根据预登记覆盖/事件后失败规则自动决定是否接着跑全四arm；完成后精确回放、生成可观测决策链视频/HTML并归档。尚无该任务效能结论。
+
 **研究问题唯一化：** 已放入并获得支撑之后，按实测“释放→净空→交还控制”执行局部修复，能否改善后续真实VLA关抽屉及完整任务完成？[冻结D1协议](exp_record/libero_drawer_target_protocol_20261014.md)、[实现与运行记录](exp_record/libero_drawer_target_launch_20261014.md)。五层接口已接通：共享子目标tracker→冻结OpenVLA→接触/几何/历史monitor→正常/接触转换gate→有界hold-open/向抽屉外撤离。此次只检验release-to-close机制；早期对齐/停滞仅记录，不堆叠新干预算法。
 
 **有针对性的对照与止损：** drawer任务开发root0/1/2；先跑三条原VLA确认目标事件和事件后失败。若事件不可达，或所有到达事件的baseline均已完整成功，按预登记停止，不跑无效重复对照、不事后改阈值。存在事件后失败才在全部三root比较VLA、gate+hold/open、固定10hold+30外撤、实测阶段条件repair，最多12轨迹，每条600步、修复最多40步、每步都查同一H1actor。hold/open明确含夹爪释放，不伪称无动作的纯gate或H1重规划。主要比较phase-repair对两个简单控制的完整关抽屉/释放保持收益和误伤。

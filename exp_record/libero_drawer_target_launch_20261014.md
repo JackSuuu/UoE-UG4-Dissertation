@@ -40,3 +40,7 @@ The first smoke caught an environment-wrapper attribute access (`env.env.object_
 Output: `/home/ami/scratch/libero_drawer_target_20261014_a`. Protocol and source are committed/pushed before launch. Healthy physical GPUs1/2/3map to task roots0/1/2. Phase1runs three actual OpenVLA baselines. Phase2runs the remaining three methods on all roots only when registered target headroom exists. All source hashes and the protocol hash are recorded. Persistent supervisor and worker logs survive SSH termination. Automated archive path is `backups/libero_drawer_target_20261014_a` after completed verification; remote LFS recovery must then be independently verified.
 
 No efficacy or completion counts are available in this prelaunch record. Record actual launch IDs and verified outcomes in subsequent updates rather than replacing the frozen protocol.
+
+## Launch update
+
+Implementation/protocol/preflight commit **`d3889e2` was pushed before launch**. Detached D1 supervisor started successfully in `/home/ami/scratch/libero_drawer_target_20261014_a`, PID779352. Baseline workers: GPU1/root0/PID779356; GPU2/root1/PID779357; GPU3/root2/PID779358. Initial status is `baseline_target_coverage`; no outcome claim yet. Supervisor log is `/home/ami/scratch/libero_drawer_target_20261014_a_supervisor.log`. Frozen protocol SHA256: `3f7e2784a70f916e11ff051eb9009bdcb4998f85194da62d27331557e60bd827`.

@@ -10,6 +10,8 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 Metric audit: native containment is point-based; complete physical acceptance uses all40bowl boxes, moving drawer wall/floor/shelf bounds, contact-based release/support and joint/bowl stability for1s. Real-simulator positive/negative fixtures and measurement nonmutation/replay passed. Sixteen unit checks cover new and historical behavior. Short synthetic software fixtures are explicitly not actor efficacy data. Task roots0–2are development; future calibration/train/confirmation reservations are in the protocol. The next launched experiment will decide whether phase-aware handoff adds benefit beyond both simple controls, not merely whether any intervention beats VLA.
 
+**Launched after push `d3889e2`:** D1 supervisor779352, baseline workers779356/779357/779358on healthy GPUs1/2/3. Output `scratch/libero_drawer_target_20261014_a`; first stage is registered baseline coverage/headroom audit, with automatic matched controls when warranted, full action/trace replay, method videos and archive. All final preflight checks passed, including exact source/protocol identity in the four-arm trace/export fixture. Await actual actor outcomes.
+
 ---
 
 ### Update 14 Oct — User locks five-layer guardrail architecture and long-task progression
