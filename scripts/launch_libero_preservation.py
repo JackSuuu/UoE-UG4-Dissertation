@@ -26,6 +26,7 @@ def launch(args):
     assert smoke['status'] == 'passed' and smoke['branches'] == 6
     assert smoke['full_integration_controller_image_identity']
     assert smoke['live_nonmutation'] and smoke['selected_first_prediction_equal_actual']
+    assert smoke.get('consecutive_decisions', 0) >= 3, 'Require repeated-render branch regression'
     hardware = subprocess.check_output(['nvidia-smi', '--query-gpu=index,uuid,memory.used',
                                        '--format=csv,noheader,nounits'], text=True)
     available = {}
@@ -79,6 +80,8 @@ def launch(args):
             if p.poll() is None:
                 os.killpg(p.pid, signal.SIGTERM)
                 p.wait()
+        for info, process in zip(manifest['workers'], processes):
+            info['exit_code'] = process.returncode
         for handle in handles:
             handle.close()
         manifest['end'] = time.time()

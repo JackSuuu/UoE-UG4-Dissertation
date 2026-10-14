@@ -4,6 +4,8 @@
 
 **[Remote recovery verified](remote_recovery_verified_20261014.json):** fresh GitHub clone + independent LFS download + complete extraction recovered all 1,674 source files with matching SHA256. All 14 LFS objects (2.45 GB) and the pinned LIBERO submodule were retrieved successfully.
 
+**Later diagnostic archive:** [aborted preservation run `_a`](libero_preservation_abort_20261014_a/manifest.json), including100raw/log files. This incomplete run was stopped by a camera-context integrity check; it is not a framework-efficacy result. [Failure and correction](../exp_record/libero_preservation_renderer_fix_20261014.md). The same `verify`/`restore` commands below accept this archive's directory instead of `backups/20261014`.
+
 ## View/download
 
 - [All three roots, 2x simulated-time playback](20261014/videos/all_roots_2x.mp4)

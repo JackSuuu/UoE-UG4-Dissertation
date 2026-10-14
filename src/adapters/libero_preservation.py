@@ -70,10 +70,32 @@ def validate_controller(env):
 
 def settled_env(root, index):
     env, obs = make_env(root, index)
+    bind_renderer_context()
     validate_controller(env)
     for _ in range(10):
         obs, _, _, _ = env.step(SETTLE)
     return env, obs
+
+
+def bind_renderer_context():
+    """Robosuite1.4.1 assumes one current EGL context per render thread.
+
+Branch creation/closure switches that thread-local context. Its render method
+does not rebind it, so subsequent LIVE images can be invalid even when physics
+is identical. Bind the renderer owning each draw, inside MjSim's render lock.
+This is process-local and does not modify the frozen runtime or installed package.
+"""
+    from robosuite.utils.binding_utils import MjRenderContext
+    original = MjRenderContext.render
+    if getattr(original, '_libero_context_bound', False):
+        return
+
+    def render(self, *args, **kwargs):
+        self.gl_ctx.make_current()
+        return original(self, *args, **kwargs)
+
+    render._libero_context_bound = True
+    MjRenderContext.render = render
 
 
 def fingerprint(env, obs):

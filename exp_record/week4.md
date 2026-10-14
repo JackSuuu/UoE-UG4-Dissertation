@@ -4,6 +4,12 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 14 Oct — Preservation `_a` aborted on camera identity; local EGL fix and matched restart
+
+[Failure, regression and restart record](libero_preservation_renderer_fix_20261014.md). Root2/physics decision190matched complete integration/controller state but not camera images. Supervisor stopped all workers before roots3–5began. Consecutive recorded-action replay reproduced it without VLA inference: robosuite1.4.1does not rebind EGL context per render after branch creation/closure. Project-local per-draw binding passed18branches/three consecutive decisions; an eight-decision corrected-prefix regression precedes a full24episode restart under the frozen protocol. Original single-decision smoke did not cover this lifecycle. Preserved and independently checked eight completed partial arms; no complete physics efficacy comparison is available. All100aborted/reproduction artifacts are archived for LFS recovery. No algorithmic constants were retuned from these partial outcomes.
+
+---
+
 ### Update 14 Oct — Remote recovery verified; active preservation mechanism study registered
 
 [Remote recovery and attribution](recovery_and_generalization_20261014.md): all14Git LFS objects (2.45GB) independently downloaded from GitHub; all1,674archived source files restored with exact hashes. LIBERO submodule revision/task-init hash verified. Pretrained upstream weights are pinned references rather than mirrored binaries.

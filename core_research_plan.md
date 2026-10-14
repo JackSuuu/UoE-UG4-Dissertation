@@ -7,6 +7,10 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+**14 Oct运行中止与修复（更新下方启动状态）：** `_a`在root2/physics第二次前瞻decision190因相机hash不一致自动停止全部worker；integration/controller一致，尚无完整框架对比结果，root3–5尚未执行。原因是robosuite1.4.1多环境渲染未重新绑定EGL context，首个单次smoke没覆盖分支销毁后的下一次主环境图像。已添加本地逐render绑定，连续3次/18分支检查通过；补测实际修正后prefix重放后，按原冻结协议在新目录`libero_preservation_20261014_b`重跑全部24轨迹。[故障、修复及中止数据说明](exp_record/libero_preservation_renderer_fix_20261014.md)。中止的100文件归档进入Git LFS；没有利用部分结果改候选/阈值/打分。
+
+**修复验收通过：** 连续8次/48分支检查154.5s全部通过，候选选择`[0,0,0,0,2,2,2,2]`覆盖修正后历史重放；完整integration/controller/相机、live不变性、预测首步=执行首步均精确一致，未放宽像素校验。7项单测仍通过。此为接口回归探针，不是新的效能结果。
+
 **14 Oct当前执行决策（优先于此前“未启动”状态）：** 用户授权在当前场景接入真实预测→选择→执行闭环。已冻结并推送[placement-preservation机制协议](exp_record/libero_preservation_protocol_20261014.md)（`9336782`），[实现与启动记录](exp_record/libero_preservation_launch_20261014.md)。准确物理selector与VLA、hold-open、retreat-open匹配对比，root0–2及新开发root3–5，共24轨迹；当前仍是privileged H1/k1诊断，非learned efficacy。首个有效放置后的20步内每步最多6个5步pulse-and-settle候选，仅执行第一步；达到原1s放置验收后关闭修正，再执行40步原VLA观察恢复后的保持。未扩大为多任务或训练新模型。7项单测通过；root2完整190状态replay、6分支完整integration/controller/图像一致性、live不变性、预测首步=实际首步已通过。早期alignment失败不在本次trigger覆盖范围，不能靠事后放宽规则制造收益。
 
 **备份已远端恢复验证：** `f33915a`包含14个LFS对象/2.45GB，重新从GitHub克隆下载并完整恢复1,674文件均通过SHA256；LIBERO固定submodule及任务初始状态hash一致。见[恢复报告](backups/remote_recovery_verified_20261014.json)。预训练7B权重仍依赖固定HF revision重新下载。
