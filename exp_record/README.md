@@ -18,6 +18,8 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **Current targeted implementation:** [D1 frozen protocol](libero_drawer_target_protocol_20261014.md), [implementation, geometry/trace tests and launch record](libero_drawer_target_launch_20261014.md). Release → measured clearance → actor handoff → drawer closing. Four matched H1 arms, explicit causal decision chains and exact action-replay verification; registered coverage/headroom stop prevents irrelevant duplicate runs.
 
+**D1 closed:** [verified3/3baseline completion and no-headroom stop](libero_drawer_target_results_20261014.md). No intervention arms executed.1,276real actor actions and their observable decision chains replay-verified. Root2also exposes a trigger-timing mismatch; no framework gain is claimed.
+
 **Completed preservation study:** [Verified results](libero_preservation_results_20261014.md), [protocol](libero_preservation_protocol_20261014.md), [initial launch](libero_preservation_launch_20261014.md), [renderer failure/fix/restart](libero_preservation_renderer_fix_20261014.md). All24`_b`rollouts and independent checks complete, six method-comparison videos generated. Acquisition VLA/hold/retreat/physics=2/6,3/6,2/6,3/6; completed-and-retained=1/6,2/6,1/6,1/6. No physics advantage over hold. Still a privileged H1/k1 subsystem diagnostic, not the full five-layer implementation or learned efficacy.
 
 **Recovery and attribution:** [GitHub backup, baseline clarification and staged generalization](recovery_and_generalization_20261014.md); [download videos / restore artifacts](../backups/README.md).

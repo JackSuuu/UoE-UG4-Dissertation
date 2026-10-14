@@ -10,6 +10,8 @@
 
 [This new archive is also remotely verified](libero_preservation_b_remote_verified_20261014.json): all232source files fully restored from GitHub; six standalone videos hash-checked.
 
+**D1drawer target audit:** [archive manifest](libero_drawer_target_20261014_a/manifest.json), [verified result](../exp_record/libero_drawer_target_results_20261014.md).40original files and three standalone2xvideos. All three VLA baselines complete; registered no-headroom stop means no intervention arms executed. These videos are single-VLA panels despite the generic `methods` filename. Archives include per-step observable decision chains and clickable HTML trace timelines.
+
 ## View/download
 
 - [All three roots, 2x simulated-time playback](20261014/videos/all_roots_2x.mp4)

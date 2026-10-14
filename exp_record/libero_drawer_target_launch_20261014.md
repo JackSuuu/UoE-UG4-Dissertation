@@ -44,3 +44,5 @@ No efficacy or completion counts are available in this prelaunch record. Record 
 ## Launch update
 
 Implementation/protocol/preflight commit **`d3889e2` was pushed before launch**. Detached D1 supervisor started successfully in `/home/ami/scratch/libero_drawer_target_20261014_a`, PID779352. Baseline workers: GPU1/root0/PID779356; GPU2/root1/PID779357; GPU3/root2/PID779358. Initial status is `baseline_target_coverage`; no outcome claim yet. Supervisor log is `/home/ami/scratch/libero_drawer_target_20261014_a_supervisor.log`. Frozen protocol SHA256: `3f7e2784a70f916e11ff051eb9009bdcb4998f85194da62d27331557e60bd827`.
+
+**Completed:** [verified results](libero_drawer_target_results_20261014.md). Baselines complete3/3under full physical acceptance; the registered no-post-event-headroom stop prevented the nine intervention episodes. All1,276actions and observable proofs replay-verified; three single-VLA review videos/trace pages and recovery archive generated. No framework-efficacy claim.
