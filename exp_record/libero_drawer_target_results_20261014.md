@@ -34,3 +34,5 @@ Files named `root_<i>_methods_2x.mp4` contain **one VLA panel only in this stopp
 D1is closed under its predefined stop rule. Keep the five-layer architecture and explicit proof logging. For the next efficacy-targeted edit, the previously demonstrated book/caddy release/resumption failure is the stronger known failure case; a future transition-focused protocol should be built from that evidence before returning to the drawer task for transfer. Do not add disturbances, search new roots or redefine success simply to obtain a positive D1comparison. No further experiment is automatically launched by this result.
 
 Recovery archive: `backups/libero_drawer_target_20261014_a/`, one archive with40original files plus three standalone videos;26,321,596bytes across four LFS objects. Automatic local per-file verification passed. Remote recovery verification is recorded separately after push.
+
+**Remote recovery passed:** archive/results pushed as `81eb54e`, independently downloaded from GitHub and fully restored with all40source-file hashes and three standalone-video hashes verified. [Recovery record](../backups/libero_drawer_target_remote_verified_20261014.json).

@@ -1,0 +1,9 @@
+{
+  "commit": "81eb54e",
+  "remote_download_and_full_restore": "passed",
+  "source_files": 40,
+  "archives": 1,
+  "standalone_videos": 3,
+  "lfs_bytes": 26321596,
+  "destination": "/tmp/opencode/restored-libero-drawer-20261014_a"
+}

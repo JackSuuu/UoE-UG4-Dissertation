@@ -11,6 +11,8 @@
 
 **D1已核验结束（覆盖下方启动记录）：** [结果](exp_record/libero_drawer_target_results_20261014.md)。原VLA在drawer开发root0/1/2按完整物理验收均成功3/3，分别368/564/344步；按预登记`no_observed_post_event_headroom`停止，未启动其余9条干预轨迹。1276个真实actor动作及其证据→判据→路由→动作→结果链全部原root精确回放通过，生成3个单VLA面板2倍速视频和可点击trace页。**没有本轮框架提升结论。** 关抽屉后的延迟主要是柜体/夹爪未脱离，非碗再次被碰；root2稳定支撑触发晚于释放和关抽屉，说明事件出现不等于及时覆盖目标阶段。下一效能目标应回到已证明存在失败的book/caddy阶段交接，再单独登记；不为正结果扩大扰动/root搜索。当前无实验运行。40源文件+3视频已本地归档核验，远端恢复随后记录。
 
+**D1远端恢复已通过：** `81eb54e`推送4个LFS对象/26.3MB后，独立从GitHub下载并完整恢复校验40源文件及3个视频；[验证记录](backups/libero_drawer_target_remote_verified_20261014.json)。
+
 **已实际启动：** `d3889e2`实现/冻结协议/预检已推GitHub，随后启动`libero_drawer_target_20261014_a`。脱离SSH的supervisor779352；健康GPU1/2/3对应root0/1/2、baseline worker779356/779357/779358，当前阶段`baseline_target_coverage`。根据预登记覆盖/事件后失败规则自动决定是否接着跑全四arm；完成后精确回放、生成可观测决策链视频/HTML并归档。尚无该任务效能结论。
 
 **研究问题唯一化：** 已放入并获得支撑之后，按实测“释放→净空→交还控制”执行局部修复，能否改善后续真实VLA关抽屉及完整任务完成？[冻结D1协议](exp_record/libero_drawer_target_protocol_20261014.md)、[实现与运行记录](exp_record/libero_drawer_target_launch_20261014.md)。五层接口已接通：共享子目标tracker→冻结OpenVLA→接触/几何/历史monitor→正常/接触转换gate→有界hold-open/向抽屉外撤离。此次只检验release-to-close机制；早期对齐/停滞仅记录，不堆叠新干预算法。
