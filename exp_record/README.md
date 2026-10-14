@@ -16,6 +16,8 @@ one file per week. Inside a file, the newest entry is at the top.
 
 **Authoritative architecture:** [User-locked five layers](libero_framework_design_20261014.md#authoritative-architecture-lock--user-decision-14-oct-2026), [concrete implementation and bowl/drawer long-task plan](libero_five_layer_implementation_20261014.md). High-level subgoals → frozen OpenVLA → risk/event monitoring → dual-mode gate → bounded local repair.
 
+**Latest benchmark decision:** [Final clean/no-harm + controlled-recovery design and D2](libero_final_benchmark_design_20261014.md). User authorizes paired execution faults. Keep drawer clean3/3as a sham anchor, test delayed release at actual release opportunities, then frozen-method transfer/final roots. External fault injector and nine-case development manifest implemented; online perturbed framework efficacy is not yet evaluated. Baseline naming, verified literature and metric denominators are explicit.
+
 **Current targeted implementation:** [D1 frozen protocol](libero_drawer_target_protocol_20261014.md), [implementation, geometry/trace tests and launch record](libero_drawer_target_launch_20261014.md). Release → measured clearance → actor handoff → drawer closing. Four matched H1 arms, explicit causal decision chains and exact action-replay verification; registered coverage/headroom stop prevents irrelevant duplicate runs.
 
 **D1 closed:** [verified3/3baseline completion and no-headroom stop](libero_drawer_target_results_20261014.md). No intervention arms executed.1,276real actor actions and their observable decision chains replay-verified. Root2also exposes a trigger-timing mismatch; no framework gain is claimed.

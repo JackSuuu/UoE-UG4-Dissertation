@@ -1,0 +1,924 @@
+{
+  "status": "passed",
+  "fixture_only": true,
+  "online_actor_recovery_evaluated": false,
+  "cases_sha256": "4395377df6aac3da9a64a31f1558141909e4028bd30c56316f20ae5df57d08e5",
+  "source_sha256": {
+    "smoke_libero_stress.py": "1d6bf4354683ff1b25fad07a5d50561692e2c1592f75df1df4d248976398bc7e",
+    "libero_stress.py": "f4fd6dc545bd7ef6803575f2e54f0145010bd66da28dfc793b5694aa049aa41c"
+  },
+  "branches": [
+    {
+      "case_id": "drawer_root0_release_delay0",
+      "prefix_exact": true,
+      "zero_fault_exact_reproduction": true,
+      "physical_state_changed_from_sham": false,
+      "trace": [
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 169,
+          "active": false,
+          "selected_command": [
+            -0.4390493561239803,
+            -0.05280988169651413,
+            -0.38652836797284146,
+            0.03667857249577841,
+            -0.00031470433169719647,
+            0.022829841983084576,
+            -1.0
+          ],
+          "effective_command": [
+            -0.4390493561239803,
+            -0.05280988169651413,
+            -0.38652836797284146,
+            0.03667857249577841,
+            -0.00031470433169719647,
+            0.022829841983084576,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "527482f6c7b5f03a8bc258fe7946bda27c0e799ee82ef153fa4fdf1a2b038f96",
+            "controller": "4012787c9b179b6cf99b1f7c0fbf86410182112c2459af9f5f351ffad9c2d61f",
+            "images": {
+              "agentview_image": "9736e52a77f17c557f3d558282766ee96f792497a02c29f78f4907f6b056f7c7",
+              "robot0_eye_in_hand_image": "fb6e8caf5a49bc9304f17d2488f89ad406723657fd70052a3cb86e1a2ecdd7f4"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 170,
+          "active": false,
+          "selected_command": [
+            -0.5327993561239804,
+            -0.0019695450277890103,
+            -0.3731880317716038,
+            0.02925000120611751,
+            -0.00031470433169719647,
+            -0.0006575529481850362,
+            1.0
+          ],
+          "effective_command": [
+            -0.5327993561239804,
+            -0.0019695450277890103,
+            -0.3731880317716038,
+            0.02925000120611751,
+            -0.00031470433169719647,
+            -0.0006575529481850362,
+            1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "0f65e18a03c0ea1d50ae5ef7a14705cefe4a927063629a79ebd5de5db18d98c1",
+            "controller": "aae809161c5884d2cc4a370a9d05e84a48372e79e2d6551b74273b8d70750495",
+            "images": {
+              "agentview_image": "6f4962ca0068c682c45d3f33e2e9e700013ef0900364ef911779c68e2a9e6043",
+              "robot0_eye_in_hand_image": "e6cad6b017c888e44f55ed973bf9243e982abb31a0c8b59150c9dee8697b64f0"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 171,
+          "active": false,
+          "selected_command": [
+            -0.030961120829862687,
+            -0.0019695450277890103,
+            0.00034138186305165963,
+            -0.00046428395252602617,
+            -0.047396553542099706,
+            -0.06172477976948609,
+            -1.0
+          ],
+          "effective_command": [
+            -0.030961120829862687,
+            -0.0019695450277890103,
+            0.00034138186305165963,
+            -0.00046428395252602617,
+            -0.047396553542099706,
+            -0.06172477976948609,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "61802515bac7c4a53d549df9075efc7e6b80fe9f1b7990c66f9e1dfcc1a4f90b",
+            "controller": "fa8411af5b03d1769d047bd191664ee2a4e02b33e5b6bcfe4817fd7e81eefe3d",
+            "images": {
+              "agentview_image": "c5a2d2afac4ed8ff1003e75e4623821e52bf3d53d71f677a635e08e6b45c4c48",
+              "robot0_eye_in_hand_image": "d74f91f526ae988ae470b523f35211de16e20482c98a68eeb92b138d45a22129"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 172,
+          "active": false,
+          "selected_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "effective_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "08ef02d88c75b31a46d07205700b313bc1fb017f88151f0fcb12b3ce667e2a95",
+            "controller": "6fb2da1b3546ec166fd20987b3e537499f2682e833901c061753b66a3181dfd8",
+            "images": {
+              "agentview_image": "82c14be80c1967953e9a8eca646a1dd51c5558ca9aca12ea6025116fdae3608b",
+              "robot0_eye_in_hand_image": "3dcfd635dff79fe131acb0a59590425a9581d2aa5b98febb3c6b80e93229f281"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 173,
+          "active": false,
+          "selected_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "effective_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": false,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "79f322e89631221a4c46caef5dd3c332bf2f850fb923ec64ab6f0a09a4b09b4c",
+            "controller": "5cfbed2ce4c16505fdb8acb37e0dfbe499de481db3bd0898c7a66a9bb50cdbb3",
+            "images": {
+              "agentview_image": "58a7e7850abd677b543fb5bc8a7df4c137940a114ab15ac2c3fb3ae178d9387a",
+              "robot0_eye_in_hand_image": "9b12a6938f442e32b3d633dfc43fefc158422a9eeedaccf84ffe4cfa32bfb3df"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 174,
+          "active": false,
+          "selected_command": [
+            0.2502888791701373,
+            0.11242121247684267,
+            0.6340073514218423,
+            -0.00046428395252602617,
+            0.06849722912966036,
+            -0.03353990585196251,
+            -1.0
+          ],
+          "effective_command": [
+            0.2502888791701373,
+            0.11242121247684267,
+            0.6340073514218423,
+            -0.00046428395252602617,
+            0.06849722912966036,
+            -0.03353990585196251,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": false,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "cf55641d4769b42d6467ac6e2c677ed5eb509bc75427749c18ea4a7d93c319e0",
+            "controller": "69a76ada6c9efdcfdea3b52b14a40d935972a97d84ddb7b916934fbbfb02c7ad",
+            "images": {
+              "agentview_image": "4f8f15eac9751c1863879c9c766cfdf8938dcd46c314171c112f4888b894b183",
+              "robot0_eye_in_hand_image": "a344108307e5593f4537761db2237853a11ddfd152c4fa4d7b51a34f215d4977"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 175,
+          "active": false,
+          "selected_command": [
+            0.4543329968171961,
+            -0.07823005003087657,
+            0.7073792005286499,
+            -0.00046428395252602617,
+            0.12765134736837122,
+            -0.0405861243313434,
+            -1.0
+          ],
+          "effective_command": [
+            0.4543329968171961,
+            -0.07823005003087657,
+            0.7073792005286499,
+            -0.00046428395252602617,
+            0.12765134736837122,
+            -0.0405861243313434,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": false,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "b4b6d3a0652b8704a136798819cc8a9c0cad5da0f87e32bffad97ac1ce6918cf",
+            "controller": "22ea35cad6e13fe50d17196420faab560ea45378aacd7288beec5fbfd6a22b47",
+            "images": {
+              "agentview_image": "9399335224e3d3441780f31f6df835adbf32e80f194fd83425941568dda3e5c5",
+              "robot0_eye_in_hand_image": "97f9aa0de265dce6772b3edde12d5cfe17b91d9d6f399f948293a1e7a4b08b29"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 0,
+          "step": 176,
+          "active": false,
+          "selected_command": [
+            0.3660977026995491,
+            -0.0019695450277890103,
+            0.7207195367298875,
+            -0.00046428395252602617,
+            0.1336874818825254,
+            -0.035888645345089454,
+            -1.0
+          ],
+          "effective_command": [
+            0.3660977026995491,
+            -0.0019695450277890103,
+            0.7207195367298875,
+            -0.00046428395252602617,
+            0.1336874818825254,
+            -0.035888645345089454,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": false,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "ffb92600cf0367b6f48993d7e4feabefe1db1c346fceb7574f49b8cba6fc9e09",
+            "controller": "86f0aafe1f5bb191494b6d335f4e9a0b8c50f232a321d6915d93cf8846b49bfd",
+            "images": {
+              "agentview_image": "36ae70e1553f1c1abd6a0f3d0ec066ef9a3b4ef500b51a37b792b70448f4a6e9",
+              "robot0_eye_in_hand_image": "1deefcdbb9602bc3a0cee666065383206484880bec74031b862928ac8936cbd8"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "drawer_root0_release_delay4",
+      "prefix_exact": true,
+      "zero_fault_exact_reproduction": false,
+      "physical_state_changed_from_sham": true,
+      "trace": [
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 169,
+          "active": true,
+          "selected_command": [
+            -0.4390493561239803,
+            -0.05280988169651413,
+            -0.38652836797284146,
+            0.03667857249577841,
+            -0.00031470433169719647,
+            0.022829841983084576,
+            -1.0
+          ],
+          "effective_command": [
+            -0.4390493561239803,
+            -0.05280988169651413,
+            -0.38652836797284146,
+            0.03667857249577841,
+            -0.00031470433169719647,
+            0.022829841983084576,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "f53826bc99e6c48cde554051af31b796ff86166bba430a56bb6a04a2a815bd82",
+            "controller": "b28e4db7b42179695da1c2840588f668b1b9111300bdc5dea732572a7afa5f62",
+            "images": {
+              "agentview_image": "f665fd8f56ad65015df161a2e231e404da25095fa67f336746fc153cebd329b1",
+              "robot0_eye_in_hand_image": "b630075445abffd9aad0f4614f74f0f070d1a649f9c474e8e32e810cbc940a3a"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 170,
+          "active": true,
+          "selected_command": [
+            -0.5327993561239804,
+            -0.0019695450277890103,
+            -0.3731880317716038,
+            0.02925000120611751,
+            -0.00031470433169719647,
+            -0.0006575529481850362,
+            1.0
+          ],
+          "effective_command": [
+            -0.5327993561239804,
+            -0.0019695450277890103,
+            -0.3731880317716038,
+            0.02925000120611751,
+            -0.00031470433169719647,
+            -0.0006575529481850362,
+            1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "e1978716465e2b1004d2497410ea7defb3e3148a982bb82e2f3f00b54573613d",
+            "controller": "aac9de09159198ad37fa4e9448473b119d75450d7cb9f517147b190ddd60f0a1",
+            "images": {
+              "agentview_image": "54fd1883e47a2f408f401c8a4412440bb69462e813b2bc2e599ed003b50cb99d",
+              "robot0_eye_in_hand_image": "d6493cba5ae6d411d73c9439a7d51bf210cdbfe111bcece515fb9404691d998c"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 171,
+          "active": true,
+          "selected_command": [
+            -0.030961120829862687,
+            -0.0019695450277890103,
+            0.00034138186305165963,
+            -0.00046428395252602617,
+            -0.047396553542099706,
+            -0.06172477976948609,
+            -1.0
+          ],
+          "effective_command": [
+            -0.030961120829862687,
+            -0.0019695450277890103,
+            0.00034138186305165963,
+            -0.00046428395252602617,
+            -0.047396553542099706,
+            -0.06172477976948609,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "3c18e193cce5e10d6078e5cba9ab58e492dde08b8472443a3140469e496d712c",
+            "controller": "9d8dd1f28e6cd14f6cfba473a1f9ec2d25f9d9605dec2cde42ac2689af62e9c7",
+            "images": {
+              "agentview_image": "b7b8a89fc5ad64b1eb5955eb63ea02cd28eaa6bdcabcafbd7299ca3a18f27ff4",
+              "robot0_eye_in_hand_image": "aad18a5bb8f29879da93ecca0dad44dff6ba994babe796cd31e9ad00894d5b94"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 172,
+          "active": true,
+          "selected_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "effective_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "ebf90e03c75761fc6252e302ebd2651d46ef6dfcabeeb6899f21bf4a42216584",
+            "controller": "8c1889447e09d880d501d514670c0144856cb2c27f3aa2fef8e2daac137439c4",
+            "images": {
+              "agentview_image": "ead61b55ab81b735555addb965ea5a69f70473d91d3423b4debc5150825cf973",
+              "robot0_eye_in_hand_image": "e8abf7e38719fc3997e44580a8d5a122d242ecb36a55fb6d71d9742289a31d84"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 173,
+          "active": false,
+          "selected_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "effective_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "7180e11fd1dd5313e5b2447709e0581a72e251d11ffcecc686526940726a24f6",
+            "controller": "7b12a4977dc359b90ebcc0b48b91fe45e469a2168e2d99eeb56bf9e0825a2992",
+            "images": {
+              "agentview_image": "1e45b7be3ab21607df40dce1e954412acbabc8b14c7549e5dd13992e3f4a240c",
+              "robot0_eye_in_hand_image": "2d334bc3fbf6b4872817ff5ef677ac89be4b811eb8feae2191ef3abec0af6e5d"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 174,
+          "active": false,
+          "selected_command": [
+            0.2502888791701373,
+            0.11242121247684267,
+            0.6340073514218423,
+            -0.00046428395252602617,
+            0.06849722912966036,
+            -0.03353990585196251,
+            -1.0
+          ],
+          "effective_command": [
+            0.2502888791701373,
+            0.11242121247684267,
+            0.6340073514218423,
+            -0.00046428395252602617,
+            0.06849722912966036,
+            -0.03353990585196251,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "74358f0a05c2b351a58109a024c4a5664bba0a695d0d2c7d8c2796a31f7c85fc",
+            "controller": "bcb16e6539e9e648e944a901d54522afd0641746e0511c0c8af410ecb8ac1f10",
+            "images": {
+              "agentview_image": "bb4529442085ecc65c3f587a29d253b4d1d2e5ac8923271755fb511d3b26cc9b",
+              "robot0_eye_in_hand_image": "edd9f8708f15e565f6e8f499ad1fadfa596e6b6ac235fb3af6d00df78417a1bc"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 175,
+          "active": false,
+          "selected_command": [
+            0.4543329968171961,
+            -0.07823005003087657,
+            0.7073792005286499,
+            -0.00046428395252602617,
+            0.12765134736837122,
+            -0.0405861243313434,
+            -1.0
+          ],
+          "effective_command": [
+            0.4543329968171961,
+            -0.07823005003087657,
+            0.7073792005286499,
+            -0.00046428395252602617,
+            0.12765134736837122,
+            -0.0405861243313434,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": false,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "fc7fa1e7fd2b2fdd4a0ba370a3f1d59885512eed2c27d09a7048ac376289ae4c",
+            "controller": "06c97827e73bb98d1adcba6833311a82c3faba991ae9183fd61ad7657841a9cc",
+            "images": {
+              "agentview_image": "deb4db8a1bc86a92e27322094843485d58c59bb9a49efc3ab8c1ae30903badbc",
+              "robot0_eye_in_hand_image": "d29bd348ae7f12eacc0950ae39ad67d0d04d2e44ef33e45e0f0881a8381df733"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 4,
+          "step": 176,
+          "active": false,
+          "selected_command": [
+            0.3660977026995491,
+            -0.0019695450277890103,
+            0.7207195367298875,
+            -0.00046428395252602617,
+            0.1336874818825254,
+            -0.035888645345089454,
+            -1.0
+          ],
+          "effective_command": [
+            0.3660977026995491,
+            -0.0019695450277890103,
+            0.7207195367298875,
+            -0.00046428395252602617,
+            0.1336874818825254,
+            -0.035888645345089454,
+            -1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": false,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "f2d1b302c40bf77b7f90fb112011d00e63932e96269504c4dbea026232710823",
+            "controller": "1765d3c51ff1c1200fdbaa809171128b3590235766c74dcd392e4e75ddecc87e",
+            "images": {
+              "agentview_image": "f91e6d58cf41a95f49f563e6da765c46e77aa8583f329122e401de8d4405295b",
+              "robot0_eye_in_hand_image": "ae242ca2aa81a3ef3ba91b19067a2ffa1e88ea2424f8fb9fef578a76600108cf"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "case_id": "drawer_root0_release_delay8",
+      "prefix_exact": true,
+      "zero_fault_exact_reproduction": false,
+      "physical_state_changed_from_sham": true,
+      "trace": [
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 169,
+          "active": true,
+          "selected_command": [
+            -0.4390493561239803,
+            -0.05280988169651413,
+            -0.38652836797284146,
+            0.03667857249577841,
+            -0.00031470433169719647,
+            0.022829841983084576,
+            -1.0
+          ],
+          "effective_command": [
+            -0.4390493561239803,
+            -0.05280988169651413,
+            -0.38652836797284146,
+            0.03667857249577841,
+            -0.00031470433169719647,
+            0.022829841983084576,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "f53826bc99e6c48cde554051af31b796ff86166bba430a56bb6a04a2a815bd82",
+            "controller": "b28e4db7b42179695da1c2840588f668b1b9111300bdc5dea732572a7afa5f62",
+            "images": {
+              "agentview_image": "f665fd8f56ad65015df161a2e231e404da25095fa67f336746fc153cebd329b1",
+              "robot0_eye_in_hand_image": "b630075445abffd9aad0f4614f74f0f070d1a649f9c474e8e32e810cbc940a3a"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 170,
+          "active": true,
+          "selected_command": [
+            -0.5327993561239804,
+            -0.0019695450277890103,
+            -0.3731880317716038,
+            0.02925000120611751,
+            -0.00031470433169719647,
+            -0.0006575529481850362,
+            1.0
+          ],
+          "effective_command": [
+            -0.5327993561239804,
+            -0.0019695450277890103,
+            -0.3731880317716038,
+            0.02925000120611751,
+            -0.00031470433169719647,
+            -0.0006575529481850362,
+            1.0
+          ],
+          "changed": false,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "e1978716465e2b1004d2497410ea7defb3e3148a982bb82e2f3f00b54573613d",
+            "controller": "aac9de09159198ad37fa4e9448473b119d75450d7cb9f517147b190ddd60f0a1",
+            "images": {
+              "agentview_image": "54fd1883e47a2f408f401c8a4412440bb69462e813b2bc2e599ed003b50cb99d",
+              "robot0_eye_in_hand_image": "d6493cba5ae6d411d73c9439a7d51bf210cdbfe111bcece515fb9404691d998c"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 171,
+          "active": true,
+          "selected_command": [
+            -0.030961120829862687,
+            -0.0019695450277890103,
+            0.00034138186305165963,
+            -0.00046428395252602617,
+            -0.047396553542099706,
+            -0.06172477976948609,
+            -1.0
+          ],
+          "effective_command": [
+            -0.030961120829862687,
+            -0.0019695450277890103,
+            0.00034138186305165963,
+            -0.00046428395252602617,
+            -0.047396553542099706,
+            -0.06172477976948609,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": true,
+          "after_fingerprint": {
+            "integration": "3c18e193cce5e10d6078e5cba9ab58e492dde08b8472443a3140469e496d712c",
+            "controller": "9d8dd1f28e6cd14f6cfba473a1f9ec2d25f9d9605dec2cde42ac2689af62e9c7",
+            "images": {
+              "agentview_image": "b7b8a89fc5ad64b1eb5955eb63ea02cd28eaa6bdcabcafbd7299ca3a18f27ff4",
+              "robot0_eye_in_hand_image": "aad18a5bb8f29879da93ecca0dad44dff6ba994babe796cd31e9ad00894d5b94"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 172,
+          "active": true,
+          "selected_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "effective_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "ebf90e03c75761fc6252e302ebd2651d46ef6dfcabeeb6899f21bf4a42216584",
+            "controller": "8c1889447e09d880d501d514670c0144856cb2c27f3aa2fef8e2daac137439c4",
+            "images": {
+              "agentview_image": "ead61b55ab81b735555addb965ea5a69f70473d91d3423b4debc5150825cf973",
+              "robot0_eye_in_hand_image": "e8abf7e38719fc3997e44580a8d5a122d242ecb36a55fb6d71d9742289a31d84"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 173,
+          "active": true,
+          "selected_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            -1.0
+          ],
+          "effective_command": [
+            0.07381829093484316,
+            0.2141018858142928,
+            0.35386029119585083,
+            -0.00046428395252602617,
+            -0.00031470433169719647,
+            -0.010052510920692925,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "531da1355d40ca202aa7892819a1109a7f5d29cbaa73294fcaa7c5a912aaaa8e",
+            "controller": "635650413366670342e61ad21a1e7e0e198ccea722353fdc73db628a8f0e6b53",
+            "images": {
+              "agentview_image": "a88d4c9123d067124845889e5192663fbd1d37b27c827c8ddca73dea29038fd0",
+              "robot0_eye_in_hand_image": "49a7debb8c635f97d832d16069524f5a7c6a04a9a0379a31665dd308bb15c614"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 174,
+          "active": true,
+          "selected_command": [
+            0.2502888791701373,
+            0.11242121247684267,
+            0.6340073514218423,
+            -0.00046428395252602617,
+            0.06849722912966036,
+            -0.03353990585196251,
+            -1.0
+          ],
+          "effective_command": [
+            0.2502888791701373,
+            0.11242121247684267,
+            0.6340073514218423,
+            -0.00046428395252602617,
+            0.06849722912966036,
+            -0.03353990585196251,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "c93cad2c71cc74b47c5520961a06fd01ef28e21c83a6df01231f23244de88ac7",
+            "controller": "942dcc1d83477cbea615e2690e7593c9c3b429ce529ea189372ca6936cc98bf4",
+            "images": {
+              "agentview_image": "e9cd24d7020921ebaf6867d694f5f90108191dea5126e1975f2603ab75366457",
+              "robot0_eye_in_hand_image": "e0c2dc5a8cdfd1b403a95f1c446f161ef86038fc6e782d8aaef6d48927bcc13e"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 175,
+          "active": true,
+          "selected_command": [
+            0.4543329968171961,
+            -0.07823005003087657,
+            0.7073792005286499,
+            -0.00046428395252602617,
+            0.12765134736837122,
+            -0.0405861243313434,
+            -1.0
+          ],
+          "effective_command": [
+            0.4543329968171961,
+            -0.07823005003087657,
+            0.7073792005286499,
+            -0.00046428395252602617,
+            0.12765134736837122,
+            -0.0405861243313434,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "5824a9911831536313bce96152964e90b8a4da705dbe58f495dc78a5dac152ab",
+            "controller": "eba09dff174a9c70cc7f9f533a9a1728209ac12fb5746510a2be74b099516561",
+            "images": {
+              "agentview_image": "f1101442ced8147bbcbbd7aa5aa8b44ae281d9fd03d60c27797764ef861ec78b",
+              "robot0_eye_in_hand_image": "1e6ad9da957fc2771e82c22c5d4a787627560f520fd02c3045b81e0518b07a5c"
+            }
+          }
+        },
+        {
+          "kind": "release_delay",
+          "anchor_step": 169,
+          "intervals": 8,
+          "step": 176,
+          "active": true,
+          "selected_command": [
+            0.3660977026995491,
+            -0.0019695450277890103,
+            0.7207195367298875,
+            -0.00046428395252602617,
+            0.1336874818825254,
+            -0.035888645345089454,
+            -1.0
+          ],
+          "effective_command": [
+            0.3660977026995491,
+            -0.0019695450277890103,
+            0.7207195367298875,
+            -0.00046428395252602617,
+            0.1336874818825254,
+            -0.035888645345089454,
+            1.0
+          ],
+          "changed": true,
+          "provenance": "external actuator fault; evaluator log only",
+          "observed_bowl_gripper": true,
+          "observed_retained": false,
+          "after_fingerprint": {
+            "integration": "e2ef86aa22ed05b5d25113bf7beb48e3dd9ca50e948390e9b9eb1779fee2e7da",
+            "controller": "d7d709b0b2e955fcb97b579213877275edea62c897ba1f2e7413f76439448013",
+            "images": {
+              "agentview_image": "65f542261643625cc0935627c0d67a9db44a7cf209b29557536a2d9f267c2bbf",
+              "robot0_eye_in_hand_image": "a56e1bc3175b0b7abdda2f462e826bc11d864b6082abd7dabc529df2c0f68dc2"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

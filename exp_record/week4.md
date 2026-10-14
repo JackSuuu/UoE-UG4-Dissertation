@@ -4,6 +4,18 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 14 Oct — Controlled-fault authorization and final benchmark design
+
+The user clarifies that the purpose is to demonstrate intervention-driven task benefit with controlled failure/recovery opportunities. [Final benchmark design](libero_final_benchmark_design_20261014.md) supersedes the return-to-book-only suggestion after D1: the clean drawer3/3is a useful sham anchor, followed by paired release-delay faults on the same task. Architecture remains fixed. Final selected task inventory: threeSpatial, threeObjectand the two existinglongtasks; separate root splits, suite-matched frozen actors, clean/stress tables and same-backend detector attribution. No large final sweep is launched.
+
+Implemented an external post-repair actuator-delay primitive and a no-outcome-selection case-manifest generator. The three clean actor prefixes expose release opportunities at169/147/163, earlier than the late stable-support gate. Nine development cases (sham/4/8interval delay ×3roots) are prepared; four unit tests pass. Fault metadata is evaluator-only; nominal, selected and physically effective commands are distinct. A real-simulator common-prefix/sham-versus-fault regression is running in the background. These are infrastructure tests, not online framework recovery outcomes.
+
+**Regression completed:** root0's169step prefix replayed exactly for sham/4/8delay; state/controller/camera identity holds. Sham reproduces the next eight nominal states/measurements exactly. The delayed command changes physical integration state, with the8-delay branch retaining bowl/gripper contact throughout the window while sham detaches. Full report saved in `backups/libero_stress_smoke_20261014.json`. Recorded commands are test stimuli, not online policy recovery evidence. The new D2controller/online runner remains to be integrated; no final-test root has been opened.
+
+Verified source distinctions: VLA-FAILACCneeds overlapping chunks; nativeH1jumps are an inspired detector, not ACCreproduction. RoboRecover uses execution-induced deviation prefixes, while LIBERO-Plus enumerates seven robustness dimensions; neither makes our local cases official benchmark scores. Unverified historical numeric claims are not imported into LIBERO. Metrics require paired complete-task gain beyond the geometric shield, clean harms, unconditional fault-case completion, conditional trigger recovery with misses, shadow detection timing, and measured latency. Privileged-state versus estimated-observation claims remain separate.
+
+---
+
 ### Update 14 Oct — D1 targeted release-to-close implementation with observable reasoning
 
 **Completion update:** [D1results](libero_drawer_target_results_20261014.md). Full physical VLA completion3/3in368/564/344steps. Registered no-post-event-headroom stop; no intervention workers launched. All1,276actual actions and causal traces exactly replayed;40raw/log/report files archived and three single-VLA2xvideos/trace timelines exported. Later supported-event timing on root2occurs after closure, not at the intended release transition. Main post-closure delays involve cabinet detachment; zero post-closure bowl/gripper-contact intervals. No efficacy claim or automatic new sweep. Next targeted efficacy work should use the known book/caddy release/resumption failure before returning to drawer transfer.

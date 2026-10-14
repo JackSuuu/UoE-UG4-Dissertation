@@ -7,6 +7,20 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+### 14 Oct用户明确授权受控扰动：最终benchmark与D2（最高执行优先级）
+
+**纠正D1后的推进判断：** 干净场景VLA3/3应成为no-harm/sham锚点，不是放弃drawer或停止效能研究的理由。用户明确要求通过可恢复、受控、同条件的故障注入检验框架干预和完整任务收益。[最终benchmark设计](exp_record/libero_final_benchmark_design_20261014.md)优先于下方“先返回book”的建议；五层架构不变，继续drawer的release-delay机制，再冻结方法迁移book和干净任务。
+
+**研究证明链：** 受控故障→可观测物理偏差→因果事件触发→有界实际修复→交还控制→完成剩余关抽屉；必须在相同actor/观测权限/故障/控制预算下优于原VLA及强简单几何shield，并报告sham误伤。只比检测AUC、只恢复子目标或把注入器改变的动作算框架干预都不够。
+
+**D2已准备的可执行部分：** 新增外部`ReleaseDelay`执行端注入器、无结果筛选的案例manifest生成脚本和4项通过的单测。已有D1轨迹在root0/1/2的首次释放机会为169/147/163步，按共同prefix精确重放，冻结0/4/8个20Hzinterval延迟，共9个开发case身份。注入在gate/repair选出动作之后作用于夹爪；方法不得读开关/时长/anchor，只读实测接触/几何。`nominal→selected→effective`分开记录。manifest状态`prepared_not_executed`；这不是已完成的在线恢复实验，真实sim故障/零扰动回放预检正在后台执行。新release-pending监测/控制及其逐步解释需在新D2runner接入，D1冻结实现不改。
+
+**D2注入器真实sim预检已通过：** root0的169步共同前缀分别完整重放3次，integration/controller/camera完全一致；sham后续8步与原轨迹完全一致；4/8步延迟正确改变物理夹爪状态。8步延迟分支在该窗口持续碗/夹爪接触，sham已脱离。只是使用已记录动作的接口回归，不是在线actor失败/框架恢复结论；报告已保存`backups/libero_stress_smoke_20261014.json`，当前无后台实验运行。
+
+**最终评测框架固定：** 3个Spatial+3个Object干净任务检验no-harm；book/caddy与drawer两个long任务分别做clean+两档释放延迟+两档横向动作偏置。每任务20–49为final根，0–5开发、6–9校准、10–19仅必要的参考/训练；最终数据当前未打开。选定8任务不是全LIBERO套件分数。核心四方法480case×4=1920轨迹；共享repair的动作跳变/特征距离检测对照仅long的300case×2=600，最终计划上限2520，分阶段执行，先不启动大规模表。Spatial/Object须确认对应冻结官方checkpoint能力，不能把10checkpoint迁移失败当标准baseline。
+
+**基线与指标按实际实现命名：** 当前原VLA是每帧H1闭环，非open-loop chunk；ACC需重叠action chunks，H1只能叫temporal action-jump。Hard-stop非CBF；embedding距离非自动等于V-JEPA/LLMD复现。已核对LIBERO-Plus、VLA-FAIL、RoboRecover与VLA-FixBench来源并写入设计。用户提及74ms/AUC0.727vs0.996/0.909/19步/Task0的80%在当前记录未建立对应LIBERO来源，不能直接写成果。主指标为全任务SR、paired rescue/harm和root聚类CI；故障case无条件完成率与trigger条件恢复率分开；提前量在共同无修复shadow轨迹测；开销实测median/p95，20Hz仿真不等于实时。接触分类/数值验证前Collision/CVR/safe仍null。
+
 ### 14 Oct最新实施：D1定向阶段交接实验与可观测决策链
 
 **D1已核验结束（覆盖下方启动记录）：** [结果](exp_record/libero_drawer_target_results_20261014.md)。原VLA在drawer开发root0/1/2按完整物理验收均成功3/3，分别368/564/344步；按预登记`no_observed_post_event_headroom`停止，未启动其余9条干预轨迹。1276个真实actor动作及其证据→判据→路由→动作→结果链全部原root精确回放通过，生成3个单VLA面板2倍速视频和可点击trace页。**没有本轮框架提升结论。** 关抽屉后的延迟主要是柜体/夹爪未脱离，非碗再次被碰；root2稳定支撑触发晚于释放和关抽屉，说明事件出现不等于及时覆盖目标阶段。下一效能目标应回到已证明存在失败的book/caddy阶段交接，再单独登记；不为正结果扩大扰动/root搜索。当前无实验运行。40源文件+3视频已本地归档核验，远端恢复随后记录。
