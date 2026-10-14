@@ -4,7 +4,9 @@ Undergraduate (UG4) dissertation project — University of Edinburgh.
 
 **Title:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization in Embodied Agents
 
-**Current focus (12 Oct 2026):** architecture-first physical verification and constrained local repair for precision contact in everyday manipulation. Frozen validation audits precede algorithm changes; household task candidates and benchmark compatibility remain under investigation. Physical robot work is deferred.
+**Current focus (14 Oct 2026):** task-first physical prediction and bounded correction for complete manipulation. The LIBERO book/caddy run is currently a frozen OpenVLA baseline with physical diagnostics, not an active physics-repair framework. Released-placement completion is 1/3 development roots; learned efficacy and generalization remain to be established.
+
+**[Videos, artifact backup and recovery instructions](backups/README.md)** · **[Pinned LIBERO submodule](third_party/LIBERO)**. Large experiment files use Git LFS; clone with submodules and run `git lfs pull` to restore them.
 
 ## Contents
 

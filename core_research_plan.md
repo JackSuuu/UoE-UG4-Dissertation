@@ -7,6 +7,8 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+**14 Oct归因澄清与泛化顺序：** continuation的worker0/1/2全部是冻结OpenVLA baseline；物理模块仅作诊断/验收，尚未嵌入动作选择或修复闭环。worker2视频中的调整不能归因于我们的框架，且其短暂放好后再接触，未通过1s稳定验收。先在单一book/caddy场景完成匹配的VLA／简单控制／准确物理前瞻机制对照，再按证据逐项调整算法。泛化证据先来自未见root及预注册的观测/执行噪声、隐藏动力学条件，最后冻结方法到第二任务；同任务3个开发worker不是泛化，第二任务追加训练属于适配而非zero-shot。研究恢复入口见[Git LFS备份、视频和固定LIBERO submodule](backups/README.md)。
+
 **14 Oct审查与下一项方法决策（优先于下文历史建议）：** [场景检测、公平对照与架构设计](exp_record/libero_framework_design_20261014.md)。全部rollout已完成，当前released placement仅1/3，尚无机器人任务的learned框架效果证据。已生成全部3条轨迹的2倍速独立MP4及13.025s并排总览，并接入汇总脚本的自动导出；视频按仿真时间加速，包含geometry/脱离/dwell/re-contact诊断，不是方法对比。当前history规则在root2于step188观察到placement opportunity、194观察到re-contact；不是提前6步预测成功。简单slow-contact stall规则漏掉root1，不通过事后调阈值宣称解决。
 
 **下一步比较的必要结构：** 固定同一full7B actor/观测权限/状态估计/候选动作/反馈与预算，比较A原VLA、B共享检测器＋简单phase/geometry/撤离控制、O准确物理前瞻选择（privileged机制诊断），只有O优于B且完整续跑有净收益才做L允许观测输入的learned预测替代。L必须同时优于A与B，不能把多观测、简单终止逻辑或更大候选预算算物理预测贡献。先冻结一个小预算机制协议，不自动扩collector或训练；force/impulse阈值与数值敏感性仍待核实，CVR/safe不能补造。
