@@ -7,6 +7,10 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+**14 Oct当前执行决策（优先于此前“未启动”状态）：** 用户授权在当前场景接入真实预测→选择→执行闭环。已冻结并推送[placement-preservation机制协议](exp_record/libero_preservation_protocol_20261014.md)（`9336782`），[实现与启动记录](exp_record/libero_preservation_launch_20261014.md)。准确物理selector与VLA、hold-open、retreat-open匹配对比，root0–2及新开发root3–5，共24轨迹；当前仍是privileged H1/k1诊断，非learned efficacy。首个有效放置后的20步内每步最多6个5步pulse-and-settle候选，仅执行第一步；达到原1s放置验收后关闭修正，再执行40步原VLA观察恢复后的保持。未扩大为多任务或训练新模型。7项单测通过；root2完整190状态replay、6分支完整integration/controller/图像一致性、live不变性、预测首步=实际首步已通过。早期alignment失败不在本次trigger覆盖范围，不能靠事后放宽规则制造收益。
+
+**备份已远端恢复验证：** `f33915a`包含14个LFS对象/2.45GB，重新从GitHub克隆下载并完整恢复1,674文件均通过SHA256；LIBERO固定submodule及任务初始状态hash一致。见[恢复报告](backups/remote_recovery_verified_20261014.json)。预训练7B权重仍依赖固定HF revision重新下载。
+
 **14 Oct归因澄清与泛化顺序：** continuation的worker0/1/2全部是冻结OpenVLA baseline；物理模块仅作诊断/验收，尚未嵌入动作选择或修复闭环。worker2视频中的调整不能归因于我们的框架，且其短暂放好后再接触，未通过1s稳定验收。先在单一book/caddy场景完成匹配的VLA／简单控制／准确物理前瞻机制对照，再按证据逐项调整算法。泛化证据先来自未见root及预注册的观测/执行噪声、隐藏动力学条件，最后冻结方法到第二任务；同任务3个开发worker不是泛化，第二任务追加训练属于适配而非zero-shot。研究恢复入口见[Git LFS备份、视频和固定LIBERO submodule](backups/README.md)。
 
 **14 Oct审查与下一项方法决策（优先于下文历史建议）：** [场景检测、公平对照与架构设计](exp_record/libero_framework_design_20261014.md)。全部rollout已完成，当前released placement仅1/3，尚无机器人任务的learned框架效果证据。已生成全部3条轨迹的2倍速独立MP4及13.025s并排总览，并接入汇总脚本的自动导出；视频按仿真时间加速，包含geometry/脱离/dwell/re-contact诊断，不是方法对比。当前history规则在root2于step188观察到placement opportunity、194观察到re-contact；不是提前6步预测成功。简单slow-contact stall规则漏掉root1，不通过事后调阈值宣称解决。

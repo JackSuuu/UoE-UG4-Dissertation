@@ -4,6 +4,14 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 14 Oct — Remote recovery verified; active preservation mechanism study registered
+
+[Remote recovery and attribution](recovery_and_generalization_20261014.md): all14Git LFS objects (2.45GB) independently downloaded from GitHub; all1,674archived source files restored with exact hashes. LIBERO submodule revision/task-init hash verified. Pretrained upstream weights are pinned references rather than mirrored binaries.
+
+User authorized moving the current scene into an active physical-prediction selection loop. [Frozen protocol](libero_preservation_protocol_20261014.md), [launch/check record](libero_preservation_launch_20261014.md). `9336782` pushed before simulator smoke;7unit tests and exact190state root2replay passed. Six independently replayed branches matched integration/controller/camera state, did not mutate live state, and the selected first prediction equaled actual execution. Next registered run: six development roots×four arms (VLA, hold-open, retreat-open, privileged physics),520steps with original completion plus40actor-only resumption steps. This is a narrow preservation mechanism diagnostic; no learned claim or early-alignment fix. Automatic full verification and method-labeled2x videos are included.
+
+---
+
 ### Update 14 Oct — Accelerated MP4 review delivered; physics-specific comparison designed
 
 [Evidence-linked framework design](libero_framework_design_20261014.md). Rechecked completed artifacts and no active rollout/training jobs. Added causal geometry/contact diagnostic timelines plus individually annotated2x MP4s and a13.025s three-panel overview, all original frames retained at40fps. Automatic review export now follows continuation aggregation. Re-ran artifact/condition/prefix/frame verification and the complete video-generation hook successfully. Outputs at `/home/ami/scratch/libero_continuation_20261013_a/review/`; raw runs preserved. Current desktop browser is disconnected, so no browser preview was claimed.
