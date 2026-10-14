@@ -1,0 +1,7 @@
+{
+  "commit": "ec9ff87",
+  "remote_download_and_full_restore": "passed",
+  "source_files": 100,
+  "archive": "backups/libero_preservation_abort_20261014_a",
+  "destination": "/tmp/opencode/restored-libero-abort-20261014_a"
+}

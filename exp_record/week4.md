@@ -8,6 +8,8 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 [Failure, regression and restart record](libero_preservation_renderer_fix_20261014.md). Root2/physics decision190matched complete integration/controller state but not camera images. Supervisor stopped all workers before roots3–5began. Consecutive recorded-action replay reproduced it without VLA inference: robosuite1.4.1does not rebind EGL context per render after branch creation/closure. Project-local per-draw binding passed18branches/three consecutive decisions; an eight-decision corrected-prefix regression precedes a full24episode restart under the frozen protocol. Original single-decision smoke did not cover this lifecycle. Preserved and independently checked eight completed partial arms; no complete physics efficacy comparison is available. All100aborted/reproduction artifacts are archived for LFS recovery. No algorithmic constants were retuned from these partial outcomes.
 
+Follow-up: eight decisions/48branches including non-original actions passed exact checks in154.5s;7unit tests pass. Fix and aborted archive pushed as `ec9ff87`, then independently fetched/restored all100archived members. `_b` full24episode restart active: supervisor749068, GPU1/2/3workers749073/749074/749075. Outcomes pending.
+
 ---
 
 ### Update 14 Oct — Remote recovery verified; active preservation mechanism study registered
