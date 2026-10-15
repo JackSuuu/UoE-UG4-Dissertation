@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/ami/UoE-UG4-Dissertation/scripts/launch_libero_mining.py", line 97, in <module>
+    launch(p.parse_args())
+    ~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/ami/UoE-UG4-Dissertation/scripts/launch_libero_mining.py", line 72, in launch
+    raise RuntimeError(f'worker {i} failed ({code})')
+RuntimeError: worker 2 failed (1)

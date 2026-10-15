@@ -4,6 +4,18 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 15 Oct — Separate validation from repair; first sham harms and timing audit
+
+User redirects scenario discovery toward explicit failure specifications, parameterized baseline failure analysis and strong repair comparisons. [New contract](libero_validation_repair_contract_20261015.md) formalizes the existing bounded20-interval completion dwell, phase-specific observation semantics, unvalidated safety predicates and distinct wall-clock deadline requirement. This is a post-launch analysis addendum, not retrospective preregistration or a change to M1's frozen endpoint.30–70%baseline failure is a development diagnostic only; it cannot define the final evaluation denominator. New read-only audit checks hashes/recomputes dwell, records baseline configuration outcomes independently of repair success, and reports paired rescues/harms with missing cases visible.
+
+The supervisor has **stopped** after root2/sham/phase failed pre-action fingerprint replay in its worker. The unchanged verifier succeeds on that episode in a fresh isolated process; this does not resolve the original inconsistency. Nine complete episodes now have replay proofs: VLA3/3, hold0/3, timed1/2, phase0/1; no verified-repair episode or non-sham case yet. Two interrupted episodes and all unstarted cases are not counted as robot task failures. No new rollout launched.
+
+All five complete intervention failures meet native success and at their final interval retain the bowl in the closed drawer but still contact the cabinet with the gripper; `released` is the only false terminal check. This is an important remaining-task failure, not evidence of a collision or placement precision error. The phase arm's local stable-clearance handoff does not establish full-task completion. Per-episode live actor median inference0.706–0.726s; all live queries exceed50ms. Current synchronous execution therefore fails a hypothetical20Hzdeadline independently of repair overhead. No safety/real-time efficacy claim follows from simulator frequency or exact replay.
+
+Audit report:`backups/libero_mining_contract_audit_20261015.json`. Frozen M1sources/protocol untouched. Strong receding-horizon planning comparator specified as a future requirement, with separate mechanism-matched and complete-system budget comparisons; not implemented or launched here.
+
+---
+
 ### Update 15 Oct — Batch scenario discovery and literature-grounded implementation
 
 **Launched:** implementation/protocol/grid/preflight pushed as`a37e354`, then detached supervisor1499667with workers1499671/1499672/1499673on GPUs1/2/3. [Launch record](libero_failure_mining_launch_20261015.md).195live continuations scheduled with all five arms for every case; baseline success no longer vetoes repairs. Exact replay per episode and five-arm videos per completed case are automatic. No new task-efficacy conclusion at launch.

@@ -1,0 +1,125 @@
+/home/ami/miniconda3/lib/python3.13/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+/home/ami/miniconda3/lib/python3.13/site-packages/torch/jit/_script.py:1643: FutureWarning: `torch.jit.interface` is deprecated. Please use `torch.compile` instead.
+  warnings.warn(
+Expected `transformers==4.40.1` and `tokenizers==0.19.1` but got `transformers==5.17.0` and `tokenizers==0.23.2`; there might be inference-time regressions due to dependency changes. If in doubt, pleaseuse the above versions.
+[transformers] `PrismaticProcessor` defines `image_processor_class = 'AutoImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/ami/miniconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+{"case": "root_2_delay_0", "arm": "vla", "step": 0, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 40, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 80, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 120, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 160, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792059163.353065 1499673 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+[transformers] `use_return_dict` is deprecated! Use `return_dict` instead!
+{"case": "root_2_delay_0", "arm": "vla", "step": 163, "reason": "baseline_passthrough", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 200, "reason": "baseline_passthrough", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 240, "reason": "baseline_passthrough", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 280, "reason": "baseline_passthrough", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "vla", "step": 320, "reason": "baseline_passthrough", "changed": false, "dwell": 6}
+{"case": "root_2_delay_0", "arm": "vla", "step": 343, "reason": "baseline_passthrough", "changed": false, "dwell": 20}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 0, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 40, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 80, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 120, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 160, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 163, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 164, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 165, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 166, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 167, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 200, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 240, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 280, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 320, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 360, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 400, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 440, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 480, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 520, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "gate_hold", "step": 560, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 0, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 40, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 80, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 120, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 160, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 163, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 164, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 165, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 166, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 167, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 168, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 169, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 170, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 171, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 172, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 173, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 174, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 175, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 176, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 177, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 178, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 179, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 180, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 181, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 182, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 183, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 184, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 185, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 186, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 187, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 188, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 189, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 190, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 191, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 192, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 193, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 194, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 195, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 196, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 197, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 198, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 199, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 200, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 201, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 202, "reason": "retract_outward", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 240, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 280, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 320, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 360, "reason": "actor_after_handoff", "changed": false, "dwell": 13}
+{"case": "root_2_delay_0", "arm": "timed_repair", "step": 367, "reason": "actor_after_handoff", "changed": false, "dwell": 20}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 0, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 40, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 80, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 120, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 160, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 163, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 164, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 165, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 166, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 167, "reason": "release_hold", "changed": true, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 200, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 240, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 280, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 320, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 360, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 400, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 440, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 480, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 520, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+{"case": "root_2_delay_0", "arm": "phase_repair", "step": 560, "reason": "actor_after_handoff", "changed": false, "dwell": 0}
+Traceback (most recent call last):
+  File "/home/ami/UoE-UG4-Dissertation/scripts/run_libero_mining.py", line 184, in <module>
+    verify(directory,args.root)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ami/UoE-UG4-Dissertation/scripts/verify_libero_mining.py", line 49, in verify
+    assert row['step']==step and row['before']==fingerprint(env,obs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

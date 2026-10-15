@@ -1,0 +1,18 @@
+{
+  "status": "verified",
+  "fixture_only": false,
+  "full_action_replay": true,
+  "causal_trace": true,
+  "forecast_replay": true,
+  "artifact_sha256": {
+    "model.xml": "35c2822a57f59bbe178aa7655065171e39c0b4daf1476438404670bcfe33f64f",
+    "policy_input.png": "849aa5f691040728181c933aa594cafc575eec00a494b574b3ee0a17420de310",
+    "manifest.json": "ca0e883f81d8144d6e5200d6e6259215b8d1af828860bc8558106d733a42d5bf",
+    "states.npz": "35de85e0c0852eaf9ac7b06d3d184673b1f6361a2c20d33f4aa280d5656342d5",
+    "result.json": "9ca88f1e81bc840c10afd986f06504063c854ae436deb241f1cbc032c55da251",
+    "substeps.jsonl": "6ac412e29bfc827ce1f23fb0ea429e4a8b852927febe2389b75054cf2cea4e33",
+    "decision_trace.jsonl": "c69da8b89eff2cbc94823212f3c7b76e13188d41a50932c983d4905d15415f96",
+    "steps.jsonl": "f35872314d896d1b664be4ed6d5cd2bb36035eb3151313dc4b6c83f3a0e36343",
+    "rollout.mp4": "f3f9cb06769346bf629ce50e1b4f014d401a598f87170c00526d147777e5c98c"
+  }
+}

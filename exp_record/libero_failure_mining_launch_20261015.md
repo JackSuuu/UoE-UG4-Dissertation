@@ -1,5 +1,7 @@
 # M1 detached launch — 15 Oct 2026
 
+**Later status correction:** the supervisor stopped on a worker replay assertion. An isolated unchanged-verifier retry passes that trajectory; root cause is unresolved. Nine completed episodes now have replay proofs; remaining interrupted/unstarted episodes are not task failures. See [validation/repair contract and audit](libero_validation_repair_contract_20261015.md). The details below describe the original launch, not a currently running batch.
+
 Frozen implementation/protocol/grid/preflights pushed as **a37e354** before launch.
 
 - Run: `/home/ami/scratch/libero_failure_mining_20261015_a`.

@@ -1,0 +1,2029 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-15T11:13:56.558840+00:00",
+  "run": "/home/ami/scratch/libero_failure_mining_20261015_a",
+  "analysis_registration": "post-launch descriptive audit; frozen M1 endpoint unchanged",
+  "supervisor_status": "failed",
+  "supervisor_error": "RuntimeError('worker 2 failed (1)')",
+  "grid_sha256": "eac83dd67b049723874d0936c32d4ec8cfa7615053f0876c9a067826862aff03",
+  "verified_episodes": 9,
+  "line_A": {
+    "episodes": [
+      {
+        "case_id": "root_0_delay_0",
+        "arm": "vla",
+        "root": 0,
+        "steps": 368,
+        "complete": true,
+        "native_ever": true,
+        "endpoint": "satisfied",
+        "longest_completion_dwell_intervals": 20,
+        "terminal_unmet_checks": [],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 169,
+        "first_changed_action": null,
+        "trigger_to_first_change_intervals": null,
+        "changed_actions": 0,
+        "handoff": null,
+        "task_completed_after_handoff": null,
+        "actor_wall": {
+          "n": 199,
+          "median_s": 0.7061760750366375,
+          "p95_s": 0.7231382430181839,
+          "max_s": 3.14807097701123,
+          "over_50ms": 199,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 199,
+          "median_s": 0.7062387919868343,
+          "p95_s": 0.7241836370085366,
+          "max_s": 14.093078157980926,
+          "over_50ms": 199,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "4db3d2b0fa085730165e84be333422f606f874327181b77a8e23c19d69f21f61"
+      },
+      {
+        "case_id": "root_0_delay_0",
+        "arm": "gate_hold",
+        "root": 0,
+        "steps": 600,
+        "complete": false,
+        "native_ever": true,
+        "endpoint": "full_task_timeout",
+        "longest_completion_dwell_intervals": 11,
+        "terminal_unmet_checks": [
+          "released"
+        ],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 169,
+        "first_changed_action": 169,
+        "trigger_to_first_change_intervals": 0,
+        "changed_actions": 12,
+        "handoff": {
+          "step": 181,
+          "reason": "stable_release",
+          "stable_clear": false,
+          "stable_release": true
+        },
+        "task_completed_after_handoff": false,
+        "actor_wall": {
+          "n": 431,
+          "median_s": 0.7096141239744611,
+          "p95_s": 0.7438781470409594,
+          "max_s": 0.8442483120015822,
+          "over_50ms": 431,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 431,
+          "median_s": 0.7096255820360966,
+          "p95_s": 0.7449201769777574,
+          "max_s": 13.396087539033033,
+          "over_50ms": 431,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "04e7508a5ee70e1c6e565759424133eaf3d93be8b86ad9b6b890aa939d89b0fd"
+      },
+      {
+        "case_id": "root_0_delay_0",
+        "arm": "timed_repair",
+        "root": 0,
+        "steps": 600,
+        "complete": false,
+        "native_ever": true,
+        "endpoint": "full_task_timeout",
+        "longest_completion_dwell_intervals": 0,
+        "terminal_unmet_checks": [
+          "released"
+        ],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 169,
+        "first_changed_action": 169,
+        "trigger_to_first_change_intervals": 0,
+        "changed_actions": 40,
+        "handoff": {
+          "step": 209,
+          "reason": "budget_exhausted",
+          "stable_clear": false,
+          "stable_release": true
+        },
+        "task_completed_after_handoff": false,
+        "actor_wall": {
+          "n": 431,
+          "median_s": 0.7092680459609255,
+          "p95_s": 0.7452054219902493,
+          "max_s": 0.9058334119617939,
+          "over_50ms": 431,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 431,
+          "median_s": 0.7092683909577318,
+          "p95_s": 0.746648891014047,
+          "max_s": 13.406911775004119,
+          "over_50ms": 431,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "1a5111cad897754d9863b7babcbefe363c00fda23a785a6acbe104b0b10284ba"
+      },
+      {
+        "case_id": "root_1_delay_0",
+        "arm": "vla",
+        "root": 1,
+        "steps": 564,
+        "complete": true,
+        "native_ever": true,
+        "endpoint": "satisfied",
+        "longest_completion_dwell_intervals": 20,
+        "terminal_unmet_checks": [],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 147,
+        "first_changed_action": null,
+        "trigger_to_first_change_intervals": null,
+        "changed_actions": 0,
+        "handoff": null,
+        "task_completed_after_handoff": null,
+        "actor_wall": {
+          "n": 417,
+          "median_s": 0.7208873350173235,
+          "p95_s": 0.7526665559853427,
+          "max_s": 3.112031553988345,
+          "over_50ms": 417,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 417,
+          "median_s": 0.7208951019565575,
+          "p95_s": 0.7527343780384399,
+          "max_s": 14.619231168006081,
+          "over_50ms": 417,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "8e783311f795f9bea33804274df1f785690b545308f02255bdf7e863889829dd"
+      },
+      {
+        "case_id": "root_1_delay_0",
+        "arm": "gate_hold",
+        "root": 1,
+        "steps": 600,
+        "complete": false,
+        "native_ever": true,
+        "endpoint": "full_task_timeout",
+        "longest_completion_dwell_intervals": 3,
+        "terminal_unmet_checks": [
+          "released"
+        ],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 147,
+        "first_changed_action": 147,
+        "trigger_to_first_change_intervals": 0,
+        "changed_actions": 8,
+        "handoff": {
+          "step": 155,
+          "reason": "stable_release",
+          "stable_clear": false,
+          "stable_release": true
+        },
+        "task_completed_after_handoff": false,
+        "actor_wall": {
+          "n": 453,
+          "median_s": 0.7219997509964742,
+          "p95_s": 0.7572483539697714,
+          "max_s": 0.8561244799639098,
+          "over_50ms": 453,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 453,
+          "median_s": 0.7220205339835957,
+          "p95_s": 0.7579146859934554,
+          "max_s": 12.375427727936767,
+          "over_50ms": 453,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "49b2d024a26625a50649af3c92d96483b37cfaee39f584b6cb7d6d7dbb256aa1"
+      },
+      {
+        "case_id": "root_2_delay_0",
+        "arm": "vla",
+        "root": 2,
+        "steps": 344,
+        "complete": true,
+        "native_ever": true,
+        "endpoint": "satisfied",
+        "longest_completion_dwell_intervals": 20,
+        "terminal_unmet_checks": [],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 163,
+        "first_changed_action": null,
+        "trigger_to_first_change_intervals": null,
+        "changed_actions": 0,
+        "handoff": null,
+        "task_completed_after_handoff": null,
+        "actor_wall": {
+          "n": 181,
+          "median_s": 0.7139742120052688,
+          "p95_s": 0.7267379339900799,
+          "max_s": 3.117649966967292,
+          "over_50ms": 181,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 181,
+          "median_s": 0.7140452349558473,
+          "p95_s": 0.7269094390212558,
+          "max_s": 14.069923061935697,
+          "over_50ms": 181,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "4fcea31beb66775fe864f825113dbb579f497810bfa7e8978fc6015d48fec7c1"
+      },
+      {
+        "case_id": "root_2_delay_0",
+        "arm": "gate_hold",
+        "root": 2,
+        "steps": 600,
+        "complete": false,
+        "native_ever": true,
+        "endpoint": "full_task_timeout",
+        "longest_completion_dwell_intervals": 3,
+        "terminal_unmet_checks": [
+          "released"
+        ],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 163,
+        "first_changed_action": 163,
+        "trigger_to_first_change_intervals": 0,
+        "changed_actions": 5,
+        "handoff": {
+          "step": 168,
+          "reason": "stable_release",
+          "stable_clear": true,
+          "stable_release": true
+        },
+        "task_completed_after_handoff": false,
+        "actor_wall": {
+          "n": 437,
+          "median_s": 0.7248680350021459,
+          "p95_s": 0.7335053909919225,
+          "max_s": 0.8565011869650334,
+          "over_50ms": 437,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 437,
+          "median_s": 0.7248836630024016,
+          "p95_s": 0.7340759200160392,
+          "max_s": 11.540065851004329,
+          "over_50ms": 437,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "024db2309cc7fdac08ced92f486bc5ce767410fe9c43ac2876f3e8b0813faa7b"
+      },
+      {
+        "case_id": "root_2_delay_0",
+        "arm": "timed_repair",
+        "root": 2,
+        "steps": 368,
+        "complete": true,
+        "native_ever": true,
+        "endpoint": "satisfied",
+        "longest_completion_dwell_intervals": 20,
+        "terminal_unmet_checks": [],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 163,
+        "first_changed_action": 163,
+        "trigger_to_first_change_intervals": 0,
+        "changed_actions": 40,
+        "handoff": {
+          "step": 203,
+          "reason": "budget_exhausted",
+          "stable_clear": false,
+          "stable_release": false
+        },
+        "task_completed_after_handoff": true,
+        "actor_wall": {
+          "n": 205,
+          "median_s": 0.7221535040298477,
+          "p95_s": 0.730794319009874,
+          "max_s": 0.8890632590046152,
+          "over_50ms": 205,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 205,
+          "median_s": 0.7225310149951838,
+          "p95_s": 0.7312447389704175,
+          "max_s": 11.5969775239937,
+          "over_50ms": 205,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "b6386cbbdce6b4f563a103ecbb8df4bc1a6376ecd54847126e612b8caf436cf2"
+      },
+      {
+        "case_id": "root_2_delay_0",
+        "arm": "phase_repair",
+        "root": 2,
+        "steps": 600,
+        "complete": false,
+        "native_ever": true,
+        "endpoint": "full_task_timeout",
+        "longest_completion_dwell_intervals": 3,
+        "terminal_unmet_checks": [
+          "released"
+        ],
+        "terminal_checks_are_not_causal_failure_labels": true,
+        "trigger": 163,
+        "first_changed_action": 163,
+        "trigger_to_first_change_intervals": 0,
+        "changed_actions": 5,
+        "handoff": {
+          "step": 168,
+          "reason": "stable_clearance",
+          "stable_clear": true,
+          "stable_release": true
+        },
+        "task_completed_after_handoff": false,
+        "actor_wall": {
+          "n": 437,
+          "median_s": 0.7262186039588414,
+          "p95_s": 0.7363686619792134,
+          "max_s": 0.8991240760078654,
+          "over_50ms": 437,
+          "deadline_reference_only_s": 0.05
+        },
+        "instrumented_actor_plus_forecast_wall_lower_bound": {
+          "n": 437,
+          "median_s": 0.7262304420000874,
+          "p95_s": 0.7371174319996499,
+          "max_s": 11.935685818025377,
+          "over_50ms": 437,
+          "deadline_reference_only_s": 0.05
+        },
+        "end_to_end_latency": null,
+        "hard_realtime_proven": false,
+        "safety_compliance": null,
+        "validated_collision_rate": null,
+        "proof_sha256": "2714705f5dbeae4e5097fa8acc92b3a861fc0a143a969dd10efee3374942f18a"
+      }
+    ],
+    "baseline_configuration_map": [
+      {
+        "configuration": "delay_0",
+        "registered_roots": 3,
+        "verified_roots": 3,
+        "full_task_failures": 0,
+        "observed_failure_fraction": 0.0,
+        "development_30_70_flag": false,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "delay_12",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "delay_16",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "delay_4",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "delay_8",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_x_neg_10mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_x_neg_20mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_x_pos_10mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_x_pos_20mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_y_neg_10mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_y_neg_20mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_y_pos_10mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      },
+      {
+        "configuration": "pose_y_pos_20mm",
+        "registered_roots": 3,
+        "verified_roots": 0,
+        "full_task_failures": 0,
+        "observed_failure_fraction": null,
+        "development_30_70_flag": null,
+        "flag_is_not_eligibility_or_confirmation": true
+      }
+    ]
+  },
+  "line_B": {
+    "paired_full_task_effects": [
+      {
+        "method": "gate_hold",
+        "control": "vla",
+        "family": "all_available",
+        "verified_pairs": 3,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [
+            "root_0_delay_0",
+            "root_1_delay_0",
+            "root_2_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -1.0
+      },
+      {
+        "method": "gate_hold",
+        "control": "vla",
+        "family": "sham",
+        "verified_pairs": 3,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [
+            "root_0_delay_0",
+            "root_1_delay_0",
+            "root_2_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -1.0
+      },
+      {
+        "method": "gate_hold",
+        "control": "vla",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "gate_hold",
+        "control": "vla",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "timed_repair",
+        "control": "vla",
+        "family": "all_available",
+        "verified_pairs": 2,
+        "cases": {
+          "both_success": [
+            "root_2_delay_0"
+          ],
+          "rescue": [],
+          "harm": [
+            "root_0_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -0.5
+      },
+      {
+        "method": "timed_repair",
+        "control": "vla",
+        "family": "sham",
+        "verified_pairs": 2,
+        "cases": {
+          "both_success": [
+            "root_2_delay_0"
+          ],
+          "rescue": [],
+          "harm": [
+            "root_0_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -0.5
+      },
+      {
+        "method": "timed_repair",
+        "control": "vla",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "timed_repair",
+        "control": "vla",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "phase_repair",
+        "control": "vla",
+        "family": "all_available",
+        "verified_pairs": 1,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [
+            "root_2_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -1.0
+      },
+      {
+        "method": "phase_repair",
+        "control": "vla",
+        "family": "sham",
+        "verified_pairs": 1,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [
+            "root_2_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -1.0
+      },
+      {
+        "method": "phase_repair",
+        "control": "vla",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "phase_repair",
+        "control": "vla",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "vla",
+        "family": "all_available",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "vla",
+        "family": "sham",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "vla",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "vla",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "timed_repair",
+        "control": "gate_hold",
+        "family": "all_available",
+        "verified_pairs": 2,
+        "cases": {
+          "both_success": [],
+          "rescue": [
+            "root_2_delay_0"
+          ],
+          "harm": [],
+          "both_failure": [
+            "root_0_delay_0"
+          ]
+        },
+        "paired_delta": 0.5
+      },
+      {
+        "method": "timed_repair",
+        "control": "gate_hold",
+        "family": "sham",
+        "verified_pairs": 2,
+        "cases": {
+          "both_success": [],
+          "rescue": [
+            "root_2_delay_0"
+          ],
+          "harm": [],
+          "both_failure": [
+            "root_0_delay_0"
+          ]
+        },
+        "paired_delta": 0.5
+      },
+      {
+        "method": "timed_repair",
+        "control": "gate_hold",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "timed_repair",
+        "control": "gate_hold",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "phase_repair",
+        "control": "gate_hold",
+        "family": "all_available",
+        "verified_pairs": 1,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": [
+            "root_2_delay_0"
+          ]
+        },
+        "paired_delta": 0.0
+      },
+      {
+        "method": "phase_repair",
+        "control": "gate_hold",
+        "family": "sham",
+        "verified_pairs": 1,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": [
+            "root_2_delay_0"
+          ]
+        },
+        "paired_delta": 0.0
+      },
+      {
+        "method": "phase_repair",
+        "control": "gate_hold",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "phase_repair",
+        "control": "gate_hold",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "gate_hold",
+        "family": "all_available",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "gate_hold",
+        "family": "sham",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "gate_hold",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "gate_hold",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "phase_repair",
+        "control": "timed_repair",
+        "family": "all_available",
+        "verified_pairs": 1,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [
+            "root_2_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -1.0
+      },
+      {
+        "method": "phase_repair",
+        "control": "timed_repair",
+        "family": "sham",
+        "verified_pairs": 1,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [
+            "root_2_delay_0"
+          ],
+          "both_failure": []
+        },
+        "paired_delta": -1.0
+      },
+      {
+        "method": "phase_repair",
+        "control": "timed_repair",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "phase_repair",
+        "control": "timed_repair",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "timed_repair",
+        "family": "all_available",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "timed_repair",
+        "family": "sham",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "timed_repair",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "timed_repair",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "phase_repair",
+        "family": "all_available",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "phase_repair",
+        "family": "sham",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "phase_repair",
+        "family": "release_delay",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      },
+      {
+        "method": "verified_repair",
+        "control": "phase_repair",
+        "family": "pose_bias",
+        "verified_pairs": 0,
+        "cases": {
+          "both_success": [],
+          "rescue": [],
+          "harm": [],
+          "both_failure": []
+        },
+        "paired_delta": null
+      }
+    ]
+  },
+  "unresolved_or_unstarted": [
+    {
+      "case_id": "root_0_delay_0",
+      "arm": "phase_repair",
+      "path": "/home/ami/scratch/libero_failure_mining_20261015_a/root_0_delay_0/phase_repair",
+      "status": "started",
+      "replay_verified": false,
+      "reason": "incomplete_or_missing_replay_proof"
+    },
+    {
+      "case_id": "root_0_delay_0",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_4",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_4",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_4",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_4",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_4",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_8",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_8",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_8",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_8",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_8",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_12",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_12",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_12",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_12",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_12",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_16",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_16",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_16",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_16",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_delay_16",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_neg_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_x_pos_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_neg_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_0_pose_y_pos_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_0",
+      "arm": "timed_repair",
+      "path": "/home/ami/scratch/libero_failure_mining_20261015_a/root_1_delay_0/timed_repair",
+      "status": "started",
+      "replay_verified": false,
+      "reason": "incomplete_or_missing_replay_proof"
+    },
+    {
+      "case_id": "root_1_delay_0",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_0",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_4",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_4",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_4",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_4",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_4",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_8",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_8",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_8",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_8",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_8",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_12",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_12",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_12",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_12",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_12",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_16",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_16",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_16",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_16",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_delay_16",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_neg_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_x_pos_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_neg_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_1_pose_y_pos_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_0",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_4",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_4",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_4",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_4",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_4",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_8",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_8",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_8",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_8",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_8",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_12",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_12",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_12",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_12",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_12",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_16",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_16",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_16",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_16",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_delay_16",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_10mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_10mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_10mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_10mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_10mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_neg_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_x_pos_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_neg_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_20mm",
+      "arm": "vla",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_20mm",
+      "arm": "gate_hold",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_20mm",
+      "arm": "timed_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_20mm",
+      "arm": "phase_repair",
+      "status": "not_started"
+    },
+    {
+      "case_id": "root_2_pose_y_pos_20mm",
+      "arm": "verified_repair",
+      "status": "not_started"
+    }
+  ],
+  "limitations": [
+    "three consumed development roots, correlated variants",
+    "partial pairs, not an estimate for all 39 cases",
+    "release opportunity is not an independently labeled failure alarm",
+    "terminal unmet checks are not failure causes",
+    "safety and end-to-end realtime unvalidated"
+  ]
+}

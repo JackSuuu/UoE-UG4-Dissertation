@@ -4,9 +4,11 @@ Running log of experiment progress against
 [`core_research_plan.md`](../core_research_plan.md),
 one file per week. Inside a file, the newest entry is at the top.
 
+**15 Oct latest correction:** [Behavioral validation versus repair efficacy contract](libero_validation_repair_contract_20261015.md). M1 stopped on an in-process replay mismatch; the unchanged isolated retry passes but root cause remains unresolved. Nine completed/replay-verified episodes: VLA3/3, hold0/3, timed1/2, phase0/1, verified not run. These are sham results, including harms under the pre-existing full-completion endpoint. Actor median inference0.706–0.726s excludes a synchronous20Hz claim. [Read-only A/B audit](../backups/libero_mining_contract_audit_20261015.json). No new rollout is running. This supersedes the live-launch status below; no frozen M1source/protocol changed.
+
 **15 Oct current execution priority:** [M1 batch failure-discovery protocol](libero_failure_mining_protocol_20261015.md), [SEAL/CheckVLA source and integration audit](libero_literature_integration_20261015.md). User authorizes broad development fault discovery.39configurations×5arms=195planned live continuations; full physical proof, all-case paired rescues/harms, actual phase/verified repair. Supersedes the narrow D2-only next step. Eleven unit tests, five-arm/sham exact simulator replay and x/yactuator-bias physical preflight pass. No M1efficacy result yet.
 
-**M1 now launched:** [Detached launch and progress command](libero_failure_mining_launch_20261015.md), pushed implementation`a37e354`, supervisor1499667and three GPU1/2/3workers. Actual intervention arms are scheduled on every case. Current status is running, not an efficacy result.
+**M1 launch history:** [Detached launch and progress command](libero_failure_mining_launch_20261015.md), pushed implementation`a37e354`, supervisor1499667and three GPU1/2/3workers. All arms were scheduled on every case; see the latest stopped-run correction above.
 
 **Current research decision:** [Local VLA precision execution with physical feedback under uncertainty](local_vla_scope_20261013.md). LLM/edge-cloud are future work. Establish one task/actor baseline and physical-intervention feasibility under [the task-first sequence](simulation_task_first_20261013.md) before further verifier training. This supersedes immediate gate-fine-tuning priorities in [the earlier mainline reset](research_mainline_20261013.md); completed experimental results remain unchanged.
 

@@ -1,0 +1,14 @@
+{
+  "original_failure_preserved": true,
+  "isolated_retry_passed": true,
+  "root_cause_resolved": false,
+  "frozen_runtime_sources_unchanged": true,
+  "rollouts_restarted": false,
+  "evidence_sha256": {
+    "launch.json": "ddba8f31cbbab97fc2eb83bcbfa1105137ea8bf7279ac193fa037c007dd3c896",
+    "supervisor.log": "026dff1559e6553020b377902bf4be5663163efa8c23e8f2fd1b3c9a8a64035b",
+    "worker_gpu_3.log": "22fff342f6994cb7121908fa25e98849db11969960d2d75b3dbd10d8cbddb031",
+    "isolated_retry.log": "412272923c0fad2d58e149b09355193adbe5a081d897bc9d3ac3fa73a18651b4",
+    "phase_retry_verification.json": "2714705f5dbeae4e5097fa8acc92b3a861fc0a143a969dd10efee3374942f18a"
+  }
+}

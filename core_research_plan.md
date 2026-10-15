@@ -7,6 +7,16 @@
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+### 15 Oct后续纠偏：行为验证与修复贡献分线（优先于下方启动时状态）
+
+用户明确要求先定义不正确行为，再做参数化失败发现；不以挑出框架获胜场景替代方法验证。已新增[验证/修复双线契约](exp_record/libero_validation_repair_contract_20261015.md)，逐项写明现有600步内20interval完整完成判据、相位条件适用范围、精度单位、安全未知项和墙钟实时要求。A线输出baseline失败条件/约束违反；B线输出同case对VLA、hold、timed及后续强规划对照的完整任务救回/误伤。30%–70%失败率仅为开发描述性信号，不是最终case筛选门槛；3个root不够确定稳定区间。不能为制造失败事后把drawer中心误差收紧到1mm。
+
+**当前实际状态：M1已自动停止，非运行中。** root2/sham/phase在同worker内独立回放时pre-action fingerprint断言失败，supervisor终止其他workers。新独立进程用未改动verifier完整重放该条成功；原不一致原因仍未定位。现有9条完成且通过回放：VLA3/3、hold0/3、timed1/2、phase0/1，verified尚未执行；其余中断/未执行不能计作任务失败。保留所有不利结果，不因sham误伤更换阈值或提高扰动。当前没有新rollout/training启动。
+
+**具体失败边界：** 五条已完成干预失败末步都native成功、碗稳定保留、抽屉关闭，但夹爪仍接触柜体，`released`是唯一未满足终验条件；不是碗放置误差或危险碰撞的已证结论。root2 phase曾stable-clearance交还，仍未最终完成，说明局部恢复不等于剩余任务成功。各episode实测actor推理中位0.706–0.726秒，所有live query超过50ms；当前同步实现已不满足20Hz实时要求。安全/CVR仍未知。只读双线审计脚本`audit_libero_mining_contract.py`核对artifact hashes、重算全部completion dwell并保留未核验case；报告`backups/libero_mining_contract_audit_20261015.json`。
+
+**下一比较要求：** 明确native H1本就每帧闭环，不能把同帧重复查询命名“重规划”。现有hold/timed是机制对照；计划的强对照为同信息权限/预算的receding-horizon shooting planner，并同时区分共享trigger的机制归因和共同总预算下完整planner能力。尚未实现/运行MPC，不把现有两事件三候选重命名MPC，不现在启动额外RL训练。先解决当前可重现性并保留原注册比较，再登记新控制/场景/实时实验。
+
 ### 15 Oct用户授权批量场景发现与文献逻辑集成（当前最高优先级）
 
 **已实际启动M1：** 代码/冻结协议/39case清单/全部预检以`a37e354`先推GitHub，随后启动`/home/ami/scratch/libero_failure_mining_20261015_a`。supervisor1499667，GPU1/2/3worker1499671/1499672/1499673，脱离SSH运行。每个root逐case运行VLA/hold/timed/phase/verified全部5arm，不会baseline成功就取消。总计195条真实actor延续，每条自动精确回放，逐case生成5方法视频。当前为运行中，尚无完成的效能结论。[启动记录/状态命令](exp_record/libero_failure_mining_launch_20261015.md)。
