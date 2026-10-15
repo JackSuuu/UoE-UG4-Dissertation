@@ -1,0 +1,8 @@
+{
+  "status": "remote_independent_restore_passed",
+  "commit": "24b219d74e3f38ff3ce4aad199da2031d14f9fdc",
+  "archive_sha256": "273e47293526ead443aa3a8a0ed4a56055f182b99c98e1def0bb48a6870411e1",
+  "archive_files_verified": 35,
+  "source_files_verified": 12,
+  "initial_lfs_fetch": "partial-clone scanner failed on missing object; direct remote LFS smudge succeeded"
+}

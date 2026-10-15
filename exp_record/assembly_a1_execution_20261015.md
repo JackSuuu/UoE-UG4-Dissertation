@@ -51,3 +51,35 @@ its transfer to assembly is explicitly unestablished. No silent scripted replace
 
 All original M1 results/harms remain. The new protocol is not a resumed/revised M1.
 Launch status/PID is recorded below only after an actual detached launch.
+
+## Actual launch
+
+Source/protocol/preflight commit `24b219d74e3f38ff3ce4aad199da2031d14f9fdc`
+was pushed before launch, including44MB LFS preflight evidence. Supervisor1659007,
+initial collection worker1659011 on healthy physical GPU2, detached sessions. Output
+`/home/ami/scratch/assembly_a1_20261015_a`; launcher records every subsequent child
+PID/stage/exit status. Source hashes checked before every stage and episode.
+
+Independent GitHub/LFS recovery verified35 archived preflight files plus12
+source/protocol files against SHA256; evidence
+`backups/assembly_a1_remote_verified_20261015.json`. This backup covers preparation,
+not the still-running A1 output. Initial partial-clone LFS scanner error was bypassed
+using direct remote LFS smudge and full byte/hash verification.
+
+Read-only status:
+```
+python scripts/status_assembly_development.py /home/ami/scratch/assembly_a1_20261015_a
+```
+Unfinished/unverified entries remain unresolved; only hash-checked replay-qualified
+completions enter paired rescue/harm summaries.
+
+## Collection coverage observation (not a tuning decision)
+
+The24 training episodes contain3840 transitions:1630 with nonzero nut/peg contact,
+614 above the10N engineering scale,83 above15deg tilt. Command ranges are
+x/y[-.25,.25],z[-.15,.15],gripper±1. Rotation commands are all zero. Thus the
+predictor is **not trained on arbitrary actor rotation commands**, even though
+object tilt states occur through contact. Live actor action-support violations
+must be treated as model distribution shift, not ignored when interpreting poor
+predictions. This observed limitation does not change A1's frozen sampling or
+controller; a later data-coverage revision would require a separately named run.

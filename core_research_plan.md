@@ -13,7 +13,7 @@
 
 实际装配入口已通过三个位置真实夹持预检；12mm偏移的持续下压出现柱口停滞/接触负载，而对准下压可入座。这些是装配fixture，不是VLA效能。新预测器使用40D特权状态、3成员MLP、真正自回归3步state/risk；独立采集训练/校准/验证seed，microbatch8，训练后冻结。2个新装配开发seed×5位置×3arm共30条；主角framework，对照VLA以及共享预测gate但用实测几何选择候选的feedback（这是ranking消融，不称完全无预测baseline）。全部保留，不按结果选样。目标为插入并松爪稳定5步/最多160步；接触负载与延迟单列，不宣称安全或20Hz实时。
 
-M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保留；新A1不改M1协议，不消费LIBERO最终root。A1当前预检/冻结启动中，实际PID和运行状态以新增launch记录为准，下方旧“没有训练运行”仅表示当时状态。
+M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保留；新A1不改M1协议，不消费LIBERO最终root。**A1已实际启动**：`24b219d`先推送后启动，目录`/home/ami/scratch/assembly_a1_20261015_a`，supervisor1659007，采集worker1659011/GPU2；随后自动训练、GPU1/2/3配对在线评估。35个预检文件和12个源码/协议文件已独立远端恢复核对。新增[执行记录](exp_record/assembly_a1_execution_20261015.md)与只读`status_assembly_development.py`；当前进度以launch/status为准，下方旧“没有训练运行”仅表示当时状态。
 
 ### 15 Oct后续纠偏：行为验证与修复贡献分线（优先于下方启动时状态）
 

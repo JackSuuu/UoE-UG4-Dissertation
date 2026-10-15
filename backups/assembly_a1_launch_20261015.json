@@ -1,0 +1,209 @@
+{
+  "status": "running",
+  "phase": "collect",
+  "start": 1792065462.720406,
+  "supervisor": 1659007,
+  "git": "24b219d74e3f38ff3ce4aad199da2031d14f9fdc",
+  "sources": {
+    "src/adapters/assembly_runtime.py": "1938fa8e7645be0b8402d1614e1c744c7e36ff41f4ba3c217abc1790fbda4619",
+    "src/adapters/assembly_predictor.py": "4378f9117db6e71099aef4ab4113ab55a5cfe2f3f07f6cf07f14681783fce213",
+    "src/models/nets.py": "ba5b4a8738e17acef7fe0e27fffb659848a9059fc1ec9a6b32d457e4a14b31eb",
+    "src/checkvla/reference.py": "bfede7f2e8f6b9617ad81343c33d9644a4c0ed28e9db481fceabd2f85622eacf",
+    "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "scripts/run_assembly_development.py": "3109f0efe17b59f58d88a507d04513e17ba036e628900f6e75ca11497f1895a6",
+    "scripts/launch_assembly_development.py": "76cdb3cb5daf3f5a53ba499cbccc76651689618012f0f67b44e2fb5627975433",
+    "scripts/preflight_assembly.py": "ca34ae3712f3dab75e34f00aad0a2e4cd5f01af8b61a62220c28026f8d51f5b7",
+    "exp_record/assembly_a1_protocol_20261015.md": "ef06eaacf3bf43ca1f21f031fb0df0b1ddc8d901e76ce0c5037c2f432880d5a9"
+  },
+  "hardware": {
+    "0": [
+      "GPU-c9938b31-33b0-e02f-24c5-88bd6fbe19ad",
+      5
+    ],
+    "1": [
+      "GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0",
+      5
+    ],
+    "2": [
+      "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8",
+      5
+    ],
+    "3": [
+      "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b",
+      5
+    ]
+  },
+  "jobs": [
+    {
+      "stage": "collect",
+      "gpu": 2,
+      "name": null,
+      "pid": 1659011,
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+        "collect",
+        "--out",
+        "/home/ami/scratch/assembly_a1_20261015_a"
+      ]
+    }
+  ],
+  "completed": [],
+  "development_only": true,
+  "planned": [
+    {
+      "seed": 3000,
+      "case": 0,
+      "arm": "vla"
+    },
+    {
+      "seed": 3000,
+      "case": 0,
+      "arm": "framework"
+    },
+    {
+      "seed": 3000,
+      "case": 0,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "arm": "vla"
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "arm": "framework"
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "arm": "vla"
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "arm": "framework"
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "arm": "vla"
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "arm": "framework"
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "arm": "vla"
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "arm": "framework"
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "arm": "vla"
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "arm": "framework"
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "arm": "vla"
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "arm": "framework"
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "arm": "vla"
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "arm": "framework"
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "arm": "vla"
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "arm": "framework"
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "arm": "feedback"
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "arm": "vla"
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "arm": "framework"
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "arm": "feedback"
+    }
+  ]
+}
