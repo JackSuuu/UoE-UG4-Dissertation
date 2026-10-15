@@ -1,0 +1,3216 @@
+{
+  "status": "local_archive_verified",
+  "source": "/home/ami/scratch/assembly_a1_20261015_a",
+  "launch": {
+    "status": "complete_verified",
+    "phase": "finished",
+    "start": 1792065462.720406,
+    "supervisor": 1659007,
+    "git": "24b219d74e3f38ff3ce4aad199da2031d14f9fdc",
+    "sources": {
+      "src/adapters/assembly_runtime.py": "1938fa8e7645be0b8402d1614e1c744c7e36ff41f4ba3c217abc1790fbda4619",
+      "src/adapters/assembly_predictor.py": "4378f9117db6e71099aef4ab4113ab55a5cfe2f3f07f6cf07f14681783fce213",
+      "src/models/nets.py": "ba5b4a8738e17acef7fe0e27fffb659848a9059fc1ec9a6b32d457e4a14b31eb",
+      "src/checkvla/reference.py": "bfede7f2e8f6b9617ad81343c33d9644a4c0ed28e9db481fceabd2f85622eacf",
+      "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+      "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+      "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+      "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+      "scripts/run_assembly_development.py": "3109f0efe17b59f58d88a507d04513e17ba036e628900f6e75ca11497f1895a6",
+      "scripts/launch_assembly_development.py": "76cdb3cb5daf3f5a53ba499cbccc76651689618012f0f67b44e2fb5627975433",
+      "scripts/preflight_assembly.py": "ca34ae3712f3dab75e34f00aad0a2e4cd5f01af8b61a62220c28026f8d51f5b7",
+      "exp_record/assembly_a1_protocol_20261015.md": "ef06eaacf3bf43ca1f21f031fb0df0b1ddc8d901e76ce0c5037c2f432880d5a9"
+    },
+    "hardware": {
+      "0": [
+        "GPU-c9938b31-33b0-e02f-24c5-88bd6fbe19ad",
+        5
+      ],
+      "1": [
+        "GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0",
+        5
+      ],
+      "2": [
+        "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8",
+        5
+      ],
+      "3": [
+        "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b",
+        5
+      ]
+    },
+    "jobs": [
+      {
+        "stage": "collect",
+        "gpu": 2,
+        "name": null,
+        "pid": 1659011,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "collect",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "train",
+        "gpu": 2,
+        "name": null,
+        "pid": 1660940,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "train",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3000_c0_vla",
+        "pid": 1660969,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "0",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3000_c0_feedback",
+        "pid": 1660971,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "0",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3000_c0_framework",
+        "pid": 1660970,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "0",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3000_c0_feedback",
+        "pid": 1661543,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "0",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3000_c1_feedback",
+        "pid": 1661594,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "1",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3000_c0_vla",
+        "pid": 1661599,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "0",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3000_c0_framework",
+        "pid": 1661659,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "0",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3000_c1_vla",
+        "pid": 1661748,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "1",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3000_c1_framework",
+        "pid": 1661766,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "1",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3000_c1_feedback",
+        "pid": 1662878,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "1",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3000_c2_feedback",
+        "pid": 1662932,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "2",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3000_c1_vla",
+        "pid": 1663155,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "1",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3000_c1_framework",
+        "pid": 1663202,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "1",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3000_c2_vla",
+        "pid": 1663253,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "2",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3000_c2_framework",
+        "pid": 1663274,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "2",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3000_c2_feedback",
+        "pid": 1663680,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "2",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3000_c3_feedback",
+        "pid": 1663731,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "3",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3000_c2_framework",
+        "pid": 1663924,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "2",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3000_c3_framework",
+        "pid": 1663977,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "3",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3000_c2_vla",
+        "pid": 1664154,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "2",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3000_c3_vla",
+        "pid": 1664216,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "3",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3000_c3_feedback",
+        "pid": 1664413,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "3",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3000_c4_feedback",
+        "pid": 1664465,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "4",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3000_c3_framework",
+        "pid": 1664711,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "3",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3000_c4_feedback",
+        "pid": 1664772,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "4",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3000_c4_framework",
+        "pid": 1664818,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "4",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3001_c0_feedback",
+        "pid": 1664840,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "0",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3000_c3_vla",
+        "pid": 1664950,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "3",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3000_c4_vla",
+        "pid": 1665227,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "4",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3001_c0_feedback",
+        "pid": 1665464,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "0",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3000_c4_framework",
+        "pid": 1665510,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "4",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3001_c1_feedback",
+        "pid": 1665561,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "1",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3001_c0_framework",
+        "pid": 1665586,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "0",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3000_c4_vla",
+        "pid": 1665967,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3000",
+          "--case",
+          "4",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3001_c1_feedback",
+        "pid": 1666018,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "1",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3001_c0_vla",
+        "pid": 1666022,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "0",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3001_c2_feedback",
+        "pid": 1666099,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "2",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3001_c0_framework",
+        "pid": 1666299,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "0",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3001_c1_framework",
+        "pid": 1666471,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "1",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3001_c2_feedback",
+        "pid": 1666730,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "2",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3001_c1_framework",
+        "pid": 1666784,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "1",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3001_c3_feedback",
+        "pid": 1666830,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "3",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3001_c2_framework",
+        "pid": 1666846,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "2",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3001_c0_vla",
+        "pid": 1667079,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "0",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3001_c1_vla",
+        "pid": 1667235,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "1",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3001_c1_vla",
+        "pid": 1667460,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "1",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3001_c2_vla",
+        "pid": 1667517,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "2",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3001_c3_feedback",
+        "pid": 1667740,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "3",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3001_c2_framework",
+        "pid": 1667786,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "2",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 3,
+        "name": "live_s3001_c4_feedback",
+        "pid": 1667839,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "4",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3001_c3_framework",
+        "pid": 1667855,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "3",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3001_c2_vla",
+        "pid": 1668257,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "2",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 3,
+        "name": "verify_s3001_c4_feedback",
+        "pid": 1668262,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "4",
+          "--arm",
+          "feedback"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3001_c3_vla",
+        "pid": 1668359,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "3",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3001_c3_framework",
+        "pid": 1668583,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "3",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 2,
+        "name": "live_s3001_c4_framework",
+        "pid": 1668641,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "4",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3001_c3_vla",
+        "pid": 1668891,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "3",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "live",
+        "gpu": 1,
+        "name": "live_s3001_c4_vla",
+        "pid": 1668939,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "live",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "4",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 2,
+        "name": "verify_s3001_c4_framework",
+        "pid": 1668954,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "4",
+          "--arm",
+          "framework"
+        ],
+        "exit_code": 0
+      },
+      {
+        "stage": "verify",
+        "gpu": 1,
+        "name": "verify_s3001_c4_vla",
+        "pid": 1669212,
+        "command": [
+          "/home/ami/miniconda3/bin/python",
+          "-u",
+          "/home/ami/UoE-UG4-Dissertation/scripts/run_assembly_development.py",
+          "verify",
+          "--out",
+          "/home/ami/scratch/assembly_a1_20261015_a",
+          "--seed",
+          "3001",
+          "--case",
+          "4",
+          "--arm",
+          "vla"
+        ],
+        "exit_code": 0
+      }
+    ],
+    "completed": [
+      {
+        "seed": 3000,
+        "case": 0,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 0,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 0,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 1,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 1,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 1,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 2,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 2,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 2,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 3,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 3,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 4,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 3,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 0,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 4,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 4,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 1,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 0,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 2,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 1,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 0,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 1,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 3,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 2,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 4,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 2,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 3,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 3,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 4,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 4,
+        "arm": "vla"
+      }
+    ],
+    "development_only": true,
+    "planned": [
+      {
+        "seed": 3000,
+        "case": 0,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 0,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 0,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 1,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 1,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 1,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 2,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 2,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 2,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 3,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 3,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 3,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3000,
+        "case": 4,
+        "arm": "vla"
+      },
+      {
+        "seed": 3000,
+        "case": 4,
+        "arm": "framework"
+      },
+      {
+        "seed": 3000,
+        "case": 4,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 0,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 0,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 0,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 1,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 1,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 1,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 2,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 2,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 2,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 3,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 3,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 3,
+        "arm": "feedback"
+      },
+      {
+        "seed": 3001,
+        "case": 4,
+        "arm": "vla"
+      },
+      {
+        "seed": 3001,
+        "case": 4,
+        "arm": "framework"
+      },
+      {
+        "seed": 3001,
+        "case": 4,
+        "arm": "feedback"
+      }
+    ],
+    "end": 1792066933.815462
+  },
+  "learned_predictor": true,
+  "implementation": "self-developed OrbiSim-role/RefCheckVLA; not official",
+  "privileged_state": true,
+  "archive": "archives/assembly_a1_20261015_a.tar.gz",
+  "archive_sha256": "d7ac9ed257b0b6beb702ffc5936e7723af365e15784e89cfd575c2167e0bbb09",
+  "members": [
+    {
+      "path": "assembly_a1_20261015_a/assembly_dynamics.pt",
+      "sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+      "bytes": 612659
+    },
+    {
+      "path": "assembly_a1_20261015_a/collect.log",
+      "sha256": "8a97cfe186bad4418a8ef2f6794597fe69ec341a07ae4cdbe46941ad4f0e0769",
+      "bytes": 1214
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1000.json",
+      "sha256": "ee9731a04d00074e5c84d023c9a1617d1a61ea45a42907f1d60c6bcd1824a4e2",
+      "bytes": 679993
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1001.json",
+      "sha256": "bc8b846de9909e4b4def4203464e885782d0c4ed93bd424c74097327472f5d08",
+      "bytes": 679573
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1002.json",
+      "sha256": "2f5ecaa7f48a64111d1a293f7159133ad3e53cf7d1fabe26dd56a72a5212369c",
+      "bytes": 680835
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1003.json",
+      "sha256": "f03f8992a7e0102de3fc98c55e9496dafcf75e1b8ddffd89f6bc5333d75eee27",
+      "bytes": 681115
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1004.json",
+      "sha256": "182e481abd52467b8bef0a442b5f265984882d8332b12da9c578a15243ccbaf5",
+      "bytes": 682874
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1005.json",
+      "sha256": "3d345b41fda559241a221d92ce97821355955526ed9f59b8787d96c2b66d4022",
+      "bytes": 680958
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1006.json",
+      "sha256": "9f3d74a47cb87d8b071e30b53c5c7d2f70e1a618c88f874d01a81589e8ae18c3",
+      "bytes": 679699
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1007.json",
+      "sha256": "5c62fa39960f612fe9a475aa3bfb25558f28e4bfe2a81b59529c02582069ea02",
+      "bytes": 679559
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1008.json",
+      "sha256": "47dac8607d079301c0216dd3911703c514424cb3aca6a892c3ba3bef08612213",
+      "bytes": 678810
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1009.json",
+      "sha256": "35567e05e367510b16bd1bd062fbd4b4e4e19e13a161a9c3a456de34021276bf",
+      "bytes": 681731
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1010.json",
+      "sha256": "c934c84d21cf306d3fa5974c63c6c7f242a2fbf8a73d8476d18ae1795f00364a",
+      "bytes": 681548
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1011.json",
+      "sha256": "d32556d77686c500fd73dd65a7a36b5f53af10815b18fcba855455d7cb7eedef",
+      "bytes": 681855
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1012.json",
+      "sha256": "67072d70b5a8be8c139c4281d22a915e0de7ac79f95ee43b1215c0d23c646885",
+      "bytes": 682863
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1013.json",
+      "sha256": "e8b76e640a6173812f0c58f21468feeb22711f3d76c06ec55e46178db64d8571",
+      "bytes": 682665
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1014.json",
+      "sha256": "1bed1af2bd376715e08f7f579fa25313903096c6874f58f6d4d6a27b35868a49",
+      "bytes": 679672
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1015.json",
+      "sha256": "6ff8f4bb9696aeb46aec225f8d79868d30a20c4aa1f89ce5b0c0e16771346d57",
+      "bytes": 681354
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1016.json",
+      "sha256": "d427da6641036a1bab92b35a1efe3e4bb696d163ef4580cbbb8d4b5bebb06164",
+      "bytes": 680901
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1017.json",
+      "sha256": "5d01f0dbe08f1e3cb3008b8fa694b97ce1cbf042dcebb968948826a3186a357c",
+      "bytes": 681474
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1018.json",
+      "sha256": "c7b3bb2e94f3226a0b25116739242a5683de3780350aa6597409d51a67527576",
+      "bytes": 681141
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1019.json",
+      "sha256": "e5516420d285b0bd6d4eed7ffa60b02815f07668417d2940c7b51f41c990b83f",
+      "bytes": 682356
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1020.json",
+      "sha256": "c436346cd6268124c786689940eed051ccd589e886378d6bc0ad33820638ef2f",
+      "bytes": 681561
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1021.json",
+      "sha256": "b7fae1ce509c3f847127ebac3792650e0cde0bcdf32f20f0abdda4727a9ef29d",
+      "bytes": 680978
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1022.json",
+      "sha256": "513823f1271893ed8e6b6b24940064e45ca3a9e415842699e27c7755b5256d6a",
+      "bytes": 678746
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_1023.json",
+      "sha256": "67b7a10a98e8481383101c516737398c014399b2407574a9470b3aa3af0b4b04",
+      "bytes": 681182
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2000.json",
+      "sha256": "67f545ddfe967932bde202cae8ba3efd4e165bc7b15cb1426766a2c1a53f4f72",
+      "bytes": 679044
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2001.json",
+      "sha256": "ae6c29012ed0eef622165bca6372e4e2d2ebd8448c8b1a73c4b163eaa7f39789",
+      "bytes": 680399
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2002.json",
+      "sha256": "e5bd96ce75310774d1a2ebf1efb92a15459abe92a063d5f528f2a2b13d029945",
+      "bytes": 677624
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2003.json",
+      "sha256": "13d85fde909e7ae3b023eddc0acd334636603d4706cbb23e28bfbb2995c5ddc7",
+      "bytes": 678173
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2004.json",
+      "sha256": "34cca44a18936359eb70e57f256dd3dd3956b3c409e156731e3bfacf74d7c2c1",
+      "bytes": 682013
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2005.json",
+      "sha256": "7aa74719a181126b150c6aebc992bc27e0fea9dc23960f30e8cf1dde73652964",
+      "bytes": 680137
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2006.json",
+      "sha256": "7c42392ed69095f509eb3d32bb8d32d141635814cd909a51dd90018d31b0a2d7",
+      "bytes": 681278
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2007.json",
+      "sha256": "7e0f29e73d0958c31232bd18c8daf676271bf72249fd42e481bcae1f6ad9b537",
+      "bytes": 681141
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2100.json",
+      "sha256": "c492fb0b02b2f38bbd75a5ba3bc4e33a07e6eddfcbb1efcc5f63f084e4bd7b94",
+      "bytes": 678801
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2101.json",
+      "sha256": "835edda0326f424d3d616a8b4aaf4fd376e30035f3b253a8a339a03c340e9a61",
+      "bytes": 682067
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2102.json",
+      "sha256": "d7c4f55601c1b836be1a53b6e2f2a4871e838e49501a1583a7c758836886e9cd",
+      "bytes": 682257
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2103.json",
+      "sha256": "2f7beb55e0cf27de1d2e7a8d8e6268d059605d18ea74ac2a70fa7c9469359ca7",
+      "bytes": 681582
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2104.json",
+      "sha256": "e36655038104fe7077370bf44efb94775a13b5259e71d212165cfd877133b6c7",
+      "bytes": 681616
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2105.json",
+      "sha256": "587d44abe6153a36bc55e9f1d00d98384d050f5f4640bc0033082c30846bcc23",
+      "bytes": 681700
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2106.json",
+      "sha256": "9b1204812f4b738174361f2d572493680eeaf59cbae480b6e52b6fa790e29c2b",
+      "bytes": 681461
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_2107.json",
+      "sha256": "07acbb2510ab6ad9a3478301803cd4a19dcaa235edd26e52f9f94f81d2eb130c",
+      "bytes": 682091
+    },
+    {
+      "path": "assembly_a1_20261015_a/data_manifest.json",
+      "sha256": "e1f4e92716bb0a2d649763693edf74079de68dc502885d7a9c86b7b3a000a20a",
+      "bytes": 6251
+    },
+    {
+      "path": "assembly_a1_20261015_a/launch.json",
+      "sha256": "1066517798f7e74a9242d10cb19564e54633c78b0a93929002dadbe0e77c6d6f",
+      "bytes": 36061
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_feedback/actor_input.png",
+      "sha256": "014b414f5ffd71827668c685d1d50b55d0a04eed2d3c6940eb300ddfc6d5ccd4",
+      "bytes": 42883
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_feedback/annotated_2x.mp4",
+      "sha256": "593fba36e8cccf747e12f80ced2262376e80fdab2f6c7fa1fa5853dd28852e5c",
+      "bytes": 102197
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_feedback/replay.json",
+      "sha256": "905f1d762459439490e27340865eff6b50855561ac51f9b6fa406724a1921e02",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_feedback/setup.json",
+      "sha256": "0051ceda76f22fc57103b3056a5774f1618c5a3d8c4723b089e782d26e95a988",
+      "bytes": 35033
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_feedback/status.json",
+      "sha256": "88836c9559654b8a83400dbaf7620e292d175d797fc0de83da7fe8ccde49576b",
+      "bytes": 1075
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_feedback/trace.jsonl",
+      "sha256": "31244dbc0b4c27ad575e0ba9138bee108e7633cb712dcdafb4c6947c56f4ea7b",
+      "bytes": 2073733
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_feedback.log",
+      "sha256": "79faae326c9d533f1e6fb4f1ec9c1d658bcd8045e6c9e62a7d51271713d18819",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_framework/actor_input.png",
+      "sha256": "014b414f5ffd71827668c685d1d50b55d0a04eed2d3c6940eb300ddfc6d5ccd4",
+      "bytes": 42883
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_framework/annotated_2x.mp4",
+      "sha256": "fafac458013a68c56ff5f01e297568989beb288bf38663138648330f68a5e0ce",
+      "bytes": 126120
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_framework/replay.json",
+      "sha256": "5bbb986476e46e32532c14ba2665f0c66f500b8f61a2718c78b57336b5700e3e",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_framework/setup.json",
+      "sha256": "0051ceda76f22fc57103b3056a5774f1618c5a3d8c4723b089e782d26e95a988",
+      "bytes": 35033
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_framework/status.json",
+      "sha256": "f518cd6901072089dac71ddba6f09ff1851e7b6b6429c495f6ee6377f3b9a511",
+      "bytes": 1076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_framework/trace.jsonl",
+      "sha256": "452d34faef38625705daa1474cd773091967da7489ea3972459494e6cc453a01",
+      "bytes": 2558922
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_framework.log",
+      "sha256": "78af75c804bcdb4e182dfe218aad7d564c635dff73a895623fe3aeb2571213fb",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_vla/actor_input.png",
+      "sha256": "014b414f5ffd71827668c685d1d50b55d0a04eed2d3c6940eb300ddfc6d5ccd4",
+      "bytes": 42883
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_vla/annotated_2x.mp4",
+      "sha256": "cd20902ffcbff92adf2c69379b33587e989a835f92f8f57239e776b95b5f67b0",
+      "bytes": 122063
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_vla/replay.json",
+      "sha256": "fa973d2f4b12ab2f726d43adf454fa872bd925bb825af232e318b5230b9a384c",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_vla/setup.json",
+      "sha256": "0051ceda76f22fc57103b3056a5774f1618c5a3d8c4723b089e782d26e95a988",
+      "bytes": 35033
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_vla/status.json",
+      "sha256": "7319739f2b04f9e56eb96291713b6f26b8ace7418dd510cff7142bc293f8cdc0",
+      "bytes": 1067
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_vla/trace.jsonl",
+      "sha256": "c525d027379db51f9a091f941bc4352f7587b82068848d0c2f3ccdcb5cebc6e8",
+      "bytes": 2439232
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c0_vla.log",
+      "sha256": "86e647abd7e1e1e3de473b37c793ddee47b55b4ba6405dad1354bb391d25505b",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_feedback/actor_input.png",
+      "sha256": "4f9ffa704c7cfd5335f1985c87d4438042b5b8f5686aefe023a38defe8f05fc8",
+      "bytes": 42553
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_feedback/annotated_2x.mp4",
+      "sha256": "0ab7b2244961629db4e2b7ef8e7996dadf0851f99a85e506274483356a27ef07",
+      "bytes": 144054
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_feedback/replay.json",
+      "sha256": "5b54940c8ab4f064858b290e7a53a67ec59bda8114d96d7645896cc612e2efa9",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_feedback/setup.json",
+      "sha256": "7b4557eaa37c4a959f49396b269cf8bda70b84efb8d7a4e9928be8930e51d925",
+      "bytes": 34952
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_feedback/status.json",
+      "sha256": "712e83e8f88e912b492963ee188feadda70370e603ca6910830e4db804b444b7",
+      "bytes": 1074
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_feedback/trace.jsonl",
+      "sha256": "99228a4e5f149f5c301429dec71e154b7e4f6a3a6e92787fb371a4afce0b2114",
+      "bytes": 2957460
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_feedback.log",
+      "sha256": "f8f9a31fce6d7f9c72e6d53244ae38553d36f6429d6a1df002baac5561302c25",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_framework/actor_input.png",
+      "sha256": "4f9ffa704c7cfd5335f1985c87d4438042b5b8f5686aefe023a38defe8f05fc8",
+      "bytes": 42553
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_framework/annotated_2x.mp4",
+      "sha256": "d7ff6c4ce0c6e3db06dbdb4ab80030826296aa99bd3e088c919869542616fa37",
+      "bytes": 221682
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_framework/replay.json",
+      "sha256": "141e42416729c204af3d3ba1178a922976f99b2ae8496e7a3fc35509026e32d2",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_framework/setup.json",
+      "sha256": "7b4557eaa37c4a959f49396b269cf8bda70b84efb8d7a4e9928be8930e51d925",
+      "bytes": 34952
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_framework/status.json",
+      "sha256": "d2b5ea6ed60934efcb759c2542196ccaa0be6e759bc7cce4c4e77b7b6a20c1a1",
+      "bytes": 1079
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_framework/trace.jsonl",
+      "sha256": "37cdb3bc0ad71db7595c1a6fa20770c2f0bafa00b8e2e45466f8f2cdd367e60f",
+      "bytes": 4845945
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_framework.log",
+      "sha256": "a8e8678534ac90eccdeb92f7717b84bcccc6ce747218b83e7adaa306a3a6b6ca",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_vla/actor_input.png",
+      "sha256": "4f9ffa704c7cfd5335f1985c87d4438042b5b8f5686aefe023a38defe8f05fc8",
+      "bytes": 42553
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_vla/annotated_2x.mp4",
+      "sha256": "281b5a74f60ca37e5662724882dc5b85ff9785b22f88df28c59a4974f6ced45a",
+      "bytes": 212010
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_vla/replay.json",
+      "sha256": "67d181cb920559bcf125e8cd50629b234574331243ba5e841798c39471148a09",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_vla/setup.json",
+      "sha256": "7b4557eaa37c4a959f49396b269cf8bda70b84efb8d7a4e9928be8930e51d925",
+      "bytes": 34952
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_vla/status.json",
+      "sha256": "fd833d289c8ed8c973a9512a5dad662d9d1270e2a75c794d23affcf7cbffb5b9",
+      "bytes": 1071
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_vla/trace.jsonl",
+      "sha256": "951233a90364a23d66cbd4982c662cffa122f541475bdbb265c6d0a7b6f9f8a4",
+      "bytes": 4809374
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c1_vla.log",
+      "sha256": "18c540b42083b62f9ac685c9f471fe9d61e3256fc1f1151e29698f17d1c21ee1",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_feedback/actor_input.png",
+      "sha256": "83c64440e474dc52f644d33e2846b58cf7f3fef8471d9018e87e9d9eb14c2545",
+      "bytes": 42210
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_feedback/annotated_2x.mp4",
+      "sha256": "f248e558b5a5c210026cefc373c3fe864f34f6c6a78e150d94c2c814a4578a79",
+      "bytes": 221652
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_feedback/replay.json",
+      "sha256": "8e0103ef9fe1b8628019e81491a214849b5c59779b526fd105b760f1cc0db62d",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_feedback/setup.json",
+      "sha256": "453579bb24023cce316c1bef830ed75011ed0bcf06f954a52ad32edb03c02563",
+      "bytes": 35057
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_feedback/status.json",
+      "sha256": "67d18c8278d77e17d3d6233f87fe2611e54ebee370601d0dc6aee9233b706f99",
+      "bytes": 1077
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_feedback/trace.jsonl",
+      "sha256": "706b89fe46ea5433bb5e8918f456a433d7a6c6122142dc8dcfa3a4902cea4250",
+      "bytes": 4819087
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_feedback.log",
+      "sha256": "a7f6e7dee44b60c4c249f0b250aa6abf849025f89655d9729c41f657ec535913",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_framework/actor_input.png",
+      "sha256": "83c64440e474dc52f644d33e2846b58cf7f3fef8471d9018e87e9d9eb14c2545",
+      "bytes": 42210
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_framework/annotated_2x.mp4",
+      "sha256": "3aec6b0e4fb7d91f26f5ecb87c4b108c0a4c811a80df6baec5906f33ffcfa795",
+      "bytes": 159538
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_framework/replay.json",
+      "sha256": "f0b3ac6f9bd4b8ee053290fd03a3b0b932c2eb1cc27049cc5f41b6771faa7545",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_framework/setup.json",
+      "sha256": "453579bb24023cce316c1bef830ed75011ed0bcf06f954a52ad32edb03c02563",
+      "bytes": 35057
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_framework/status.json",
+      "sha256": "8fd7d866e7640b9c0bf5656e738cba3f6e26216429de3290f455a5eb81c3afe7",
+      "bytes": 1076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_framework/trace.jsonl",
+      "sha256": "c13ff81e838b69b2460cc8c3d1b55b0285a74625128f2cad652e8d941bc43cd1",
+      "bytes": 3624492
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_framework.log",
+      "sha256": "860ec4d6a2cad613a70c534c3df1ab5ff156ff0eab0dff3e44500dbc9d11f764",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_vla/actor_input.png",
+      "sha256": "83c64440e474dc52f644d33e2846b58cf7f3fef8471d9018e87e9d9eb14c2545",
+      "bytes": 42210
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_vla/annotated_2x.mp4",
+      "sha256": "3252e8a1f19adb4057e087900f56e3512454998fe87d350320fb8aa3547fac36",
+      "bytes": 201514
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_vla/replay.json",
+      "sha256": "2e89bc29c05e4c11ee8f8f335aba2434f17a71f4803cfba95c0e9c6361a88f77",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_vla/setup.json",
+      "sha256": "453579bb24023cce316c1bef830ed75011ed0bcf06f954a52ad32edb03c02563",
+      "bytes": 35057
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_vla/status.json",
+      "sha256": "8f07235c45fcd9e97abcd9c4e46308387ce03aa3decf96e212fdaa5224557f12",
+      "bytes": 1070
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_vla/trace.jsonl",
+      "sha256": "86de04d3a19f5fea32750ddd9389b83050302cc0be2cb2724c0f4e538afd16e4",
+      "bytes": 4819293
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c2_vla.log",
+      "sha256": "c4e21adf6d7bcf839374fbeda6ca98d82afd85cbdd29731ce7a32b8bba3f2364",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_feedback/actor_input.png",
+      "sha256": "9fd2328dcb0af5771eab3e434d53557e6dc9abcf973efe327362676933808218",
+      "bytes": 42791
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_feedback/annotated_2x.mp4",
+      "sha256": "fd07c5dffd72c45200898047ee3d1b2d0d0b9af6bcfce6baeea8359bd637ac21",
+      "bytes": 125167
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_feedback/replay.json",
+      "sha256": "a9528372a82efc8335dafa2d1e5caf7b54872cbb42b1d0adf792ef57a77328ad",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_feedback/setup.json",
+      "sha256": "8f76f6d0401a5053e6fa25a90428e4f0d0eaf9ce4c44ac44b6d3087c9d60546f",
+      "bytes": 35020
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_feedback/status.json",
+      "sha256": "569563f304d402c11c72fe6f1bdcf287a842f76e7606e6f1631fc4a3de302732",
+      "bytes": 1073
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_feedback/trace.jsonl",
+      "sha256": "2bbfeb8afa68ff48e5b52be3df8d11db4e124f3688a237f485260e1e1c5b224d",
+      "bytes": 2589247
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_feedback.log",
+      "sha256": "ff504f34a41e684382a2dc60ab089753b2895c4b7a10b8dd7aa5463908caa93e",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_framework/actor_input.png",
+      "sha256": "9fd2328dcb0af5771eab3e434d53557e6dc9abcf973efe327362676933808218",
+      "bytes": 42791
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_framework/annotated_2x.mp4",
+      "sha256": "e0fb1875e83957788f49ec81d7ec1d2e9ea562689661e8509d4fa4c9b79647a1",
+      "bytes": 154058
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_framework/replay.json",
+      "sha256": "a0ec6ee11004e4c2f667652356b08ef93e744d87b31e5386981b5b919ebba7d8",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_framework/setup.json",
+      "sha256": "8f76f6d0401a5053e6fa25a90428e4f0d0eaf9ce4c44ac44b6d3087c9d60546f",
+      "bytes": 35020
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_framework/status.json",
+      "sha256": "b7ea3fa6eb1a15b1a7f0c4f8174f38db7d7570cab4ba39d34ee0bc6cc146fad4",
+      "bytes": 1079
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_framework/trace.jsonl",
+      "sha256": "f234c1e2ff103c734aaf7388897ad2795eb99063b44f21b40a284915f4181c23",
+      "bytes": 4812400
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_framework.log",
+      "sha256": "ef920dd50eb0487874ac3277b8ed16c5a1f40ea50b9948a37b4dae32b9aff85f",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_vla/actor_input.png",
+      "sha256": "9fd2328dcb0af5771eab3e434d53557e6dc9abcf973efe327362676933808218",
+      "bytes": 42791
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_vla/annotated_2x.mp4",
+      "sha256": "27bf3a4985d9dbec3382ddac33cda238c48911623df499f9104a8741f0b1c3f4",
+      "bytes": 121013
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_vla/replay.json",
+      "sha256": "0dabb7c0d2fad0567a8df2bd8636fcfe895e40db2773aad4f0a232a66b7fadd1",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_vla/setup.json",
+      "sha256": "8f76f6d0401a5053e6fa25a90428e4f0d0eaf9ce4c44ac44b6d3087c9d60546f",
+      "bytes": 35020
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_vla/status.json",
+      "sha256": "debf77f18db6c10706b933250d68c8fe6203d0768e6249bc1269a80245e0758a",
+      "bytes": 1072
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_vla/trace.jsonl",
+      "sha256": "8f56969682aeb193c64c2586d078c1d4bbe5190b8ca08fd6f1261280935967d2",
+      "bytes": 4798410
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c3_vla.log",
+      "sha256": "abccf87ea9f3c0e0ada8d806df539214e2c87c0909eaf0beec0001878d6e91b7",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_feedback/actor_input.png",
+      "sha256": "9bb77689b2d541e162e9caaed82dd69e1d6ff6fca213d1f5711f47f8190358ec",
+      "bytes": 43076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_feedback/annotated_2x.mp4",
+      "sha256": "de749f6a167a69ba92af9acaa6cc082016edc067edebacd01a662dfcc7f1b053",
+      "bytes": 126072
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_feedback/replay.json",
+      "sha256": "cbe56694242ac730fbaf7f8ee59e38bc6e1f0cd95eacd3ad9df35b0bc4e62da7",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_feedback/setup.json",
+      "sha256": "3f4b0d22f3f442eb122c173cf612ce913a9c419ea016a5b98b9e6939d1318748",
+      "bytes": 34955
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_feedback/status.json",
+      "sha256": "f48c66989c0967ffba634184eab5877bd783c8f47126d7f4b2882b93dba4b96f",
+      "bytes": 1074
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_feedback/trace.jsonl",
+      "sha256": "b14eeb578654432b8848ac678e5ba2d77c88db8c119dfb4dc96f6794096ae568",
+      "bytes": 2591621
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_feedback.log",
+      "sha256": "99b1a9adcca6636f0cf1e3de7591f36f0de70b55bc49e30fdb4997408c8a46a9",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_framework/actor_input.png",
+      "sha256": "9bb77689b2d541e162e9caaed82dd69e1d6ff6fca213d1f5711f47f8190358ec",
+      "bytes": 43076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_framework/annotated_2x.mp4",
+      "sha256": "196949cfb5ea8b2a389b550b69eb620041937a474912d548aa67b1af6a1dba3d",
+      "bytes": 146078
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_framework/replay.json",
+      "sha256": "da95a2af638f051c4577635c4d439bd53877727b54cf451412be5b27fd77069a",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_framework/setup.json",
+      "sha256": "3f4b0d22f3f442eb122c173cf612ce913a9c419ea016a5b98b9e6939d1318748",
+      "bytes": 34955
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_framework/status.json",
+      "sha256": "f3169ae9ac72a2093a7f575717c829dd376ba57839355e43c5497ca385f0b64f",
+      "bytes": 1076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_framework/trace.jsonl",
+      "sha256": "6b9f59a24c794c36ffc5971a25b19750e8e91c895522968bddaf9f8916352a04",
+      "bytes": 2986267
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_framework.log",
+      "sha256": "8318a88f2be277d7c07c619df6bebe530166955f8e20630cc9fa9d4bc4b8cc17",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_vla/actor_input.png",
+      "sha256": "9bb77689b2d541e162e9caaed82dd69e1d6ff6fca213d1f5711f47f8190358ec",
+      "bytes": 43076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_vla/annotated_2x.mp4",
+      "sha256": "5ac61d060c40fb82848b1c427f1fb6d238ad9dffad450e2331ed0894ac2fb6b6",
+      "bytes": 206002
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_vla/replay.json",
+      "sha256": "7db7063fd0723a1f9eaa9919aec86510a9e0f931f884447316de9e598e5fde9a",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_vla/setup.json",
+      "sha256": "3f4b0d22f3f442eb122c173cf612ce913a9c419ea016a5b98b9e6939d1318748",
+      "bytes": 34955
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_vla/status.json",
+      "sha256": "ae94e5a319a8eecd0047c5093aad598d6c77ff614b1ab9697ab79ebfc3b6b29b",
+      "bytes": 1069
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_vla/trace.jsonl",
+      "sha256": "83ba73e467c680ec0e6b359fe323576d8b892dffd62ed7c93ff4271bcd6de410",
+      "bytes": 4819682
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3000_c4_vla.log",
+      "sha256": "6533d651e88dee96a756593fadb631be898304e177aa1a3cad1afe9264111edf",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_feedback/actor_input.png",
+      "sha256": "14ef35f6dd2a7b3c0634ac235d1b98588ec72b3a9bda96dba8fbd6f74c1fc5ae",
+      "bytes": 42873
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_feedback/annotated_2x.mp4",
+      "sha256": "6fc64d2399cea3534bf8656ef5ce04b9768ea522092fcf885f1342e708adc3d5",
+      "bytes": 133222
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_feedback/replay.json",
+      "sha256": "48cb352132a0c34b151cfb95ecf091a29d09d5043932d3dda3bf7f173e1471cf",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_feedback/setup.json",
+      "sha256": "a23e66955bb44b92cd663b5e1a94ebbf0f88da16e45e42e4716c53e979a1c564",
+      "bytes": 35035
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_feedback/status.json",
+      "sha256": "e2b8d6c29d35bc214e967b0266a014d3607d7eda245b892f69ff9ca7d1696913",
+      "bytes": 1074
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_feedback/trace.jsonl",
+      "sha256": "f234a2ca8569962f0c2d08832097a6b6744193871433bf98013fe01163d6c696",
+      "bytes": 2682521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_feedback.log",
+      "sha256": "344737016c03c6fb7d0320ee2df5a1de06d3d55cf645b23a3d243f57f66aa866",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_framework/actor_input.png",
+      "sha256": "14ef35f6dd2a7b3c0634ac235d1b98588ec72b3a9bda96dba8fbd6f74c1fc5ae",
+      "bytes": 42873
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_framework/annotated_2x.mp4",
+      "sha256": "2dd9d0ffae5c097dfce29b7ee3f5c92279c46449ebcf143e5905f5b4c3378a9c",
+      "bytes": 135477
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_framework/replay.json",
+      "sha256": "7e384deaf6b3e4ed17572a26e7ee238223b75aece88a5bf7c2a0dbede93051b7",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_framework/setup.json",
+      "sha256": "a23e66955bb44b92cd663b5e1a94ebbf0f88da16e45e42e4716c53e979a1c564",
+      "bytes": 35035
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_framework/status.json",
+      "sha256": "ea322d7e722afef3826479cec769adcf20d2b7bae4b3d72d2b450cb0f07c7364",
+      "bytes": 1075
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_framework/trace.jsonl",
+      "sha256": "e4b44c1c92e7e28ca1cadf0ca299a45d85d2c061e002fb1c4c7bda18fa8c8d24",
+      "bytes": 2772558
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_framework.log",
+      "sha256": "a376bc5166fa4c954ac6d6f3c220a4d69a21148fbae9f393364148d556e73f8f",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_vla/actor_input.png",
+      "sha256": "14ef35f6dd2a7b3c0634ac235d1b98588ec72b3a9bda96dba8fbd6f74c1fc5ae",
+      "bytes": 42873
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_vla/annotated_2x.mp4",
+      "sha256": "60a9c302b8ae85ef3c05a066e1c39369768d7e3b136a75af7ed68673a60d2fd7",
+      "bytes": 174299
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_vla/replay.json",
+      "sha256": "0bcd1d738e216a02c66891a9717dff19ee14a8dfbc151a67ad4e3557ac31abb7",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_vla/setup.json",
+      "sha256": "a23e66955bb44b92cd663b5e1a94ebbf0f88da16e45e42e4716c53e979a1c564",
+      "bytes": 35035
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_vla/status.json",
+      "sha256": "0bc2867b4bf80b5ad6eb33e81e3a65776be77836f5bd9080d1051a5a52b03d9e",
+      "bytes": 1071
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_vla/trace.jsonl",
+      "sha256": "46bfc810bb12bf8e5563670c4356e339be2b9c5dc809dda4f9329da148ac3100",
+      "bytes": 4830977
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c0_vla.log",
+      "sha256": "8d18db7103ea55ee0d4c376203bc7a3a1362ff2b149e8b093796f0fde23ffda5",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_feedback/actor_input.png",
+      "sha256": "24256c6254df67d357191b78f60544d275f57528ad4aaebac1ed92a6521148d0",
+      "bytes": 42527
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_feedback/annotated_2x.mp4",
+      "sha256": "9229de573f4abd14469a32f5961cdd9748f26a028adbe7dd97e5df187a60c6e0",
+      "bytes": 113653
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_feedback/replay.json",
+      "sha256": "f6399beff9fc74056d05324b7028c9c137ee39607e482ed8f96e24976736225b",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_feedback/setup.json",
+      "sha256": "d262d311aed1cc638339525828c8b308f8326982af7302ea01bc14fe852fc80b",
+      "bytes": 34965
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_feedback/status.json",
+      "sha256": "0f41a3f0b279939f9db1ec0d50db88024ce9ccd8cfde85f32d8605ffaf9f6d5d",
+      "bytes": 1076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_feedback/trace.jsonl",
+      "sha256": "aa641414b6ce6aa9cd50d3686b31eba6f70217bd6b503e3d5ab72062a5abff41",
+      "bytes": 2288609
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_feedback.log",
+      "sha256": "2f5d20ee6765651e54d02e895170cabbe381b83a45f7e4cdee36a7603fbc1e1e",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_framework/actor_input.png",
+      "sha256": "24256c6254df67d357191b78f60544d275f57528ad4aaebac1ed92a6521148d0",
+      "bytes": 42527
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_framework/annotated_2x.mp4",
+      "sha256": "44e5e2190b7614ac938a82e5fbe526aebdca274e78aca08de53e0252dc3e91c8",
+      "bytes": 144568
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_framework/replay.json",
+      "sha256": "b5aff4cc590af9cf66fa7af061285739ef743efdaa51944a76624827cad92fde",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_framework/setup.json",
+      "sha256": "d262d311aed1cc638339525828c8b308f8326982af7302ea01bc14fe852fc80b",
+      "bytes": 34965
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_framework/status.json",
+      "sha256": "5194ec105bdf3d56dabcd795c0aaf56a4888fade2333850e2f851348d828d666",
+      "bytes": 1075
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_framework/trace.jsonl",
+      "sha256": "995a3803a45cd6b2fe3e29b2be7d00f75aca3575d5b17c7cb5c76aacb49a4625",
+      "bytes": 2832026
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_framework.log",
+      "sha256": "da6929fb3386dc4d4659028085e8d59fa04aac52a7d8891a6a0c70368931a490",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_vla/actor_input.png",
+      "sha256": "24256c6254df67d357191b78f60544d275f57528ad4aaebac1ed92a6521148d0",
+      "bytes": 42527
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_vla/annotated_2x.mp4",
+      "sha256": "0d151b5b5461c5b13fac3e8b564635f2eb1ae0ffc4fdf0db40023643e3d6c0d0",
+      "bytes": 85829
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_vla/replay.json",
+      "sha256": "a95855e9b8759a7d7bb1362e91015400c59542d76a1a002f220bb753cd87254e",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_vla/setup.json",
+      "sha256": "d262d311aed1cc638339525828c8b308f8326982af7302ea01bc14fe852fc80b",
+      "bytes": 34965
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_vla/status.json",
+      "sha256": "f53516e6910cbcbb1d9aff10fbac097463a673b0cdb4dab81b205514a204bf51",
+      "bytes": 1069
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_vla/trace.jsonl",
+      "sha256": "cf994089f9e195d239999afda687f1c9700160cc70df2fb791d9e4acf1b45108",
+      "bytes": 1536993
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c1_vla.log",
+      "sha256": "9a6b3eb089be9466184c87c973de84988c3ede3281328269f5de6b17d4964da5",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_feedback/actor_input.png",
+      "sha256": "960f16651624cfd7d8e90c510d785e496a300762f1f1bdb0e7d4bf0de1be08c7",
+      "bytes": 42278
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_feedback/annotated_2x.mp4",
+      "sha256": "03823507c228781911134cee94e7406d326cf43be480f77768d23ea48e8b2e2f",
+      "bytes": 160128
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_feedback/replay.json",
+      "sha256": "ad990be2c84c451ed985fe4f0c58748af678a25c032a7b89ab9ca165f23f9b85",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_feedback/setup.json",
+      "sha256": "62ec413be1c064c8a24052812ecf8a2afc77f65c06f8dfb27efbaa5e3011ad73",
+      "bytes": 35086
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_feedback/status.json",
+      "sha256": "31564b33de36fb8d9d28cfc77688f4e86e2546c689e99ae1fb2adc6151035b2d",
+      "bytes": 1075
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_feedback/trace.jsonl",
+      "sha256": "46a544a9e58a487d01a681df80623e8254f2b93f32398cf1980c6e61ff613beb",
+      "bytes": 3387398
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_feedback.log",
+      "sha256": "9a5aefe5a583a07bc9fc78aa3a379705c298679351e201a13264207a9b2a8e31",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_framework/actor_input.png",
+      "sha256": "960f16651624cfd7d8e90c510d785e496a300762f1f1bdb0e7d4bf0de1be08c7",
+      "bytes": 42278
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_framework/annotated_2x.mp4",
+      "sha256": "2ab19e6f0a6dca4d1ac49242a661ff378ff5e0fe3398ea3fc59bb5f07bd94d99",
+      "bytes": 211433
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_framework/replay.json",
+      "sha256": "027690df970d41f9af4972d94ee4d9f164b64b7acc638567f447c5f286308014",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_framework/setup.json",
+      "sha256": "62ec413be1c064c8a24052812ecf8a2afc77f65c06f8dfb27efbaa5e3011ad73",
+      "bytes": 35086
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_framework/status.json",
+      "sha256": "1fad87709da9e99823fe74ff75e6c3d4b1550774daaed66897fa6df32d7937d7",
+      "bytes": 1078
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_framework/trace.jsonl",
+      "sha256": "dea7fa111c2252d07e71e631879f8157efb62491f630817c08b66a90c518e2ba",
+      "bytes": 4853741
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_framework.log",
+      "sha256": "c6c7ac6c154b86a07596ac6e962c43fc6c2b70296e94693e697a3af256a7d7b7",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_vla/actor_input.png",
+      "sha256": "960f16651624cfd7d8e90c510d785e496a300762f1f1bdb0e7d4bf0de1be08c7",
+      "bytes": 42278
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_vla/annotated_2x.mp4",
+      "sha256": "a81c2450f9501058c7249820f1fbf812476afcd4bd2cb8a5806dd750aedf06d9",
+      "bytes": 195807
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_vla/replay.json",
+      "sha256": "0491befb4b195983ffc75354f9a72f7b2cf244a76b90a8439a8993503bfe0358",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_vla/setup.json",
+      "sha256": "62ec413be1c064c8a24052812ecf8a2afc77f65c06f8dfb27efbaa5e3011ad73",
+      "bytes": 35086
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_vla/status.json",
+      "sha256": "4bd9dcbd6c0e9ee36d2f3fc809085e0ee049f7e09489f9d9a52b922f77411e17",
+      "bytes": 1071
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_vla/trace.jsonl",
+      "sha256": "8748b0d5f900389876b3b11fe39c5e8c4ed0d5b9f6ed6335321cdbc05f970b68",
+      "bytes": 4811594
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c2_vla.log",
+      "sha256": "bcfef4808467972cce8484637b2f6d1dac979bebae4c2cb94d8a9d896c1d4814",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_feedback/actor_input.png",
+      "sha256": "cab8cb27260ff11b983333361dfc7bfc2fd7d3c78f5ec2df5c0d199acf918525",
+      "bytes": 42712
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_feedback/annotated_2x.mp4",
+      "sha256": "e735aed258db0c74a07eaac006106c95e8b482a74191b185928443f3d403e75a",
+      "bytes": 205147
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_feedback/replay.json",
+      "sha256": "7a91626c22943ad87607480f9c4f57059ef8b9f160509d89d06e17e9e8b1e658",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_feedback/setup.json",
+      "sha256": "4b67873c90c05221913ee4364a5394fb128ab7a9946b61677411191f380542cb",
+      "bytes": 35037
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_feedback/status.json",
+      "sha256": "bbc1ba26ecb7836cedc1f9c77b6e4c21a9ee432debc81b6abd78ec2507c54ef0",
+      "bytes": 1078
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_feedback/trace.jsonl",
+      "sha256": "c7c47c1dc862db9bf6f200484acb3f3b13ed05b7aa4bdff737715cdd2e27a073",
+      "bytes": 4836561
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_feedback.log",
+      "sha256": "bcb01c67b97fec7858cbaae2ccbd88ae6216e73c654c646070f0e04ac263bcec",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_framework/actor_input.png",
+      "sha256": "cab8cb27260ff11b983333361dfc7bfc2fd7d3c78f5ec2df5c0d199acf918525",
+      "bytes": 42712
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_framework/annotated_2x.mp4",
+      "sha256": "086933e06aaa9435c35f925abcdee916150e6d2f1cd869811757ee7d3eade806",
+      "bytes": 179097
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_framework/replay.json",
+      "sha256": "dc05b55206b5630b9fe6e8af392bfb4d6bf3a16d4b27fb79c4fa316d4c0352a6",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_framework/setup.json",
+      "sha256": "4b67873c90c05221913ee4364a5394fb128ab7a9946b61677411191f380542cb",
+      "bytes": 35037
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_framework/status.json",
+      "sha256": "f8f8149dad0f3b7999074fdfa2980918e379e083932b307c3e2091290eb23b77",
+      "bytes": 1078
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_framework/trace.jsonl",
+      "sha256": "9a3cc14c790f786c93ef599ea656a6b4ccf1675a072da75ce9211f2d1ce55072",
+      "bytes": 4812208
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_framework.log",
+      "sha256": "2692ecd498356848f2c613dd9b623f4857c2a5d37cd753ec4ce306f4589e3cce",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_vla/actor_input.png",
+      "sha256": "cab8cb27260ff11b983333361dfc7bfc2fd7d3c78f5ec2df5c0d199acf918525",
+      "bytes": 42712
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_vla/annotated_2x.mp4",
+      "sha256": "16933bbf8be07758c1e518592c398825333408a5d26c07396c0c21ef5756104c",
+      "bytes": 182092
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_vla/replay.json",
+      "sha256": "05ecaf0019582728caff92175c6b751f37ee43e581c0f6ef1696319f74ad01b9",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_vla/setup.json",
+      "sha256": "4b67873c90c05221913ee4364a5394fb128ab7a9946b61677411191f380542cb",
+      "bytes": 35037
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_vla/status.json",
+      "sha256": "afd4db4c12ba92083fe658005c604a9ac56b23a4d5d5033c37c286ea7abaa11c",
+      "bytes": 1070
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_vla/trace.jsonl",
+      "sha256": "8df12f86c0a557de4d0cafd3c235b5d82d485095fa7e6aa6bfeb28bcbba7f03f",
+      "bytes": 4788666
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c3_vla.log",
+      "sha256": "1b2716963e99b5d0eaf3138d366a3b5e09d31f5464fc4f5fa08d5a6e11788562",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_feedback/actor_input.png",
+      "sha256": "53e089e5d30b66e0f717f1c106a4c451fc004d6a2632b0f3da2202f67e8aea30",
+      "bytes": 43164
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_feedback/annotated_2x.mp4",
+      "sha256": "154e225cd787adaaf5c7c60081649976da80454ad27a1f9bc52d70930d53755b",
+      "bytes": 120525
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_feedback/replay.json",
+      "sha256": "a6dd834d502bead9bb31c65e27a45cd11c62be5b3cdb3a98a4122210a0f2b1a6",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_feedback/setup.json",
+      "sha256": "eff1bbf8369473d8c9d2d91c4afce26b988672143fde0a8eeff0b48fb2502d3f",
+      "bytes": 34987
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_feedback/status.json",
+      "sha256": "7e8c8e17d242dfbddce0c9c1cd836e282ffe610f9a703f2970fd5daf7746a457",
+      "bytes": 1074
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_feedback/trace.jsonl",
+      "sha256": "e9ae31e64cdeafe88ebe457f4b6d560835eb58b56aa8f9bd26a44ff2b695c53f",
+      "bytes": 2490906
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_feedback.log",
+      "sha256": "4a08483488d320e64bfbe2360af95f5e70272cf2fc3a57af60df5ec35f7ab213",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_framework/actor_input.png",
+      "sha256": "53e089e5d30b66e0f717f1c106a4c451fc004d6a2632b0f3da2202f67e8aea30",
+      "bytes": 43164
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_framework/annotated_2x.mp4",
+      "sha256": "90878ffc516ea444fc2868fa124fff39b85c6e6f160eb7ea433a25b8a41cb32a",
+      "bytes": 133034
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_framework/replay.json",
+      "sha256": "467d4e83d8054eb9b4493e49b4c9499392277e0d2e2fee99fd9ef58e088e55d9",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_framework/setup.json",
+      "sha256": "eff1bbf8369473d8c9d2d91c4afce26b988672143fde0a8eeff0b48fb2502d3f",
+      "bytes": 34987
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_framework/status.json",
+      "sha256": "920a279166a8b1e29ffcbde3023c0ca6cdc4544752ca1a607f3d7080ad092b3a",
+      "bytes": 1076
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_framework/trace.jsonl",
+      "sha256": "2b39a8c7468e8caa2088364ffb761395ba1507543a7c53e145ee9ffc5545a710",
+      "bytes": 2717535
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_framework.log",
+      "sha256": "720ca99b7d7751d22a733091bb2146371aa7e1102a331d4c7859f0140128127a",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_vla/actor_input.png",
+      "sha256": "53e089e5d30b66e0f717f1c106a4c451fc004d6a2632b0f3da2202f67e8aea30",
+      "bytes": 43164
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_vla/annotated_2x.mp4",
+      "sha256": "de2632609324c7cbf29601a7ff099faa264b71149780123ce3a839a444694a6b",
+      "bytes": 83376
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_vla/replay.json",
+      "sha256": "2352e7ca48e81c03d7bcb0315416c91ef69c0392501a5ce920824d67a53f2d6f",
+      "bytes": 139
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_vla/setup.json",
+      "sha256": "eff1bbf8369473d8c9d2d91c4afce26b988672143fde0a8eeff0b48fb2502d3f",
+      "bytes": 34987
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_vla/status.json",
+      "sha256": "f5e18d49f386310f9ec520813991539175702bd4b3f44176f5895ebd01d36e43",
+      "bytes": 1069
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_vla/trace.jsonl",
+      "sha256": "71a4d750c3e10a98125a43d74798a85d226536e729942b579c2dc5fd02097e71",
+      "bytes": 1444653
+    },
+    {
+      "path": "assembly_a1_20261015_a/live_s3001_c4_vla.log",
+      "sha256": "067a99c623a8a53058e46576c8e299d62d9243ac19c0987ba48cdd4a31af605e",
+      "bytes": 1521
+    },
+    {
+      "path": "assembly_a1_20261015_a/preflight.json",
+      "sha256": "9cc44b28223be753da429c0f8a25e5eef536164346a305b93ca39995a2a4be24",
+      "bytes": 1810
+    },
+    {
+      "path": "assembly_a1_20261015_a/protocol.md",
+      "sha256": "ef06eaacf3bf43ca1f21f031fb0df0b1ddc8d901e76ce0c5037c2f432880d5a9",
+      "bytes": 8414
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/index.html",
+      "sha256": "6eb788f93cbcb08f317d0e5400aa708d3b1d40d773e213835dbc4dd7216a2322",
+      "bytes": 8698
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3000_c1_comparison_2x.mp4",
+      "sha256": "b1e1319f76e25e55c1bbf9547859c68d1ef455411c6e0fa8788aa971f3b19359",
+      "bytes": 535474
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3000_c1_contact_sheet.jpg",
+      "sha256": "5fb66ab9846d891882ce5146bb3ac45197657dd99e0fc433da63fed91d8a1f7e",
+      "bytes": 326668
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3000_c3_comparison_2x.mp4",
+      "sha256": "87328e0a221e6c511956303a1fe89764c504c51801440d6c78e1893f09d4c3cc",
+      "bytes": 366996
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3000_c3_contact_sheet.jpg",
+      "sha256": "40b32c869260ce8dd7cbef2f9192bdae853a7ca00c651bee1a1dfe135912a393",
+      "bytes": 321567
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3001_c2_comparison_2x.mp4",
+      "sha256": "8b093a6a50fe187e2ade2204d8b0d56bf9b971a6128513447e001b7b20ad177c",
+      "bytes": 516307
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3001_c2_contact_sheet.jpg",
+      "sha256": "adde93b98fe7d1ddd03931553e88f3f0cb0f081ffe1ca2774e2e314e13c0d79c",
+      "bytes": 322147
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3001_c3_comparison_2x.mp4",
+      "sha256": "15c6249730016e4fefd5926bb94fcdb64ae70218fff24bd4b2f4878050a9551f",
+      "bytes": 518885
+    },
+    {
+      "path": "assembly_a1_20261015_a/review/s3001_c3_contact_sheet.jpg",
+      "sha256": "0826a1187fc085ddbde71f21712ec79126a2ac5a6619c65376f5cdaa2ccb045d",
+      "bytes": 321307
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/exp_record/assembly_a1_protocol_20261015.md",
+      "sha256": "ef06eaacf3bf43ca1f21f031fb0df0b1ddc8d901e76ce0c5037c2f432880d5a9",
+      "bytes": 8414
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/scripts/launch_assembly_development.py",
+      "sha256": "76cdb3cb5daf3f5a53ba499cbccc76651689618012f0f67b44e2fb5627975433",
+      "bytes": 5121
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/scripts/preflight_assembly.py",
+      "sha256": "ca34ae3712f3dab75e34f00aad0a2e4cd5f01af8b61a62220c28026f8d51f5b7",
+      "bytes": 4994
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/scripts/run_assembly_development.py",
+      "sha256": "3109f0efe17b59f58d88a507d04513e17ba036e628900f6e75ca11497f1895a6",
+      "bytes": 18299
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/adapters/assembly_predictor.py",
+      "sha256": "4378f9117db6e71099aef4ab4113ab55a5cfe2f3f07f6cf07f14681783fce213",
+      "bytes": 1428
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/adapters/assembly_runtime.py",
+      "sha256": "1938fa8e7645be0b8402d1614e1c744c7e36ff41f4ba3c217abc1790fbda4619",
+      "bytes": 6454
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/adapters/libero_openvla.py",
+      "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+      "bytes": 3679
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/adapters/libero_preservation.py",
+      "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+      "bytes": 7265
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/adapters/libero_runtime.py",
+      "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+      "bytes": 3229
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/adapters/tf5_compat.py",
+      "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+      "bytes": 26212
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/checkvla/reference.py",
+      "sha256": "bfede7f2e8f6b9617ad81343c33d9644a4c0ed28e9db481fceabd2f85622eacf",
+      "bytes": 18447
+    },
+    {
+      "path": "assembly_a1_20261015_a/source/src/models/nets.py",
+      "sha256": "ba5b4a8738e17acef7fe0e27fffb659848a9059fc1ec9a6b32d457e4a14b31eb",
+      "bytes": 8335
+    },
+    {
+      "path": "assembly_a1_20261015_a/summary.json",
+      "sha256": "6434486e24c8180ae93904ece968720ca6fb1ae3201c7583c5c11335fed6f22a",
+      "bytes": 34110
+    },
+    {
+      "path": "assembly_a1_20261015_a/train.log",
+      "sha256": "0bec121faa5bfb1c8a25cb1ed6bff64b7626503c68ddb60aafbc2f1a7400a85c",
+      "bytes": 1412
+    },
+    {
+      "path": "assembly_a1_20261015_a/training.json",
+      "sha256": "589731443c4ab34fa6c823cbcbd5b10a40765d13cbc51b28463e58692336ccda",
+      "bytes": 145346
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c0_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c0_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c0_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c1_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c1_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c1_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c2_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c2_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c2_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c3_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c3_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c3_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c4_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c4_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3000_c4_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c0_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c0_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c0_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c1_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c1_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c1_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c2_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c2_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c2_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c3_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c3_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c3_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c4_feedback.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c4_framework.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    },
+    {
+      "path": "assembly_a1_20261015_a/verify_s3001_c4_vla.log",
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31",
+      "bytes": 286
+    }
+  ],
+  "videos": [
+    {
+      "file": "videos/s3000_c1_comparison_2x.mp4",
+      "sha256": "b1e1319f76e25e55c1bbf9547859c68d1ef455411c6e0fa8788aa971f3b19359"
+    },
+    {
+      "file": "videos/s3000_c3_comparison_2x.mp4",
+      "sha256": "87328e0a221e6c511956303a1fe89764c504c51801440d6c78e1893f09d4c3cc"
+    },
+    {
+      "file": "videos/s3001_c2_comparison_2x.mp4",
+      "sha256": "8b093a6a50fe187e2ade2204d8b0d56bf9b971a6128513447e001b7b20ad177c"
+    },
+    {
+      "file": "videos/s3001_c3_comparison_2x.mp4",
+      "sha256": "15c6249730016e4fefd5926bb94fcdb64ae70218fff24bd4b2f4878050a9551f"
+    }
+  ]
+}
