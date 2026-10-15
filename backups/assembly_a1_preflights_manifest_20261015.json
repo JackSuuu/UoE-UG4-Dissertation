@@ -1,0 +1,180 @@
+{
+  "archive_sha256": "273e47293526ead443aa3a8a0ed4a56055f182b99c98e1def0bb48a6870411e1",
+  "files": [
+    {
+      "path": "assembly_a1_preflight_20261015_a/live_s0_c0_vla/setup.json",
+      "sha256": "51f3d1fa1821957284776779256edf9039bf4ecc2d0c20c632ac8ca405ad1cfb",
+      "bytes": 34967
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_a/live_s0_c0_vla/status.json",
+      "sha256": "267646a01a20bd18d446e27ef88f339b1eda2262620a5c3bbcb5fd1484503828",
+      "bytes": 184
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_a/live_s0_c0_vla/trace.jsonl",
+      "sha256": "7d3e241dd359b0d72e88ba76430f0fc5813c391f51ee386eb78235bb5d7d34ef",
+      "bytes": 55978
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_b/live_s0_c0_vla/replay_mismatch.json",
+      "sha256": "bcd283c8a192491b1db5d2e50d9f745c51058d3c624a52b6607b32458b393e2b",
+      "bytes": 2645
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_b/live_s0_c0_vla/setup.json",
+      "sha256": "51f3d1fa1821957284776779256edf9039bf4ecc2d0c20c632ac8ca405ad1cfb",
+      "bytes": 34967
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_b/live_s0_c0_vla/status.json",
+      "sha256": "360fc0face7d32c984279d523366410225c7b7a288144faa6bf951dc6377dbe5",
+      "bytes": 184
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_b/live_s0_c0_vla/trace.jsonl",
+      "sha256": "d98e1f775cd5c8f4a53c1d6cf798fd48170780d65c87cac173be6b66d6c09923",
+      "bytes": 199978
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_c/live_s0_c0_vla/fixture_frames.npz",
+      "sha256": "671e720b44be87e6dca73302de37cb0570b5375c0f0d664cd75b0f776dfa5b5f",
+      "bytes": 8730188
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_c/live_s0_c0_vla/replay_mismatch.json",
+      "sha256": "0f856f3696f3b360c18ea85be3b9a1de0d9b9543a6ab24b354b7b89a43137004",
+      "bytes": 2637
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_c/live_s0_c0_vla/replay_mismatch_image.npy",
+      "sha256": "7186c68e99bfd99a2f89b598537be514df9bfbd00ad22057dd2fd6727ca1de5d",
+      "bytes": 196736
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_c/live_s0_c0_vla/setup.json",
+      "sha256": "51f3d1fa1821957284776779256edf9039bf4ecc2d0c20c632ac8ca405ad1cfb",
+      "bytes": 34967
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_c/live_s0_c0_vla/status.json",
+      "sha256": "6219b7cc4d32341eb5f380f809da629ac690379f565dcd038abd509e1511ba58",
+      "bytes": 184
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_c/live_s0_c0_vla/trace.jsonl",
+      "sha256": "0293302897a59d6bbadb6d2fad8e0c98322e214760c0524f87814ed2f3df613b",
+      "bytes": 199978
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c0_vla/fixture_frames.npz",
+      "sha256": "629c77e8e03b6df35d62ed7f171e5444dbfd4e3f0aa1cb44a8000a2d711a80b9",
+      "bytes": 8712845
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c0_vla/replay.json",
+      "sha256": "27447063693e37c18877d0f9c83b724cd944ca004fb45b0f3a25944794beebf7",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c0_vla/setup.json",
+      "sha256": "51f3d1fa1821957284776779256edf9039bf4ecc2d0c20c632ac8ca405ad1cfb",
+      "bytes": 34967
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c0_vla/status.json",
+      "sha256": "61698fa8a2d25ff250d10b42b415bf21e529c68e52bd2cd29bebc2d2319f117e",
+      "bytes": 184
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c0_vla/trace.jsonl",
+      "sha256": "73f1ce5b7a1586048693253d321e7cdef36184b1ed652fbd3431f2d983e90f49",
+      "bytes": 199978
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c1_vla/fixture_frames.npz",
+      "sha256": "a3e370e0eb9efbd1d1255c53ea6d4ce4f400d6c7aaf689d62dcb9080ec372d72",
+      "bytes": 8598910
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c1_vla/replay.json",
+      "sha256": "97bcd8ab36a5c2540193d380ac31a426985f41a17725d68508d4df5a903a7bd1",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c1_vla/setup.json",
+      "sha256": "1502f21c38b13b730cd72890f05b97e44d32bef06099d14d8c3a968b8db145e9",
+      "bytes": 34889
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c1_vla/status.json",
+      "sha256": "940f2689cc41c2fca65d2fd8c717e04eb8af0d8dd7d694b1495a2c546b25a088",
+      "bytes": 184
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/live_s0_c1_vla/trace.jsonl",
+      "sha256": "66a192f8435cf1b5162c8b28cec948b7a9533fa5928f90260905f6dbad1d3b0a",
+      "bytes": 201521
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_d/report.json",
+      "sha256": "4eac3ae7afefb9db247d83b9bb467e42f2c6c74ca86c2817bc6fe35a858cee00",
+      "bytes": 1810
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c0_vla/fixture_frames.npz",
+      "sha256": "629c77e8e03b6df35d62ed7f171e5444dbfd4e3f0aa1cb44a8000a2d711a80b9",
+      "bytes": 8712845
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c0_vla/replay.json",
+      "sha256": "27447063693e37c18877d0f9c83b724cd944ca004fb45b0f3a25944794beebf7",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c0_vla/setup.json",
+      "sha256": "51f3d1fa1821957284776779256edf9039bf4ecc2d0c20c632ac8ca405ad1cfb",
+      "bytes": 34967
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c0_vla/status.json",
+      "sha256": "61698fa8a2d25ff250d10b42b415bf21e529c68e52bd2cd29bebc2d2319f117e",
+      "bytes": 184
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c0_vla/trace.jsonl",
+      "sha256": "73f1ce5b7a1586048693253d321e7cdef36184b1ed652fbd3431f2d983e90f49",
+      "bytes": 199978
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c1_vla/fixture_frames.npz",
+      "sha256": "a3e370e0eb9efbd1d1255c53ea6d4ce4f400d6c7aaf689d62dcb9080ec372d72",
+      "bytes": 8598910
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c1_vla/replay.json",
+      "sha256": "97bcd8ab36a5c2540193d380ac31a426985f41a17725d68508d4df5a903a7bd1",
+      "bytes": 140
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c1_vla/setup.json",
+      "sha256": "1502f21c38b13b730cd72890f05b97e44d32bef06099d14d8c3a968b8db145e9",
+      "bytes": 34889
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c1_vla/status.json",
+      "sha256": "940f2689cc41c2fca65d2fd8c717e04eb8af0d8dd7d694b1495a2c546b25a088",
+      "bytes": 184
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/live_s0_c1_vla/trace.jsonl",
+      "sha256": "66a192f8435cf1b5162c8b28cec948b7a9533fa5928f90260905f6dbad1d3b0a",
+      "bytes": 201521
+    },
+    {
+      "path": "assembly_a1_preflight_20261015_e/report.json",
+      "sha256": "9cc44b28223be753da429c0f8a25e5eef536164346a305b93ca39995a2a4be24",
+      "bytes": 1810
+    }
+  ]
+}
