@@ -1,0 +1,19 @@
+{
+  "supervisor_pid": 1499667,
+  "command": [
+    "/home/ami/miniconda3/bin/python",
+    "-u",
+    "/home/ami/UoE-UG4-Dissertation/scripts/launch_libero_mining.py",
+    "--smoke",
+    "/home/ami/UoE-UG4-Dissertation/backups/libero_mining_preflight_20261015.json",
+    "--pose-smoke",
+    "/home/ami/UoE-UG4-Dissertation/backups/libero_mining_pose_preflight_20261015.json",
+    "--cases",
+    "/home/ami/UoE-UG4-Dissertation/backups/libero_failure_mining_cases_20261015.json",
+    "--out",
+    "/home/ami/scratch/libero_failure_mining_20261015_a"
+  ],
+  "log": "/home/ami/scratch/libero_failure_mining_20261015_a_supervisor.log",
+  "run": "/home/ami/scratch/libero_failure_mining_20261015_a",
+  "detached": true
+}

@@ -9,6 +9,8 @@
 
 ### 15 Oct用户授权批量场景发现与文献逻辑集成（当前最高优先级）
 
+**已实际启动M1：** 代码/冻结协议/39case清单/全部预检以`a37e354`先推GitHub，随后启动`/home/ami/scratch/libero_failure_mining_20261015_a`。supervisor1499667，GPU1/2/3worker1499671/1499672/1499673，脱离SSH运行。每个root逐case运行VLA/hold/timed/phase/verified全部5arm，不会baseline成功就取消。总计195条真实actor延续，每条自动精确回放，逐case生成5方法视频。当前为运行中，尚无完成的效能结论。[启动记录/状态命令](exp_record/libero_failure_mining_launch_20261015.md)。
+
 用户明确要求从单一易成功场景的反复修补，转为**批量定制开发场景→寻找VLA失败/框架成功机制→冻结后独立确认**。新[M1协议](exp_record/libero_failure_mining_protocol_20261015.md)覆盖此前只做9个D2case的下一步安排；D1/D2历史结果不改，五层架构不变。首批39配置×5方法=195真实actor延续：drawer三个已消费开发root，各sham+4/8/12/16步释放延迟+world-x/y正负10/20mm动作偏置。是同任务的39开发配置，不是39任务或正式独立测试。所有方法都跑所有配置，不因baseline成功取消干预。
 
 **已接入实现：** `libero_mining.py`和新runner实现早期release-opportunity事务、release-conditioned强hold对照、10+30定时撤离、实测phase修复、额外候选物理验证repair。三候选×3步pulse-and-settle，在entry/首次released各一次，所有arm同预算shadow预测，只有verified arm可据此改动作；forecast重放真实effective prefix、核对state/controller/image，不能读未来故障。每条按原600步/20interval完整任务验收，交回后继续真实VLA关抽屉。框架selected和外部faulted effective分开，保存事件记忆、动作—结果核对、全部候选预测、实际效果、失败handoff与逐步视频。
