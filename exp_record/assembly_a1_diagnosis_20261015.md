@@ -162,3 +162,9 @@ files in the diagnosis directory;4 new annotated videos plus `matched_prefix.jso
 and `replay.json` in the budget directory. Original A1 archive310files and4 comparison
 videos were independently restored from GitHub/LFS (`fecf4ba`), proof
 `backups/assembly_a1_results_remote_verified_20261015.json`.
+
+Final diagnosis/budget archives were pushed as`9b29c78` and independently downloaded
+from GitHub/LFS:55 diagnosis files and47 budget-probe files all passed byte counts
+and SHA256. Proof:`backups/assembly_a1_diagnosis_remote_verified_20261015.json`.
+All12 original A1 frozen source/protocol hashes remain unchanged. Both diagnostic
+supervisors are finished; no further rollout or training cohort was launched.

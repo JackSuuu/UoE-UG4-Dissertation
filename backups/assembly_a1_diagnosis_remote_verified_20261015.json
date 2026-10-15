@@ -1,0 +1,16 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "9b29c78028b9ac066adec84025095a8bc654f101",
+  "verified": [
+    {
+      "run": "assembly_a1_diagnosis_20261015_a",
+      "files": 55,
+      "archive_sha256": "aac63c6041974ff76c035f11e3295b418dd08c872c6f4bf6756ac20aa83dafcf"
+    },
+    {
+      "run": "assembly_a1_budget80_20261015_a",
+      "files": 47,
+      "archive_sha256": "f1772caa5e7aad92a57fd70bff70f735e32653bb9a9d371e336ba70b6b9f971c"
+    }
+  ]
+}
