@@ -1,0 +1,323 @@
+{
+  "status": "local_archive_verified",
+  "source": "/home/ami/scratch/assembly_a1_diagnosis_20261015_a",
+  "launch": {
+    "status": "completed",
+    "start": 1792067371.0090506,
+    "supervisor": 1670963,
+    "jobs": [
+      {
+        "seed": 3000,
+        "case": 1,
+        "gpu": 1,
+        "pid": 1670967,
+        "exit_code": 0
+      },
+      {
+        "seed": 3000,
+        "case": 3,
+        "gpu": 2,
+        "pid": 1670968,
+        "exit_code": 0
+      },
+      {
+        "seed": 3001,
+        "case": 2,
+        "gpu": 3,
+        "pid": 1670969,
+        "exit_code": 0
+      },
+      {
+        "seed": 3001,
+        "case": 3,
+        "gpu": 1,
+        "pid": 1675609,
+        "exit_code": 0
+      }
+    ],
+    "end": 1792067645.6117425
+  },
+  "learned_predictor": true,
+  "implementation": "self-developed OrbiSim-role/RefCheckVLA; not official",
+  "privileged_state": true,
+  "archive": "archives/assembly_a1_diagnosis_20261015_a.tar.gz",
+  "archive_sha256": "aac63c6041974ff76c035f11e3295b418dd08c872c6f4bf6756ac20aa83dafcf",
+  "members": [
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c1_t11.json",
+      "sha256": "b9f2b2435c8af9aca5016bd4457e7469397ef0f099a9c27f34a8c7a4c568ee80",
+      "bytes": 43667
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c1_t58.json",
+      "sha256": "4e4e7c7ce8f501461835029861fb8d9272cd9aa87f72e810f1ec8d8db2afa7b8",
+      "bytes": 43756
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c1_t65.json",
+      "sha256": "df2de3e21caf3e329d9900b6926eeb566682d9c03e3d43efaeed9b62e824d25f",
+      "bytes": 43014
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c1_t66.json",
+      "sha256": "302a75770b26ba648617951df6afe8bebdd82e473c8b9c78908924b0f68dc75a",
+      "bytes": 43033
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c3_t18.json",
+      "sha256": "443d333820664c750c73c469306fd63ee7377f52965d637092277064831d7756",
+      "bytes": 43452
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c3_t59.json",
+      "sha256": "738b281f90a0197f1945f73f4874cb0b3ac847d3df036b81c4827443607836d9",
+      "bytes": 43624
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c3_t78.json",
+      "sha256": "aecb5ce2f6381a17a9971be0a685013ddf69f82d5dcd14cc6f80d19b8bac0947",
+      "bytes": 43673
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3000_c3_t9.json",
+      "sha256": "a744e0be33e09d1181589f16b00d48d26a05af97606940c2a69e3d1170495da7",
+      "bytes": 43184
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c2_t34.json",
+      "sha256": "6122427b11df61e76e79ded2ee109d84ac26b77c2f1b6984268e1c91e06410f8",
+      "bytes": 43536
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c2_t72.json",
+      "sha256": "c1ff0809457dd51c651e41a33c5ecd8d0c03b5e7e8447ef418b1a7cb013362f0",
+      "bytes": 43043
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c2_t73.json",
+      "sha256": "c6ac62051f08f36308e6cbd0302ad56d53bc3a27f232907009e9e1fa9cb47885",
+      "bytes": 43031
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c2_t8.json",
+      "sha256": "d4ec0922c952cecab716241f325c43273611939c43b3bf42eb6e386ed66d0293",
+      "bytes": 42864
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c3_t13.json",
+      "sha256": "23d1327fd65ff3f476d0dcdf2db002248b9fe939493904b57c887d1a8e356892",
+      "bytes": 43511
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c3_t18.json",
+      "sha256": "4fd783aff2f58415591fefe4cad5419721e6f93acf93d0767a17fba0d13f3350",
+      "bytes": 42992
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c3_t59.json",
+      "sha256": "8d95ee8a2c3dfa015acd5a31dbb8d676340b56562cb87a81c358fbcc4b46cabc",
+      "bytes": 42971
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branch_s3001_c3_t60.json",
+      "sha256": "487edbdf239bb62125cf3a427c8159ceaa819d3d8e8c0e0d9ae31bb6efb87d7f",
+      "bytes": 43054
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branches_s3000_c1.log",
+      "sha256": "e6f305453afea5a58f5bda0af7d11968b65125846bc0cccde9a6302f40ecc8ee",
+      "bytes": 2403
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branches_s3000_c3.log",
+      "sha256": "e3b5d98005bd7a40e8bd4e7487c612bdf4c584dc3293794f4a7346015f5ae811",
+      "bytes": 2266
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branches_s3001_c2.log",
+      "sha256": "0918330aaf679a6b1f7d4dbe4ac7511d52f579d1413e1794389a46d5ebe4dfec",
+      "bytes": 2319
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/branches_s3001_c3.log",
+      "sha256": "4a8bb9c09c44666cf82608a5db35e35932e4a6b6a21b95a19e5623f1eaa8ac98",
+      "bytes": 2398
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/descriptive.json",
+      "sha256": "362fc4dc8dd9a0b327c609692382b0b45fce7c362a6604bac4f68c2e388e2265",
+      "bytes": 80831
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/failure_timelines.png",
+      "sha256": "16f369db953baab9c84ea1faf971a2b21b24fadd7bc43899ee30d2685162cf94",
+      "bytes": 523741
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/launch.json",
+      "sha256": "c555ef3edd9626ecbf64f16e3e55fbf825105d1a96803079b1a009931462ea77",
+      "bytes": 565
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/mechanism_summary.json",
+      "sha256": "51c897d63abe9a4975ba5190135473306000946c3d15b85c54d61699529e06fa",
+      "bytes": 12699
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c0_feedback.json",
+      "sha256": "3509e9e68a5b6a7fd94485a46f311ce9db32b4536defbf5c3c3fd9e7dcbd5405",
+      "bytes": 116444
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c0_framework.json",
+      "sha256": "629c572c0d1a5b7f970e7545877473f1773503b7a0d3bf0bce07e19ecabd76f3",
+      "bytes": 143944
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c0_vla.json",
+      "sha256": "94acb4ce7ce5556665fca8027d656e417e007fc75c5ef62309c6ffacc46809b8",
+      "bytes": 137668
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c1_feedback.json",
+      "sha256": "b9c24ded829a10eb9e1abfacc7b01c6ddbf89df9b562fe7be27341f73026c3f8",
+      "bytes": 166086
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c1_framework.json",
+      "sha256": "5dd68c220858ff730eae56ac29ef32d25bb7f7e06c069243561cfc64cd5b0d63",
+      "bytes": 272862
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c1_vla.json",
+      "sha256": "18386925e08e270848b9d4c338a70fb53e24a38367db8887fab7e8820a291739",
+      "bytes": 271919
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c2_feedback.json",
+      "sha256": "674af85e22395a79a81a4b5e26ced9f57091f5e2d9e45b9c2894f975ce3d2a55",
+      "bytes": 271742
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c2_framework.json",
+      "sha256": "7655543cf3a32c34ebd5a9668832b7eb4560dc6a948f31f591615256bda4beb0",
+      "bytes": 203536
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c2_vla.json",
+      "sha256": "59016c4911f83862db298d835c2b6da1d799bd961fab49598def13e68fafc234",
+      "bytes": 271411
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c3_feedback.json",
+      "sha256": "d623faf7589d36ca4ecf2963b7686ccf4d96c4b7f1e517059abd4016d15c3d15",
+      "bytes": 145293
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c3_framework.json",
+      "sha256": "68399635e0cbe205bc9425790527f491ccc208808c39ca55caa37fc31f13f163",
+      "bytes": 273853
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c3_vla.json",
+      "sha256": "9abb8061237560719a5521c675fe47807e25f7731f725711bf419c961fc0aa69",
+      "bytes": 266810
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c4_feedback.json",
+      "sha256": "085909f7c682a4803fd6b4a0440b9fec293028b9454ea5ddddd3cbb79d14bde5",
+      "bytes": 145653
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c4_framework.json",
+      "sha256": "b3e7af98db45b802333236f797cb808c3d0bdc993835b8f6e3a1e4a13b3adf11",
+      "bytes": 167842
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3000_c4_vla.json",
+      "sha256": "acb4302b62bbbd129aae244be058953f6fb6b8a98053d2ef46562db6198f1941",
+      "bytes": 271627
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c0_feedback.json",
+      "sha256": "f017db95448861346c8d2b96ab85dce7548cf6f7688d5dba9071116d6e0b1a24",
+      "bytes": 150450
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c0_framework.json",
+      "sha256": "961cc74f85cab8b7f03af407653b0618bf6f81ab8a60b3b2f09a10b3f1a50bb0",
+      "bytes": 155935
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c0_vla.json",
+      "sha256": "0bee76d0fe78888ba9be573296d5d6f9015e0fa31e142c04b5293a5e55369fea",
+      "bytes": 271860
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c1_feedback.json",
+      "sha256": "388a764caa822d9a76420fc96d42d65f1adb82ab429124c0b052a224b529f031",
+      "bytes": 128439
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c1_framework.json",
+      "sha256": "230ca1ed73044c32544cb8a986799205736552b3311f7704ad2c7013bc8c75d4",
+      "bytes": 159484
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c1_vla.json",
+      "sha256": "edc10295a69e6dfa9fa8c471c04e547785754dd185413f3fa10f76959e05fdca",
+      "bytes": 86974
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c2_feedback.json",
+      "sha256": "059d44216ac2c1042cd5e472b5f5734391e1a1ca8d5689179257581ab96ae677",
+      "bytes": 190475
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c2_framework.json",
+      "sha256": "a208f78b04a7e6bb5db7f6955667d7fc6790627dab32b00114081f87b3d151b0",
+      "bytes": 273394
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c2_vla.json",
+      "sha256": "7f5e42bf802fa9535572088acdc2a6e0f6088092926598247808cbdb4f45fb94",
+      "bytes": 271773
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c3_feedback.json",
+      "sha256": "9da8c2932941e6a178f1a6b33138864f21b5a6badebdc2db482526f9d98e2d67",
+      "bytes": 273814
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c3_framework.json",
+      "sha256": "7cc6daa518c41b8c2a381cb977d9bb93667b8859f46e50c4cdc99cd9b3e3bfe3",
+      "bytes": 271221
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c3_vla.json",
+      "sha256": "fc1500e27478173ece2ec0c10fd5e33a6ca0045885ccc9c76934950d57844f21",
+      "bytes": 267424
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c4_feedback.json",
+      "sha256": "4e7046fb59bab6e0aac95c9adbeeed048894833a24f6cd74f81e592c45917d2f",
+      "bytes": 140254
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c4_framework.json",
+      "sha256": "d31b0d051a46ae27d74a45535d9b08f3b5cd0d784a4c289c34fdd0290c030474",
+      "bytes": 152919
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/points_s3001_c4_vla.json",
+      "sha256": "52ace04d32624962581a6be5d52a359ad58f56d6a63675fde36d49ed1f246619",
+      "bytes": 81887
+    },
+    {
+      "path": "assembly_a1_diagnosis_20261015_a/supervisor.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ],
+  "videos": []
+}

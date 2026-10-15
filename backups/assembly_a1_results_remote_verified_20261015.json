@@ -1,0 +1,8 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "fecf4ba48fc5ce4de4c21a3eb2dbc811773b1866",
+  "source_run": "/home/ami/scratch/assembly_a1_20261015_a",
+  "files": 310,
+  "comparison_videos": 4,
+  "archive_sha256": "d7ac9ed257b0b6beb702ffc5936e7723af365e15784e89cfd575c2167e0bbb09"
+}
