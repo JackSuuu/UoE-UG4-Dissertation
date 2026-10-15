@@ -1,0 +1,28 @@
+{
+  "commit": "f21548de9dd8a384afc7eccd448c0f876c93f966",
+  "independent_remote_fetch": "passed",
+  "files_verified": 20,
+  "sha256": {
+    "backups/libero_failure_mining_cases_20261015.json": "eac83dd67b049723874d0936c32d4ec8cfa7615053f0876c9a067826862aff03",
+    "backups/libero_mining_launch_20261015.json": "3fac3455460739b0f52ee0c618c82e2cac6a064edccd275dee4122e27039f2ef",
+    "backups/libero_mining_pose_preflight_20261015.json": "82cd11731c31e791e58f0bd7d829ca9825d749a9778eed4fc94e49ba1328d5ce",
+    "backups/libero_mining_preflight_20261015.json": "f3f8f96fb3131c2f3f542f8a8d0db903801355808b32b525c0a95ccaf642f62a",
+    "backups/libero_mining_preflight_failed_20261015.log": "05366ebb76b2abb52c87cb8efb4a74d110e39209b6efeee12a777d23ffb27e51",
+    "core_research_plan.md": "9d20beb5c1cd0af95be74064b34b171afaefe21316bc2d88732e2a5a7eeda171",
+    "exp_record/README.md": "6c777a885f6cbae28313136d621e4514c4bbd860124ff08f3b5a81bfe8bc34d3",
+    "exp_record/libero_failure_mining_launch_20261015.md": "c49c7b138a9d8f4504e720655fd1020d24708e8901fab766fe21abccaadba0b8",
+    "exp_record/libero_failure_mining_protocol_20261015.md": "e65460fbfee20fb12e8bc2c0fffc2f67092bc918ce9b5f0f67e4936317fb2abb",
+    "exp_record/libero_literature_integration_20261015.md": "f780c8552b170aaa18e8fdeae0d43fafc47cc1cc2ca6638e89cbfdfccf6b2894",
+    "exp_record/week4.md": "c6c84e989cfd165594d3109a86c8aab45e1870e2bb5edbbe655da25ea99d53c1",
+    "scripts/launch_libero_mining.py": "55fe53bf6cabb8b80019f1e5597a35e4396c95dc4d0dc7cd26cee7074625f471",
+    "scripts/prepare_libero_mining.py": "6645df5c7d530846bfe272533eeed3b446d326c99d224a65b4d460ae758e43bd",
+    "scripts/run_libero_mining.py": "1b563fa77b8ae92685e54f71548631fe6e1822e1226e405f69e6b71aff51175a",
+    "scripts/smoke_libero_mining.py": "8c0db2ec890baf6fbd95cee42718d1eb93647409dec95b07b00d1f2c9b8305c2",
+    "scripts/smoke_libero_mining_pose.py": "c7b27ff462c20d75ad897679c9dc446b7fa6058b5cd03eb3e74b2022ada5d0ef",
+    "scripts/status_libero_mining.py": "36d907174fdbea45599d3797a6d64e8e177690e9752073b7fbda3b1531cb7f96",
+    "scripts/verify_libero_mining.py": "997d488138698df54996019fc0331351355b54256f90dc9687b5ad2093365bd4",
+    "src/adapters/libero_mining.py": "d9e019d8958522285a5cd4920143fd7a7fd2896dd92259754e1f07b3ede82057",
+    "src/tests/test_libero_mining.py": "ae52e5dfa17a4591f0ef009947b5844789d6cb8f865339db661a124b597872c4"
+  },
+  "scope": "M1 code/protocol/grid/preflight/launch only; live rollout archive not yet complete"
+}
