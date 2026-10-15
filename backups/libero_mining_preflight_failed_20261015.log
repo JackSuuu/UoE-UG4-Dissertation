@@ -1,0 +1,24 @@
+[robosuite WARNING] No private macro file found! (macros.py:53)
+[robosuite WARNING] It is recommended to use a private macro file (macros.py:54)
+[robosuite WARNING] To setup, run: python /home/ami/miniconda3/lib/python3.13/site-packages/robosuite/scripts/setup_macros.py (macros.py:55)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+{"case": "root_0_delay_8", "arm": "vla", "step": 0, "reason": "common_recorded_prefix", "changed": false, "dwell": 0}
+Traceback (most recent call last):
+  File "/home/ami/UoE-UG4-Dissertation/scripts/smoke_libero_mining.py", line 27, in <module>
+    directory=episode(actor,a,case,arm,grid,fixture=True)
+  File "/home/ami/UoE-UG4-Dissertation/scripts/run_libero_mining.py", line 132, in episode
+    trace_log.write(json.dumps(trace)+'\n'); trace_log.flush()
+                    ~~~~~~~~~~^^^^^^^
+  File "/home/ami/miniconda3/lib/python3.13/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/ami/miniconda3/lib/python3.13/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/home/ami/miniconda3/lib/python3.13/json/encoder.py", line 261, in iterencode
+    return _iterencode(o, 0)
+  File "/home/ami/miniconda3/lib/python3.13/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+                    f'is not JSON serializable')
+TypeError: Object of type bool is not JSON serializable

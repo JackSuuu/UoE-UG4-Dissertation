@@ -4,6 +4,22 @@ Newest entry at the top. Index and conventions: [README.md](README.md).
 
 ---
 
+### Update 15 Oct — Batch scenario discovery and literature-grounded implementation
+
+User authorizes broad development screening instead of repeatedly refining an easy nominal task, and asks to use the physical decision chain and integrate SEAL/CheckVLA logic. [M1protocol](libero_failure_mining_protocol_20261015.md) freezes39case identities (3consumed drawer roots×13sham/delay/directional-bias conditions) and five arms: VLA, strong release-conditioned hold, timed repair, phase repair, candidate-verified repair.195planned live continuations; all arms/all cases run regardless of baseline success. No final roots or new model training. This supersedes D2-only sequencing, not its historical record.
+
+New execution path includes actual bounded repair, action-conditioned evidence audit and16event memory, three-candidate physical forecast verification at two registered events, evaluator-only post-routing faults, full-action/forecast/state/controller/camera replay, explicit nominal/selected/effective action attribution, and per-case five-panel2xvideo/clickable traces. All controls get the same allowed shadow forecast budget. Complete-task SR, paired rescue/harm and all four outcome categories form the discovery map; selected wins are not confirmation evidence.
+
+[Literature audit](libero_literature_integration_20261015.md) pins SEAL official evaluator/prompt to`ed65d42e1466d9eb85ce8097f5034817a7e0ddc1`and checks CheckVLA paper/author sources. SEAL's public reasoning checkpoint table remainsTBD; CheckVLA official executable release not located. We implement inspired mechanisms, not official reproduction. Newly added command/effect and keyframe evidence are diagnostic; no claim of a learned CheckVLA predictor/calibrated trigger/flow suffix rewriter or actor-memory training. NativeH1cannot silently become chunking.
+
+Eleven unit checks pass. Initial recorded-command simulator fixture stopped on NumPy-bool JSON serialization; corrected with native bool conversion and serialization regression. Failed fixture remains preserved; real-simulator rerun underway. These fixtures are not online actor recovery evidence. Launch follows passing source-matched replay preflight.
+
+**Five-arm preflight passed:** recorded-command delay8fixture changes12actions each inhold/timed/phaseand11inverified, zero inVLA. All effective-action/forecast/causal-trace/state/controller/camera checks pass; sham exactly reproduces historical physics. Five-panel video/timeline exported. Report in`backups/libero_mining_preflight_20261015.json`; original serialization failure log preserved separately. The x/yphysical-bias preflight is separate; live full-actor efficacy has not yet been evaluated.
+
+**Pose preflight also passed:** x+20mm/y−20mmfixtures each change4effective actuator commands and0framework-selected commands. Actual integration differs from sham, while independent action/forecast/trace replay matches exactly. Report:`backups/libero_mining_pose_preflight_20261015.json`. All launch checks now pass; freeze code/protocol before detached live batch.
+
+---
+
 ### Update 14 Oct — Controlled-fault authorization and final benchmark design
 
 The user clarifies that the purpose is to demonstrate intervention-driven task benefit with controlled failure/recovery opportunities. [Final benchmark design](libero_final_benchmark_design_20261014.md) supersedes the return-to-book-only suggestion after D1: the clean drawer3/3is a useful sham anchor, followed by paired release-delay faults on the same task. Architecture remains fixed. Final selected task inventory: threeSpatial, threeObjectand the two existinglongtasks; separate root splits, suite-matched frozen actors, clean/stress tables and same-backend detector attribution. No large final sweep is launched.

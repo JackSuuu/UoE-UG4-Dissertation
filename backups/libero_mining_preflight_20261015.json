@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "fixture_only": true,
+  "online_actor_efficacy": false,
+  "arms": [
+    "vla",
+    "gate_hold",
+    "timed_repair",
+    "phase_repair",
+    "verified_repair"
+  ],
+  "exact_sham": true,
+  "full_action_and_forecast_replay": true,
+  "source_sha256": {
+    "scripts/run_libero_mining.py": "1b563fa77b8ae92685e54f71548631fe6e1822e1226e405f69e6b71aff51175a",
+    "scripts/run_libero_drawer.py": "a7e6c0c4e1d2c3430eeaa2b003f29eeb9f0008394891be60d0c40b0cd4ca12ed",
+    "scripts/run_libero_baseline.py": "79f9792956cfba5af4e4203d90a6ecfcc90272cbe85f8b1efa42dac814541379",
+    "scripts/verify_libero_mining.py": "997d488138698df54996019fc0331351355b54256f90dc9687b5ad2093365bd4",
+    "src/adapters/libero_mining.py": "d9e019d8958522285a5cd4920143fd7a7fd2896dd92259754e1f07b3ede82057",
+    "src/adapters/libero_stress.py": "f4fd6dc545bd7ef6803575f2e54f0145010bd66da28dfc793b5694aa049aa41c",
+    "src/adapters/libero_drawer.py": "94a39ce6d60f7924b3d5d61416bf6ec5f80e928af6740dd48ca8a92098a69d39",
+    "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+  }
+}

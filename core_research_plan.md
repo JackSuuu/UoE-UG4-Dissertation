@@ -3,9 +3,23 @@
 **Dissertation:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization
 **Replaces:** `Experiment_plan_Phase_1.md` (3–4 week validation plan). That plan remains the blueprint for Months 1–3 infrastructure.
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
-**Last updated:** 2026-10-14
+**Last updated:** 2026-10-15
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
+
+### 15 Oct用户授权批量场景发现与文献逻辑集成（当前最高优先级）
+
+用户明确要求从单一易成功场景的反复修补，转为**批量定制开发场景→寻找VLA失败/框架成功机制→冻结后独立确认**。新[M1协议](exp_record/libero_failure_mining_protocol_20261015.md)覆盖此前只做9个D2case的下一步安排；D1/D2历史结果不改，五层架构不变。首批39配置×5方法=195真实actor延续：drawer三个已消费开发root，各sham+4/8/12/16步释放延迟+world-x/y正负10/20mm动作偏置。是同任务的39开发配置，不是39任务或正式独立测试。所有方法都跑所有配置，不因baseline成功取消干预。
+
+**已接入实现：** `libero_mining.py`和新runner实现早期release-opportunity事务、release-conditioned强hold对照、10+30定时撤离、实测phase修复、额外候选物理验证repair。三候选×3步pulse-and-settle，在entry/首次released各一次，所有arm同预算shadow预测，只有verified arm可据此改动作；forecast重放真实effective prefix、核对state/controller/image，不能读未来故障。每条按原600步/20interval完整任务验收，交回后继续真实VLA关抽屉。框架selected和外部faulted effective分开，保存事件记忆、动作—结果核对、全部候选预测、实际效果、失败handoff与逐步视频。
+
+**文献核对与边界：** [集成审计](exp_record/libero_literature_integration_20261015.md)。SEAL官方`NVlabs/actalign`固定到`ed65d42e1466d9eb85ce8097f5034817a7e0ddc1`，已读sample evaluator与verifier prompt，checkpoint仍TBD；当前移植propose/predict/verify运行逻辑，非π0+VLM官方复现。CheckVLA核对原论文/作者页，未定位官方发布入口；新增command/effect与event bank目前为诊断证据，已有release/clear历史驱动实际控制；没有已集成其learnedWM/conformal/flow-suffix/keyframe-policy reader的说法。H1不能伪装chunk。文献有效不能替代本地配对结果。
+
+**预检状态：** 11项新/相关单测通过；真实sim五arm与精确forecast/action/trace回放预检进行中，第一次fixture在numpy bool JSON序列化处停止，已修正并保留失败记录，未消费在线actor结果。M1预检通过后启动独立SSH会话的GPU1/2/3 workers，逐case自动验证/视频，完成195条后输出全量成功/救回/误伤/双方失败地图并归档。当前尚无M1效能结论，final根未打开。
+
+**五arm预检已通过：** root0延迟8步的记录动作fixture中，hold/timed/phase实际修改各12步，verified修改11步；原VLA修改0步。所有实际effective动作、预测分支、因果trace、状态/controller/camera精确回放通过，sham精确复现；已生成5面板视频/trace页。报告`backups/libero_mining_preflight_20261015.json`。这些是fixture非在线效能；另行进行x/y动作偏置真实物理接口预检，随后启动全量真实actor批次。
+
+**全部启动预检通过：** x+20mm/y−20mm物理偏置fixture也通过，每个仅4步外部执行端动作改变、框架改变0步，状态实际改变且全量action/forecast/trace回放一致；报告`backups/libero_mining_pose_preflight_20261015.json`。运行路径和协议准备冻结，真实actor启动另记PID与目录。
 
 ### 14 Oct用户明确授权受控扰动：最终benchmark与D2（最高执行优先级）
 
