@@ -28,3 +28,20 @@ will be locally archived after successful completion.
 Run directory: `/home/ami/scratch/assembly_a2_20261016_a`.
 Read-only command: `python scripts/status_assembly_hybrid.py /home/ami/scratch/assembly_a2_20261016_a`.
 Launch details and actual progress are recorded below after starting the supervisor.
+
+## Launched
+
+Frozen implementation/protocol/preflight committed and pushed as
+`6d44dfe120444ff2cec26aab503c634a05f351fb` before launch. Detached supervisor2251239
+started the actual-state audit worker2251243 on GPU2. At the recorded launch
+snapshot:9/30 original trajectories audited,0/80 new live trajectories verified,
+no failed jobs; phase=`actual_state_audit`. Completion of the audit automatically
+starts the registered four-arm comparison on GPUs1/2/3. This is execution underway,
+not a statement that the hybrid improves efficacy.
+
+Independent GitHub/LFS recovery verified all29 preflight archive members and all19
+frozen source/protocol files. Proof:
+`backups/assembly_a2_preflight_remote_verified_20261016.json`.
+Launch status snapshot:`backups/assembly_a2_launch_snapshot_20261016.json`.
+The original user modification in`notes/Experiment_plan_1year.md` is preserved.
+Full online result/archive remote backup remains pending experiment completion.

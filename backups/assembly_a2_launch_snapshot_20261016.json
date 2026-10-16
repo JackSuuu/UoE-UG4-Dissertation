@@ -1,0 +1,678 @@
+{
+  "status": "running",
+  "phase": "actual_state_audit",
+  "supervisor": 2251239,
+  "audit_trajectories": 9,
+  "audit_complete": false,
+  "verified": 0,
+  "planned": 80,
+  "groups": [
+    {
+      "cohort": "consumed_regression",
+      "arm": "vla",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    },
+    {
+      "cohort": "consumed_regression",
+      "arm": "feedback80",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    },
+    {
+      "cohort": "consumed_regression",
+      "arm": "phase_geometry80",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    },
+    {
+      "cohort": "consumed_regression",
+      "arm": "hybrid80",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    },
+    {
+      "cohort": "prospective_development",
+      "arm": "vla",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    },
+    {
+      "cohort": "prospective_development",
+      "arm": "feedback80",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    },
+    {
+      "cohort": "prospective_development",
+      "arm": "phase_geometry80",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    },
+    {
+      "cohort": "prospective_development",
+      "arm": "hybrid80",
+      "verified": 0,
+      "success": 0,
+      "corrections": 0,
+      "counters": {},
+      "mean_peak_load_N": null
+    }
+  ],
+  "pairs": [
+    {
+      "cohort": "consumed_regression",
+      "hybrid_vs": "vla",
+      "outcomes": {}
+    },
+    {
+      "cohort": "consumed_regression",
+      "hybrid_vs": "feedback80",
+      "outcomes": {}
+    },
+    {
+      "cohort": "consumed_regression",
+      "hybrid_vs": "phase_geometry80",
+      "outcomes": {}
+    },
+    {
+      "cohort": "prospective_development",
+      "hybrid_vs": "vla",
+      "outcomes": {}
+    },
+    {
+      "cohort": "prospective_development",
+      "hybrid_vs": "feedback80",
+      "outcomes": {}
+    },
+    {
+      "cohort": "prospective_development",
+      "hybrid_vs": "phase_geometry80",
+      "outcomes": {}
+    }
+  ],
+  "unresolved": [
+    {
+      "seed": 3000,
+      "case": 0,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 0,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 0,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 0,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "arm": "vla",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "arm": "feedback80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "arm": "phase_geometry80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "arm": "hybrid80",
+      "cohort": "consumed_regression",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 0,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 0,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 0,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 0,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 1,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 1,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 1,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 1,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 2,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 2,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 2,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 2,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 3,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 3,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 3,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 3,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 4,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 4,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 4,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3100,
+      "case": 4,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 0,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 0,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 0,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 0,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 1,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 1,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 1,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 1,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 2,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 2,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 2,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 2,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 3,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 3,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 3,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 3,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 4,
+      "arm": "vla",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 4,
+      "arm": "feedback80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 4,
+      "arm": "phase_geometry80",
+      "cohort": "prospective_development",
+      "started": false
+    },
+    {
+      "seed": 3101,
+      "case": 4,
+      "arm": "hybrid80",
+      "cohort": "prospective_development",
+      "started": false
+    }
+  ],
+  "failed_jobs": []
+}
