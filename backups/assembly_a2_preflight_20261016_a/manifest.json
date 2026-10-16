@@ -1,0 +1,152 @@
+{
+  "status": "local_archive_verified",
+  "archive": "preflight.tar.gz",
+  "archive_sha256": "18cbe1c8751ea6d28ce09dd11e9e6cf0a514b9a4afd90065fff9324fdaa1da93",
+  "members": [
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_feedback80.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_hybrid80.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_phase_geometry80.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_feedback80/annotated_2x.mp4",
+      "bytes": 53424,
+      "sha256": "823f6c33070f7212436bd3be49cefc6645c64109eb670a07e5d27284ac66ad6a"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_feedback80/replay.json",
+      "bytes": 212,
+      "sha256": "316171cdd0a8f651f0999ce0f964abb304fb1f8de423198a6d9290c376081ba3"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_feedback80/setup.json",
+      "bytes": 35020,
+      "sha256": "8f76f6d0401a5053e6fa25a90428e4f0d0eaf9ce4c44ac44b6d3087c9d60546f"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_feedback80/status.json",
+      "bytes": 634,
+      "sha256": "e60e303841e73f4a72f794b0d1f388cb7f7c74f6749688bd71d61af6eae41d37"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_feedback80/trace.jsonl",
+      "bytes": 2173282,
+      "sha256": "9e9dd6e1804c971f68e4e2476ab95591a024448dc8389d2980df91d8a864381f"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_hybrid80/annotated_2x.mp4",
+      "bytes": 52216,
+      "sha256": "e4f66acb118b01567fba15da7a2acc61f4d7d9ce18f07c6452f35bd3103b91c2"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_hybrid80/replay.json",
+      "bytes": 212,
+      "sha256": "99a574224ad4ee6b74c6c42f1a6d66300365ccc1b23e9e938ceb436e3e2affa8"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_hybrid80/setup.json",
+      "bytes": 35020,
+      "sha256": "8f76f6d0401a5053e6fa25a90428e4f0d0eaf9ce4c44ac44b6d3087c9d60546f"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_hybrid80/status.json",
+      "bytes": 640,
+      "sha256": "dd9c3bced8fd46bfd745db34b28b31e37b983a77fa9012e8880190863596fc79"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_hybrid80/trace.jsonl",
+      "bytes": 2173820,
+      "sha256": "9903bfb131914084f7ba5def9c07300099c825542a0ad83fcdee7d0261b8953a"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_phase_geometry80/annotated_2x.mp4",
+      "bytes": 51828,
+      "sha256": "a010f2d6a7ce5b0cc492b97c74f0ced60ea220d3e353372b5904c49bdb18cc59"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_phase_geometry80/replay.json",
+      "bytes": 212,
+      "sha256": "3128562a23e1d3bf6e5ae05beb6de4bb040c7e92c1ad7476dd526393ffeab491"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_phase_geometry80/setup.json",
+      "bytes": 35020,
+      "sha256": "8f76f6d0401a5053e6fa25a90428e4f0d0eaf9ce4c44ac44b6d3087c9d60546f"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_phase_geometry80/status.json",
+      "bytes": 633,
+      "sha256": "2dcf03221228e6fed98bf68836efa36570d550a325e809f728ebf9e1c02676ca"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_phase_geometry80/trace.jsonl",
+      "bytes": 2173053,
+      "sha256": "56d35cef5e9adebed1cb8e986e234ed77842ccbec01ea13ddce93e1690a5382e"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_vla/annotated_2x.mp4",
+      "bytes": 56786,
+      "sha256": "24b1631bd042576df365c53839aeb9f80fc47d0006b62c5e7601afbbc023d830"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_vla/replay.json",
+      "bytes": 212,
+      "sha256": "d6494ee95b3415b3a36dcaf1df13cfef896f8c93d846a1913b3b972bfef1ca8f"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_vla/setup.json",
+      "bytes": 35020,
+      "sha256": "8f76f6d0401a5053e6fa25a90428e4f0d0eaf9ce4c44ac44b6d3087c9d60546f"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_vla/status.json",
+      "bytes": 561,
+      "sha256": "7afb19f77fde12628ad726f9f911b883fe32e1351b05e69aebcbfbcaf014b512"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_s3000_c3_vla/trace.jsonl",
+      "bytes": 2148686,
+      "sha256": "70aad0faf6c2ffe8de0ea4a301f3479c979aa68da015bea71a5ffbf4fc81d02a"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/live_vla.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/report.json",
+      "bytes": 3695,
+      "sha256": "5d1b3dafc6bb53a0625963e76b8619af85a50a22c8a48ef54a140ca57ad645a6"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/verify_feedback80.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/verify_hybrid80.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/verify_phase_geometry80.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    },
+    {
+      "path": "assembly_a2_preflight_20261016_a/verify_vla.log",
+      "bytes": 286,
+      "sha256": "9e21c89186663791c905f3b80c213387a6f391d7d612097fdcca952fd169ba31"
+    }
+  ]
+}

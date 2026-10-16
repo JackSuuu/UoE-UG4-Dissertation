@@ -3,9 +3,15 @@
 **Dissertation:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization
 **Replaces:** `Experiment_plan_Phase_1.md` (3–4 week validation plan). That plan remains the blueprint for Months 1–3 infrastructure.
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
-**Last updated:** 2026-10-15
+**Last updated:** 2026-10-16
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
+
+### 16 Oct最新用户指令：A2融合预测门控与几何反馈，以完整效果为目标
+
+用户授权设计并执行融合实验，不要求为了突出物理预测而牺牲效果。五层架构不变：共享预测/事件gate→阶段几何默认修复→预测可信且显著更优时选择其他合格候选；按真实执行owner记录贡献。新增[A2冻结协议](exp_record/assembly_a2_protocol_20261016.md)，先精确重放全部30条A1真实轨迹诊断预测残差/抓持/阶段（不筛掉成功或失败），再跑4组：VLA、原反馈预算80、阶段几何预算80、阶段几何+可信预测预算80。原10案例仅作回归；3100/3101新seed×5入口作为前瞻开发，共20案例×4组=80条；160步/5步完整终点不变，各组共同计算11候选×3步，microbatch8+3。保留A1预测器，本轮不混入再训练收益。
+
+阶段管理加入防提前松爪、失去抓持停止空移并交还actor、入座后松爪/撤离；预测需通过上一真实动作残差、候选不确定度/风险/进展约束才覆盖几何选择。预检7项机制测试与四组32步真实仿真fixture均通过独立完整预测/决策/图像/物理回放；fixture不代表新在线VLA成绩。混合组在此fixture没有预测覆盖，必须如实报告而非调整门限制造预测参与。执行状态和结果见[执行记录](exp_record/assembly_a2_execution_20261016.md)与只读`status_assembly_hybrid.py`。
 
 ### 15 Oct最新用户指令：启动A1接触装配，真实接入自研预测—验证—修复（覆盖旧“暂不训练”安排）
 
