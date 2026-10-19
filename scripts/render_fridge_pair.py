@@ -41,15 +41,15 @@ def main(left, right, out, scope):
     out.parent.mkdir(parents=True, exist_ok=True)
     font = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 19)
     small = ImageFont.truetype('/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf', 16)
-    title = 'ENGINEERING COMPARISON: different controllers and budgets; not framework efficacy' if scope == 'engineering' else 'MATCHED BASELINE / FRAMEWORK COMPARISON'
-    labels = ['BASELINE: FROZEN VLA', 'OUR GEOMETRIC SERVO (scripted; no VLA)' if scope == 'engineering' else 'OUR VLA + VERIFICATION / REPAIR']
+    title = 'ENGINEERING COMPARISON: different controllers and budgets; not framework efficacy' if scope == 'engineering' else 'MATCHED VLA / FRAMEWORK - development, privileged feedback'
+    labels = ['BASELINE: FROZEN VLA' + (' + shared phase prompts' if scope == 'framework' else ''), 'OUR GEOMETRIC SERVO (scripted; no VLA)' if scope == 'engineering' else 'OUR VLA + VERIFICATION / REPAIR']
     runs = [(ls, lr), (rs, rr)]
     with imageio.get_reader(left/'raw.mp4') as lvideo, imageio.get_reader(right/'raw.mp4') as rvideo, \
             imageio.get_writer(out, fps=fps) as writer:
         readers = [iter(lvideo), iter(rvideo)]
         frames = [None, None]
         for i in range(max(len(lr), len(rr))+1):
-            canvas = Image.new('RGB', (1280, 768), (20, 24, 30))
+            canvas = Image.new('RGB', (1280, 800), (20, 24, 30))
             draw = ImageDraw.Draw(canvas)
             draw.text((16, 8), title, font=font, fill='#ffce73')
             draw.text((16, 36), f'Same initial physics / controller / images | simulation 1x | common t={i/fps:.2f}s', font=small, fill='white')
@@ -70,7 +70,11 @@ def main(left, right, out, scope):
                     draw.rectangle((x+40, 104, x+590, 134), fill=(90, 25, 25))
                     draw.text((x+48, 108), f'END FRAME HELD - run ended at {len(rows)/fps:.2f}s', font=small, fill='white')
                 wall = status['ended']-status['started']
-                draw.text((x+16, 730), f'Run wall time incl. setup: {wall:.1f}s | full task unscored', font=small, fill='#ffce73')
+                endpoint = 'full task unscored' if scope == 'engineering' else f"dev full-task endpoint: {status.get('full_completion', False)}"
+                draw.text((x+16, 730), f'Wall incl. setup: {wall:.1f}s | {endpoint}', font=small, fill='#ffce73')
+                if scope == 'framework':
+                    draw.text((x+16, 754), f"Owner: {row.get('owner')} | event: {row.get('event') or '-'}", font=small, fill='white')
+                    draw.text((x+16, 778), f"Corrections: {row.get('applied_corrections', 0)} | next phase: {row.get('next_phase')}", font=small, fill='white')
             writer.append_data(np.asarray(canvas))
         for reader in readers:
             assert next(reader, None) is None, 'Unexpected extra source frames'
@@ -78,7 +82,7 @@ def main(left, right, out, scope):
         same_initial_fingerprint=True, same_initial_state=True,
         left_steps=len(lr), right_steps=len(rr), equal_step_budget=ls['args']['steps']==rs['args']['steps'],
         playback='common simulation clock 1x; shorter run holds explicitly labeled end frame',
-        full_task_success_scored=False,
+        full_task_success_scored=scope == 'framework', endpoint_status='development_only',
         source_hashes={str(run/name): hashlib.sha256((run/name).read_bytes()).hexdigest()
                       for run in (left, right) for name in ('status.json', 'steps.jsonl', 'raw.mp4')},
         video_sha256=hashlib.sha256(out.read_bytes()).hexdigest())

@@ -3,6 +3,22 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Implement actual VLA + five-layer refrigerator runtime
+
+User requests the integrated comparison directly. Added `fridge_runtime.py` and
+`run_fridge_framework.py`: shared phase tracker/prompts, actual frozen OpenVLA in
+both arms, progress/grasp checks, bounded repair gate and revalidated handoff.
+Six guard tests pass;100live physical steps exercise stall-triggered repair without
+claiming task success. Both arms retain privileged state access/shared phase prompts;
+visual grounding and learned physics prediction are not implemented.
+
+[R2 protocol](agent_notes/fridge_r2_framework_protocol_20261019.md): seed0 closed/open
+× baseline/framework,600actions/queries each,200local/420total correction cap.
+Independent replay now verifies gate/phase/endpoint decisions as well as physics.
+`run_fridge_r2.py` supervises detached GPU1/3 jobs and exports matched left-VLA/right-
+framework videos including ownership, triggers, handoffs and budget failures.
+The prior R1 actor cohort has completed12/12with exact independent replay.
+
 ### Update 19 Oct — Default paired-video delivery; first refrigerator side-by-side
 
 User reiterates baseline VLA left / our framework right for every future experiment.
