@@ -1,6 +1,6 @@
 # UoE-UG4-Dissertation
 
-## Five-layer runtime repair architecture
+## Five-layer runtime verification–repair architecture
 
 **Demo targets: refrigerator retrieval and cloth / garment folding.** The shared
 runtime wrapper monitors execution, applies bounded repair, and returns control
@@ -10,6 +10,9 @@ to a frozen VLA. [Demo milestones and paper experiments](exp_record/agent_notes/
 predictor-free simple feedback, with validated handoff and complete-task outcomes.
 Differentiable prediction is an optional, separately ablated mechanism.
 [Revised research and R1 diagnosis protocol](exp_record/agent_notes/closed_loop_recovery_r1_20261019.md).
+
+The central theme remains **verify → bounded repair → reverify → handoff**.
+[Visual/physical evidence boundaries and ICLR-quality experiment targets](exp_record/agent_notes/verification_repair_iclr_20261019.md).
 
 ```mermaid
 flowchart TB

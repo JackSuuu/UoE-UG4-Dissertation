@@ -4,6 +4,7 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Verification–repair continuity, visual grounding and ICLR evidence targets](verification_repair_iclr_20261019.md)
 * [Recovery-centered research plan and R1 protocol](closed_loop_recovery_r1_20261019.md)
 * [R1 refrigerator geometry, grasp and actor diagnosis](fridge_r1_execution_20261019.md)
 * [Two demonstrators: refrigerator and folding; paper experiment design](two_demo_experiment_design_20261019.md)

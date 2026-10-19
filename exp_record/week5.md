@@ -3,6 +3,23 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Preserve verification theme; define visual grounding and ICLR targets
+
+The user clarifies that the central contribution remains an external runtime
+verification–repair loop around VLA. Updated the Chinese plan and README accordingly.
+[New evidence plan](agent_notes/verification_repair_iclr_20261019.md) defines proposed
+phase-condition checks, uncertainty-aware revalidation/handoff, sensor-versus-oracle
+comparisons, 1/3/5-object grounding development, strong matched baselines and cross-task
+causal tests. The official ICLR reviewer guide motivates rigor and new knowledge,
+not a mandated number of tasks or an acceptance promise.
+
+The successful extraction servo uses fixed waypoints, privileged EEF feedback and
+fixed phase durations; images do not select or localize its object. It establishes
+physical feasibility, not a visual-physical verifier or refrigerator framework gain.
+The existing frozen actor cohort continues unchanged; its observed completed cases
+have not yet demonstrated object grasp. Assembly's measured intervention benefit
+does not automatically transfer to refrigerator or cabinet tasks.
+
 ### Update 19 Oct — Recovery-centered plan; R1 exposes scene and grasp constraints
 
 The revised [mainline and experiment ladder](agent_notes/closed_loop_recovery_r1_20261019.md)
