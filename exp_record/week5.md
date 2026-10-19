@@ -3,6 +3,14 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — L2A model experiment submitted on two GPUs
+
+Source/plan `7e63364`; supervisor3739844, physicalGPU2/3. First health snapshot
+shows C0roots0/1running with0queries and sampling disabled. Six greedy suffix
+identities and independent replays gate all sampling. Maximum576calls; no L2B.
+Offline auditor passed11regression cases and reproduces the six original-tape
+labels. [Launch record](agent_notes/native_microwave_l2a_launch_20261019.md).
+
 ### Update 19 Oct — All24baselines complete; L2A design and exact boundary frozen
 
 Microwave4/6, two mugs3/6, drawer4/6native success; all18traces exact. Two pots

@@ -20,8 +20,10 @@ Latest execution status: **all24baseline actor episodes completed**. Microwave4/
 two designated mugs3/6, drawer4/6native successes; all18tapes exact. Two pots3/6
 recorded successes, with four strict wrist-image replay issues retained. Microwave
 meets the original per-task admission rule and takes priority for frozen L2A.
-[Complete screening results](native_long_l1_results_20261019.md). L2model branches
-remain unlaunched; root0's selected boundary passed266-frame zero-query reconstruction.
+[Complete screening results](native_long_l1_results_20261019.md). L2Abackground
+execution submitted under `7e63364` onGPU2/3; no outcome claimed at submission.
+Root0's selected boundary passed266-frame zero-query reconstruction.
+[Actual L2A launch](native_microwave_l2a_launch_20261019.md).
 
 Historical22-cell checkpoint: Microwave4/6successes,
 two partial-progress failures, all6exact replay: the highest-priority task meets
