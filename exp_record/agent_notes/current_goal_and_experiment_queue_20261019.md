@@ -16,12 +16,16 @@ No RoboCasa checkpoint is selected or qualified yet. Two different model/platfor
 pairs demonstrate replication across pairs; separating model and platform effects
 requires an additional shared-platform/model comparison.
 
-Latest execution status: L1paused after6/24actor episodes under frozen source
+Latest execution status: L1continuation launched under `53a74b3`, supervisor
+3727880, in `/home/ami/scratch/native_long_l1_20261019_b`;18untouched cells on
+GPUs1/2/3. Combined reporting preflight passed and the first three two-mug workers
+entered setup/model loading. [Decision and diagnosis](native_long_l1_continuation_20261019.md).
+Original cohort paused after6/24actor episodes under frozen source
 `63fecbd`. Microwave roots0–2:2successes/3completed, all exact replay. Two-pot
 roots0–2:1recorded success/3completed; all physics/integration states match but
 wrist-only image differences at1/1/3frames caused the prescribed lane stops.
-The remaining18cells are unstarted. Diagnose rendering and explicitly freeze a
-continuation before resuming; retain original replay failures. R0source research
+Fixed-state redraws demonstrate wrist-only rendering nondeterminism; retain
+original replay failures and the strict gate for new episodes. R0source research
 completed. See [actual launch and preflight evidence](native_long_l1_launch_20261019.md).
 L2/L3/R1remain unlaunched and their downstream branch budgets must be frozen from
 the preceding evidence. Labels below are new queue labels, not renamings of
@@ -149,7 +153,7 @@ are matched. A small task subset is not a full50-task benchmark result.
 Use detached supervised jobs, healthy physical GPUs1–3 with matching CUDA/EGL,
 batch1for the current actor, durable logs and per-episode status. User annual-plan
 edits remain untouched. Keep one status board with planned/running/completed/
-blocked states; launching a worker is not completion. Current states: L1paused6/24,
+blocked states; launching a worker is not completion. Current states: L1continuing18cells,
 R0research complete, L2/L3/R1planned. The physical-to-EGL index map is audited
 separately; equal numeric IDs are incorrect on this host. Future task or actor changes require an explicit reason
 and a versioned protocol, preserving the prior results.

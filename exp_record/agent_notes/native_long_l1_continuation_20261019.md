@@ -1,5 +1,11 @@
 # L1 continuation after wrist-rendering diagnosis
 
+**Execution started:** frozen source `53a74b321da7d1fdd16812b316dd7e0f27eb01a6`;
+detached supervisor3727880, workers3727936/3727935/3727937onGPUs1/2/3.
+Combined report preflight passed. Initial health snapshot records setup/model
+loading for two-mug roots0/1/2, not a completed task result. Log:
+`/home/ami/scratch/native_long_l1_20261019_b.supervisor.log`.
+
 ## Reviewed decision
 
 Continue only the18untouched cells from original cohort

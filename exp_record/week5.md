@@ -3,6 +3,23 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Wrist-rendering diagnosis and explicit18-cell continuation
+
+11fresh zero-query replays/5,752frames show exact physical/controller/contact and
+agentview evidence; captured wrist differences are1–5pixels with channel delta1.
+Fixed sensor-time redraws vary without advancing physics, demonstrating rendering
+nondeterminism. Original strict failures remain. Root1/2diagnosis onGPU1is
+cross-device, not original-lane certification. Source `53a74b3` freezes continuation
+of18untouched cells onGPUs1/2/3; supervisor3727880started after combined-report
+preflight. Original6episodes are referenced and all24identities retained.
+[Decision/diagnosis](agent_notes/native_long_l1_continuation_20261019.md).
+
+Partial failure analysis cautions against early no-lift alarms: successful microwave
+controls also wait156–158actions after grasp. Two-pot failures retain one placement
+and fail unfinished-object acquisition. These guide later controlled diagnostics,
+not asserted repair gains. Launch/R0source archives independently restored from
+GitHub/LFS; the first180s download timeout remains recorded.
+
 ### Update 19 Oct — First six L1 episodes completed; replay gate paused remaining18
 
 Microwave roots0/1/2: failure520actions, native success444, native success397;
