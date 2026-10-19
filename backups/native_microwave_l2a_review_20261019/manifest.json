@@ -1,0 +1,355 @@
+{
+  "schema": 1,
+  "scope": "paired_nominal_vs_sampled_L2A_not_full_framework",
+  "archives": [
+    {
+      "file": "archives/review_evidence.tar.gz",
+      "bytes": 33159182,
+      "sha256": "dc2a5c1b4f196e3a829be5d042c89b80bb202efbd87f7c64ff94049ea4173f4d",
+      "members": [
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/checks.json",
+          "bytes": 483,
+          "sha256": "dd9d9532bcc816a9545dfda3bcee67c364f43f837348b8a1b707e11a38de30fc"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/manifest.json",
+          "bytes": 3073797,
+          "sha256": "77c8c1da7c4d1b22102a3ac377aa18a51bf298262e71190dc3b73f00d9e010be"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root0_C0_vs_C1.frames.json",
+          "bytes": 93911,
+          "sha256": "a5972d778e7161ce6b3b3a3a5c868878e0101d8e700d8e532498ead6b9a9e040"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root0_C0_vs_C2.frames.json",
+          "bytes": 93911,
+          "sha256": "241d5d2f28d7cd48dc1756a7ccb7d281c82d65ba314c4049687f49d6fe100ab0"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root1_C0_vs_C1.frames.json",
+          "bytes": 93909,
+          "sha256": "81b927a96b456923418ab25c47d6bc09aa50c912131d848b178668d89eea8068"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root1_C0_vs_C2.frames.json",
+          "bytes": 93909,
+          "sha256": "786d11e9368d2930e71934efd1d4ca046f138e1c18b506ff016287851c5cdc9a"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root2_C0_vs_C1.frames.json",
+          "bytes": 93905,
+          "sha256": "e88549f590c49fc99741cccca760d3b089f0270576c701268f062ee8bfd498cf"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root2_C0_vs_C2.frames.json",
+          "bytes": 93905,
+          "sha256": "3b8aeba23872a2a21b121c0f76b8bb82957c85ee01da3bb0db36e299503c74b9"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root3_C0_vs_C1.frames.json",
+          "bytes": 93826,
+          "sha256": "f1ae6f00257417c77f8b33e36337902eb1641d5719fa1f3fd66883cbff08032b"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root3_C0_vs_C2.frames.json",
+          "bytes": 93875,
+          "sha256": "fe852e8a0b492df922e12b22e3826ab3b062f171b0d0cec774e4736a5a378eed"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root4_C0_vs_C1.frames.json",
+          "bytes": 93907,
+          "sha256": "aa2b9bcf98221d2840e85e77b602111f6d4fbbecb8f3763999b0bc05c493d368"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root4_C0_vs_C2.frames.json",
+          "bytes": 93907,
+          "sha256": "9d450e47e2d21db68bf61fa5d13d5b1c1b88e4cefaa369935be9b2ded038edec"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root5_C0_vs_C1.frames.json",
+          "bytes": 93547,
+          "sha256": "112adc0b73946914d5ef465025d5c754f0585c47d1e121040d2704c2a125ef02"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/root5_C0_vs_C2.frames.json",
+          "bytes": 93529,
+          "sha256": "d5618ec1d892df3e96fdfd7b1006ab2663d766103b48a76fc9928a3f49e112c8"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root0_C0_vs_C1_f00.png",
+          "bytes": 804608,
+          "sha256": "c072027f1c02ef3f65dbc702ad09ab5e119541c48b2344ddc6f16a9d3a8fb091"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root0_C0_vs_C1_f12.png",
+          "bytes": 833082,
+          "sha256": "b1b5eedc874f92a9b21ff892e1fafd5a65353cdb6eb56d6838d086bc3f930fd7"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root0_C0_vs_C1_f32.png",
+          "bytes": 867382,
+          "sha256": "f97363a3979c1a6a4122880979cc004e798935f67fb5423bf62872fabbe02752"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root0_C0_vs_C2_f00.png",
+          "bytes": 807638,
+          "sha256": "51afb87da27cbf04b7c30b62b297461afd835be344513ed6ce0de83912a39e81"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root0_C0_vs_C2_f12.png",
+          "bytes": 841943,
+          "sha256": "c1c2751148b51636f5b30695928d0429e26e4ea3e7d771fed3df9a63650ea24b"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root0_C0_vs_C2_f32.png",
+          "bytes": 875415,
+          "sha256": "4b2bc91cc93233f5ef6839e826646dfcc827615bcafbc49a2db30b157d460d60"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root1_C0_vs_C1_f00.png",
+          "bytes": 816701,
+          "sha256": "aef57a728ac45256ae2b0d12b50cd861259e7d9276028ea787a398b8934d4422"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root1_C0_vs_C1_f12.png",
+          "bytes": 833819,
+          "sha256": "1aa24d1115a4d68b467f5d7c0215b5c115bac32e825b981d0930c7253f993b7f"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root1_C0_vs_C1_f32.png",
+          "bytes": 855905,
+          "sha256": "e81d39152f30d5d4878036e8718f5380e4bb60a987021a112da4308594e122a8"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root1_C0_vs_C2_f00.png",
+          "bytes": 814986,
+          "sha256": "2ace1dd5029adc372cd91582394d59cb6fe57870e46a4262c73890b9e1018baa"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root1_C0_vs_C2_f12.png",
+          "bytes": 841658,
+          "sha256": "79bf62cf3ed1222b3a0ea9dfc7f554b71a6f7226ab105ba7f5f00653845d08d1"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root1_C0_vs_C2_f32.png",
+          "bytes": 861960,
+          "sha256": "611913c2c097e1b50884a1d4070a28ff4b2b5744a0068c1c410caa87b8afbe58"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root2_C0_vs_C1_f00.png",
+          "bytes": 805791,
+          "sha256": "36bb1e1171b8f1ce59116a03fe0721f8988ddb95866649bb888c5bf08cc0eaa4"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root2_C0_vs_C1_f12.png",
+          "bytes": 841209,
+          "sha256": "e0b0cf59109ec23387db56d9fd268b25fb3fae52efa58a42988ef7acca91d8e0"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root2_C0_vs_C1_f32.png",
+          "bytes": 862813,
+          "sha256": "0d2aff179437b5f86c2a061bac4d7b866b2e16928d8380b39813a094006f5ffd"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root2_C0_vs_C2_f00.png",
+          "bytes": 805257,
+          "sha256": "5d9bda9c093b663cbdbe8fa01e828b0ce0dadc9013f10e4b34385a7115df9139"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root2_C0_vs_C2_f12.png",
+          "bytes": 846657,
+          "sha256": "168852e7104cafa7b332f154fa2b0531bd1d03009030c6c3b496e7861cbb1edc"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root2_C0_vs_C2_f32.png",
+          "bytes": 867463,
+          "sha256": "e445787dc5bbbfa5db34417151796c1ad544cc7c49f468cc8c89ca9b5f477b1b"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root3_C0_vs_C1_f00.png",
+          "bytes": 831381,
+          "sha256": "f747a6b14d2502d2072a6bcf916afdb1233fb1742dbd9ab6b0ce3db174c6003e"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root3_C0_vs_C1_f12.png",
+          "bytes": 865518,
+          "sha256": "af02d1ce5042681ca2b8f77f25b25b1d1c190bbdf86c70c4a0b5fdea3a69900c"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root3_C0_vs_C1_f30.png",
+          "bytes": 884325,
+          "sha256": "e6b9a6ce4fcbb2287df156b313e3b105ac5a157b2beb447ba6e7ae7e9373b55a"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root3_C0_vs_C1_f32.png",
+          "bytes": 887830,
+          "sha256": "418b3b6245669a12abb7c9bf2028145432e8cc3117381a67884e850c24dbb1de"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root3_C0_vs_C2_f00.png",
+          "bytes": 829524,
+          "sha256": "7ed33fc4cf25570ba6a44ea5b19607c0c84416257fe41480249217407f94c269"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root3_C0_vs_C2_f12.png",
+          "bytes": 869678,
+          "sha256": "ffb3f9715a69dcb9067e9a089a5293e0e0f3a3fbd3b34f146031bd15a056854e"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root3_C0_vs_C2_f32.png",
+          "bytes": 892171,
+          "sha256": "6f7820a4aeb0ca71704d1ff70318285e3ce59848bc3bcaaf04d6114f38414d1e"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root4_C0_vs_C1_f00.png",
+          "bytes": 805432,
+          "sha256": "fbff1ecbc406367bdb18c9b8e4443fef59cb8f765784ff887d6a154ed87426cf"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root4_C0_vs_C1_f12.png",
+          "bytes": 833489,
+          "sha256": "c0da73da6d6c5b122b2c03d71e9f0117893463ee6982df232eb7dea0d498e3cd"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root4_C0_vs_C1_f32.png",
+          "bytes": 863156,
+          "sha256": "e5feae624e887c9187620d619033d6a75ebd3387366252f6fdc9160829cc4b62"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root4_C0_vs_C2_f00.png",
+          "bytes": 806939,
+          "sha256": "26466fec67070734155e953ad9505bf41c7a4503286fc32db741401d177b6f7b"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root4_C0_vs_C2_f12.png",
+          "bytes": 841979,
+          "sha256": "f565b2bc8e73d878473ea07b266f0386efcb702347bf33914b817a3678d8d6de"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root4_C0_vs_C2_f32.png",
+          "bytes": 869765,
+          "sha256": "90571535aa201cef8e5a3b4e4f8a66b24bf3983fab8ffcea954eb38036f43e1a"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C1_f00.png",
+          "bytes": 794446,
+          "sha256": "39d0398b1eaeb0b95e3d3ed9ad1949eea29e215bda770fbb396f1a45007a89e9"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C1_f12.png",
+          "bytes": 842102,
+          "sha256": "2a9192bd951656fb5bb3017fe2757d841e675cb5d2602bc623282f29e398aba7"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C1_f26.png",
+          "bytes": 849216,
+          "sha256": "dac2405d56e20b74dcbb2e2862dd56a0abd7650842780cadc03fb7b7aabc424d"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C1_f27.png",
+          "bytes": 840543,
+          "sha256": "77ec851c5f5ed87dc31e6c5d0c6a51de00e6592a0eb69bd7d2f1f8a23c58b33f"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C1_f32.png",
+          "bytes": 840213,
+          "sha256": "58488ba34e3824bc5266c6e7b7c1747c9e398d55c5c0383b6b99f5a1f9499aae"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C2_f00.png",
+          "bytes": 772669,
+          "sha256": "5694b88c48ee25856e398c19f3542618eec4e6c2cdf403f7a703d71587349c52"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C2_f12.png",
+          "bytes": 825504,
+          "sha256": "0123db5ffcb79efe0d2a43a82e30b340fd031d5ba41841be0de67105477c9745"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C2_f26.png",
+          "bytes": 837183,
+          "sha256": "59a768cadfcd705978f011fbcb2e4275dfc58cb2b68580ef518dc0b092e2229c"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/samples/root5_C0_vs_C2_f32.png",
+          "bytes": 836651,
+          "sha256": "7cf607abc0666b97c5a379b946bb1b397a94f20ba3415fe8ccdd03d8330f8d7c"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_review_20261019/visual_inspection.json",
+          "bytes": 872,
+          "sha256": "0894ab5ea7595907faf55f1a5fffdc74fcfff7875eae8770a273ed7ca894548d"
+        },
+        {
+          "path": "repository/scripts/review_native_microwave_l2.py",
+          "bytes": 20418,
+          "sha256": "78971e73b830ead5fb79534d8b1158f35fa79ad5e38d1be13fb5da9daf5d151d"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "file": "videos/root0_C0_vs_C1.mp4",
+      "bytes": 481922,
+      "sha256": "fe7d09d17da553cd05290ca711f072b87a6d4a81e5b605a88f43afc581fc32d3"
+    },
+    {
+      "file": "videos/root0_C0_vs_C2.mp4",
+      "bytes": 479210,
+      "sha256": "af93286e57ed691ca937290c438639b083763e53b09f1a69b0bdd31c73b62b09"
+    },
+    {
+      "file": "videos/root1_C0_vs_C1.mp4",
+      "bytes": 600547,
+      "sha256": "badaa858f9cda1289224850b5edebb82e2678b87b06ad0158f9f1f35eed818a1"
+    },
+    {
+      "file": "videos/root1_C0_vs_C2.mp4",
+      "bytes": 596685,
+      "sha256": "2f9f33d573014469f4b008f730d62a5ab0559b6a43ee22832e01ec49b24be52b"
+    },
+    {
+      "file": "videos/root2_C0_vs_C1.mp4",
+      "bytes": 614236,
+      "sha256": "7a29587409e931a682352be1fc17c749dd2fdec134272d2891877c693153b46b"
+    },
+    {
+      "file": "videos/root2_C0_vs_C2.mp4",
+      "bytes": 611426,
+      "sha256": "e816e4330ec0b832fb058f59202cb1dc222b82f610ee88722a316d842bb18f73"
+    },
+    {
+      "file": "videos/root3_C0_vs_C1.mp4",
+      "bytes": 635272,
+      "sha256": "e0302c4f734bd9a9f173991bbcbaee5ea6b617dc978566df6c351a1df738177a"
+    },
+    {
+      "file": "videos/root3_C0_vs_C2.mp4",
+      "bytes": 642416,
+      "sha256": "081b5a8e085abe09e09df5ef90dfe9261985d98f1bd3776b5a4e7587d132cb4c"
+    },
+    {
+      "file": "videos/root4_C0_vs_C1.mp4",
+      "bytes": 570728,
+      "sha256": "c2a75a932811ad5c60e9a32c7295f6757626fc23f8c74a6b57b3f25a9337f19a"
+    },
+    {
+      "file": "videos/root4_C0_vs_C2.mp4",
+      "bytes": 564014,
+      "sha256": "6400733ab22a34b5d7d6ca906fb161173558686a41da7765c9615426ce7240cc"
+    },
+    {
+      "file": "videos/root5_C0_vs_C1.mp4",
+      "bytes": 603927,
+      "sha256": "fd32ea3581aaef82bbcf91b8c088727598cb5ede14954fff2ed6c8b8ff1a5706"
+    },
+    {
+      "file": "videos/root5_C0_vs_C2.mp4",
+      "bytes": 597923,
+      "sha256": "19afcbc877872712c37a39ef9a5d04f774ddfed7c0bc9d9a5ec965e8416f7c02"
+    }
+  ]
+}
