@@ -26,3 +26,6 @@ Frame counts,20fps and1024×800resolution verified for all six videos; the final
 microwave-root1frame was inspected for readable goal/owner/budget/exit labels.
 `manifest.json` hashes the videos and source/check metadata. Original complete
 episode archive and independent recovery proof: `../native_long_l1_partial_20261019/`.
+
+Fresh remote-only recovery passed for all six videos, three source/check members
+and1,862rendering-diagnosis members. Proof: `remote_recovery_passed.json`.

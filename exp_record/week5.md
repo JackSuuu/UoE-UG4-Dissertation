@@ -3,6 +3,20 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct —22/24baselines complete; microwave satisfies frozen admission
+
+Microwave4/6native successes,2meaningful partial-progress failures, all6exact
+replays. It qualifies first under the predeclared task priority. Two pots3/6recorded
+successes with4wrist-only replay issues; two mugs2/5and drawer4/5, with all ten
+completed traces exact. Two-pot root3's wrist-only mismatch blocked two-mug and
+drawer root3; the last two untouched cells are being prepared for explicit
+completion. L2microwave protocol/runner preparation runs alongside that work;
+no candidate branch or framework comparison has executed.
+
+Annotated six-case videos and rendering-diagnosis artifacts independently recovered
+from a fresh non-partial GitHub clone:1,865archive members and6videos hash-exact.
+The first six full trajectories also independently recovered (4,128members).
+
 ### Update 19 Oct — Wrist-rendering diagnosis and explicit18-cell continuation
 
 11fresh zero-query replays/5,752frames show exact physical/controller/contact and

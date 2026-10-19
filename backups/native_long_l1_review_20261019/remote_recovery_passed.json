@@ -1,0 +1,20 @@
+{
+  "status": "remote_recovery_verified",
+  "commit": "e1d7861a383f8155e3ac72e58a4303d8227108ba",
+  "clone": "/tmp/opencode/native_long_review_remote_e1d7861",
+  "restore": "/tmp/opencode/native_long_review_restore_e1d7861",
+  "source": "fresh_remote_GitHub_shallow_nonpartial_clone_and_scoped_LFS_downloads_no_local_artifact_copy",
+  "started": 1792436966.6592295,
+  "ended": 1792437045.3747985,
+  "nonpartial_clone_confirmed": true,
+  "initial_LFS_cache_files": 0,
+  "verifier_sha256": "dd7423b1f1abcd9bac17d686f3ce304b82fbadb3fa2027b783750688963c4e0b",
+  "diagnosis_manifest_sha256": "3eaca68eeb054120d011819edf31a42fd71b9ccd9d28278755da8911587d34c5",
+  "review_manifest_sha256": "b7a64839244680edd307737886cbc6031f38aa056de4d91bd81e20c514c4ba37",
+  "verified_diagnosis_members": 1862,
+  "verified_review_members": 3,
+  "verified_videos": 6,
+  "total_downloaded_archive_and_video_bytes": 144836347,
+  "archive_member_and_restored_video_hashes_passed": true,
+  "full_execution_record": "/home/ami/scratch/native_long_review_remote_recovery_20261019.json"
+}

@@ -16,7 +16,14 @@ No RoboCasa checkpoint is selected or qualified yet. Two different model/platfor
 pairs demonstrate replication across pairs; separating model and platform effects
 requires an additional shared-platform/model comparison.
 
-Latest execution status: L1continuation launched under `53a74b3`, supervisor
+Latest execution status:22/24baseline episodes completed. Microwave4/6successes,
+two partial-progress failures, all6exact replay: the highest-priority task meets
+the frozen per-task L2admission rule. Two pots3/6recorded successes,4wrist-only
+replay issues. Two mugs2/5successes, drawer4/5; all ten completed tapes exact.
+Two-mug/drawer root3remain untouched after a further two-pot wrist-image mismatch;
+their final continuation and microwave L2protocol/runner preparation are underway.
+No L2model branches or L3framework comparisons have run. Historical continuation:
+L1continuation launched under `53a74b3`, supervisor
 3727880, in `/home/ami/scratch/native_long_l1_20261019_b`;18untouched cells on
 GPUs1/2/3. Combined reporting preflight passed and the first three two-mug workers
 entered setup/model loading. [Decision and diagnosis](native_long_l1_continuation_20261019.md).
@@ -153,7 +160,7 @@ are matched. A small task subset is not a full50-task benchmark result.
 Use detached supervised jobs, healthy physical GPUs1–3 with matching CUDA/EGL,
 batch1for the current actor, durable logs and per-episode status. User annual-plan
 edits remain untouched. Keep one status board with planned/running/completed/
-blocked states; launching a worker is not completion. Current states: L1continuing18cells,
+blocked states; launching a worker is not completion. Current states: L1completed22/24,
 R0research complete, L2/L3/R1planned. The physical-to-EGL index map is audited
 separately; equal numeric IDs are incorrect on this host. Future task or actor changes require an explicit reason
 and a versioned protocol, preserving the prior results.

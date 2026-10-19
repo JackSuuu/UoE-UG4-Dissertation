@@ -15,3 +15,5 @@ are explicitly cross-device. No policy query, policy training or repair action.
 [Reviewed decision](../../exp_record/agent_notes/native_long_l1_continuation_20261019.md).
 The18untouched baseline cells run separately; this archive makes no claim of their
 outcomes or framework improvement. Independent remote recovery is recorded later.
+Remote-only recovery now passed for all1,862members; proof:
+`../native_long_l1_review_20261019/remote_recovery_passed.json`.
