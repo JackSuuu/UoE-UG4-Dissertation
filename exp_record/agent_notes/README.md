@@ -4,6 +4,9 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Shared actor fridge transfer: no qualified fridge baseline](shared_actor_fridge90_results_20261019.md)
+* [Shared actor book qualification: native3/3, strict0/3](shared_actor_qualification_results_20261019.md)
+* [Genuine fridge data/checkpoints and embodiment compatibility audit](shared_actor_fridge_pretrained_audit_20261019.md)
 * [Next experiments: candidate usefulness, selection/rechecking attribution, then cloth](candidate_progress_verification_next_20261019.md)
 * [Fridge-primary development and framework-factor evidence](fridge_primary_mechanism_plan_20261019.md)
 * [Parallel experiments 1/2/3 and synchronized decision evidence](parallel_diagnosis_execution_20261019.md)

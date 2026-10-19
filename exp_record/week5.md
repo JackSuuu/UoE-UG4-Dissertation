@@ -3,6 +3,23 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Shared actor lane complete; fridge capability remains unqualified
+
+LIBERO90 OpenVLA fails both600-action fridge transfer tests: no closed-door opening
+and no open-door grasp. All1200actions replay exactly with token/named-normalization,
+RGB, contact and clock checks. Book controls add1800exact-replayed actions, with
+native success3/3and strict completion0/3. This is a negative capability result,
+not a framework experiment. The new actor has no in-domain positive control; its
+original robot-side camera/constant instructions differ from the framed/phase-prompt
+candidate pilot. Observation/domain and checkpoint quality remain unresolved.
+
+Remote fridge-trained policies/data do exist, but inspected embodiments/interfaces
+do not match fixed-base Panda OSC. No training or framework-only actor swap took
+place. Keep the candidate-usefulness diagnostic next; formal framework gain awaits
+a qualified shared actor. [Fridge results](agent_notes/shared_actor_fridge90_results_20261019.md)
+· [book results](agent_notes/shared_actor_qualification_results_20261019.md)
+· [resource audit](agent_notes/shared_actor_fridge_pretrained_audit_20261019.md).
+
 ### Update 19 Oct — Candidate usefulness and verification attribution before cloth
 
 User approves two explicit next questions: whether model candidates advance the

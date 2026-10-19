@@ -44,6 +44,25 @@ laid-out garment. Cooking remains a later extension, not an established capabili
 These are timestamped execution snapshots, not claims that running cohorts have
 finished. Existing pilots retain their frozen protocols and all failures.
 
+### Subsequent experiment-2 completion notification
+
+The actor lane has now returned: both LIBERO90 fridge runs finished600actions,
+with no closed-door opening or open-door grasp. All1200actions replay exactly;
+with the book controls this is3000exact-replayed model actions across five runs.
+The fridge normalization, token decoding, RGB, contacts and clocks also pass the
+artifact audit. No shared fridge actor is qualified and no adaptation was trained.
+
+The LIBERO90 test used the original robot-side camera and constant language;
+the GPU2 candidate pilot uses the frozen reframed camera and shared stage prompts.
+They are not matched weight-only comparisons. No in-domain positive control was
+run for the new third-party checkpoint, so the result does not isolate missing
+skill from observation/domain or checkpoint quality. Relevant fridge-trained
+resources exist, but inspected policies have incompatible embodiment/interfaces.
+See [fridge results](shared_actor_fridge90_results_20261019.md),
+[book results](shared_actor_qualification_results_20261019.md) and
+[remote-resource audit](shared_actor_fridge_pretrained_audit_20261019.md).
+The Q1 diagnostic remains useful; formal Q2 efficacy still needs shared capability.
+
 ## Q1: common-state candidate outcome diagnostic (next queued experiment)
 
 Assigned to the existing GPU2 experiment lane, to start **after** its frozen fridge
