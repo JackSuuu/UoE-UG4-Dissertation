@@ -1,0 +1,11 @@
+{
+  "status": "remote_download_timeout",
+  "artifact_commit": "27cda04",
+  "clone": "/tmp/opencode/native_long_launch_remote_27cda04",
+  "completed_stages": ["fresh_remote_clone", "sparse_checkout", "pinned_checkout"],
+  "failed_stage": "git_lfs_pull",
+  "timeout_seconds": 180,
+  "archives_after_timeout": "both remained Git LFS pointers",
+  "restoration_performed": false,
+  "interpretation": "Publication exists, but independent recovery is not yet verified. This download failure does not change robot experiment outcomes."
+}

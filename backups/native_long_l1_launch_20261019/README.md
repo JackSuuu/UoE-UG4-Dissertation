@@ -17,3 +17,7 @@ point-in-time health record, not a completion or framework-benefit claim.
 Verify/restore with `scripts/backup_research_progress.py`. Full episode artifacts
 will be archived separately after the cohort stops. Independent remote recovery
 is recorded separately once performed.
+
+First fresh-clone recovery attempt timed out during LFS download after180s; both
+archives remained pointers and no restoration was claimed. The failure is retained
+in `remote_recovery_attempt1.json`; a bounded600s download retry is running.
