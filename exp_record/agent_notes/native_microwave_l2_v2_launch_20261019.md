@@ -1,5 +1,9 @@
 # V2 actual launch: timing-only g+120 experiment
 
+**Completed:**18/18valid/exact cells,576calls, all six greedy controls reproduce.
+Failure-root gate false; no L2B. Root4/C2held-clear retention does not exceed its
+snapshot reference. See [v2results](native_microwave_l2_v2_results_20261019.md).
+
 Implementation and preparation frozen at `c7f0c74`. Detached command submitted:
 
 ```bash

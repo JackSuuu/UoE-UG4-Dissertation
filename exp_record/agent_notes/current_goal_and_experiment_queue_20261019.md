@@ -23,11 +23,11 @@ meets the original per-task admission rule and takes priority for frozen L2A.
 [Complete screening results](native_long_l1_results_20261019.md). L2Av1completed:
 18/18valid/exact branches,552calls; six greedy controls reproduce. Neither failure
 root has useful sampled32-action gain, so the precommitted L2Bgate is false.
-Stop v1. Timing-only v2(first grasp+120instead of+180) has been submitted under
-`c7f0c74` onGPU2/3, with the same six roots/sources/seeds/H32and576-call cap.
-[V2launch](native_microwave_l2_v2_launch_20261019.md). Root4's new boundary
-passed228-frame zero-query reconstruction and precedes original loss by15actions;
-preserving grasp alone still does not meet the useful-progress label. No framework gain.
+Stop v1. Timing-only v2also completed18/18valid/exact cells,576calls; unchanged
+failure-root gate false, so no L2B. Root4/C2retains held-clear level1but this equals
+its snapshot reference and is not useful progress. Only root3/C2(original-success
+control) gains containment. [V2results](native_microwave_l2_v2_results_20261019.md).
+Analyze retention before any separately frozen horizon/source revision. No framework gain.
 [L2A results](native_microwave_l2a_results_20261019.md).
 
 Historical22-cell checkpoint: Microwave4/6successes,
@@ -177,7 +177,7 @@ batch1for the current actor, durable logs and per-episode status. User annual-pl
 edits remain untouched. Keep one status board with planned/running/completed/
 blocked states; launching a worker is not completion. Current states: L1actor-complete24/24
 (four replay issues retained),
-R0research complete, L2Av1complete/gatefalse, L2Av2submitted, L3/R1planned.
+R0research complete, L2Av1/v2complete/gatesfalse, L3/R1planned.
 The physical-to-EGL index map is audited
 separately; equal numeric IDs are incorrect on this host. Future task or actor changes require an explicit reason
 and a versioned protocol, preserving the prior results.

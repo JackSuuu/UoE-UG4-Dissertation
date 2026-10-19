@@ -3,6 +3,15 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Timing-only v2 completes; retention is not recovery
+
+18/18valid/exact cells,576calls; six greedy controls reproduce. Failure-root gate
+remains false, so noL2B. Root4/C2retains held-clear level1whileC0/C1end at0,
+but its reference is1: U=false. Only root3/C2(original-success control) improves
+to durable containment. No local native completion. Both versions total1,128calls
+across36trajectories on six reused roots; no framework efficacy demonstrated.
+[V2results](agent_notes/native_microwave_l2_v2_results_20261019.md).
+
 ### Update 19 Oct — Timing-only v2 submitted after negative v1
 
 V1failure analysis separates restricted translational alternatives on root0from
