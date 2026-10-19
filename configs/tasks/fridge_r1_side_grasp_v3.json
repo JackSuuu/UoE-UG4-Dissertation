@@ -1,0 +1,11 @@
+[
+  {"name":"clear_door_above", "target":[-0.25,0.0,1.23], "steps":35},
+  {"name":"cross_above_door", "target":[-0.25,0.30,1.23], "steps":65},
+  {"name":"descend_vertical", "target":[-0.25,0.30,1.02], "steps":65},
+  {"name":"orient_low", "target":[-0.25,0.30,1.012], "orientation":[[0,0,1],[0,-1,0],[1,0,0]], "steps":70},
+  {"name":"align_shelf", "target":[-0.20,0.2475,1.012], "orientation":[[0,0,1],[0,-1,0],[1,0,0]], "steps":50},
+  {"name":"enter_open", "target":[-0.025,0.2475,1.012], "orientation":[[0,0,1],[0,-1,0],[1,0,0]], "steps":85},
+  {"name":"close", "target":[-0.025,0.2475,1.012], "orientation":[[0,0,1],[0,-1,0],[1,0,0]], "grip":1, "steps":30},
+  {"name":"lift", "target":[-0.025,0.2475,1.035], "orientation":[[0,0,1],[0,-1,0],[1,0,0]], "grip":1, "steps":40},
+  {"name":"extract", "target":[-0.24,0.2475,1.035], "orientation":[[0,0,1],[0,-1,0],[1,0,0]], "grip":1, "steps":85}
+]

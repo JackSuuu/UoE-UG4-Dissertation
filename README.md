@@ -6,6 +6,11 @@
 runtime wrapper monitors execution, applies bounded repair, and returns control
 to a frozen VLA. [Demo milestones and paper experiments](exp_record/agent_notes/two_demo_experiment_design_20261019.md).
 
+**Current research claim to test:** event/phase-aware closed-loop recovery beyond
+predictor-free simple feedback, with validated handoff and complete-task outcomes.
+Differentiable prediction is an optional, separately ablated mechanism.
+[Revised research and R1 diagnosis protocol](exp_record/agent_notes/closed_loop_recovery_r1_20261019.md).
+
 ```mermaid
 flowchart TB
     Task["Task instruction + current observation"] --> L1

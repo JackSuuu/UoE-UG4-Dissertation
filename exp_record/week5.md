@@ -3,6 +3,24 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Recovery-centered plan; R1 exposes scene and grasp constraints
+
+The revised [mainline and experiment ladder](agent_notes/closed_loop_recovery_r1_20261019.md)
+prioritizes event/phase-aware closed-loop recovery beyond simple feedback. Differentiable
+prediction is optional and separately ablated. A2's feedback arm shares prediction
+gating, and neither phase nor predictive-ranking benefit has been established.
+The Chinese root plan now makes this precedence explicit; the user's one-year notes
+and frozen R0 protocol remain untouched.
+
+[R1 engineering](agent_notes/fridge_r1_execution_20261019.md) finds that R0 exposes
+the fridge back wall to the robot. Versioned limits, approach/camera layout and
+gripper-palm clearance diagnostics precede actor comparisons. Five servo variants
+retain failures; v5 physically grasps, lifts and extracts the item by0.173744m with
+bilateral pad contact. This is a scripted feasibility probe, not a VLA success.
+Independent physics/controller replay is exact, but a few image hashes differ;
+raw pixel recording is added to diagnose that unresolved discrepancy. A frozen
+12-run native-actor prompt comparison is the next executable stage.
+
 ### Update 19 Oct — Commit to refrigerator and folding demonstrators; start robot validation
 
 **Completion addendum:** both240-query fridge trials finished and passed exact

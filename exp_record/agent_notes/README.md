@@ -4,6 +4,8 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Recovery-centered research plan and R1 protocol](closed_loop_recovery_r1_20261019.md)
+* [R1 refrigerator geometry, grasp and actor diagnosis](fridge_r1_execution_20261019.md)
 * [Two demonstrators: refrigerator and folding; paper experiment design](two_demo_experiment_design_20261019.md)
 * [First refrigerator scene and native-actor probe](fridge_development_execution_20261019.md)
 * [Unstructured capability, data provenance and OOD experiments](unstructured_ood_design_20261019.md)
