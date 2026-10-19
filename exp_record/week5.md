@@ -3,6 +3,18 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — User confirms capability-first reliability, not new skill learning
+
+The user clarifies that the framework should improve tasks the frozen VLA already
+performs. Suspend current unqualified fridge efficacy trials and move new actor
+training out of the next main stage. First reproduce a capable native actor/task
+pair, then register recoverable perturbations and test matched nominal/simple/
+verification policies. Fridge stays preferred; a native CloseFridge skill is only
+a component check, not complete retrieval. RoboCasa/LeRobot are absent in the
+current runtime; a pinned native-environment readiness check precedes qualification.
+No new actor rollout or training is launched by this planning update.
+[Admission gates, scope and evaluation ordering](agent_notes/capability_first_reliability_plan_20261019.md).
+
 ### Update 19 Oct — Camera cohort finalized: no grasp benefit, narrow initial diversity
 
 All six original/framed actor runs finish600actions without grasp/native success;
