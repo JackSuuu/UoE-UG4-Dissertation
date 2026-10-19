@@ -1,0 +1,189 @@
+{
+  "schema": 1,
+  "scope": "read_only_R0_source_research_no_actor_queries",
+  "archives": [
+    {
+      "file": "archives/readiness_sources.tar.gz",
+      "bytes": 216487,
+      "sha256": "7631f95ccefb5d04f1fc5e93441298a7e437e13b2cdacaadfd89ab8e3ac601e8",
+      "members": [
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_common.py",
+          "bytes": 6036,
+          "sha256": "7715e6465e38585a3806a0537ea339300bf3bbd1d4988144a6db4040315e73fa"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_config.json",
+          "bytes": 738,
+          "sha256": "bed652745ff23c1f43c446337f0da78615bbf3ef8e24a5268e3f36ee62784b3e"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_deployment.md",
+          "bytes": 1079,
+          "sha256": "779241d80a99d067ee4bb8d02c53df344a846dfea25f7c71058ac1ec1e34a8cc"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_entry.py",
+          "bytes": 3026,
+          "sha256": "c967183feca8af0595c6dea099764d30f133d4d33db222fee4cdf8f1e2a429f0"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_eval_readme.md",
+          "bytes": 3379,
+          "sha256": "abf488d6ea28119d74660828f244b5207859ec7640258306da12f6a584abec93"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_model.py",
+          "bytes": 16751,
+          "sha256": "2ae7ca54e1a871b74ddd6e5ae564914e222e0a0483235bed3fd8d0f0d2bdf050"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_policy.py",
+          "bytes": 8249,
+          "sha256": "415194ec79e054817693f7d0201e20a6e6efbffda25e2c66abb4177e4f77f453"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_requirements.txt",
+          "bytes": 232,
+          "sha256": "3cddcadc7c21ac0d3faec155e7335c3b3824364a1d290a0b2c6df6289458aedc"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_summary_i.json",
+          "bytes": 6448,
+          "sha256": "56dea829bcfdeb49ced6b4b9197f009e6f22d57252670b5e89f20ebb6c27adce"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/awomo_summary_v.json",
+          "bytes": 6450,
+          "sha256": "861409304363082873ce2acc9351f2ee5240407e50e2c60ab19e913acb834cfb"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/checkpoint_inventory.json",
+          "bytes": 43264,
+          "sha256": "b1bc57dde0a935f5ad61bf4f9807deca6373ea25a2d2f96f504ce9848db0fb91"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/checkvla.html",
+          "bytes": 543463,
+          "sha256": "ed487f6ec335fcda6808da370617f99d149fd94ca3bd6be7731c59274a890e58"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/checkvla_github_search.json",
+          "bytes": 10329,
+          "sha256": "4df12d36fe0820910388060de909f8ff167646c71c760a4a273de20d4f00742c"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/checkvla_hf_search.json",
+          "bytes": 2,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/gr00t_data_config.py",
+          "bytes": 32392,
+          "sha256": "83107d265debc96b4215e31a10fbb522f090203dec2672b0a7a1969e5ee33ee9"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/gr00t_run_eval.py",
+          "bytes": 6816,
+          "sha256": "db6a47a61837c7cbc66e823855ffb582e76f1ba8c33846f2b7c66aa9b3c7a95e"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/gr00t_target_metadata.json",
+          "bytes": 14127,
+          "sha256": "0c4a350867f621ed3192f81c282eb7d23c05f275f347fd0deed3531afa29dbcf"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/openpi_config.py",
+          "bytes": 58258,
+          "sha256": "b82bd22cfc12abb3e71faf486193f619ecad2aeb525d2a7dc619028ca419c1da"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/openpi_eval.py",
+          "bytes": 7594,
+          "sha256": "8c4edf073b97db0a7c996a15925802c3ad2a079d71500d74eae4af5620884e4f"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/openpi_policy.py",
+          "bytes": 5753,
+          "sha256": "60af69ba36d36c6743d5a594c83c67efcbc4e2f5d4d698f1d426371c8f746bd0"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/prepare_coffee.py",
+          "bytes": 2760,
+          "sha256": "2185183f0d46bc7d98d66978cc74901c19ed18872c8e94eaccfe8b913dd55ac3"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/robocasa_dataset_registry.py",
+          "bytes": 94640,
+          "sha256": "23e8e31bb56bae80de86c34eafadfe32dd1e1eba6608376152ba9fdda5532a4b"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/robocasa_env_utils.py",
+          "bytes": 60279,
+          "sha256": "2543d593897008b104c0fa7bb83c987675b4e583ae519b324de98f99c71a5fcd"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/robocasa_installation.md",
+          "bytes": 1515,
+          "sha256": "1ea6b48e24b51eaa0ef49db52258082c02fc261014506350b67fa99509c92a7e"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/robocasa_setup.py",
+          "bytes": 1372,
+          "sha256": "9bb7055c345a50c69417c9978277f82a0d782ae17cb369939a35e5faaa6a83e5"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/smolvla_dataset_info.json",
+          "bytes": 4668,
+          "sha256": "0c59862abfa755590660c3873e0c4e260bb2b652a263b74f58b9eeda226368b3"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/smolvla_train_config.json",
+          "bytes": 7025,
+          "sha256": "6632e899d3bb270a73427fc70acfa1dd9ff8758ab2d955dab4402addaf2bcb5c"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/sources_manifest.json",
+          "bytes": 9636,
+          "sha256": "71386de342026b664f6e71301ebd82e43399da2af2057357c986ee8e7972277a"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/steam_in_microwave.py",
+          "bytes": 3955,
+          "sha256": "6809b6017d0d34b55668a4344c68a19a8b9b09712210ca239503621572a64c31"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/store_leftovers_in_bowl.py",
+          "bytes": 5088,
+          "sha256": "c85cb4e01e40a630740c751f90c5a65dd0bbb152888a2680683dd51431b71078"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/xiaomi_config.json",
+          "bytes": 5580,
+          "sha256": "ff3fdf7b128376b3c52626c4874c3748d3ce087afa81af5cb1b574683ad0bedf"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/xiaomi_deployment.md",
+          "bytes": 3204,
+          "sha256": "fbf9cc866bf30b9f7d7b9f2edd0725fa29042ed3ca88791099fb06a9737e5854"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/xiaomi_entry.py",
+          "bytes": 17701,
+          "sha256": "18d70fade4c990210dc5b9c34285c8030eac142d9c332066c73335e1c0aaa28e"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/xiaomi_preprocessor_config.json",
+          "bytes": 30430,
+          "sha256": "4df0fa9082421de3ef332c01f61bc32038248ebe84e59fb8c7c633d67cecb1cf"
+        },
+        {
+          "path": "scratch/robocasa365_readiness_20261019/xiaomi_summary.json",
+          "bytes": 411246,
+          "sha256": "98c5e472243b0962789beb73372889e8bd1313aa107b2499e17ce4b2ba234656"
+        }
+      ]
+    }
+  ],
+  "videos": []
+}
