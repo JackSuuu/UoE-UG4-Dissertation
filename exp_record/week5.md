@@ -3,6 +3,31 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Commit to refrigerator and folding demonstrators; start robot validation
+
+User clarifies that the priority is a useful, convincing two-task demonstration and
+paper evaluation, not a requirement to establish six-family zero-shot capability
+before running anything. [Two-demo design](agent_notes/two_demo_experiment_design_20261019.md)
+defines complete fridge opening/retrieval/placement/closing and cloth single-fold →
+garment-fold milestones. The paper question is whether the same five-layer runtime
+architecture improves completion across task-specific adapters. Per-task actor
+training is permitted if disclosed and shared/frozen across all comparison arms;
+task-specific repair development is not mislabeled unseen-family transfer.
+
+Added the five-layer Mermaid diagram at the top of the root README, including
+feedback, phase-aware handoff, task adapters and the target asynchronous actor / fast
+feedback scheduler. The figure explicitly distinguishes the tested synchronous
+assembly implementation from the not-yet-implemented dual-rate real-time schedule.
+
+Actual scene work: discovered the existing articulated mini-fridge in local LIBERO,
+built a Panda/food-item task and ran closed/open-door reset/settle checks. Food is
+supported on the shelf; initial camera exposed a poor side view, corrected by moving
+and rotating the fixture before actor trials. The asset's door joint has disabled
+limits; this is recorded as an environment issue for the next scene version, not a
+robot safety metric. Both seed-0, 240-query native-actor probes launched detached on
+healthy GPUs1/2. No scripted grasp prefix or intervention. These are development
+diagnostics, not a hybrid comparison or final full-task score. [Execution record](agent_notes/fridge_development_execution_20261019.md).
+
 ### Update 19 Oct — A2 paired videos and unstructured probe independently recovered
 
 Pushed results, five representative comparison MP4s, U0probe and record reorganization

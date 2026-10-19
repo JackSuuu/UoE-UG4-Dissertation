@@ -1,0 +1,25 @@
+(define (problem LIBERO_Kitchen_Tabletop_Manipulation)
+  (:domain robosuite)
+  (:language open the fridge, take the cream cheese box out of the fridge and place it on the table, then close the fridge)
+  (:regions
+    (fridge_init_region
+      (:target kitchen_table)
+      (:ranges ((-0.01 0.14 0.01 0.16)))
+      (:yaw_rotation ((1.5707963267948966 1.5707963267948966))))
+    (placement_region
+      (:target kitchen_table)
+      (:ranges ((-0.15 -0.25 0.10 -0.05)))
+      (:rgba (0.2 0.8 0.2 0.25)))
+    (middle_region (:target short_fridge_1)))
+  (:fixtures
+    kitchen_table - kitchen_table
+    short_fridge_1 - short_fridge)
+  (:objects cream_cheese_1 - cream_cheese)
+  (:obj_of_interest cream_cheese_1 short_fridge_1)
+  (:init
+    (On short_fridge_1 kitchen_table_fridge_init_region)
+    (In cream_cheese_1 short_fridge_1_middle_region)
+    (Close short_fridge_1))
+  (:goal
+    (And (On cream_cheese_1 kitchen_table_placement_region) (Close short_fridge_1)))
+)

@@ -1,10 +1,45 @@
 # UoE-UG4-Dissertation
 
+## Five-layer runtime repair architecture
+
+**Demo targets: refrigerator retrieval and cloth / garment folding.** The shared
+runtime wrapper monitors execution, applies bounded repair, and returns control
+to a frozen VLA. [Demo milestones and paper experiments](exp_record/agent_notes/two_demo_experiment_design_20261019.md).
+
+```mermaid
+flowchart TB
+    Task["Task instruction + current observation"] --> L1
+    L1["1 · High-level subgoals<br/>Track milestones and phase transitions"] --> L2
+    L2["2 · Frozen OpenVLA backbone<br/>Timestamped nominal action proposal"] --> L3
+    Obs["Fresh sensor / state estimate<br/>RGB, proprioception, declared contact inputs"] --> L3
+    L1 --> L3
+    L3["3 · Risk and event-boundary monitor<br/>Progress, slip, clearance, contact, uncertainty"] --> L4
+    L4{"4 · Dual-mode gate<br/>Nominal tracking ↔ contact / transition management"}
+    L4 -->|"Nominal: accept fresh proposal"| Exec
+    L4 -->|"Risk / transition: bounded intervention"| L5
+    L5["5 · Local repair<br/>Measured feedback by default<br/>Predictive ranking only when trusted and better"] --> Exec
+    L5 -->|"Exit conditions satisfied: hand back"| L4
+    Exec["Robot execution + full-task completion check"] --> Obs
+    Exec -->|"Update task progress"| L1
+    L4 -.->|"Target: request fresh proposal; reject stale actions"| L2
+    Adapter["Task adapters<br/>Fridge: hinge, grasp, shelf clearance<br/>Cloth: grasp, material shape, fold alignment"] -.-> L1
+    Adapter -.-> L3
+    Adapter -.-> L5
+```
+
+**Implementation status:** assembly-specific monitoring/gating/repair has been
+evaluated; refrigerator and folding adapters are under development. Current runs
+query the actor synchronously (~0.71 s/action). **Target real-time design:** a slow
+asynchronous VLA proposal loop and a fast fresh-feedback monitor/repair loop, with
+proposal-age limits, exclusive action ownership and measured response deadlines.
+This dual-rate scheduler is not yet implemented or validated. Simulator state used
+by current controllers is privileged; sensor-based estimation is a separate stage.
+
 Undergraduate (UG4) dissertation project — University of Edinburgh.
 
 **Title:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization in Embodied Agents
 
-**Current focus (19 Oct 2026):** test runtime repair on unstructured, long-horizon manipulation with explicit data provenance and OOD splits. [Week5](exp_record/week5.md) · [six-task capability/OOD design](exp_record/agent_notes/unstructured_ood_design_20261019.md). The current assembly controller is task-specific; deformable/cutting/cleaning capability and real-time operation are not established.
+**Current focus (19 Oct 2026):** build two demonstrators—refrigerator retrieval and cloth/garment folding—and test whether the shared runtime framework improves complete-task recovery. [Week5](exp_record/week5.md) · [demo and paper design](exp_record/agent_notes/two_demo_experiment_design_20261019.md) · [data/OOD contract](exp_record/agent_notes/unstructured_ood_design_20261019.md). Refrigerator scene checks passed and native-actor development probes have been launched; folding manipulation and dual-rate real-time control remain implementation milestones.
 
 **Locked architecture:** high-level subgoals → frozen OpenVLA → risk/event-boundary monitoring → dual-mode gate → bounded local repair. [Authoritative design](exp_record/agent_notes/libero_framework_design_20261014.md) · [layer-by-layer implementation / next long-horizon task](exp_record/agent_notes/libero_five_layer_implementation_20261014.md).
 

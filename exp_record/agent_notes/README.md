@@ -4,6 +4,8 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Two demonstrators: refrigerator and folding; paper experiment design](two_demo_experiment_design_20261019.md)
+* [First refrigerator scene and native-actor probe](fridge_development_execution_20261019.md)
 * [Unstructured capability, data provenance and OOD experiments](unstructured_ood_design_20261019.md)
 * [A2 complete results and paired videos](assembly_a2_results_20261019.md)
 * [A2 frozen protocol](assembly_a2_protocol_20261016.md), [launch](assembly_a2_execution_20261016.md)
