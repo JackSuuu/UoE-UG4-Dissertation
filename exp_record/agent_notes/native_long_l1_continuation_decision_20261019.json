@@ -1,0 +1,14 @@
+{
+  "decision": "continue_untouched_18",
+  "reviewed_by": "coordinating assistant under user's explicit parallel experiment authorization",
+  "reviewed_reason": "Eleven fresh zero-query replays demonstrate wrist-only rendering nondeterminism at fixed sensor-time state. All physics/integration/controller/contact/diagnostic and actor-agentview evidence remains exact. Proceed with the eighteen untouched actor cells to complete planned coverage; retain all original strict replay failures, unchanged actor and rendering, unchanged exact-replay gate for new cells, and provisional task selection. No completed actor episode is repeated or replaced.",
+  "out": "/home/ami/scratch/native_long_l1_20261019_b",
+  "prior_plan_sha256": "a0b75f98044948a55488c76529e9fcac47808bcc34c2b5faf83c2996f3efe98c",
+  "prior_launch_sha256": "c57688a4d490f065cd3cacb6a0242448f5737758cd972e4d5f3379a477ebd36f",
+  "continuation_script_sha256": "8d198cb95ca32c82ff0d527b603ae68eaa4390108756d93bd7d53e89b0cf7918",
+  "report_source_sha256": "22dc112ec87b4010bc040f13875f9e1f602ba5527a6fd2c26f6df3d553027a47",
+  "diagnostic_evidence": "/home/ami/scratch/native_long_replay_diagnosis_20261019/README.md",
+  "report_validation": "/tmp/opencode/native_external_report_5wul0xov/report",
+  "report_regression": "/tmp/opencode/native_report_regression_ys5zf6aa",
+  "note": "The combined supervisor remains complete_with_issues even if all new eighteen cells verify, because three original exact-replay failures remain. Raw successes never imply fully released/stationary endpoints or framework benefit."
+}

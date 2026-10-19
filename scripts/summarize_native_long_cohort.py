@@ -110,7 +110,7 @@ def identify(path, status, run):
                  (status.get('task'), status.get('task_key'), status.get('scene'),
                   status.get('task_name'), args.get('task'), args.get('scene'))
                  if task_key(value) is not None), None)
-    relative = str(path.parent.relative_to(run))
+    relative = str(path.parent.relative_to(run)) if path.parent.is_relative_to(run) else path.parent.name
     if task is None:
         task = next((task_key(key) for key in (*TASKS, *ALIASES) if re.search(
             r'(?:^|/)' + re.escape(key) + r'(?:/|_root[_-]?\d|[_-]\d|$)', relative)), None)
@@ -127,13 +127,28 @@ def identify(path, status, run):
 
 def discover(run):
     found, issues, ignored = {}, [], []
-    for path in sorted(run.rglob('status.json')):
+    paths = set(run.rglob('status.json'))
+    launch = read_json(run / 'launch.json', issues) if (run / 'launch.json').exists() else {}
+    expected = {}
+    for job in launch.get('jobs', []):
+        directory = job.get('episode_dir')
+        if not directory:
+            continue
+        path = Path(directory)
+        path = (path if path.is_absolute() else run / path) / 'status.json'
+        expected[path] = (task_key(job.get('task')), integer(job.get('init_index')))
+        if path.exists():
+            paths.add(path)
+    for path in sorted(paths):
+        relative = path.relative_to(run) if path.is_relative_to(run) else Path(path.parent.name) / path.name
         if any(part in ('source', 'sources', 'replay', 'report') or part.startswith('replay_')
-               for part in path.relative_to(run).parts[:-1]):
+               for part in relative.parts[:-1]):
             continue
         local = []
         status = read_json(path, local)
         task, root = identify(path, status, run)
+        if path in expected and (task, root) != expected[path]:
+            local.append(f'Status identity {(task, root)} disagrees with planned {expected[path]}: {path}')
         if task in TASKS and root in ROOTS:
             found.setdefault((task, root), []).append((path.parent, status, local))
         else:

@@ -149,7 +149,7 @@ are matched. A small task subset is not a full50-task benchmark result.
 Use detached supervised jobs, healthy physical GPUs1–3 with matching CUDA/EGL,
 batch1for the current actor, durable logs and per-episode status. User annual-plan
 edits remain untouched. Keep one status board with planned/running/completed/
-blocked states; launching a worker is not completion. Current states: L1running,
+blocked states; launching a worker is not completion. Current states: L1paused6/24,
 R0research complete, L2/L3/R1planned. The physical-to-EGL index map is audited
 separately; equal numeric IDs are incorrect on this host. Future task or actor changes require an explicit reason
 and a versioned protocol, preserving the prior results.
