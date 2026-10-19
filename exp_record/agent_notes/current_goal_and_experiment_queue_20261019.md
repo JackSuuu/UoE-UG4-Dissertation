@@ -7,6 +7,10 @@ Bare VLA4/6; measured-verification framework4/6; one rescue(root4), one harm(roo
 Queries/actions:2531baseline,2557framework (5088total), plus120initialization
 actions and zero-query replays. All six full paired videos are in the run's
 `report/`; publication directory is `backups/framework_comparison_20261019`.
+Published at`d1a48a1`; independently restored7archives/12,676members/6videos
+from a fresh remote clone, then recomputed all5088query/action/input associations,
+aggregate outcomes and six paired divergence points. Recovery proof is in the
+same publication directory. No further model calls were used for this audit.
 
 Framework actually intervened on roots0/3/4, using160/160/32model-generated repair
 actions. Roots1/2/5never intervened and their complete scientific trajectories

@@ -38,5 +38,7 @@ actions. Root1/2/5complete scientific trajectories are identical across arms.
 Seven archives preserve12,676members: preparation, controller tests, all12episodes,
 model inputs/outputs/actions, full physics/image tapes, independent replay proofs,
 supervisor logs and reports. Six videos are also directly browsable through LFS.
-`manifest.json` pins every member. Local archive verification passed. Fresh remote
-recovery is recorded in the current experiment queue once completed.
+`manifest.json` pins every member. Local verification and fresh remote recovery
+passed:7archives,12,676restored members and6videos from`d1a48a1`. Recomputed
+all5088model-query/action/input associations and aggregate outcomes from the
+restored artifacts. [Recovery proof](remote_recovery.json).

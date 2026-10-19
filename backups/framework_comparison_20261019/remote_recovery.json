@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "remote_commit": "d1a48a14cec2374b54f76368aa1a8d7ecccfa1e0",
+  "fresh_remote_clone": "/tmp/opencode/framework_remote_d1a48a1",
+  "restored_to": "/tmp/opencode/framework_restore_d1a48a1",
+  "archives": 7,
+  "restored_members": 12676,
+  "videos": 6,
+  "all_query_action_input_provenance_checked": true,
+  "counts": {
+    "baseline": {
+      "successes": 4,
+      "actions": 2531,
+      "queries": 2531,
+      "verified": 0
+    },
+    "framework": {
+      "successes": 4,
+      "actions": 2557,
+      "queries": 2557,
+      "verified": 0
+    }
+  },
+  "paired_identity": [
+    {
+      "root": 0,
+      "first_scientific_divergence": 254,
+      "first_intervention": 254
+    },
+    {
+      "root": 1,
+      "first_scientific_divergence": null,
+      "first_intervention": null
+    },
+    {
+      "root": 2,
+      "first_scientific_divergence": null,
+      "first_intervention": null
+    },
+    {
+      "root": 3,
+      "first_scientific_divergence": 199,
+      "first_intervention": 199
+    },
+    {
+      "root": 4,
+      "first_scientific_divergence": 148,
+      "first_intervention": 148
+    },
+    {
+      "root": 5,
+      "first_scientific_divergence": null,
+      "first_intervention": null
+    }
+  ]
+}
