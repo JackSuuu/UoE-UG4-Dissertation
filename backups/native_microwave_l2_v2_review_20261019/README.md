@@ -27,3 +27,6 @@ Frame counts, identical initial PNGs,143unchanged source hashes and readable
 overlays passed checks. The52-member evidence archive includes frame maps,
 inspection samples, checks and renderer. Raw tapes govern exactness; video is
 lossy. Local archive/video hashes passed; independent remote recovery is separate.
+
+Independent remote-only recovery passed at `fdb1ef7`: all52metadata members and
+12videos match their recorded sizes and hashes. See `remote_recovery_passed.json`.

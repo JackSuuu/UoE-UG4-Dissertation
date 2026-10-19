@@ -19,3 +19,6 @@ Original full baseline suffixes remain in separately verified L1archives.
 Local archive/member hashes passed. Remote recovery and paired videos are tracked
 separately. This is development candidate-reachability evidence, not framework
 efficacy, verified repair, or actual downstream handoff.
+
+Remote-only recovery passed at `bebaa38`:8archives/16,074members,2,274,615,402
+archive bytes, all member sizes/hashes exact. See `remote_recovery_passed.json`.

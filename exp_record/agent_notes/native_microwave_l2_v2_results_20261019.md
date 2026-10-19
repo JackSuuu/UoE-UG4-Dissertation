@@ -30,8 +30,9 @@ Run: `/home/ami/scratch/native_microwave_l2a_20261019_v2`.
 Audit: `/home/ami/scratch/native_microwave_l2a_20261019_v2_audit`.
 All36horizon labels and exact/provenance/gate evidence are in `summary.json`.
 Full bank published at `bebaa38`:8archives/16,074members, locally hash-verified;
-independent remote recovery is in progress. Twelve paired videos and52metadata
-members are locally verified in `backups/native_microwave_l2_v2_review_20261019`.
+independent remote recovery passed for all16,074members. Twelve paired videos
+and52metadata members were also independently restored and hash-verified in
+`backups/native_microwave_l2_v2_review_20261019` (remote pin `fdb1ef7`).
 Detailed mechanism analysis will determine the next single-factor experiment.
 
 [Completed mechanism analysis](native_microwave_l2_v2_results_analysis_20261019.md)

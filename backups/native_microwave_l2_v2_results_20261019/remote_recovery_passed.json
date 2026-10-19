@@ -1,0 +1,15 @@
+{
+  "status": "remote_recovery_verified",
+  "commit": "bebaa386b36055e907ffd484941e02567a230e77",
+  "clone": "/tmp/opencode/native_microwave_l2v2_results_remote_bebaa38",
+  "restore": "/tmp/opencode/native_microwave_l2v2_results_restore_bebaa38",
+  "source": "fresh_remote_shallow_nonpartial_clone_scoped_LFS_no_original_local_artifact_copy",
+  "archives": 8,
+  "verified_members": 16074,
+  "archive_bytes": 2274615402,
+  "all_archive_sha256_and_LFS_OIDs_matched": true,
+  "all_member_hashes_and_sizes_passed": true,
+  "verifier": "pinned remote commit scripts/backup_research_progress.py",
+  "full_execution_record": "/home/ami/scratch/native_microwave_l2v2_results_remote_recovery_20261019.json",
+  "scope": "All18v2 branches and576calls; no L2B; review videos separately recovered."
+}

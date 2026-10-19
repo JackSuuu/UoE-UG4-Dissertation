@@ -1,0 +1,17 @@
+{
+  "status": "remote_recovery_verified",
+  "commit": "fdb1ef7734b8337f9cf0627bd180ab000606064f",
+  "clone": "/tmp/opencode/native_microwave_l2v2_review_remote_fdb1ef7",
+  "restore": "/tmp/opencode/native_microwave_l2v2_review_restore_fdb1ef7",
+  "source": "fresh_remote_shallow_nonpartial_clone_scoped_LFS_no_original_local_artifact_copy",
+  "archives": 1,
+  "verified_members": 52,
+  "verified_videos": 12,
+  "downloaded_archive_and_video_bytes": 36699036,
+  "restored_files": 64,
+  "restored_bytes": 41003475,
+  "all_sizes_and_sha256_hashes_passed": true,
+  "verifier": "pinned remote commit scripts/backup_research_progress.py",
+  "full_execution_record": "/home/ami/scratch/native_microwave_l2v2_review_remote_recovery_20261019.json",
+  "scope": "V2 paired review evidence only; full raw candidate bank has separate recovery."
+}
