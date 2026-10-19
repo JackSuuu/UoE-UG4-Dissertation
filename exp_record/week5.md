@@ -5,6 +5,13 @@ Newest entry at the top. [Weekly index](README.md). Detailed records live in
 
 ### Update 19 Oct — Timing-only v2 completes; retention is not recovery
 
+Follow-up analysis: root4/C2maximum displacement0.954mm, persistent microwave
+contact and no containment despite maintained grasp. C1loses grasp but stays
+elevated; C0falls. Root0has broader sampled action diversity yet no useful lift.
+All36labels independently reproduced. Twelve paired videos published at`fdb1ef7`.
+Preparing a final horizon-only H96test (1,728new calls, exact fresh v2H32prefixes,
+all matched controls); stop further horizon tuning if negative.
+
 18/18valid/exact cells,576calls; six greedy controls reproduce. Failure-root gate
 remains false, so noL2B. Root4/C2retains held-clear level1whileC0/C1end at0,
 but its reference is1: U=false. Only root3/C2(original-success control) improves

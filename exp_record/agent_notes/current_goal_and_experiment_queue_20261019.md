@@ -27,7 +27,10 @@ Stop v1. Timing-only v2also completed18/18valid/exact cells,576calls; unchanged
 failure-root gate false, so no L2B. Root4/C2retains held-clear level1but this equals
 its snapshot reference and is not useful progress. Only root3/C2(original-success
 control) gains containment. [V2results](native_microwave_l2_v2_results_20261019.md).
-Analyze retention before any separately frozen horizon/source revision. No framework gain.
+Root4/C2moves at most0.954mm while retaining grasp: contact-constrained plateau,
+not measured delayed placement. Prepare one final horizon-only v3(H96,1,728new
+calls), same states/sources/seeds, every fresh H32prefix must exactly match v2
+before query33. If valid and negative, stop further horizon tuning. No framework gain.
 [L2A results](native_microwave_l2a_results_20261019.md).
 
 Historical22-cell checkpoint: Microwave4/6successes,

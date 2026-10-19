@@ -33,3 +33,17 @@ Full bank published at `bebaa38`:8archives/16,074members, locally hash-verified;
 independent remote recovery is in progress. Twelve paired videos and52metadata
 members are locally verified in `backups/native_microwave_l2_v2_review_20261019`.
 Detailed mechanism analysis will determine the next single-factor experiment.
+
+[Completed mechanism analysis](native_microwave_l2_v2_results_analysis_20261019.md)
+finds root4/C2 retains grasp at all observed endpoints but moves at most0.954mm
+from the snapshot, with persistent microwave contact and no containment. C0loses
+grasp at local15and falls; C1loses at17but remains elevated against geometry.
+Thus retention is consistent with a contact-constrained plateau. Root0has broader
+sampled coordinate diversity than v1but still no useful lift. All36labels were
+independently recomputed exactly; downstream successful-control harms remain unknown.
+
+One final, separately preregistered v3 horizon test is being prepared: H32→H96,
+same g+120states/sources/seeds, all18fresh branches, at most1,728new calls. Every
+fresh first32-action prefix must reproduce v2exactly before query33. This tests
+delayed placement versus continued stall; no positive result is assumed. A valid
+negative result ends this same-source/g+120/horizon-extension line.
