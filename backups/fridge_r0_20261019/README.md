@@ -8,6 +8,8 @@ scene. All failed outcomes are retained. No task-family OOD or real-time claim.
 * [Execution and diagnosis](../../exp_record/agent_notes/fridge_development_execution_20261019.md)
 * [Two-demo/paper design](../../exp_record/agent_notes/two_demo_experiment_design_20261019.md)
 * [Measured diagnosis](diagnosis.json), [archive manifest](manifest.json)
+* [Independent GitHub/LFS recovery](remote_verified.json): all79archive members
+  match their recorded SHA256 hashes after remote download.
 * `r0.tar.gz`: three initial scene versions, two actor runs, raw videos, states,
   full-decision logs, exact replay proofs and frozen source copies.
 
