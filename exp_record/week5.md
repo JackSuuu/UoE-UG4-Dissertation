@@ -3,6 +3,16 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — L2A completed; precommitted continuation gate false
+
+18/18valid exact branches,552/576calls. Six fresh greedy controls reproduce their
+original suffix. Failure roots0/4have no useful12/32-action candidate progress;
+L2Bis therefore not launched. Root3's samples finish in29/31actions versus original
+35, but that root was already a nominal success. Boundary action uniqueness by
+root is1/1/1/3/3/2; duplicates retained. No snapshot-true predicate loss in the
+local bank, no downstream-harm guarantee. Stop v1; analyze source/timing before a
+separately frozen one-mechanism revision. [Results](agent_notes/native_microwave_l2a_results_20261019.md).
+
 ### Update 19 Oct — L2A model experiment submitted on two GPUs
 
 Source/plan `7e63364`; supervisor3739844, physicalGPU2/3. First health snapshot

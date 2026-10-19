@@ -1,5 +1,9 @@
 # Actual L2A execution launch
 
+**Completed:**18/18branches valid and exact,552calls. Both original failure roots
+have no useful sampled32-action gain; the frozen L2Bgate is false. Stop v1.
+See [results](native_microwave_l2a_results_20261019.md).
+
 Frozen implementation/plan at commit `7e63364`. Detached command submitted:
 
 ```bash
