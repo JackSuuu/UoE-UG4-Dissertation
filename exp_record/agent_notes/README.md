@@ -4,6 +4,8 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Authoritative goal and result-driven queue: LIBERO mechanisms, RoboCasa365 replication](current_goal_and_experiment_queue_20261019.md)
+
 * [Current: fixed OpenVLA + native LIBERO-Long task selection and experiment plan](openvla_native_long_selection_20261019.md)
 * [Cancelled alternate setup: deletion record, zero actor actions](robocasa_cancelled_20261019.json)
 * [Earlier capability-first proposal (execution route superseded)](capability_first_reliability_plan_20261019.md)

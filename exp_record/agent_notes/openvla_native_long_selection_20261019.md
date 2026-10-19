@@ -1,5 +1,10 @@
 # Fixed OpenVLA + native LIBERO-Long: task selection and next experiment
 
+> Later scope reconciliation: the user has added RoboCasa365/native-policy
+> replication as a second platform. The LIBERO cohort below remains the immediate
+> mechanism-development plan; its blanket second-platform exclusion is superseded.
+> See [the current goal and experiment queue](current_goal_and_experiment_queue_20261019.md).
+
 ## Latest user decision
 
 Keep the existing OpenVLA model and its native LIBERO tasks. Choose complex,

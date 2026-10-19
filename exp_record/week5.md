@@ -5,6 +5,14 @@ Newest entry at the top. [Weekly index](README.md). Detailed records live in
 
 ### Update 19 Oct — Fixed OpenVLA + native LIBERO-Long; alternate setup removed
 
+> Later discussion adds RoboCasa365 as a second-platform replication track while
+> retaining LIBERO as immediate mechanism development. The consolidated
+> [current goal and queue](agent_notes/current_goal_and_experiment_queue_20261019.md)
+> orders24native baselines, early-state candidate diagnostics, paired framework
+> revisions and held-out confirmation. Second-platform model readiness can be
+> researched alongside baseline execution. This consolidation launches no rollouts
+> or installation; the cleanup below remains a historical fact.
+
 User explicitly rejects changing model/platform and asks for harder native tasks.
 The existing LIBERO10 checkpoint is already the official LIBERO-Long model. Paper
 Table12reports53.7%±1.3%SE suite success; no per-task local rate follows from it.
