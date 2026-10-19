@@ -4,7 +4,9 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
-* [Capability-first reliability: qualify a learned task, then perturb and repair](capability_first_reliability_plan_20261019.md)
+* [Current: fixed OpenVLA + native LIBERO-Long task selection and experiment plan](openvla_native_long_selection_20261019.md)
+* [Cancelled alternate setup: deletion record, zero actor actions](robocasa_cancelled_20261019.json)
+* [Earlier capability-first proposal (execution route superseded)](capability_first_reliability_plan_20261019.md)
 * [Completed fixed-camera cohort: no grasps, exact pairing, limited seed diversity](fridge_observation_results_20261019.md)
 * [Failure audit: late triggering, non-goal-directed selection and corrective ordering](fridge_failure_accountability_20261019.md)
 * [Q1 completed: no useful candidates in three exact-common-state opportunities](../experiment3_fridge_q1_20261019/results.md)

@@ -1,0 +1,547 @@
+{
+  "scope": "task_inventory_and_protocol_research_no_rollouts",
+  "actor": "openvla/openvla-7b-finetuned-libero-10",
+  "revision": "80970322773f81baa2e22fe495d0487b93a05cfa",
+  "suite": "libero_10 (LIBERO-Long)",
+  "source_map_sha256": "0c950df0a785aa55de968bb38ccd865d2017f71ddbe6f48cfd05ac0742b6d62d",
+  "tasks": [
+    {
+      "source_list_index": 0,
+      "task_name": "LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket",
+      "language": "put both the alphabet soup and the tomato sauce in the basket",
+      "init": [
+        [
+          "On",
+          "alphabet_soup_1",
+          "living_room_table_alphabet_soup_init_region"
+        ],
+        [
+          "On",
+          "cream_cheese_1",
+          "living_room_table_cream_cheese_init_region"
+        ],
+        [
+          "On",
+          "tomato_sauce_1",
+          "living_room_table_tomato_sauce_init_region"
+        ],
+        [
+          "On",
+          "ketchup_1",
+          "living_room_table_ketchup_init_region"
+        ],
+        [
+          "On",
+          "milk_1",
+          "living_room_table_milk_init_region"
+        ],
+        [
+          "On",
+          "orange_juice_1",
+          "living_room_table_orange_juice_init_region"
+        ],
+        [
+          "On",
+          "butter_1",
+          "living_room_table_butter_init_region"
+        ],
+        [
+          "On",
+          "basket_1",
+          "living_room_table_basket_init_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "In",
+            "alphabet_soup_1",
+            "basket_1_contain_region"
+          ],
+          [
+            "In",
+            "tomato_sauce_1",
+            "basket_1_contain_region"
+          ]
+        ]
+      ],
+      "bddl_sha256": "2e661058917f683a25bce480015197f0a2c1911bcbc2b9dd9d947199069c9618",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket.pruned_init",
+      "initial_file_sha256": "1899fe54c51e24a41d5f9e32254730d6777f4894ab68e0e873f1fa7ae2062030",
+      "shortlist_rank": null
+    },
+    {
+      "source_list_index": 1,
+      "task_name": "LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket",
+      "language": "put both the cream cheese box and the butter in the basket",
+      "init": [
+        [
+          "On",
+          "alphabet_soup_1",
+          "living_room_table_alphabet_soup_init_region"
+        ],
+        [
+          "On",
+          "cream_cheese_1",
+          "living_room_table_cream_cheese_init_region"
+        ],
+        [
+          "On",
+          "tomato_sauce_1",
+          "living_room_table_tomato_sauce_init_region"
+        ],
+        [
+          "On",
+          "ketchup_1",
+          "living_room_table_ketchup_init_region"
+        ],
+        [
+          "On",
+          "milk_1",
+          "living_room_table_milk_init_region"
+        ],
+        [
+          "On",
+          "orange_juice_1",
+          "living_room_table_orange_juice_init_region"
+        ],
+        [
+          "On",
+          "butter_1",
+          "living_room_table_butter_init_region"
+        ],
+        [
+          "On",
+          "basket_1",
+          "living_room_table_basket_init_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "In",
+            "cream_cheese_1",
+            "basket_1_contain_region"
+          ],
+          [
+            "In",
+            "butter_1",
+            "basket_1_contain_region"
+          ]
+        ]
+      ],
+      "bddl_sha256": "3f552805c7ab34c44debcf38a48b8131d6fee3011dd86c039650b84e0f77d058",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket.pruned_init",
+      "initial_file_sha256": "f8ac06ea8f43bb328d40cba1e6a9767da2f8f5386fd7ff3f845c64a96bf6d2ce",
+      "shortlist_rank": null
+    },
+    {
+      "source_list_index": 2,
+      "task_name": "KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it",
+      "language": "turn on the stove and put the moka pot on it",
+      "init": [
+        [
+          "On",
+          "flat_stove_1",
+          "kitchen_table_flat_stove_init_region"
+        ],
+        [
+          "On",
+          "chefmate_8_frypan_1",
+          "kitchen_table_frypan_init_region"
+        ],
+        [
+          "On",
+          "moka_pot_1",
+          "kitchen_table_moka_pot_init_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "Turnon",
+            "flat_stove_1"
+          ],
+          [
+            "On",
+            "moka_pot_1",
+            "flat_stove_1_cook_region"
+          ]
+        ]
+      ],
+      "bddl_sha256": "491835cc2eb6956f7ce3d1ee4e266377116168fe453e6529fe105e3b0333635d",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it.pruned_init",
+      "initial_file_sha256": "02a8401f8d59f5447fc8c5a16f4c158dd8c426c3eaed6779927a2a53e9abf3c5",
+      "shortlist_rank": null
+    },
+    {
+      "source_list_index": 3,
+      "task_name": "KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it",
+      "language": "put the black bowl in the bottom drawer of the cabinet and close it",
+      "init": [
+        [
+          "On",
+          "akita_black_bowl_1",
+          "kitchen_table_akita_black_bowl_init_region"
+        ],
+        [
+          "On",
+          "wine_bottle_1",
+          "kitchen_table_wine_bottle_init_region"
+        ],
+        [
+          "On",
+          "white_cabinet_1",
+          "kitchen_table_white_cabinet_init_region"
+        ],
+        [
+          "On",
+          "wine_rack_1",
+          "kitchen_table_wine_rack_init_region"
+        ],
+        [
+          "Open",
+          "white_cabinet_1_bottom_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "Close",
+            "white_cabinet_1_bottom_region"
+          ],
+          [
+            "In",
+            "akita_black_bowl_1",
+            "white_cabinet_1_bottom_region"
+          ]
+        ]
+      ],
+      "bddl_sha256": "5255fe54d7f25fad4dee8fa30a30033d8cb908f1708d953c91ab609264fb4fb8",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it.pruned_init",
+      "initial_file_sha256": "e98ded151f64a036c74c872336dd09b968c379f3c9db7bc333aba37e7c235b86",
+      "shortlist_rank": 4
+    },
+    {
+      "source_list_index": 4,
+      "task_name": "LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate",
+      "language": "put the white mug on the left plate and put the yellow and white mug on the right plate",
+      "init": [
+        [
+          "On",
+          "plate_1",
+          "living_room_table_plate_left_region"
+        ],
+        [
+          "On",
+          "plate_2",
+          "living_room_table_plate_right_region"
+        ],
+        [
+          "On",
+          "red_coffee_mug_1",
+          "living_room_table_red_coffee_mug_init_region"
+        ],
+        [
+          "On",
+          "white_yellow_mug_1",
+          "living_room_table_white_yellow_mug_init_region"
+        ],
+        [
+          "On",
+          "porcelain_mug_1",
+          "living_room_table_porcelain_mug_init_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "On",
+            "porcelain_mug_1",
+            "plate_1"
+          ],
+          [
+            "On",
+            "white_yellow_mug_1",
+            "plate_2"
+          ]
+        ]
+      ],
+      "bddl_sha256": "0c6749b920bff1e1efe47ffb0e0b801a3e6959a650e710f376dd2b812c74e865",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate.pruned_init",
+      "initial_file_sha256": "b6f20784b381c75d715f4fdaadda1fb460cbe24adcbad76f381a009419b8474e",
+      "shortlist_rank": 3
+    },
+    {
+      "source_list_index": 5,
+      "task_name": "STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy",
+      "language": "pick up the book and place it in the back compartment of the caddy",
+      "init": [
+        [
+          "On",
+          "desk_caddy_1",
+          "study_table_desk_caddy_init_region"
+        ],
+        [
+          "On",
+          "black_book_1",
+          "study_table_black_book_init_region"
+        ],
+        [
+          "On",
+          "white_yellow_mug_1",
+          "study_table_white_yellow_mug_init_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "In",
+            "black_book_1",
+            "desk_caddy_1_back_contain_region"
+          ]
+        ]
+      ],
+      "bddl_sha256": "07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy.pruned_init",
+      "initial_file_sha256": "6cd3937ba18d64e72223222af36888d26ea201840415adbc4dae590454d0a5a8",
+      "shortlist_rank": null
+    },
+    {
+      "source_list_index": 6,
+      "task_name": "LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate",
+      "language": "put the white mug on the plate and put the chocolate pudding to the right of the plate",
+      "init": [
+        [
+          "On",
+          "plate_1",
+          "living_room_table_plate_init_region"
+        ],
+        [
+          "On",
+          "red_coffee_mug_1",
+          "living_room_table_red_coffee_mug_init_region"
+        ],
+        [
+          "On",
+          "chocolate_pudding_1",
+          "living_room_table_chocolate_pudding_init_region"
+        ],
+        [
+          "On",
+          "porcelain_mug_1",
+          "living_room_table_porcelain_mug_init_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "On",
+            "porcelain_mug_1",
+            "plate_1"
+          ],
+          [
+            "On",
+            "chocolate_pudding_1",
+            "living_room_table_plate_right_region"
+          ]
+        ]
+      ],
+      "bddl_sha256": "dbc9464b424cdc9b771b92d0b8a8c185b1b539f6a4133b323dc858bcf8f6a9c2",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate.pruned_init",
+      "initial_file_sha256": "6e811394c4ff9a43ae23515d8512e9b657c04344b94dd5baed121b595490514f",
+      "shortlist_rank": null
+    },
+    {
+      "source_list_index": 7,
+      "task_name": "LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket",
+      "language": "put both the alphabet soup and the cream cheese box in the basket",
+      "init": [
+        [
+          "On",
+          "alphabet_soup_1",
+          "living_room_table_alphabet_soup_init_region"
+        ],
+        [
+          "On",
+          "cream_cheese_1",
+          "living_room_table_cream_cheese_init_region"
+        ],
+        [
+          "On",
+          "tomato_sauce_1",
+          "living_room_table_tomato_sauce_init_region"
+        ],
+        [
+          "On",
+          "ketchup_1",
+          "living_room_table_ketchup_init_region"
+        ],
+        [
+          "On",
+          "basket_1",
+          "living_room_table_basket_init_region"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "In",
+            "alphabet_soup_1",
+            "basket_1_contain_region"
+          ],
+          [
+            "In",
+            "cream_cheese_1",
+            "basket_1_contain_region"
+          ]
+        ]
+      ],
+      "bddl_sha256": "e27ab37f512fe42e35771d6130f531e6a9656929e7b4c60b348b81360cf5675d",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket.pruned_init",
+      "initial_file_sha256": "2113ea5923fcbbe1b57b428383934496072f062729d0b72d3021573d55d25abc",
+      "shortlist_rank": null
+    },
+    {
+      "source_list_index": 8,
+      "task_name": "KITCHEN_SCENE8_put_both_moka_pots_on_the_stove",
+      "language": "put both moka pots on the stove",
+      "init": [
+        [
+          "On",
+          "flat_stove_1",
+          "kitchen_table_flat_stove_init_region"
+        ],
+        [
+          "On",
+          "moka_pot_1",
+          "kitchen_table_moka_pot_right_init_region"
+        ],
+        [
+          "On",
+          "moka_pot_2",
+          "kitchen_table_moka_pot_left_init_region"
+        ],
+        [
+          "Turnon",
+          "flat_stove_1"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "On",
+            "moka_pot_1",
+            "flat_stove_1_cook_region"
+          ],
+          [
+            "On",
+            "moka_pot_2",
+            "flat_stove_1_cook_region"
+          ],
+          [
+            "Turnon",
+            "flat_stove_1"
+          ]
+        ]
+      ],
+      "bddl_sha256": "ae1299a707d3e810096ad648948c517de40474bcdacca93a15e17d191e34454a",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/KITCHEN_SCENE8_put_both_moka_pots_on_the_stove.pruned_init",
+      "initial_file_sha256": "44f992e911c84a1340589510ecdaf947a4872966f7678c8364d8bb5d13dc4dac",
+      "shortlist_rank": 2
+    },
+    {
+      "source_list_index": 9,
+      "task_name": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+      "language": "put the yellow and white mug in the microwave and close it",
+      "init": [
+        [
+          "On",
+          "porcelain_mug_1",
+          "kitchen_table_porcelain_mug_init_region"
+        ],
+        [
+          "On",
+          "white_yellow_mug_1",
+          "kitchen_table_white_yellow_mug_init_region"
+        ],
+        [
+          "On",
+          "microwave_1",
+          "kitchen_table_microwave_init_region"
+        ],
+        [
+          "Open",
+          "microwave_1"
+        ]
+      ],
+      "goal": [
+        [
+          "And",
+          [
+            "In",
+            "white_yellow_mug_1",
+            "microwave_1_heating_region"
+          ],
+          [
+            "Close",
+            "microwave_1"
+          ]
+        ]
+      ],
+      "bddl_sha256": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+      "runtime_bddl_identical": true,
+      "initial_file": "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.pruned_init",
+      "initial_file_sha256": "6b75c8d4d1e1c40b5d99c78ceea380d99ccffb0a484a4cb2d3153488a0afbbe2",
+      "shortlist_rank": 1
+    }
+  ],
+  "sources": {
+    "model_card.md": {
+      "url": "https://huggingface.co/openvla/openvla-7b-finetuned-libero-10/raw/80970322773f81baa2e22fe495d0487b93a05cfa/README.md",
+      "bytes": 1865,
+      "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+    },
+    "paper.html": {
+      "url": "https://arxiv.org/html/2406.09246v3",
+      "bytes": 418510,
+      "sha256": "4140a5a011b44be7f3d79951b238452ed1a765fffefd9735b4824b136e3ebaf0"
+    },
+    "official_eval.py.txt": {
+      "url": "https://raw.githubusercontent.com/openvla/openvla/main/experiments/robot/libero/run_libero_eval.py",
+      "bytes": 11936,
+      "sha256": "369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77"
+    }
+  },
+  "actor_queries": 0,
+  "robot_actions": 0,
+  "published_suite_success": {
+    "mean_percent": 53.7,
+    "standard_error_percent": 1.3,
+    "source": "OpenVLA arXiv:2406.09246v3 Appendix E Table 12",
+    "interpretation": "suite-level published result, not per-task or local reproduction"
+  },
+  "official_budget": {
+    "model_actions": 520,
+    "initial_settle_actions": 10
+  },
+  "task_specific_failure_rates": "not established by this audit"
+}

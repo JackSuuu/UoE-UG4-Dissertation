@@ -1,0 +1,264 @@
+{
+  "status": "cancelled_and_new_setup_removed_at_user_request",
+  "time": 1792427317.866191,
+  "new_actor_queries": 0,
+  "new_robot_actions": 0,
+  "training_runs": 0,
+  "removed": [
+    {
+      "path": "/home/ami/scratch/native_robocasa_qualification_20261019",
+      "regular_file_bytes": 12676013058,
+      "absent_after": true
+    },
+    {
+      "path": "/home/ami/.cache/huggingface/hub/models--lerobot--smolvla_robocasa",
+      "regular_file_bytes": 17194,
+      "absent_after": true
+    },
+    {
+      "path": "/home/ami/.cache/huggingface/hub/models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct",
+      "regular_file_bytes": 4876189,
+      "absent_after": true
+    }
+  ],
+  "metadata_before_removal": {
+    "source_pins.json": {
+      "lerobot": {
+        "url": "https://github.com/huggingface/lerobot.git",
+        "revision": "b192c02dda8d7fa8560bfc15f9e8dae0f714e26e"
+      },
+      "robocasa": {
+        "url": "https://github.com/robocasa/robocasa.git",
+        "revision": "6f90063c0ec2b9916bbd977368b54c98d9c2d908"
+      },
+      "robosuite": {
+        "url": "https://github.com/ARISE-Initiative/robosuite.git",
+        "revision": "5ce6643f3092639d08f7b0f90ed1c6a84f50552c"
+      }
+    },
+    "setup_launch.json": {
+      "time": 1792426767.6335757,
+      "jobs": {
+        "dependencies": 3698589,
+        "assets": 3698590
+      }
+    },
+    "assets_status.json": {
+      "mode": "assets",
+      "started": 1792426767.6861336,
+      "pid": 3698590,
+      "state": "completed",
+      "result": {
+        "textures": {
+          "url": "https://utexas.box.com/shared/static/4i85ileasdvstmlln5sbvzptz7keuoy1.zip",
+          "bytes": 543180421,
+          "sha256": "ba3a4dcef96e199cbd601c7cdb7eb46077fb6672611b7ac74c25a191bf0be392",
+          "members": 236,
+          "destination": "/home/ami/scratch/native_robocasa_qualification_20261019/robocasa/robocasa/models/assets",
+          "elapsed_s": 34.25909185409546
+        },
+        "generative_textures": {
+          "url": "https://utexas.box.com/shared/static/ebaad09k82tmfmlq6ohdkmrh8izl9vn5.zip",
+          "bytes": 1184675536,
+          "sha256": "bc05095af306222d9a799a9b0b5b16662aa546998622ee8fd3072566ea4c31ec",
+          "members": 906,
+          "destination": "/home/ami/scratch/native_robocasa_qualification_20261019/robocasa/robocasa/models/assets",
+          "elapsed_s": 108.18384408950806
+        },
+        "fixtures_lightwheel": {
+          "url": "https://utexas.box.com/shared/static/idbncsadpnaz1jfl4i6m8qejawk7p9pi.zip",
+          "bytes": 529745465,
+          "sha256": "62c1c87776edda9b7c42dda7b00781a1e5a7f90acc3e49d06c39c9545cbd6c3e",
+          "members": 7421,
+          "destination": "/home/ami/scratch/native_robocasa_qualification_20261019/robocasa/robocasa/models/assets",
+          "elapsed_s": 38.47358727455139
+        },
+        "objects_lightwheel": {
+          "url": "https://utexas.box.com/shared/static/vckqvvkh1z8t69k8qcpcmee6k66stii4.zip",
+          "bytes": 791939656,
+          "sha256": "a1db739b0e80fc4d56d4be27d89dba3aa60000e9648c5607874700e0f14b7955",
+          "members": 20354,
+          "destination": "/home/ami/scratch/native_robocasa_qualification_20261019/robocasa/robocasa/models/assets/objects",
+          "elapsed_s": 87.44147229194641
+        }
+      },
+      "ended": 1792426875.8724556
+    },
+    "dependencies_status.json": {
+      "mode": "dependencies",
+      "started": 1792426767.683624,
+      "pid": 3698589,
+      "state": "running"
+    },
+    "model_paths.json": [
+      {
+        "repo": "lerobot/smolvla_robocasa",
+        "revision": "f7af588d11e30b0069f200792fb285904b74c80b",
+        "path": "/home/ami/.cache/huggingface/hub/models--lerobot--smolvla_robocasa/snapshots/f7af588d11e30b0069f200792fb285904b74c80b"
+      },
+      {
+        "repo": "HuggingFaceTB/SmolVLM2-500M-Video-Instruct",
+        "revision": "7b375e1b73b11138ff12fe22c8f2822d8fe03467",
+        "path": "/home/ami/.cache/huggingface/hub/models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/snapshots/7b375e1b73b11138ff12fe22c8f2822d8fe03467"
+      }
+    ]
+  },
+  "installation_note": "Dependency process terminated with SIGTERM; its historical running status was stale. Assets and model downloads completed before cancellation. No native RoboCasa evaluation was launched.",
+  "preserved": "Existing OpenVLA/LIBERO environments, checkpoints, historical research evidence and user annual-plan edit",
+  "removed_exclusively_referenced_shared_cache_blobs": [
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/a7/a7de73c36b2e65563f300e908a9f69ddfb5a3932019011d3bdf2549ff7501bf6",
+      "bytes": 189235499,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/4696831e7181d72fd7736b0c119cd53141a46c940ca24c03ce05ba623b402dd4"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/f3/f3f4471bdb51209db302de3995a3d2ed3d3b6642bd0e04f59e81e962b5f68689",
+      "bytes": 1450426001,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/2c8743f020606f401ffa0c0ec7a7055da6ad7518b981ecdb060b62da3a60ec45"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/dc/dcf2f424151f107b2f1c7cbafed1350c9338ecfdb6b1dca3707505fc452f8f6d",
+      "bytes": 229119396,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/69561703c23810bf58cd4fe81b2427df95339a5b55743f62d1e767bd4a83a1e2"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/92/92064608a1420cfa454336bd9611ddc1d819c2342f3abbd6f3c1b2a51f93d7d3",
+      "bytes": 94617986,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/bc9e790f2e90ebf3b1efe84ec82530d6c12e27b0a103703fe865a5faf24f2336"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/c4/c471d279876b37718d392b9a4c7f264116b8bb9db64888c5cb421c8d6e7604ab",
+      "bytes": 98966476,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/d931eb204e21ab4d905d62976aeaefe20360076f52760ba55b84a5b35088284f"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/cd/cd671c19dcd21844ca1690eb5dd08fc6a79f64f764c0d7c3086a382fa2957708",
+      "bytes": 365039224,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/7d0a356562c7e474012c5e383de58d44d487a517c04190d26e5891db86cb2b1f"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/cd/cdf91161e1806650da2ac31bd5b9510127bd901ca9e2d34b9ae4548fd1ec291b",
+      "bytes": 2029990624,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/b9bfd456c9472c0acd5719d6e514c4b859891af205ee1a736552fd3497b8b0c3"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/69/6952732ab10a37abec24117c29726be99f97040b0713c7b4c8e0ef07f79f1167",
+      "bytes": 906712520,
+      "previous_references": [
+        "models--lerobot--smolvla_robocasa/blobs/96ae6628166a7dc1b41f8a2d92176c48e394988294b0b44755409acbb3f9bc2b"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/77/77e83f5b6488e0f295fa9143e9b123f59a68a4b92941344d8aeedb89d7aba0cd",
+      "bytes": 205328508,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/6265f0aa571ad624f67b5f19b79f1562b4bfd4e6db812815c1794172985b3e5e"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/36/3626fcd8fc59f116166a5943c67251ef2b2fd185c0eb7657569aa4e4614a395a",
+      "bytes": 189235518,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/dc09c2b3264365dcc8de8cae7513b640a40624cd038ede20a0ffcac0f82ecb11"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/a5/a588548d6d12d938b6512dd5a75419ebedc508a863273870c785aa1c8f350796",
+      "bytes": 196731834,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/9faa8f3b4a922514a2e7773f20e99fdf7dc7b4eeeeaca1fb82cf18f7945ca23a"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/7c/7c63c8a57523e286ec9b08ef5260a1f56dedd7249c5d4853fda4237599d6d1c0",
+      "bytes": 393190822,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/d4797cdad0ba1958e7dfcc5e074d0b02ae3c4df80cce17ecab282dde37e0ddc1"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/16/16a9cf492d206fe460f9afd9017a79b52e9a17e0202b5a40d58eeb4f81a25076",
+      "bytes": 66734064,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/2fb71423919f04851bdac96588267e6a9db95903ca94fcd7b7a0f51b5cd53d8a"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/ee/ee33e291d2d82b6a72289bdfd368dbc55f479cf108686df1b729b8f2c8e428cd",
+      "bytes": 206503532,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/c20111c92ecee932e85de34e0afd9341f60bb210456bc5d8a4809c055dd5bc15"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/5d/5dd710bf6b61e0e52e2b39fc11bbec42b82a44e36b83d6f13d0913f3ab6f6829",
+      "bytes": 365039344,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/a5aaa12d62d43a05a4a7456864c508d0b3c17c55a654c05fb568f6da0b7d212d"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/b5/b5c55248d9838b3dfebbdaf1a8671894aaa516fcc2a5dc808997fc98bb077298",
+      "bytes": 57691749,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/f7e811e4cef2c214c80ea7572eacb102ea396a881fb9170577b20c10fe4fa485"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/b9/b98df5c3fbd31d93212762b846c5cde330bbe4f6b30c369064daf0e73a90fb83",
+      "bytes": 9656,
+      "previous_references": [
+        "models--lerobot--smolvla_robocasa/blobs/fa18666b4621709db49c7d29108801e4ddd11c666609323413148a6c2328a620"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/6d/6d5dd94f677229d98b7f4aae78c555cfea525dc5b00d62368d1aa5156a4fcda3",
+      "bytes": 98966521,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/8e8e2950e6837a71a3d972a14eb287d8875c4c2d5e8cfd6001bf185115295cdd"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/e5/e5e635c1792b71ea3b092f109d036a64b9efa0d63cc036821fefa490dc5454ba",
+      "bytes": 94618005,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/a330cc444671c47e6a2de559405404043b2a49b015188250eca8c0c88d263b73"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/e9/e902fe5e32349f6e255adf26184004bd50f9b27921d35f4771c2d48fb2dfda79",
+      "bytes": 60688904,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/749b03c76adc0311fdc2d347ace3c9f78c792816e519c3e28a17f12f27cd496d"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/71/71a1b1717d2cbe98d2b1c927129fd31ad35625fa18923d426790c4b3a76115d5",
+      "bytes": 725489385,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/ace259f4ff3a070cfcefc41c6b4ddaf52a5c1b988348004da13043ff4a6de5ae"
+      ]
+    },
+    {
+      "shared_blob": "/home/ami/.cache/huggingface/hub/blobs/e0/e0f8b4fd6e07fb6896d79ec24262f864062235237ce340f88d9a51894413bec9",
+      "bytes": 47309344,
+      "previous_references": [
+        "models--HuggingFaceTB--SmolVLM2-500M-Video-Instruct/blobs/0e6d275190cd1cdf3339225b98b42116871ddc4e0c3210801f02bf2a1d2e164a"
+      ]
+    }
+  ]
+}

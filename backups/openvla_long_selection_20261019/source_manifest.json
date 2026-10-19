@@ -1,0 +1,18 @@
+{
+  "inventory.json": {
+    "bytes": 16521,
+    "sha256": "3b3bf407b1bcd2040f4d764bfc43264f9010c3ad28891324434991dcecfc8c77"
+  },
+  "model_card.md": {
+    "bytes": 1865,
+    "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+  },
+  "official_eval.py.txt": {
+    "bytes": 11936,
+    "sha256": "369d9fc3d59067998ebfadafbd516872c7ff6f9f06a0a48cda8b6ca48051de77"
+  },
+  "paper.html": {
+    "bytes": 418510,
+    "sha256": "4140a5a011b44be7f3d79951b238452ed1a765fffefd9735b4824b136e3ebaf0"
+  }
+}

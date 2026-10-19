@@ -1,5 +1,12 @@
 # Capability-first reliability study: improve a task the frozen VLA already performs
 
+> **Superseded execution proposal, retained as history.** The user subsequently
+> fixed the existing OpenVLA checkpoint and native LIBERO-Long tasks, cancelled
+> RoboCasa and requested deletion of its new setup. Use
+> [the native long-task plan](openvla_native_long_selection_20261019.md) instead.
+> Its natural-failure development screening replaces this document's suggested
+>8/10admission and perturbation-first ordering. No alternate actor was evaluated.
+
 ## User clarification and scope correction
 
 The user explicitly confirms that the intended contribution is making an already

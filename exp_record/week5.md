@@ -3,6 +3,28 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Fixed OpenVLA + native LIBERO-Long; alternate setup removed
+
+User explicitly rejects changing model/platform and asks for harder native tasks.
+The existing LIBERO10 checkpoint is already the official LIBERO-Long model. Paper
+Table12reports53.7%±1.3%SE suite success; no per-task local rate follows from it.
+Read-only audit checks all10native task definitions/runtime hashes and initial-file
+availability. Recommended cohort: microwave mug+close, two pots on stove, two mugs
+on designated plates, bowl+drawer close. Microwave/drawer start open; stove starts
+on in the two-pot task. Do not invent extra native subgoals or mandatory object order.
+
+Proposed next screen:4tasks×6development roots0–5, original task predicates,
+520model actions+10settle steps, same frozen weights/official TF4.40.1 inference.
+Keep existing calibration/training/confirmation reservations. Seek demonstrated
+competence plus natural local failures rather than requiring8/10success and first
+adding disturbances. The24-episode screen is **not launched** in this update.
+[Selection, prior evidence and attribution plan](agent_notes/openvla_native_long_selection_20261019.md).
+
+RoboCasa preparation had downloaded assets/alternate weights but made zero actor
+queries/actions. Installation was terminated; its dedicated source/environment/
+assets tree, alternate model caches and exclusively referenced shared blobs are
+deleted. Existing OpenVLA/LIBERO preserved. [Deletion record](agent_notes/robocasa_cancelled_20261019.json).
+
 ### Update 19 Oct — User confirms capability-first reliability, not new skill learning
 
 The user clarifies that the framework should improve tasks the frozen VLA already
