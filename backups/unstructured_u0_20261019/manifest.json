@@ -1,0 +1,47 @@
+{
+  "status": "local_archive_verified",
+  "archive": "u0.tar.gz",
+  "archive_sha256": "21d15cb235c3a48c3a6cfbba7ab18b317e16f4a7a21c3820395b364ee29c6475",
+  "members": [
+    {
+      "path": "unstructured_u0_20261019_a/cloth.obj",
+      "bytes": 17054,
+      "sha256": "61865a6217b2769be7a711ca6e24e6ce35fd11150e382fc8d8b49c9fbc5960c4"
+    },
+    {
+      "path": "unstructured_u0_20261019_a/particle_states.npz",
+      "bytes": 980395,
+      "sha256": "a329cbb26f8d351c8a332a07b0bd9d81935345d6b68c4b9ce20e5805b1f7ef5a"
+    },
+    {
+      "path": "unstructured_u0_20261019_a/status.json",
+      "bytes": 1119,
+      "sha256": "e6617d60fa5c5da39cf439c65f75334f24ebcc98fe2da7aa02035b3a10a344ec"
+    },
+    {
+      "path": "unstructured_u0_20261019_b/cloth.obj",
+      "bytes": 17054,
+      "sha256": "61865a6217b2769be7a711ca6e24e6ce35fd11150e382fc8d8b49c9fbc5960c4"
+    },
+    {
+      "path": "unstructured_u0_20261019_b/particle_states.npz",
+      "bytes": 980439,
+      "sha256": "d2fa6a607651839eff6825b9d959c8a154d6677ad508d76c6617214d9b497b29"
+    },
+    {
+      "path": "unstructured_u0_20261019_b/status.json",
+      "bytes": 1120,
+      "sha256": "c6678cf1604e52bf2e31055f6d31b83b37800e7156f47ff2150a4811e11aabe0"
+    },
+    {
+      "path": "unstructured_u0_20261019_a.log",
+      "bytes": 913,
+      "sha256": "accd6648c62ffad79614769156c797c1a12e122979bdbbf9be83c0a5653ea6db"
+    },
+    {
+      "path": "source/probe_unstructured_backend.py",
+      "bytes": 4303,
+      "sha256": "ae97f3f24d8adfc2a363a18d1438aebf6ffe3a87030c02d40455d9a9a50bb71f"
+    }
+  ]
+}

@@ -1,0 +1,1820 @@
+{
+  "source": "/home/ami/scratch/assembly_a2_20261016_a",
+  "hybrid": "hybrid80",
+  "alignment": "decision index / simulated time, not wall time",
+  "control_hz": 20,
+  "speed": 2,
+  "images": "pre-action; original endpoint/load labels are post-action",
+  "disclaimer": "Accelerated playback is not evidence of real-time control. Held frames are labeled.",
+  "highlight_rule": "first sorted both-success/rescue/harm/both-failure, plus first prospective A2 rescue",
+  "highlights": [
+    "s3000_c0_vla_vs_hybrid80_2x.mp4",
+    "s3000_c1_vla_vs_hybrid80_2x.mp4",
+    "s3001_c4_vla_vs_hybrid80_2x.mp4",
+    "s3100_c0_vla_vs_hybrid80_2x.mp4",
+    "s3100_c2_vla_vs_hybrid80_2x.mp4"
+  ],
+  "cases": [
+    {
+      "seed": 3000,
+      "case": 0,
+      "outcome": "both_success",
+      "file": "s3000_c0_vla_vs_hybrid80_2x.mp4",
+      "frames": 121,
+      "sha256": "d8d560152af522241c9992d92729cbc462f4ce2d568669f71d38b4702bd79b3c",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 0,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 81,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 81,
+          "reason_no_trigger": 81,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 31.3519537875872,
+        "elapsed_s": 64.87830639409367,
+        "trace_sha256": "f22258e401b33621e60a4a096ebd594ef5af78894f0add569d73133503043388",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 0,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 121,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 41,
+          "reason_no_trigger": 20,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 61,
+          "reason_geometry_no_accepted_better_candidate": 19,
+          "reason_budget_exhausted": 21
+        },
+        "peak_nut_peg_load_N": 22.22340170824237,
+        "elapsed_s": 95.82892447104678,
+        "trace_sha256": "ca47f7e4460a4a714aa047b875b02254e4dee5707b9d611057dabbd79afeea43",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c0_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c0_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3000,
+      "case": 1,
+      "outcome": "rescue",
+      "file": "s3000_c1_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "c0485244fc3d60f7befc4b1e398fe64bc7f7ea57baca18868d0f0101d5293c73",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 1,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 136.5995422168623,
+        "elapsed_s": 126.6046834459994,
+        "trace_sha256": "6d97dfc718455fe59ab0e06f3448c2c37a2db83d2db87b145095ce9bd1e8f6d4",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 1,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 118,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 38,
+          "reason_no_trigger": 21,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 73,
+          "reason_geometry_no_accepted_better_candidate": 7,
+          "reason_budget_exhausted": 17
+        },
+        "peak_nut_peg_load_N": 41.444721943617566,
+        "elapsed_s": 95.39035249594599,
+        "trace_sha256": "b47afd6ba6ff73b161a2df62bcf1f7497d1e83a10711e5211324c0499851f967",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c1_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c1_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3000,
+      "case": 2,
+      "outcome": "rescue",
+      "file": "s3000_c2_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "cc429dbd133fce112a6cd0b50380cb2827b589618fd179c1d12808ede1446020",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 2,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 98.7903388682324,
+        "elapsed_s": 128.05076610005926,
+        "trace_sha256": "8c71b499975107b3ce84d34a544683e2efe1f97f2e4def5a01eae321229f1f0a",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 2,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 109,
+        "changed": 80,
+        "counters": {
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 53,
+          "prediction_changed": 0,
+          "owner_actor": 29,
+          "reason_no_trigger": 19,
+          "reason_geometry_no_accepted_better_candidate": 27,
+          "reason_budget_exhausted": 10
+        },
+        "peak_nut_peg_load_N": 26.17680013852172,
+        "elapsed_s": 88.39841877599247,
+        "trace_sha256": "7f046078847fe89651343c0a3f043f39624d622d2b1276028be36de8f2909420",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c2_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c2_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3000,
+      "case": 3,
+      "outcome": "rescue",
+      "file": "s3000_c3_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "81b5bf9158f3d06e8db978f2563a4a530780ea99de9d3b2f1d14a1ecac667a69",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 3,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 25.042808449266886,
+        "elapsed_s": 126.77090655989014,
+        "trace_sha256": "af01b308d5ecbcb7838881456bbca96c50395da9a327a9608dbb2d0c7a5c2407",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 3,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 111,
+        "changed": 80,
+        "counters": {
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 77,
+          "prediction_changed": 0,
+          "owner_actor": 31,
+          "reason_no_trigger": 11,
+          "reason_geometry_no_accepted_better_candidate": 3,
+          "reason_budget_exhausted": 20
+        },
+        "peak_nut_peg_load_N": 29.41070554861902,
+        "elapsed_s": 88.49819584295619,
+        "trace_sha256": "b5b24fa2ddb1f8cc121daae6bb0f60a119403c577afd9e94dc0cbe5b59a38e36",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c3_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c3_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3000,
+      "case": 4,
+      "outcome": "rescue",
+      "file": "s3000_c4_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "8e36164964347f343ab3d99bcc097a759ba8b3bb5203ac290eeed580057577e7",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 4,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 85.4316077141527,
+        "elapsed_s": 126.87079031101894,
+        "trace_sha256": "a37964419e6f67b91d0f7458ba6431d8a76e3862b6e7935cb2f3de3f10841afd",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3000,
+        "case": 4,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 125,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 45,
+          "reason_no_trigger": 21,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 47,
+          "reason_geometry_no_accepted_better_candidate": 32,
+          "reason_geometry_prediction_advantage_insufficient": 1,
+          "reason_budget_exhausted": 24
+        },
+        "peak_nut_peg_load_N": 17.01324889448732,
+        "elapsed_s": 99.96440417598933,
+        "trace_sha256": "b14fd2e93d1590f039915b744030138ef1bf7b1e16c1bfbc47d28470b491bf3d",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c4_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3000_c4_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3001,
+      "case": 0,
+      "outcome": "rescue",
+      "file": "s3001_c0_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "e2d2a02ea4c548813c6f4b815d0fb59a629f40e7ab6d35078fa7846f997241e6",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 0,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 70.21014576172985,
+        "elapsed_s": 125.99204677098896,
+        "trace_sha256": "f7d2601b15914fa8a314961712b9f89ac1b1b9b94dc70cd3c844fd8765d03ae2",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 0,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 115,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 35,
+          "reason_no_trigger": 21,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 74,
+          "reason_geometry_no_accepted_better_candidate": 6,
+          "reason_budget_exhausted": 14
+        },
+        "peak_nut_peg_load_N": 38.57722188771813,
+        "elapsed_s": 93.22375105903484,
+        "trace_sha256": "a04192cb2ee3aa8481b66d3d34a59068ccdc2f1c2615de241f6e32405bad0f9e",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c0_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c0_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3001,
+      "case": 1,
+      "outcome": "both_success",
+      "file": "s3001_c1_vla_vs_hybrid80_2x.mp4",
+      "frames": 110,
+      "sha256": "cef72743903437382e5c30e4b79cb1a863d31b13bf5f6d3a640bed610acefb16",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 1,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 51,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 51,
+          "reason_no_trigger": 51,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 41.09107841995938,
+        "elapsed_s": 44.656590036000125,
+        "trace_sha256": "fb483c19f72e28317c2ca8cc31efb9458473f2fd5766543e1b668e62c0a3ac80",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 1,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 110,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 30,
+          "reason_no_trigger": 19,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 78,
+          "reason_geometry_no_accepted_better_candidate": 2,
+          "reason_budget_exhausted": 11
+        },
+        "peak_nut_peg_load_N": 29.65385760972399,
+        "elapsed_s": 89.03426722402219,
+        "trace_sha256": "b1bd2448583384edd2d5fe5eed633863f5e0d5c44bbadae6b19cae15e767fa4c",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c1_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c1_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3001,
+      "case": 2,
+      "outcome": "rescue",
+      "file": "s3001_c2_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "59262971e4f660f2c0cdf31748eafcf56d2d49271506fa0a62e4d4216657e9da",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 2,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 70.67110550393865,
+        "elapsed_s": 126.03272014495451,
+        "trace_sha256": "00af7a938e82f0b7bcbd015758dbf91ebe700bf91e8af682e74a9eda192598fa",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 2,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 125,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 45,
+          "reason_no_trigger": 19,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 62,
+          "reason_geometry_no_accepted_better_candidate": 18,
+          "reason_budget_exhausted": 26
+        },
+        "peak_nut_peg_load_N": 31.22277427705395,
+        "elapsed_s": 100.49750722502358,
+        "trace_sha256": "9b4891b2d0a876003256ff31d2d7056702f6e24ebd34ec640dcfea8de3a751a9",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c2_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c2_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3001,
+      "case": 3,
+      "outcome": "rescue",
+      "file": "s3001_c3_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "9448a2985588de9b4b9681b5f2bccf5c62f8b582d1945b9d0f5bb7ec91a11bdd",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 3,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 83.2649264857177,
+        "elapsed_s": 123.77112603001297,
+        "trace_sha256": "f8cedee0719feddf4f5c840f329ef11f349b71cc9769d9fbaa4e62bb2907b0f0",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 3,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 99,
+        "changed": 80,
+        "counters": {
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 72,
+          "prediction_changed": 0,
+          "owner_actor": 19,
+          "reason_no_trigger": 5,
+          "reason_geometry_no_accepted_better_candidate": 8,
+          "reason_budget_exhausted": 14
+        },
+        "peak_nut_peg_load_N": 20.359499829280992,
+        "elapsed_s": 80.47489881305955,
+        "trace_sha256": "ba6976896c754cf500172ad4c18ac0fb1ae83097c2366d15fe3e47404f358ed0",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c3_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c3_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3001,
+      "case": 4,
+      "outcome": "harm",
+      "file": "s3001_c4_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "2c27351ed79d477b5d86b9890411a87540c817084dddc728c446a372986b151c",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 4,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 48,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 48,
+          "reason_no_trigger": 48,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 77.54722033867283,
+        "elapsed_s": 41.950627523008734,
+        "trace_sha256": "d534da8b77b3ecd79d3cddf49761b57327050ab10b35de7f68ab5bb9b11e30cb",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3001,
+        "case": 4,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 80,
+          "reason_no_trigger": 47,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 69,
+          "reason_geometry_no_accepted_better_candidate": 10,
+          "reason_geometry_prediction_advantage_insufficient": 1,
+          "reason_budget_exhausted": 33
+        },
+        "peak_nut_peg_load_N": 49.26865357125804,
+        "elapsed_s": 127.15622169605922,
+        "trace_sha256": "41584c5567629c293c6e7788189e1566ae44838f9cd0b48e0cff8fe34a1af67a",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c4_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3001_c4_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3100,
+      "case": 0,
+      "outcome": "both_failure",
+      "file": "s3100_c0_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "90af3fb60296863b18974cf9682bd8d03d2873d153b09b267486b451c73c0bfc",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 0,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 30.556737900201234,
+        "elapsed_s": 125.01996770093683,
+        "trace_sha256": "3344daaa05149742803a085442875be85fc53db24cdb37a797d9ed4d95eb548c",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 0,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 80,
+          "reason_no_trigger": 44,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 50,
+          "reason_geometry_no_accepted_better_candidate": 30,
+          "reason_budget_exhausted": 36
+        },
+        "peak_nut_peg_load_N": 39.695617154589,
+        "elapsed_s": 124.6807839430403,
+        "trace_sha256": "8e48119ee9d53fdc2c621736ff5b936cbd883763fd709a1a50e94b7ff456a77d",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c0_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c0_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3100,
+      "case": 1,
+      "outcome": "both_success",
+      "file": "s3100_c1_vla_vs_hybrid80_2x.mp4",
+      "frames": 113,
+      "sha256": "3ed110c5edcc2bf7ee8d440629d1b30bc16fcff4f24c049e22d6e7bfa88482ba",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 1,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 68,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 68,
+          "reason_no_trigger": 68,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 42.69876882788219,
+        "elapsed_s": 57.661731390981004,
+        "trace_sha256": "2e2e7d951ea966da32c164808746ce88b3b88bf60f8b74d432b0b0c2be2efe94",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 1,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 113,
+        "changed": 80,
+        "counters": {
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 80,
+          "prediction_changed": 0,
+          "owner_actor": 33,
+          "reason_no_trigger": 22,
+          "reason_budget_exhausted": 11
+        },
+        "peak_nut_peg_load_N": 21.093222388127003,
+        "elapsed_s": 90.00984791002702,
+        "trace_sha256": "69d6478ab96baccdc1ce252c1cedbd94ee72f184aa715cd2b172aabad7b062cd",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c1_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c1_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3100,
+      "case": 2,
+      "outcome": "rescue",
+      "file": "s3100_c2_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "2004e294304849064ff4e02de3c7dccf1b72f83daec64c116a4efad066f3cc7e",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 2,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 130.06545700325523,
+        "elapsed_s": 127.0649432670325,
+        "trace_sha256": "6d286570cbeafd745418b7dcc14e8caaeaebcec9ece8a6982bd0b59a592461df",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 2,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 144,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 64,
+          "reason_no_trigger": 28,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 53,
+          "reason_geometry_no_accepted_better_candidate": 27,
+          "reason_budget_exhausted": 36
+        },
+        "peak_nut_peg_load_N": 27.944928882814352,
+        "elapsed_s": 115.19614720402751,
+        "trace_sha256": "c98d85c3a4ed27c09ba5f3b815f8b7bdf8b63d25c71cab195e6793705281013f",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c2_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c2_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3100,
+      "case": 3,
+      "outcome": "both_success",
+      "file": "s3100_c3_vla_vs_hybrid80_2x.mp4",
+      "frames": 116,
+      "sha256": "aebe962ca02b24b46eceabbdb73a004fdeeac56e2d73523a1c57549d15919148",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 3,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 77,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 77,
+          "reason_no_trigger": 77,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 59.204989169939736,
+        "elapsed_s": 64.67170045594685,
+        "trace_sha256": "1046f259203ed86ecf63ad4f9aa9bdaeee0949c407ca2e034d17bfb16dc36655",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 3,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 116,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 36,
+          "reason_no_trigger": 25,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_no_accepted_better_candidate": 8,
+          "reason_geometry_prediction_untrusted": 72,
+          "reason_budget_exhausted": 11
+        },
+        "peak_nut_peg_load_N": 36.93357650320934,
+        "elapsed_s": 93.4839796560118,
+        "trace_sha256": "fb649953e34878520dd34d7d453b129c6d2629c936c1a68efedc2bc47c2e4735",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c3_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c3_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3100,
+      "case": 4,
+      "outcome": "rescue",
+      "file": "s3100_c4_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "b2dadf10c2b9a9022cee1087671fb15fb4c1f9b1c059324a1a97937f2e5bb74b",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 4,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 112.32119366530802,
+        "elapsed_s": 125.20262517500669,
+        "trace_sha256": "bd240c74c95a38e058b85ed13ad0afccdb2a5b762b2f579d40c379c7d7ffd739",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3100,
+        "case": 4,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 151,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 71,
+          "reason_no_trigger": 37,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 66,
+          "reason_geometry_no_accepted_better_candidate": 14,
+          "reason_budget_exhausted": 34
+        },
+        "peak_nut_peg_load_N": 40.179585641614665,
+        "elapsed_s": 118.37520224403124,
+        "trace_sha256": "8cad182eee765e86859411e0110f5988ee25d02a0137b2fa3b6b4f248ad21672",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c4_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3100_c4_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3101,
+      "case": 0,
+      "outcome": "rescue",
+      "file": "s3101_c0_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "5e3e58118de7c8bff001666551089f2ff4e1a536b2f3d18fc58bceccb11ff7a0",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 0,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 51.398938824145965,
+        "elapsed_s": 126.61274038895499,
+        "trace_sha256": "73b4706e90af67db9f5cecdad929311f718433becafac62974b2b6d9fc61d033",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 0,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 119,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 39,
+          "reason_no_trigger": 19,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 78,
+          "reason_geometry_no_accepted_better_candidate": 2,
+          "reason_budget_exhausted": 20
+        },
+        "peak_nut_peg_load_N": 3.854682082900899,
+        "elapsed_s": 95.87790828000288,
+        "trace_sha256": "3f77c6a217e16cede488f2abcc6c82a91370f65705e00c21523043c1db8caa17",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c0_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c0_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3101,
+      "case": 1,
+      "outcome": "both_success",
+      "file": "s3101_c1_vla_vs_hybrid80_2x.mp4",
+      "frames": 135,
+      "sha256": "bd948aae6e24f120811689051ef486c22c6d63d7fbcbc82f272919c3d7eedb00",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 1,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 43,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 43,
+          "reason_no_trigger": 43,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 34.91905824284572,
+        "elapsed_s": 38.81346224504523,
+        "trace_sha256": "52dfad13220df9fb94445728681a88c901351e8b182cc4a909ee99b36ac1500d",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 1,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 135,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 55,
+          "reason_no_trigger": 40,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 63,
+          "reason_geometry_no_accepted_better_candidate": 17,
+          "reason_budget_exhausted": 15
+        },
+        "peak_nut_peg_load_N": 54.87713149848112,
+        "elapsed_s": 107.98721515701618,
+        "trace_sha256": "9f2b65df7a8d2a0ffa70197558d903429f8a948877c642c8a40aaba32d58560d",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c1_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c1_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3101,
+      "case": 2,
+      "outcome": "rescue",
+      "file": "s3101_c2_vla_vs_hybrid80_2x.mp4",
+      "frames": 160,
+      "sha256": "95241ba1b561132fb6726163aa383cc9f10985fadb5af1f94c2c508b1e14bca6",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 2,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": false,
+        "max_dwell": 0,
+        "steps": 160,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 160,
+          "reason_no_trigger": 160,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 73.43505493876738,
+        "elapsed_s": 126.19791105296463,
+        "trace_sha256": "2714e6f5fca172aa5d73f2f32eac46247a7377e2e87267fe979e2edbae1d7a30",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 2,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 107,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 27,
+          "reason_no_trigger": 15,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 76,
+          "reason_geometry_no_accepted_better_candidate": 4,
+          "reason_budget_exhausted": 12
+        },
+        "peak_nut_peg_load_N": 34.95426638509992,
+        "elapsed_s": 87.44116363092326,
+        "trace_sha256": "376844bae5434210b550141fa5e5dce38781ecf68ae5a8d01927c403f72d85bc",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c2_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c2_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3101,
+      "case": 3,
+      "outcome": "both_success",
+      "file": "s3101_c3_vla_vs_hybrid80_2x.mp4",
+      "frames": 118,
+      "sha256": "78763483648531fd66d85fa5099467f21210619ef6d1b359edd009edf6ece156",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 3,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 118,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 118,
+          "reason_no_trigger": 118,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 70.1207993024122,
+        "elapsed_s": 93.75905592297204,
+        "trace_sha256": "6f44ee2ee19ee61c71adce47b6a6f9169c526df2ea9ef7dd35ab40e9021d1f83",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 3,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 113,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 33,
+          "reason_no_trigger": 19,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 77,
+          "reason_geometry_no_accepted_better_candidate": 3,
+          "reason_budget_exhausted": 14
+        },
+        "peak_nut_peg_load_N": 9.926557951221934,
+        "elapsed_s": 90.15238756302278,
+        "trace_sha256": "a6dae25282c5219535b9e91d33fe1e64444d8abc051930a17be1de92034f93a6",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c3_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c3_hybrid80/annotated_2x.mp4"
+      ]
+    },
+    {
+      "seed": 3101,
+      "case": 4,
+      "outcome": "both_success",
+      "file": "s3101_c4_vla_vs_hybrid80_2x.mp4",
+      "frames": 149,
+      "sha256": "de9b1365c9cb491f49061dc0286b9f17fb6ed35ad955248e13aded66bcfdc587",
+      "vla": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 4,
+        "arm": "vla",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 65,
+        "changed": 0,
+        "counters": {
+          "owner_actor": 65,
+          "reason_no_trigger": 65,
+          "prediction_changed": 0
+        },
+        "peak_nut_peg_load_N": 57.76189646468316,
+        "elapsed_s": 55.34205913404003,
+        "trace_sha256": "98e15dc44a2d725d2a44ff233b312f24a79eaf78c704ced27a767866afb2054b",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "hybrid": {
+        "status": "completed_pending_replay",
+        "seed": 3101,
+        "case": 4,
+        "arm": "hybrid80",
+        "fixture_only": false,
+        "complete": true,
+        "max_dwell": 5,
+        "steps": 149,
+        "changed": 80,
+        "counters": {
+          "owner_actor": 69,
+          "reason_no_trigger": 36,
+          "prediction_changed": 0,
+          "owner_geometry": 80,
+          "reason_geometry_prediction_untrusted": 51,
+          "reason_geometry_no_accepted_better_candidate": 29,
+          "reason_budget_exhausted": 33
+        },
+        "peak_nut_peg_load_N": 32.926288551306264,
+        "elapsed_s": 117.30784607899841,
+        "trace_sha256": "5aa07726bb182b52dcd164e32ab585ebe6df5dd34926389c22da0ef663396525",
+        "checkpoint_sha256": "1b849ddd4afb75c17c2b28f9969517f59f4288953429e6dc07b16dd53af150ec",
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        }
+      },
+      "sources": [
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c4_vla/annotated_2x.mp4",
+        "/home/ami/scratch/assembly_a2_20261016_a/live_s3101_c4_hybrid80/annotated_2x.mp4"
+      ]
+    }
+  ]
+}

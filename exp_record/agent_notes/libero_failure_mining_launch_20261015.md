@@ -11,10 +11,10 @@ Frozen implementation/protocol/grid/preflights pushed as **a37e354** before laun
 - All cases/all methods run; clean baseline success does not cancel intervention arms. Each root worker runs each case's VLA/hold/timed/phase/verified in sequence, then renders its verified five-method review before proceeding.
 - Historical D1baseline success is not counted as a new framework result. Recorded-action preflight successes are infrastructure evidence, not task efficacy.
 
-Launch command/PID capture: [JSON](../backups/libero_mining_launch_20261015.json).
+Launch command/PID capture: [JSON](../../backups/libero_mining_launch_20261015.json).
 Protocol: [M1](libero_failure_mining_protocol_20261015.md).
 Literature boundary: [SEAL/CheckVLA audit](libero_literature_integration_20261015.md).
-Preflights: [five-arm delay/sham](../backups/libero_mining_preflight_20261015.json), [x/yphysical fault](../backups/libero_mining_pose_preflight_20261015.json).
+Preflights: [five-arm delay/sham](../../backups/libero_mining_preflight_20261015.json), [x/yphysical fault](../../backups/libero_mining_pose_preflight_20261015.json).
 
 ## Inspect progress without conflating activity and benefit
 

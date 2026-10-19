@@ -1,0 +1,15 @@
+{
+  "scope": "backend qualification, not robot-task efficacy",
+  "status": "completed_with_non_bit_exact_repeat",
+  "shape": [
+    121,
+    1089,
+    3
+  ],
+  "bit_exact": false,
+  "max_abs_particle_error_m": 5.0576403737068176e-05,
+  "acceptance_tolerance": null,
+  "training": false,
+  "actor": false,
+  "hybrid": false
+}

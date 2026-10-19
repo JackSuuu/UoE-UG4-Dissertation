@@ -35,4 +35,4 @@ D1is closed under its predefined stop rule. Keep the five-layer architecture and
 
 Recovery archive: `backups/libero_drawer_target_20261014_a/`, one archive with40original files plus three standalone videos;26,321,596bytes across four LFS objects. Automatic local per-file verification passed. Remote recovery verification is recorded separately after push.
 
-**Remote recovery passed:** archive/results pushed as `81eb54e`, independently downloaded from GitHub and fully restored with all40source-file hashes and three standalone-video hashes verified. [Recovery record](../backups/libero_drawer_target_remote_verified_20261014.json).
+**Remote recovery passed:** archive/results pushed as `81eb54e`, independently downloaded from GitHub and fully restored with all40source-file hashes and three standalone-video hashes verified. [Recovery record](../../backups/libero_drawer_target_remote_verified_20261014.json).

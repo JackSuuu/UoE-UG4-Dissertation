@@ -1,0 +1,273 @@
+{
+  "reason": "User requested weekly-only outer exp_record, agent_notes for detailed records",
+  "original_commit": "98bd3d97dd8ba8160fd2ef35a7af969586b2f2c1",
+  "historical_replay": "Use the frozen commit/source archive for launchers that require original paths.",
+  "records": [
+    {
+      "old": "exp_record/architecture_review_20261013.md",
+      "new": "exp_record/agent_notes/architecture_review_20261013.md",
+      "original_sha256": "58c4217704388550a78c3fe125a28b18006b30007a1c5fee878087137612759e",
+      "relocated_sha256": "58c4217704388550a78c3fe125a28b18006b30007a1c5fee878087137612759e",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/assembly_a1_diagnosis_20261015.md",
+      "new": "exp_record/agent_notes/assembly_a1_diagnosis_20261015.md",
+      "original_sha256": "b922f15d6660e41263ab672b624a12e7285fcc9c74495254409807d9c1fd84c2",
+      "relocated_sha256": "b922f15d6660e41263ab672b624a12e7285fcc9c74495254409807d9c1fd84c2",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/assembly_a1_execution_20261015.md",
+      "new": "exp_record/agent_notes/assembly_a1_execution_20261015.md",
+      "original_sha256": "7788fd2e30f154406fd37a39fe24fe1a906e31069070db029d33e540ae82c3b0",
+      "relocated_sha256": "7788fd2e30f154406fd37a39fe24fe1a906e31069070db029d33e540ae82c3b0",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/assembly_a1_protocol_20261015.md",
+      "new": "exp_record/agent_notes/assembly_a1_protocol_20261015.md",
+      "original_sha256": "ef06eaacf3bf43ca1f21f031fb0df0b1ddc8d901e76ce0c5037c2f432880d5a9",
+      "relocated_sha256": "ef06eaacf3bf43ca1f21f031fb0df0b1ddc8d901e76ce0c5037c2f432880d5a9",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/assembly_a2_execution_20261016.md",
+      "new": "exp_record/agent_notes/assembly_a2_execution_20261016.md",
+      "original_sha256": "e7664322ab5f4749c9d01c117a4d680503cf56e40780606e054ba83b32bf148f",
+      "relocated_sha256": "e7664322ab5f4749c9d01c117a4d680503cf56e40780606e054ba83b32bf148f",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/assembly_a2_protocol_20261016.md",
+      "new": "exp_record/agent_notes/assembly_a2_protocol_20261016.md",
+      "original_sha256": "ca7d70807ad8918028f3460b6125b972383356773a6176648f0ef3c0ef300879",
+      "relocated_sha256": "ca7d70807ad8918028f3460b6125b972383356773a6176648f0ef3c0ef300879",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/event_boundary_20261013.md",
+      "new": "exp_record/agent_notes/event_boundary_20261013.md",
+      "original_sha256": "43370b0d06697399f80b59c3424b88d5b29901d4b84c36e9fb7724ff8a7956ea",
+      "relocated_sha256": "43370b0d06697399f80b59c3424b88d5b29901d4b84c36e9fb7724ff8a7956ea",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/event_boundary_results_20261013.md",
+      "new": "exp_record/agent_notes/event_boundary_results_20261013.md",
+      "original_sha256": "8d7539b83953d8fd3e1e00722189fa3cab4a27d94bd79215578913bc1fb8b798",
+      "relocated_sha256": "8d7539b83953d8fd3e1e00722189fa3cab4a27d94bd79215578913bc1fb8b798",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/event_gate_coverage_20261012.md",
+      "new": "exp_record/agent_notes/event_gate_coverage_20261012.md",
+      "original_sha256": "51d15bfeff98b52310d7856c949309057bba3ee581c4e593a51c6178c9005ac0",
+      "relocated_sha256": "51d15bfeff98b52310d7856c949309057bba3ee581c4e593a51c6178c9005ac0",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/immediate_gate_20261013.md",
+      "new": "exp_record/agent_notes/immediate_gate_20261013.md",
+      "original_sha256": "44bb290528e3d749cbb672569c5b5df14652dd9ec1882dbdd658771f75a220ea",
+      "relocated_sha256": "44bb290528e3d749cbb672569c5b5df14652dd9ec1882dbdd658771f75a220ea",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/immediate_gate_results_20261013.md",
+      "new": "exp_record/agent_notes/immediate_gate_results_20261013.md",
+      "original_sha256": "c41e37b693e28011dd3729712a366e70b96f82c87455a6b79879c8147a50e7ad",
+      "relocated_sha256": "c41e37b693e28011dd3729712a366e70b96f82c87455a6b79879c8147a50e7ad",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_baseline_protocol_20261013.md",
+      "new": "exp_record/agent_notes/libero_baseline_protocol_20261013.md",
+      "original_sha256": "1d31053901aa038a9ace61c782684ef9165e8e1962dfaceed09dc6986097f54a",
+      "relocated_sha256": "1d31053901aa038a9ace61c782684ef9165e8e1962dfaceed09dc6986097f54a",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_baseline_results_20261013.md",
+      "new": "exp_record/agent_notes/libero_baseline_results_20261013.md",
+      "original_sha256": "002a21b7408c00291c71e16483643ac3db33ed5b28b11dd30b8551ae8e175c35",
+      "relocated_sha256": "002a21b7408c00291c71e16483643ac3db33ed5b28b11dd30b8551ae8e175c35",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_continuation_launch_20261013.md",
+      "new": "exp_record/agent_notes/libero_continuation_launch_20261013.md",
+      "original_sha256": "6f78daadb3c12096f9dcb4e66119a1f9ae4f007ba82930af76b9d91a55fbcc47",
+      "relocated_sha256": "6f78daadb3c12096f9dcb4e66119a1f9ae4f007ba82930af76b9d91a55fbcc47",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_continuation_protocol_20261013.md",
+      "new": "exp_record/agent_notes/libero_continuation_protocol_20261013.md",
+      "original_sha256": "513b8d0eb52d4d3c067884126acd3fce588ee427325559fc23d0f39686a71e39",
+      "relocated_sha256": "513b8d0eb52d4d3c067884126acd3fce588ee427325559fc23d0f39686a71e39",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_continuation_results_20261013.md",
+      "new": "exp_record/agent_notes/libero_continuation_results_20261013.md",
+      "original_sha256": "eb7d0a98b2fa4a3acfc8f0098ae12c2ae84264539e87d361e7047f75fac4d6df",
+      "relocated_sha256": "eb7d0a98b2fa4a3acfc8f0098ae12c2ae84264539e87d361e7047f75fac4d6df",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_drawer_target_launch_20261014.md",
+      "new": "exp_record/agent_notes/libero_drawer_target_launch_20261014.md",
+      "original_sha256": "fec6e73472b0cca52c537bf031abf464a3464dc45ecfa7c6a220e46db4226115",
+      "relocated_sha256": "fec6e73472b0cca52c537bf031abf464a3464dc45ecfa7c6a220e46db4226115",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_drawer_target_protocol_20261014.md",
+      "new": "exp_record/agent_notes/libero_drawer_target_protocol_20261014.md",
+      "original_sha256": "3f7e2784a70f916e11ff051eb9009bdcb4998f85194da62d27331557e60bd827",
+      "relocated_sha256": "3f7e2784a70f916e11ff051eb9009bdcb4998f85194da62d27331557e60bd827",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_drawer_target_results_20261014.md",
+      "new": "exp_record/agent_notes/libero_drawer_target_results_20261014.md",
+      "original_sha256": "bc2ed94344fe1acb877b979a39ac4011080cef9c0ef2f147f47d572dec1b8816",
+      "relocated_sha256": "1115788154aaa830a7d1d2e00553e648143da48f49852fb85f81a9fbeddee26f",
+      "content_identical": false
+    },
+    {
+      "old": "exp_record/libero_failure_mining_launch_20261015.md",
+      "new": "exp_record/agent_notes/libero_failure_mining_launch_20261015.md",
+      "original_sha256": "25180dcc4d6af9ea345c1068583f012aa89bac1b5338ddc865c2d0f39b35f8f6",
+      "relocated_sha256": "c3dec7016f2ed0dd0877094ca9fb1be4fe54a0e6fc3a95771be5c8f590e69445",
+      "content_identical": false
+    },
+    {
+      "old": "exp_record/libero_failure_mining_protocol_20261015.md",
+      "new": "exp_record/agent_notes/libero_failure_mining_protocol_20261015.md",
+      "original_sha256": "e65460fbfee20fb12e8bc2c0fffc2f67092bc918ce9b5f0f67e4936317fb2abb",
+      "relocated_sha256": "e65460fbfee20fb12e8bc2c0fffc2f67092bc918ce9b5f0f67e4936317fb2abb",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_final_benchmark_design_20261014.md",
+      "new": "exp_record/agent_notes/libero_final_benchmark_design_20261014.md",
+      "original_sha256": "2eba88d716b0f041e2bd117c492efdd90ebb3e2f5a19c5037505beca2ce4b0b9",
+      "relocated_sha256": "cdbcab3095c4ec4c9bea440e61eb7200532d8627be59be6655f9eddb9b2b176a",
+      "content_identical": false
+    },
+    {
+      "old": "exp_record/libero_five_layer_implementation_20261014.md",
+      "new": "exp_record/agent_notes/libero_five_layer_implementation_20261014.md",
+      "original_sha256": "715f438a39833d40d722ffcadd36c8badbfd9d4df61c7a0726cc4a9966d11183",
+      "relocated_sha256": "715f438a39833d40d722ffcadd36c8badbfd9d4df61c7a0726cc4a9966d11183",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_framework_design_20261014.md",
+      "new": "exp_record/agent_notes/libero_framework_design_20261014.md",
+      "original_sha256": "c260a0609e7990fc58916ae3e51c2184dc35b4fae2199dbd4a2eab5547892a8b",
+      "relocated_sha256": "c260a0609e7990fc58916ae3e51c2184dc35b4fae2199dbd4a2eab5547892a8b",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_integration_20261013.md",
+      "new": "exp_record/agent_notes/libero_integration_20261013.md",
+      "original_sha256": "2967b94334a6fdbb5e21a04150fedfd0461dd43071ccbbe666f74423229fe7ab",
+      "relocated_sha256": "2967b94334a6fdbb5e21a04150fedfd0461dd43071ccbbe666f74423229fe7ab",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_literature_integration_20261015.md",
+      "new": "exp_record/agent_notes/libero_literature_integration_20261015.md",
+      "original_sha256": "f780c8552b170aaa18e8fdeae0d43fafc47cc1cc2ca6638e89cbfdfccf6b2894",
+      "relocated_sha256": "f780c8552b170aaa18e8fdeae0d43fafc47cc1cc2ca6638e89cbfdfccf6b2894",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_preservation_launch_20261014.md",
+      "new": "exp_record/agent_notes/libero_preservation_launch_20261014.md",
+      "original_sha256": "30820090b3bfe043394f5d6886930f5fef45c32fd36bd749e262efd3d5554157",
+      "relocated_sha256": "30820090b3bfe043394f5d6886930f5fef45c32fd36bd749e262efd3d5554157",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_preservation_protocol_20261014.md",
+      "new": "exp_record/agent_notes/libero_preservation_protocol_20261014.md",
+      "original_sha256": "ebe749a56f2bbfa1d43bbdecd7d324bc313d05ee4b010597231a5f334168da06",
+      "relocated_sha256": "ebe749a56f2bbfa1d43bbdecd7d324bc313d05ee4b010597231a5f334168da06",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/libero_preservation_renderer_fix_20261014.md",
+      "new": "exp_record/agent_notes/libero_preservation_renderer_fix_20261014.md",
+      "original_sha256": "b14569ed7eaa7ec4da9ca28d763db27c361536441ea38b52658b54e9ef83d098",
+      "relocated_sha256": "3f96257ae4b33daa9e425e2a5c814a649e0ac63df6af2c6c6daf96f58edcd390",
+      "content_identical": false
+    },
+    {
+      "old": "exp_record/libero_preservation_results_20261014.md",
+      "new": "exp_record/agent_notes/libero_preservation_results_20261014.md",
+      "original_sha256": "9575b002e7b55b69a6290c892b01f91550d82b6e214c7f4ad37830e9484f0baa",
+      "relocated_sha256": "683d5cd5eb151b437d71e902e4c762eeafe2476f36e8f6f622be4d73be470bf5",
+      "content_identical": false
+    },
+    {
+      "old": "exp_record/libero_validation_repair_contract_20261015.md",
+      "new": "exp_record/agent_notes/libero_validation_repair_contract_20261015.md",
+      "original_sha256": "a1d6acaca2da12b48d773a4d34abad5378613ef0c98c614feff0bdc4721015e9",
+      "relocated_sha256": "a1d6acaca2da12b48d773a4d34abad5378613ef0c98c614feff0bdc4721015e9",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/local_vla_scope_20261013.md",
+      "new": "exp_record/agent_notes/local_vla_scope_20261013.md",
+      "original_sha256": "160a341ef79049cc236457ba54b2b6debd4925c6ad0d1a2f61bc1de7cd9fea7d",
+      "relocated_sha256": "160a341ef79049cc236457ba54b2b6debd4925c6ad0d1a2f61bc1de7cd9fea7d",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/recovery_and_generalization_20261014.md",
+      "new": "exp_record/agent_notes/recovery_and_generalization_20261014.md",
+      "original_sha256": "856a9494e74b73d38ff0ab272b7bc0541d969344cf581faa9b8635e715623bc0",
+      "relocated_sha256": "7c74c040f2824c4b3438e10d92e09c96932951c672bb6939c4db52646101c8d5",
+      "content_identical": false
+    },
+    {
+      "old": "exp_record/repair_transition_20261013.md",
+      "new": "exp_record/agent_notes/repair_transition_20261013.md",
+      "original_sha256": "08cf300ff0e2404ee4c642ac3db2833a4e40e26a5bac299bbdf009d19741dc7e",
+      "relocated_sha256": "08cf300ff0e2404ee4c642ac3db2833a4e40e26a5bac299bbdf009d19741dc7e",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/repair_transition_results_20261013.md",
+      "new": "exp_record/agent_notes/repair_transition_results_20261013.md",
+      "original_sha256": "23fc0e0a37414e392fd11b232f177f629dbc20b43ca058c16f4eb5340002d12b",
+      "relocated_sha256": "23fc0e0a37414e392fd11b232f177f629dbc20b43ca058c16f4eb5340002d12b",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/research_mainline_20261013.md",
+      "new": "exp_record/agent_notes/research_mainline_20261013.md",
+      "original_sha256": "8b9d0b9dd2f95dfd18357ffb4467625baeeeee784f59c695ada7430cbe69505d",
+      "relocated_sha256": "8b9d0b9dd2f95dfd18357ffb4467625baeeeee784f59c695ada7430cbe69505d",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/sequence_risk_20261012.md",
+      "new": "exp_record/agent_notes/sequence_risk_20261012.md",
+      "original_sha256": "e38c337929309cb408a6efd012de8168b2870778e06f1f89aa9682ef27c354d3",
+      "relocated_sha256": "e38c337929309cb408a6efd012de8168b2870778e06f1f89aa9682ef27c354d3",
+      "content_identical": true
+    },
+    {
+      "old": "exp_record/simulation_task_first_20261013.md",
+      "new": "exp_record/agent_notes/simulation_task_first_20261013.md",
+      "original_sha256": "553eaffe18603213aac282590196ba46e8d208eb9160c2db8fbe339d0fdb325b",
+      "relocated_sha256": "553eaffe18603213aac282590196ba46e8d208eb9160c2db8fbe339d0fdb325b",
+      "content_identical": true
+    }
+  ]
+}

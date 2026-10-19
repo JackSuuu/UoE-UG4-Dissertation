@@ -3,15 +3,25 @@
 **Dissertation:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization
 **Replaces:** `Experiment_plan_Phase_1.md` (3–4 week validation plan). That plan remains the blueprint for Months 1–3 infrastructure.
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
-**Last updated:** 2026-10-16
+**Last updated:** 2026-10-19
 
 ## 唯一当前主线：本地VLA在有噪声精细任务中的物理预测与安全完成（2026-10-13，优先于下文）
 
+### 19 Oct最新方向：六类非结构化长任务与可辨认的OOD泛化
+
+用户要求切菜、剥蒜、处理生肉、冰箱取物、洗碗、叠衣服。当前最高优先级从继续调插拔转为[非结构化能力/OOD实验](exp_record/agent_notes/unstructured_ood_design_20261019.md)。保留五层架构，但明确当前A2是LIBERO10冻结actor+螺母/柱口40D预测器+装配特定几何/阶段/11候选，不具备已验证的六任务通用操作。源域训练与校准可以用数据；目标任务轨迹参与模型训练、选阈值、设计候选均属适配，不因冻结VLA就成为zero-shot。泛化必须指明对actor/predictor/repair哪一组件、哪个对象/物性/布局/任务家族未见；相同任务新seed只算同任务鲁棒性。基础模型预训练暴露未知时不声称从未见过任务。
+
+**A2完整结果：** 80/80在线+30/30历史真实轨迹审计结束；VLA8/20，原共享门控反馈/阶段几何/混合均18/20。混合救回11、误伤1；预测排序覆盖0，20条混合轨迹与阶段几何完全相同；1600次预算全部用尽，原反馈1442次且平均峰值负载更低。已生成20条同case VLA左/混合右并排视频，重要5条涵盖共同成功、旧/新救回、误伤与共同失败。[完整结果](exp_record/agent_notes/assembly_a2_results_20261019.md)。以后默认交付对比MP4和全部case清单，重要视频GitHub/LFS备份。
+
+**非结构化实验实际进度：** U0后端可行性已在健康GPU2执行两次：Genesis1.4.2布料在障碍物上自由垂落，1089粒子/120步，非刚性变化0.14776m；独立进程重跑最大坐标差约0.0506mm，非bit-exact，未事后设容差宣称通过。仅证明后端能执行布料动力学，不是VLA叠衣服、混合框架胜率或物性真实性。OmniGibson/IsaacSim等未安装，六任务还缺匹配场景/物性/actor/修复接口。先接冰箱关节物体和布料任务；洗碗须定义污渍/流体效果，切菜/剥蒜须验证断裂/黏附分离，肉类先明确柔体抓取转移范围。规则生成切片不当作连续物理切割成功。原建议的三项LIBERO长任务采集未启动。
+
+实时单独测：约0.71s的VLA推理与约4.5ms的修复决策不等于20Hz完整闭环。下一版慢actor+快反馈须实现并测量感知年龄、事件检测到物理响应p95/p99、deadline misses和旧动作丢弃，世界在推理时持续演化；当前同步仿真暂停查询结果不作实时证据。Week5位于`exp_record/week5.md`，38篇非week笔记已移入`exp_record/agent_notes/`并保留原协议字节/迁移hash。
+
 ### 16 Oct最新用户指令：A2融合预测门控与几何反馈，以完整效果为目标
 
-用户授权设计并执行融合实验，不要求为了突出物理预测而牺牲效果。五层架构不变：共享预测/事件gate→阶段几何默认修复→预测可信且显著更优时选择其他合格候选；按真实执行owner记录贡献。新增[A2冻结协议](exp_record/assembly_a2_protocol_20261016.md)，先精确重放全部30条A1真实轨迹诊断预测残差/抓持/阶段（不筛掉成功或失败），再跑4组：VLA、原反馈预算80、阶段几何预算80、阶段几何+可信预测预算80。原10案例仅作回归；3100/3101新seed×5入口作为前瞻开发，共20案例×4组=80条；160步/5步完整终点不变，各组共同计算11候选×3步，microbatch8+3。保留A1预测器，本轮不混入再训练收益。
+用户授权设计并执行融合实验，不要求为了突出物理预测而牺牲效果。五层架构不变：共享预测/事件gate→阶段几何默认修复→预测可信且显著更优时选择其他合格候选；按真实执行owner记录贡献。新增[A2冻结协议](exp_record/agent_notes/assembly_a2_protocol_20261016.md)，先精确重放全部30条A1真实轨迹诊断预测残差/抓持/阶段（不筛掉成功或失败），再跑4组：VLA、原反馈预算80、阶段几何预算80、阶段几何+可信预测预算80。原10案例仅作回归；3100/3101新seed×5入口作为前瞻开发，共20案例×4组=80条；160步/5步完整终点不变，各组共同计算11候选×3步，microbatch8+3。保留A1预测器，本轮不混入再训练收益。
 
-阶段管理加入防提前松爪、失去抓持停止空移并交还actor、入座后松爪/撤离；预测需通过上一真实动作残差、候选不确定度/风险/进展约束才覆盖几何选择。预检7项机制测试与四组32步真实仿真fixture均通过独立完整预测/决策/图像/物理回放；fixture不代表新在线VLA成绩。混合组在此fixture没有预测覆盖，必须如实报告而非调整门限制造预测参与。执行状态和结果见[执行记录](exp_record/assembly_a2_execution_20261016.md)与只读`status_assembly_hybrid.py`。
+阶段管理加入防提前松爪、失去抓持停止空移并交还actor、入座后松爪/撤离；预测需通过上一真实动作残差、候选不确定度/风险/进展约束才覆盖几何选择。预检7项机制测试与四组32步真实仿真fixture均通过独立完整预测/决策/图像/物理回放；fixture不代表新在线VLA成绩。混合组在此fixture没有预测覆盖，必须如实报告而非调整门限制造预测参与。执行状态和结果见[执行记录](exp_record/agent_notes/assembly_a2_execution_20261016.md)与只读`status_assembly_hybrid.py`。
 
 **A2已实际启动：** 冻结版本`6d44dfe`先推送，再启动detached supervisor2251239，GPU2审计worker2251243；启动快照9/30历史真实轨迹审计、0/80新在线核验、无失败job。审计完成自动进入GPU1/2/3配对live与独立全决策回放。29个预检文件+19个冻结源码/协议已从GitHub/LFS独立恢复核验；完整在线结果待运行完成，不能提前宣称提升。
 
@@ -19,19 +29,19 @@
 
 **A1已完成、当前优先于下方启动状态：** 40条采集/6400transition、训练与校准已结束；30/30在线轨迹通过精确回放。VLA3/10、完整框架6/10、共享预测gate但几何选动作8/10；框架相对VLA救回3条、未误伤原成功case，但预测排序没有超过几何排序。30个原视频和4个三方法并排视频位于`assembly_a1_20261015_a/review/index.html`索引；原结果完整归档为`backups/assembly_a1_20261015_a`（310文件，本地校验通过）。
 
-用户要求逐项排查4条框架失败，新增[诊断记录](exp_record/assembly_a1_diagnosis_20261015.md)：逐动作预测误差/评分分解/预算统计；4种固定事后事件×8候选×3步精确prefix仿真分支；另以同模型/控制/终点、仅预算40→80重跑四条失败并核对共同prefix。这是failure-selected开发诊断，不计入原30条、不改阈值、不当确认集提升。初步分型为3000/c1最终未脱离、3000/c3早期脱手且后续预测崩溃、3001/c2约0.096mm几何边界拒绝、3001/c3持续纠偏反而横向漂移。后续完整反事实结果以诊断记录为准。
+用户要求逐项排查4条框架失败，新增[诊断记录](exp_record/agent_notes/assembly_a1_diagnosis_20261015.md)：逐动作预测误差/评分分解/预算统计；4种固定事后事件×8候选×3步精确prefix仿真分支；另以同模型/控制/终点、仅预算40→80重跑四条失败并核对共同prefix。这是failure-selected开发诊断，不计入原30条、不改阈值、不当确认集提升。初步分型为3000/c1最终未脱离、3000/c3早期脱手且后续预测崩溃、3001/c2约0.096mm几何边界拒绝、3001/c3持续纠偏反而横向漂移。后续完整反事实结果以诊断记录为准。
 
 **诊断已完成：** 128条3步候选分支均精确prefix；预算80的4条新live都通过原40次修正前共同prefix和全轨迹独立回放。3000/c1以80次修正/148步成功，3001/c2以47次/101步成功；3000/c3仅46次仍失败、3001/c3以70次仍失败且末态横向误差约102mm。失去抓持后的3个检查点所有候选对零件真实作用完全相同，预测仍给虚假差异；3001/c3预测risk排序偏好+y而真值局部排序偏好−y。四条原失败153/160次选中的修正仍高于trigger阈值，因为当前acceptance只要求相对objective改善，没有候选过阈或预测可信度要求。下一版本应分别验证预测支持/适用性、风险与完成目标排序、有效进展预算；不能只加预算、不能把选出的2条救回改写成原A1更高成绩。原310文件+4并排视频已独立从GitHub/LFS恢复核验。
 
-用户要求直接检验我们框架的问题，不能以简单控制替代框架。新[A1开发协议](exp_record/assembly_a1_protocol_20261015.md)：方形螺母套柱，物理抓持后从柱口上方开始；冻结OpenVLA逐帧H1动作→自研OrbiSim-role学习动力学→RefCheckVLA风险验证→有界候选修复→新观测交还。五层架构不变。官方OrbiSim/CheckVLA适配器仍未实现，OrbiSim作者主页仍“Code coming soon”；不会把MuJoCo分支或自研MLP写成官方模型。
+用户要求直接检验我们框架的问题，不能以简单控制替代框架。新[A1开发协议](exp_record/agent_notes/assembly_a1_protocol_20261015.md)：方形螺母套柱，物理抓持后从柱口上方开始；冻结OpenVLA逐帧H1动作→自研OrbiSim-role学习动力学→RefCheckVLA风险验证→有界候选修复→新观测交还。五层架构不变。官方OrbiSim/CheckVLA适配器仍未实现，OrbiSim作者主页仍“Code coming soon”；不会把MuJoCo分支或自研MLP写成官方模型。
 
 实际装配入口已通过三个位置真实夹持预检；12mm偏移的持续下压出现柱口停滞/接触负载，而对准下压可入座。这些是装配fixture，不是VLA效能。新预测器使用40D特权状态、3成员MLP、真正自回归3步state/risk；独立采集训练/校准/验证seed，microbatch8，训练后冻结。2个新装配开发seed×5位置×3arm共30条；主角framework，对照VLA以及共享预测gate但用实测几何选择候选的feedback（这是ranking消融，不称完全无预测baseline）。全部保留，不按结果选样。目标为插入并松爪稳定5步/最多160步；接触负载与延迟单列，不宣称安全或20Hz实时。
 
-M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保留；新A1不改M1协议，不消费LIBERO最终root。**A1已实际启动**：`24b219d`先推送后启动，目录`/home/ami/scratch/assembly_a1_20261015_a`，supervisor1659007，采集worker1659011/GPU2；随后自动训练、GPU1/2/3配对在线评估。35个预检文件和12个源码/协议文件已独立远端恢复核对。新增[执行记录](exp_record/assembly_a1_execution_20261015.md)与只读`status_assembly_development.py`；当前进度以launch/status为准，下方旧“没有训练运行”仅表示当时状态。
+M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保留；新A1不改M1协议，不消费LIBERO最终root。**A1已实际启动**：`24b219d`先推送后启动，目录`/home/ami/scratch/assembly_a1_20261015_a`，supervisor1659007，采集worker1659011/GPU2；随后自动训练、GPU1/2/3配对在线评估。35个预检文件和12个源码/协议文件已独立远端恢复核对。新增[执行记录](exp_record/agent_notes/assembly_a1_execution_20261015.md)与只读`status_assembly_development.py`；当前进度以launch/status为准，下方旧“没有训练运行”仅表示当时状态。
 
 ### 15 Oct后续纠偏：行为验证与修复贡献分线（优先于下方启动时状态）
 
-用户明确要求先定义不正确行为，再做参数化失败发现；不以挑出框架获胜场景替代方法验证。已新增[验证/修复双线契约](exp_record/libero_validation_repair_contract_20261015.md)，逐项写明现有600步内20interval完整完成判据、相位条件适用范围、精度单位、安全未知项和墙钟实时要求。A线输出baseline失败条件/约束违反；B线输出同case对VLA、hold、timed及后续强规划对照的完整任务救回/误伤。30%–70%失败率仅为开发描述性信号，不是最终case筛选门槛；3个root不够确定稳定区间。不能为制造失败事后把drawer中心误差收紧到1mm。
+用户明确要求先定义不正确行为，再做参数化失败发现；不以挑出框架获胜场景替代方法验证。已新增[验证/修复双线契约](exp_record/agent_notes/libero_validation_repair_contract_20261015.md)，逐项写明现有600步内20interval完整完成判据、相位条件适用范围、精度单位、安全未知项和墙钟实时要求。A线输出baseline失败条件/约束违反；B线输出同case对VLA、hold、timed及后续强规划对照的完整任务救回/误伤。30%–70%失败率仅为开发描述性信号，不是最终case筛选门槛；3个root不够确定稳定区间。不能为制造失败事后把drawer中心误差收紧到1mm。
 
 **当前实际状态：M1已自动停止，非运行中。** root2/sham/phase在同worker内独立回放时pre-action fingerprint断言失败，supervisor终止其他workers。新独立进程用未改动verifier完整重放该条成功；原不一致原因仍未定位。现有9条完成且通过回放：VLA3/3、hold0/3、timed1/2、phase0/1，verified尚未执行；其余中断/未执行不能计作任务失败。保留所有不利结果，不因sham误伤更换阈值或提高扰动。当前没有新rollout/training启动。
 
@@ -41,13 +51,13 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ### 15 Oct用户授权批量场景发现与文献逻辑集成（当前最高优先级）
 
-**已实际启动M1：** 代码/冻结协议/39case清单/全部预检以`a37e354`先推GitHub，随后启动`/home/ami/scratch/libero_failure_mining_20261015_a`。supervisor1499667，GPU1/2/3worker1499671/1499672/1499673，脱离SSH运行。每个root逐case运行VLA/hold/timed/phase/verified全部5arm，不会baseline成功就取消。总计195条真实actor延续，每条自动精确回放，逐case生成5方法视频。当前为运行中，尚无完成的效能结论。[启动记录/状态命令](exp_record/libero_failure_mining_launch_20261015.md)。
+**已实际启动M1：** 代码/冻结协议/39case清单/全部预检以`a37e354`先推GitHub，随后启动`/home/ami/scratch/libero_failure_mining_20261015_a`。supervisor1499667，GPU1/2/3worker1499671/1499672/1499673，脱离SSH运行。每个root逐case运行VLA/hold/timed/phase/verified全部5arm，不会baseline成功就取消。总计195条真实actor延续，每条自动精确回放，逐case生成5方法视频。当前为运行中，尚无完成的效能结论。[启动记录/状态命令](exp_record/agent_notes/libero_failure_mining_launch_20261015.md)。
 
-用户明确要求从单一易成功场景的反复修补，转为**批量定制开发场景→寻找VLA失败/框架成功机制→冻结后独立确认**。新[M1协议](exp_record/libero_failure_mining_protocol_20261015.md)覆盖此前只做9个D2case的下一步安排；D1/D2历史结果不改，五层架构不变。首批39配置×5方法=195真实actor延续：drawer三个已消费开发root，各sham+4/8/12/16步释放延迟+world-x/y正负10/20mm动作偏置。是同任务的39开发配置，不是39任务或正式独立测试。所有方法都跑所有配置，不因baseline成功取消干预。
+用户明确要求从单一易成功场景的反复修补，转为**批量定制开发场景→寻找VLA失败/框架成功机制→冻结后独立确认**。新[M1协议](exp_record/agent_notes/libero_failure_mining_protocol_20261015.md)覆盖此前只做9个D2case的下一步安排；D1/D2历史结果不改，五层架构不变。首批39配置×5方法=195真实actor延续：drawer三个已消费开发root，各sham+4/8/12/16步释放延迟+world-x/y正负10/20mm动作偏置。是同任务的39开发配置，不是39任务或正式独立测试。所有方法都跑所有配置，不因baseline成功取消干预。
 
 **已接入实现：** `libero_mining.py`和新runner实现早期release-opportunity事务、release-conditioned强hold对照、10+30定时撤离、实测phase修复、额外候选物理验证repair。三候选×3步pulse-and-settle，在entry/首次released各一次，所有arm同预算shadow预测，只有verified arm可据此改动作；forecast重放真实effective prefix、核对state/controller/image，不能读未来故障。每条按原600步/20interval完整任务验收，交回后继续真实VLA关抽屉。框架selected和外部faulted effective分开，保存事件记忆、动作—结果核对、全部候选预测、实际效果、失败handoff与逐步视频。
 
-**文献核对与边界：** [集成审计](exp_record/libero_literature_integration_20261015.md)。SEAL官方`NVlabs/actalign`固定到`ed65d42e1466d9eb85ce8097f5034817a7e0ddc1`，已读sample evaluator与verifier prompt，checkpoint仍TBD；当前移植propose/predict/verify运行逻辑，非π0+VLM官方复现。CheckVLA核对原论文/作者页，未定位官方发布入口；新增command/effect与event bank目前为诊断证据，已有release/clear历史驱动实际控制；没有已集成其learnedWM/conformal/flow-suffix/keyframe-policy reader的说法。H1不能伪装chunk。文献有效不能替代本地配对结果。
+**文献核对与边界：** [集成审计](exp_record/agent_notes/libero_literature_integration_20261015.md)。SEAL官方`NVlabs/actalign`固定到`ed65d42e1466d9eb85ce8097f5034817a7e0ddc1`，已读sample evaluator与verifier prompt，checkpoint仍TBD；当前移植propose/predict/verify运行逻辑，非π0+VLM官方复现。CheckVLA核对原论文/作者页，未定位官方发布入口；新增command/effect与event bank目前为诊断证据，已有release/clear历史驱动实际控制；没有已集成其learnedWM/conformal/flow-suffix/keyframe-policy reader的说法。H1不能伪装chunk。文献有效不能替代本地配对结果。
 
 **预检状态：** 11项新/相关单测通过；真实sim五arm与精确forecast/action/trace回放预检进行中，第一次fixture在numpy bool JSON序列化处停止，已修正并保留失败记录，未消费在线actor结果。M1预检通过后启动独立SSH会话的GPU1/2/3 workers，逐case自动验证/视频，完成195条后输出全量成功/救回/误伤/双方失败地图并归档。当前尚无M1效能结论，final根未打开。
 
@@ -57,7 +67,7 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ### 14 Oct用户明确授权受控扰动：最终benchmark与D2（最高执行优先级）
 
-**纠正D1后的推进判断：** 干净场景VLA3/3应成为no-harm/sham锚点，不是放弃drawer或停止效能研究的理由。用户明确要求通过可恢复、受控、同条件的故障注入检验框架干预和完整任务收益。[最终benchmark设计](exp_record/libero_final_benchmark_design_20261014.md)优先于下方“先返回book”的建议；五层架构不变，继续drawer的release-delay机制，再冻结方法迁移book和干净任务。
+**纠正D1后的推进判断：** 干净场景VLA3/3应成为no-harm/sham锚点，不是放弃drawer或停止效能研究的理由。用户明确要求通过可恢复、受控、同条件的故障注入检验框架干预和完整任务收益。[最终benchmark设计](exp_record/agent_notes/libero_final_benchmark_design_20261014.md)优先于下方“先返回book”的建议；五层架构不变，继续drawer的release-delay机制，再冻结方法迁移book和干净任务。
 
 **研究证明链：** 受控故障→可观测物理偏差→因果事件触发→有界实际修复→交还控制→完成剩余关抽屉；必须在相同actor/观测权限/故障/控制预算下优于原VLA及强简单几何shield，并报告sham误伤。只比检测AUC、只恢复子目标或把注入器改变的动作算框架干预都不够。
 
@@ -71,13 +81,13 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ### 14 Oct最新实施：D1定向阶段交接实验与可观测决策链
 
-**D1已核验结束（覆盖下方启动记录）：** [结果](exp_record/libero_drawer_target_results_20261014.md)。原VLA在drawer开发root0/1/2按完整物理验收均成功3/3，分别368/564/344步；按预登记`no_observed_post_event_headroom`停止，未启动其余9条干预轨迹。1276个真实actor动作及其证据→判据→路由→动作→结果链全部原root精确回放通过，生成3个单VLA面板2倍速视频和可点击trace页。**没有本轮框架提升结论。** 关抽屉后的延迟主要是柜体/夹爪未脱离，非碗再次被碰；root2稳定支撑触发晚于释放和关抽屉，说明事件出现不等于及时覆盖目标阶段。下一效能目标应回到已证明存在失败的book/caddy阶段交接，再单独登记；不为正结果扩大扰动/root搜索。当前无实验运行。40源文件+3视频已本地归档核验，远端恢复随后记录。
+**D1已核验结束（覆盖下方启动记录）：** [结果](exp_record/agent_notes/libero_drawer_target_results_20261014.md)。原VLA在drawer开发root0/1/2按完整物理验收均成功3/3，分别368/564/344步；按预登记`no_observed_post_event_headroom`停止，未启动其余9条干预轨迹。1276个真实actor动作及其证据→判据→路由→动作→结果链全部原root精确回放通过，生成3个单VLA面板2倍速视频和可点击trace页。**没有本轮框架提升结论。** 关抽屉后的延迟主要是柜体/夹爪未脱离，非碗再次被碰；root2稳定支撑触发晚于释放和关抽屉，说明事件出现不等于及时覆盖目标阶段。下一效能目标应回到已证明存在失败的book/caddy阶段交接，再单独登记；不为正结果扩大扰动/root搜索。当前无实验运行。40源文件+3视频已本地归档核验，远端恢复随后记录。
 
 **D1远端恢复已通过：** `81eb54e`推送4个LFS对象/26.3MB后，独立从GitHub下载并完整恢复校验40源文件及3个视频；[验证记录](backups/libero_drawer_target_remote_verified_20261014.json)。
 
 **已实际启动：** `d3889e2`实现/冻结协议/预检已推GitHub，随后启动`libero_drawer_target_20261014_a`。脱离SSH的supervisor779352；健康GPU1/2/3对应root0/1/2、baseline worker779356/779357/779358，当前阶段`baseline_target_coverage`。根据预登记覆盖/事件后失败规则自动决定是否接着跑全四arm；完成后精确回放、生成可观测决策链视频/HTML并归档。尚无该任务效能结论。
 
-**研究问题唯一化：** 已放入并获得支撑之后，按实测“释放→净空→交还控制”执行局部修复，能否改善后续真实VLA关抽屉及完整任务完成？[冻结D1协议](exp_record/libero_drawer_target_protocol_20261014.md)、[实现与运行记录](exp_record/libero_drawer_target_launch_20261014.md)。五层接口已接通：共享子目标tracker→冻结OpenVLA→接触/几何/历史monitor→正常/接触转换gate→有界hold-open/向抽屉外撤离。此次只检验release-to-close机制；早期对齐/停滞仅记录，不堆叠新干预算法。
+**研究问题唯一化：** 已放入并获得支撑之后，按实测“释放→净空→交还控制”执行局部修复，能否改善后续真实VLA关抽屉及完整任务完成？[冻结D1协议](exp_record/agent_notes/libero_drawer_target_protocol_20261014.md)、[实现与运行记录](exp_record/agent_notes/libero_drawer_target_launch_20261014.md)。五层接口已接通：共享子目标tracker→冻结OpenVLA→接触/几何/历史monitor→正常/接触转换gate→有界hold-open/向抽屉外撤离。此次只检验release-to-close机制；早期对齐/停滞仅记录，不堆叠新干预算法。
 
 **有针对性的对照与止损：** drawer任务开发root0/1/2；先跑三条原VLA确认目标事件和事件后失败。若事件不可达，或所有到达事件的baseline均已完整成功，按预登记停止，不跑无效重复对照、不事后改阈值。存在事件后失败才在全部三root比较VLA、gate+hold/open、固定10hold+30外撤、实测阶段条件repair，最多12轨迹，每条600步、修复最多40步、每步都查同一H1actor。hold/open明确含夹爪释放，不伪称无动作的纯gate或H1重规划。主要比较phase-repair对两个简单控制的完整关抽屉/释放保持收益和误伤。
 
@@ -87,11 +97,11 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ### 14 Oct用户锁定：五层架构与长序列验证（最高优先级）
 
-**架构固定为：高层子目标 → 冻结OpenVLA骨干 → 风险与事件边界监测 → 双模门控决策 → 局部修复模块。** 权威定义已写入[framework design](exp_record/libero_framework_design_20261014.md)，[逐层改动与下一任务实施顺序](exp_record/libero_five_layer_implementation_20261014.md)。后续只在这五层内部根据证据修正、做匹配消融，不再更换主架构或铺开新研究方向。高层先用共享的任务milestone状态机；双模明确为正常跟踪／接触与阶段转换管理；修复限有界Retract、Re-align、Slow Approach，优先几何启发式，必要时小残差，不训练复杂大规模RL修复器。
+**架构固定为：高层子目标 → 冻结OpenVLA骨干 → 风险与事件边界监测 → 双模门控决策 → 局部修复模块。** 权威定义已写入[framework design](exp_record/agent_notes/libero_framework_design_20261014.md)，[逐层改动与下一任务实施顺序](exp_record/agent_notes/libero_five_layer_implementation_20261014.md)。后续只在这五层内部根据证据修正、做匹配消融，不再更换主架构或铺开新研究方向。高层先用共享的任务milestone状态机；双模明确为正常跟踪／接触与阶段转换管理；修复限有界Retract、Re-align、Slow Approach，优先几何启发式，必要时小残差，不训练复杂大规模RL修复器。
 
 **论文定位：** Runtime Physical Safety & Affordance Monitoring + Contact/Phase Transition Repair，作为围绕冻结VLA的轻量Physical Guardrail。几何、接触转换和实测进展支持面向执行的有限“物理理解”；不要求PINN/V-JEPA/完整神经3D引擎，也不把规则监测写成已学习动力学或通用物理推理。算力效率、安全与效果必须实测，不预先承诺最高效率、成绩或正结果。
 
-**当前数据正确定位与已完成结果：** 旧native3/3不等于真实完整任务100%；释放稳定放置仅1/3，当前book/caddy本来就在`libero_10`。preservation是五层中的局部机制探针，不是完整五层实现。`_b`24条rollout三个worker均exit0；已修复汇总阶段MP4 reader长度提示引起的预分配错误，在同一批数据上独立复核全部通过并生成6个四方法2倍速视频。[完整结果](exp_record/libero_preservation_results_20261014.md)：VLA/hold/retreat/physics放置完成分别2/6、3/6、2/6、3/6；完成且40步actor续跑末20步保持分别1/6、2/6、1/6、1/6。native全部6/6，CVR/safe仍null。physics相对hold没有完成率优势且保持较差；只支持在固定第3–5层补早期事件覆盖和阶段感知handoff，不宣称框架胜出。全部root0–5仅开发，当前无rollout/训练在运行。
+**当前数据正确定位与已完成结果：** 旧native3/3不等于真实完整任务100%；释放稳定放置仅1/3，当前book/caddy本来就在`libero_10`。preservation是五层中的局部机制探针，不是完整五层实现。`_b`24条rollout三个worker均exit0；已修复汇总阶段MP4 reader长度提示引起的预分配错误，在同一批数据上独立复核全部通过并生成6个四方法2倍速视频。[完整结果](exp_record/agent_notes/libero_preservation_results_20261014.md)：VLA/hold/retreat/physics放置完成分别2/6、3/6、2/6、3/6；完成且40步actor续跑末20步保持分别1/6、2/6、1/6、1/6。native全部6/6，CVR/safe仍null。physics相对hold没有完成率优势且保持较差；只支持在固定第3–5层补早期事件覆盖和阶段感知handoff，不宣称框架胜出。全部root0–5仅开发，当前无rollout/训练在运行。
 
 **唯一下一long-horizon任务：** `KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it`。已核对BDDL：抽屉初始Open，终态要求Close与In同时满足；依次验证抓取→对齐运输→放入释放→夹爪撤出→关抽屉→保持，不虚构“必须先开抽屉”。先完成当前诊断归档，再接五层phase/event/gate/repair接口、核查此任务判据/actor能力，最后冻结同观测/预算/停止规则的原策略、Gate-only/Replan-only、Event-Gated+Local Repair对照。
 
@@ -99,13 +109,13 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ### 以下为按时间累积的实施记录；活动状态以上述最新条目为准
 
-**14 Oct运行中止与修复（更新下方启动状态）：** `_a`在root2/physics第二次前瞻decision190因相机hash不一致自动停止全部worker；integration/controller一致，尚无完整框架对比结果，root3–5尚未执行。原因是robosuite1.4.1多环境渲染未重新绑定EGL context，首个单次smoke没覆盖分支销毁后的下一次主环境图像。已添加本地逐render绑定，连续3次/18分支检查通过；补测实际修正后prefix重放后，按原冻结协议在新目录`libero_preservation_20261014_b`重跑全部24轨迹。[故障、修复及中止数据说明](exp_record/libero_preservation_renderer_fix_20261014.md)。中止的100文件归档进入Git LFS；没有利用部分结果改候选/阈值/打分。
+**14 Oct运行中止与修复（更新下方启动状态）：** `_a`在root2/physics第二次前瞻decision190因相机hash不一致自动停止全部worker；integration/controller一致，尚无完整框架对比结果，root3–5尚未执行。原因是robosuite1.4.1多环境渲染未重新绑定EGL context，首个单次smoke没覆盖分支销毁后的下一次主环境图像。已添加本地逐render绑定，连续3次/18分支检查通过；补测实际修正后prefix重放后，按原冻结协议在新目录`libero_preservation_20261014_b`重跑全部24轨迹。[故障、修复及中止数据说明](exp_record/agent_notes/libero_preservation_renderer_fix_20261014.md)。中止的100文件归档进入Git LFS；没有利用部分结果改候选/阈值/打分。
 
 **修复验收通过：** 连续8次/48分支检查154.5s全部通过，候选选择`[0,0,0,0,2,2,2,2]`覆盖修正后历史重放；完整integration/controller/相机、live不变性、预测首步=执行首步均精确一致，未放宽像素校验。7项单测仍通过。此为接口回归探针，不是新的效能结果。
 
 **最新活动运行：** 修复`ec9ff87`推送后，`libero_preservation_20261014_b`已启动，supervisor749068、GPU1/2/3worker749073/749074/749075，全部24条按原协议重跑，结果待完成。中止`_a`的100文件LFS归档已从GitHub独立下载并完整恢复校验通过。
 
-**14 Oct当前执行决策（优先于此前“未启动”状态）：** 用户授权在当前场景接入真实预测→选择→执行闭环。已冻结并推送[placement-preservation机制协议](exp_record/libero_preservation_protocol_20261014.md)（`9336782`），[实现与启动记录](exp_record/libero_preservation_launch_20261014.md)。准确物理selector与VLA、hold-open、retreat-open匹配对比，root0–2及新开发root3–5，共24轨迹；当前仍是privileged H1/k1诊断，非learned efficacy。首个有效放置后的20步内每步最多6个5步pulse-and-settle候选，仅执行第一步；达到原1s放置验收后关闭修正，再执行40步原VLA观察恢复后的保持。未扩大为多任务或训练新模型。7项单测通过；root2完整190状态replay、6分支完整integration/controller/图像一致性、live不变性、预测首步=实际首步已通过。早期alignment失败不在本次trigger覆盖范围，不能靠事后放宽规则制造收益。
+**14 Oct当前执行决策（优先于此前“未启动”状态）：** 用户授权在当前场景接入真实预测→选择→执行闭环。已冻结并推送[placement-preservation机制协议](exp_record/agent_notes/libero_preservation_protocol_20261014.md)（`9336782`），[实现与启动记录](exp_record/agent_notes/libero_preservation_launch_20261014.md)。准确物理selector与VLA、hold-open、retreat-open匹配对比，root0–2及新开发root3–5，共24轨迹；当前仍是privileged H1/k1诊断，非learned efficacy。首个有效放置后的20步内每步最多6个5步pulse-and-settle候选，仅执行第一步；达到原1s放置验收后关闭修正，再执行40步原VLA观察恢复后的保持。未扩大为多任务或训练新模型。7项单测通过；root2完整190状态replay、6分支完整integration/controller/图像一致性、live不变性、预测首步=实际首步已通过。早期alignment失败不在本次trigger覆盖范围，不能靠事后放宽规则制造收益。
 
 **备份已远端恢复验证：** `f33915a`包含14个LFS对象/2.45GB，重新从GitHub克隆下载并完整恢复1,674文件均通过SHA256；LIBERO固定submodule及任务初始状态hash一致。见[恢复报告](backups/remote_recovery_verified_20261014.json)。预训练7B权重仍依赖固定HF revision重新下载。
 
@@ -113,21 +123,21 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 **14 Oct归因澄清与泛化顺序：** continuation的worker0/1/2全部是冻结OpenVLA baseline；物理模块仅作诊断/验收，尚未嵌入动作选择或修复闭环。worker2视频中的调整不能归因于我们的框架，且其短暂放好后再接触，未通过1s稳定验收。先在单一book/caddy场景完成匹配的VLA／简单控制／准确物理前瞻机制对照，再按证据逐项调整算法。泛化证据先来自未见root及预注册的观测/执行噪声、隐藏动力学条件，最后冻结方法到第二任务；同任务3个开发worker不是泛化，第二任务追加训练属于适配而非zero-shot。研究恢复入口见[Git LFS备份、视频和固定LIBERO submodule](backups/README.md)。
 
-**14 Oct审查与下一项方法决策（优先于下文历史建议）：** [场景检测、公平对照与架构设计](exp_record/libero_framework_design_20261014.md)。全部rollout已完成，当前released placement仅1/3，尚无机器人任务的learned框架效果证据。已生成全部3条轨迹的2倍速独立MP4及13.025s并排总览，并接入汇总脚本的自动导出；视频按仿真时间加速，包含geometry/脱离/dwell/re-contact诊断，不是方法对比。当前history规则在root2于step188观察到placement opportunity、194观察到re-contact；不是提前6步预测成功。简单slow-contact stall规则漏掉root1，不通过事后调阈值宣称解决。
+**14 Oct审查与下一项方法决策（优先于下文历史建议）：** [场景检测、公平对照与架构设计](exp_record/agent_notes/libero_framework_design_20261014.md)。全部rollout已完成，当前released placement仅1/3，尚无机器人任务的learned框架效果证据。已生成全部3条轨迹的2倍速独立MP4及13.025s并排总览，并接入汇总脚本的自动导出；视频按仿真时间加速，包含geometry/脱离/dwell/re-contact诊断，不是方法对比。当前history规则在root2于step188观察到placement opportunity、194观察到re-contact；不是提前6步预测成功。简单slow-contact stall规则漏掉root1，不通过事后调阈值宣称解决。
 
 **下一步比较的必要结构：** 固定同一full7B actor/观测权限/状态估计/候选动作/反馈与预算，比较A原VLA、B共享检测器＋简单phase/geometry/撤离控制、O准确物理前瞻选择（privileged机制诊断），只有O优于B且完整续跑有净收益才做L允许观测输入的learned预测替代。L必须同时优于A与B，不能把多观测、简单终止逻辑或更大候选预算算物理预测贡献。先冻结一个小预算机制协议，不自动扩collector或训练；force/impulse阈值与数值敏感性仍待核实，CVR/safe不能补造。
 
 **有证据依据的架构方向：** 从固定当前context的scalar risk转向短段实测history→接触/任务状态及不确定性→因果动作条件的相对pose/velocity/contact/progress预测；先小型residual模型与有限候选，不默认GRU/大模型。repair要能表达有界横向/姿态/撤离及明确gripper分支，不能仅缩小原动作。保留gate/event与连续repair目标的单位分离，并检查actor恢复执行后的完成。当前H1只作机制诊断；正式H10/k5研究仍须真实任务兼容H10提议和基线可行性，不能重复H1凑数。真实sim几何/contact仅诊断或训练标签，不能偷偷变成learned runtime输入。具体实现和效果须由后续匹配实验验证，本次未训练/启动新干预实验。
 
-**最新续跑完成（覆盖下文运行中状态）：** [完整结果](exp_record/libero_continuation_results_20261013.md)。native-ever3/3，几何/脱离/稳定1s完成1/3：root0在313步通过，root1/2均到520步未通过；所有原baseline重合prefix的tokens/actions相同、state误差0，子步/视频/判据独立核验通过。root1始终未完整进入目标隔间且抓取后保持夹爪接触；root2曾全部条件通过0.3s，随后夹爪重新接触并破坏稳定。root0证明存在能完成的新验收例子，但末动作仍close，不能称为主动open-gripper release或安全撤离。下一项机制诊断应围绕对齐和完成后继续执行，加入匹配的简单停止/保持/撤离控制，防止把终止逻辑收益冒充learned physics收益。force数值尚未数值收敛/阈值认证，CVR/safe仍null。当前无实验运行，未启动新训练或干预。
+**最新续跑完成（覆盖下文运行中状态）：** [完整结果](exp_record/agent_notes/libero_continuation_results_20261013.md)。native-ever3/3，几何/脱离/稳定1s完成1/3：root0在313步通过，root1/2均到520步未通过；所有原baseline重合prefix的tokens/actions相同、state误差0，子步/视频/判据独立核验通过。root1始终未完整进入目标隔间且抓取后保持夹爪接触；root2曾全部条件通过0.3s，随后夹爪重新接触并破坏稳定。root0证明存在能完成的新验收例子，但末动作仍close，不能称为主动open-gripper release或安全撤离。下一项机制诊断应围绕对齐和完成后继续执行，加入匹配的简单停止/保持/撤离控制，防止把终止逻辑收益冒充learned physics收益。force数值尚未数值收敛/阈值认证，CVR/safe仍null。当前无实验运行，未启动新训练或干预。
 
-**最新续跑实施（覆盖下文无实验运行状态）：** [冻结协议](exp_record/libero_continuation_protocol_20261013.md)与代码`9f39e2b`在launch前提交推送，3条同初始状态full7B H1/k1续跑已在健康GPU1/2/3启动，总预算仍每条520policy steps。几何入后隔间＋底部到位＋全部子步脱离夹爪＋慢速/支撑连续1s才计released placement；native成功仅记录事件。[实施/检查](exp_record/libero_continuation_launch_20261013.md)。5项测试通过；185步原轨迹加入监测后state完全相同；独立无VLA的合成正确放置fixture满足60个连续interval，确认判据在真实模型中可满足。该fixture的native predicate反而false，说明几何判据是替代性任务验收，不是native-success的逻辑子集，两者须分别报告。当前续跑结果待核验，不宣称安全提升。
+**最新续跑实施（覆盖下文无实验运行状态）：** [冻结协议](exp_record/agent_notes/libero_continuation_protocol_20261013.md)与代码`9f39e2b`在launch前提交推送，3条同初始状态full7B H1/k1续跑已在健康GPU1/2/3启动，总预算仍每条520policy steps。几何入后隔间＋底部到位＋全部子步脱离夹爪＋慢速/支撑连续1s才计released placement；native成功仅记录事件。[实施/检查](exp_record/agent_notes/libero_continuation_launch_20261013.md)。5项测试通过；185步原轨迹加入监测后state完全相同；独立无VLA的合成正确放置fixture满足60个连续interval，确认判据在真实模型中可满足。该fixture的native predicate反而false，说明几何判据是替代性任务验收，不是native-success的逻辑子集，两者须分别报告。当前续跑结果待核验，不宣称安全提升。
 
-**最新pilot已完成（覆盖下文启动状态）：** [结果与判据纠正](exp_record/libero_baseline_results_20261013.md)。3条native成功，185/229/166步；所有artifact长度/映射/hash核验通过。但三条终态夹爪都仍闭合并接触书本，未证明释放后稳定放置。源码追踪确认SiteObjectState.check_contact恒True，因此该In实际上只检查reference-point进区域，先前协议对“必须接触caddy”的解读不成立（以结果erratum纠正，冻结协议不改写）。native3/3不等于完整精细安全完成，CVR/safe/严格precision仍null。下一步先冻结继续执行＋松手/几何/稳定判据的有限baseline续跑，不能直接训练verifier。当前无实验运行。
+**最新pilot已完成（覆盖下文启动状态）：** [结果与判据纠正](exp_record/agent_notes/libero_baseline_results_20261013.md)。3条native成功，185/229/166步；所有artifact长度/映射/hash核验通过。但三条终态夹爪都仍闭合并接触书本，未证明释放后稳定放置。源码追踪确认SiteObjectState.check_contact恒True，因此该In实际上只检查reference-point进区域，先前协议对“必须接触caddy”的解读不成立（以结果erratum纠正，冻结协议不改写）。native3/3不等于完整精细安全完成，CVR/safe/严格precision仍null。下一步先冻结继续执行＋松手/几何/稳定判据的有限baseline续跑，不能直接训练verifier。当前无实验运行。
 
-**13 Oct实施进展：** 已接通LIBERO书本入收纳盒任务：Panda/OSC、官方initial states、完整任务full7B权重、native7D动作、官方图像预处理及视频/状态/接触记录。环境smoke和真实模型单动作smoke通过，预处理与官方函数逐像素一致；2项新sim ABI测试＋10项已有闭环测试通过，独立TF5/action-map检查通过。[实现记录](exp_record/libero_integration_20261013.md)。[3条完整任务pilot协议](exp_record/libero_baseline_protocol_20261013.md)与代码已在launch前提交`bf7c6c6`，开发initial indices0/1/2分别在健康GPU1/2/3持久化启动；当前本条只记录启动，不宣称完成率。H1/k1仅验证task-capable baseline，不能替代H10/k5匹配研究。现有In判据不要求松手/完整几何容纳/稳定；CVR、safe与严格precision暂记null，后续依据实际轨迹与mechanics冻结。未启动learned训练或物理干预实验。
+**13 Oct实施进展：** 已接通LIBERO书本入收纳盒任务：Panda/OSC、官方initial states、完整任务full7B权重、native7D动作、官方图像预处理及视频/状态/接触记录。环境smoke和真实模型单动作smoke通过，预处理与官方函数逐像素一致；2项新sim ABI测试＋10项已有闭环测试通过，独立TF5/action-map检查通过。[实现记录](exp_record/agent_notes/libero_integration_20261013.md)。[3条完整任务pilot协议](exp_record/agent_notes/libero_baseline_protocol_20261013.md)与代码已在launch前提交`bf7c6c6`，开发initial indices0/1/2分别在健康GPU1/2/3持久化启动；当前本条只记录启动，不宣称完成率。H1/k1仅验证task-capable baseline，不能替代H10/k5匹配研究。现有In判据不要求松手/完整几何容纳/稳定；CVR、safe与严格precision暂记null，后续依据实际轨迹与mechanics冻结。未启动learned训练或物理干预实验。
 
-**最新范围确认：先证明本地VLA执行闭环有效，LLM与端云协同只列future work。** 核心贡献目标是“物理预测/验证与必要的局部修正，能否在观测/执行/动力学存在不确定性时提高完整、精确、安全的任务完成”。具体loss、微调、网络或repair算法可以按证据调整，不能把某个训练技巧当成必须实现的主线。成功的VLA实例支持执行层逻辑，不自动证明LLM通用性或真实世界安全保证。[范围、任务与噪声设计](exp_record/local_vla_scope_20261013.md)。
+**最新范围确认：先证明本地VLA执行闭环有效，LLM与端云协同只列future work。** 核心贡献目标是“物理预测/验证与必要的局部修正，能否在观测/执行/动力学存在不确定性时提高完整、精确、安全的任务完成”。具体loss、微调、网络或repair算法可以按证据调整，不能把某个训练技巧当成必须实现的主线。成功的VLA实例支持执行层逻辑，不自动证明LLM通用性或真实世界安全保证。[范围、任务与噪声设计](exp_record/agent_notes/local_vla_scope_20261013.md)。
 
 **精细任务选择（逐个推进）：** 首选LIBERO-10“将书放入收纳盒后隔间”（确切ID和In目标已核实；实际间隙/碰撞与精度判据仍需检查）；第二候选“碗放入底层抽屉并关闭”（In＋Close目标已核实，轻柔/稳定到位需独立物理指标）；robosuite `NutAssemblySquare`作为后续受控对齐接触机制任务，现有成功条件并非严格精度认证，且task-matched VLA未核实。官方LIBERO-10 full7B checkpoint公开可用，未有本地rollout结果。先前“打开中层抽屉”降为可选接口smoke，不代表最终精细任务。只接通一个primary，不并行扩多套环境。
 
@@ -135,21 +145,21 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ### 已确认的task-first执行路径与接入检查
 
-**最新用户确认：最终操作任务做不好，继续优化微调实验没有意义。** 当前下一步改为：①先跑通一个机械臂仿真任务及完整OpenVLA正常任务baseline；②在相同任务验证有限预算的准确物理干预能否提高完整安全完成率；③有机制可行性后，再训练/验证learned物理预测与修复贡献。此决定覆盖下文“简单任务learned收益证明后才做任何目标任务可行性”的执行顺序，以及原模型初始化微调建议；不抹去R5负结果，不把换benchmark算改进。[英文决策与兼容性核查](exp_record/simulation_task_first_20261013.md)。
+**最新用户确认：最终操作任务做不好，继续优化微调实验没有意义。** 当前下一步改为：①先跑通一个机械臂仿真任务及完整OpenVLA正常任务baseline；②在相同任务验证有限预算的准确物理干预能否提高完整安全完成率；③有机制可行性后，再训练/验证learned物理预测与修复贡献。此决定覆盖下文“简单任务learned收益证明后才做任何目标任务可行性”的执行顺序，以及原模型初始化微调建议；不抹去R5负结果，不把换benchmark算改进。[英文决策与兼容性核查](exp_record/agent_notes/simulation_task_first_20261013.md)。
 
 **已核查的首个接入目标：** LIBERO-Goal `open_the_middle_drawer_of_the_cabinet`，官方BDDL与公开full7B任务checkpoint均存在；任务是打开中层抽屉，不是先前举例的轻柔关闭。先验证端到端完成，再核实joint到位/稳定及接触力标准；原Open predicate不自动等于精细/轻柔完成。当前仅MuJoCo已装，LIBERO/robosuite未装，任务checkpoint未缓存。现有二维H10头不能直接控制Panda；官方native H1 baseline可先作可行性复现，但不能与H10/k5 verifier混比，也不能重复单步动作假装真实H10。共享base只允许增量依赖，须先解决TF5 native decode与旧sim依赖兼容性。本次完成核查与优先级同步，未启动新训练/rollout。
 
 ### 保留的研究问题与实验沿革（当前执行顺序以上述用户确认为准）
 
-**唯一问题：在相同完整OpenVLA、观测权限和执行机会下，learned physics verifier能否通过正确识别需要干预的动作，提高安全任务完成率，同时不明显牺牲任务成功？** 先在固定box-push任务证明，再转移到一个生活化接触任务。架构、SEAL和更复杂任务是手段，不是并行研究目标。[英文决策与证据链](exp_record/research_mainline_20261013.md)。本节覆盖下文所有“下一步”“当前主线”和SEAL启动建议；历史协议/结果不改写。
+**唯一问题：在相同完整OpenVLA、观测权限和执行机会下，learned physics verifier能否通过正确识别需要干预的动作，提高安全任务完成率，同时不明显牺牲任务成功？** 先在固定box-push任务证明，再转移到一个生活化接触任务。架构、SEAL和更复杂任务是手段，不是并行研究目标。[英文决策与证据链](exp_record/agent_notes/research_mainline_20261013.md)。本节覆盖下文所有“下一步”“当前主线”和SEAL启动建议；历史协议/结果不改写。
 
-**13 Oct完成结论（覆盖下文R5计划/运行状态）：** [完整R5结果](exp_record/immediate_gate_results_20261013.md)。24采集batches、3配对训练seeds、180闭环batches/5760trajectories全部完成并独立核验。event相对同数据regression safe分别+1.34[−2.01,+4.91]/+3.35[−0.45,+7.14]/+4.24[+0.67,+7.81]pp，仅点估计方向一致，未通过全seed正CI标准。相对policy则safe−10.71/−11.83/−7.81pp（全部CI上界<0），CVR+10.27/+11.61/+7.37pp，safe rescue/harm3/51、1/54、2/37；ID也明显退步。**本配置不提升、不进入独立确认，停止该loss-only分支；目前没有新的实验启动。** 原direct/ramp仅保留既有reference，不将其称为已满足整体目标。
+**13 Oct完成结论（覆盖下文R5计划/运行状态）：** [完整R5结果](exp_record/agent_notes/immediate_gate_results_20261013.md)。24采集batches、3配对训练seeds、180闭环batches/5760trajectories全部完成并独立核验。event相对同数据regression safe分别+1.34[−2.01,+4.91]/+3.35[−0.45,+7.14]/+4.24[+0.67,+7.81]pp，仅点估计方向一致，未通过全seed正CI标准。相对policy则safe−10.71/−11.83/−7.81pp（全部CI上界<0），CVR+10.27/+11.61/+7.37pp，safe rescue/harm3/51、1/54、2/37；ID也明显退步。**本配置不提升、不进入独立确认，停止该loss-only分支；目前没有新的实验启动。** 原direct/ramp仅保留既有reference，不将其称为已满足整体目标。
 
 **失败解释的边界：** R5数值support通过，但128个训练即时事件决策中120来自手工brake-resumption，natural仅3、frozen仅5；dev62个正例全来自brake-resumption，原H10/R5 gate本就62/62检出。event达到100%dev recall未证明补上原gate的真实漏检。大部分safe harm包含新增违规（47/51、52/54、35/37），并非只是保守导致任务没完成；触发频率也并未普遍大幅增加。证据支持“该数据/架构/阈值规则下单换event objective不够”，不能单独断言全因data、threshold或网络容量。support对自然危险/漏检机制的代表性不足需明确记录，不能据此再自动放宽标准或广泛扫collector。下一项研究必须另有单一失效证据与预定停止规则，架构建议不是自动排队任务。
 
-**13 Oct执行更新（用户已授权运行）：** [R5数值协议](exp_record/immediate_gate_20261013.md)与实现已形成：fresh train/dev/calibration roots76000/77000/78000；固定24batches/768trajectories，none/frozen/单次brake_ramp三个collector；即时违规与安全接触支持逐split/physics-bin先验检查，失败自动停止。通过才训练regression/event各3seeds，严格共享初始化、采样与3000updates，冻结原repair；加原H10和frozen-R5控制，共9arms×20cells×32episodes。57测试通过，CPU端到端smoke已完成（合成训练fixture仅验证管线，不是效果证据）。本条覆盖下文“本次不启动”的先前决策状态；实际launch另记于week4。独立测试不动。
+**13 Oct执行更新（用户已授权运行）：** [R5数值协议](exp_record/agent_notes/immediate_gate_20261013.md)与实现已形成：fresh train/dev/calibration roots76000/77000/78000；固定24batches/768trajectories，none/frozen/单次brake_ramp三个collector；即时违规与安全接触支持逐split/physics-bin先验检查，失败自动停止。通过才训练regression/event各3seeds，严格共享初始化、采样与3000updates，冻结原repair；加原H10和frozen-R5控制，共9arms×20cells×32episodes。57测试通过，CPU端到端smoke已完成（合成训练fixture仅验证管线，不是效果证据）。本条覆盖下文“本次不启动”的先前决策状态；实际launch另记于week4。独立测试不动。
 
-**面向精细操作的架构检查：** [代码与证据评审](exp_record/architecture_review_20261013.md)。优先①将event gate与continuous physical repair评分解耦（本轮正在检验）；②只有残余错误支持representation问题时，才设计小型可观测接触状态＋causal action-prefix预测，不能把失败的GRU重跑说成新突破；③若检测改善但完成仍损失，再设计到位/对齐/续接感知的repair，不能只最小化一小段风险。当前obs没有force-history、原GRU也不是measured-history estimator。当前success只要求位置误差<2cm及平动速度<.05m/s，未直接检查yaw/depth/dwell，6mm几何不等于6mm精度已被成功指标验证。生活化迁移前需冻结真正精度/稳定完成条件；本轮指标和任务不改。这些建议不构成并行启动授权。
+**面向精细操作的架构检查：** [代码与证据评审](exp_record/agent_notes/architecture_review_20261013.md)。优先①将event gate与continuous physical repair评分解耦（本轮正在检验）；②只有残余错误支持representation问题时，才设计小型可观测接触状态＋causal action-prefix预测，不能把失败的GRU重跑说成新突破；③若检测改善但完成仍损失，再设计到位/对齐/续接感知的repair，不能只最小化一小段风险。当前obs没有force-history、原GRU也不是measured-history estimator。当前success只要求位置误差<2cm及平动速度<.05m/s，未直接检查yaw/depth/dwell，6mm几何不等于6mm精度已被成功指标验证。生活化迁移前需冻结真正精度/稳定完成条件；本轮指标和任务不改。这些建议不构成并行启动授权。
 
 **为什么早期看起来好：** 早期BC/stand-in、vis与full OpenVLA混在叙述中；历史v5 learned safe约68.5→70.4%，大幅68.5→80.1%属于GT。旧controller还存在none每5步replan、非trigger verifier每步replan的不公平，10月8日才完整修复；不能断言这个bug解释全部历史收益。修正后n8/cell的+3.6～4.5pp信号，在独立896 OOD episodes上变成+1.23[+0.11,+2.46]pp（decision tau），safe rescue/harm21/10、SR−1.79pp；另一448验证cohort为−0.89pp。小正收益仍有效，但“大幅、稳定、完整VLA的learned收益已经证明”从未成立。最近ramp相对原verifier+2.01pp，仍非相对policy的稳定净收益。
 
@@ -198,7 +208,7 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ## 已完成结果与已暂停的SEAL下一步草案（2026-10-13）
 
-**正式完成：180/180 batches、5,760 trajectories，三worker均已退出，当前没有该轮GPU任务。** 180 raw hashes、全部episode vectors、live-risk违规重建、prefix-label parity和三份shard hashes独立复核通过。[完整结果与SEAL接入评估](exp_record/repair_transition_results_20261013.md)。以下进度/launch描述保留作历史记录，以本段为准。
+**正式完成：180/180 batches、5,760 trajectories，三worker均已退出，当前没有该轮GPU任务。** 180 raw hashes、全部episode vectors、live-risk违规重建、prefix-label parity和三份shard hashes独立复核通过。[完整结果与SEAL接入评估](exp_record/agent_notes/repair_transition_results_20261013.md)。以下进度/launch描述保留作历史记录，以本段为准。
 
 **结论：** learned ramp相对原verifier safe **+2.01[+0.89,+3.35]pp**、safe rescue/harm9/0，恢复原12 harms中7个并保留8/8 rescues；但相对policy仅+1.12[−0.67,+2.68]pp、SR−2.23pp，未过整体收益门槛。固定混合与ramp差异不显著；pause safe64.51%，虽减少局部跳变/违规，却未恢复任何原harm。GT ramp相对GT direct safe仅+0.45[−1.12,+2.01]pp、rescue/harm8/6。保留ramp为有希望的component/control，不宣称独立确认或普适衔接机制，不继续广泛调ramp。
 
@@ -216,7 +226,7 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 **算法已经实现并启动：** repair-aware prefix shaping → unchanged gate → unchanged repair。用上一条实际执行 velocity 与“上一段是否被 repair 真正修改”这一 bit，下一决策将前5步按0.2/0.4/0.6/0.8/1.0逐渐衔接回新proposal，再评分；后5步不变。对照原direct、固定0.6混合、pause5steps，检验是否只是降速/拖延。Transform本身不反复触发，只有新的实际repair才re-arm；abstention/no-op不触发。不是检查之后偷偷改动作，也不增加gate查询/候选搜索。
 
-**实验与资源：** [预登记协议](exp_record/repair_transition_20261013.md)，commit `0318a41` 在正式launch前完成。固定20-cell validation seeds26000–26019、full OpenVLA H10/k5/microbatch8。9 arms = none + learned gate×4 transitions + GT gate×4 transitions；repair均用原frozen predictor。180 arm batches/5,760 trajectories，640 paired roots（OOD448/ID192），不作为独立confirmation。三GPU按cell index mod3分7/7/6cells，全方法都在每个cell配对。Run `repair_transition_20261013_a`，launcher PIDs **671696/671697/671698**；日志 `~/scratch/repair_transition_20261013_a_shard{0,1,2}.log`。`setsid nohup`/stdin `/dev/null`持久运行，最后完成的worker自动合并，不启动训练。
+**实验与资源：** [预登记协议](exp_record/agent_notes/repair_transition_20261013.md)，commit `0318a41` 在正式launch前完成。固定20-cell validation seeds26000–26019、full OpenVLA H10/k5/microbatch8。9 arms = none + learned gate×4 transitions + GT gate×4 transitions；repair均用原frozen predictor。180 arm batches/5,760 trajectories，640 paired roots（OOD448/ID192），不作为独立confirmation。三GPU按cell index mod3分7/7/6cells，全方法都在每个cell配对。Run `repair_transition_20261013_a`，launcher PIDs **671696/671697/671698**；日志 `~/scratch/repair_transition_20261013_a_shard{0,1,2}.log`。`setsid nohup`/stdin `/dev/null`持久运行，最后完成的worker自动合并，不启动训练。
 
 **预先规定怎么判断：** primary固定learned_ramp，报告SR/CVR/safe、paired rescue/harm、CI及原12 harms恢复/8 rescues保留；与original、policy、flat/pause分别比较。Incremental证据要求vsoriginal safe paired95% lower>0，且SR下降不超过2pp；整体候选仍需vsnone ≥+3pp safe、positive CI、SR损失≤2pp及stress review，随后还须独立验证。局部更平滑/更安全不算task-level改进；只有GT有效不算learned成功；无效则停止这组衔接规则，回到gate数据/目标/观测问题，不无限调ramp。
 
@@ -226,7 +236,7 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 ## 已完成结果：boundary/gate diagnosis，定位 collector policy-resumption hazard（2026-10-13）
 
-**该轮状态：** 三 GPU 全部完成 **84/84 batches、2,688 trajectories、128 shared training roots**，自动分析完成，原launcher/Python 均已退出；该次completion review没有启动job，现有新任务见上节。168 raw hashes、analysis→source hashes、四个 none batches 跨三个 GPU 的 state/context/proposal/labels/七模型 scores/order probes 均复核通过，跨 GPU bit-exact。详细结果：[event_boundary_results_20261013.md](exp_record/event_boundary_results_20261013.md)。下面启动记录为历史状态。
+**该轮状态：** 三 GPU 全部完成 **84/84 batches、2,688 trajectories、128 shared training roots**，自动分析完成，原launcher/Python 均已退出；该次completion review没有启动job，现有新任务见上节。168 raw hashes、analysis→source hashes、四个 none batches 跨三个 GPU 的 state/context/proposal/labels/七模型 scores/order probes 均复核通过，跨 GPU bit-exact。详细结果：[event_boundary_results_20261013.md](exp_record/agent_notes/event_boundary_results_20261013.md)。下面启动记录为历史状态。
 
 **Primary screen 全失败：** 18 个 perturbed onset/arm 每组 anticipation 至多 **3 roots**（要求24），跨组去重仅 **5 roots**，紧接 pulse 的下一 decision anticipation 为 **0**。弱/渐变扰动大多不在 pulse 内违规，说明“加速太猛”只能解释先前失败的一部分，继续扩大同类 sweep 没有充分依据。
 
@@ -238,7 +248,7 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 **直接目标：** 分别检验 (1) collector 是否跳过可预警区域；(2) frozen risk score 是否有辨别力、只是 threshold 不适合；(3) action-order 表示是否存在可测结构盲点。先收证据，再决定采集、event objective、calibration 或 architecture 的改动。不是直接扩大网络或再训练失败的 GRU。
 
-**预登记并启动：** [event_boundary_20261013.md](exp_record/event_boundary_20261013.md)，实现/协议 commit `e103cfd` 在生产 launch 前完成。三个健康 RTX A5000 并行 early/middle/late goal-gap onset **0.20/0.12/0.06 m**，launcher PIDs **662796/662797/662798**；run IDs `event_boundary_20261013_a_{early,middle,late}`，各自日志 `~/scratch/<run_id>.log`。通过 `setsid nohup`、stdin `/dev/null`、离线加载与 CPU thread caps 持久运行，结束后自动做每个 shard 的分析。
+**预登记并启动：** [event_boundary_20261013.md](exp_record/agent_notes/event_boundary_20261013.md)，实现/协议 commit `e103cfd` 在生产 launch 前完成。三个健康 RTX A5000 并行 early/middle/late goal-gap onset **0.20/0.12/0.06 m**，launcher PIDs **662796/662797/662798**；run IDs `event_boundary_20261013_a_{early,middle,late}`，各自日志 `~/scratch/<run_id>.log`。通过 `setsid nohup`、stdin `/dev/null`、离线加载与 CPU thread caps 持久运行，结束后自动做每个 shard 的分析。
 
 **Matched design：** 每个 onset 跑 none / hard_drive / hard_brake / gain1.10 / x-ramp0.03 / x-ramp0.06 / brake-ramp-to0.25 七种 collector，全部最多一次五步干预。复用 **128 training-only roots**（74000–74003），从 reset 完整重放以保留可达性、实际 history 与 RGB；共 **84 batches、2,688 trajectories**，不能当成 2,688 独立 roots。H10/k5、full actor/microbatch8、八 scale labels 与 physics ranges 保持冻结，none 必须重现 pilot source。48 tests 与七 arm CPU smoke/自动分析已通过。
 
@@ -258,7 +268,7 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 
 **下一项实验已实现：event-gate coverage pilot。** 先用 disjoint training/design-dev seeds 验证 event coverage，之后才决定 gate training。Train seeds 74000–74003 共 128 root episodes，dev seeds 75000–75001 共 64 roots；每个 root 配对 none / frozen / 单次 bounded drive / 单次 brake，共 768 trajectories，不能按 768 独立 roots 统计。Physical ranges、full OpenVLA H10/k5/microbatch8、八个 labelled scales 保持不变。Collector pulse 只读当前 goal gap 与预采样常量，GT future labels 不进入 collector 决策；这是训练数据探索，不是扩大 deployment action family。
 
-**预登记 coverage screen：** original proposals、pre-first-violation scope、跨 branches 按 root 去重。Train 至少 immediate/anticipation-only/safe-contact **32/24/64 roots**，dev 至少 **16/12/32 roots**；friction/mass 四个固定 strata 每类至少 train 2/dev 1 root。达不到则修正 collector，再训练不自动触发；达到也只是 pilot feasibility，不是独立测试或部署许可。45 项测试与 CPU end-to-end smoke 已通过。详细 protocol：[event_gate_coverage_20261012.md](exp_record/event_gate_coverage_20261012.md)。
+**预登记 coverage screen：** original proposals、pre-first-violation scope、跨 branches 按 root 去重。Train 至少 immediate/anticipation-only/safe-contact **32/24/64 roots**，dev 至少 **16/12/32 roots**；friction/mass 四个固定 strata 每类至少 train 2/dev 1 root。达不到则修正 collector，再训练不自动触发；达到也只是 pilot feasibility，不是独立测试或部署许可。45 项测试与 CPU end-to-end smoke 已通过。详细 protocol：[event_gate_coverage_20261012.md](exp_record/agent_notes/event_gate_coverage_20261012.md)。
 
 `risk_controller_diagnosis_20261012_a` 已完成 **20 cells × 11 arms**，原 launcher/Python PID 591432/591435 已退出。220 个 raw hashes、episode outcomes、risk trace→violation、cadence，以及 none/三个 L/L 的 source replay 均复核通过。本次状态检查没有启动新训练。下节的 launch/pending 描述是历史状态。
 
@@ -272,11 +282,11 @@ M1仍停止，原9条完成结果、2条中断和replay不一致问题原样保�
 3. 同一合格数据先重训 regression-gate controls 隔离 coverage 改动，再分别 ablate event-aware objective；保留 matched static/causal 架构、信息/参数/预算与固定 repair。不混改数据、loss、gate、history 与候选空间。重点看 matched false-trigger rate 下 recall/precision 和 contact-stage calibration，不只看 MAE。
 4. 在独立 dev/calibration 上预登记 threshold-selection rule，再跑闭环 SR/CVR/safe + paired rescue/harm。若可靠 gating 仍伤 completion，再单独测试 acceptance/continuation；若 event discrimination 仍差，检验 observability/history。方法冻结后才做 independent confirmation。
 
-完整记录：[closed-loop factorial completion](exp_record/sequence_risk_20261012.md#completion-update-closed-loop-factorial-diagnosis)。LIBERO baseline feasibility 可独立准备；正式 verifier transfer/hardware 继续后置。
+完整记录：[closed-loop factorial completion](exp_record/agent_notes/sequence_risk_20261012.md#completion-update-closed-loop-factorial-diagnosis)。LIBERO baseline feasibility 可独立准备；正式 verifier transfer/hardware 继续后置。
 
 ## 已完成：temporal-risk validation 失败与离线因果诊断（2026-10-12）
 
-`sequence_risk_20261012_a` 已完成全部 20 cells × 8 arms；**不推广 static 或 GRU 新模型**。14 OOD cells、每 arm 448 episodes：none SR/CVR/safe = **87.05/29.24/65.63%**，frozen = **84.60/28.79/64.73%**；static 三 seeds 的 safe = **53.57/51.34/53.57%**，GRU = **41.29/36.83/47.32%**。GRU−static 的 paired safe delta 为 **−12.28 [−16.52,−8.04] / −14.51 [−18.75,−10.27] / −6.25 [−10.27,−2.23] pp**；区间条件于固定网格，三个训练 seeds 使用相同 evaluation episodes，不能当作三组独立样本。完整 SR/CVR、rescue/harm、CIs 见 [temporal-risk postmortem](exp_record/sequence_risk_20261012.md)。ID cells 也明显退化，不能只归因于 OOD。
+`sequence_risk_20261012_a` 已完成全部 20 cells × 8 arms；**不推广 static 或 GRU 新模型**。14 OOD cells、每 arm 448 episodes：none SR/CVR/safe = **87.05/29.24/65.63%**，frozen = **84.60/28.79/64.73%**；static 三 seeds 的 safe = **53.57/51.34/53.57%**，GRU = **41.29/36.83/47.32%**。GRU−static 的 paired safe delta 为 **−12.28 [−16.52,−8.04] / −14.51 [−18.75,−10.27] / −6.25 [−10.27,−2.23] pp**；区间条件于固定网格，三个训练 seeds 使用相同 evaluation episodes，不能当作三组独立样本。完整 SR/CVR、rescue/harm、CIs 见 [temporal-risk postmortem](exp_record/agent_notes/sequence_risk_20261012.md)。ID cells 也明显退化，不能只归因于 OOD。
 
 **已核实的原因线索：**
 

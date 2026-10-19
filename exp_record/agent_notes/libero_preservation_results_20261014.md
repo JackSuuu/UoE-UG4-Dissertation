@@ -47,4 +47,4 @@ Outputs: `verified_summary.json`, `index.html`, six`review/root_<i>_methods_2x.m
 
 Recovery archive and standalone comparison videos: `backups/libero_preservation_20261014_b/`; use the existing SHA256 verification/restore script. Whole-task long-horizon implementation follows the [fixed layer-by-layer plan](libero_five_layer_implementation_20261014.md), with the next bowl/drawer task, native-H1/chunk compatibility and collision definitions explicitly audited before new efficacy claims.
 
-**Remote recovery verified:** `037f73c`pushed all seven new LFS objects (93,764,850bytes). Independently fetched from GitHub, verified all six standalone videos and fully restored/hash-checked all232archived files. [Verification record](../backups/libero_preservation_b_remote_verified_20261014.json).
+**Remote recovery verified:** `037f73c`pushed all seven new LFS objects (93,764,850bytes). Independently fetched from GitHub, verified all six standalone videos and fully restored/hash-checked all232archived files. [Verification record](../../backups/libero_preservation_b_remote_verified_20261014.json).
