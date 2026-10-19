@@ -14,6 +14,10 @@ Differentiable prediction is an optional, separately ablated mechanism.
 The central theme remains **verify → bounded repair → reverify → handoff**.
 [Visual/physical evidence boundaries and ICLR-quality experiment targets](exp_record/agent_notes/verification_repair_iclr_20261019.md).
 
+**Default experiment videos:** baseline VLA on the left, our framework on the right;
+matched initial conditions, common playback speed, phase/intervention/handoff labels
+and explicit end-frame holds. Engineering-only controllers are labeled as such.
+
 ```mermaid
 flowchart TB
     Task["Task instruction + current observation"] --> L1

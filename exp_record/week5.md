@@ -3,6 +3,20 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Default paired-video delivery; first refrigerator side-by-side
+
+User reiterates baseline VLA left / our framework right for every future experiment.
+This is now explicit in the root plan and README. Added `render_fridge_pair.py`,
+which verifies initial state/controller/image equality, streams both sources at a
+common simulated rate and labels held end frames. Formal framework mode requires
+an actual hybrid run and a shared comparison contract.
+
+[Current refrigerator pair](../backups/fridge_r1_20261019/baseline_left_servo_right.mp4)
+shows seed0 open-door canonical VLA (160steps) against our engineering servo
+(485steps). The video explicitly labels the scripted right arm and unequal budgets;
+it is not an efficacy result. Initial physics/controller/both images match exactly.
+Verified486output frames at20fps and inspected a late frame for legible labels.
+
 ### Update 19 Oct — Preserve verification theme; define visual grounding and ICLR targets
 
 The user clarifies that the central contribution remains an external runtime

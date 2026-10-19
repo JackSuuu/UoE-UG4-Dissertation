@@ -1,5 +1,20 @@
 # R1: contact extraction feasibility and frozen actor diagnosis
 
+## Side-by-side review (baseline left / our engineering controller right)
+
+[Watch paired MP4](baseline_left_servo_right.mp4) · [pair manifest](baseline_left_servo_right.json)
+
+The initial physics state, controller fingerprint and both camera images match
+exactly. Both panels play at20Hz/1x simulated time. Left: seed0 open-door canonical
+VLA,160actions/8s. Right: fixed-waypoint contact servo,485actions/24.25s. The left
+end frame is explicitly held after8s. Run wall times including setup are shown.
+This is an **unequal-budget engineering comparison**, not a framework efficacy
+comparison. The right panel contains no VLA, visual localization or handoff. Formal
+framework comparisons require matched observation/action/query/time budgets.
+
+Future experiment delivery defaults to baseline-left/framework-right MP4s, with
+phase/intervention/handoff labels, all-case indexes and explicit end states.
+
 * [Revised research plan and fixed R1 protocol](../../exp_record/agent_notes/closed_loop_recovery_r1_20261019.md)
 * [Execution record](../../exp_record/agent_notes/fridge_r1_execution_20261019.md)
 * [Labeled physical extraction video](contact_extraction_diagnostic.mp4)
