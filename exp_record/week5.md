@@ -3,6 +3,19 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Camera cohort finalized: no grasp benefit, narrow initial diversity
+
+All six original/framed actor runs finish600actions without grasp/native success;
+the full retrieval endpoint is unscored. Each initial camera pair matches exact
+physics/controller/wrist evidence. Seeds differ, but item-position separations are
+only3.4–15.5mm. Reframing changes position only and does not establish visibility,
+domain compatibility or skill. More varied motion does not imply task progress.
+
+All six separately versioned cached replays pass exactly, preserving original
+300s replay timeouts and all242historical files. Finalization makes no new actor
+queries. Three original-left/framed-right videos include all600actions, aligned
+annotations and labelled holds. [Results and interpretation](agent_notes/fridge_observation_results_20261019.md).
+
 ### Update 19 Oct — Failure audit identifies late triggering and non-goal-directed choice
 
 User challenges repeated failures. Parent reads the completed fridge tapes: EEF–
