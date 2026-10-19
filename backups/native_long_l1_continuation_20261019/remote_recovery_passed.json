@@ -1,0 +1,14 @@
+{
+  "status": "remote_recovery_verified",
+  "commit": "04e9bfe37857795a71a29c79dfc044b82761ea18",
+  "clone": "/tmp/opencode/native_long_continuation_remote_04e9bfe",
+  "restore": "/tmp/opencode/native_long_continuation_restore_04e9bfe",
+  "source": "fresh_remote_GitHub_shallow_nonpartial_clone_and_scoped_LFS_downloads_no_original_local_artifact_copy",
+  "archives": 8,
+  "verified_members": 9547,
+  "archive_bytes": 1982355051,
+  "scope": "16 new actor episodes plus combined22 references; prior six episode files are in the separately verified partial archive",
+  "all_archive_and_member_hashes_passed": true,
+  "verifier": "pinned remote commit scripts/backup_research_progress.py",
+  "full_execution_record": "/home/ami/scratch/native_long_continuation_remote_recovery_20261019.json"
+}

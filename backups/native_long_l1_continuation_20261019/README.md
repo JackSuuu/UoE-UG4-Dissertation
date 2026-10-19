@@ -26,3 +26,6 @@ episodes. This is baseline development evidence, not a framework improvement.
 The final two untouched cells have a separate completion run. Source and result
 archives here remain the stopped historical continuation; no files are overwritten
 by subsequent runs. Remote recovery is tracked separately after publication.
+
+Independent remote recovery now passed at `04e9bfe`: all8archives/9,547members
+hash-verified using the pinned remote verifier. See `remote_recovery_passed.json`.

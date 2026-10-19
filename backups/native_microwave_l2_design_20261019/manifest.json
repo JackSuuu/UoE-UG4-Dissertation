@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "scope": "L2A_design_frozen_before_model_branch_queries",
+  "archives": [
+    {
+      "file": "archives/design.tar.gz",
+      "bytes": 28748,
+      "sha256": "bb6b3b09cd5efe09c56ef781f423c314005e5766ca1031074a834dd16b4b79f0",
+      "members": [
+        {
+          "path": "scratch/native_microwave_l2_design_20261019/analyze.py",
+          "bytes": 12088,
+          "sha256": "0c8c864d36312a6eb1c266d21b7f6c97327115733a28815c0976f67549c49218"
+        },
+        {
+          "path": "scratch/native_microwave_l2_design_20261019/design_freeze.json",
+          "bytes": 795,
+          "sha256": "c1fb0739a51d07e73a4ba6a861771b31beb4a5d51aa46e1745382fda284c9f49"
+        },
+        {
+          "path": "scratch/native_microwave_l2_design_20261019/evidence.json",
+          "bytes": 188821,
+          "sha256": "9c94e63dae79334d9405f68986969d0005e3b2176120cf3a19a01c1e6bd07056"
+        },
+        {
+          "path": "scratch/native_microwave_l2_design_20261019/snapshot_manifest.json",
+          "bytes": 10010,
+          "sha256": "e10265d685c83c7298e9bd76f4a95513721bb7cfbb1b917b79f13975d0c5966c"
+        }
+      ]
+    }
+  ],
+  "videos": []
+}
