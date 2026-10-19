@@ -3,6 +3,16 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — A2 paired videos and unstructured probe independently recovered
+
+Pushed results, five representative comparison MP4s, U0probe and record reorganization
+as`46a5371`. Independently fetched GitHub/LFS bytes and checked697A2archive members,
+8U0probe members and all5standalone comparison videos against SHA256. Proof:
+[`week5_remote_verified_20261019.json`](../backups/week5_remote_verified_20261019.json).
+All20A2pairs are locally rendered; the representative5include negative outcomes.
+No six-task robot efficacy cohort is running; U0is complete and remains a physics
+backend qualification only.
+
 ### Update 19 Oct — Six unstructured task families require explicit capability and OOD tests
 
 User prioritizes cutting vegetables, peeling garlic, raw-meat handling, refrigerator

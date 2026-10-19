@@ -36,6 +36,10 @@ See [paired-video directory](../../backups/assembly_a2_paired_review_20261019/RE
 Full original697-file archive is locally hash-verified; paired videos are a separate
 later artifact, not retroactively listed in that frozen archive.
 
+The697original files and five standalone highlights were pushed as`46a5371` and
+independently restored from GitHub/LFS with exact hashes. Proof:
+[`week5_remote_verified_20261019.json`](../../backups/week5_remote_verified_20261019.json).
+
 Conclusion: the runtime feedback framework is useful relative to bare VLA here;
 extra phase/ranking machinery has not improved the shared-gate geometric baseline.
 Proceed to the user's unstructured/long-horizon questions rather than further

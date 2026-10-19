@@ -9,6 +9,9 @@ with zero prediction-ranking overrides in A2, not the baseline-only videos below
 [Full697-file A2 archive](assembly_a2_20261016_a/manifest.json) ·
 [U0 deformable-backend probe](unstructured_u0_20261019/manifest.json) (no VLA/task claim).
 
+[Independent remote recovery passed](week5_remote_verified_20261019.json):697A2files,
+8U0files and five comparison MP4s checked byte-for-byte against their hash manifests.
+
 ## Historical snapshots
 
 **Snapshot: 14 October 2026.** These robot videos show the **frozen full OpenVLA baseline**, with diagnostic overlays. There is **no physics-prediction action selector or repair enabled**. Worker 2 briefly places the book, then re-contacts it and fails the one-second released-placement criterion. Apparent visual corrections are the VLA's own actions.

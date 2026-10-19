@@ -1,0 +1,36 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "46a5371a0a56bc89fa06b714e6d3a6f543537175",
+  "verified": [
+    {
+      "archive": "assembly_a2_20261016_a",
+      "files": 697,
+      "sha256": "ba0ee5c121b92c2c7cb953d6bd59fcd9272a0472a5ba142a223717076406af35"
+    },
+    {
+      "archive": "unstructured_u0_20261019",
+      "files": 8,
+      "sha256": "21d15cb235c3a48c3a6cfbba7ab18b317e16f4a7a21c3820395b364ee29c6475"
+    },
+    {
+      "video": "s3000_c0_vla_vs_hybrid80_2x.mp4",
+      "sha256": "d8d560152af522241c9992d92729cbc462f4ce2d568669f71d38b4702bd79b3c"
+    },
+    {
+      "video": "s3000_c1_vla_vs_hybrid80_2x.mp4",
+      "sha256": "c0485244fc3d60f7befc4b1e398fe64bc7f7ea57baca18868d0f0101d5293c73"
+    },
+    {
+      "video": "s3001_c4_vla_vs_hybrid80_2x.mp4",
+      "sha256": "2c27351ed79d477b5d86b9890411a87540c817084dddc728c446a372986b151c"
+    },
+    {
+      "video": "s3100_c0_vla_vs_hybrid80_2x.mp4",
+      "sha256": "90af3fb60296863b18974cf9682bd8d03d2873d153b09b267486b451c73c0bfc"
+    },
+    {
+      "video": "s3100_c2_vla_vs_hybrid80_2x.mp4",
+      "sha256": "2004e294304849064ff4e02de3c7dccf1b72f83daec64c116a4efad066f3cc7e"
+    }
+  ]
+}
