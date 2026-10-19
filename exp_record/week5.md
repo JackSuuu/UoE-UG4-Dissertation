@@ -22,6 +22,9 @@ our stricter complete-task endpoints. No framework gains are claimed. Four annot
 [Detailed results](agent_notes/vla_failure_audit_results_20261019.md) ·
 [Artifacts](../backups/vla_failure_audit_20261019/README.md).
 
+Published in`4d67845`; fresh GitHub/LFS download verifies185/185cohort archive
+members and all four standalone MP4s by SHA256. No actor experiment remains running.
+
 ### Update 19 Oct — Diagnose the VLA; no scripted repair as autonomy evidence
 
 User sharpens the requirement: explain the baseline failure and attributable

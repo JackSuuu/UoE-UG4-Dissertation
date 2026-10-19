@@ -1,0 +1,25 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "4d67845d9cf7a31da32c633efcc11c39eb7336f9",
+  "restore": "/tmp/opencode/vla_failure_cohort_remote_20261019",
+  "members": 185,
+  "archive_sha256": "826feb6a162858611fbfffe58793f98a9143a6a6d1d5783c6c20555cbf4b04ff",
+  "standalone_videos": [
+    {
+      "file": "book_decode.mp4",
+      "sha256": "b97e491ae01d669ca3ee2401c8a447a6ff7879e18b87fd5a130bc37ac421e0bd"
+    },
+    {
+      "file": "book_camera.mp4",
+      "sha256": "52e5edaa87473d34ae8a5baa0d55620b7bc8a25d4589141c58f463beb74b8d5f"
+    },
+    {
+      "file": "fridge_decode.mp4",
+      "sha256": "974c655572f4b82480fa10f616926d9cf426f7fa60594c5854b35c9d4a1ea7ea"
+    },
+    {
+      "file": "cheese_native.mp4",
+      "sha256": "bf204751ccc71343d88c2fe27ba73e42dcb70f119df4fb320e5997de2f5e152d"
+    }
+  ]
+}

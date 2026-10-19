@@ -133,3 +133,7 @@ explicit end-frame holds. Holds are not extra physics or verified dwell.
 Primary data: `/home/ami/scratch/vla_failure_actor_20261019_a`.
 Analysis/review: `/home/ami/scratch/vla_failure_actor_review_20261019_a`.
 Reproducible postprocessing: `scripts/summarize_vla_failure_audit.py`.
+
+Published artifact commit: `4d67845`. Fresh GitHub/LFS recovery verified all185archive
+members and four standalone MP4s exactly. [Recovery proof](../../backups/vla_failure_audit_20261019/cohort_remote_verified.json).
+User-edited `notes/Experiment_plan_1year.md` remains untouched and uncommitted.

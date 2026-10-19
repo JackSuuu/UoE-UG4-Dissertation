@@ -25,6 +25,10 @@ images/states/videos, frozen source, logs and independent replay records, plus
 postprocessing script and annotated review. The historical R2 comparator is preserved
 in the [original R2 archive](../fridge_r2_20261019/README.md).
 
+[Independent GitHub/LFS recovery proof](cohort_remote_verified.json): all185archive
+members and all four standalone MP4s downloaded into a fresh repository and verified
+against their SHA256 hashes from artifact commit`4d67845`.
+
 ## Preflight and provenance evidence
 
 * [Protocol](../../exp_record/agent_notes/vla_failure_audit_protocol_20261019.md)
