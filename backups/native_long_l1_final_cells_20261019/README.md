@@ -13,3 +13,8 @@ Microwave is eligible first under the original task priority and per-task rule.
 
 This archive contains the two new episodes and complete report, not copies of all
 24episode files. Remote recovery is recorded separately after publication.
+
+Independent recovery passed at `7e63364`: all1,203members hash-exact. Together
+with the separately verified6+16episode archives, all24baseline tapes now have
+remote recovery evidence. See `remote_recovery_passed.json`, also covering L2
+design, zero-query smoke and launch preparation (1,631members total).

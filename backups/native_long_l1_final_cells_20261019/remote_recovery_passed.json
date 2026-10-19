@@ -1,0 +1,20 @@
+{
+  "status": "remote_recovery_verified",
+  "commit": "7e6336491024883b582cfdebfeecf7586b31efd5",
+  "clone": "/tmp/opencode/native_l1_final_l2a_remote_7e63364",
+  "restore": "/tmp/opencode/native_l1_final_l2a_restore_7e63364",
+  "source": "fresh_remote_GitHub_shallow_nonpartial_clone_and_scoped_LFS_downloads_no_original_local_artifact_copy",
+  "archives": 6,
+  "verified_members": 1631,
+  "archive_bytes": 308447242,
+  "folders": {
+    "native_long_l1_final_cells_20261019": {"archives": 3, "members": 1203},
+    "native_microwave_l2_design_20261019": {"archives": 1, "members": 4},
+    "native_microwave_l2_smoke_20261019": {"archives": 1, "members": 420},
+    "native_microwave_l2a_launch_20261019": {"archives": 1, "members": 4}
+  },
+  "scope": "Final two episodes plus complete24-cell report; earlier6+16tapes separately verified. L2A launch is preparation only, not model-branch results.",
+  "all_archive_and_member_hashes_passed": true,
+  "verifier": "pinned remote commit scripts/backup_research_progress.py",
+  "full_execution_record": "/home/ami/scratch/native_l1_final_l2a_remote_recovery_20261019.json"
+}

@@ -9,3 +9,6 @@ The420-member archive preserves raw tapes, source pins, device evidence, zero-qu
 guard proof and verification. Local archive/member hashes passed. This verifies
 state restoration, not fresh greedy re-query identity or sampled repair capability.
 Those require the gated L2A model experiment.
+
+All420members independently recovered from GitHub/LFS and hash-verified. Proof:
+`../native_long_l1_final_cells_20261019/remote_recovery_passed.json`.

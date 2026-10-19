@@ -15,3 +15,6 @@ L2B remains gated: at least one sampled local proxy improvement on a failure roo
 with all required integrity checks passed. If admitted, continue the entire bank
 with fresh greedy calls within the original520-action lifetime cap. Offline oracle
 availability is never presented as an online selector or framework success rate.
+
+Independent remote recovery passed; proof:
+`../native_long_l1_final_cells_20261019/remote_recovery_passed.json`.

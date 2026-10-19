@@ -15,3 +15,6 @@ tracks/kills descendant groups and retains interrupted work.
 The plan pins native evidence, protocol, observation/prompt hashes, source/runtime
 files and checkpoint provenance. Root0's selected boundary smoke passed with zero
 queries. Preparation is not execution; actual launch/results are logged separately.
+
+All four preparation members independently recovered and hash-verified. Proof:
+`../native_long_l1_final_cells_20261019/remote_recovery_passed.json`.
