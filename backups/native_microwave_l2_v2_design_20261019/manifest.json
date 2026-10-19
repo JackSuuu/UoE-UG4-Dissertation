@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "scope": "timing_only_v2_design_and_v1_offline_failure_analysis_before_v2queries",
+  "archives": [
+    {
+      "file": "archives/design.tar.gz",
+      "bytes": 51520,
+      "sha256": "200e9bf0c277ffd02c5158ecce63d7fdcde331ff63c7780797d00f2291511677",
+      "members": [
+        {
+          "path": "scratch/native_microwave_l2_v2_design_20261019/analyze.py",
+          "bytes": 14121,
+          "sha256": "40f5a0042a0edb64fc3870b682b51dec22459a67b151e0c64a73efc3d6821d0e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v2_design_20261019/design_freeze.json",
+          "bytes": 807,
+          "sha256": "2d9abef6b0d0a185d74ac0bfa9fd815e631fc4d466c0647df6f29d7c776e5245"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v2_design_20261019/evidence.json",
+          "bytes": 203002,
+          "sha256": "67f7a244f2c1f19e0fe1441fdb2cce5198686f526d20023a7d27578496e3fbe5"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v2_design_20261019/snapshot_manifest.json",
+          "bytes": 10259,
+          "sha256": "861ffe066f522a19db2a164867504cd47501ee6e99208716514fc47ba2e0be51"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_failure_analysis_20261019/analyze.py",
+          "bytes": 7613,
+          "sha256": "fbac3c20fd02935159c26d1c5daa5dbe174589c3d6bbec25502bbd11585c8be5"
+        },
+        {
+          "path": "scratch/native_microwave_l2a_failure_analysis_20261019/evidence.json",
+          "bytes": 140519,
+          "sha256": "627aabb480243c0be8037d0eff828e721c8be39d9207caec9861ca723b00a266"
+        }
+      ]
+    }
+  ],
+  "videos": []
+}
