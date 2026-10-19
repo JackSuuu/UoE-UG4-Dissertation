@@ -1,0 +1,126 @@
+{
+  "scope": "descriptive_provenance_not_causal_verifier_ablation",
+  "near_zero_definition": "L2 of three normalized translation commands <0.01; not measured immobility",
+  "runs": {
+    "seed0_closed_actor": {
+      "steps": 600,
+      "owners": {
+        "vla": 600
+      },
+      "translation_near_zero_steps": 73,
+      "unique_token_sequences": 422,
+      "geometry_primitive_steps": 0,
+      "gripper_only_retention_steps": 0,
+      "phases_during_primitive": {},
+      "first_grasp": null,
+      "first_extraction": null,
+      "final_task": {
+        "phase": "open",
+        "opened": false,
+        "grasp_seen": false,
+        "extracted_seen": false,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      }
+    },
+    "seed0_closed_framework": {
+      "steps": 600,
+      "owners": {
+        "vla": 180,
+        "repair": 420
+      },
+      "translation_near_zero_steps": 299,
+      "unique_token_sequences": 260,
+      "geometry_primitive_steps": 420,
+      "gripper_only_retention_steps": 0,
+      "phases_during_primitive": {
+        "open": 420
+      },
+      "first_grasp": null,
+      "first_extraction": null,
+      "final_task": {
+        "phase": "open",
+        "opened": false,
+        "grasp_seen": false,
+        "extracted_seen": false,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      }
+    },
+    "seed0_open_actor": {
+      "steps": 600,
+      "owners": {
+        "vla": 600
+      },
+      "translation_near_zero_steps": 504,
+      "unique_token_sequences": 44,
+      "geometry_primitive_steps": 0,
+      "gripper_only_retention_steps": 0,
+      "phases_during_primitive": {},
+      "first_grasp": null,
+      "first_extraction": null,
+      "final_task": {
+        "phase": "grasp",
+        "opened": true,
+        "grasp_seen": false,
+        "extracted_seen": false,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      }
+    },
+    "seed0_open_framework": {
+      "steps": 600,
+      "owners": {
+        "vla": 180,
+        "repair": 420
+      },
+      "translation_near_zero_steps": 216,
+      "unique_token_sequences": 247,
+      "geometry_primitive_steps": 382,
+      "gripper_only_retention_steps": 38,
+      "phases_during_primitive": {
+        "grasp": 194,
+        "extract": 27,
+        "place": 161
+      },
+      "first_grasp": {
+        "step": 242,
+        "owner": "repair",
+        "repair_phase": "grasp"
+      },
+      "first_extraction": {
+        "step": 299,
+        "owner": "repair",
+        "repair_phase": "extract"
+      },
+      "final_task": {
+        "phase": "grasp",
+        "opened": true,
+        "grasp_seen": true,
+        "extracted_seen": true,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      }
+    }
+  },
+  "pairs": {
+    "closed": {
+      "first_intervention": 29,
+      "initial_exact": true,
+      "pre_intervention_actor_physics_image_prefix_exact": true
+    },
+    "open": {
+      "first_intervention": 51,
+      "initial_exact": true,
+      "pre_intervention_actor_physics_image_prefix_exact": true
+    }
+  }
+}

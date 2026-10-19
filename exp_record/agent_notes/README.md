@@ -4,6 +4,8 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Actor failure audit: no scripted repair in the diagnostic cohort](vla_failure_audit_protocol_20261019.md)
+* [Actor failure and R2 action-provenance evidence](vla_failure_audit_execution_20261019.md)
 * [R2 outcomes, handoff audit and generalization correction](fridge_r2_results_20261019.md)
 * [R2 actual frozen-VLA versus five-layer framework comparison](fridge_r2_framework_protocol_20261019.md)
 * [R2 launch and endpoint qualification](fridge_r2_execution_20261019.md)

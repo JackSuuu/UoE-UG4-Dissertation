@@ -3,6 +3,25 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Diagnose the VLA; no scripted repair as autonomy evidence
+
+User sharpens the requirement: explain the baseline failure and attributable
+improvement, rather than human-writing its motion solution. R2open-wrapper grasp
+and extraction occur under scene-specific primitives:382primitive actions plus
+38grip-retention actions versus180unmodified VLA actions. Open baseline has504/600
+near-zero XYZ proposals. Pre-intervention paired actions/states/images match.
+
+Isolated official TF4.40.1inference matches current inputs on6fixed observations,
+but only5/6token/action sequences; one differs including gripper sign. Official
+cached and uncached outputs agree with each other. This corrects an intermediate
+mistaken6/6statement. No complete inference-parity or root-cause claim is made.
+
+Five actor-only task/camera/decoder diagnostics are prepared with600queries/actions
+each and fresh-process replay. Four scene smokes, exact initial pairing and a pinned
+one-action book rollout/replay pass. Further manual motion-route tuning is paused.
+[Protocol](agent_notes/vla_failure_audit_protocol_20261019.md) ·
+[Evidence and execution](agent_notes/vla_failure_audit_execution_20261019.md).
+
 ### Update 19 Oct — R2 finished; pause scene-specific repair tuning
 
 All four600-query/action trials finished. Closed-start baseline and wrapper both
