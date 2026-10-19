@@ -1,0 +1,2114 @@
+{
+  "schema": 1,
+  "scope": "zero_query_exact_root0_t253_reconstruction_smoke",
+  "archives": [
+    {
+      "file": "archives/smoke.tar.gz",
+      "bytes": 62644404,
+      "sha256": "14b88b59f28f835ee11995c3a93242d506ea75476d83b5bbcfbedd49b7973f2e",
+      "members": [
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/baseline_inputs.json",
+          "bytes": 1181,
+          "sha256": "0ccd4f0b2850fcaaeb0379c1d8829ede515e9fc44d1a4928ba3a644d5af5b712"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/branch_source/native_long_candidate_worker.py",
+          "bytes": 8012,
+          "sha256": "04afbdbeea70eb23551aa524c4de59ef583469260880e9139462661724091db2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/branch_source/run_native_long_branch.py",
+          "bytes": 49869,
+          "sha256": "292592b77952ce1b2985da4db186f3e27b04d5a281e70ff741aceda4843eb643"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/cuda_ordinal_preflight.json",
+          "bytes": 475,
+          "sha256": "5eb4fa3fef16d430c77427f7d9536ecfdc4d37b2c9be396dc6542a92234d61ed"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/device_identity.json",
+          "bytes": 693,
+          "sha256": "52e3e38fa19fed7e6bdaaa51a058000b699006ff4072c815fc15e6a89c724073"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/egl_device_preflight.json",
+          "bytes": 1845,
+          "sha256": "fad003fb86915b1807f0684ef64f5c58963f6f58afb2afab76d307a2881fb720"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/initial_source.json",
+          "bytes": 683,
+          "sha256": "05c6893faa43f7d7cc946ecdc6000176d04f08345e0d5295f4e30f2134a5b682"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/libero_config/config.yaml",
+          "bytes": 278,
+          "sha256": "8f6ae3d434e929cb22f85109c929c38853a163f089634c8a6a103026250d2dfc"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/model.xml",
+          "bytes": 65183,
+          "sha256": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/nominal_identity.json",
+          "bytes": 424,
+          "sha256": "6d0345c001909de200b45c5363f693ee350e4869d17bb1298ae3fe2975a37ffb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/control_utils.nullspace_torques-7.py313.1.nbc",
+          "bytes": 83582,
+          "sha256": "c9cf63f69ee2e650b46a3dcd1fdc5935104d6c79a7dd30e83d283c936b291402"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/control_utils.nullspace_torques-7.py313.nbi",
+          "bytes": 1769,
+          "sha256": "1807f1e578a79f274c99681d77c743fc749e2b9762a1a2521ad688ba6512ef84"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/control_utils.opspace_matrices-43.py313.1.nbc",
+          "bytes": 275097,
+          "sha256": "a895cd9a8d31b9f2e706888bd122222d2803e3447d6f1c9dc86851194adf3a59"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/control_utils.opspace_matrices-43.py313.nbi",
+          "bytes": 1537,
+          "sha256": "7ccc8711ad335451e0d510dceea91bf1b7c0c1109d2fbcb8124ba54d2c47df6e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/control_utils.orientation_error-85.py313.1.nbc",
+          "bytes": 94160,
+          "sha256": "ad5bccd998c2033a0bc6d540ee69ea3b65effbcdec37521eae1ee9ad41a4a75d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/control_utils.orientation_error-85.py313.nbi",
+          "bytes": 1533,
+          "sha256": "9b87cb9bb52c2415b7b2eab766223e2a403650cf1cdc6eb14c2dcbccda085bbf"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/transform_utils.mat2quat-316.py313.1.nbc",
+          "bytes": 131079,
+          "sha256": "68c6778fa8d1262ca77b95e08102fb9bd81033feacd016f099522b7dffa4cb7b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/transform_utils.mat2quat-316.py313.2.nbc",
+          "bytes": 132225,
+          "sha256": "92580740d59e4ddc36e0fd90962644fe8ce2c8efa5f963085406887d9a926f6a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/transform_utils.mat2quat-316.py313.nbi",
+          "bytes": 2756,
+          "sha256": "ca3596bc2840f5e717166a927900f62e1d53f43508908f093a429972e03eba70"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/transform_utils.quat2mat-461.py313.1.nbc",
+          "bytes": 185424,
+          "sha256": "14050b8809834de3cf1b4fbb1dcf67a1900575bf0141294eeb71e57d82596e3e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/numba_cache/utils_20a5bef93c821eb5501e64418ce38cf1d62fcd28/transform_utils.quat2mat-461.py313.nbi",
+          "bytes": 1525,
+          "sha256": "21d3af40b32725ab62579b6b359af65b5e25a5964b1edfc4881f972b221757c4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000000.npz",
+          "bytes": 396748,
+          "sha256": "b16bbcbfcf45d102fcd562b0c7a3d7879dd3d179d7fca336a9d433e7aa15b119"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000001.npz",
+          "bytes": 396748,
+          "sha256": "88cb5aa05d0cc1a257c943556a99e086279ebb0477c21e21093ed3d484589aa3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000002.npz",
+          "bytes": 396748,
+          "sha256": "89287448257ac3494b9f9e86c6882524b8d9194d7746930b1a023a1907a507f1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000003.npz",
+          "bytes": 396748,
+          "sha256": "2736dae6858e53a002ea22e41314fa72b7d11b12c7ed7a87364c9df85052f859"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000004.npz",
+          "bytes": 396748,
+          "sha256": "a3c8700ea74dd1cf81fa3180c9bfe8d47664b8d5fb9106af0ad0d073d26acaa4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000005.npz",
+          "bytes": 396748,
+          "sha256": "887ea47b0c44b20149168851255f688102a84e52d26eab3c40922579667a9883"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000006.npz",
+          "bytes": 396748,
+          "sha256": "5fabf787e33c2b4f870c6f7e650e1e3167f277319485cc3adfd79b69a53f4777"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000007.npz",
+          "bytes": 396748,
+          "sha256": "c9ea65f3a5b7f5c17f86ec610ae60cf22c54ddd8104c778e13c16eadce5268ce"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000008.npz",
+          "bytes": 396748,
+          "sha256": "7993e1db38a31771e7306bda97e8b1006fb51b002015e28f9c5644992b153924"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000009.npz",
+          "bytes": 396748,
+          "sha256": "4342851a18061ee21d6ed8d385b280a0d09f6fd2048add23dab5e6cd67cc3c57"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000010.npz",
+          "bytes": 396748,
+          "sha256": "1930f86aaea558fedae7c177625e4391ad80a28c6be7677f0f275a02ed1db268"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000011.npz",
+          "bytes": 396748,
+          "sha256": "4f86542d91e9d140a29ad9f70009b93bb115b4ad3931ee42e4f366d3525b35cb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000012.npz",
+          "bytes": 396748,
+          "sha256": "6fea9b1295af1b0b3e004369d6ebbe1c74ec9a599afc4eb5cfd20c166b65561e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000013.npz",
+          "bytes": 396748,
+          "sha256": "91e24ad0febc7d4c180391e151eaf6b846e256a041b8c9aac9bcb310bc42b5cf"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000014.npz",
+          "bytes": 396748,
+          "sha256": "8ad5562de9d3addc0fd8e68388d9cb3fadf1f764d63f91b1e523029a3e7343fa"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000015.npz",
+          "bytes": 396748,
+          "sha256": "e3475e1528a932805b72ce0645720d2bceb247d5fad1418a7bb8a52107cecc9d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000016.npz",
+          "bytes": 396748,
+          "sha256": "acf324d326ea0adf696a52cac05292022611d7ab654e6bac49601c6e36742205"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000017.npz",
+          "bytes": 396748,
+          "sha256": "d9c97ae1b3cf7dd9baae0fddd6fdc151338adb923c73d4ab12d30bfee3c62993"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000018.npz",
+          "bytes": 396748,
+          "sha256": "e5784b3ff845359268d86e022dac07bbd8087348d0c71c518f592b6fc0c29e6c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000019.npz",
+          "bytes": 396748,
+          "sha256": "492d50e8ab906a2f12633e305d9b8bab41e1a113da6178a3dcd2a18ff8b90811"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000020.npz",
+          "bytes": 396748,
+          "sha256": "ec30e80ac3d2b38438578ac50de4b8d71b71bedb5a6b9e8cc7f80b57ebdffb01"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000021.npz",
+          "bytes": 396748,
+          "sha256": "ac783ad26409a5b3212a38e2b874a7a0c3a5c75de44f95aeb7869d678f951cff"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000022.npz",
+          "bytes": 396748,
+          "sha256": "c7283e841cb1a0e4f26ed69a28f42bcd749e8184ba337083e2805d2450653ec2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000023.npz",
+          "bytes": 396748,
+          "sha256": "0acc84fad21dde8a2600b07ec472e6900f659af7d9a558db5abae9c0736d490a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000024.npz",
+          "bytes": 396748,
+          "sha256": "0b3861cb3bd3037378391cea7175f5db72c3c8402cdea4fd421044a216b025f1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000025.npz",
+          "bytes": 396748,
+          "sha256": "9b77e9214000241b6289bd2b8037b71bbf6fad4f3dcc0d0ef239066c79325c27"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000026.npz",
+          "bytes": 396748,
+          "sha256": "87b6b1e81066e5e973b8c587c6d774dffa8abdb1a85ae2d8664263fd667eb50e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000027.npz",
+          "bytes": 396748,
+          "sha256": "9933ca9f032c62a0f4fe51a47dae887e3accd894d2bfc20fc8cb7518b9695504"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000028.npz",
+          "bytes": 396748,
+          "sha256": "bc6a7f125c66ea9dae16a8e6bc8536421eff64cfc78e651277fc15141f45ec88"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000029.npz",
+          "bytes": 396748,
+          "sha256": "932bd7826603c559347b95b5e452a858a572e266dfdd437c76854120e55787e8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000030.npz",
+          "bytes": 396748,
+          "sha256": "0c3bdaa797ea4ffc79525077b58de9fb1d2894b6942384fae1b61a61684de506"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000031.npz",
+          "bytes": 396748,
+          "sha256": "c792bfbd9543f15a180f11a9457fccd355ebefbb8c13855ae50a92dda02fb15d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000032.npz",
+          "bytes": 396748,
+          "sha256": "dd9975d8757077127bf219c9594f865f95207727e9e8af74278ac74c654d4f8a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000033.npz",
+          "bytes": 396748,
+          "sha256": "de68e5d05cca9ea13208d5fc4cbf4d22a1595afe2b0abb547a7f77582db47d03"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000034.npz",
+          "bytes": 396748,
+          "sha256": "56d6c696702f41940f2a0a8435185f6573e836a40a04963b572376608f169c19"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000035.npz",
+          "bytes": 396748,
+          "sha256": "9dc6080d38d48961d844804765eb0ad1280b3070d2aaf12d49d9787134379e70"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000036.npz",
+          "bytes": 396748,
+          "sha256": "31b41d42d5016f32bd5f5e45aa89e5f08b48e243a2dcd329466658f5abe70965"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000037.npz",
+          "bytes": 396748,
+          "sha256": "8266642e86cbd73c30056f5f48570d9a1ce9950a380f5a765a6fef9b8c2b45b3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000038.npz",
+          "bytes": 396748,
+          "sha256": "17a1fb42411fb9e8827b36924851d10f961377c29f91838ae05bd511f59c4ffb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000039.npz",
+          "bytes": 396748,
+          "sha256": "829c3a2cd4e41419e70d01ae55ecc486381b14ef66fdeeb5991e97e549333262"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000040.npz",
+          "bytes": 396748,
+          "sha256": "883ca6ae6c134aa3a808416ec5b246380f914b05fa3f0f71398ffa3de36bd590"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000041.npz",
+          "bytes": 396748,
+          "sha256": "f99eccf7ebf20d302e613e9f16c0496322cb690e983e790ae9492ea56b67b90c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000042.npz",
+          "bytes": 396748,
+          "sha256": "26929de7140f2fd2f7332cab633a07df957526ab8a5aaeeb7b8996ef27af4f6a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000043.npz",
+          "bytes": 396748,
+          "sha256": "8e7a17a0330567caf35caaf8c4e820fed996b0394a042eab1249ec299c509176"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000044.npz",
+          "bytes": 396748,
+          "sha256": "745ca71b4b1d46ab8e600910b43efe58695430552bdee54058ef84bb920b4186"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000045.npz",
+          "bytes": 396748,
+          "sha256": "5edf256e9ecacd2dcbba399f03b96f69c649340e7d3f1fa59e6075ea321806ff"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000046.npz",
+          "bytes": 396748,
+          "sha256": "b8d798af00682cba0dce809d697b040e16de291a54cb7ea95c259aaa653591f0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000047.npz",
+          "bytes": 396748,
+          "sha256": "c29761622816a33433ec5e9d1c72ee4348ccf54f658d69e313d36135bcc95fb0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000048.npz",
+          "bytes": 396748,
+          "sha256": "4e765d4aaff036e0d518ac2ac6dd109f20304e2653f957db92de3618de4e8748"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000049.npz",
+          "bytes": 396748,
+          "sha256": "3717c0e5512f29eb59ad0135a3dfe3c7ac09ff45d438ba7cf9f7f0f91d932785"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000050.npz",
+          "bytes": 396748,
+          "sha256": "e12ccd39b8766384797c8500adb6a443980b3f01ad0c8332d35ccc7a80a614a9"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000051.npz",
+          "bytes": 396748,
+          "sha256": "ff86b04715e4149ea04c541580ce3d02f9d158f6b7a383b345d4a25360ebdadf"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000052.npz",
+          "bytes": 396748,
+          "sha256": "1fd9a619704749f448d02a53d0bb8f962dc05ac6b5dc6f260827f6fa1b376094"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000053.npz",
+          "bytes": 396748,
+          "sha256": "ba53a6bb309d580b4e7dc00d4da697f6f7f60fa98983bc0e1b28cf1cec1417ab"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000054.npz",
+          "bytes": 396748,
+          "sha256": "986b3997a463f2c535c0c1b6dd3b948368b49445e46f3ad0e068d5c2e3b60362"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000055.npz",
+          "bytes": 396748,
+          "sha256": "1661b5ffabd95fc3ce4c2c26c4c410adb6d015e486dce1eb69ae74a7a4894687"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000056.npz",
+          "bytes": 396748,
+          "sha256": "1365044aff2eade733b1237b5cf0316545c3a1a79280da47295432394c5db4dc"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000057.npz",
+          "bytes": 396748,
+          "sha256": "d890403660f00d455f8200aa409d7b720832cc71a2e8fdfcf081aa015ed66347"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000058.npz",
+          "bytes": 396748,
+          "sha256": "09fdd50cc1814258f79ca581a21f42342941beca3343d19f83518b5366fd6052"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000059.npz",
+          "bytes": 396748,
+          "sha256": "1a120e18ed26c5318baa9736102e492c177442173a5cc5755aba3b7debff0e69"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000060.npz",
+          "bytes": 396748,
+          "sha256": "156fe19ae97bb5a41ada8cd0f806b8791fba1c814f0ab60c16881677b477e5af"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000061.npz",
+          "bytes": 396748,
+          "sha256": "cb064c776cb5fc2c5db6560d942f496819386949e593d10760fe407c7f010a04"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000062.npz",
+          "bytes": 396748,
+          "sha256": "91756d59ff09d3afc4359be10e773638cf53a873606db252fb1ca94c42702d89"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000063.npz",
+          "bytes": 396748,
+          "sha256": "4fb649dfacbd7a33b3dc123060d634a60a9294b4d1b5dd546b149c85dba75190"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000064.npz",
+          "bytes": 396748,
+          "sha256": "872577a3313ecb14ed733f60a7a574cc0aaaca6d3f9dbbf2e945d3994cb41c54"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000065.npz",
+          "bytes": 396748,
+          "sha256": "39311fdd110dcaabd4fe3fb638822676b98d775dfe8141885d81d7b0dd28f876"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000066.npz",
+          "bytes": 396748,
+          "sha256": "abf00c713a99e4192db461c52a435e9c58feaf99e0df401433e29f32ebecf515"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000067.npz",
+          "bytes": 396748,
+          "sha256": "65211d648ef2a4048396ded19324257957d04f5ecdd9d1abcfab3b5929eb889f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000068.npz",
+          "bytes": 396748,
+          "sha256": "e4109e157228046cbcb485a2371673f28364d49f75835c1a6dbb7bf18578067c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000069.npz",
+          "bytes": 396748,
+          "sha256": "bfa7d4ecf692f52ce8a755d19588e6da37842b2a841620b8e2c1ca2df0e016ef"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000070.npz",
+          "bytes": 396748,
+          "sha256": "5590411550cce334e68eea2263bd03577b67949cd8837c81c12f066e202e3461"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000071.npz",
+          "bytes": 396748,
+          "sha256": "6342185506337babf782da3de425fcf476d88904deca3b979236b0d8543268b8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000072.npz",
+          "bytes": 396748,
+          "sha256": "f8eb402bce0c920a210c206cc9a09c1fbfc2d6a931f174e9424eb6ee3cfadc36"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000073.npz",
+          "bytes": 396748,
+          "sha256": "9960b32989044d241cfda9fb416cc9a349cf6ec13d12d1acc66c63e876e5ebe0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000074.npz",
+          "bytes": 396748,
+          "sha256": "9fc2c9785cbf6f1a89bac6c6262aa455a2cc33b42e99f23580538df991935835"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000075.npz",
+          "bytes": 396748,
+          "sha256": "14521c9bef5e080a4eedb1aca700d5d3ccb5b61c9b0d10deb2733143206ca65f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000076.npz",
+          "bytes": 396748,
+          "sha256": "e3e9817beaf781e3f9e26b4ab1674d10de0c537a7e91c0793b4eb2a83d452b48"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000077.npz",
+          "bytes": 396748,
+          "sha256": "de43d3e0eb06b28532f6ccc32540f29f6aa82f483c64f52aeb9029c6eb455556"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000078.npz",
+          "bytes": 396748,
+          "sha256": "a671710eb28e117536643b70bc451a30554db704da6926ee6f2f069ec4a211e3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000079.npz",
+          "bytes": 396748,
+          "sha256": "f018b0189358033fd73d8d394645c97575e223cc7f632212ba64967c862e8c64"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000080.npz",
+          "bytes": 396748,
+          "sha256": "894552da198a5f22b6362012442f54cf286848b5e80e92d35d180b80a82aed7b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000081.npz",
+          "bytes": 396748,
+          "sha256": "1e0e6fb2f70b955a477b29b7e4836703aae96548ef7e691e139eb1df22df4171"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000082.npz",
+          "bytes": 396748,
+          "sha256": "a4f70fa729c181e7541d6f1d17836c8e2e21ef672997bda1aa95518baf3c63fd"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000083.npz",
+          "bytes": 396748,
+          "sha256": "0263bf250f684f371207a6e5ba87a31d33a2497ba3c074ca515cc8f17ce72021"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000084.npz",
+          "bytes": 396748,
+          "sha256": "d432f5ba4b037d11ecca610dec87a4c755078f3c2eaf835870403021019d565c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000085.npz",
+          "bytes": 396748,
+          "sha256": "26d41fba9d0108db39a6787d280a167c9c8a162ce977c2775a51114c3e0ca6d5"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000086.npz",
+          "bytes": 396748,
+          "sha256": "77b5892c6d1732d11ce9f0c581d8f9f2a9979a2618943afd78d1b722246b6fa7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000087.npz",
+          "bytes": 396748,
+          "sha256": "594eb884b70c6aab691bece6b8372b25a8060ca3549734248d32c9f7d9cf7d2b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000088.npz",
+          "bytes": 396748,
+          "sha256": "9d5158beb61187716adc3a212df5ca67f8833d910fb30498787dcc2e99241cdb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000089.npz",
+          "bytes": 396748,
+          "sha256": "15887b653d5480617e139ef54d25fcc6bb06de3fdbbee55145594c6a03acb8ce"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000090.npz",
+          "bytes": 396748,
+          "sha256": "0789f4e12015c3f72ca7c788810132234abd492f615ad52a76af6e74de10b239"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000091.npz",
+          "bytes": 396748,
+          "sha256": "bab4bb0ef6968c3fd2cbecff51cfd172480ececf6a51b73823d1477fccb4ae05"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000092.npz",
+          "bytes": 396748,
+          "sha256": "e1dac4d512aa830923358034d21608ddf055e008a7052c2cc85e3cd1f3d0121e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000093.npz",
+          "bytes": 396748,
+          "sha256": "fcc08e83f62c63cb172c40f208b1ba45dd85fead0501884316114cb581ebbeab"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000094.npz",
+          "bytes": 396748,
+          "sha256": "fb098cfbc6a473fd8d059029be4641acd85559681448734e02ae15d6003dd03d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000095.npz",
+          "bytes": 396748,
+          "sha256": "fc5cb9c1796d95c6929b9b82a59ba4f9e3937f217a28728dff091732f974c6fe"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000096.npz",
+          "bytes": 396748,
+          "sha256": "711e4871431cabafcab4112ac1f8158e1c2b3d32516b1a9c509da91d282f2b43"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000097.npz",
+          "bytes": 396748,
+          "sha256": "d9a4cf5207549c97c680cbe65f429a22bff9763892e9147c34120fc343a38ef8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000098.npz",
+          "bytes": 396748,
+          "sha256": "ebd9bfb9dabf018a01e4f0f4d0476bc16e232238ab1914d455880edacb107f40"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000099.npz",
+          "bytes": 396748,
+          "sha256": "bb0ecaa00e8a84ac9479d6ea0c1f0950f4f9484dcc0e753ff9ee42bcdc5cb03a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000100.npz",
+          "bytes": 396748,
+          "sha256": "c03031ee9aa469fdd3892923b204e808f3fbcd612d3df4c779bf88d7fd476f34"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000101.npz",
+          "bytes": 396748,
+          "sha256": "0d233019ccf6d87d027fa87d09dd1dc14cb6a760be520aebd45bdaf6afe8e7dd"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000102.npz",
+          "bytes": 396748,
+          "sha256": "0fc24b4b37cf6b92f056ce49a3a706ff554b190694e058328cb485e9fcc3572f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000103.npz",
+          "bytes": 396748,
+          "sha256": "0f2cd809f7aad83d8af1b6e5db01158b7a1b8b6f5b11483e95080422f2d6f7bb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000104.npz",
+          "bytes": 396748,
+          "sha256": "abba789406e9b8eebbde0817247d20ad4b3e3f24c9d5e1d91a371b52a5ee14f0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000105.npz",
+          "bytes": 396748,
+          "sha256": "d0581486de3808eb31d3f4bc5015e6690e9d0b8e52f12b3d9c978a6f894bb4a3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000106.npz",
+          "bytes": 396748,
+          "sha256": "64a56365f88f00d0649280730424e4838bf6babce032f7585a6ee15c6766d284"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000107.npz",
+          "bytes": 396748,
+          "sha256": "5eb7a0e4715653136b56fc4f8ec9c862315e790b50b1965fc8c80ff3a2d1260b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000108.npz",
+          "bytes": 396748,
+          "sha256": "f0c9b192130284976118a609c75ce3e578ee47a6e132bded028bef72d06bb508"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000109.npz",
+          "bytes": 396748,
+          "sha256": "a8c5eb5e543bc8bba91d8a9c348e8e37bfd1ff6bb317aa12b6bf77df734dc7e9"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000110.npz",
+          "bytes": 396748,
+          "sha256": "597638c1ff61eedc336533cd6452856643b607941923d0db21f7b73c18274ac5"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000111.npz",
+          "bytes": 396748,
+          "sha256": "ac796c1f28c640c45d4cffb09b20ea998ef5bdd6621610468a9bd309c69d6d08"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000112.npz",
+          "bytes": 396748,
+          "sha256": "5a1800ca7b61f717c5d91e083b6cadc6393cb8e9f57e48f15dd057edbfe805b3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000113.npz",
+          "bytes": 396748,
+          "sha256": "a75692c55d47da4e6318fe2ebfe7847d8963f5fddc9506c04b02d64710ed56f7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000114.npz",
+          "bytes": 396748,
+          "sha256": "e91693062563a709614b0562e61929255c828b58209a479d628ccac3ff1f6173"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000115.npz",
+          "bytes": 396748,
+          "sha256": "c9187739648f66e70b7160179f56f65501e2fb495a4560a3a79b7bec24be879e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000116.npz",
+          "bytes": 396748,
+          "sha256": "047977fe9652bf7ca1768b6ac83d3510ef2011c00747d3ca7273adf0ced85e2d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000117.npz",
+          "bytes": 396748,
+          "sha256": "8904692937e26633ed63a0e78bd15d6046c06d68a5aed49f66d376a55ae04303"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000118.npz",
+          "bytes": 396748,
+          "sha256": "faff6b45a839eeb24edaf1a2f731655afcf7f4f579062457a32a9001caaa9176"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000119.npz",
+          "bytes": 396748,
+          "sha256": "d71c27263ee95d0fb8e30dffba5a0cedc628aa2b182a54b74c1d4e648430c052"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000120.npz",
+          "bytes": 396748,
+          "sha256": "1a7b01dece9818bd92a4eb289322ae3ab222173d561aa4df95404a15791c8b52"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000121.npz",
+          "bytes": 396748,
+          "sha256": "d710070b1cba04c02a2a92d320134f168dbb7cde4a7a7b4e78f2b870b4562774"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000122.npz",
+          "bytes": 396748,
+          "sha256": "f1fe0df9f74fb40f047b0731dd42264ad1329179b20c1591ba8c64e85a2e58de"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000123.npz",
+          "bytes": 396748,
+          "sha256": "50b54a154aab574ccf128869dd08c5302ff31b02b9ff5d767b0b9c43e88d5647"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000124.npz",
+          "bytes": 396748,
+          "sha256": "f11e2f8393172b95d0d3b41429b731799c002baf3ae6698382aa8728092b0bf4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000125.npz",
+          "bytes": 396748,
+          "sha256": "bbb25c49c10db09b10ee7f0e185d6f7ecd6bb07700cc30340b0b2783823d8503"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000126.npz",
+          "bytes": 396748,
+          "sha256": "3ac594c33bd849dfac7f08f49e8487c2d8d12e3fd94db269dd480629c9c29636"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000127.npz",
+          "bytes": 396748,
+          "sha256": "d6df6ed3da43bb49f5d37589cc05aa0c9e45ba80a5bba5b203b1d92943eeac27"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000128.npz",
+          "bytes": 396748,
+          "sha256": "a3f0b70cda9728b0affc6f418861b789d955618b111cd1e3edee70a13ca42a5a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000129.npz",
+          "bytes": 396748,
+          "sha256": "c526f8d54648e2c7f03918a66e0b2d9a7286b1afd8c02844c184d869984d560c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000130.npz",
+          "bytes": 396748,
+          "sha256": "6d451a442635cae48654a882b43f860ef2ff87b6443e51f398aeb8d365058d3b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000131.npz",
+          "bytes": 396748,
+          "sha256": "8545644c8f210748bd236b4e38b4a26a4d55274704a89e98e6ecc347d754b432"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000132.npz",
+          "bytes": 396748,
+          "sha256": "4fbccb72c01eade20128682f124ee0d5081494079fe868269260a98dfeb555e2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000133.npz",
+          "bytes": 396748,
+          "sha256": "d00cfd5b1613c2f62eda94b9887d6e9432b624147d70fdcbdde1a63d32b2f0c4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000134.npz",
+          "bytes": 396748,
+          "sha256": "dd0160e95a0ab09afa52ff90c4bf3f0adbf5d8bc74fb68f47afac50491f7386e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000135.npz",
+          "bytes": 396748,
+          "sha256": "6b5afe9e4f1aa4566492240ed63cd98c8c5c3ddb34598a2301eafd3f33306311"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000136.npz",
+          "bytes": 396748,
+          "sha256": "5cd4c28d3d144ccb925e288cfc60b8f6883150faa944b9679c3d3fd0aef3b3ce"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000137.npz",
+          "bytes": 396748,
+          "sha256": "b417a1586a72b3184c5441e03c05dfc4325c04ef258b3cd38d092f4533d38501"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000138.npz",
+          "bytes": 396748,
+          "sha256": "0384a111dea2e8c37927da2aedaef3df718fd1131918726867d44d352c0b651e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000139.npz",
+          "bytes": 396748,
+          "sha256": "b48797d1e0057d7dfbc5e2e449ae2a65983e2c8895ac70862173d6cb1945671a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000140.npz",
+          "bytes": 396748,
+          "sha256": "0430d017ee733d906a484493038b304462aba13ba1572f96223061b457ce3aad"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000141.npz",
+          "bytes": 396748,
+          "sha256": "cb11ac9153a5775cd13d5ec6ef13b7a539278167483d15a0be828c05945d59e2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000142.npz",
+          "bytes": 396748,
+          "sha256": "8a4057dff36e119c75947074b037f60a2ddfb94a698ffe857aae81b41f8af537"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000143.npz",
+          "bytes": 396748,
+          "sha256": "b9f5c377d717dd9118de9fe41b6cd0f5bfa54bc3a810c189988ca2e39b4489d8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000144.npz",
+          "bytes": 396748,
+          "sha256": "f472568cebb19884f08e5d6b4fe94e23f602a8679cdb5881d3927055fc433eef"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000145.npz",
+          "bytes": 396748,
+          "sha256": "e0c1f42766f682f8fde1f8e2708ecef9ffecead3f0036eb9a782395376826139"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000146.npz",
+          "bytes": 396748,
+          "sha256": "589abfb489da7b5da30331029760e46ab1124bb73390aacf937999b19d639e41"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000147.npz",
+          "bytes": 396748,
+          "sha256": "366b6a0fea983f9481b507f455e4b175c8beee2d7575496586888cb558de83d3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000148.npz",
+          "bytes": 396748,
+          "sha256": "057afd59ac9781551838eecb8cc24c7043e97bf1d2046421e5794110d366ec07"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000149.npz",
+          "bytes": 396748,
+          "sha256": "034b0d4248ec63038099224dd5ac44d74dc097eb5b969c0e375a7b719a4b498a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000150.npz",
+          "bytes": 396748,
+          "sha256": "ab2e29df625f390071bc75de251a9c37e0a4baa884e0c02bb6d1b8bacb92a29b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000151.npz",
+          "bytes": 396748,
+          "sha256": "5b00664e88f9379565442b432c3d1f13b4c3c802239c26f3860b9adeff273400"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000152.npz",
+          "bytes": 396748,
+          "sha256": "b32ea45753957bf273c30980f3249bcc8f5ff02e4e7e908b997a6e5261c4eae8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000153.npz",
+          "bytes": 396748,
+          "sha256": "0f7bde96b96a9b39169b0e0f840c8abaee5331faa14e8b76518cf465c552c9dc"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000154.npz",
+          "bytes": 396748,
+          "sha256": "487b6804fe6e84922aa0d2797f0ebcbd8da3b3a0138750dd6e1960223a577153"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000155.npz",
+          "bytes": 396748,
+          "sha256": "140cd5891dae07db2113198efd62bbe0a9bdd644915ed064cda65418656b5d08"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000156.npz",
+          "bytes": 396748,
+          "sha256": "7906db3da0b82a4729fd4582c227ccfdf7a4f073e0d23296f79cda2e5818af82"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000157.npz",
+          "bytes": 396748,
+          "sha256": "b092895fe8dbe7aa532e69784f11b7ffc92e818583402dfd7f4d1c8d10ec827f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000158.npz",
+          "bytes": 396748,
+          "sha256": "71b0910984f07ba656f8ac7b0ce2be31bd0fd18166264dcb72169c618b5ea09a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000159.npz",
+          "bytes": 396748,
+          "sha256": "2f4082923039f6ebbafd92142f2a0ae37bffb614ea83938d968ed52017373972"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000160.npz",
+          "bytes": 396748,
+          "sha256": "a3c0ceb4d0d2ec895b27822c41c75668e66a6d343d0dafc9d0d2e91810767f70"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000161.npz",
+          "bytes": 396748,
+          "sha256": "c2490395f27b3a32973f609b3a29198a731bc95706f2251ca450724331aea576"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000162.npz",
+          "bytes": 396748,
+          "sha256": "5ee1cfe929f5b85d96d3ee96321ad07da06fcc5c340a5b81664598cedbcd5c0b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000163.npz",
+          "bytes": 396748,
+          "sha256": "e69fa57e8a25509c95358e36393d2139d97b5b29620d7146c7ad5e853bf205e7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000164.npz",
+          "bytes": 396748,
+          "sha256": "1a0ab86005f99577bb510342784ef2b1eff052e88228c04108f974b1ae0bcf31"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000165.npz",
+          "bytes": 396748,
+          "sha256": "13a2d9f402a8900e5749527f223e747b420f693687d50473e750f738ea378b99"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000166.npz",
+          "bytes": 396748,
+          "sha256": "3e7bcbff0dd488b37cda905b2839548673a5fc51028f8fbd03bac898f5e475a9"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000167.npz",
+          "bytes": 396748,
+          "sha256": "517fb13bf733b429ebd5d0f79022bc72456abfa0991df1df3748625e7756b180"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000168.npz",
+          "bytes": 396748,
+          "sha256": "6df09cbb9ef3f20c19d89b6cb771b39e5b457d8796f09fe8a45896c7e315aafe"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000169.npz",
+          "bytes": 396748,
+          "sha256": "1e3b074f24bc1c4d06f1f41f183eb5f34e025caf1b1a803ce8487dcb2477e8ff"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000170.npz",
+          "bytes": 396748,
+          "sha256": "278cde283b9e631e032f78f93d5e3ebb6d75f125895110dbffcc7276ffb01f48"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000171.npz",
+          "bytes": 396748,
+          "sha256": "1bd59466a001e28e27c380aea77de067e33aa643facbbc04c9af3c4e8ea1caf4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000172.npz",
+          "bytes": 396748,
+          "sha256": "69f42b0146721a48ab4a0a67b06de8fec5370e8abaf82b8e16202fe2a61890ed"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000173.npz",
+          "bytes": 396748,
+          "sha256": "d05089bcb4d1d45b3f3ebb50cc49ec212fedf39b5fff71735cc8e387328ad211"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000174.npz",
+          "bytes": 396748,
+          "sha256": "a3f69cfad19b03c59af5ec461b6bef1545d2313735d1a78c61706a6c2b729b3d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000175.npz",
+          "bytes": 396748,
+          "sha256": "5c09fcd9cfcfaf28cdfdbdda8bb2f5759daa0cea78ff1bede0173636cfdf90d1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000176.npz",
+          "bytes": 396748,
+          "sha256": "6357cc1365bcd3474c63f69c3baeb0b65ad3d2127474c685dae1429a279d499f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000177.npz",
+          "bytes": 396748,
+          "sha256": "a4e9eedb173332036c3017436b16f479fb60c2b676cc8327a4961ddb80b826af"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000178.npz",
+          "bytes": 396748,
+          "sha256": "89b43d69e31fa349f1c576cf5f5b9bee3daaac4413040adb01a87a1bc4657973"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000179.npz",
+          "bytes": 396748,
+          "sha256": "c76fbb189f35019a58178cc3af1269f10d335946f159afaaef1dcc930b49f32f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000180.npz",
+          "bytes": 396748,
+          "sha256": "871db5587cf459e3517570fc0e7273210d304ee2a978742281ee98d32d652228"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000181.npz",
+          "bytes": 396748,
+          "sha256": "41934434b89a5ef760359b6ede548197bdc99a20847afe8fba76822448fff007"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000182.npz",
+          "bytes": 396748,
+          "sha256": "e9a91a178f06fe2f4ee312974e7896fed5997b92ae9a0de434e21c76645607e9"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000183.npz",
+          "bytes": 396748,
+          "sha256": "2263569abe339bd6249cfb3d8a4c36acfa129da3119aa69a29c1d7d76f6b2b7d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000184.npz",
+          "bytes": 396748,
+          "sha256": "6bbd9ba442c574ebf201808f6f75097e1091e8de76bef1b6b95236c701247522"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000185.npz",
+          "bytes": 396748,
+          "sha256": "974e09815d8a669a3020c6896af464036bafa4cb4755d25b930af142c242a5a9"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000186.npz",
+          "bytes": 396748,
+          "sha256": "69b080a54ce7301324ad7cf44cc455a8f4c71b1738bf044ecf5efc21a258884d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000187.npz",
+          "bytes": 396748,
+          "sha256": "81fe24757c6da4b9e35e94553b23e06157f67ac4ac1fa0be833e6e03f6195f2a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000188.npz",
+          "bytes": 396748,
+          "sha256": "767d2a145c011bae4c725fdaf4c1852e537746eeda3a73e9df9ce44d376200df"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000189.npz",
+          "bytes": 396748,
+          "sha256": "261b537e46d82ff714d81daf64cbf0899d6e350c09308950add649559c5497df"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000190.npz",
+          "bytes": 396748,
+          "sha256": "2d62d80eeb64d30dcf818b8822cef7f4fa75f030ce6637d2365c71746cd4fae7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000191.npz",
+          "bytes": 396748,
+          "sha256": "84807ace7d3e687096d981a9b9aa45b017f5734fab25c8191dbb6c27697edde1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000192.npz",
+          "bytes": 396748,
+          "sha256": "46377e66a3ef4265a60e109fd106c0f9c58b75d528187077c4d5daa62378a7eb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000193.npz",
+          "bytes": 396748,
+          "sha256": "5794c64e0e3d9bcdd20f675c7c1e390f7ed8e8c40d62c22ca4727dd5bf86821b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000194.npz",
+          "bytes": 396748,
+          "sha256": "38e6c9b6dace52ca3ca3e9468f47869057b9761282e0a5c7107359fc197698c6"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000195.npz",
+          "bytes": 396748,
+          "sha256": "779e7d23a0f85cf13d577c630024e5a223175a4701ffe03583b2870c3ff5f5b2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000196.npz",
+          "bytes": 396748,
+          "sha256": "ff40e0bfa5abf96754da4b0489421bef5e39461139fc38fc65a25ffded797d06"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000197.npz",
+          "bytes": 396748,
+          "sha256": "f7803d0de7192b17ed8e455c6d95bfa86677d45c9276d44342d1b494911f8c62"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000198.npz",
+          "bytes": 396748,
+          "sha256": "d7efea308e6b8d2e53c8b64114121506b65ce9e8bd332927c6623bcccf864a9e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000199.npz",
+          "bytes": 396748,
+          "sha256": "733278dd1685d287c8f1214e7bb4efbbeb2d9beeb201972c34fbff71e6d42e00"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000200.npz",
+          "bytes": 396748,
+          "sha256": "4239af23d112f4f852742931c8ff951861abe128e524fa9c4f978f655c58be5d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000201.npz",
+          "bytes": 396748,
+          "sha256": "2d12d03bc5c79447a340cf99accfdd6a46cff2a2ac8de08c8eb7672b55212c76"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000202.npz",
+          "bytes": 396748,
+          "sha256": "ed99eac15913d99f7f1c2748f0d9c1fea234d10edc00a72b11956561388b8c49"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000203.npz",
+          "bytes": 396748,
+          "sha256": "225d74456c877cf23a10ab3ce794141f906ad5f33c412f6ec056252922037340"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000204.npz",
+          "bytes": 396748,
+          "sha256": "fbe39a7c4a80cefa3b927acb6e8ffb5421e4aec66a8b0d5557e6460b15eea2d7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000205.npz",
+          "bytes": 396748,
+          "sha256": "e1f77dc9d2e201ec80a0b973fa4207e6ba95ba20b45b976165f628fdca25e582"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000206.npz",
+          "bytes": 396748,
+          "sha256": "2a123dcd4778f616d9585e0e1a3adc9a53b8358a7b88b1e0da0bc8cbf9c31fc0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000207.npz",
+          "bytes": 396748,
+          "sha256": "b57c3ae545829bc77b41a96a2715623f85034d3a6c1cb8b5df7e997bf05774ea"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000208.npz",
+          "bytes": 396748,
+          "sha256": "2c2813c204379c6bd70a8213195c3508e60152e9ff6e0c5f854201498f72f690"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000209.npz",
+          "bytes": 396748,
+          "sha256": "132ba438c1a5963899ce596e9ab3b46161178903df134e63f3fc480f3c5aac8b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000210.npz",
+          "bytes": 396748,
+          "sha256": "8a484283770a02a01770be17039165857335bf8f674a6be03fbb472f57241d87"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000211.npz",
+          "bytes": 396748,
+          "sha256": "4c3374ec612cfcfead7a326cb72c7a5fdca67c2ab7fcd34d68f9bb11eb916caf"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000212.npz",
+          "bytes": 396748,
+          "sha256": "83b11737a2a2d0a1b9c1b105c986e7bc66d8953ca932750e1040cb453841485f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000213.npz",
+          "bytes": 396748,
+          "sha256": "a62e36bda2bca64c68addcf691a318480ef95cc3f0d55c506bd6e1a4c8bf5f7d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000214.npz",
+          "bytes": 396748,
+          "sha256": "83218edb73db5f0f9a20688d576bcef088b662183f2fa40fbaab3862b31aaac3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000215.npz",
+          "bytes": 396748,
+          "sha256": "7f103e43b8991562f7eae89ddc73373af98a083198764f75c2e6395f184f9334"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000216.npz",
+          "bytes": 396748,
+          "sha256": "21b707b2259354ad6f8e21e59d2409c53d8a082896d5cd0f9dfdd65f80d30924"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000217.npz",
+          "bytes": 396748,
+          "sha256": "3d367ea33cbe87a61e47d74082859d3a1d0865f5df8cfb7c5ada6585b2537426"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000218.npz",
+          "bytes": 396748,
+          "sha256": "44f896913be9fbd8d7991f91eac24863f68d7a127f53ad55cfef28acd69dbb6a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000219.npz",
+          "bytes": 396748,
+          "sha256": "6175039e87007809c418243e343b358fc2e4f95e7a4c043d9e2a3322fd44ccfd"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000220.npz",
+          "bytes": 396748,
+          "sha256": "12e677fc4abfccf1b2fb9a4b3482ec4daa2b7aaff9d45d1d9c6369454109a3e5"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000221.npz",
+          "bytes": 396748,
+          "sha256": "1c3c37bdb5eb56afcc14deb1d14320c46e03ad1abc7f9c88cf0a6b5ccb5d23ed"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000222.npz",
+          "bytes": 396748,
+          "sha256": "151096c5467494ed7482250f54b527d6c4083f49df1fc36e6fff6ece48172915"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000223.npz",
+          "bytes": 396748,
+          "sha256": "626f5c5d3e6c05bfb7dcf83d9d21e5ed3e60d49573d816800a74e37e5253a485"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000224.npz",
+          "bytes": 396748,
+          "sha256": "fa1d11f50ec4ddf0b6211d10674a0c1ccbe17ef6bedc577d441dd3da7255215e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000225.npz",
+          "bytes": 396748,
+          "sha256": "7dea37b974c17030efea950146b6ae18e0ef40e17962073bb52b80e3cdf70ac4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000226.npz",
+          "bytes": 396748,
+          "sha256": "726a7b4f3fb19fb3bb7003cf41ff98a244fc5389f96357633121901aa40cc3a5"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000227.npz",
+          "bytes": 396748,
+          "sha256": "cc5dae4117a3c93e699510ff3a35252fe12884e4dc974a0783d67295540adcb0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000228.npz",
+          "bytes": 396748,
+          "sha256": "2658ebf4cf50f8b129f6bc64840a471bff39417a9c8dc736e9085041b2c5ae39"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000229.npz",
+          "bytes": 396748,
+          "sha256": "2468a2ade34e40faa80b42fe3ee34907d1871f2fd26bf45b197cc31659260a9c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000230.npz",
+          "bytes": 396748,
+          "sha256": "4ce88d95485e39189740020ba62dcc003a1702b0646cf908673422b87ceb3284"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000231.npz",
+          "bytes": 396748,
+          "sha256": "5f36333e52901e92d7a90bd458488d80d330652bff81e09da643b9295797c7fc"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000232.npz",
+          "bytes": 396748,
+          "sha256": "4d6fb682dcb4c5a7d17504aa897bd2bde7d9c2fe3a8c98706f996cdc1d530971"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000233.npz",
+          "bytes": 396748,
+          "sha256": "cdee803e353afc6fe0e44506853ba670d18649f6ef53373e1158577493f4ba66"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000234.npz",
+          "bytes": 396748,
+          "sha256": "af5c28c6eac62f684840a28267289fca4020fe98c07d1dea23b9c296fa8db24a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000235.npz",
+          "bytes": 396748,
+          "sha256": "9af474979b205f9b312fc6e76cc64f920aec8158c67160a038bec95fee2e086a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000236.npz",
+          "bytes": 396748,
+          "sha256": "f412d786f49caa1af5017e99cd5193e8f53d0c41c2d1813727c80d5ece66cb72"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000237.npz",
+          "bytes": 396748,
+          "sha256": "fde4ee14640eb9bfaa4fd3db88d1169259df42058bb87a50739607abf2bf6e6b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000238.npz",
+          "bytes": 396748,
+          "sha256": "9a2389b3cb8a46f2bfe8317f26c2e7693f21dc6bb3730774390896a0c5f39d57"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000239.npz",
+          "bytes": 396748,
+          "sha256": "7f379dadc2ffd77f7e805bd63dc12a54f2199a2a17aeb7704c87007dce3b38e3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000240.npz",
+          "bytes": 396748,
+          "sha256": "dca1743ff487bb69a3151d3aafe8a51963b9b8ce602d3ff824a89d3501e61fa2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000241.npz",
+          "bytes": 396748,
+          "sha256": "54c0adfa616c1caba546d0124c4a50af7b9ec4b9c4b5c1a40c2026656b8df380"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000242.npz",
+          "bytes": 396748,
+          "sha256": "1b5ddc26c7cd68595d9b2270875e190f75878b3f17e4949baefe4e09581feec6"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000243.npz",
+          "bytes": 396748,
+          "sha256": "d1ce32c62c0f5019d1f08d679c4322e4c8cf4c5a469d31c8a6d9cbda1615fd8f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000244.npz",
+          "bytes": 396748,
+          "sha256": "e7522cf89d0f77c9bab071569ecef13d99c18f30842d156308b26c56c36e66b5"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000245.npz",
+          "bytes": 396748,
+          "sha256": "f9de97c08b7289fdfb7d057cd8bfc5f545a195b4f99b967d4300e18ddbc4699f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000246.npz",
+          "bytes": 396748,
+          "sha256": "a7f341c381096c32fc6535bc198ffdfda8ea5f1d49f9586b4e5b653e69d6284c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000247.npz",
+          "bytes": 396748,
+          "sha256": "3d155197b4557db62d3ec880aa72772beac150e77998cd387584c840f167e6e2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000248.npz",
+          "bytes": 396748,
+          "sha256": "6951e67010368abbc1805d17a3c2946166c74cfcb93997285ad0f443755412c1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000249.npz",
+          "bytes": 396748,
+          "sha256": "4f038d6793116b2b85d4e543d13bfa15838d4e56b27b36f7ef0a1b6a27e9acde"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000250.npz",
+          "bytes": 396748,
+          "sha256": "20594d286a19e222b56d421c2cd3295de1f4181c11befabb62e8e6cf27f05348"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000251.npz",
+          "bytes": 396748,
+          "sha256": "0886a01f0c1253411829e71e81a63b2853d8753bc478c8375e038eb1310f5a1c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000252.npz",
+          "bytes": 396748,
+          "sha256": "424390c968e702f15387cee17203e3ed24d95cbdd00438730fb1242a0b480020"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000253.npz",
+          "bytes": 396748,
+          "sha256": "075d531085274172a7b3f6d6cd942f1a56a36dc1e4c5ed3267de16e7fbe93d98"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames/000254.npz",
+          "bytes": 396748,
+          "sha256": "bf08c3de2034b82a1c4ac852875541c61970e750d0c14dd3c16e9dff2bd28a06"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/frames.jsonl",
+          "bytes": 911918,
+          "sha256": "22163343e757ccbbdc6ecc7e7b6ad72a770047e9823d69e3f199b73f2c6edb96"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/images.npz",
+          "bytes": 26665505,
+          "sha256": "2f96d5939d639ab8a32e6c94084d7edec778ffea476bbc64c60dc2e91e90737d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/states.npz",
+          "bytes": 224887,
+          "sha256": "4dd63a8601cbfebc7fa3e1b88ca839b57a0189bdd64702d69b1ce60438489c3a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/baseline/steps.jsonl",
+          "bytes": 16762968,
+          "sha256": "e3659bbda27b6ec8c42e024b1eea41287eeb9e6d2d06e4a76d49b57b30e29630"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000000.npz",
+          "bytes": 396748,
+          "sha256": "8050fb81f75d24d21ea774c17afc19c182519c3f127344b2df20d4ac147a4682"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000001.npz",
+          "bytes": 396748,
+          "sha256": "79a88ba3b00ad7c9202618b7391c72c6caf21841b3b33bf1eb137c48e5b20f50"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000002.npz",
+          "bytes": 396748,
+          "sha256": "b1894891e8df557d074a29c2b2e32d2a5632c7f88e4430556de1b5aeda01e2fa"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000003.npz",
+          "bytes": 396748,
+          "sha256": "8efa50b77a3d1e75bfe07ede180603d1aa14e475d6a89d0938bc3f47d2b7bb45"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000004.npz",
+          "bytes": 396748,
+          "sha256": "2ec3059581293ff2ea09eec26fbf2456365a666127de9e6544444a74da365cdf"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000005.npz",
+          "bytes": 396748,
+          "sha256": "60aeeb07b63c769e98db57b40e34ab7bdee305bed5176f303c7896694610aa51"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000006.npz",
+          "bytes": 396748,
+          "sha256": "c32dfeae06d1725bf1368f2f039403110e608a5413c4bddb8cc6d4325299f17f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000007.npz",
+          "bytes": 396748,
+          "sha256": "d7d1644ae6807132bd7218e2e0231cd8ba4f2f1e2b90e1ea493997a56de0977f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000008.npz",
+          "bytes": 396748,
+          "sha256": "395dc9dc8b6ff3bd59744b0a2451b40acee8954c143956c35e4bfe52dd731ae8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000009.npz",
+          "bytes": 396748,
+          "sha256": "02300e28eecf25c9fbb22046b215d7257cc9baed6c25d31be5e252aa58d6da99"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames/000010.npz",
+          "bytes": 396748,
+          "sha256": "b16bbcbfcf45d102fcd562b0c7a3d7879dd3d179d7fca336a9d433e7aa15b119"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/frames.jsonl",
+          "bytes": 46437,
+          "sha256": "3d72fe8367fc120c1ec5fc6b57366512eae5b9f928159e1ce6d39a839d7d52b3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/images.npz",
+          "bytes": 1305693,
+          "sha256": "9e823733f83f137b35807588c9687b48b969c28d21c1a63f59777036962d774e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/states.npz",
+          "bytes": 9727,
+          "sha256": "31e2ee2ee7a7058a8fea0869a4d890d32dfc1039d181eb153d769af7ec35f15c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction/initialization/steps.jsonl",
+          "bytes": 1038379,
+          "sha256": "191344b5f95a88648db5dbb64ab5a2ed210bdcf4800f026370d9b2838037dd5f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/reconstruction.json",
+          "bytes": 1761,
+          "sha256": "8cd94b1ffc4a46f66e31ebb102891e776e3b28eb841f1678ecb7ba487206429b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/scene.bddl",
+          "bytes": 1836,
+          "sha256": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/selected_initial_state.npy",
+          "bytes": 504,
+          "sha256": "ae90aef56416ad928884aa74316b42cc911c75cbe2fc03c72097bcf0383909b6"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/snapshot_controller.json",
+          "bytes": 7772,
+          "sha256": "1e1c532ffbd5fd24cd66e4d85274bca14830fb32c6dacaf07ca6a987a002c7d7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/__init__.py",
+          "bytes": 739,
+          "sha256": "9f4ffe94647599699878b94bc9cf7cae3cff075b5c54529d9840a1c13e6aad3e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/base_controller.py",
+          "bytes": 10496,
+          "sha256": "61f99a2daeb4eb6e39bfb996d94c5a5689ef3bc771d030d070193ea56d6a8332"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/controller_factory.py",
+          "bytes": 6422,
+          "sha256": "1dab09602c41dcf3749bed43dd3bc4e098040cabc8f7fbfd030d9008bd3d5776"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/ik.py",
+          "bytes": 30151,
+          "sha256": "ec39309777593fcc9265d971d716adcceec094e51b93bb9a420232e8b81ec1cb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/interpolators/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/interpolators/base_interpolator.py",
+          "bytes": 391,
+          "sha256": "43aa220c75a4a419e875f4374eabac97633d5cf9e1aa66f4d79981b9b2b1fd43"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/interpolators/linear_interpolator.py",
+          "bytes": 5476,
+          "sha256": "39d741c08d4afad50f5b535df5383a5269685d0f0af3a9ecbbdc4eec06d7f548"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/joint_pos.py",
+          "bytes": 13440,
+          "sha256": "7a8fab0200c499722e238e39a3735347bdc518138105e4d823490a9575071793"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/joint_tor.py",
+          "bytes": 7533,
+          "sha256": "2510a03b6ffdb36c4dc284bc444e82a5203b9151ad86d0192a7cb46ee3365d2c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/joint_vel.py",
+          "bytes": 9131,
+          "sha256": "57b7ac41a89a1c6d867b58e87ae4a1acf5f0966214d43175cf270aa1676a9294"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/controllers/osc.py",
+          "bytes": 20265,
+          "sha256": "cfa62a0e719bc53ef0c701efa66f7b3e2272d4fca2150ec73c05bb145eba85cb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/__init__.py",
+          "bytes": 91,
+          "sha256": "2a0f2d38c17004d519946144d03e081d8ace8ea4e04509b38719db75ff6cfc2e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/base.py",
+          "bytes": 30357,
+          "sha256": "60eab4afd3dc95b4ac4cf0659fb9afe6360161912a4ac6931efe86ce1e1de519"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/__init__.py",
+          "bytes": 2,
+          "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/door.py",
+          "bytes": 20010,
+          "sha256": "d2e3ddb12599b2d309718bde0c658fc8f533a68b15e1e819e937b9abf0f9afc4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/lift.py",
+          "bytes": 18193,
+          "sha256": "3e9569fd5bf2af714364de75faa68d60bfc085734ed4ef7f35290bcf90652270"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/manipulation_env.py",
+          "bytes": 16442,
+          "sha256": "13375356b4ab98bea62dce25b002b137c58669bfba77f0db84cf04c04a4cc457"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/nut_assembly.py",
+          "bytes": 31107,
+          "sha256": "142c6d8cc8ee02f686188fad271de5084e68dc16d386ae307bee1e469550f755"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/pick_place.py",
+          "bytes": 36121,
+          "sha256": "26dcb1dfb5289cbe4c2cff10e4a7562939e67d9fa341eccabbabe456a2ad0e7e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/single_arm_env.py",
+          "bytes": 2474,
+          "sha256": "a852195738eb01b89539b11fe9bc668f5153febef0313683f566163440d27fe2"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/stack.py",
+          "bytes": 21223,
+          "sha256": "a80dbddc14ca1c9bf85b761e3dded45b84e43a106ca516ec658f160b4fe5bd9c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/tool_hang.py",
+          "bytes": 35505,
+          "sha256": "da87623a6067bb6efd9714cfff0a61dce2107ad46356eb549810259d03e04ac0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/two_arm_env.py",
+          "bytes": 5617,
+          "sha256": "d4d14a96b729016ec3eeb66e54206d914e01852e56592c668f2e30b068c62ace"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/two_arm_handover.py",
+          "bytes": 28409,
+          "sha256": "eefa2b97b85d61a208e89b071d619b7d1bdd10b50148ea3bbae202b49a6a487f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/two_arm_lift.py",
+          "bytes": 24131,
+          "sha256": "cd5a7944b98b6cc6d6238ea0fea3f1322bda99d9c828de6cae92d991a8c23033"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/two_arm_peg_in_hole.py",
+          "bytes": 22958,
+          "sha256": "89c5ff5e82b73a390744426c08c7a9752c9c4671a19548875c2a14e1b6123d66"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/two_arm_transport.py",
+          "bytes": 26809,
+          "sha256": "942beebb6e22de796f642b3b64a24df0e292448b9d01cbc30870ae64c73d7586"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/manipulation/wipe.py",
+          "bytes": 36951,
+          "sha256": "fabd56beea588ebf1aec4125b3071002788253a2cef16f1de741e6f9602733de"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/environments/robot_env.py",
+          "bytes": 27172,
+          "sha256": "a0b39012c175272a2037a7a66a771d416b905a5a7b847e53c60a0588407398af"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/__init__.py",
+          "bytes": 1204,
+          "sha256": "8669fcd5e67fa0371874034add25cad19e7fa5cc5bd4a6c3d8e7568d44371c1b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/gripper_factory.py",
+          "bytes": 855,
+          "sha256": "31f60e794c7fff46f505d47797a0dd8a98149d7c5cf96f7c80830a5546873b75"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/gripper_model.py",
+          "bytes": 5476,
+          "sha256": "0543b5a9e1d8b41e21880d8445c5d8fbf8535a4ac6fd55c5e70a3b1f323c3735"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/gripper_tester.py",
+          "bytes": 9270,
+          "sha256": "551500ee08fe0e36d756db9c5c215ce8e91d7e98e92b7d9a77ca932725f3927f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/jaco_three_finger_gripper.py",
+          "bytes": 3097,
+          "sha256": "9cae26cc8c56360c14eb5b46bcf0f493f48b8057ec6a3143eb9f16487c331a98"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/null_gripper.py",
+          "bytes": 668,
+          "sha256": "2717a3d59121e6d8b83db8729ad53d078517ef16227a9f1b77209a6da7d6c355"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/panda_gripper.py",
+          "bytes": 1817,
+          "sha256": "a3760a8fc4599fa6f79914304b82466f3c1bda1a945943ca693bb57f00dc59eb"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/rethink_gripper.py",
+          "bytes": 1841,
+          "sha256": "da63fc1b37d8ce68fdc7bc21043f49e5e0dc6e070da89d9abc31e33062d13b53"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/robotiq_140_gripper.py",
+          "bytes": 2213,
+          "sha256": "3ef08fa5ecf82efb210f031cecd56fb3e8acbf50b978fb339674bdbbd317145f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/robotiq_85_gripper.py",
+          "bytes": 2088,
+          "sha256": "e99c5f7ddd69abfc44c818ab38363ed7f6719e66fe6f85e93682c8cece67d78d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/robotiq_three_finger_gripper.py",
+          "bytes": 3315,
+          "sha256": "01d4f47bf7f75f983bbfaca629b99ce374ea79b44504a11bd44dd35e585470b8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/models/grippers/wiping_gripper.py",
+          "bytes": 1004,
+          "sha256": "df56cdbc1474be34d0b01f6b627056584ab2b068137a302ff7d5f9157564f958"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/robots/__init__.py",
+          "bytes": 565,
+          "sha256": "fab00e6347f9b329284ed4cc2c5f321a1193446ce08c2fad22d2831a52fdfbc0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/robots/bimanual.py",
+          "bytes": 27070,
+          "sha256": "01d2823974ece382fc84e9a8aff1a02eddcba015de0e89cfba9ee3a669b22fcf"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/robots/manipulator.py",
+          "bytes": 5300,
+          "sha256": "d37ff4c00112cfba9bf4b96bf48ad5664422fd824dd4fbcd1eebda650a451b64"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/robots/robot.py",
+          "bytes": 15820,
+          "sha256": "7a3a98eb75b4e7cb1b822a918d0c693d441356279a8e796cfc02eb1fd5963f23"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/robots/single_arm.py",
+          "bytes": 19730,
+          "sha256": "38237d7b68c876b413f0df811b135ca3b2fb91061c011696baab07db5e87fa14"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/__init__.py",
+          "bytes": 130,
+          "sha256": "101229e0c16c4aeb222946333ad24423bbe14329bafb51fe7f3d5d7249dcf7aa"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/assets_utils.py",
+          "bytes": 1043,
+          "sha256": "ee3df77390a92e2618e85db1c484e50516970efce3c50381252773c2d44fca64"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/binding_utils.py",
+          "bytes": 42987,
+          "sha256": "5ac3c9da0cb9f85d694c6147103268df65151f751612a6c575ae0da4eb4988e4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/buffers.py",
+          "bytes": 5191,
+          "sha256": "ce7772170f8de25213488e639c21290be0803c19c3db577725f237f573a6a9b3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/camera_utils.py",
+          "bytes": 24870,
+          "sha256": "7cb6ce02936b181c296a38c0c79d6dd436618656a08fb67a5553a733a8652247"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/control_utils.py",
+          "bytes": 10243,
+          "sha256": "1d0f1a063894b1e8289339e223665e14e8aec492c31e9e00f42edea8dc735f43"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/errors.py",
+          "bytes": 426,
+          "sha256": "01d6e2c3ff46b6fe3e13f5f07598365807c19d77664b67e67a66ddda115d8edf"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/input_utils.py",
+          "bytes": 9207,
+          "sha256": "f792c59fdc2860e29bf3fb5619796b94b2aea1b041822be1a3598fe12febe8ac"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/log_utils.py",
+          "bytes": 3811,
+          "sha256": "4c7a5910d6b3c5ec61b99f6f62f80e2ab71d94cb1d4b9dc9a4f6662900a2cdb1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/macros.py",
+          "bytes": 1612,
+          "sha256": "3d538d9d4cd9de7d6102095799e17c5eef0a0f5cefb90651e606385cd1977369"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/mjcf_utils.py",
+          "bytes": 32491,
+          "sha256": "85edc2ffc5ba3e79f8372468259aa8d16ba886ede9ab556593f88817c0dfaddd"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/mjmod.py",
+          "bytes": 72649,
+          "sha256": "cbb70d4d5f63987e173a700eca8ed690b9d6b84b289f073c3c65a1e4a8d77049"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/numba.py",
+          "bytes": 224,
+          "sha256": "bc07c5837d30dc91de2b028e28bdb029ca6505341ba3b93bee50d6e86f70a56f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/observables.py",
+          "bytes": 16066,
+          "sha256": "19ea2e0e2cfb4ebcd5911cd2526dd645859535d25fc7bc55944c54a90e6672dc"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/opencv_renderer.py",
+          "bytes": 1495,
+          "sha256": "ec668b66850097f07b39f5a85640bc113bb3ba405b07b8dd15498dbf1f4798b7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/placement_samplers.py",
+          "bytes": 19251,
+          "sha256": "58e76fcc04a995bb97734341174076e59c3485834afd8ec85a33345b8319fba7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/robot_utils.py",
+          "bytes": 439,
+          "sha256": "b41df30fd31a9a227949442ae36137af79f5bf6d37422093191970d9b9034e7d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/sim_utils.py",
+          "bytes": 3061,
+          "sha256": "117200047fa29848f84924a5f9703a185269fcb12c6995c831736e3606df1b03"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/robosuite/utils/transform_utils.py",
+          "bytes": 27506,
+          "sha256": "1c2317895733449883b56af0decefb3529649b3a7779dc2ef3ed00816bb25bb0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/__init__.py",
+          "bytes": 267,
+          "sha256": "b99601b6b44de6d0078baa66054113881492826bbfbe8cd41e2d39d5bf6f0875"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/__init__.py",
+          "bytes": 259,
+          "sha256": "a148bff0a3b0eb37b1d9d22579fbf3b05c7a26753ea026f5621576aa3f82fcb1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/coffee_table_arena.py",
+          "bytes": 1107,
+          "sha256": "a1321848013495e1194c495eecb6c9da36e2260ce64ec636aea6f404e35abc04"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/empty_arena.py",
+          "bytes": 1087,
+          "sha256": "1032b22ff518a37dd94609a525291082e1ac7151abc2d509e76b588625437260"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/kitchen_arena.py",
+          "bytes": 5109,
+          "sha256": "fab3692ad931ce3e910b318626cd3d1f8c67a0100fbdb9fb28b6118fe42ec8f1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/living_room_arena.py",
+          "bytes": 1638,
+          "sha256": "8267ca85d85a4b83815543f1f5405002da81b0462259c1ca45a146b612277581"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/study_arena.py",
+          "bytes": 4473,
+          "sha256": "274c663111069f77795151667e962afaa78ab43ea45d206f6b202c8cfba40387"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/style.py",
+          "bytes": 1027,
+          "sha256": "e9ccc2a8d68be6e8d831d4cd683e022ac05fb7ba62fb3a2a5c9b716cf997a409"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/arenas/table_arena.py",
+          "bytes": 5102,
+          "sha256": "a47a23d3736d35b34b279f90f267f9f3fa2426431a96c8f038d18ed44cc9a834"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/base_object.py",
+          "bytes": 645,
+          "sha256": "88ee0d4b2a39f39437d97fb12ec08831cb5064e23a7456d2f882e3baab246f1a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/bddl_base_domain.py",
+          "bytes": 32639,
+          "sha256": "055836670ac5fcac7e033fc86404718fd53854996e5776b1ff68b646f7bbcc9d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/bddl_utils.py",
+          "bytes": 6232,
+          "sha256": "f8148a5054e7818cee1ceddda300ff9f15272f8e6600389abd38f102e477cd8c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/env_wrapper.py",
+          "bytes": 8781,
+          "sha256": "a782fb76c9792268d28979474fe72849e1e98ada49c8e997a65359a8d6b6acd0"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/object_states/__init__.py",
+          "bytes": 34,
+          "sha256": "1fb9ad68a61066a7a4986f3f5f8610ba4d725b290e3d8944ab628d3e9f8a2d9f"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/object_states/base_object_states.py",
+          "bytes": 8215,
+          "sha256": "ca6f53123336b6487bdb4feb02534ddb3a0627a4b847fe89da4460520ef01366"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/objects/__init__.py",
+          "bytes": 427,
+          "sha256": "cced646bb88ab95e21b5475d8d7dc46a5db4e6c881c63637a1a27e15dd844c04"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/objects/articulated_objects.py",
+          "bytes": 8126,
+          "sha256": "f5187b0381d69a2a8736c1dcb646e5fa7c138a42950f92e30c21c2efaed52faa"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/objects/google_scanned_objects.py",
+          "bytes": 2457,
+          "sha256": "626e25dfa8b102f7f7b406ef6a997003f1308b48cf52e7c22762e9eb86a1ec4c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/objects/hope_objects.py",
+          "bytes": 6814,
+          "sha256": "70ee607faf5dca4f69c5db96fbf79080990b7c39a0f08d99b074c67f0acbd62d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/objects/site_object.py",
+          "bytes": 3028,
+          "sha256": "4907bf2550945c395b85fd92725763ada4da533ad50966eb179e637dabeeebf6"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/objects/target_zones.py",
+          "bytes": 3005,
+          "sha256": "49a14627103648fbb620c3a6c1ae14f52fae6e2f4db81b0074e602f01aaf7205"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/objects/turbosquid_objects.py",
+          "bytes": 5346,
+          "sha256": "4de4205eabb588600fd9669f6ee6e2ef12e47e13d9b421257215d34f836f9804"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/predicates/__init__.py",
+          "bytes": 888,
+          "sha256": "e059a52d635ae4bdfe0e4bd6f0a0ca9b53a04444b39b53664fffb38d0838679e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/predicates/base_predicates.py",
+          "bytes": 2650,
+          "sha256": "319137e95330dbb22a266a8dceb8110f18413c2bf17461550222228c4bc310a1"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/problems/__init__.py",
+          "bytes": 489,
+          "sha256": "2d1980568bf81fe7c27f62ed59a2c0376722f726654eb07ced6ea8c6bce017bc"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/problems/libero_coffee_table_manipulation.py",
+          "bytes": 8804,
+          "sha256": "cd04e469c3e8852421cbec73c92c4bbe135ef8eb0a36c12851eb912101a3cd94"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/problems/libero_floor_manipulation.py",
+          "bytes": 8644,
+          "sha256": "38fce9925399651977033647525a64c28f50d45a110d72ecf35efa92054e9234"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/problems/libero_kitchen_tabletop_manipulation.py",
+          "bytes": 9278,
+          "sha256": "e5ea541118d19aa120d08ffec655da0f65d2e2a21c2045cd49e7e0a73f695cd3"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/problems/libero_living_room_tabletop_manipulation.py",
+          "bytes": 9320,
+          "sha256": "a13bc0a92ff746d572a6d76e09add98dafad70d88928555068728641c6c9de10"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/problems/libero_study_tabletop_manipulation.py",
+          "bytes": 9277,
+          "sha256": "a25d06b4dda1ecd5dbf7083145cc2720639db55c0485ca0983da0202a2e756ca"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/problems/libero_tabletop_manipulation.py",
+          "bytes": 8877,
+          "sha256": "0defb17c0bbab8f6bd34c021ac15598ea101fe1e48690cb440d4ef92762880fe"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/regions/__init__.py",
+          "bytes": 1447,
+          "sha256": "64fd7ecbbb1b7fe04b0c2240e0f6c79419cba1b29db8f7f13a91ab2718cce5ed"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/regions/base_region_sampler.py",
+          "bytes": 36263,
+          "sha256": "08c12685b443d723bdffc3e1820cfb1a9b54eeda54a261ccaeacb7f04f9ab88d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/regions/object_property_sampler.py",
+          "bytes": 4476,
+          "sha256": "051fbce5a9aadcdf26bd42b447c1b677e610e0e539132807a3ffb578b6feab60"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/regions/workspace_region_sampler.py",
+          "bytes": 9770,
+          "sha256": "66b8ce7f7eb18e316fdc1a44a4210ee0a25a24e9a9d49be88dde970960a58b75"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/robots/__init__.py",
+          "bytes": 307,
+          "sha256": "92d2667dcd9fce0d0ba744bcc317bfc07104136e90f066df04d09cbad5bd489e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/robots/mounted_panda.py",
+          "bytes": 1658,
+          "sha256": "c89ab36decca6d9fa242021971513960c3ce31aa42735009c73258f397be126c"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/robots/on_the_ground_panda.py",
+          "bytes": 1726,
+          "sha256": "7d580aeee632e164f327cf6b1951861bec40cf814cdbe92bcfc469a93e1f9fa8"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/textures.py",
+          "bytes": 2985,
+          "sha256": "bcc631c6da38a148db316862d847222361ddc0416277dd6c860c70a3c437bf17"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/utils.py",
+          "bytes": 12174,
+          "sha256": "81813480479dbd7fd938479dcdc17c258608b3ea4efdefc3e13aff100a89fd6a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/runtime_libero/envs/venv.py",
+          "bytes": 35315,
+          "sha256": "a970353a592190152f313424738b05457f8e10cbafc7303c756b85aa9425d1e7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/scripts/audit_openvla_long_tasks.py",
+          "bytes": 4732,
+          "sha256": "f7a1105ef6c558aded9d3cb84f8f317b4aeb9c1f195faab242a1a3576ff845a4"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/scripts/diagnose_fridge_skills.py",
+          "bytes": 14207,
+          "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/scripts/diagnose_vla_failure.py",
+          "bytes": 10887,
+          "sha256": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/scripts/openvla_tf440_worker.py",
+          "bytes": 2915,
+          "sha256": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/scripts/probe_fridge_task.py",
+          "bytes": 7250,
+          "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/scripts/run_native_long_episode.py",
+          "bytes": 36673,
+          "sha256": "e8bfa142d223b677bee6ff645f8ec59ea67807b8c868e1d38ac9cd0710a93a71"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/src/adapters/libero_completion.py",
+          "bytes": 5647,
+          "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/src/adapters/libero_openvla.py",
+          "bytes": 3679,
+          "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/src/adapters/libero_preservation.py",
+          "bytes": 7265,
+          "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/src/adapters/libero_runtime.py",
+          "bytes": 3229,
+          "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source/src/adapters/tf5_compat.py",
+          "bytes": 26212,
+          "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/source_manifest.json",
+          "bytes": 37542,
+          "sha256": "4fc74f3a202d5281aee34208071183704061793cec4980dac9aa2b17355ebd85"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/status.json",
+          "bytes": 11592,
+          "sha256": "d102edab68f29f9cd6da43b98aa29f4bbb65912b4e111eb8dbed77b36d533e12"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/verification.json",
+          "bytes": 1761,
+          "sha256": "8cd94b1ffc4a46f66e31ebb102891e776e3b28eb841f1678ecb7ba487206429b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_smoke_20261019_root0_t253_protocol_v1/zero_query_proof.json",
+          "bytes": 310,
+          "sha256": "1012c26af6205429b523238441730d10131e7326c06f42b1a2116f41495210d0"
+        }
+      ]
+    }
+  ],
+  "videos": []
+}
