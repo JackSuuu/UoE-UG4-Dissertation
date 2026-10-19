@@ -1,5 +1,42 @@
 # Current goal and result-driven experiment queue
 
+## Current execution directive — direct complete-framework comparison
+
+The user's latest instruction supersedes the diagnostic-first queue below:
+**run bare VLA versus the complete five-layer framework end to end**, on the same
+native task, initial states, observations and total budgets. Primary output is
+full-task outcomes and paired full-episode videos. Diagnose failures from those
+actual runs; do not require further isolated candidate/horizon studies first.
+
+Use one canonical runner and this current record. Reuse existing framework
+modules; all five layers must actually execute, including online verification,
+bounded model-generated repair, reverification and real frozen-VLA handoff.
+Do not label sampled-policy branches as the complete framework. Start with two
+arms only; additional ablations follow a concrete issue in the paired runs.
+
+H96 diagnostic was stopped on user instruction: supervisor3765267exited,
+192queries on C0roots0/1, sampling never enabled, no active v3processes remain.
+Its partial artifacts remain at `/home/ami/scratch/native_microwave_l2a_20261019_v3`.
+The generic supervisor status `aborted`/`infrastructure_or_integrity_failure`
+reflects external termination here, not an established actor/integrity failure.
+No H96 capability conclusion or automatic restart. Historical evidence below is
+retained for reference, not the active execution plan.
+
+Current implementation target: `scripts/run_framework_comparison.py` (prepare,
+run, replay, report/video) with `src/adapters/native_framework.py` (five-layer
+controller). Microwave roots0–5 × baseline/framework;520model queries and520
+executed actions per episode, ten separate initialization actions, same1200s
+rollout cap. One model query per action; repair counts inside the lifetime.
+Framework uses task-semantic subgoal tracking and privileged **measured** online
+verification, not a trained predictive verifier. All numeric actions come from
+the unchanged frozen VLA; no geometric motion fallback. A separate LLM planner
+is not required by the locked architecture and is not a new prerequisite.
+Per-repair32actions/total160, measured progress/preservation checks, verified or
+explicitly unverified exits, and fresh original-instruction action execution on
+handoff. Baseline keeps the native full instruction and logs the same monitor
+in shadow. Complete-system differences include repair instruction conditioning;
+this two-arm experiment does not isolate a predictive-model contribution.
+
 ## Authoritative scope after the latest discussion
 
 Improve complete-task reliability of already capable frozen policies through

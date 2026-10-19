@@ -3,6 +3,17 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — User redirects to direct complete-framework comparison
+
+Stopped the H96 diagnostic on user instruction after192queries on the first two
+greedy controls; no sampled calls, no active v3processes, no efficacy conclusion.
+The active task is now bare VLA versus the complete five-layer measured-verification
+framework, full native microwave episodes and six paired videos. Reuse native
+execution/tapes with one canonical runner and one controller; current queue is
+the sole active record. No further candidate/horizon prerequisite or extra study
+phase. All task/repair actions remain model-generated. A separately trained
+predictive verifier is not claimed by this measured-feedback implementation.
+
 ### Update 19 Oct — Timing-only v2 completes; retention is not recovery
 
 Follow-up analysis: root4/C2maximum displacement0.954mm, persistent microwave
