@@ -1,0 +1,404 @@
+{
+  "status": "local_archive_verified",
+  "source_commit": "432bfa5",
+  "scope": "baseline integration, no hybrid efficacy",
+  "archive": "r0.tar.gz",
+  "archive_sha256": "b4fa4f68dc6527f6588ac8d81c7a58443cb48f3235aa3476065b16650ec6162d",
+  "members": [
+    {
+      "path": "fridge_actor_20261019_a/closed/model.xml",
+      "bytes": 50140,
+      "sha256": "21934f12c14248110f855188b42d36804a4978afbb5987e6a372bf2272b5e372"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/policy_input.png",
+      "bytes": 41318,
+      "sha256": "3c8204e9f1a7677641b100bc6c3ce1a646d2464dbf97687d8b8318dccb106a84"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/raw_baseline.mp4",
+      "bytes": 95809,
+      "sha256": "e965cbcd85092a64a8fa374c171b5bdc053f977951330ac4ad277c2aab8fdffb"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/reset.json",
+      "bytes": 513,
+      "sha256": "355b647fee69bafcf5de7cca4e8d209ab4316378e151e8287d6ec533846e4d8c"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/reset.png",
+      "bytes": 44139,
+      "sha256": "23a0e99716fc58afad6d5b74034d6252906c85fc85bb03179e03364404c59b80"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/review_frame_0.png",
+      "bytes": 35450,
+      "sha256": "9290b58ca7f31c111b9e4d15dc9093a5e9dfebf6a7adc785ad9dd87d3717d2fd"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/review_frame_120.png",
+      "bytes": 42198,
+      "sha256": "9d93ef8a64a2a8476b47d027675005637bf1fe12ad0e82b66cb8b63380a19eee"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/review_frame_240.png",
+      "bytes": 41989,
+      "sha256": "36b211c81bd9560105b78f8b72ee29a2ddd68c7fcb36f48a9c36b3a8025d2fb5"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/scene.bddl",
+      "bytes": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/settled.json",
+      "bytes": 924,
+      "sha256": "3677e02d476bb157b10cb0a9fcd803073e8e0fb8233ff09ba818ac56bdd2049f"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/settled.png",
+      "bytes": 44038,
+      "sha256": "3764875246d904347d9de42a48e52fc28a4de5c8d11b2df258526688971cefb0"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/states.npz",
+      "bytes": 56390,
+      "sha256": "6effb9fe781f056594b2d38e34e9b3ec71adc283f3384f12eccfa9184af3287c"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/status.json",
+      "bytes": 3153,
+      "sha256": "97489b23ccb7c1851c895574fb74186e9256bec92a502b15d7ad4c9e1d4d4041"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed/steps.jsonl",
+      "bytes": 463463,
+      "sha256": "cc99823a9c4fb64d3325c59e5d2885a1f74977ca3648c3fae503f42ae6f90d7b"
+    },
+    {
+      "path": "fridge_actor_20261019_a/closed.log",
+      "bytes": 11016,
+      "sha256": "b1fb40fb378297a4a60494ea4376bce510a73fdbc1da726d7966c285ff6db02a"
+    },
+    {
+      "path": "fridge_actor_20261019_a/diagnosis.json",
+      "bytes": 1326,
+      "sha256": "814ed605b7890b30cc70987fe5300b328ecd4a8f491d219273b03da092bb6998"
+    },
+    {
+      "path": "fridge_actor_20261019_a/launch.json",
+      "bytes": 1223,
+      "sha256": "4504b60f3c2290f4c695ab98c451ace436971484410f769982a32c2a8fb38ac4"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/model.xml",
+      "bytes": 50140,
+      "sha256": "21934f12c14248110f855188b42d36804a4978afbb5987e6a372bf2272b5e372"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/policy_input.png",
+      "bytes": 43517,
+      "sha256": "35a0e56bcc6f62ef0582af418c9cd409f83a771b0f4fb827bf10a60be66863c4"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/raw_baseline.mp4",
+      "bytes": 21921,
+      "sha256": "891d50d6af8670e7030b915a955d00f689d0266f4955d221ef7f0a4d6db5d237"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/reset.json",
+      "bytes": 510,
+      "sha256": "c7a3b9badd7fcd49c6145b27deb5372dfc5493812c9fa50f02bbe736ac7bb779"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/reset.png",
+      "bytes": 45950,
+      "sha256": "b667345ff858c8948e1d01e560a406e34abb20ba5f7c2106a5bd8b650ad80bfa"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/review_frame_0.png",
+      "bytes": 38659,
+      "sha256": "df9f4587111cbb114444c8e4a75ae015e4c090ca06c12ea337bb9863983ca841"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/review_frame_120.png",
+      "bytes": 38954,
+      "sha256": "1276792c668540586a86bd200d67b5386d260012466658873f0c04ac105d7dc1"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/review_frame_240.png",
+      "bytes": 39368,
+      "sha256": "d3610b24f0f45e6d017eb4fb3d030a418a38468b0251391ebdaeb234259ac74a"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/scene.bddl",
+      "bytes": 966,
+      "sha256": "f9f5956c9d1c69bee531795e6da3de45f418c4b8fde046c34c471cc2a35fe28f"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/settled.json",
+      "bytes": 921,
+      "sha256": "792868d4decb3aa01897922508d9350e48067e9c7685e8ce20cb6d0f9fbf4983"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/settled.png",
+      "bytes": 46190,
+      "sha256": "de34055e9d7f7da0d08b4a182f4d11d347dd3e7b5f69fcdc56127ed3bc465e29"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/states.npz",
+      "bytes": 53229,
+      "sha256": "76ee8c7f6e6cd5a10f163b267d1ad19115518a6f78ebaee40cbcba0035caee67"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/status.json",
+      "bytes": 3155,
+      "sha256": "4e4ad3891ab9613a6190dab1e258af621b345bb1339f7627b6196a7bddc72fd2"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open/steps.jsonl",
+      "bytes": 468432,
+      "sha256": "28e4579e70b5fb52b27f52a660a4ffb23b2b12a1bb6718c690fb342344e34cab"
+    },
+    {
+      "path": "fridge_actor_20261019_a/open.log",
+      "bytes": 10902,
+      "sha256": "1a53f85fd5637930148add8e6b32e41c9f77d0838703f797be1fa7d9625ff2d1"
+    },
+    {
+      "path": "fridge_actor_20261019_a/replay_closed/scene.bddl",
+      "bytes": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "fridge_actor_20261019_a/replay_closed/verification.json",
+      "bytes": 251,
+      "sha256": "09bfab67eb50048e9abea8c7ca31710027436bc08e8ce0c1e451226251597f0b"
+    },
+    {
+      "path": "fridge_actor_20261019_a/replay_open/scene.bddl",
+      "bytes": 966,
+      "sha256": "f9f5956c9d1c69bee531795e6da3de45f418c4b8fde046c34c471cc2a35fe28f"
+    },
+    {
+      "path": "fridge_actor_20261019_a/replay_open/verification.json",
+      "bytes": 249,
+      "sha256": "fce8741b2d42f291b629b25192e0c046b9c2b35c3e5ddf9bcdf2dfb1831e4b36"
+    },
+    {
+      "path": "fridge_actor_20261019_a/source/configs/tasks/fridge_retrieval_dev.bddl",
+      "bytes": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "fridge_actor_20261019_a/source/exp_record/agent_notes/two_demo_experiment_design_20261019.md",
+      "bytes": 11689,
+      "sha256": "196b2be27c63da0b897f2c87003325f970a61087104f4bd11ec5a7a97bece87b"
+    },
+    {
+      "path": "fridge_actor_20261019_a/source/scripts/probe_fridge_task.py",
+      "bytes": 7250,
+      "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+    },
+    {
+      "path": "fridge_scene_20261019_a/model.xml",
+      "bytes": 50111,
+      "sha256": "bf68b5f54fde5646c757a66643f816b538c74669c6d8c218ad5849bc80f49601"
+    },
+    {
+      "path": "fridge_scene_20261019_a/raw_baseline.mp4",
+      "bytes": 4875,
+      "sha256": "d80be82aa2cca3a487e0a8fe6d8d32a3d0a73da4b744ae98b76782037e4c8090"
+    },
+    {
+      "path": "fridge_scene_20261019_a/reset.json",
+      "bytes": 513,
+      "sha256": "1b4457a6d45f8365ed9c7584f9b44f5590afd7aac4d1925fe0df3e3f72d3dcde"
+    },
+    {
+      "path": "fridge_scene_20261019_a/reset.png",
+      "bytes": 44147,
+      "sha256": "540993fa432c009094e279ef8275ba6f1977da07cd3a1bef2f0964eecd60658e"
+    },
+    {
+      "path": "fridge_scene_20261019_a/scene.bddl",
+      "bytes": 933,
+      "sha256": "b057c9a81c99ff190fc5817c2a83a39848558113379d942dc34971d7915711e5"
+    },
+    {
+      "path": "fridge_scene_20261019_a/settled.json",
+      "bytes": 918,
+      "sha256": "1ba8ee6391b0f19b8db3cfd366eb01fae845d1420027793a25042b5726f67740"
+    },
+    {
+      "path": "fridge_scene_20261019_a/settled.png",
+      "bytes": 44030,
+      "sha256": "6ac05566c8f8d010ee46744c7da8416520f596d1ce4719bafdf23611dc198564"
+    },
+    {
+      "path": "fridge_scene_20261019_a/states.npz",
+      "bytes": 908,
+      "sha256": "302e69aecc0e4f66e0750200fd231adab396c78119000c53790468bfc9b3ee75"
+    },
+    {
+      "path": "fridge_scene_20261019_a/status.json",
+      "bytes": 2362,
+      "sha256": "a044adbfde3ab018ed0b9b4927e6bf9e60c32d0cbb9bf0df3eeda6b6d8fb8781"
+    },
+    {
+      "path": "fridge_scene_20261019_a/steps.jsonl",
+      "bytes": 3185,
+      "sha256": "66f02801a0a82e4a593c74c6c8bc525eaf90db846d02d0471512b3768975b183"
+    },
+    {
+      "path": "fridge_scene_20261019_b/model.xml",
+      "bytes": 50111,
+      "sha256": "bf68b5f54fde5646c757a66643f816b538c74669c6d8c218ad5849bc80f49601"
+    },
+    {
+      "path": "fridge_scene_20261019_b/raw_baseline.mp4",
+      "bytes": 5046,
+      "sha256": "6d3f78002fd77f26787082eacbc917ce7495a45a66c716fc48aef8c9a89f6c5c"
+    },
+    {
+      "path": "fridge_scene_20261019_b/reset.json",
+      "bytes": 510,
+      "sha256": "829d8e80581738fd7c317fefeda3c243203c89bfe9fabc683d3918ae2148bd56"
+    },
+    {
+      "path": "fridge_scene_20261019_b/reset.png",
+      "bytes": 45654,
+      "sha256": "587886cc0bf16dc2ba4c09579225c66363178a544ce73746bd9d9db6ada1debf"
+    },
+    {
+      "path": "fridge_scene_20261019_b/scene.bddl",
+      "bytes": 932,
+      "sha256": "fe6f1b0c74a8218a611015790bbc03cc22e3b41e15828a15f64811f6269f78a0"
+    },
+    {
+      "path": "fridge_scene_20261019_b/settled.json",
+      "bytes": 915,
+      "sha256": "70da6cdcb237796b4beaa133fffe5edba803a7397c8d2faa357c9acad00aba68"
+    },
+    {
+      "path": "fridge_scene_20261019_b/settled.png",
+      "bytes": 45547,
+      "sha256": "73f317d02d4192f4926a7c2872a9fff3f78d7d11796d048906a4632da6a6aff7"
+    },
+    {
+      "path": "fridge_scene_20261019_b/states.npz",
+      "bytes": 908,
+      "sha256": "daa45f597a380829ab8e7bc24e82cc6127045484475d8b2931416740bb874533"
+    },
+    {
+      "path": "fridge_scene_20261019_b/status.json",
+      "bytes": 2357,
+      "sha256": "8adefcc0c1c834c4503f4fd2bce11f89b39c3695908563cc9320a0713f7b69dc"
+    },
+    {
+      "path": "fridge_scene_20261019_b/steps.jsonl",
+      "bytes": 3178,
+      "sha256": "479d4329df3e1ae4b1403049ff871f2af8ecde8383862edb7c5ff054cf5be891"
+    },
+    {
+      "path": "fridge_scene_20261019_c/model.xml",
+      "bytes": 50140,
+      "sha256": "21934f12c14248110f855188b42d36804a4978afbb5987e6a372bf2272b5e372"
+    },
+    {
+      "path": "fridge_scene_20261019_c/raw_baseline.mp4",
+      "bytes": 5123,
+      "sha256": "87950372a8de2f827cad649569e2b22f97b54d0d70e5690c02739afa65162848"
+    },
+    {
+      "path": "fridge_scene_20261019_c/reset.json",
+      "bytes": 510,
+      "sha256": "c7a3b9badd7fcd49c6145b27deb5372dfc5493812c9fa50f02bbe736ac7bb779"
+    },
+    {
+      "path": "fridge_scene_20261019_c/reset.png",
+      "bytes": 45950,
+      "sha256": "b667345ff858c8948e1d01e560a406e34abb20ba5f7c2106a5bd8b650ad80bfa"
+    },
+    {
+      "path": "fridge_scene_20261019_c/scene.bddl",
+      "bytes": 966,
+      "sha256": "f9f5956c9d1c69bee531795e6da3de45f418c4b8fde046c34c471cc2a35fe28f"
+    },
+    {
+      "path": "fridge_scene_20261019_c/settled.json",
+      "bytes": 921,
+      "sha256": "792868d4decb3aa01897922508d9350e48067e9c7685e8ce20cb6d0f9fbf4983"
+    },
+    {
+      "path": "fridge_scene_20261019_c/settled.png",
+      "bytes": 46190,
+      "sha256": "de34055e9d7f7da0d08b4a182f4d11d347dd3e7b5f69fcdc56127ed3bc465e29"
+    },
+    {
+      "path": "fridge_scene_20261019_c/states.npz",
+      "bytes": 927,
+      "sha256": "1dfa92141085efb29951a7ce2ffb62bdf68a00a4ad42236e0659c9a8d6cebaa8"
+    },
+    {
+      "path": "fridge_scene_20261019_c/status.json",
+      "bytes": 2360,
+      "sha256": "58b91eda5ca082c7d5a6fef7d29c1d6dd5c86d55fa2e12c4d9c3883f444fa771"
+    },
+    {
+      "path": "fridge_scene_20261019_c/steps.jsonl",
+      "bytes": 3185,
+      "sha256": "1ca96429621ff0dc6f3c6b07e87a247044f71c4123a7fd1b3c416255e462efb6"
+    },
+    {
+      "path": "fridge_scene_20261019_c_replay/scene.bddl",
+      "bytes": 966,
+      "sha256": "f9f5956c9d1c69bee531795e6da3de45f418c4b8fde046c34c471cc2a35fe28f"
+    },
+    {
+      "path": "fridge_scene_20261019_c_replay/verification.json",
+      "bytes": 242,
+      "sha256": "d2cbdfb7e95743863422fcc92f9d1d92ac06c7d0280d2862ca1e70a34e00869c"
+    },
+    {
+      "path": "frozen_source/scripts/probe_fridge_task.py",
+      "bytes": 7250,
+      "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+    },
+    {
+      "path": "frozen_source/configs/tasks/fridge_retrieval_dev.bddl",
+      "bytes": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "frozen_source/src/adapters/libero_runtime.py",
+      "bytes": 3229,
+      "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+    },
+    {
+      "path": "frozen_source/src/adapters/libero_openvla.py",
+      "bytes": 3679,
+      "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+    },
+    {
+      "path": "frozen_source/src/adapters/tf5_compat.py",
+      "bytes": 26212,
+      "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+    },
+    {
+      "path": "frozen_source/src/adapters/libero_preservation.py",
+      "bytes": 7265,
+      "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+    },
+    {
+      "path": "frozen_source/exp_record/agent_notes/two_demo_experiment_design_20261019.md",
+      "bytes": 11689,
+      "sha256": "196b2be27c63da0b897f2c87003325f970a61087104f4bd11ec5a7a97bece87b"
+    },
+    {
+      "path": "frozen_source/scripts/verify_fridge_probe.py",
+      "bytes": 3001,
+      "sha256": "f00127ed0fedce8ea6c6253c670bbd337727d3ab9736c75d529372bd2841e7fd"
+    }
+  ]
+}

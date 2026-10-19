@@ -47,3 +47,36 @@ pre-change Git HEAD reported during this uncommitted development launch.
 At launch: no outcome or full success rate available. Final diagnosis and independent
 action replay will be appended after completion. Open/closed trials cannot be pooled
 into a refrigerator efficacy percentage. These runs consume development exposure.
+
+## Completion and independent replay (same day)
+
+Both workers completed all240queries. Independent fresh-process action replay passes
+exactly on all240steps of each run: integration/controller/image fingerprints,
+diagnostics and saved physics states all agree, maximum state difference0. The
+earlier `_c` scene smoke also replays exactly. This verifies the recorded simulation,
+not correspondence to a real refrigerator.
+
+| Initial door | Observed progress | Item/gripper contact | Native placement ever |
+|---|---|---|---|
+|closed|EEF displacement up to0.33473m; door angle unchanged|none at sampled control endpoints|false|
+|open|EEF displacement up to0.001446m; door angle unchanged|none at sampled control endpoints|false|
+
+Item displacement is numerical noise (<1e-12m), supported on its initial shelf
+throughout. Actor median inference0.714/0.719s (closed/open). The open run emits near
+zero pose increments. Inspected policy-input and terminal frames: item visible in
+open view; closed trial moves above/around the fridge without opening it. Endpoint
+contact sampling does not exclude transient substep contact, but no manipulation of
+the door or item occurred. No stable-full-completion score was implemented or claimed.
+
+Interpretation: first **native-policy/scene integration failure**, not evidence that
+the hybrid succeeds or fails. One seed and a240-query cap cannot distinguish missing
+task skill from prompt, view, handle accessibility or action-interface deficiencies.
+Before any task training, check reachable handle/food poses and shared phase prompts
+against the canonical full instruction; retain both variants as development. If
+nominal grasp/open skills remain absent, use declared task training or a task-capable
+frozen nominal model shared across all arms. Do not grow a complete scripted solver
+inside the bounded repair layer and attribute its task execution to a VLA correction.
+
+First source freeze is now commit`432bfa5`; the launch records also preserve hashes
+for the then-uncommitted sources. Both complete failures and all three scene versions
+are archived. [Artifact index](../../backups/fridge_r0_20261019/README.md).

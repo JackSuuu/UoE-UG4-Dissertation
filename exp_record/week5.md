@@ -5,6 +5,14 @@ Newest entry at the top. [Weekly index](README.md). Detailed records live in
 
 ### Update 19 Oct — Commit to refrigerator and folding demonstrators; start robot validation
 
+**Completion addendum:** both240-query fridge trials finished and passed exact
+independent action/physics/controller/image replay. Neither retrieved the object;
+closed trial moves but never opens the door, open trial is nearly stationary.
+No item/gripper contact at sampled endpoints. These expose nominal-policy/scene
+integration issues, not a tested hybrid failure. Diagnose workspace/phase prompts
+and task skill before comparing local repair. Both failures are retained in the
+[R0 archive](../backups/fridge_r0_20261019/README.md).
+
 User clarifies that the priority is a useful, convincing two-task demonstration and
 paper evaluation, not a requirement to establish six-family zero-shot capability
 before running anything. [Two-demo design](agent_notes/two_demo_experiment_design_20261019.md)
