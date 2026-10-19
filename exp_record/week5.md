@@ -3,6 +3,18 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Failure audit identifies late triggering and non-goal-directed choice
+
+User challenges repeated failures. Parent reads the completed fridge tapes: EEF–
+handle distance starts0.4601m and never meaningfully improves; first intervention
+at368occurs at1.0192m. Stagnation-only monitoring misses continuous departure;
+command-novelty ranking does not evaluate task-directed progress. Q1 samples these
+late states, not earlier recovery opportunities. Missing learned skill is not the
+sole established explanation; camera/domain compatibility remains unresolved.
+Pause repeated prototype efficacy sweeps, qualify the task contract/basic capability,
+then redesign early detection and task-directed candidates before Q2/cloth.
+[Evidence and accountability](agent_notes/fridge_failure_accountability_20261019.md).
+
 ### Update 19 Oct — Q1 complete: no useful candidate in the sampled opportunities
 
 Closed-start fridge nominal/simple/verification finish600/552/504actions under
