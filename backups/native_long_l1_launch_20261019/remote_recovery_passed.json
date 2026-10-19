@@ -1,0 +1,28 @@
+{
+  "status": "fresh_github_lfs_recovery_passed",
+  "attempt": 2,
+  "prior_attempt": "180s LFS pull timeout; pointers retained",
+  "commit": "27cda0450b5209481a960d42ffd740532a50cdb5",
+  "clone": "/tmp/opencode/native_long_launch_remote_27cda04",
+  "restore": "/tmp/opencode/native_long_launch_restore_27cda04",
+  "started": 1792435056.0896788,
+  "ended": 1792435482.4081562,
+  "source": "fresh_remote_clone_and_LFS_download_no_local_archive_copy",
+  "full_execution_record": "/home/ami/scratch/native_long_l1_remote_recovery_20261019.json",
+  "results": [
+    {
+      "backup": "native_long_l1_launch_20261019",
+      "manifest_sha256": "a0620164f272afeacbcabd45c5a480f947112010390e7288b041b2fc54d45730",
+      "archives": 1,
+      "members": 2280,
+      "bytes": 19359225
+    },
+    {
+      "backup": "robocasa365_readiness_20261019",
+      "manifest_sha256": "51d45a6170ecab447a123be134724768c0102463091dc046d3ed2044feef9b35",
+      "archives": 1,
+      "members": 35,
+      "bytes": 216487
+    }
+  ]
+}

@@ -20,4 +20,7 @@ is recorded separately once performed.
 
 First fresh-clone recovery attempt timed out during LFS download after180s; both
 archives remained pointers and no restoration was claimed. The failure is retained
-in `remote_recovery_attempt1.json`; a bounded600s download retry is running.
+in `remote_recovery_attempt1.json`. The bounded retry succeeded: a fresh GitHub
+clone/LFS download restored and hash-verified all2,280launch members plus35R0
+source members. See `remote_recovery_passed.json`. This proof covers launch/R0
+artifacts only; the six-episode result archive has a separate recovery check.
