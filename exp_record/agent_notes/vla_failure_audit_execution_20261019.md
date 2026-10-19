@@ -74,6 +74,13 @@ initial physics/controller/both-camera fingerprint exactly matches R2baseline.
 
 ## New actor-only cohort
 
+Launched detached from pushed source freeze`1477011`, supervisor PID3664969:
+`/home/ami/scratch/vla_failure_actor_20261019_a` (healthy GPUs1/2/3). The first launch
+snapshot records three active book-control workers; fridge and cheese follow in
+their GPU lanes. All planned control-interval actions are unmodified VLA proposals.
+The139-member preflight archive was independently downloaded from GitHub/LFS and
+verified against every SHA256 member hash. [Artifacts and recovery proof](../../backups/vla_failure_audit_20261019/README.md).
+
 [Frozen protocol](vla_failure_audit_protocol_20261019.md): five600-action/query trials,
 book native/current, book native/pinned, book robot-side/pinned, cheese native/pinned,
 fridge robot-side/pinned. Existing R2open baseline is the fridge current-stack control.

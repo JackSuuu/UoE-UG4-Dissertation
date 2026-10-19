@@ -22,6 +22,10 @@ one-action book rollout/replay pass. Further manual motion-route tuning is pause
 [Protocol](agent_notes/vla_failure_audit_protocol_20261019.md) ·
 [Evidence and execution](agent_notes/vla_failure_audit_execution_20261019.md).
 
+Actor-only audit launched detached from pushed freeze`1477011`, supervisor3664969,
+healthy GPU1/2/3. Three book controls start first; fridge/cheese follow. Preflight
+archive139/139members independently restored from GitHub/LFS with exact SHA256.
+
 ### Update 19 Oct — R2 finished; pause scene-specific repair tuning
 
 All four600-query/action trials finished. Closed-start baseline and wrapper both

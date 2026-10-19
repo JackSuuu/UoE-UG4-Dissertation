@@ -1,0 +1,7 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "147701122eb325f3cc11e9f6b8ae69cac46ba6b8",
+  "members": 139,
+  "archive_sha256": "2b412ba991137af39bf9249e1ad6fe6ebb5c46f0ff8eee89111c55cbc714be3a",
+  "restore": "/tmp/opencode/vla_failure_audit_remote_20261019"
+}

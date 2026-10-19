@@ -21,7 +21,7 @@ and explicit end-frame holds. Engineering-only controllers are labeled as such.
 **Current priority:** [diagnose why the original VLA stalls](exp_record/agent_notes/vla_failure_audit_execution_20261019.md).
 R2's first grasp/extraction occurred under hand-written motion primitives, so they
 do not demonstrate autonomous repair. Further route scripting is paused. Actor-only
-task/camera/official-inference controls are being prepared; a6-observation pinned
+task/camera/official-inference controls are running; a6-observation pinned
 decode audit already finds one action discrepancy, retained rather than dismissed.
 
 ```mermaid

@@ -1,0 +1,44 @@
+{
+  "status": "running",
+  "started": 1792418853.4358883,
+  "pid": 3664969,
+  "planned": 5,
+  "scope": "actor_only_task_camera_decode_diagnosis",
+  "sources": {
+    "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+    "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a",
+    "scripts/diagnose_vla_failure.py": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7",
+    "scripts/openvla_tf440_worker.py": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54",
+    "scripts/verify_vla_failure.py": "ee9734c515ffacd47781734b4cac129bf950c10c01de4e08de0aabcd9d2c21fa",
+    "exp_record/agent_notes/vla_failure_audit_protocol_20261019.md": "14c1ec9e05d8a2e158af08fa1074b271c02544366fc029b20f0fd781e08baaee",
+    "scripts/run_vla_failure_audit.py": "5c1e9b9762b66c230f9d34877be2bcfa0f4a223e186137e2ebdf1fb8cb52b64c"
+  },
+  "jobs": [
+    {
+      "name": "book_native_pinned",
+      "gpu": 1,
+      "status": "running",
+      "started": 1792418853.43834
+    },
+    {
+      "name": "book_native_current",
+      "gpu": 3,
+      "status": "running",
+      "started": 1792418853.4389672
+    },
+    {
+      "name": "book_robot_side_pinned",
+      "gpu": 2,
+      "status": "running",
+      "started": 1792418853.4387338
+    }
+  ],
+  "commit": "147701122eb325f3cc11e9f6b8ae69cac46ba6b8"
+}

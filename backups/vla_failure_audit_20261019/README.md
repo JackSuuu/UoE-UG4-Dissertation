@@ -13,8 +13,11 @@
   fixed audit images/tensors, all reports/logs, scene and IPC preflights, and both
   failed/stopped relational-transport engineering probes. The transport route is
   not integrated or claimed as intelligent repair.
+* [Independent remote recovery proof](preflight_remote_verified.json):139/139members
+  downloaded and SHA256-verified from source freeze`1477011`.
+* [Detached actor-only launch](launch_snapshot.json): supervisor3664969, GPU1/2/3.
 
-The planned five600-step actor-only trials diagnose task/camera/inference effects.
+The launched five600-step actor-only trials diagnose task/camera/inference effects.
 Every executed control-interval action is a model proposal, with no repair or human
 motion route. Completion results are pending; do not infer success from preflights.
 Camera-controlled videos are actor diagnostics, not baseline/framework efficacy pairs.
