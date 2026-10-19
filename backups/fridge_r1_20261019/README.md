@@ -5,6 +5,8 @@
 * [Labeled physical extraction video](contact_extraction_diagnostic.mp4)
 * [Measured diagnosis](diagnosis.json), [complete engineering archive manifest](manifest.json)
 * [Actor launch snapshot](actor_launch_snapshot.json)
+* [Independent GitHub/LFS restore](remote_verified.json):208archive members and the
+  labeled video downloaded into a fresh repository and SHA256-verified.
 
 `engineering.tar.gz` retains unsuccessful geometry/servo variants, initial launch
 errors, source freezes where available, raw videos, physics states and replay reports.

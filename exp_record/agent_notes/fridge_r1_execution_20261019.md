@@ -70,3 +70,12 @@ variation remains unproven; do not call it a fully bit-exact replay or change th
 acceptance tolerance. The archive was refreshed to include this completed report.
 Replay image arrays are now decompressed once rather than once per frame; the slow
 initial replay was backgrounded at the user's request. No running actor source changed.
+
+### Remote recovery verification
+
+Engineering/video archive pushed as`3c716fb`; a fresh repository under
+`/tmp/opencode/fridge_r1_remote_restore_20261019` fetched GitHub/LFS bytes and verified
+all208archive members and the standalone labeled video by SHA256. Proof:
+[`remote_verified.json`](../../backups/fridge_r1_20261019/remote_verified.json).
+User-edited `notes/Experiment_plan_1year.md` still hashes to
+`d4617d1c65e2ef2ecbad3cb11c19753e0e2b9bbbafafeebeb5d7ccb57d55c83b`.
