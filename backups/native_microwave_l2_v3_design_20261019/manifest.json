@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "scope": "v3_horizon_only_preregistration_and_v2_offline_analysis_before_v3queries",
+  "archives": [
+    {
+      "file": "archives/design_and_analysis.tar.gz",
+      "bytes": 929095,
+      "sha256": "e37faa9e31b2060fc0a4973da301749171f4436594822687f7f6a557486a4b9a",
+      "members": [
+        {
+          "path": "scratch/native_microwave_l2_v3_design_20261019/analyze.py",
+          "bytes": 17973,
+          "sha256": "f275f1f7953f61fac74167ff5504140a05263584f4be496f90ef6ad82306627b"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v3_design_20261019/design_freeze.json",
+          "bytes": 798738,
+          "sha256": "47a14701541615f76803ca5e8303b7c69ef334e98444ac0bc5a6e554fbfc5e86"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v3_design_20261019/evidence.json",
+          "bytes": 929005,
+          "sha256": "903927afe32f517513f14b2a16dbb6f502f9d81c26b5fee2909bf0045f804f09"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v3_design_20261019/snapshot_manifest.json",
+          "bytes": 12531,
+          "sha256": "d01be0d1e633c44010cdc5c43eef3ba0bcd57d86b049955e77b68d27c7b52a0e"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v3_design_20261019/snapshot_manifest.schema.json",
+          "bytes": 5735,
+          "sha256": "ca49698f50aa544876f263b91a6425979e7d038302bac9cb695d4007634899f7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v3_design_20261019/v2_prefix_manifest.json",
+          "bytes": 3450157,
+          "sha256": "3475146d96e50d37206081530264189efa698b607b02ddbf475dcae8fbb06527"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v2_analysis_20261019/analyze.py",
+          "bytes": 9553,
+          "sha256": "97f336434cb1b7e64df91f9283325c5037fd95269a4597649a98d8fd3e38e81d"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v2_analysis_20261019/endpoint_trace.csv",
+          "bytes": 208041,
+          "sha256": "1508bf0c84289fed4cbfadea17b7fc5bc62c5089e9d8a93028521ed522ab42e7"
+        },
+        {
+          "path": "scratch/native_microwave_l2_v2_analysis_20261019/evidence.json",
+          "bytes": 239166,
+          "sha256": "16abd915f906e5aafda0cd6708c315016558f1acb9d07ee9d30a3ef1ad95e776"
+        }
+      ]
+    }
+  ],
+  "videos": []
+}
