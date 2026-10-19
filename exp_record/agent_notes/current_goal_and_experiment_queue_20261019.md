@@ -2,6 +2,34 @@
 
 ## Current execution directive — direct complete-framework comparison
 
+**Completed direct comparison (`09d4b2a`):12/12valid, exact fresh replays.**
+Bare VLA4/6; measured-verification framework4/6; one rescue(root4), one harm(root3).
+Queries/actions:2531baseline,2557framework (5088total), plus120initialization
+actions and zero-query replays. All six full paired videos are in the run's
+`report/`; publication directory is `backups/framework_comparison_20261019`.
+
+Framework actually intervened on roots0/3/4, using160/160/32model-generated repair
+actions. Roots1/2/5never intervened and their complete scientific trajectories
+match baseline. Other pairs are identical until first intervention at zero-based
+actions254/199/148respectively. No measured repair transaction passed verification:
+all11exited at the32-action cap, with actual original-instruction VLA handoffs.
+Root4completed at378actions after handoff at180(zero-based), but this is an
+**unverified-budget-exit handoff**, not verified repair→handoff success.
+
+The paired run directly identifies concrete issues: root3briefly achieved In at
+195–197then lost it at198; the baseline recovered unaided and completed at352
+actions, while framework intervened at199and repeatedly requested acquisition,
+exhausting160repair actions and failing. Root4intervened at148after elevated
+grasp loss, achieved In at155, switched local goal to closing at156, and exited
+unverified at179before eventual nominal completion. This exposes both an
+over-intervention harm and a verification/goal-refeed mismatch: useful acquired
+containment did not satisfy the transaction's revised closing objective. These
+are trace-supported development findings, not held-out estimates or isolated
+predictor effects. Root0's repeated acquire prompts still made no useful recovery.
+Next iteration should address these observed gate/refeed/repeated-repair issues
+within the same canonical entrypoint and repeat the full two-arm comparison;
+no isolated candidate study is added. No second comparison has been launched.
+
 The user's latest instruction supersedes the diagnostic-first queue below:
 **run bare VLA versus the complete five-layer framework end to end**, on the same
 native task, initial states, observations and total budgets. Primary output is

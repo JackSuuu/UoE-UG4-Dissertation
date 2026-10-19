@@ -5,6 +5,17 @@ Newest entry at the top. [Weekly index](README.md). Detailed records live in
 
 ### Update 19 Oct — User redirects to direct complete-framework comparison
 
+Direct comparison now completed under`09d4b2a`:12/12valid exact replays,
+baseline4/6 vs measured-framework4/6, one rescue(root4) and one harm(root3).
+5088model calls/actions;352framework repair actions. Six full paired videos.
+All11repair transactions exited unverified at their32-action budget; original
+VLA handoffs actually executed, with subsequent success only on root4.
+Root3's baseline self-recovery was disrupted after transient containment loss;
+root4gained containment but its revised closing goal left the transaction
+unverified. These directly motivate gate/refeed/repeated-repair improvements
+within the same runner, then another complete comparison. No predictive benefit
+or verified-repair handoff gain established; no second batch launched.
+
 Stopped the H96 diagnostic on user instruction after192queries on the first two
 greedy controls; no sampled calls, no active v3processes, no efficacy conclusion.
 The active task is now bare VLA versus the complete five-layer measured-verification
