@@ -3,6 +3,20 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — All24baselines complete; L2A design and exact boundary frozen
+
+Microwave4/6, two mugs3/6, drawer4/6native success; all18traces exact. Two pots
+3/6recorded successes with four strict wrist-image issues retained. Last two cells:
+two-mug root3success257actions, drawer root3failure520, both exact replay.
+Total9,984model calls/actions plus240initialization noops; no actor repeats.
+Microwave satisfies per-task admission and remains first priority. Global integrity
+status retains the two-pot issues. [Full results](agent_notes/native_long_l1_results_20261019.md).
+
+Frozen L2A: six first-grasp+180states, greedy plus two fixed-seed32-action branches,
+maximum576calls, nested12/32labels. All greedy identities and exact replay gate
+sampling. Root0/t253zero-query reconstruction passed266frames. No L2model branch
+has run yet; local oracle availability will not be called framework efficacy.
+
 ### Update 19 Oct —22/24baselines complete; microwave satisfies frozen admission
 
 Microwave4/6native successes,2meaningful partial-progress failures, all6exact

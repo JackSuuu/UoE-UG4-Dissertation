@@ -16,7 +16,14 @@ No RoboCasa checkpoint is selected or qualified yet. Two different model/platfor
 pairs demonstrate replication across pairs; separating model and platform effects
 requires an additional shared-platform/model comparison.
 
-Latest execution status:22/24baseline episodes completed. Microwave4/6successes,
+Latest execution status: **all24baseline actor episodes completed**. Microwave4/6,
+two designated mugs3/6, drawer4/6native successes; all18tapes exact. Two pots3/6
+recorded successes, with four strict wrist-image replay issues retained. Microwave
+meets the original per-task admission rule and takes priority for frozen L2A.
+[Complete screening results](native_long_l1_results_20261019.md). L2model branches
+remain unlaunched; root0's selected boundary passed266-frame zero-query reconstruction.
+
+Historical22-cell checkpoint: Microwave4/6successes,
 two partial-progress failures, all6exact replay: the highest-priority task meets
 the frozen per-task L2admission rule. Two pots3/6recorded successes,4wrist-only
 replay issues. Two mugs2/5successes, drawer4/5; all ten completed tapes exact.
@@ -161,7 +168,8 @@ are matched. A small task subset is not a full50-task benchmark result.
 Use detached supervised jobs, healthy physical GPUs1–3 with matching CUDA/EGL,
 batch1for the current actor, durable logs and per-episode status. User annual-plan
 edits remain untouched. Keep one status board with planned/running/completed/
-blocked states; launching a worker is not completion. Current states: L1completed22/24,
+blocked states; launching a worker is not completion. Current states: L1actor-complete24/24
+(four replay issues retained),
 R0research complete, L2/L3/R1planned. The physical-to-EGL index map is audited
 separately; equal numeric IDs are incorrect on this host. Future task or actor changes require an explicit reason
 and a versioned protocol, preserving the prior results.

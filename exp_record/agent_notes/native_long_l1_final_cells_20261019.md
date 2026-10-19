@@ -1,5 +1,10 @@
 # Final two untouched L1 cells launched
 
+**Completed:** two-mug root3native success at257actions; drawer root3native failure
+at520actions. Both exact replays passed. All24actor cells now completed; four
+historical two-pot image issues retain overall `complete_with_issues`.
+See [complete screening results](native_long_l1_results_20261019.md).
+
 Detached supervisor3735624(`setsid --wait` wrapper3735623) runs only
 `two_mugs_root3` then `drawer_root3`, on physicalGPU1/EGL2. New output:
 `/home/ami/scratch/native_long_l1_20261019_c`.
