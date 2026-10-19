@@ -1,0 +1,55 @@
+{
+  "status": "independent_remote_restore_verified",
+  "source_commit": "0cb42b8c5690940325bb9b0dc9db549c9cb3195b",
+  "remote_url": "git@github.com:JackSuuu/UoE-UG4-Dissertation.git",
+  "fresh_repository": "/tmp/opencode/candidates_remote_0cb42b8",
+  "restore_root": "/tmp/opencode/candidates_restore_0cb42b8",
+  "manifest_sha256": "56a22814be2b04532d495861b5f3d164e0e2a607fee09715a0daa46b7ff8b4ee",
+  "verified_archive_members": 403,
+  "verified_standalone_videos": 5,
+  "artifacts": [
+    {
+      "file": "book_candidates.tar.gz",
+      "bytes": 142109871,
+      "sha256": "fdc5ba3c1513c2c22f9d6d197c00a0f4a3f0ad33853d5750ea2636f7bb0fdf52"
+    },
+    {
+      "file": "fridge_candidates.tar.gz",
+      "bytes": 120303316,
+      "sha256": "49a16e40608452169ce943c15b52b3a511970a78696e8511c4341831d938153c"
+    },
+    {
+      "file": "fridge_q1.tar.gz",
+      "bytes": 26392806,
+      "sha256": "7dfb465871813c36f03c7ee608936f07d49e74b7d034c6574f75ad7b06c96d07"
+    },
+    {
+      "file": "book_nominal_left_simple_feedback_right.mp4",
+      "bytes": 4313679,
+      "sha256": "99ff2b47af62023e4982f6cbd732511078f858100500d0d6f4be3f042ecd1bcb"
+    },
+    {
+      "file": "book_nominal_left_verification_right.mp4",
+      "bytes": 4436402,
+      "sha256": "a3f8f6a4ba975c24f07a03b637c4732955314afb6ed5220ff90b332dd29e80a7"
+    },
+    {
+      "file": "fridge_nominal_left_simple_feedback_right.mp4",
+      "bytes": 3376793,
+      "sha256": "813dafd6cccb7f73b0aba83c0fc7e5d677782293ce71fe4a29963fc0d42aaa55"
+    },
+    {
+      "file": "fridge_nominal_left_verification_right.mp4",
+      "bytes": 3193052,
+      "sha256": "25d9bcddf420820f6806b74b231196512e9c33c7ac7481e9dc99d53aefdd63e3"
+    },
+    {
+      "file": "q1_all_opportunities_candidates_offline.mp4",
+      "bytes": 1609692,
+      "sha256": "d0c8f326596be13c600cbfc91bf13bff8663e1dbaf7350578e796c85d56f2ea7"
+    }
+  ],
+  "method": "fresh sparse GitHub clone, independent LFS download, remote verifier archive extraction and every restored file/video SHA256 check",
+  "download_attempts": "initial LFS pull exceeded300s; resumed with basic transfers,3 concurrent transfers and bounded SSH connection/activity timeouts; successful download/restore; no actor rerun",
+  "scope": "archive recoverability/checksums; not a new physics replay"
+}

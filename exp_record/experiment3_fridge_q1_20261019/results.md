@@ -94,3 +94,11 @@ New implementation: `scripts/experiment3_q1_{metrics,run,launch,review}.py`,
 `scripts/test_experiment3_q1.py`; five pre-freeze progress-definition tests passed.
 All13 owned frozen book/fridge/Q1 implementation files still match their run hashes.
 Main-owned files and frozen prior code were not edited; no commits or pushes.
+
+### Parent publication update
+
+The preceding sentence describes the agent handoff. Parent publication is now
+artifact commit`0cb42b8`: complete book/fridge/Q1 archives, four baseline-left paired
+videos and the offline Q1 video. Fresh GitHub/LFS recovery restores403/403archive
+members and verifies all five standalone videos. Parent source/action/query/replay/
+video checks also pass. [Published evidence and remote proof](../../backups/autonomous_candidates_20261019/README.md).

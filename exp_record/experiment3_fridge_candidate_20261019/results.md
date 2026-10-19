@@ -46,3 +46,7 @@ Frozen v1 remains unchanged. The authorized next diagnostic asks Q1 using offlin
 counterfactual branches at the first three eligible verification local entries,
 with selector choices frozen before outcomes. That oracle is evaluation-only and
 cannot retroactively authorize online repairs or establish Q2 causal attribution.
+
+Q1 is now complete with no useful candidate at its three sampled opportunities;
+see [Q1 results](../experiment3_fridge_q1_20261019/results.md).
+[Published paired videos, complete archives and independent remote recovery proof](../../backups/autonomous_candidates_20261019/README.md).

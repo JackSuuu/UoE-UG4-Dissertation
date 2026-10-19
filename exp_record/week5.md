@@ -21,6 +21,10 @@ and observation-interface qualification before further attribution or cloth.
 · [Fridge pilot](experiment3_fridge_candidate_20261019/results.md)
 · [Book negative preflight](experiment3_candidate_20261019/results.md).
 
+Published four baseline-left paired videos plus the offline all-candidate video
+and three complete archives in`0cb42b8`. Fresh GitHub/LFS recovery verifies403/403
+archive members and all five MP4s. [Evidence index and remote proof](../backups/autonomous_candidates_20261019/README.md).
+
 ### Update 19 Oct — Shared actor lane complete; fridge capability remains unqualified
 
 LIBERO90 OpenVLA fails both600-action fridge transfer tests: no closed-door opening

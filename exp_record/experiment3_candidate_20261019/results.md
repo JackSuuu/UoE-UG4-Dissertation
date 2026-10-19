@@ -56,3 +56,5 @@ paused during inference. No20Hz real-world inference-rate claim is made.
 No frozen book source/protocol is changed after running. Following user steering,
 further work moves to a separately versioned full-fridge integration; book results
 remain a failed mechanism preflight, without further tuning on this initial state.
+
+[Published paired videos, complete archives and independent remote recovery proof](../../backups/autonomous_candidates_20261019/README.md).

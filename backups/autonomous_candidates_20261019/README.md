@@ -51,3 +51,10 @@ model/code revisions and hashes are retained.
 passes for1604book,1656fridge and288Q1branch actions. Q1 additionally replays exact
 original prefixes separately and reports that overhead. No Q2 factorial efficacy
 cohort or cloth manipulation experiment was launched by these runs.
+
+[Parent integration audit](parent_artifact_checks.json) confirms source hashes,
+action provenance, query accounting, replay reports, plan-before-outcomes ordering
+and decoded video frame counts. [Independent remote recovery proof](remote_verified.json)
+restores403/403members from three archives plus verifies all five standalone videos
+from artifact commit`0cb42b8`, using a fresh GitHub/LFS clone. The first LFS download
+timed out; a bounded resumed transfer succeeded. No actor trial was rerun.
