@@ -27,6 +27,8 @@ qualified full-fridge framework result before fridge actor competence exists.
    this does not guarantee visibility throughout action or skill competence.
    One-action official-worker preflight and independent frozen-source replay pass.
    Detached cohort: `/home/ami/scratch/fridge_observation_cohort_20261019_a`.
+   Supervisor3673371;207preflight archive members independently restored from
+   GitHub/LFS artifact commit`29917e9` and verified by SHA256.
 2. **GPU3 — Shared actor qualification and adaptation-data audit.** Independently
    assigned to run native book initial states0/1/2 with strict released/supported
    placement dwell, continuing beyond the native predicate under fixed action/query

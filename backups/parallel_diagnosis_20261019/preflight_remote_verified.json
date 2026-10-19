@@ -1,0 +1,8 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "29917e9da3ee988b5f9eda106443ae16c2090651",
+  "transport": "git_lfs",
+  "members": 207,
+  "archive_sha256": "4ce681d9af87295058a71a633343030cb00b6629a20fb3fd0741663b0ba0ec43",
+  "restore": "/tmp/opencode/parallel_diagnosis_preflight_remote_20261019"
+}

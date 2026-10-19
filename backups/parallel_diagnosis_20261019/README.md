@@ -17,6 +17,8 @@ they are not internal model reasoning or sufficient causal proof by themselves.
 * [207-member preflight archive](observation_preflight.tar.gz) and
   [SHA256 manifest](observation_preflight_manifest.json): all scene calibration/smoke
   records and frozen sources, one-action actor tape and independent replay.
+* [Independent remote preflight recovery](preflight_remote_verified.json):207/207
+  members downloaded from GitHub/LFS and SHA256 verified from`29917e9`.
 
 Experiments2and3are delegated to independent GPU3andGPU2work respectively. Native
 task mechanism pilots do not establish full refrigerator recovery. Actual outcomes,
