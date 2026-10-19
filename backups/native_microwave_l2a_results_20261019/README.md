@@ -19,3 +19,6 @@ separately verified L1archives; this archive preserves all L2reconstruction tape
 
 Local archive/member verification passed. Remote recovery is recorded separately
 after publication; paired visualization is published as its own evidence bundle.
+
+Remote-only recovery passed at `43aad05`:18,132result members plus56review
+members and12videos, all hashes exact. Proof: `remote_recovery_passed.json`.

@@ -25,3 +25,6 @@ Frame counts, same-boundary PNGs, source identities and142unchanged source hashe
 checked; sample overlays visually inspected. The56-member metadata archive includes
 frame maps, checks, inspection samples and renderer. Encoded video is lossy; raw
 L2A tapes remain authoritative. L2Bgate was false; no continuation was performed.
+
+All12videos and56metadata members independently recovered and hash-verified.
+Proof: `../native_microwave_l2a_results_20261019/remote_recovery_passed.json`.

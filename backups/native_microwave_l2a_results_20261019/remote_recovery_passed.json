@@ -1,0 +1,14 @@
+{
+  "status": "remote_recovery_verified",
+  "commit": "43aad056e745916fbe396fce71f51975191735fa",
+  "clone": "/tmp/opencode/native_microwave_l2a_remote_43aad05",
+  "restore": "/tmp/opencode/native_microwave_l2a_restore_43aad05",
+  "source": "fresh_remote_GitHub_clone_and_scoped_LFS_no_original_local_artifact_copy",
+  "results": {"archives": 11, "members": 18132},
+  "review": {"archives": 1, "members": 56, "videos": 12},
+  "verified_archive_and_video_bytes": 2786212393,
+  "all_archive_member_and_video_hashes_passed": true,
+  "verifier": "pinned remote commit scripts/backup_research_progress.py",
+  "full_execution_record": "/home/ami/scratch/native_microwave_l2a_remote_recovery_20261019.json",
+  "interpretation": "All18valid local branches and552calls retained; failure-root gain absent; L2B gate remains false."
+}
