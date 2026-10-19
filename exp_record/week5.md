@@ -3,6 +3,17 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Keep the fridge as the main rigid-body task
+
+User reiterates full refrigerator completion and framework-factor study as priority.
+Native-book controls remain preflights. Parallel actor/data work is steered toward
+genuine fridge capability and the candidate-mechanism integration toward fridge,
+without modifying frozen camera/book pilot outcomes. Added a read-only six-stage
+evidence observer (no action generation), with satisfied/violated/unknown predicates,
+ordered milestones, release evidence, continuous dwell and explicit open/closed-start
+completion distinction. Four semantic tests pass; no empirical fridge success is
+claimed. [Plan and evidence scope](agent_notes/fridge_primary_mechanism_plan_20261019.md).
+
 ### Update 19 Oct — Parallel observation, actor and autonomous-proposal experiments
 
 User explicitly authorizes experiments1/2/3in parallel, requesting reuse of the
