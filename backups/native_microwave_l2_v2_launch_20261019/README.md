@@ -13,3 +13,6 @@ Version/boundary/plan checks reject foreign v1controls or replays. Nine CPU chec
 Same two GPUlanes,18cells,576-call cap and C0identity/replay barrier as v1.
 Only collection timing changes to g+120. No automatic L2B or online selector.
 Local archive verification passed; independent remote recovery is separate.
+
+Independent remote recovery now passed for all391preparation members and6design
+members. Proof: `remote_recovery_passed.json`. Active model-run results are excluded.

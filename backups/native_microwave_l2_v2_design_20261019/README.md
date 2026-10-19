@@ -16,3 +16,6 @@ No useful failure-root sampled gain means stop v2. Optional all-bank L2Brequires
 a separate positive audit/scheduling decision; no immediate continuation.
 V1's negative result and all its evidence remain retained. This is development
 iteration, not held-out confirmation or an online detector/selector evaluation.
+
+All six design members independently restored and hash-verified. Proof:
+`../native_microwave_l2_v2_launch_20261019/remote_recovery_passed.json`.

@@ -1,0 +1,16 @@
+{
+  "status": "remote_recovery_verified",
+  "commit": "4fd2cd2722d23be44b1d70e3c3c194da489cb0d7",
+  "clone": "/tmp/opencode/native_microwave_l2v2_remote_4fd2cd2",
+  "restore": "/tmp/opencode/native_microwave_l2v2_restore_4fd2cd2",
+  "source": "fresh_remote_GitHub_clone_and_scoped_downloads_no_original_local_artifact_copy",
+  "archives": 2,
+  "verified_members": 397,
+  "archive_bytes": 55180277,
+  "design_archive_sha256": "200e9bf0c277ffd02c5158ecce63d7fdcde331ff63c7780797d00f2291511677",
+  "preparation_archive_sha256": "df0ef1d23dba5182a3398545cbb0e3f6a3b67a80341e6e96d016adb5464f8f50",
+  "all_archive_and_member_hashes_passed": true,
+  "verifier": "pinned remote commit scripts/backup_research_progress.py",
+  "scope": "Six design members plus391preparation/smoke members; active v2 model run excluded",
+  "full_execution_record": "/home/ami/scratch/native_microwave_l2v2_remote_recovery_20261019.json"
+}
