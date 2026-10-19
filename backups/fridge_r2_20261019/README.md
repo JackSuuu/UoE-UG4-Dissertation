@@ -7,6 +7,8 @@
 * [Detailed results and generalization limits](../../exp_record/agent_notes/fridge_r2_results_20261019.md)
 * [All-case metrics and replay reports](results.json), [final supervisor state](launch_final.json)
 * [Complete archive](complete.tar.gz), [200-member SHA256 manifest](complete_manifest.json)
+* [Independent GitHub/LFS recovery passed](remote_verified.json): all200archive
+  members and both standalone paired MP4s downloaded and SHA256-verified.
 
 Each video is601frames at20fps with common simulation time, matched initial state,
 600actions/queries per side, phase/owner/event labels and terminal-frame labels.

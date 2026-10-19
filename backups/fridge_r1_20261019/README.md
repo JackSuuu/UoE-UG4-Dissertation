@@ -7,6 +7,7 @@ replay. None grasped or meaningfully displaced the item (maximum displacement
 below6e-13m). These are basic-skill diagnostics, not full-task efficacy trials.
 [Final status](actor_launch_final.json) · [374-member archive](actor_cohort.tar.gz) ·
 [SHA256 manifest](actor_cohort_manifest.json).
+[Independent remote recovery passed](actor_remote_verified.json) for all374members.
 
 ## Side-by-side review (baseline left / our engineering controller right)
 

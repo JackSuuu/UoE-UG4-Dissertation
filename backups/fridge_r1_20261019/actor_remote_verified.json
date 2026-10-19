@@ -1,0 +1,8 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "afd97b0e42527e7cc2f31bf945455c8bb2939f7d",
+  "members": 374,
+  "archive_sha256": "c7ec69217d76deb20ed9b6a86715daec3de21aad1e7aef75dc2859f75cb696f7",
+  "restore": "/tmp/opencode/fridge_r2_remote_restore_20261019",
+  "videos": {}
+}

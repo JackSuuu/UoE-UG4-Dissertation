@@ -1,0 +1,17 @@
+{
+  "status": "independent_remote_restore_passed",
+  "commit": "afd97b0e42527e7cc2f31bf945455c8bb2939f7d",
+  "members": 200,
+  "archive_sha256": "6f58fa6352624ff38afeb7cf128c0e9ac0aad7b6e744df5de4b19757d782bec9",
+  "restore": "/tmp/opencode/fridge_r2_remote_restore_20261019",
+  "videos": {
+    "closed": {
+      "sha256": "1b24b17bd9378a0eeddd1c15b0c9c04cb5a9975ade4541ced60ad3322838f2dc",
+      "bytes": 1246772
+    },
+    "open": {
+      "sha256": "b90a3dbb57d2cda984ab8643c2f66dd9312998a64488e6af984eeecf9e710f2a",
+      "bytes": 1063886
+    }
+  }
+}

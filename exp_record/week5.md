@@ -24,6 +24,10 @@ a task-capable shared actor. These capabilities are not yet implemented.
 [Detailed results](agent_notes/fridge_r2_results_20261019.md) ·
 [Videos and complete archive](../backups/fridge_r2_20261019/README.md).
 
+GitHub/LFS upload and independent recovery are complete:200R2members,374R1actor
+members and both standalone R2comparison MP4s match their SHA256 manifests from
+commit`afd97b0`. Recovery proofs accompany each archive.
+
 ### Update 19 Oct — Implement actual VLA + five-layer refrigerator runtime
 
 User requests the integrated comparison directly. Added `fridge_runtime.py` and

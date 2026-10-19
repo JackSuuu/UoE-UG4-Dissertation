@@ -115,3 +115,10 @@ Both MP4s have 601 frames at 20fps, common simulation clock, baseline left and
 wrapper right, phase/ownership/event/budget labels, and explicit end-frame labels.
 The displayed event is the original single-event log; the audit above qualifies it.
 All failed trials and interrupted door diagnostics are retained.
+
+Independent GitHub/LFS recovery from commit`afd97b0` passed: all200R2archive members,
+both standalone paired MP4s, and all374R1actor-cohort members match their SHA256
+manifests. Recovery used a fresh repository at
+`/tmp/opencode/fridge_r2_remote_restore_20261019`, with no local LFS cache reuse.
+[R2 proof](../../backups/fridge_r2_20261019/remote_verified.json) ·
+[R1 proof](../../backups/fridge_r1_20261019/actor_remote_verified.json).

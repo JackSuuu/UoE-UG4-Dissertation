@@ -2,6 +2,14 @@
 
 ## Latest: 19 October 2026
 
+**[R2 refrigerator: actual VLA-left / wrapper-right paired videos](fridge_r2_20261019/README.md)**:
+all four600-action/query runs finished without complete-task recovery. The open-start
+wrapper grasped/extracted; neither closed-start arm opened. Privileged feedback and
+scene-specific primitives are disclosed; cross-scene repair is not demonstrated.
+The200-member archive retains all cases, replay exceptions, the handoff-label audit
+and interrupted diagnostics. [R1 frozen actor cohort](fridge_r1_20261019/README.md)
+is also complete:12/12exact replays, no grasp,374archived files including supervisor log.
+
 **[A2 VLA-left / hybrid-right comparison videos](assembly_a2_paired_review_20261019/README.md)**:
 five representative clips cover preservation, old/new rescues, harm and both-failure;
 all20pairs are listed in the manifest. These are actual mixed-controller rollouts,
