@@ -22,7 +22,7 @@ reflects external termination here, not an established actor/integrity failure.
 No H96 capability conclusion or automatic restart. Historical evidence below is
 retained for reference, not the active execution plan.
 
-Current implementation target: `scripts/run_framework_comparison.py` (prepare,
+Implemented direct comparison: `scripts/run_framework_comparison.py` (prepare,
 run, replay, report/video) with `src/adapters/native_framework.py` (five-layer
 controller). Microwave roots0–5 × baseline/framework;520model queries and520
 executed actions per episode, ten separate initialization actions, same1200s
@@ -36,6 +36,15 @@ explicitly unverified exits, and fresh original-instruction action execution on
 handoff. Baseline keeps the native full instruction and logs the same monitor
 in shadow. Complete-system differences include repair instruction conditioning;
 this two-arm experiment does not isolate a predictive-model contribution.
+
+Launch preparation completed:12cells frozen at
+`/home/ami/scratch/framework_comparison_freeze_20261019/plan.json`, SHA256
+`4c9a12af16f4e53a24f4fe7174c3928c90233c471d4e4607b6e1f8c35493e694`.
+Controller11/11CPU checks passed, including preservation, unverified budget exit
+and executed handoff. GPU2runs baseline, GPU3runs framework, paired by root;
+fresh zero-query replays and six full videos follow automatically. Output:
+`/home/ami/scratch/framework_comparison_run_20261019`. Actual process and query
+status is recorded in its `launch.json` and each episode's `status.json`.
 
 ## Authoritative scope after the latest discussion
 
