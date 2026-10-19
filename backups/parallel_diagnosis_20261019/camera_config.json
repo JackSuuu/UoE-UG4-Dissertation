@@ -1,0 +1,62 @@
+{
+  "rule": "fit_seed0_fixture_item_hand_geometry_in_existing_orientation_then_freeze",
+  "calibration_seed": 0,
+  "original_position": [
+    -0.55,
+    0.85,
+    1.55
+  ],
+  "position": [
+    -0.7026721992411216,
+    0.7452847767147052,
+    1.6754719882552405
+  ],
+  "quat": [
+    -0.35707962581567276,
+    -0.19015189672780805,
+    0.42984819422424386,
+    0.8071969567090258
+  ],
+  "fovy": 45.0,
+  "center": [
+    -0.07536335428052642,
+    0.1750040085687099,
+    1.105191220109245
+  ],
+  "distance": 1.0217419909155976,
+  "usable_sensor_half_fraction": 0.8538149682454624,
+  "included_geoms": [
+    "gripper0_hand_visual",
+    "gripper0_hand_collision",
+    "gripper0_finger1_visual",
+    "gripper0_finger1_collision",
+    "gripper0_finger1_pad_collision",
+    "gripper0_finger2_visual",
+    "gripper0_finger2_collision",
+    "gripper0_finger2_pad_collision",
+    "cream_cheese_1_g0",
+    "cream_cheese_1_g1",
+    "short_fridge_1_g0",
+    "short_fridge_1_g1",
+    "short_fridge_1_g2",
+    "short_fridge_1_g3",
+    "short_fridge_1_g4",
+    "short_fridge_1_g5",
+    "short_fridge_1_g6",
+    "short_fridge_1_g7",
+    "short_fridge_1_g8",
+    "short_fridge_1_g9",
+    "short_fridge_1_g10",
+    "short_fridge_1_g11",
+    "short_fridge_1_g12",
+    "short_fridge_1_g13",
+    "short_fridge_1_g14",
+    "short_fridge_1_g15",
+    "short_fridge_1_g16",
+    "short_fridge_1_g17",
+    "short_fridge_1_g18",
+    "short_fridge_1_g19"
+  ],
+  "geometry_points": 65456,
+  "scope": "privileged_reset_only_camera_calibration_not_occlusion_or_skill_guarantee"
+}

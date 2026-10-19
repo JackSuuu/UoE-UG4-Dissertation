@@ -3,6 +3,17 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Parallel observation, actor and autonomous-proposal experiments
+
+User explicitly authorizes experiments1/2/3in parallel, requesting reuse of the
+existing reasoning-chain implementation and synchronized video evidence. Located
+`libero_drawer.decision_trace`: pre-action evidence, gate, actual action and separate
+outcome, not a fabricated model rationale. GPU1launches six pure-actor fridge camera
+controls from`7a158cd`; GPU3is assigned strict shared-actor qualification and genuine
+adaptation-data audit; GPU2is assigned autonomous model-candidate/verification pilot.
+Fridge efficacy remains conditional on actor competence. Six camera scene preflights
+and a one-action exact frozen replay pass. [Execution contract](agent_notes/parallel_diagnosis_execution_20261019.md).
+
 ### Update 19 Oct — Actor controls finished: capability and transfer are distinct
 
 All five zero-repair trials completed (1,997 model actions) with exact independent

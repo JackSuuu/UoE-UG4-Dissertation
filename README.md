@@ -19,6 +19,13 @@ matched initial conditions, common playback speed, phase/intervention/handoff la
 and explicit end-frame holds. Engineering-only controllers are labeled as such.
 
 **Current priority:** [diagnose why the original VLA stalls](exp_record/agent_notes/vla_failure_audit_execution_20261019.md).
+
+**Parallel follow-up authorized:** fixed fridge observation controls, shared-actor
+strict qualification/data audit, and autonomous model-candidate verification pilot.
+Videos will show recorded decision evidence and actual control ownership.
+[Execution contract](exp_record/agent_notes/parallel_diagnosis_execution_20261019.md) ·
+[Preflight artifacts](backups/parallel_diagnosis_20261019/README.md).
+
 R2's first grasp/extraction occurred under hand-written motion primitives, so they
 do not demonstrate autonomous repair. Further route scripting is paused. Actor-only
 task/camera/official-inference controls have finished with five exact independent

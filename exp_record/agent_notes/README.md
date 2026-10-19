@@ -4,6 +4,8 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Parallel experiments 1/2/3 and synchronized decision evidence](parallel_diagnosis_execution_20261019.md)
+* [Frozen refrigerator observation-control protocol](fridge_observation_protocol_20261019.md)
 * [Actor diagnostic outcomes: native capability, camera failure and remaining refrigerator gap](vla_failure_audit_results_20261019.md)
 * [Actor failure audit: no scripted repair in the diagnostic cohort](vla_failure_audit_protocol_20261019.md)
 * [Actor failure and R2 action-provenance evidence](vla_failure_audit_execution_20261019.md)

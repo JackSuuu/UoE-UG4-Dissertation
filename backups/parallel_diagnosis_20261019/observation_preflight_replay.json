@@ -1,0 +1,7 @@
+{
+  "status": "exact_replay_passed",
+  "source": "/home/ami/scratch/fridge_observation_ipc_20261019",
+  "mismatches": [],
+  "max_state_gap": 0.0,
+  "steps": 1
+}
