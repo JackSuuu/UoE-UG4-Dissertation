@@ -115,3 +115,14 @@ Base-code hashes/runtime provenance are also in
 No evaluation trace was used for training; no adapted checkpoint was produced.
 All failures are retained. No commit or push was made. Only experiment-2 new
 scripts/notes were authored; parent integration/archive remains pending.
+
+### Parent publication update
+
+The above paragraph describes the agent handoff. Parent integration is now
+published in artifact commit`3de144b`, with both actor cohorts and metadata audits
+in a204-member archive plus the two verified standalone videos. A fresh GitHub/LFS
+download restored all members and verified their SHA256 hashes independently.
+[Published evidence and recovery proof](../../backups/shared_actor_20261019/README.md).
+The LIBERO90 runs used the original robot-side camera and fixed instructions;
+the separate candidate pilot uses reframing and shared phase prompts. They must
+not be treated as a matched checkpoint-only comparison.

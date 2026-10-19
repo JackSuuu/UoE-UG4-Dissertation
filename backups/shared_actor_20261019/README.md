@@ -23,6 +23,11 @@ remote dataset/checkpoint audits, plus checkpoint download/hash provenance.
 Upstream model weights and disposable runtime installations are excluded; pinned
 repositories/revisions and weight hashes are retained.
 
+[Independent remote recovery proof](remote_verified.json): fresh GitHub/LFS
+download from artifact commit`3de144b`,204/204archive members extracted and SHA256
+verified, plus both standalone videos. An initial120-second download limit was
+followed by a successful resumed LFS pull; no experimental rollout was retried.
+
 Interpretation and provenance:
 [Fridge result](../../exp_record/agent_notes/shared_actor_fridge90_results_20261019.md)
 · [Book result](../../exp_record/agent_notes/shared_actor_qualification_results_20261019.md)

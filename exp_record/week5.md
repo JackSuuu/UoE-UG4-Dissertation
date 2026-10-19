@@ -20,6 +20,11 @@ a qualified shared actor. [Fridge results](agent_notes/shared_actor_fridge90_res
 · [book results](agent_notes/shared_actor_qualification_results_20261019.md)
 · [resource audit](agent_notes/shared_actor_fridge_pretrained_audit_20261019.md).
 
+Both verified videos and the204-member complete artifact/data-audit archive are
+[published](../backups/shared_actor_20261019/README.md) in`3de144b`. A fresh
+GitHub/LFS download restored and SHA256-verified every member and both videos;
+[remote proof](../backups/shared_actor_20261019/remote_verified.json).
+
 ### Update 19 Oct — Candidate usefulness and verification attribution before cloth
 
 User approves two explicit next questions: whether model candidates advance the

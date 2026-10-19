@@ -1,0 +1,30 @@
+{
+  "status": "independent_remote_restore_verified",
+  "source_commit": "3de144bfc7ee178d8c0a02125a345b952903ae11",
+  "remote_url": "git@github.com:JackSuuu/UoE-UG4-Dissertation.git",
+  "fresh_repository": "/tmp/opencode/shared_actor_remote_3de144b",
+  "restore_root": "/tmp/opencode/shared_actor_restore_3de144b",
+  "manifest_sha256": "a874ad5dec0d0072ebac904458085afb8f22a3d1245cb2c6c5aafc375c0f0aec",
+  "verified_archive_members": 204,
+  "verified_standalone_videos": 2,
+  "artifacts": [
+    {
+      "file": "actor_qualification.tar.gz",
+      "bytes": 262684226,
+      "sha256": "b2f441f9473cccee065781e563d22ee80bccd5d787e0fa446c4245544a103280"
+    },
+    {
+      "file": "actor_only_qualification_verified.mp4",
+      "bytes": 3893378,
+      "sha256": "9a303393340a1f91a4f65690ae3a03c1a04cb8a22eb73159554ab38563ad67c4"
+    },
+    {
+      "file": "fridge90_actor_only_annotated.mp4",
+      "bytes": 1032255,
+      "sha256": "e519d7bf1f9076b6d5b736326981adcdad3e6845c04c6afa95eb9c77fb1e483d"
+    }
+  ],
+  "method": "fresh sparse GitHub clone, independent LFS download, remote verifier archive extraction and every restored file/video SHA256 check",
+  "download_attempts": "initial 120-second shell limit interrupted download; resumed bounded LFS pull completed; no experimental run retried",
+  "scope": "archive recoverability and checksums; not a new simulator replay or actor rerun"
+}

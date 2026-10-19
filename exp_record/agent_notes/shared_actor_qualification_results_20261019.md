@@ -83,3 +83,6 @@ data were generated from these evaluation tapes, and no training was launched.
 The strict release/support/dwell endpoint is stronger than LIBERO's native goal;
 0/3 strict completions is not a contradiction of a published native-goal score,
 nor proof the model cannot learn release with suitable independent demonstrations.
+
+Both cohorts' complete evidence and verified videos are now
+[published with independent remote recovery proof](../../backups/shared_actor_20261019/README.md).
