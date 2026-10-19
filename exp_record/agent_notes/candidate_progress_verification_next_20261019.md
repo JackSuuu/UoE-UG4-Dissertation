@@ -63,6 +63,34 @@ See [fridge results](shared_actor_fridge90_results_20261019.md),
 [remote-resource audit](shared_actor_fridge_pretrained_audit_20261019.md).
 The Q1 diagnostic remains useful; formal Q2 efficacy still needs shared capability.
 
+### Subsequent Q1 completion notification and parent review
+
+The GPU2 lane has completed both the frozen fridge pilot and the queued Q1 cohort.
+Fridge nominal/simple/verification use600queries each and600/552/504actions;
+none opens the door or attains any task-stage milestone. Its six actually executed
+handoffs are all unverified cap exits. The book and fridge source cohorts have
+1604/1656exact-replayed actions respectively.
+
+Q1 evaluates all9candidates from source entries368/403/443 (six distinct state/action
+pairs). Fresh-prefix reconstruction, all288branch actions and independent replays
+pass exactly;279fresh queries are charged separately from original candidates and
+prefix/replay overhead. At horizons1/12/32 no sampled opportunity contains a useful
+candidate under the frozen greedy continuation. Maximum opening progress is
+1.33e-15rad, far below the frozen.01rad threshold, and no opening stage is attained.
+
+Conditional useful-selection rates have a zero denominator and stay undefined.
+Zero offline regret on this degenerate set is not verifier optimality, equivalence
+or successful recovery. This finding is restricted to the sampled development
+states/candidate source/continuation horizons. Q2 remains gated, not launched;
+cloth stays deferred. Next priority is verified shared actor/proposal capability,
+including the unresolved observation/domain contract and genuinely learned skills.
+Independent demonstrations and splits remain missing prerequisites for adaptation;
+no new training or scripted motion substitute is introduced.
+
+[Q1 frozen protocol and results](../experiment3_fridge_q1_20261019/results.md)
+· [Fridge integration results](../experiment3_fridge_candidate_20261019/results.md)
+· [Book mechanism preflight](../experiment3_candidate_20261019/results.md).
+
 ## Q1: common-state candidate outcome diagnostic (next queued experiment)
 
 Assigned to the existing GPU2 experiment lane, to start **after** its frozen fridge

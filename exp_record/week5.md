@@ -3,6 +3,24 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Q1 complete: no useful candidate in the sampled opportunities
+
+Closed-start fridge nominal/simple/verification finish600/552/504actions under
+the shared600-query cap, with no opening/stage attainment. All six actual handoffs
+are local-budget exits, not verified recovery. All1656actions replay exactly.
+
+The queued offline Q1 diagnostic then evaluates all9candidates at the first three
+eligible entries368/403/443, with exact fresh-prefix reconstruction.288branch
+actions/279fresh model calls; all independent replays pass. There are six distinct
+state/action pairs, not nine independent observations. At1/12/32actions none
+advances opening usefully under the fixed greedy continuation; maximum directional
+progress1.33e-15rad. Conditional useful-selection rates are undefined, not equivalent
+between selectors. Q2 remains gated; prioritize shared skill/proposal capability
+and observation-interface qualification before further attribution or cloth.
+[Q1 results](experiment3_fridge_q1_20261019/results.md)
+· [Fridge pilot](experiment3_fridge_candidate_20261019/results.md)
+· [Book negative preflight](experiment3_candidate_20261019/results.md).
+
 ### Update 19 Oct — Shared actor lane complete; fridge capability remains unqualified
 
 LIBERO90 OpenVLA fails both600-action fridge transfer tests: no closed-door opening

@@ -4,6 +4,9 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [Q1 completed: no useful candidates in three exact-common-state opportunities](../experiment3_fridge_q1_20261019/results.md)
+* [Autonomous fridge candidate pilot: no opening or verified recovery](../experiment3_fridge_candidate_20261019/results.md)
+* [Native-book autonomous candidate preflight: negative result](../experiment3_candidate_20261019/results.md)
 * [Shared actor fridge transfer: no qualified fridge baseline](shared_actor_fridge90_results_20261019.md)
 * [Shared actor book qualification: native3/3, strict0/3](shared_actor_qualification_results_20261019.md)
 * [Genuine fridge data/checkpoints and embodiment compatibility audit](shared_actor_fridge_pretrained_audit_20261019.md)

@@ -1,0 +1,2073 @@
+{
+  "schema": 1,
+  "scope": "completed_autonomous_book_fridge_pilots_and_offline_Q1",
+  "archives": [
+    {
+      "file": "book_candidates.tar.gz",
+      "bytes": 142109871,
+      "sha256": "fdc5ba3c1513c2c22f9d6d197c00a0f4a3f0ad33853d5750ea2636f7bb0fdf52",
+      "members": [
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/audit.json",
+          "bytes": 5091,
+          "sha256": "46c9154e8c6b6308324ac852cf3a2bba32662e6f2e446e9d7e1566ce580ff577"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/detached.json",
+          "bytes": 220,
+          "sha256": "709e8cddadf3d8931b9bde36e07a322661e9351630f2825e6595663cec42b8c1"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/freeze.json",
+          "bytes": 7783,
+          "sha256": "2b6761766e99d79d7ebaeb55eac5eac616e673ce0bbdfccf43b3a5bce4548bef"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/launch.json",
+          "bytes": 2143,
+          "sha256": "88ceb29645e7ca280056d01a802b882d6079ce65f20bc8f8ff1d84963aa7f46a"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/metrics.json",
+          "bytes": 1949,
+          "sha256": "dff17f7083eb7cd8f0820daf0e03fc3c6997114dc4546d062e874a1612d364dd"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/images.npz",
+          "bytes": 48732393,
+          "sha256": "c59ad09d71d194ae8f046e4ebdcc716addd80691b8effce26db719beb5f0891c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/initial.png",
+          "bytes": 61481,
+          "sha256": "eb10a75b55803e206a5f075975e068ca7ea5462888f5e4984bd03d2090af1e8f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/initial_source.json",
+          "bytes": 262,
+          "sha256": "22a7f1a81a6d0be3b339043ede639b44419a8236a81f7830c8edadf248f0af46"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/policy_input.png",
+          "bytes": 52528,
+          "sha256": "b464d90daf9ecd84fedf071c0c72e68dde2ff01755e06de26ee0aa1a846e17a1"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/queries.jsonl",
+          "bytes": 395681,
+          "sha256": "6664f454d42f1512d09770227a93dc78f60993b76536c88db94109d3b07cea5c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/scene.bddl",
+          "bytes": 2055,
+          "sha256": "07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/states.npz",
+          "bytes": 194271,
+          "sha256": "de578b1ee3add0065ec38d54362ba34fb54dfa608b94790816205c410f9b3b29"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/status.json",
+          "bytes": 2337,
+          "sha256": "dfb455e40e0494efcd5cc3682d75751202ff6b314d6bab2dd03aa61ccb7907a2"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/steps.jsonl",
+          "bytes": 4290445,
+          "sha256": "0bd004463ac0496c03a99f2e2b382f913d7f2d230be65feb39e81112b21837d2"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal/worker.log",
+          "bytes": 714,
+          "sha256": "551eadfcfeeb5533207947b6eca849a968c2cf058a0c3f1e245744bba86594d5"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal.log",
+          "bytes": 1031,
+          "sha256": "4cb1dac74b9605f97addf5bbb4b03cf2f9ca18c415a3a41a3ca6777805556d5a"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal_left_simple_feedback_right.mp4",
+          "bytes": 4313679,
+          "sha256": "99ff2b47af62023e4982f6cbd732511078f858100500d0d6f4be3f042ecd1bcb"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/nominal_left_verification_right.mp4",
+          "bytes": 4436402,
+          "sha256": "a3f8f6a4ba975c24f07a03b637c4732955314afb6ed5220ff90b332dd29e80a7"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/postrun_audit_source.py",
+          "bytes": 7703,
+          "sha256": "f2006122d9fe7384cd2c09145021713e4317299d6d7b84c36ef8fdc899a460d5"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_nominal/initial_source.json",
+          "bytes": 262,
+          "sha256": "22a7f1a81a6d0be3b339043ede639b44419a8236a81f7830c8edadf248f0af46"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_nominal/scene.bddl",
+          "bytes": 2055,
+          "sha256": "07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_nominal/verification.json",
+          "bytes": 98,
+          "sha256": "94599d819ef38f2a96dddf4cce37d3a5c88e0d5bfa6ad63c2c7ccec4f8ab68d0"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_nominal.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_simple_feedback/initial_source.json",
+          "bytes": 262,
+          "sha256": "22a7f1a81a6d0be3b339043ede639b44419a8236a81f7830c8edadf248f0af46"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_simple_feedback/scene.bddl",
+          "bytes": 2055,
+          "sha256": "07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_simple_feedback/verification.json",
+          "bytes": 98,
+          "sha256": "39fc9cc2c22b9a85b368462846ef1ca06315c570f0fbafd23ebc4c76be50bb06"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_simple_feedback.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_verification/initial_source.json",
+          "bytes": 262,
+          "sha256": "22a7f1a81a6d0be3b339043ede639b44419a8236a81f7830c8edadf248f0af46"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_verification/scene.bddl",
+          "bytes": 2055,
+          "sha256": "07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_verification/verification.json",
+          "bytes": 98,
+          "sha256": "1fd1d3dcd6ed53930b7d50a816f19f210f6da84a933a981e095a0104cd4a6837"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/replay_verification.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/review.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/review_held_final.png",
+          "bytes": 328089,
+          "sha256": "77e10abdc1f5a4ef23fc5ab5e9ad5992c4f6729b06d97c7efef1bd52b3f1ab2c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/review_step201.png",
+          "bytes": 378997,
+          "sha256": "43c051ea5cde3840b72e68ac3eb65d7a7ba7361f8015ded1f8b41965b5fc4e14"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/images.npz",
+          "bytes": 38478295,
+          "sha256": "ff8819f7125cc8343bfc10249f7623bc0ce061d582c02cd5a7e604649e3e6a31"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/initial.png",
+          "bytes": 61481,
+          "sha256": "eb10a75b55803e206a5f075975e068ca7ea5462888f5e4984bd03d2090af1e8f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/initial_source.json",
+          "bytes": 262,
+          "sha256": "22a7f1a81a6d0be3b339043ede639b44419a8236a81f7830c8edadf248f0af46"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/policy_input.png",
+          "bytes": 52528,
+          "sha256": "b464d90daf9ecd84fedf071c0c72e68dde2ff01755e06de26ee0aa1a846e17a1"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/queries.jsonl",
+          "bytes": 404114,
+          "sha256": "6dde178506ed8944cb9dacfb596ea1c3558e55bc255dca0cff8c9ab88173f281"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/scene.bddl",
+          "bytes": 2055,
+          "sha256": "07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/states.npz",
+          "bytes": 153271,
+          "sha256": "2ccd20f5af5dff122cd41432390af546a307e742c0caea448d62dca3321fab9f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/status.json",
+          "bytes": 2361,
+          "sha256": "2bde91e05c6ad26c385e501c5af0dd83370471ff8c0fcd6d1d912656c87e98eb"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/steps.jsonl",
+          "bytes": 3562960,
+          "sha256": "862564db2709a02d6db58ee56713d898af132e015f57a2ac265655c751a1627f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback/worker.log",
+          "bytes": 714,
+          "sha256": "87dd192f72bb89bf365284f4fe4a9f2c33a09a396607a36779bfbf46495b8de3"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback.log",
+          "bytes": 1031,
+          "sha256": "91924cc71c61b77366f541d49d5120534712e67bee54aadf6153d24afc5c1b14"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/simple_feedback_video_manifest.json",
+          "bytes": 422,
+          "sha256": "9721385be60ee8d40b2bd41157f081f8fa14f30c7f1630eebeee63ffe84c1583"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/exp_record/experiment3_candidate_20261019/protocol.md",
+          "bytes": 5559,
+          "sha256": "5bb2b911d35e62e79a2769a29cbe9664e24d03de2519cce65d176e40a184ede4"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/diagnose_fridge_skills.py",
+          "bytes": 14207,
+          "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/diagnose_vla_failure.py",
+          "bytes": 10887,
+          "sha256": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/experiment3_candidate_gate.py",
+          "bytes": 8553,
+          "sha256": "9d5914081060c70ee0baf4cf48ccf556a4b2bbf6e2fe8968258336141e29f294"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/experiment3_candidate_launch.py",
+          "bytes": 5766,
+          "sha256": "ec3632ad6c4eea402cf1f5374587f61399d291136ecb93d0c435ecd9815e0c6c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/experiment3_candidate_review.py",
+          "bytes": 5550,
+          "sha256": "423125b3a51f53f312cdc255a5c0686093380b9b1e9a8464c773a703944993ad"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/experiment3_candidate_run.py",
+          "bytes": 11659,
+          "sha256": "4c95eebb59e70b554b5ea2b392c33c6d37088f34eb2c17fb5e3b5787ba2d3d61"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/experiment3_candidate_worker.py",
+          "bytes": 2966,
+          "sha256": "b3db2e5fe1c3a99f800a6e66b00140aba394f31c685707fe8593b43edb9bd53c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/probe_fridge_task.py",
+          "bytes": 7250,
+          "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/scripts/test_experiment3_candidate.py",
+          "bytes": 3226,
+          "sha256": "377219549a8c95c722394acfd011da722116c5381261d202c6e94ce3504dda4f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/assembly_hybrid.py",
+          "bytes": 8321,
+          "sha256": "f30be3d0b12f9167d8f2a5f40a725900adea956570e0f98314c60dc42b24b6db"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/assembly_predictor.py",
+          "bytes": 1428,
+          "sha256": "4378f9117db6e71099aef4ab4113ab55a5cfe2f3f07f6cf07f14681783fce213"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/assembly_runtime.py",
+          "bytes": 6454,
+          "sha256": "1938fa8e7645be0b8402d1614e1c744c7e36ff41f4ba3c217abc1790fbda4619"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/checkvla_official.py",
+          "bytes": 2792,
+          "sha256": "84beb0a188eb0ca84c03fa4c4a3fd24fe3d6638afc34038b0fcb972e6f4b8ecc"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/fridge_door_repair.py",
+          "bytes": 5232,
+          "sha256": "e3eb3253e7640b41fe9bf65cc7414473a0e649c2855bd1695028c6c218b58c58"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/fridge_runtime.py",
+          "bytes": 11521,
+          "sha256": "be96c12308fa8abd7daff38ceb89de4fb8b247ac66953f34f14bd41dc9cfa597"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_completion.py",
+          "bytes": 5647,
+          "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_diagnostics.py",
+          "bytes": 2094,
+          "sha256": "e8934c4ce970a7f73a82c917cc0c0d441e7bbd370d99fee716388061843c7d7c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_drawer.py",
+          "bytes": 14192,
+          "sha256": "94a39ce6d60f7924b3d5d61416bf6ec5f80e928af6740dd48ca8a92098a69d39"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_mining.py",
+          "bytes": 10677,
+          "sha256": "d9e019d8958522285a5cd4920143fd7a7fd2896dd92259754e1f07b3ede82057"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_openvla.py",
+          "bytes": 3679,
+          "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_preservation.py",
+          "bytes": 7265,
+          "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_runtime.py",
+          "bytes": 3229,
+          "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/libero_stress.py",
+          "bytes": 2103,
+          "sha256": "f4fd6dc545bd7ef6803575f2e54f0145010bd66da28dfc793b5694aa049aa41c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/openvla_policy.py",
+          "bytes": 9406,
+          "sha256": "fff76498215d4f2259064825ce39749c031315d82a12ec56e8cbaba82447b95c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/orbisim_official.py",
+          "bytes": 3687,
+          "sha256": "5e19a5bf8c50f1b5720a290ca9fb5220c1eae6fbfae64af4933410f355ba670e"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/relational_transport.py",
+          "bytes": 3256,
+          "sha256": "68a87a6450ba1f43ef5297049e6e3286cd361f8a1f3b6ffd316ec6a80d4d4601"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/source/src/adapters/tf5_compat.py",
+          "bytes": 26212,
+          "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/supervisor.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/images.npz",
+          "bytes": 42950769,
+          "sha256": "d3b44d69ed7bb4c09e2547ce8c6e3b64c9c5eabd38757c2deca1d9771b2284c9"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/initial.png",
+          "bytes": 61481,
+          "sha256": "eb10a75b55803e206a5f075975e068ca7ea5462888f5e4984bd03d2090af1e8f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/initial_source.json",
+          "bytes": 262,
+          "sha256": "22a7f1a81a6d0be3b339043ede639b44419a8236a81f7830c8edadf248f0af46"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/model.xml",
+          "bytes": 61229,
+          "sha256": "80046d5a8ae8d75418a824487ccc44e818aaf8eeeed6fc20ba818f823aa901cc"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/policy_input.png",
+          "bytes": 52528,
+          "sha256": "b464d90daf9ecd84fedf071c0c72e68dde2ff01755e06de26ee0aa1a846e17a1"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/queries.jsonl",
+          "bytes": 400633,
+          "sha256": "133c932717c325c7052a84d9511d9bc67a1691753a708fbed1cab3594743ac52"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/scene.bddl",
+          "bytes": 2055,
+          "sha256": "07ca32c940d70c065e870452ef9c63e6dfa1d8506e6a86cf9b3763f652ba2d9f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/states.npz",
+          "bytes": 171555,
+          "sha256": "e46d597435dae1d9cb2211a242ded1cc1f4c8513776d66a74175357a808eea05"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/status.json",
+          "bytes": 2354,
+          "sha256": "773cfd9a11a9a06df0ea38710009a7c60abae32531cdc32bf36552499be1bc25"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/steps.jsonl",
+          "bytes": 3871868,
+          "sha256": "1b8f9b18030a30499bd3a1d46ec6bada3b91c6d637940ce652215f4dc2962894"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification/worker.log",
+          "bytes": 714,
+          "sha256": "abc356622ee6c40442935866e3b12382c0ff2c75e66b0ccff218bfaaeaec59d3"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification.log",
+          "bytes": 1031,
+          "sha256": "b0a0683efcef9ea8e8465a7a06438f69065573d0e4e7190ae15a25a59aca10b3"
+        },
+        {
+          "path": "scratch/experiment3_candidates_book_20261019_a/verification_video_manifest.json",
+          "bytes": 416,
+          "sha256": "7094a892a20ce7394c95bf7b6b56fba7507c4d4a234da987330b6cfb27d5ce8a"
+        },
+        {
+          "path": "repository/scripts/experiment3_candidate_audit.py",
+          "bytes": 7703,
+          "sha256": "f2006122d9fe7384cd2c09145021713e4317299d6d7b84c36ef8fdc899a460d5"
+        },
+        {
+          "path": "repository/scripts/experiment3_candidate_gate.py",
+          "bytes": 8553,
+          "sha256": "9d5914081060c70ee0baf4cf48ccf556a4b2bbf6e2fe8968258336141e29f294"
+        },
+        {
+          "path": "repository/scripts/experiment3_candidate_launch.py",
+          "bytes": 5766,
+          "sha256": "ec3632ad6c4eea402cf1f5374587f61399d291136ecb93d0c435ecd9815e0c6c"
+        },
+        {
+          "path": "repository/scripts/experiment3_candidate_review.py",
+          "bytes": 5550,
+          "sha256": "423125b3a51f53f312cdc255a5c0686093380b9b1e9a8464c773a703944993ad"
+        },
+        {
+          "path": "repository/scripts/experiment3_candidate_run.py",
+          "bytes": 11659,
+          "sha256": "4c95eebb59e70b554b5ea2b392c33c6d37088f34eb2c17fb5e3b5787ba2d3d61"
+        },
+        {
+          "path": "repository/scripts/experiment3_candidate_worker.py",
+          "bytes": 2966,
+          "sha256": "b3db2e5fe1c3a99f800a6e66b00140aba394f31c685707fe8593b43edb9bd53c"
+        },
+        {
+          "path": "repository/scripts/test_experiment3_candidate.py",
+          "bytes": 3226,
+          "sha256": "377219549a8c95c722394acfd011da722116c5381261d202c6e94ce3504dda4f"
+        },
+        {
+          "path": "repository/exp_record/experiment3_candidate_20261019/protocol.md",
+          "bytes": 5559,
+          "sha256": "5bb2b911d35e62e79a2769a29cbe9664e24d03de2519cce65d176e40a184ede4"
+        },
+        {
+          "path": "repository/exp_record/experiment3_candidate_20261019/results.md",
+          "bytes": 3709,
+          "sha256": "2a5cd567aad0f161f9734078cf96d5f2ee1d5e312e1af8b1058c97a929a3250a"
+        }
+      ]
+    },
+    {
+      "file": "fridge_candidates.tar.gz",
+      "bytes": 120303316,
+      "sha256": "49a16e40608452169ce943c15b52b3a511970a78696e8511c4341831d938153c",
+      "members": [
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/camera_config.json",
+          "bytes": 1545,
+          "sha256": "d3374b2fc031298999214d41b6f3275ce9f61ddb14ba932d01d49e12d1924ea1"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/detached.json",
+          "bytes": 149,
+          "sha256": "beccc2bd644e2db9f9066e8d1750b11ac3387bdb7b000884fcb1d24fa8ba60da"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/freeze.json",
+          "bytes": 8937,
+          "sha256": "56b3f5a3aa2bcd823e8463cb3634685d02278dd4c9ca263ef5fb4c2395dfc7f8"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/launch.json",
+          "bytes": 2491,
+          "sha256": "b41eaf4e95ee7a0aafe802aea2fe79d080a9632400cf833b0f59f5c776d556d5"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/metrics.json",
+          "bytes": 4759,
+          "sha256": "5a00650225c38008fdcae75c098f7ab87c26846045a6f60a2b617ff4b16f599f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/images.npz",
+          "bytes": 40116762,
+          "sha256": "ac00a4aff06d0558ed899727081351719594e3db2578f2037e0cb78f73635309"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/initial.png",
+          "bytes": 60313,
+          "sha256": "2a961344547cd659a02a423fecc50c9788a0cc726dcdb7318a1e6b1bb2ddbd99"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/model.xml",
+          "bytes": 50150,
+          "sha256": "a7a57fdb0cc939a0fb1098c7658c448e59b6293369e4d949bac36d8f39f13371"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/policy_input.png",
+          "bytes": 51733,
+          "sha256": "741610907ca0d7193dcc9a0306086a50a9b0d6a588503537c79ef0325f7d1f17"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/queries.jsonl",
+          "bytes": 423014,
+          "sha256": "3e522b4a7387749e82bed77194a16af8606a5637d732c887783a6a4873d577c4"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/states.npz",
+          "bytes": 143842,
+          "sha256": "d4c787cdc00b0c4213d75ce7b8642c70c5045d03e395544210e2e8420271dfaa"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/status.json",
+          "bytes": 6959,
+          "sha256": "910b02460213c58e1b238c4694d1f062a0fd08d078959fc89a08cca201ee3c76"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/steps.jsonl",
+          "bytes": 6878139,
+          "sha256": "73a8cc94d5856a31b663a92e92c9b34021e3150cf4e5f77fb1ba4c36b6f73978"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal/worker.log",
+          "bytes": 714,
+          "sha256": "f0db1e4808467c518fd3a4c8b9566eeb7462847a5c276dac4dd0f93048bcb950"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal.log",
+          "bytes": 1031,
+          "sha256": "ce09c06c98fa7d290051d1e47c3d7e20c27627d5c118b88b84047c77c0bfa7ec"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal_left_simple_feedback_right.mp4",
+          "bytes": 3376793,
+          "sha256": "813dafd6cccb7f73b0aba83c0fc7e5d677782293ce71fe4a29963fc0d42aaa55"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/nominal_left_verification_right.mp4",
+          "bytes": 3193052,
+          "sha256": "25d9bcddf420820f6806b74b231196512e9c33c7ac7481e9dc99d53aefdd63e3"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_nominal/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_nominal/verification.json",
+          "bytes": 98,
+          "sha256": "94599d819ef38f2a96dddf4cce37d3a5c88e0d5bfa6ad63c2c7ccec4f8ab68d0"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_nominal.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_simple_feedback/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_simple_feedback/verification.json",
+          "bytes": 98,
+          "sha256": "75b0d85643f76316fa8e58524074fbc5c92f5f2afa60a2046cf115d66f7ffd64"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_simple_feedback.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_verification/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_verification/verification.json",
+          "bytes": 98,
+          "sha256": "4380927123a26a44e8f2c214d8e5f744cd42529dd9aafc043fdcf34bb093d4dc"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/replay_verification.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/review.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/review_held_final.png",
+          "bytes": 326397,
+          "sha256": "f164bac306831aa31cae41e15dddc0df8b51e9affa1d26f2f2e56b81b7600346"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/review_step368.png",
+          "bytes": 325104,
+          "sha256": "adb25d318a6d3c2ab5387d4eff22c28d39e8cdc52b767c737c9db64b705a854e"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/images.npz",
+          "bytes": 36996466,
+          "sha256": "494be83a2345124ced774b2103a375d897e9d98804a31e305f4c0e93e571c79a"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/initial.png",
+          "bytes": 60313,
+          "sha256": "2a961344547cd659a02a423fecc50c9788a0cc726dcdb7318a1e6b1bb2ddbd99"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/model.xml",
+          "bytes": 50150,
+          "sha256": "a7a57fdb0cc939a0fb1098c7658c448e59b6293369e4d949bac36d8f39f13371"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/policy_input.png",
+          "bytes": 51733,
+          "sha256": "741610907ca0d7193dcc9a0306086a50a9b0d6a588503537c79ef0325f7d1f17"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/queries.jsonl",
+          "bytes": 422365,
+          "sha256": "5185b78acb55b2d4aa5fef242e64a31a69f0a482e601cfa6c9e2eeed58d476d4"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/states.npz",
+          "bytes": 132524,
+          "sha256": "413a3bce0c25bef506af2c668b97a686948fb3d4e3456aa56d361e7841a6af4d"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/status.json",
+          "bytes": 6987,
+          "sha256": "90ba6938066a402703653d419924301cc3450790c95a173b2cbfdf82d726b360"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/steps.jsonl",
+          "bytes": 6395686,
+          "sha256": "521566a8c060a90b3d59f5656fedfcf21ceb75b17ca732dcfc536bd009da6b46"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback/worker.log",
+          "bytes": 714,
+          "sha256": "e30f6868d03cc7f9290d2f311c7e5ad249e1c793601e9d09532508618047355f"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/simple_feedback.log",
+          "bytes": 1031,
+          "sha256": "49cd193ab4e9a4496b8da3e29c228753314c9a3f1f39c47d5d2eed221b7f0870"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/configs/tasks/fridge_retrieval_dev.bddl",
+          "bytes": 967,
+          "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/exp_record/experiment3_fridge_candidate_20261019/protocol.md",
+          "bytes": 5466,
+          "sha256": "e7383e00b5bda183585c3c1e59c1fc3e2fd842a6af4be402371b2aad30b4b9a7"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/diagnose_fridge_skills.py",
+          "bytes": 14207,
+          "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/diagnose_vla_failure.py",
+          "bytes": 10887,
+          "sha256": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_candidate_gate.py",
+          "bytes": 8553,
+          "sha256": "9d5914081060c70ee0baf4cf48ccf556a4b2bbf6e2fe8968258336141e29f294"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_candidate_launch.py",
+          "bytes": 5766,
+          "sha256": "ec3632ad6c4eea402cf1f5374587f61399d291136ecb93d0c435ecd9815e0c6c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_candidate_run.py",
+          "bytes": 11659,
+          "sha256": "4c95eebb59e70b554b5ea2b392c33c6d37088f34eb2c17fb5e3b5787ba2d3d61"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_candidate_worker.py",
+          "bytes": 2966,
+          "sha256": "b3db2e5fe1c3a99f800a6e66b00140aba394f31c685707fe8593b43edb9bd53c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_fridge_gate.py",
+          "bytes": 6167,
+          "sha256": "6018e73552da2d09483124395d67ae7577feef2b880b275b83dd1c92913f0e2d"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_fridge_launch.py",
+          "bytes": 5633,
+          "sha256": "af1952378cc0ceac7dae41086fe3402f1ae9aa5d035db14456e43bcdd15c61e3"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_fridge_review.py",
+          "bytes": 8111,
+          "sha256": "18dde4d3d1ac5950a14a2c4992830eaf69503257e519993e900e089093d5dd63"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/experiment3_fridge_run.py",
+          "bytes": 12380,
+          "sha256": "a838ada3660b63fd212529ca2ff71768dc52b0b554e8d3d8a68ec9d951e44906"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/fridge_observation_experiment.py",
+          "bytes": 13049,
+          "sha256": "ee27e407e2e0a541fec3891645fe986bff4b0c49ba84edc992b34748854b1512"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/probe_fridge_task.py",
+          "bytes": 7250,
+          "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/run_fridge_r1.py",
+          "bytes": 5069,
+          "sha256": "8a92acbe50badc2c988a5301eb5b0f00222297d7427a9641f9cdc8e59de5da87"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/scripts/test_experiment3_fridge.py",
+          "bytes": 2757,
+          "sha256": "20f006d2c5b1a61054beb1775318c1e5cb957d12856641771cd5686dbf957659"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/assembly_hybrid.py",
+          "bytes": 8321,
+          "sha256": "f30be3d0b12f9167d8f2a5f40a725900adea956570e0f98314c60dc42b24b6db"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/assembly_predictor.py",
+          "bytes": 1428,
+          "sha256": "4378f9117db6e71099aef4ab4113ab55a5cfe2f3f07f6cf07f14681783fce213"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/assembly_runtime.py",
+          "bytes": 6454,
+          "sha256": "1938fa8e7645be0b8402d1614e1c744c7e36ff41f4ba3c217abc1790fbda4619"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/checkvla_official.py",
+          "bytes": 2792,
+          "sha256": "84beb0a188eb0ca84c03fa4c4a3fd24fe3d6638afc34038b0fcb972e6f4b8ecc"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/fridge_door_repair.py",
+          "bytes": 5232,
+          "sha256": "e3eb3253e7640b41fe9bf65cc7414473a0e649c2855bd1695028c6c218b58c58"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/fridge_runtime.py",
+          "bytes": 11521,
+          "sha256": "be96c12308fa8abd7daff38ceb89de4fb8b247ac66953f34f14bd41dc9cfa597"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/fridge_stage_evidence.py",
+          "bytes": 5884,
+          "sha256": "69a486c34dddde73bd665003d921f172e27312902412f5495bedfee467922334"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_completion.py",
+          "bytes": 5647,
+          "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_diagnostics.py",
+          "bytes": 2094,
+          "sha256": "e8934c4ce970a7f73a82c917cc0c0d441e7bbd370d99fee716388061843c7d7c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_drawer.py",
+          "bytes": 14192,
+          "sha256": "94a39ce6d60f7924b3d5d61416bf6ec5f80e928af6740dd48ca8a92098a69d39"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_mining.py",
+          "bytes": 10677,
+          "sha256": "d9e019d8958522285a5cd4920143fd7a7fd2896dd92259754e1f07b3ede82057"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_openvla.py",
+          "bytes": 3679,
+          "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_preservation.py",
+          "bytes": 7265,
+          "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_runtime.py",
+          "bytes": 3229,
+          "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/libero_stress.py",
+          "bytes": 2103,
+          "sha256": "f4fd6dc545bd7ef6803575f2e54f0145010bd66da28dfc793b5694aa049aa41c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/openvla_policy.py",
+          "bytes": 9406,
+          "sha256": "fff76498215d4f2259064825ce39749c031315d82a12ec56e8cbaba82447b95c"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/orbisim_official.py",
+          "bytes": 3687,
+          "sha256": "5e19a5bf8c50f1b5720a290ca9fb5220c1eae6fbfae64af4933410f355ba670e"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/relational_transport.py",
+          "bytes": 3256,
+          "sha256": "68a87a6450ba1f43ef5297049e6e3286cd361f8a1f3b6ffd316ec6a80d4d4601"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/source/src/adapters/tf5_compat.py",
+          "bytes": 26212,
+          "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/supervisor.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/images.npz",
+          "bytes": 33749319,
+          "sha256": "9c0224cebd95318a8c40a5376e4f6107cfcfc7b052dc5d573685e2710e74dc89"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/initial.png",
+          "bytes": 60313,
+          "sha256": "2a961344547cd659a02a423fecc50c9788a0cc726dcdb7318a1e6b1bb2ddbd99"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/model.xml",
+          "bytes": 50150,
+          "sha256": "a7a57fdb0cc939a0fb1098c7658c448e59b6293369e4d949bac36d8f39f13371"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/policy_input.png",
+          "bytes": 51733,
+          "sha256": "741610907ca0d7193dcc9a0306086a50a9b0d6a588503537c79ef0325f7d1f17"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/queries.jsonl",
+          "bytes": 425389,
+          "sha256": "bfce9b258907d4f60bd2bc6071678709cb2daf5693c0642134e2755a13369cbf"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/states.npz",
+          "bytes": 121152,
+          "sha256": "c6ecaef218d159040e1ef26656d880613f685e2618ada5430d02061712812e83"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/status.json",
+          "bytes": 6980,
+          "sha256": "d986791dcf201e18d82880ef94bf8f46ce0c7f5de291ec32327a0adbe4df7ee9"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/steps.jsonl",
+          "bytes": 5917328,
+          "sha256": "b2a5a0923bc508ecc71c3777020834340aca6c73a71f697184d524dca4bb3ec0"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification/worker.log",
+          "bytes": 714,
+          "sha256": "6b52ba9abbd63f2371161d9204c28c09c1b46129e616441392bc39de850328fc"
+        },
+        {
+          "path": "scratch/experiment3_candidates_fridge_20261019_a/verification.log",
+          "bytes": 1031,
+          "sha256": "90e38e3996f5db33ece9fe6c2fb0965b264cf93c6b61768297f09d9f81411cb1"
+        },
+        {
+          "path": "repository/scripts/experiment3_fridge_gate.py",
+          "bytes": 6167,
+          "sha256": "6018e73552da2d09483124395d67ae7577feef2b880b275b83dd1c92913f0e2d"
+        },
+        {
+          "path": "repository/scripts/experiment3_fridge_launch.py",
+          "bytes": 5633,
+          "sha256": "af1952378cc0ceac7dae41086fe3402f1ae9aa5d035db14456e43bcdd15c61e3"
+        },
+        {
+          "path": "repository/scripts/experiment3_fridge_review.py",
+          "bytes": 8111,
+          "sha256": "18dde4d3d1ac5950a14a2c4992830eaf69503257e519993e900e089093d5dd63"
+        },
+        {
+          "path": "repository/scripts/experiment3_fridge_run.py",
+          "bytes": 12380,
+          "sha256": "a838ada3660b63fd212529ca2ff71768dc52b0b554e8d3d8a68ec9d951e44906"
+        },
+        {
+          "path": "repository/scripts/test_experiment3_fridge.py",
+          "bytes": 2757,
+          "sha256": "20f006d2c5b1a61054beb1775318c1e5cb957d12856641771cd5686dbf957659"
+        },
+        {
+          "path": "repository/exp_record/experiment3_fridge_candidate_20261019/protocol.md",
+          "bytes": 5466,
+          "sha256": "e7383e00b5bda183585c3c1e59c1fc3e2fd842a6af4be402371b2aad30b4b9a7"
+        },
+        {
+          "path": "repository/exp_record/experiment3_fridge_candidate_20261019/results.md",
+          "bytes": 2912,
+          "sha256": "36886f5be395389d0f3345b02a2e95b0af1a4cac3eb79fecd49a0d199d7b53a9"
+        }
+      ]
+    },
+    {
+      "file": "fridge_q1.tar.gz",
+      "bytes": 26392806,
+      "sha256": "7dfb465871813c36f03c7ee608936f07d49e74b7d034c6574f75ad7b06c96d07",
+      "members": [
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/all_opportunities_candidates_offline.mp4",
+          "bytes": 1609692,
+          "sha256": "d0c8f326596be13c600cbfc91bf13bff8663e1dbaf7350578e796c85d56f2ea7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/configs/tasks/fridge_retrieval_dev.bddl",
+          "bytes": 967,
+          "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/exp_record/experiment3_fridge_candidate_20261019/protocol.md",
+          "bytes": 5466,
+          "sha256": "e7383e00b5bda183585c3c1e59c1fc3e2fd842a6af4be402371b2aad30b4b9a7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/diagnose_fridge_skills.py",
+          "bytes": 14207,
+          "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/diagnose_vla_failure.py",
+          "bytes": 10887,
+          "sha256": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_candidate_gate.py",
+          "bytes": 8553,
+          "sha256": "9d5914081060c70ee0baf4cf48ccf556a4b2bbf6e2fe8968258336141e29f294"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_candidate_launch.py",
+          "bytes": 5766,
+          "sha256": "ec3632ad6c4eea402cf1f5374587f61399d291136ecb93d0c435ecd9815e0c6c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_candidate_run.py",
+          "bytes": 11659,
+          "sha256": "4c95eebb59e70b554b5ea2b392c33c6d37088f34eb2c17fb5e3b5787ba2d3d61"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_candidate_worker.py",
+          "bytes": 2966,
+          "sha256": "b3db2e5fe1c3a99f800a6e66b00140aba394f31c685707fe8593b43edb9bd53c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_fridge_gate.py",
+          "bytes": 6167,
+          "sha256": "6018e73552da2d09483124395d67ae7577feef2b880b275b83dd1c92913f0e2d"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_fridge_launch.py",
+          "bytes": 5633,
+          "sha256": "af1952378cc0ceac7dae41086fe3402f1ae9aa5d035db14456e43bcdd15c61e3"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_fridge_review.py",
+          "bytes": 8111,
+          "sha256": "18dde4d3d1ac5950a14a2c4992830eaf69503257e519993e900e089093d5dd63"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/experiment3_fridge_run.py",
+          "bytes": 12380,
+          "sha256": "a838ada3660b63fd212529ca2ff71768dc52b0b554e8d3d8a68ec9d951e44906"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/fridge_observation_experiment.py",
+          "bytes": 13049,
+          "sha256": "ee27e407e2e0a541fec3891645fe986bff4b0c49ba84edc992b34748854b1512"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/probe_fridge_task.py",
+          "bytes": 7250,
+          "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/run_fridge_r1.py",
+          "bytes": 5069,
+          "sha256": "8a92acbe50badc2c988a5301eb5b0f00222297d7427a9641f9cdc8e59de5da87"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/scripts/test_experiment3_fridge.py",
+          "bytes": 2757,
+          "sha256": "20f006d2c5b1a61054beb1775318c1e5cb957d12856641771cd5686dbf957659"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/__init__.py",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/assembly_hybrid.py",
+          "bytes": 8321,
+          "sha256": "f30be3d0b12f9167d8f2a5f40a725900adea956570e0f98314c60dc42b24b6db"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/assembly_predictor.py",
+          "bytes": 1428,
+          "sha256": "4378f9117db6e71099aef4ab4113ab55a5cfe2f3f07f6cf07f14681783fce213"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/assembly_runtime.py",
+          "bytes": 6454,
+          "sha256": "1938fa8e7645be0b8402d1614e1c744c7e36ff41f4ba3c217abc1790fbda4619"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/checkvla_official.py",
+          "bytes": 2792,
+          "sha256": "84beb0a188eb0ca84c03fa4c4a3fd24fe3d6638afc34038b0fcb972e6f4b8ecc"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/fridge_door_repair.py",
+          "bytes": 5232,
+          "sha256": "e3eb3253e7640b41fe9bf65cc7414473a0e649c2855bd1695028c6c218b58c58"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/fridge_runtime.py",
+          "bytes": 11521,
+          "sha256": "be96c12308fa8abd7daff38ceb89de4fb8b247ac66953f34f14bd41dc9cfa597"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/fridge_stage_evidence.py",
+          "bytes": 5884,
+          "sha256": "69a486c34dddde73bd665003d921f172e27312902412f5495bedfee467922334"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_completion.py",
+          "bytes": 5647,
+          "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_diagnostics.py",
+          "bytes": 2094,
+          "sha256": "e8934c4ce970a7f73a82c917cc0c0d441e7bbd370d99fee716388061843c7d7c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_drawer.py",
+          "bytes": 14192,
+          "sha256": "94a39ce6d60f7924b3d5d61416bf6ec5f80e928af6740dd48ca8a92098a69d39"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_mining.py",
+          "bytes": 10677,
+          "sha256": "d9e019d8958522285a5cd4920143fd7a7fd2896dd92259754e1f07b3ede82057"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_openvla.py",
+          "bytes": 3679,
+          "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_preservation.py",
+          "bytes": 7265,
+          "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_runtime.py",
+          "bytes": 3229,
+          "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/libero_stress.py",
+          "bytes": 2103,
+          "sha256": "f4fd6dc545bd7ef6803575f2e54f0145010bd66da28dfc793b5694aa049aa41c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/openvla_policy.py",
+          "bytes": 9406,
+          "sha256": "fff76498215d4f2259064825ce39749c031315d82a12ec56e8cbaba82447b95c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/orbisim_official.py",
+          "bytes": 3687,
+          "sha256": "5e19a5bf8c50f1b5720a290ca9fb5220c1eae6fbfae64af4933410f355ba670e"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/relational_transport.py",
+          "bytes": 3256,
+          "sha256": "68a87a6450ba1f43ef5297049e6e3286cd361f8a1f3b6ffd316ec6a80d4d4601"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/base_source/src/adapters/tf5_compat.py",
+          "bytes": 26212,
+          "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/camera_config.json",
+          "bytes": 1545,
+          "sha256": "d3374b2fc031298999214d41b6f3275ce9f61ddb14ba932d01d49e12d1924ea1"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/combined_video_manifest.json",
+          "bytes": 404,
+          "sha256": "6c120e095a46c3a96e31ccf8cdf7f2d5d3cd8b7fe4683d2679fea9ef199c9429"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/detached.json",
+          "bytes": 149,
+          "sha256": "a10682a10645521eccc02d06e11d90aa8385eba31296a2f0c7cbe3575050c123"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/freeze.json",
+          "bytes": 10538,
+          "sha256": "8af817ad19b2ed2e64a2edb41d56914698e2fbd2d360491c7840ba579ba4b17f"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/launch.json",
+          "bytes": 2405,
+          "sha256": "a4bc4445b50d71a8d677f3913cb08a8b4404c7080d058133bb0b963d4c37bfb1"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/plan.json",
+          "bytes": 210144,
+          "sha256": "d53acbb98ce273bd01b04799fd488796fe6e588e37de553b6d41714158730603"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/postrun_audit.json",
+          "bytes": 1233,
+          "sha256": "a1914d2157de0cfa118ce4fc3d7b213803412ea555544b9c20892dd003b2774b"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate0/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "0c0bae496223ae1794a4d75d610a0e4b527063033778456b0f3561dc21a2fe52"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate0/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate0/verification.json",
+          "bytes": 151,
+          "sha256": "fcc6ced963fbf02e958bebcefdaab2dd1b56ee5cbbaf7e5ba60bc64ff6268fca"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate0.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate1/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "0c0bae496223ae1794a4d75d610a0e4b527063033778456b0f3561dc21a2fe52"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate1/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate1/verification.json",
+          "bytes": 151,
+          "sha256": "fcc6ced963fbf02e958bebcefdaab2dd1b56ee5cbbaf7e5ba60bc64ff6268fca"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate1.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate2/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "0c0bae496223ae1794a4d75d610a0e4b527063033778456b0f3561dc21a2fe52"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate2/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate2/verification.json",
+          "bytes": 151,
+          "sha256": "fcc6ced963fbf02e958bebcefdaab2dd1b56ee5cbbaf7e5ba60bc64ff6268fca"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step368_candidate2.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate0/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "eef2be09a23c4c6a11cbab3b46743e83286c957f61dbb30f8cd5e648241fdec7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate0/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate0/verification.json",
+          "bytes": 151,
+          "sha256": "d40fefc8867dd43002ccf974fe04291ff5e0b3b8ed6915308439927e5159135f"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate0.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate1/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "eef2be09a23c4c6a11cbab3b46743e83286c957f61dbb30f8cd5e648241fdec7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate1/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate1/verification.json",
+          "bytes": 151,
+          "sha256": "d40fefc8867dd43002ccf974fe04291ff5e0b3b8ed6915308439927e5159135f"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate1.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate2/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "eef2be09a23c4c6a11cbab3b46743e83286c957f61dbb30f8cd5e648241fdec7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate2/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate2/verification.json",
+          "bytes": 151,
+          "sha256": "d40fefc8867dd43002ccf974fe04291ff5e0b3b8ed6915308439927e5159135f"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step403_candidate2.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate0/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "f700f5eb67c22d58a116049ffe8e3a196dcebe46b48b1cbe7469ebb3cb159b9c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate0/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate0/verification.json",
+          "bytes": 151,
+          "sha256": "33ae896278aa72ab44144393f8828d61ac37e27652e2347632b83610759ab468"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate0.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate1/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "f700f5eb67c22d58a116049ffe8e3a196dcebe46b48b1cbe7469ebb3cb159b9c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate1/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate1/verification.json",
+          "bytes": 151,
+          "sha256": "33ae896278aa72ab44144393f8828d61ac37e27652e2347632b83610759ab468"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate1.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate2/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "f700f5eb67c22d58a116049ffe8e3a196dcebe46b48b1cbe7469ebb3cb159b9c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate2/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate2/verification.json",
+          "bytes": 151,
+          "sha256": "33ae896278aa72ab44144393f8828d61ac37e27652e2347632b83610759ab468"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/replay_step443_candidate2.log",
+          "bytes": 649,
+          "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/results.json",
+          "bytes": 55106,
+          "sha256": "5137adc11705e6693bfeae8bba59d36fa0e595d6f82795b65c4146a42230cf0a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/review.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/source/exp_record/experiment3_fridge_q1_20261019/protocol.md",
+          "bytes": 7517,
+          "sha256": "a72535f3e53d196af98952c92650c89d4da57952ef2305f86a6610ac244db7dc"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/source/scripts/experiment3_q1_launch.py",
+          "bytes": 9586,
+          "sha256": "153baa2877931c0641b35632740ea9847fe7f45ef43672b1fbfc7e26c6524f90"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/source/scripts/experiment3_q1_metrics.py",
+          "bytes": 4570,
+          "sha256": "f34923ecebe2ad3b52c3e03cea0e8361a629be90e99e1b52d9c6b14ee0af835a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/source/scripts/experiment3_q1_review.py",
+          "bytes": 10142,
+          "sha256": "1e134ba8d8d3ee92275760b910a3fbbbb1768dc64dddb0ef175aece5ff545c30"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/source/scripts/experiment3_q1_run.py",
+          "bytes": 11582,
+          "sha256": "452f8ffd4d2579c2d31037e03961008a3d4814b45ee7e98c165d11da8e5f1390"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/source/scripts/test_experiment3_q1.py",
+          "bytes": 2715,
+          "sha256": "f3526d8829ccb5f91c7d486a24c5e716134c2d0653e39a7a75495a03f0fafadb"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/after.png",
+          "bytes": 57444,
+          "sha256": "0a0db80e32353b49269187635f5c336b1d6b4c2696f356e604dea949f87acfdc"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/before.png",
+          "bytes": 57647,
+          "sha256": "bf025f4effbf37ebc0b524c2ca73c54b20389cc70816d36582348fe8bfb5e0e3"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/images.npz",
+          "bytes": 2188739,
+          "sha256": "036e023143efe57ef0225d6ec090fad13faac1a46e3f6a83ca5abc5928b46adb"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "0c0bae496223ae1794a4d75d610a0e4b527063033778456b0f3561dc21a2fe52"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/queries.jsonl",
+          "bytes": 22365,
+          "sha256": "21fbab4111dd9341d4231e7409e8c6a7d16dd7352b9ffe28f591987604eebab3"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/states.npz",
+          "bytes": 8087,
+          "sha256": "b8572c9015723d775b9fd6224a836b7ec623748da98a63b1ef1bf5302d2f7c98"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/status.json",
+          "bytes": 5159,
+          "sha256": "41f786163114a6d3d5e6f1df203a588283579e4eef829e82b4fe647425bbdb50"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/steps.jsonl",
+          "bytes": 383965,
+          "sha256": "5e557e26afc767fe80546d929880c847ebbdd87e7b619c4488c524cb6def8eee"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0/worker.log",
+          "bytes": 714,
+          "sha256": "2f86970fc869ed8b9f2fee9f92a5c0e7161215455c66d0b50d72642848b1892b"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate0.log",
+          "bytes": 1031,
+          "sha256": "14520a8a6fa76143cefbac0dffb8f87252d30b462a9633b00ec0ea2871ec0b1a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/after.png",
+          "bytes": 57444,
+          "sha256": "0a0db80e32353b49269187635f5c336b1d6b4c2696f356e604dea949f87acfdc"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/before.png",
+          "bytes": 57647,
+          "sha256": "bf025f4effbf37ebc0b524c2ca73c54b20389cc70816d36582348fe8bfb5e0e3"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/images.npz",
+          "bytes": 2188739,
+          "sha256": "036e023143efe57ef0225d6ec090fad13faac1a46e3f6a83ca5abc5928b46adb"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "0c0bae496223ae1794a4d75d610a0e4b527063033778456b0f3561dc21a2fe52"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/queries.jsonl",
+          "bytes": 22364,
+          "sha256": "a5b847d30347188b9427fab04ba003ea166ddb3fa26046f7add2e722f76f1b8e"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/states.npz",
+          "bytes": 8087,
+          "sha256": "b8572c9015723d775b9fd6224a836b7ec623748da98a63b1ef1bf5302d2f7c98"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/status.json",
+          "bytes": 5160,
+          "sha256": "e245bc853540e8ef4c03aadfd441b4073f6f697d1e2833569f0f40081ffdd475"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/steps.jsonl",
+          "bytes": 383999,
+          "sha256": "c23eb581f23692b524661b82c648fa67338aaa660571106145a243a22c169f8d"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1/worker.log",
+          "bytes": 807,
+          "sha256": "45ee2dc48cc06b948bafb72a3bb58299c6ba2d4fd42b54f8a9e617da48b9d035"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate1.log",
+          "bytes": 1031,
+          "sha256": "fa5647c37a3a78933347eb7addab8ccfa6fe471027c8092d7203c7d5e0965382"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/after.png",
+          "bytes": 57444,
+          "sha256": "0a0db80e32353b49269187635f5c336b1d6b4c2696f356e604dea949f87acfdc"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/before.png",
+          "bytes": 57647,
+          "sha256": "bf025f4effbf37ebc0b524c2ca73c54b20389cc70816d36582348fe8bfb5e0e3"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/images.npz",
+          "bytes": 2188739,
+          "sha256": "036e023143efe57ef0225d6ec090fad13faac1a46e3f6a83ca5abc5928b46adb"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "0c0bae496223ae1794a4d75d610a0e4b527063033778456b0f3561dc21a2fe52"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/queries.jsonl",
+          "bytes": 22363,
+          "sha256": "a59e3054ed867d65d58ab421d29106f093bc9103e37cf66cf139ee8c348a4d96"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/states.npz",
+          "bytes": 8087,
+          "sha256": "b8572c9015723d775b9fd6224a836b7ec623748da98a63b1ef1bf5302d2f7c98"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/status.json",
+          "bytes": 5161,
+          "sha256": "e70706cf8d625f147f67f0693006cb62f0a13206b107c9a4b39c009204bf37c4"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/steps.jsonl",
+          "bytes": 383997,
+          "sha256": "f723f52d02b09f7489e3000808eafa293916053cb1652145c5f3980148d23e09"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2/worker.log",
+          "bytes": 714,
+          "sha256": "9ce8145a56a8a20770f1bd56a3170929e9bfee4097340d6dc69dec0f40517ba4"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidate2.log",
+          "bytes": 1031,
+          "sha256": "60239effbb227d29e67a76c5d031847d720e7dfb23a816c03bfe6bcd2e5aa3be"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_candidates_offline.mp4",
+          "bytes": 580309,
+          "sha256": "bcecfa759be866c9290fd95bb597b94163b503e852b07b510db97d0d7ddf7ab4"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_frame0.png",
+          "bytes": 188207,
+          "sha256": "33e2e7dec91d6617f2fde2effaeb629b9643f719761fa82122a153796cb3851a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_frame12.png",
+          "bytes": 190060,
+          "sha256": "c287717ba99e9af443b031191e2c52a9084a1c14acb4efa534e75ba79fc4c443"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step368_frame71.png",
+          "bytes": 178227,
+          "sha256": "1b855a3cdc40c5ad7d37b721297b7e8110f710de5d68b6e543cfca79130cfb2c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/after.png",
+          "bytes": 57801,
+          "sha256": "cfea0f5cd2ac5ce9ab7bff3035a820672c8834cf09299c4df33d36737a741bc9"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/before.png",
+          "bytes": 57592,
+          "sha256": "f9aacb10b9357beee1fe8832895806cb3a49b949cd20565b9a5ddb5305ca2de8"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/images.npz",
+          "bytes": 2192716,
+          "sha256": "954cca7771c5981355f97ce84a759d582f3c88ec3d3f7c5af4f6270fda5343db"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "eef2be09a23c4c6a11cbab3b46743e83286c957f61dbb30f8cd5e648241fdec7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/queries.jsonl",
+          "bytes": 22164,
+          "sha256": "b2e98437e2347332baf42a3cc9be139f8365786de42870a7eeb5fdfb5f32f04a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/states.npz",
+          "bytes": 8167,
+          "sha256": "ba318b878083e8102cf1dcf796f11bdd6bc4378ad24916bb79cc93ab53933ab5"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/status.json",
+          "bytes": 5169,
+          "sha256": "c0def40cae4d14d9dc1dcf45d98c94ae7fdba45a052943120175a9f247ac9097"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/steps.jsonl",
+          "bytes": 382165,
+          "sha256": "51e88b884f994dfae844bc7564365cb50aefbe299400df927ef4e4df070ba067"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0/worker.log",
+          "bytes": 714,
+          "sha256": "240e0a12d71d2cc21dbffab9fd2a0078dac407a69147ce2d86eed14f6ebc48d9"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate0.log",
+          "bytes": 1031,
+          "sha256": "4a959000d3c56513fd6d5926e40d82eb11348ab680f1a8d3339d5c7c52a83188"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/after.png",
+          "bytes": 57602,
+          "sha256": "9f9cfd9a00dd045db9d0869edb809f3355ae393ff43d23ad04935e99b2251321"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/before.png",
+          "bytes": 57592,
+          "sha256": "f9aacb10b9357beee1fe8832895806cb3a49b949cd20565b9a5ddb5305ca2de8"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/images.npz",
+          "bytes": 2190211,
+          "sha256": "bdad3e61cf96d194ea1067493db97e49d6dad7a9d0b14d271b96231e328b9d6f"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "eef2be09a23c4c6a11cbab3b46743e83286c957f61dbb30f8cd5e648241fdec7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/queries.jsonl",
+          "bytes": 22270,
+          "sha256": "82aed5b8f423fa0365bcc48480875df568cecaf2786cd7dc01e6f7b1bd5eae49"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/states.npz",
+          "bytes": 8148,
+          "sha256": "b4cc7dcb3d5a97885e91346769c116ead14c3dcc7dfdfb1acf3265eb30b3b9c6"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/status.json",
+          "bytes": 5174,
+          "sha256": "8cc2f66ca87827101c26743f8aeb0ceced7b9e0d1e255f53b7d37f48f242b535"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/steps.jsonl",
+          "bytes": 382367,
+          "sha256": "f889f7ab62289167bfc939464f153a40eb5f86d1d40197e269d7f41d900e355d"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1/worker.log",
+          "bytes": 714,
+          "sha256": "17f81bc889f59c60323dbb437b53c88f460e90aa104592f9814959bba7590250"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate1.log",
+          "bytes": 1031,
+          "sha256": "4f337995b35a8f8e8397c308d511b1be3b0f9e397320633f531194a8256b3f71"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/after.png",
+          "bytes": 57801,
+          "sha256": "cfea0f5cd2ac5ce9ab7bff3035a820672c8834cf09299c4df33d36737a741bc9"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/before.png",
+          "bytes": 57592,
+          "sha256": "f9aacb10b9357beee1fe8832895806cb3a49b949cd20565b9a5ddb5305ca2de8"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/images.npz",
+          "bytes": 2192716,
+          "sha256": "954cca7771c5981355f97ce84a759d582f3c88ec3d3f7c5af4f6270fda5343db"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "eef2be09a23c4c6a11cbab3b46743e83286c957f61dbb30f8cd5e648241fdec7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/queries.jsonl",
+          "bytes": 22158,
+          "sha256": "0d9b4271e2e5a6c9c2ca38a69b49ec35dec3322587a8bc4a6bc78fe60e24e90c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/states.npz",
+          "bytes": 8167,
+          "sha256": "ba318b878083e8102cf1dcf796f11bdd6bc4378ad24916bb79cc93ab53933ab5"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/status.json",
+          "bytes": 5171,
+          "sha256": "4935060d142c55c1d4158f4204d942ad406f897cba1ef9b1b9771e2db2c101af"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/steps.jsonl",
+          "bytes": 382194,
+          "sha256": "f00a164784e684019355d7d0b18a7ae520c489b0dd6f34a7a15da6b7d70ba98d"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2/worker.log",
+          "bytes": 718,
+          "sha256": "c2a61ffd12f56dbbfc8b90f8f4cd88e7da6a2d451dee355c13d4d99e043b0723"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidate2.log",
+          "bytes": 1031,
+          "sha256": "c4b1058558bca155568cc8a1718a10ae25f1cf737f088b57c1b032f4e17903d0"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_candidates_offline.mp4",
+          "bytes": 659811,
+          "sha256": "885273bb0f185adccb459820a4607439e7e58b8f870aed486a30fb119fd2560b"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_frame0.png",
+          "bytes": 187833,
+          "sha256": "f04ac1ce904084b99646d21e1f2a6db83cccaf3950df068d75461208379a0271"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_frame12.png",
+          "bytes": 201271,
+          "sha256": "b143944321d9cf638358ceb38775fb06d95683cf7a869a264d64d80b3205cac7"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step403_frame71.png",
+          "bytes": 188196,
+          "sha256": "395fe0da74602beb19e245f51602ca23fca9490249c0ede23aecdeb22780bf98"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/after.png",
+          "bytes": 57371,
+          "sha256": "4b929054704fee3d3673a00b2a04be8aa725f522df241f79ed31b31b0dd1ea04"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/before.png",
+          "bytes": 57374,
+          "sha256": "f437921ef9eb7d13792240731c7b589e62a42a9e749545afb6b387d438ffe069"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/images.npz",
+          "bytes": 2187732,
+          "sha256": "9bfe73f45bc6420bb2d30a1790d980d1e2522677c824e2a9e5e57769956ebf0a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "f700f5eb67c22d58a116049ffe8e3a196dcebe46b48b1cbe7469ebb3cb159b9c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/queries.jsonl",
+          "bytes": 21947,
+          "sha256": "b26fa807550350f018f48a45979b098147c30c780d0df669c1f15c37b00d3dd0"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/states.npz",
+          "bytes": 8172,
+          "sha256": "38cf28cadc26080f5a7730dc4cab37a8e90fa12d07ab273a67e13e6251cca5a1"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/status.json",
+          "bytes": 5157,
+          "sha256": "505b4d085ce459ec21746f15da2e253abc162dbb5bb7d52014dddaafc7b35e46"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/steps.jsonl",
+          "bytes": 386365,
+          "sha256": "91e5cf30442e85fa6ba07bca7afe071f1ed500bccd9a55b53e502d7ce920034e"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0/worker.log",
+          "bytes": 714,
+          "sha256": "d58ab9cb422701bb528a29c568bc760a925b98c47c3c3ddb6a928ec65a3322b4"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate0.log",
+          "bytes": 1031,
+          "sha256": "f6975bc1f41ffd8bd7fafb0c830c751850c3d57a3b4eeeb3b7c37ee4696d172d"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/after.png",
+          "bytes": 57773,
+          "sha256": "972c6dbeb5e2188e1e6355cd439a81a267d61060b0ec3f63970ad2a0d762f10a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/before.png",
+          "bytes": 57374,
+          "sha256": "f437921ef9eb7d13792240731c7b589e62a42a9e749545afb6b387d438ffe069"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/images.npz",
+          "bytes": 2187088,
+          "sha256": "adb8f6d8cce7648f6c24a23bf378a62261150b3823fb5e4e97774313c76b8968"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "f700f5eb67c22d58a116049ffe8e3a196dcebe46b48b1cbe7469ebb3cb159b9c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/queries.jsonl",
+          "bytes": 21997,
+          "sha256": "c89f45511a02706ec6760e74282b122ddd5ff333ccad506fc3b9a9a076563121"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/states.npz",
+          "bytes": 8175,
+          "sha256": "dbc34706c6320f5adda6b27428ef5c9050428b7158c49882ae372d3540632d1f"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/status.json",
+          "bytes": 5155,
+          "sha256": "52ea157d022c5811793516ef6e6d391ebbe5969252608389438eba37445280bf"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/steps.jsonl",
+          "bytes": 386378,
+          "sha256": "924ea6106b386a51a9293cdb661d5cfa2b606ee00f36c58f88a1a6d37a5c5f90"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1/worker.log",
+          "bytes": 807,
+          "sha256": "c9cb061ce6f313cc11326e95afab99d33e9075a36b5cdf4e1b66309dbb80f8e6"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate1.log",
+          "bytes": 1031,
+          "sha256": "e06ef545ba7054792f60a83a04f31bb62997235fef735de687dc856e8feab5ca"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/after.png",
+          "bytes": 58046,
+          "sha256": "58d874e990eab2d60c34f2657e7ab60e684881441f000f3d6a58abbd1139a021"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/before.png",
+          "bytes": 57374,
+          "sha256": "f437921ef9eb7d13792240731c7b589e62a42a9e749545afb6b387d438ffe069"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/images.npz",
+          "bytes": 2190852,
+          "sha256": "43f6347fc40d06a535043aabb96875b3fee5833f8e00dd66872e66a9708918d6"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/prefix_identity.json",
+          "bytes": 760,
+          "sha256": "f700f5eb67c22d58a116049ffe8e3a196dcebe46b48b1cbe7469ebb3cb159b9c"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/queries.jsonl",
+          "bytes": 21875,
+          "sha256": "b7ff4dae4fe57fcceefa95ae2db38801a4c6edc7005884dc9949f2282e8d1944"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/scene.bddl",
+          "bytes": 984,
+          "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/states.npz",
+          "bytes": 8180,
+          "sha256": "27a99d584ec98f5a7a87caddc11b92207cca5124538bc905fd6038cf5be17f9a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/status.json",
+          "bytes": 5153,
+          "sha256": "5b892eb339090076c5c4242b228dc6fc0150527168cfa659721317ab34d07db3"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/steps.jsonl",
+          "bytes": 386313,
+          "sha256": "3be9551a8cee6e78cdee025451349092d2874bd839693efdf198b69804e25724"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2/worker.log",
+          "bytes": 714,
+          "sha256": "0f26e18c42c9c7e04547d7326b612fdda051bb9a2dacd941035d3b5e7b2cf1f2"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidate2.log",
+          "bytes": 1031,
+          "sha256": "fbf72f14814416c7d206ff0fe8f5456b8ce96e546bae7701674b2a512717ae4e"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_candidates_offline.mp4",
+          "bytes": 697046,
+          "sha256": "c3e9232c8ba319a7c1dd6421c6d0743c2755bca6e9ac9d058c7cbd9a8b505b6a"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_frame0.png",
+          "bytes": 189417,
+          "sha256": "6c8ef4a0a8f26f76f1a3ef8c5a38342ff624e011f5c0bb7e07b98e7a2f172e91"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_frame12.png",
+          "bytes": 208215,
+          "sha256": "e83e77bd2016fa73570ff43c0d264317b9772ed7b44a856a982820781224089e"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/step443_frame71.png",
+          "bytes": 200710,
+          "sha256": "bd90cae88479d08870234f14b31be39e65999e5edcca46a597d7b0e0c43e506e"
+        },
+        {
+          "path": "scratch/experiment3_fridge_q1_20261019_a/supervisor.log",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "repository/scripts/experiment3_q1_launch.py",
+          "bytes": 9586,
+          "sha256": "153baa2877931c0641b35632740ea9847fe7f45ef43672b1fbfc7e26c6524f90"
+        },
+        {
+          "path": "repository/scripts/experiment3_q1_metrics.py",
+          "bytes": 4570,
+          "sha256": "f34923ecebe2ad3b52c3e03cea0e8361a629be90e99e1b52d9c6b14ee0af835a"
+        },
+        {
+          "path": "repository/scripts/experiment3_q1_review.py",
+          "bytes": 10142,
+          "sha256": "1e134ba8d8d3ee92275760b910a3fbbbb1768dc64dddb0ef175aece5ff545c30"
+        },
+        {
+          "path": "repository/scripts/experiment3_q1_run.py",
+          "bytes": 11582,
+          "sha256": "452f8ffd4d2579c2d31037e03961008a3d4814b45ee7e98c165d11da8e5f1390"
+        },
+        {
+          "path": "repository/scripts/test_experiment3_q1.py",
+          "bytes": 2715,
+          "sha256": "f3526d8829ccb5f91c7d486a24c5e716134c2d0653e39a7a75495a03f0fafadb"
+        },
+        {
+          "path": "repository/exp_record/experiment3_fridge_q1_20261019/protocol.md",
+          "bytes": 7517,
+          "sha256": "a72535f3e53d196af98952c92650c89d4da57952ef2305f86a6610ac244db7dc"
+        },
+        {
+          "path": "repository/exp_record/experiment3_fridge_q1_20261019/results.md",
+          "bytes": 6069,
+          "sha256": "6de214d29a38e1dc3003400f2c4446460d4955c0f7aedda7ad7972ee21e73442"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "file": "book_nominal_left_simple_feedback_right.mp4",
+      "bytes": 4313679,
+      "sha256": "99ff2b47af62023e4982f6cbd732511078f858100500d0d6f4be3f042ecd1bcb"
+    },
+    {
+      "file": "book_nominal_left_verification_right.mp4",
+      "bytes": 4436402,
+      "sha256": "a3f8f6a4ba975c24f07a03b637c4732955314afb6ed5220ff90b332dd29e80a7"
+    },
+    {
+      "file": "fridge_nominal_left_simple_feedback_right.mp4",
+      "bytes": 3376793,
+      "sha256": "813dafd6cccb7f73b0aba83c0fc7e5d677782293ce71fe4a29963fc0d42aaa55"
+    },
+    {
+      "file": "fridge_nominal_left_verification_right.mp4",
+      "bytes": 3193052,
+      "sha256": "25d9bcddf420820f6806b74b231196512e9c33c7ac7481e9dc99d53aefdd63e3"
+    },
+    {
+      "file": "q1_all_opportunities_candidates_offline.mp4",
+      "bytes": 1609692,
+      "sha256": "d0c8f326596be13c600cbfc91bf13bff8663e1dbaf7350578e796c85d56f2ea7"
+    }
+  ],
+  "excluded": [
+    "__pycache__",
+    "upstream model weights and runtime installs; pinned hashes retained"
+  ]
+}
