@@ -1,0 +1,46 @@
+{
+  "status": "fixtures_passed",
+  "scope": "evaluator_only_state_installed",
+  "no_task_success_claim": true,
+  "cases": [
+    {
+      "name": "supported_released_inside",
+      "expected_placed": true,
+      "observed_placed": true,
+      "table_contact": true,
+      "gripper_contact": false,
+      "item_position": [
+        -0.025000110555898652,
+        -0.1500000000461374,
+        0.9089214774186083
+      ],
+      "full_completion_without_sequence": false
+    },
+    {
+      "name": "supported_outside_region",
+      "expected_placed": false,
+      "observed_placed": false,
+      "table_contact": true,
+      "gripper_contact": false,
+      "item_position": [
+        0.24999999999896888,
+        -0.15000013269153095,
+        0.9089214774186083
+      ],
+      "full_completion_without_sequence": false
+    },
+    {
+      "name": "unsupported_above_region",
+      "expected_placed": false,
+      "observed_placed": false,
+      "table_contact": false,
+      "gripper_contact": false,
+      "item_position": [
+        -0.025,
+        -0.15,
+        1.15
+      ],
+      "full_completion_without_sequence": false
+    }
+  ]
+}

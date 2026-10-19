@@ -1,0 +1,22 @@
+{
+  "status": "live_interface_smoke_passed",
+  "steps": 100,
+  "corrections": 71,
+  "events": [
+    [
+      29,
+      "stall_trigger"
+    ]
+  ],
+  "task": {
+    "phase": "grasp",
+    "opened": true,
+    "grasp_seen": false,
+    "extracted_seen": false,
+    "placement_streak": 0,
+    "completion_streak": 0,
+    "remaining_sequence_complete": false,
+    "full_completion": false
+  },
+  "floor": 0.9
+}

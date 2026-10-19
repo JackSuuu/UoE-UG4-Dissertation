@@ -19,6 +19,13 @@ Independent replay now verifies gate/phase/endpoint decisions as well as physics
 framework videos including ownership, triggers, handoffs and budget failures.
 The prior R1 actor cohort has completed12/12with exact independent replay.
 
+**R2 launched:** source freeze`c4afde8`, detached supervisor3653705, GPU1baseline /
+GPU3framework;4planned600-step runs. Automatic decision/physics replay and paired
+videos follow completion. Three separate physical endpoint fixtures pass, including
+positive supported placement and negative out-of-bounds/unsupported placements;
+fixture state installation is explicitly excluded from task evidence.
+[Execution record](agent_notes/fridge_r2_execution_20261019.md).
+
 ### Update 19 Oct — Default paired-video delivery; first refrigerator side-by-side
 
 User reiterates baseline VLA left / our framework right for every future experiment.
