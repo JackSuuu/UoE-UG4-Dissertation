@@ -1,0 +1,26 @@
+{
+  "file": "book_decode.mp4",
+  "frames": 400,
+  "fps": 20,
+  "common_simulation_speed": 1,
+  "terminal_hold_extra_frames": 40,
+  "hold_is_not_simulated_dwell": true,
+  "labels": [
+    "LEFT: Book / native camera / current TF5",
+    "RIGHT: Book / native camera / official TF4"
+  ],
+  "runs": [
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned"
+  ],
+  "note": "Same initial state and images; change inference stack. Equal 600-action cap; stop on native done.",
+  "sha256": "b97e491ae01d669ca3ee2401c8a447a6ff7879e18b87fd5a130bc37ac421e0bd",
+  "sources": {
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current/steps.jsonl": "fe6df6b71343d317f099e4f427f691e1fcd141fc0d7257bd746c0a2d6bf559e2",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current/status.json": "9d13af06941219592e0631809c470f3e498141d005854c222ac2ae33e6dbbc74",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current/images.npz": "050d1f5cde89565c1524d3bc56c7a581ab91e6152c6427c45cb675082f6ad9c9",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/steps.jsonl": "6ff1ecec64bfabb1f749e64e3d866aae4b642ae4d989c5e84445bb7abd96185e",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/status.json": "83fab3c677d028646b8691df2eedcf3860c5f31620e50ff686a3f0c21549084e",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/images.npz": "c5cd60a96774504d94a16d42e06d7c862b57d7597b40c005b269dfe07fa36ced"
+  }
+}

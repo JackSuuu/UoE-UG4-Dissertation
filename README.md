@@ -21,8 +21,10 @@ and explicit end-frame holds. Engineering-only controllers are labeled as such.
 **Current priority:** [diagnose why the original VLA stalls](exp_record/agent_notes/vla_failure_audit_execution_20261019.md).
 R2's first grasp/extraction occurred under hand-written motion primitives, so they
 do not demonstrate autonomous repair. Further route scripting is paused. Actor-only
-task/camera/official-inference controls are running; a6-observation pinned
-decode audit already finds one action discrepancy, retained rather than dismissed.
+task/camera/official-inference controls have finished with five exact independent
+replays. Native book/basket tasks reach their benchmark predicates; changing the
+book camera loses grasp, and official inference still fails refrigerator retrieval.
+Stable book placement is not verified. [Results and diagnostic videos](exp_record/agent_notes/vla_failure_audit_results_20261019.md).
 
 ```mermaid
 flowchart TB

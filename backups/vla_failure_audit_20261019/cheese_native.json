@@ -1,0 +1,21 @@
+{
+  "file": "cheese_native.mp4",
+  "frames": 283,
+  "fps": 20,
+  "common_simulation_speed": 1,
+  "terminal_hold_extra_frames": 40,
+  "hold_is_not_simulated_dwell": true,
+  "labels": [
+    "Cheese + butter / native camera / official TF4"
+  ],
+  "runs": [
+    "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned"
+  ],
+  "note": "Native task control; no intervention. Stable dwell unscored.",
+  "sha256": "bf204751ccc71343d88c2fe27ba73e42dcb70f119df4fb320e5997de2f5e152d",
+  "sources": {
+    "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned/steps.jsonl": "36e3c62bdb560ccb492c836b194f1848b096a57bf0aa805e6a509b77a7ed6e18",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned/status.json": "231ee72f32c85e65f60fcbd88a50359f933132dc1451a5fd070a569e14aaf706",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned/images.npz": "518a14c3a530651d539fc0819a825ecae6c52aec4724f3842947901225e10f6c"
+  }
+}

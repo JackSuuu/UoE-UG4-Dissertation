@@ -1,0 +1,280 @@
+{
+  "scope": "single_initial_state_actor_diagnosis_not_framework_efficacy",
+  "near_zero_definition": "L2 of XYZ normalized controller commands <0.01; not physical immobility",
+  "step_indexing": "zero-based first-event steps; executed action counts are one-based",
+  "strict_endpoint_note": "Book native termination censors subsequent release/dwell; neither book run verifies stable placement.",
+  "fridge_comparison_note": "Historical R2 also has a full-completion stop and phase prompts; neither activates in the baseline tape. All 600 instructions match.",
+  "runs": {
+    "book_native_pinned": {
+      "steps": 359,
+      "termination": "environment_done",
+      "intervention_actions": 0,
+      "first_grasp_step": 67,
+      "first_native_step": 358,
+      "near_zero_xyz_commands": 6,
+      "unique_token_sequences": 245,
+      "max_item_displacement_m": 0.44830271143504125,
+      "eef_endpoint_displacement_m": 0.23453758882483305,
+      "displacement_reference": "initial observation",
+      "inference_median_s": 0.28326110204216093,
+      "inference_p95_s": 0.2919400848331861,
+      "inference_total_s": 104.4123594139237,
+      "wall_including_setup_s": 124.2439169883728,
+      "final_native": true,
+      "strict_book_complete": false,
+      "max_book_dwell_intervals": 0,
+      "final_book_conditions": {
+        "footprint_inside": false,
+        "bottom_seated": false,
+        "released": false,
+        "supported": false,
+        "shallow_contact": true,
+        "slow": false
+      }
+    },
+    "book_native_current": {
+      "steps": 196,
+      "termination": "environment_done",
+      "intervention_actions": 0,
+      "first_grasp_step": 70,
+      "first_native_step": 195,
+      "near_zero_xyz_commands": 0,
+      "unique_token_sequences": 165,
+      "max_item_displacement_m": 0.43048681469036354,
+      "eef_endpoint_displacement_m": 0.21250915134168588,
+      "displacement_reference": "initial observation",
+      "inference_median_s": 0.7142953785369173,
+      "inference_p95_s": 0.7256983819534071,
+      "inference_total_s": 142.02040409634355,
+      "wall_including_setup_s": 155.89557194709778,
+      "final_native": true,
+      "strict_book_complete": false,
+      "max_book_dwell_intervals": 0,
+      "final_book_conditions": {
+        "footprint_inside": false,
+        "bottom_seated": false,
+        "released": false,
+        "supported": true,
+        "shallow_contact": true,
+        "slow": false
+      }
+    },
+    "book_robot_side_pinned": {
+      "steps": 600,
+      "termination": "action_budget",
+      "intervention_actions": 0,
+      "first_grasp_step": null,
+      "first_native_step": null,
+      "near_zero_xyz_commands": 410,
+      "unique_token_sequences": 7,
+      "max_item_displacement_m": 3.672623763361175e-12,
+      "eef_endpoint_displacement_m": 0.27223833117800267,
+      "displacement_reference": "initial observation",
+      "inference_median_s": 0.2877525854855776,
+      "inference_p95_s": 0.2984648397832643,
+      "inference_total_s": 175.66906916105654,
+      "wall_including_setup_s": 200.11429357528687,
+      "final_native": false,
+      "strict_book_complete": false,
+      "max_book_dwell_intervals": 0,
+      "final_book_conditions": {
+        "footprint_inside": false,
+        "bottom_seated": false,
+        "released": true,
+        "supported": false,
+        "shallow_contact": true,
+        "slow": true
+      }
+    },
+    "fridge_robot_side_pinned": {
+      "steps": 600,
+      "termination": "action_budget",
+      "intervention_actions": 0,
+      "first_grasp_step": null,
+      "first_native_step": null,
+      "near_zero_xyz_commands": 576,
+      "unique_token_sequences": 20,
+      "max_item_displacement_m": 7.722463012526013e-13,
+      "eef_endpoint_displacement_m": 0.03992017765056501,
+      "displacement_reference": "initial observation",
+      "inference_median_s": 0.2836146914632991,
+      "inference_p95_s": 0.29393248693086205,
+      "inference_total_s": 173.60185775742866,
+      "wall_including_setup_s": 195.9257230758667,
+      "final_native": false,
+      "strict_book_complete": null,
+      "max_book_dwell_intervals": null,
+      "final_book_conditions": null
+    },
+    "cheese_native_pinned": {
+      "steps": 242,
+      "termination": "environment_done",
+      "intervention_actions": 0,
+      "first_grasp_step": 63,
+      "first_native_step": 241,
+      "near_zero_xyz_commands": 1,
+      "unique_token_sequences": 222,
+      "max_item_displacement_m": 0.47380162619147403,
+      "eef_endpoint_displacement_m": 0.28707466326884246,
+      "displacement_reference": "initial observation",
+      "inference_median_s": 0.28676069050561637,
+      "inference_p95_s": 0.2948055734508671,
+      "inference_total_s": 71.88486506952904,
+      "wall_including_setup_s": 89.83224296569824,
+      "final_native": true,
+      "strict_book_complete": null,
+      "max_book_dwell_intervals": null,
+      "final_book_conditions": null
+    },
+    "fridge_current_historical": {
+      "steps": 600,
+      "termination": "action_budget",
+      "intervention_actions": 0,
+      "first_grasp_step": null,
+      "first_native_step": null,
+      "near_zero_xyz_commands": 504,
+      "unique_token_sequences": 44,
+      "max_item_displacement_m": 6.95690740669239e-13,
+      "eef_endpoint_displacement_m": 0.11168350621709454,
+      "displacement_reference": "after first action",
+      "inference_median_s": 0.7090041280025616,
+      "inference_p95_s": 0.7326724494225345,
+      "inference_total_s": 429.3440367860021,
+      "wall_including_setup_s": 453.9775094985962,
+      "final_native": false,
+      "strict_book_complete": null,
+      "max_book_dwell_intervals": null,
+      "final_book_conditions": null
+    }
+  },
+  "pairs": {
+    "book_decode": {
+      "same_initial_physics_controller": true,
+      "same_initial_images": true,
+      "same_600_query_action_cap": true,
+      "camera_intervention": false,
+      "first_token_divergence_step": 3,
+      "same_observation_at_first_token_divergence": true,
+      "note": "After divergence, later token differences also reflect different states."
+    },
+    "book_camera": {
+      "same_initial_physics_controller": true,
+      "same_initial_images": false,
+      "same_600_query_action_cap": true,
+      "camera_intervention": true,
+      "first_token_divergence_step": 0,
+      "same_observation_at_first_token_divergence": false,
+      "note": "After divergence, later token differences also reflect different states."
+    },
+    "fridge_decode": {
+      "same_initial_physics_controller": true,
+      "same_initial_images": true,
+      "same_600_query_action_cap": true,
+      "camera_intervention": false,
+      "first_token_divergence_step": 6,
+      "same_observation_at_first_token_divergence": true,
+      "note": "After divergence, later token differences also reflect different states."
+    }
+  },
+  "videos": [
+    {
+      "file": "book_decode.mp4",
+      "frames": 400,
+      "fps": 20,
+      "common_simulation_speed": 1,
+      "terminal_hold_extra_frames": 40,
+      "hold_is_not_simulated_dwell": true,
+      "labels": [
+        "LEFT: Book / native camera / current TF5",
+        "RIGHT: Book / native camera / official TF4"
+      ],
+      "runs": [
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned"
+      ],
+      "note": "Same initial state and images; change inference stack. Equal 600-action cap; stop on native done.",
+      "sha256": "b97e491ae01d669ca3ee2401c8a447a6ff7879e18b87fd5a130bc37ac421e0bd",
+      "sources": {
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current/steps.jsonl": "fe6df6b71343d317f099e4f427f691e1fcd141fc0d7257bd746c0a2d6bf559e2",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current/status.json": "9d13af06941219592e0631809c470f3e498141d005854c222ac2ae33e6dbbc74",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_current/images.npz": "050d1f5cde89565c1524d3bc56c7a581ab91e6152c6427c45cb675082f6ad9c9",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/steps.jsonl": "6ff1ecec64bfabb1f749e64e3d866aae4b642ae4d989c5e84445bb7abd96185e",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/status.json": "83fab3c677d028646b8691df2eedcf3860c5f31620e50ff686a3f0c21549084e",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/images.npz": "c5cd60a96774504d94a16d42e06d7c862b57d7597b40c005b269dfe07fa36ced"
+      }
+    },
+    {
+      "file": "book_camera.mp4",
+      "frames": 641,
+      "fps": 20,
+      "common_simulation_speed": 1,
+      "terminal_hold_extra_frames": 40,
+      "hold_is_not_simulated_dwell": true,
+      "labels": [
+        "LEFT: Book / native camera / official TF4",
+        "RIGHT: Book / robot-side camera / official TF4"
+      ],
+      "runs": [
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned"
+      ],
+      "note": "Same initial physics; camera intervention includes task visibility loss. Equal 600-action cap.",
+      "sha256": "52e5edaa87473d34ae8a5baa0d55620b7bc8a25d4589141c58f463beb74b8d5f",
+      "sources": {
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/steps.jsonl": "6ff1ecec64bfabb1f749e64e3d866aae4b642ae4d989c5e84445bb7abd96185e",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/status.json": "83fab3c677d028646b8691df2eedcf3860c5f31620e50ff686a3f0c21549084e",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/images.npz": "c5cd60a96774504d94a16d42e06d7c862b57d7597b40c005b269dfe07fa36ced",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned/steps.jsonl": "f35846dbf80879aeb2edf28d48d6e7d913fa4cbd3379677b90f13c1557bfa063",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned/status.json": "b4a0614088ab7368958822141f8898a143055ae8ddeefb3979c0dc48f5cbe2f6",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned/images.npz": "426e17f639e53d27d90728fe2f45ad051e34aaf9929bcb7d838533e10840ec52"
+      }
+    },
+    {
+      "file": "fridge_decode.mp4",
+      "frames": 641,
+      "fps": 20,
+      "common_simulation_speed": 1,
+      "terminal_hold_extra_frames": 40,
+      "hold_is_not_simulated_dwell": true,
+      "labels": [
+        "LEFT: Fridge / historical current TF5",
+        "RIGHT: Fridge / official TF4"
+      ],
+      "runs": [
+        "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/fridge_robot_side_pinned"
+      ],
+      "note": "Same initial physics/images and observed instruction; both exhaust 600 actions. No repairs.",
+      "sha256": "974c655572f4b82480fa10f616926d9cf426f7fa60594c5854b35c9d4a1ea7ea",
+      "sources": {
+        "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor/steps.jsonl": "3fee599db5d7c25a7fe32079c4cbe35c0c14ab3cb0d65a4468bca6f0b566e845",
+        "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor/status.json": "8b8fd6f63e55bde56dea59240a2fde34964c1bd2ca217cfab01fa2f81b4ac488",
+        "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor/images.npz": "a0d38f10dc5d11449ff87cf5a6560e389126792ff0508ef4f54e0130a56216df",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/fridge_robot_side_pinned/steps.jsonl": "935171faba4e859e814e6deb7acdda93d695593b9ca59bb8ebcd064de95ae49e",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/fridge_robot_side_pinned/status.json": "c59c00b78901b47780a02183031bc95abafb3e4cd4f162927454407bad6defd1",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/fridge_robot_side_pinned/images.npz": "4a49d8f3779ca43fe15256503484e4b876f59134559436f8bc11f4654e1ada55"
+      }
+    },
+    {
+      "file": "cheese_native.mp4",
+      "frames": 283,
+      "fps": 20,
+      "common_simulation_speed": 1,
+      "terminal_hold_extra_frames": 40,
+      "hold_is_not_simulated_dwell": true,
+      "labels": [
+        "Cheese + butter / native camera / official TF4"
+      ],
+      "runs": [
+        "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned"
+      ],
+      "note": "Native task control; no intervention. Stable dwell unscored.",
+      "sha256": "bf204751ccc71343d88c2fe27ba73e42dcb70f119df4fb320e5997de2f5e152d",
+      "sources": {
+        "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned/steps.jsonl": "36e3c62bdb560ccb492c836b194f1848b096a57bf0aa805e6a509b77a7ed6e18",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned/status.json": "231ee72f32c85e65f60fcbd88a50359f933132dc1451a5fd070a569e14aaf706",
+        "/home/ami/scratch/vla_failure_actor_20261019_a/cheese_native_pinned/images.npz": "518a14c3a530651d539fc0819a825ecae6c52aec4724f3842947901225e10f6c"
+      }
+    }
+  ]
+}

@@ -1,5 +1,9 @@
 # Why the actor stalls, and what actually caused R2 progress
 
+**Completed:** all five actor-only conditions and 1,997 executed actions pass exact
+independent replay. [Results and interpretation](vla_failure_audit_results_20261019.md)
+supersede the pending launch status below; historical protocol and tapes are unchanged.
+
 ## User requirement
 
 The user explicitly rejects a human who observes a failed episode and writes its

@@ -1,0 +1,26 @@
+{
+  "file": "book_camera.mp4",
+  "frames": 641,
+  "fps": 20,
+  "common_simulation_speed": 1,
+  "terminal_hold_extra_frames": 40,
+  "hold_is_not_simulated_dwell": true,
+  "labels": [
+    "LEFT: Book / native camera / official TF4",
+    "RIGHT: Book / robot-side camera / official TF4"
+  ],
+  "runs": [
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned"
+  ],
+  "note": "Same initial physics; camera intervention includes task visibility loss. Equal 600-action cap.",
+  "sha256": "52e5edaa87473d34ae8a5baa0d55620b7bc8a25d4589141c58f463beb74b8d5f",
+  "sources": {
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/steps.jsonl": "6ff1ecec64bfabb1f749e64e3d866aae4b642ae4d989c5e84445bb7abd96185e",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/status.json": "83fab3c677d028646b8691df2eedcf3860c5f31620e50ff686a3f0c21549084e",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_native_pinned/images.npz": "c5cd60a96774504d94a16d42e06d7c862b57d7597b40c005b269dfe07fa36ced",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned/steps.jsonl": "f35846dbf80879aeb2edf28d48d6e7d913fa4cbd3379677b90f13c1557bfa063",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned/status.json": "b4a0614088ab7368958822141f8898a143055ae8ddeefb3979c0dc48f5cbe2f6",
+    "/home/ami/scratch/vla_failure_actor_20261019_a/book_robot_side_pinned/images.npz": "426e17f639e53d27d90728fe2f45ad051e34aaf9929bcb7d838533e10840ec52"
+  }
+}

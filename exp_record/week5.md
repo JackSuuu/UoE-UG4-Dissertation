@@ -3,6 +3,25 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Actor controls finished: capability and transfer are distinct
+
+All five zero-repair trials completed (1,997 model actions) with exact independent
+physics/controller/images/diagnostic replay. Book/native reaches native success
+after196actions under TF5 and359under official TF4; cheese+butter/native reaches it
+after242. Book/robot-side fails to grasp in600actions, despite identical initial
+physics; the camera intervention also removes much of the gripper/caddy visibility.
+Official-inference refrigerator still fails to grasp in600actions, with576near-zero
+XYZ commands versus504in historical TF5. Thus inference compatibility alone is not
+a sufficient explanation or fix. Stacks do diverge on identical observations at
+book step3and fridge step6; global parity is false.
+
+Neither book run verifies stable released placement: both stop on native done before
+any strict placement candidate/dwell. Native predicates must not be presented as
+our stricter complete-task endpoints. No framework gains are claimed. Four annotated
+20fps diagnostic videos preserve all frames and explicit terminal holds.
+[Detailed results](agent_notes/vla_failure_audit_results_20261019.md) ·
+[Artifacts](../backups/vla_failure_audit_20261019/README.md).
+
 ### Update 19 Oct — Diagnose the VLA; no scripted repair as autonomy evidence
 
 User sharpens the requirement: explain the baseline failure and attributable
