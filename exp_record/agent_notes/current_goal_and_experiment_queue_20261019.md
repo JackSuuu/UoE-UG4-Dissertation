@@ -16,10 +16,12 @@ No RoboCasa checkpoint is selected or qualified yet. Two different model/platfor
 pairs demonstrate replication across pairs; separating model and platform effects
 requires an additional shared-platform/model comparison.
 
-Status: planning consolidation only; no new rollouts or installations launched by
-this update. Exact implementation manifests and downstream branch budgets must
-be frozen before execution. Experiment labels below are new queue labels, not
-renamings of historical Experiment1/2/3.
+Latest execution status: user authorized parallel execution. L1started under
+frozen source/protocol `63fecbd`,24episodes on physicalGPUs1/2/3; R0source research
+completed. See [actual launch and preflight evidence](native_long_l1_launch_20261019.md).
+L2/L3/R1remain unlaunched and their downstream branch budgets must be frozen from
+the preceding evidence. Labels below are new queue labels, not renamings of
+historical Experiment1/2/3.
 
 ## What existing evidence establishes
 
@@ -143,6 +145,7 @@ are matched. A small task subset is not a full50-task benchmark result.
 Use detached supervised jobs, healthy physical GPUs1–3 with matching CUDA/EGL,
 batch1for the current actor, durable logs and per-episode status. User annual-plan
 edits remain untouched. Keep one status board with planned/running/completed/
-blocked states; launching a worker is not completion. Current L1–L3/R0–R1 states
-are planned, not running. Future task or actor changes require an explicit reason
+blocked states; launching a worker is not completion. Current states: L1running,
+R0research complete, L2/L3/R1planned. The physical-to-EGL index map is audited
+separately; equal numeric IDs are incorrect on this host. Future task or actor changes require an explicit reason
 and a versioned protocol, preserving the prior results.

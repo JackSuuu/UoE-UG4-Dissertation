@@ -3,6 +3,28 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — L1 parallel native screening launched; R0 readiness research completed
+
+User authorizes execution and parallel GPU use. Frozen implementation/protocol
+`63fecbd`;24episodes (four tasks×six development roots), physicalGPUs1/2/3,
+eight episodes each. Supervisor3715906is detached; all three initial microwave
+workers entered actor execution. Initial health snapshot has4actions each, no
+task outcome yet. Four scene+initialization replays and one zero-action official
+model query passed;13synthetic result-accounting cases passed.
+
+Preflight discovered reversed EGL enumeration: physicalGPU1/2/3maps toEGL2/1/0.
+CUDA UUID selection and the rendering map are separately verified; GPU0is idle.
+Preserve all native failures, infrastructure issues and source/replay proofs.
+[Actual launch](agent_notes/native_long_l1_launch_20261019.md),
+[launch archive](../backups/native_long_l1_launch_20261019/).
+
+Independent [R0audit](agent_notes/robocasa365_readiness_20261019.md) identifies public
+native Xiaomi/Awomo checkpoints with author-reported composite-task success and
+documents their distinct observation/action/history contracts. Local readiness,
+competence and public executable CheckVLA reproduction remain unqualified.
+No RoboCasa weight download, installation or actor query occurred. L2/L3will use
+L1's failure map to target trigger, candidate, verification or handoff defects.
+
 ### Update 19 Oct — Fixed OpenVLA + native LIBERO-Long; alternate setup removed
 
 > Later discussion adds RoboCasa365 as a second-platform replication track while

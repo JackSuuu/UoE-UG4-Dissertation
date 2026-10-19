@@ -4,6 +4,9 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [L1 actually running:24native long-task episodes, three GPUs, corrected EGL mapping](native_long_l1_launch_20261019.md)
+* [R0 source audit complete: native RoboCasa365 policies, interfaces and readiness blockers](robocasa365_readiness_20261019.md)
+
 * [Authoritative goal and result-driven queue: LIBERO mechanisms, RoboCasa365 replication](current_goal_and_experiment_queue_20261019.md)
 
 * [Current: fixed OpenVLA + native LIBERO-Long task selection and experiment plan](openvla_native_long_selection_20261019.md)

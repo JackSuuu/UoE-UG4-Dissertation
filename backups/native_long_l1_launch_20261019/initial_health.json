@@ -1,0 +1,83 @@
+{
+  "time": 1792434707.1763682,
+  "source_commit": "63fecbdbcd266a0f566949b5cac1f45a0dd5de68",
+  "supervisor_pid": 3715906,
+  "supervisor_alive": true,
+  "status": "running",
+  "planned": 24,
+  "active": [
+    {
+      "name": "microwave_root0",
+      "gpu": 1,
+      "egl_device": 2,
+      "pid": 3715914,
+      "job_status": "running",
+      "phase": "actor",
+      "steps": 4,
+      "error": null,
+      "device": {
+        "physical_gpu": 1,
+        "physical_uuid": "GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0",
+        "name": "NVIDIA RTX A5000",
+        "pci_bus_id": "00000000:41:00.0",
+        "egl_device": 2,
+        "worker_cuda_ordinal": 0,
+        "cuda_visible_devices": "GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0",
+        "egl_mapping_provenance": "coordinator_EGL_NV_device_cuda_and_unmasked_CUDA_UUID_audits",
+        "preflight_sources": {
+          "/home/ami/scratch/native_long_l1_20261019_launch/egl_device_preflight.json": "fad003fb86915b1807f0684ef64f5c58963f6f58afb2afab76d307a2881fb720",
+          "/home/ami/scratch/native_long_l1_20261019_launch/cuda_ordinal_preflight.json": "5eb4fa3fef16d430c77427f7d9536ecfdc4d37b2c9be396dc6542a92234d61ed"
+        }
+      }
+    },
+    {
+      "name": "microwave_root1",
+      "gpu": 2,
+      "egl_device": 1,
+      "pid": 3715913,
+      "job_status": "running",
+      "phase": "actor",
+      "steps": 4,
+      "error": null,
+      "device": {
+        "physical_gpu": 2,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8",
+        "name": "NVIDIA RTX A5000",
+        "pci_bus_id": "00000000:81:00.0",
+        "egl_device": 1,
+        "worker_cuda_ordinal": 0,
+        "cuda_visible_devices": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8",
+        "egl_mapping_provenance": "coordinator_EGL_NV_device_cuda_and_unmasked_CUDA_UUID_audits",
+        "preflight_sources": {
+          "/home/ami/scratch/native_long_l1_20261019_launch/egl_device_preflight.json": "fad003fb86915b1807f0684ef64f5c58963f6f58afb2afab76d307a2881fb720",
+          "/home/ami/scratch/native_long_l1_20261019_launch/cuda_ordinal_preflight.json": "5eb4fa3fef16d430c77427f7d9536ecfdc4d37b2c9be396dc6542a92234d61ed"
+        }
+      }
+    },
+    {
+      "name": "microwave_root2",
+      "gpu": 3,
+      "egl_device": 0,
+      "pid": 3715915,
+      "job_status": "running",
+      "phase": "actor",
+      "steps": 4,
+      "error": null,
+      "device": {
+        "physical_gpu": 3,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b",
+        "name": "NVIDIA RTX A5000",
+        "pci_bus_id": "00000000:C1:00.0",
+        "egl_device": 0,
+        "worker_cuda_ordinal": 0,
+        "cuda_visible_devices": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b",
+        "egl_mapping_provenance": "coordinator_EGL_NV_device_cuda_and_unmasked_CUDA_UUID_audits",
+        "preflight_sources": {
+          "/home/ami/scratch/native_long_l1_20261019_launch/egl_device_preflight.json": "fad003fb86915b1807f0684ef64f5c58963f6f58afb2afab76d307a2881fb720",
+          "/home/ami/scratch/native_long_l1_20261019_launch/cuda_ordinal_preflight.json": "5eb4fa3fef16d430c77427f7d9536ecfdc4d37b2c9be396dc6542a92234d61ed"
+        }
+      }
+    }
+  ],
+  "gpu_inventory": "index, uuid, memory.used [MiB], utilization.gpu [%]\n0, GPU-c9938b31-33b0-e02f-24c5-88bd6fbe19ad, 5 MiB, 0 %\n1, GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0, 15555 MiB, 58 %\n2, GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8, 15631 MiB, 94 %\n3, GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b, 15555 MiB, 63 %\n"
+}
