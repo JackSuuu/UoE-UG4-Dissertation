@@ -23,9 +23,10 @@ meets the original per-task admission rule and takes priority for frozen L2A.
 [Complete screening results](native_long_l1_results_20261019.md). L2Av1completed:
 18/18valid/exact branches,552calls; six greedy controls reproduce. Neither failure
 root has useful sampled32-action gain, so the precommitted L2Bgate is false.
-Stop v1. Failure analysis supports preparing a timing-only v2(first grasp+120
-instead of+180), with the same six roots/sources/seeds/H32and576-call cap; no v2
-model query yet. Root4's new boundary precedes original loss by15actions;
+Stop v1. Timing-only v2(first grasp+120instead of+180) has been submitted under
+`c7f0c74` onGPU2/3, with the same six roots/sources/seeds/H32and576-call cap.
+[V2launch](native_microwave_l2_v2_launch_20261019.md). Root4's new boundary
+passed228-frame zero-query reconstruction and precedes original loss by15actions;
 preserving grasp alone still does not meet the useful-progress label. No framework gain.
 [L2A results](native_microwave_l2a_results_20261019.md).
 
@@ -48,7 +49,7 @@ wrist-only image differences at1/1/3frames caused the prescribed lane stops.
 Fixed-state redraws demonstrate wrist-only rendering nondeterminism; retain
 original replay failures and the strict gate for new episodes. R0source research
 completed. See [actual launch and preflight evidence](native_long_l1_launch_20261019.md).
-L2/L3/R1remain unlaunched and their downstream branch budgets must be frozen from
+L3/R1remain unlaunched; further branch budgets must be frozen from
 the preceding evidence. Labels below are new queue labels, not renamings of
 historical Experiment1/2/3.
 
@@ -176,6 +177,7 @@ batch1for the current actor, durable logs and per-episode status. User annual-pl
 edits remain untouched. Keep one status board with planned/running/completed/
 blocked states; launching a worker is not completion. Current states: L1actor-complete24/24
 (four replay issues retained),
-R0research complete, L2/L3/R1planned. The physical-to-EGL index map is audited
+R0research complete, L2Av1complete/gatefalse, L2Av2submitted, L3/R1planned.
+The physical-to-EGL index map is audited
 separately; equal numeric IDs are incorrect on this host. Future task or actor changes require an explicit reason
 and a versioned protocol, preserving the prior results.

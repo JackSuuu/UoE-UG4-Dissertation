@@ -3,6 +3,18 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Timing-only v2 submitted after negative v1
+
+V1failure analysis separates restricted translational alternatives on root0from
+late disengaged-object diversity on root4. Freeze `c7f0c74` launches g+120instead
+ofg+180onGPU2/3; same18identities, sources/seeds/H32and576calls. All six C0controls
+and replays still gate sampling. Root4/t215smoke passes228frames exactly with zero
+queries. Held-grasp preservation alone does not pass the unchanged progress gate.
+[V2launch](agent_notes/native_microwave_l2_v2_launch_20261019.md).
+
+V1bank and paired videos independently restored:18,188archive members plus12videos,
+all hashes exact. No v1L2Bwas run; the negative result remains intact.
+
 ### Update 19 Oct — L2A completed; precommitted continuation gate false
 
 18/18valid exact branches,552/576calls. Six fresh greedy controls reproduce their
