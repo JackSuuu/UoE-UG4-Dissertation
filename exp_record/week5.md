@@ -21,6 +21,16 @@ Independent physics/controller replay is exact, but a few image hashes differ;
 raw pixel recording is added to diagnose that unresolved discrepancy. A frozen
 12-run native-actor prompt comparison is the next executable stage.
 
+**Launched after source freeze `080c9a4`:** detached supervisor3644620, healthy GPU1/3,
+all12fresh-reset canonical/skill × closed/open × seeds0–2 trials,160queries each.
+No scripted prefix; independent replay after each run. GPU2's pixel-replay diagnostic
+continues separately. [Labeled extraction clip and205-file engineering archive](../backups/fridge_r1_20261019/README.md).
+
+**Pixel diagnosis completed:**485-step instrumented servo replay has exact physics,
+controller and all actor-facing agentview images. Four wrist frames differ by1in
+30RGBchannels total. This remains a nonexact two-camera replay; no tolerance was
+relaxed. The archive now includes that report; actor trials continue in the background.
+
 ### Update 19 Oct — Commit to refrigerator and folding demonstrators; start robot validation
 
 **Completion addendum:** both240-query fridge trials finished and passed exact

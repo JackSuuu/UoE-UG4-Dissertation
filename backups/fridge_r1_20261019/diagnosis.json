@@ -1,0 +1,170 @@
+{
+  "scope": "scripted_physical_feasibility_not_VLA",
+  "first_grasp_step": 335,
+  "last_grasp_step": 484,
+  "grasped_endpoint_count": 150,
+  "final_grasped": true,
+  "item_initial": [
+    -0.040265621372052605,
+    0.38249789839512993,
+    1.003905921450434
+  ],
+  "item_final": [
+    -0.21216240765654557,
+    0.38286821643193214,
+    1.0291717127835744
+  ],
+  "final_item_support_contacts": [],
+  "source": "/home/ami/scratch/fridge_r1_20261019_a/side_grasp_v5",
+  "physics_replay": {
+    "status": "replay_mismatch",
+    "source": "/home/ami/scratch/fridge_r1_20261019_a/side_grasp_v5",
+    "source_hashes_match": true,
+    "supplemental_dependency_hashes": {},
+    "fingerprint_mismatches": [
+      [
+        268,
+        "after",
+        "images"
+      ],
+      [
+        269,
+        "before",
+        "images"
+      ],
+      [
+        273,
+        "after",
+        "images"
+      ],
+      [
+        274,
+        "before",
+        "images"
+      ],
+      [
+        276,
+        "after",
+        "images"
+      ],
+      [
+        277,
+        "before",
+        "images"
+      ],
+      [
+        361,
+        "after",
+        "images"
+      ],
+      [
+        362,
+        "before",
+        "images"
+      ],
+      [
+        364,
+        "after",
+        "images"
+      ],
+      [
+        365,
+        "before",
+        "images"
+      ],
+      [
+        366,
+        "after",
+        "images"
+      ],
+      [
+        367,
+        "before",
+        "images"
+      ]
+    ],
+    "diagnostic_mismatches": [],
+    "max_state_difference": 0.0,
+    "image_pixel_differences": [],
+    "steps": 485,
+    "physics_controller_exact": true
+  },
+  "pixel_replay": {
+    "status": "replay_mismatch",
+    "source": "/home/ami/scratch/fridge_r1_20261019_a/side_grasp_v5_pixels",
+    "source_hashes_match": true,
+    "supplemental_dependency_hashes": {},
+    "fingerprint_mismatches": [
+      [
+        92,
+        "after",
+        "images"
+      ],
+      [
+        93,
+        "before",
+        "images"
+      ],
+      [
+        104,
+        "after",
+        "images"
+      ],
+      [
+        105,
+        "before",
+        "images"
+      ],
+      [
+        266,
+        "after",
+        "images"
+      ],
+      [
+        267,
+        "before",
+        "images"
+      ],
+      [
+        268,
+        "after",
+        "images"
+      ],
+      [
+        269,
+        "before",
+        "images"
+      ]
+    ],
+    "diagnostic_mismatches": [],
+    "max_state_difference": 0.0,
+    "image_pixel_differences": [
+      {
+        "step": 92,
+        "camera": "wrist",
+        "changed_channels": 6,
+        "max_channel_difference": 1
+      },
+      {
+        "step": 104,
+        "camera": "wrist",
+        "changed_channels": 3,
+        "max_channel_difference": 1
+      },
+      {
+        "step": 266,
+        "camera": "wrist",
+        "changed_channels": 9,
+        "max_channel_difference": 1
+      },
+      {
+        "step": 268,
+        "camera": "wrist",
+        "changed_channels": 12,
+        "max_channel_difference": 1
+      }
+    ],
+    "steps": 485,
+    "physics_controller_exact": true
+  }
+}

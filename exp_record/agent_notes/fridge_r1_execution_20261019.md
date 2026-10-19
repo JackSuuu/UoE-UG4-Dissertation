@@ -46,3 +46,27 @@ GPU1/3 are selected for the initial launch while the existing pixel-replay diagn
 continues independently on GPU2; seeds0/2 are serialized on GPU1 and seed1 on GPU3.
 Worker timeouts are900s, replay180s. Completion/replay issues remain distinct from
 manipulation failures. This record will append actual launch and outcomes.
+
+### Actual launch
+
+Source/protocol freeze `080c9a4` pushed before launch. Detached supervisor PID3644620;
+initial actor workers3644629/GPU1 (seed0 closed canonical) and3644630/GPU3 (seed1
+closed skill; authoritative PID is in `launch.json`). Total planned12,160queries each.
+No actor outcome is claimed at launch. The pending pixel-replay job remains separate.
+
+[Engineering archive and labeled video](../../backups/fridge_r1_20261019/README.md)
+retain205files, all failed geometry versions and exact-physics/nonexact-image replay
+reports. v5's grasp predicate remains true for150consecutive control endpoints
+(335–484); the final object has no shelf contact. This supports contact extraction
+feasibility only. The actor cohort and pending replay are excluded from this snapshot.
+
+### Pixel-replay completion
+
+The background replay of `side_grasp_v5_pixels` completed with exact physics,
+controller, diagnostics and every agentview image. Four wrist frames (steps92,104,
+266,268) differ in6/3/9/12RGBchannel values, each by at most1. Total30channels.
+The active actor uses agentview only. The source of this tiny wrist rasterization
+variation remains unproven; do not call it a fully bit-exact replay or change the
+acceptance tolerance. The archive was refreshed to include this completed report.
+Replay image arrays are now decompressed once rather than once per frame; the slow
+initial replay was backgrounded at the user's request. No running actor source changed.
