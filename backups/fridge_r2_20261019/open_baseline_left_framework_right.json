@@ -1,0 +1,23 @@
+{
+  "scope": "framework",
+  "left": "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor",
+  "right": "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_framework",
+  "fps": 20,
+  "same_initial_fingerprint": true,
+  "same_initial_state": true,
+  "left_steps": 600,
+  "right_steps": 600,
+  "equal_step_budget": true,
+  "playback": "common simulation clock 1x; shorter run holds explicitly labeled end frame",
+  "full_task_success_scored": true,
+  "endpoint_status": "development_only",
+  "source_hashes": {
+    "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor/status.json": "8b8fd6f63e55bde56dea59240a2fde34964c1bd2ca217cfab01fa2f81b4ac488",
+    "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor/steps.jsonl": "3fee599db5d7c25a7fe32079c4cbe35c0c14ab3cb0d65a4468bca6f0b566e845",
+    "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor/raw.mp4": "07d181e9f9fbc392828b8d3e252100d43b60e7269319c6d93d18457aabe44fb6",
+    "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_framework/status.json": "b1102902216be3c165860591b8b9420a3b5f6fa56174ace458c7533060468d5b",
+    "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_framework/steps.jsonl": "635746b4f4bb655287590b6b7c385974f0e4482c01f6c0bf9e8985b0adbbe932",
+    "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_framework/raw.mp4": "52eeb25792b30a0d131a5dd71f670d80373af701d2dfba145bd558e1e6e58161"
+  },
+  "video_sha256": "b90a3dbb57d2cda984ab8643c2f66dd9312998a64488e6af984eeecf9e710f2a"
+}

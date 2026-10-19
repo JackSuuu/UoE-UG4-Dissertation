@@ -1,5 +1,17 @@
 # Runtime verification–repair: continuity, visual grounding and ICLR evidence target
 
+## R2 update: implementation is not generalization evidence
+
+The first actual VLA/wrapper cohort completed without complete-task recovery.
+Its privileged, scene-specific primitives establish execution integration only.
+The user explicitly rejects per-scene waypoint/threshold tuning as the main method;
+that tuning is paused. Next acceptance requires a single frozen repair implementation
+across held-out layouts/instances with object-relative, observation-derived inputs,
+declared task-family adapters, and a same-primitives feedback baseline. Removing
+fixed coordinates alone is insufficient: feasibility, uncertainty and downstream
+handoff must transfer too. [R2 results](fridge_r2_results_20261019.md) retain failures
+and correct a single-event logging bug. The original R1 evidence below is historical.
+
 ## User clarification and scientific claim
 
 The central theme remains an external **runtime verification and repair framework**

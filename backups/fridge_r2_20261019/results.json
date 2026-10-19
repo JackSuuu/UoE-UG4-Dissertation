@@ -1,0 +1,222 @@
+{
+  "status": "complete_with_issues",
+  "scope": "privileged_scene_specific_development_no_full_task_recovery",
+  "jobs": [
+    {
+      "name": "seed0_closed_actor",
+      "replay": {
+        "status": "exact_replay_passed",
+        "source": "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_closed_actor",
+        "mismatches": [],
+        "image_differences": [],
+        "max_state_gap": 0.0,
+        "sources_verified": true,
+        "physics_decisions_exact": true,
+        "steps": 600
+      },
+      "steps_executed": 600,
+      "queries": 600,
+      "full_completion": false,
+      "any_grasp": false,
+      "applied_corrections": 0,
+      "verified_handoffs": 0,
+      "unverified_exits": 0,
+      "nominal_actions": 600,
+      "final_task": {
+        "phase": "open",
+        "opened": false,
+        "grasp_seen": false,
+        "extracted_seen": false,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      },
+      "event_counts": {},
+      "mean_inference_s": 0.7066123029127872
+    },
+    {
+      "name": "seed0_closed_framework",
+      "replay": {
+        "status": "exact_replay_passed",
+        "source": "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_closed_framework",
+        "mismatches": [],
+        "image_differences": [],
+        "max_state_gap": 0.0,
+        "sources_verified": true,
+        "physics_decisions_exact": true,
+        "steps": 600
+      },
+      "steps_executed": 600,
+      "queries": 600,
+      "full_completion": false,
+      "any_grasp": false,
+      "applied_corrections": 420,
+      "verified_handoffs": 0,
+      "unverified_exits": 3,
+      "nominal_actions": 180,
+      "final_task": {
+        "phase": "open",
+        "opened": false,
+        "grasp_seen": false,
+        "extracted_seen": false,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      },
+      "event_counts": {
+        "stall_trigger": 3,
+        "repair_budget_exit_unverified": 3
+      },
+      "mean_inference_s": 0.7169816945460237
+    },
+    {
+      "name": "seed0_open_actor",
+      "replay": {
+        "status": "exact_replay_passed",
+        "source": "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_actor",
+        "mismatches": [],
+        "image_differences": [],
+        "max_state_gap": 0.0,
+        "sources_verified": true,
+        "physics_decisions_exact": true,
+        "steps": 600
+      },
+      "steps_executed": 600,
+      "queries": 600,
+      "full_completion": false,
+      "any_grasp": false,
+      "applied_corrections": 0,
+      "verified_handoffs": 0,
+      "unverified_exits": 0,
+      "nominal_actions": 600,
+      "final_task": {
+        "phase": "grasp",
+        "opened": true,
+        "grasp_seen": false,
+        "extracted_seen": false,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      },
+      "event_counts": {},
+      "mean_inference_s": 0.7155733946433368
+    },
+    {
+      "name": "seed0_open_framework",
+      "replay": {
+        "status": "replay_mismatch",
+        "source": "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_framework",
+        "mismatches": [
+          [
+            237,
+            "after",
+            "images"
+          ],
+          [
+            238,
+            "before",
+            "images"
+          ],
+          [
+            276,
+            "after",
+            "images"
+          ],
+          [
+            277,
+            "before",
+            "images"
+          ]
+        ],
+        "image_differences": [
+          {
+            "step": 237,
+            "camera": "wrist",
+            "changed_channels": 2,
+            "max_difference": 1
+          },
+          {
+            "step": 276,
+            "camera": "wrist",
+            "changed_channels": 1,
+            "max_difference": 1
+          }
+        ],
+        "max_state_gap": 0.0,
+        "sources_verified": true,
+        "physics_decisions_exact": true,
+        "steps": 600
+      },
+      "steps_executed": 600,
+      "queries": 600,
+      "full_completion": false,
+      "any_grasp": true,
+      "applied_corrections": 420,
+      "verified_handoffs": 0,
+      "unverified_exits": 1,
+      "nominal_actions": 180,
+      "final_task": {
+        "phase": "grasp",
+        "opened": true,
+        "grasp_seen": true,
+        "extracted_seen": true,
+        "placement_streak": 0,
+        "completion_streak": 0,
+        "remaining_sequence_complete": false,
+        "full_completion": false
+      },
+      "event_counts": {
+        "stall_trigger": 3,
+        "retain_grip": 38,
+        "repair_budget_exit_unverified": 1
+      },
+      "mean_inference_s": 0.7263015399099095
+    }
+  ],
+  "pairs": [
+    {
+      "door": "closed",
+      "status": "rendered",
+      "returncode": 0,
+      "video": "/home/ami/scratch/fridge_r2_framework_20261019_a/paired/closed_baseline_left_framework_right.mp4"
+    },
+    {
+      "door": "open",
+      "status": "rendered",
+      "returncode": 0,
+      "video": "/home/ami/scratch/fridge_r2_framework_20261019_a/paired/open_baseline_left_framework_right.mp4"
+    }
+  ],
+  "handoff_audit": {
+    "status": "frozen_decision_physics_task_audit_passed",
+    "source": "/home/ami/scratch/fridge_r2_framework_20261019_a/seed0_open_framework",
+    "scope": "posthoc_event_accounting_not_new_rollout_or_actor_decode",
+    "steps": 600,
+    "logged_verified_handoffs": 0,
+    "verified_local_exits": [
+      {
+        "step": 245,
+        "verified_phase": "grasp",
+        "recorded_event": "retain_grip",
+        "actual_owner": "repair",
+        "same_step_unmodified_vla": false,
+        "first_later_unmodified_vla_step": 247,
+        "remaining_sequence_completed_later": false
+      },
+      {
+        "step": 302,
+        "verified_phase": "extract",
+        "recorded_event": "retain_grip",
+        "actual_owner": "repair",
+        "same_step_unmodified_vla": false,
+        "first_later_unmodified_vla_step": 493,
+        "remaining_sequence_completed_later": false
+      }
+    ],
+    "full_completion": false,
+    "explanation": "retain_grip overwrites verified_handoff on the same decision; a verified local exit is not an immediate unmodified-policy handoff"
+  }
+}

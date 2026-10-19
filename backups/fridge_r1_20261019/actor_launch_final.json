@@ -1,0 +1,1925 @@
+{
+  "status": "complete_verified",
+  "start": 1792413757.5719078,
+  "pid": 3644620,
+  "gpus": {
+    "1": "GPU-3f4f72ef-ed7f-2ddb-e454-abcc6c0330b0",
+    "3": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+  },
+  "git": "080c9a4168195642addf151555d9c794644b902c",
+  "sources": {
+    "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+    "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a",
+    "scripts/verify_fridge_skills.py": "27bd3e8d287a52279a4468137b869515ba9bda040634ecde250579eb5adf1499",
+    "scripts/run_fridge_r1.py": "8a92acbe50badc2c988a5301eb5b0f00222297d7427a9641f9cdc8e59de5da87"
+  },
+  "planned": 12,
+  "scope": "development_basic_skills_not_framework",
+  "jobs": [
+    {
+      "name": "seed0_closed_canonical",
+      "seed": 0,
+      "gpu": 1,
+      "door": "closed",
+      "prompt": "canonical",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_closed_canonical",
+        "--mode",
+        "actor",
+        "--door",
+        "closed",
+        "--prompt",
+        "canonical",
+        "--seed",
+        "0",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792413757.5756192,
+      "pid": 3644629,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_closed_canonical",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "closed",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 0,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "canonical",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792413757.6785302,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 5.830110713898822e-15,
+          "door_speed": 7.340270040711965e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.04026562137211368,
+            0.38249789839536336,
+            1.0039059214504336
+          ],
+          "eef_position": [
+            -0.20823662615659577,
+            -0.0006371671392114275,
+            1.173419948459418
+          ],
+          "eef_quat": [
+            0.9996074033100009,
+            -0.0005314387334885429,
+            -0.028013374485712443,
+            8.758214339257483e-05
+          ],
+          "gripper_qpos": [
+            0.03999912395046639,
+            -0.03999950336059562
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343576946287e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.08165845981494e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081656432267923e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.61434154939935e-08
+            ]
+          ]
+        },
+        "language": "open the fridge, take the cream cheese box out of the fridge and place it on the table, then close the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 2.5125575821203147e-13,
+        "max_door_displacement_rad": 5.570784338736707e-15,
+        "ended": 1792413887.4806314
+      },
+      "end": 1792413893.6063125
+    },
+    {
+      "name": "seed1_closed_skill",
+      "seed": 1,
+      "gpu": 3,
+      "door": "closed",
+      "prompt": "skill",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_closed_skill",
+        "--mode",
+        "actor",
+        "--door",
+        "closed",
+        "--prompt",
+        "skill",
+        "--seed",
+        "1",
+        "--steps",
+        "160",
+        "--gpu",
+        "3",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792413757.575898,
+      "pid": 3644630,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_closed_skill",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "closed",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 1,
+          "steps": 160,
+          "gpu": 3,
+          "prompt": "skill",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792413757.680021,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 5.830110713898822e-15,
+          "door_speed": 7.340270040711965e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.055552370269756804,
+            0.38532935020345704,
+            1.003905921450434
+          ],
+          "eef_position": [
+            -0.019564763177289737,
+            -0.16132063810267805,
+            1.0635173175062593
+          ],
+          "eef_quat": [
+            0.9439992649673649,
+            0.18460793759388125,
+            0.27317046301448406,
+            0.012774789816672807
+          ],
+          "gripper_qpos": [
+            0.03898882353334743,
+            -0.03924926170193387
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614344533322493e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081659664426647e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081655379535755e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614340248431569e-08
+            ]
+          ]
+        },
+        "language": "open the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 3.763870313874252e-13,
+        "max_door_displacement_rad": 5.570784338736707e-15,
+        "ended": 1792413886.4837208
+      },
+      "end": 1792413892.602089
+    },
+    {
+      "name": "seed1_closed_canonical",
+      "seed": 1,
+      "gpu": 3,
+      "door": "closed",
+      "prompt": "canonical",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_closed_canonical",
+        "--mode",
+        "actor",
+        "--door",
+        "closed",
+        "--prompt",
+        "canonical",
+        "--seed",
+        "1",
+        "--steps",
+        "160",
+        "--gpu",
+        "3",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792413892.603585,
+      "pid": 3645431,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_closed_canonical",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "closed",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 1,
+          "steps": 160,
+          "gpu": 3,
+          "prompt": "canonical",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792413892.7102618,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 5.830110713898822e-15,
+          "door_speed": 7.340270040711965e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.05555237026984529,
+            0.38532935020326564,
+            1.0039059214504333
+          ],
+          "eef_position": [
+            -0.20823662615659577,
+            -0.0006371671392114275,
+            1.173419948459418
+          ],
+          "eef_quat": [
+            0.9996074033100009,
+            -0.0005314387334885429,
+            -0.028013374485712443,
+            8.758214339257483e-05
+          ],
+          "gripper_qpos": [
+            0.03999912395046639,
+            -0.03999950336059562
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343989214792e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081659686399841e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.0816560402178e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614340343032669e-08
+            ]
+          ]
+        },
+        "language": "open the fridge, take the cream cheese box out of the fridge and place it on the table, then close the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 4.752043783493449e-13,
+        "max_door_displacement_rad": 5.570784338736707e-15,
+        "ended": 1792414024.980989
+      },
+      "end": 1792414031.0207734
+    },
+    {
+      "name": "seed0_closed_skill",
+      "seed": 0,
+      "gpu": 1,
+      "door": "closed",
+      "prompt": "skill",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_closed_skill",
+        "--mode",
+        "actor",
+        "--door",
+        "closed",
+        "--prompt",
+        "skill",
+        "--seed",
+        "0",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792413893.607159,
+      "pid": 3645448,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_closed_skill",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "closed",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 0,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "skill",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792413893.715486,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 5.830110713898822e-15,
+          "door_speed": 7.340270040711965e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.040265621372214726,
+            0.3824978983953536,
+            1.0039059214504333
+          ],
+          "eef_position": [
+            -0.07220664785570215,
+            -0.1725486777065009,
+            1.1304676957762259
+          ],
+          "eef_quat": [
+            0.9553963715167247,
+            0.15841306110744227,
+            0.24790431574059932,
+            0.025817157094280632
+          ],
+          "gripper_qpos": [
+            0.03984203601349771,
+            -0.04000577340108031
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343675446615e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081658305701367e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081656385679551e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.61434175542487e-08
+            ]
+          ]
+        },
+        "language": "open the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 3.565695173565664e-13,
+        "max_door_displacement_rad": 5.570784338736707e-15,
+        "ended": 1792414021.758393
+      },
+      "end": 1792414027.7003424
+    },
+    {
+      "name": "seed0_open_canonical",
+      "seed": 0,
+      "gpu": 1,
+      "door": "open",
+      "prompt": "canonical",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_open_canonical",
+        "--mode",
+        "actor",
+        "--door",
+        "open",
+        "--prompt",
+        "canonical",
+        "--seed",
+        "0",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414027.701208,
+      "pid": 3646572,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_open_canonical",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "open",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 0,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "canonical",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414027.806797,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 1.9363288718711642,
+          "door_speed": -0.007869722463930653,
+          "door_limited": true,
+          "item_position": [
+            -0.0402656213721115,
+            0.382497898394936,
+            1.003905921450434
+          ],
+          "eef_position": [
+            -0.1769142069223196,
+            0.09122724144415108,
+            0.916145046765168
+          ],
+          "eef_quat": [
+            0.9430897209599581,
+            0.297994986623119,
+            0.13971807534741132,
+            0.04753551922898418
+          ],
+          "gripper_qpos": [
+            0.03949535991675594,
+            -0.02533048562757411
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "table_collision",
+              "gripper0_finger2_collision",
+              -0.0008896431103381229
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614340101577086e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081654630261711e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.0816598291568e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614345300472139e-08
+            ]
+          ]
+        },
+        "language": "open the fridge, take the cream cheese box out of the fridge and place it on the table, then close the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 3.7754593734389563e-13,
+        "max_door_displacement_rad": 0.33259915572146426,
+        "ended": 1792414158.0335038
+      },
+      "end": 1792414164.0116024
+    },
+    {
+      "name": "seed1_open_skill",
+      "seed": 1,
+      "gpu": 3,
+      "door": "open",
+      "prompt": "skill",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_open_skill",
+        "--mode",
+        "actor",
+        "--door",
+        "open",
+        "--prompt",
+        "skill",
+        "--seed",
+        "1",
+        "--steps",
+        "160",
+        "--gpu",
+        "3",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414031.021715,
+      "pid": 3646800,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_open_skill",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "open",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 1,
+          "steps": 160,
+          "gpu": 3,
+          "prompt": "skill",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414031.1266892,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 2.2689280275926285,
+          "door_speed": -8.95710665706853e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.05555237026984529,
+            0.38532935020326564,
+            1.0039059214504333
+          ],
+          "eef_position": [
+            -0.2145766870788519,
+            -0.0027511847664097467,
+            1.1532216818415746
+          ],
+          "eef_quat": [
+            0.9988520884310281,
+            -0.032102081848302655,
+            -0.035536106949957354,
+            0.0010709252162393202
+          ],
+          "gripper_qpos": [
+            0.0399882359803589,
+            -0.03999702323783938
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343989214792e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081659686399841e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.0816560402178e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614340343032669e-08
+            ]
+          ]
+        },
+        "language": "pick up the cream cheese box",
+        "any_grasp": false,
+        "max_item_displacement_m": 4.752043783493449e-13,
+        "max_door_displacement_rad": 0.0,
+        "ended": 1792414162.2393014
+      },
+      "end": 1792414168.3668263
+    },
+    {
+      "name": "seed0_open_skill",
+      "seed": 0,
+      "gpu": 1,
+      "door": "open",
+      "prompt": "skill",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_open_skill",
+        "--mode",
+        "actor",
+        "--door",
+        "open",
+        "--prompt",
+        "skill",
+        "--seed",
+        "0",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414164.0135133,
+      "pid": 3647730,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed0_open_skill",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "open",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 0,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "skill",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414164.122424,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 2.2689280275926285,
+          "door_speed": -8.95710665706853e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.04026562137211368,
+            0.38249789839536336,
+            1.0039059214504336
+          ],
+          "eef_position": [
+            -0.21106709861623846,
+            0.00793761122189579,
+            1.145885081713592
+          ],
+          "eef_quat": [
+            0.9995119320065694,
+            -0.006008251989054192,
+            -0.030618304954792355,
+            0.0015225262640450755
+          ],
+          "gripper_qpos": [
+            0.0388386451790004,
+            -0.03884685370337093
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343576946287e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.08165845981494e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081656432267923e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.61434154939935e-08
+            ]
+          ]
+        },
+        "language": "pick up the cream cheese box",
+        "any_grasp": false,
+        "max_item_displacement_m": 2.5125575821203147e-13,
+        "max_door_displacement_rad": 0.0,
+        "ended": 1792414293.5271184
+      },
+      "end": 1792414299.5641332
+    },
+    {
+      "name": "seed1_open_canonical",
+      "seed": 1,
+      "gpu": 3,
+      "door": "open",
+      "prompt": "canonical",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_open_canonical",
+        "--mode",
+        "actor",
+        "--door",
+        "open",
+        "--prompt",
+        "canonical",
+        "--seed",
+        "1",
+        "--steps",
+        "160",
+        "--gpu",
+        "3",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414168.368766,
+      "pid": 3647810,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed1_open_canonical",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "open",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 1,
+          "steps": 160,
+          "gpu": 3,
+          "prompt": "canonical",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414168.4789565,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 2.5422044013145775,
+          "door_speed": 0.00028609833866261264,
+          "door_limited": true,
+          "item_position": [
+            -0.055552370269860075,
+            0.38532935020310166,
+            1.003905921450434
+          ],
+          "eef_position": [
+            -0.16997037287846642,
+            0.008326148496416701,
+            0.9998177701013065
+          ],
+          "eef_quat": [
+            0.9654985897234185,
+            0.26022436302753793,
+            0.005358416987128909,
+            0.008187887175149533
+          ],
+          "gripper_qpos": [
+            0.03994924484176304,
+            -0.03998756900777122
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614338796560527e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081653513063e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081661128590863e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614346412088276e-08
+            ]
+          ]
+        },
+        "language": "open the fridge, take the cream cheese box out of the fridge and place it on the table, then close the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 4.899938568867734e-13,
+        "max_door_displacement_rad": 0.273276373721949,
+        "ended": 1792414301.233956
+      },
+      "end": 1792414307.2302072
+    },
+    {
+      "name": "seed2_closed_canonical",
+      "seed": 2,
+      "gpu": 1,
+      "door": "closed",
+      "prompt": "canonical",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_closed_canonical",
+        "--mode",
+        "actor",
+        "--door",
+        "closed",
+        "--prompt",
+        "canonical",
+        "--seed",
+        "2",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414299.565336,
+      "pid": 3648994,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_closed_canonical",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "closed",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 2,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "canonical",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414299.6725302,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 5.830110713898822e-15,
+          "door_speed": 7.340270040711965e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.04367744547860346,
+            0.38250284188565126,
+            1.003905921450434
+          ],
+          "eef_position": [
+            -0.20823662615659577,
+            -0.0006371671392114275,
+            1.173419948459418
+          ],
+          "eef_quat": [
+            0.9996074033100009,
+            -0.0005314387334885429,
+            -0.028013374485712443,
+            8.758214339257483e-05
+          ],
+          "gripper_qpos": [
+            0.03999912395046639,
+            -0.03999950336059562
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343363834993e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081658321566907e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081656554274577e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.6143415965427e-08
+            ]
+          ]
+        },
+        "language": "open the fridge, take the cream cheese box out of the fridge and place it on the table, then close the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 3.255271079664555e-13,
+        "max_door_displacement_rad": 5.570784338736707e-15,
+        "ended": 1792414430.5738347
+      },
+      "end": 1792414436.747715
+    },
+    {
+      "name": "seed2_closed_skill",
+      "seed": 2,
+      "gpu": 1,
+      "door": "closed",
+      "prompt": "skill",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_closed_skill",
+        "--mode",
+        "actor",
+        "--door",
+        "closed",
+        "--prompt",
+        "skill",
+        "--seed",
+        "2",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414436.7500496,
+      "pid": 3649363,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_closed_skill",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "closed",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 2,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "skill",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414436.8707306,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 5.830110713898822e-15,
+          "door_speed": 7.340270040711965e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.04367744547860346,
+            0.38250284188565126,
+            1.003905921450434
+          ],
+          "eef_position": [
+            -0.1380822070095155,
+            -0.0467089549686953,
+            1.0328312488170506
+          ],
+          "eef_quat": [
+            0.959194240739939,
+            0.07510471098072535,
+            0.2692230764194251,
+            0.042715641667805254
+          ],
+          "gripper_qpos": [
+            0.039868456514813064,
+            -0.040005098002685376
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343363834993e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081658321566907e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081656554274577e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.6143415965427e-08
+            ]
+          ]
+        },
+        "language": "open the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 3.255271079664555e-13,
+        "max_door_displacement_rad": 5.570784338736707e-15,
+        "ended": 1792414566.204129
+      },
+      "end": 1792414572.3557942
+    },
+    {
+      "name": "seed2_open_canonical",
+      "seed": 2,
+      "gpu": 1,
+      "door": "open",
+      "prompt": "canonical",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_open_canonical",
+        "--mode",
+        "actor",
+        "--door",
+        "open",
+        "--prompt",
+        "canonical",
+        "--seed",
+        "2",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414572.357175,
+      "pid": 3649688,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_open_canonical",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "open",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 2,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "canonical",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414572.464017,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 2.0064525938831106,
+          "door_speed": -0.003192438160752107,
+          "door_limited": true,
+          "item_position": [
+            -0.043677445478578256,
+            0.3825028418858464,
+            1.0039059214504333
+          ],
+          "eef_position": [
+            -0.17642396399471547,
+            0.044637374727549736,
+            0.9108784227873232
+          ],
+          "eef_quat": [
+            0.9339830212619021,
+            0.33672781816167674,
+            0.11406396044781315,
+            -0.03577017469240206
+          ],
+          "gripper_qpos": [
+            0.03761349377842461,
+            -0.039639092189508826
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614343345331839e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.08165857975648e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081656697736253e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614341463311695e-08
+            ]
+          ]
+        },
+        "language": "open the fridge, take the cream cheese box out of the fridge and place it on the table, then close the fridge",
+        "any_grasp": false,
+        "max_item_displacement_m": 3.306271278102005e-13,
+        "max_door_displacement_rad": 0.26247543370951787,
+        "ended": 1792414703.4527104
+      },
+      "end": 1792414709.6615198
+    },
+    {
+      "name": "seed2_open_skill",
+      "seed": 2,
+      "gpu": 1,
+      "door": "open",
+      "prompt": "skill",
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-u",
+        "/home/ami/UoE-UG4-Dissertation/scripts/diagnose_fridge_skills.py",
+        "--out",
+        "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_open_skill",
+        "--mode",
+        "actor",
+        "--door",
+        "open",
+        "--prompt",
+        "skill",
+        "--seed",
+        "2",
+        "--steps",
+        "160",
+        "--gpu",
+        "1",
+        "--snapshot",
+        "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "--yaw",
+        "-1.5707963267948966",
+        "--fridge-y",
+        "0.35",
+        "--camera",
+        "robot_side",
+        "--open-angle",
+        "2.2689280275926285",
+        "--item-forward",
+        "0.04",
+        "--item-lateral",
+        "0.035"
+      ],
+      "status": "exact_verified",
+      "start": 1792414709.663973,
+      "pid": 3650102,
+      "actor_returncode": 0,
+      "replay_returncode": 0,
+      "result": {
+        "status": "completed",
+        "scope": "R1_development_not_framework",
+        "args": {
+          "out": "/home/ami/scratch/fridge_r1_actor_20261019_a/seed2_open_skill",
+          "root": "/home/ami/scratch/LIBERO",
+          "mode": "actor",
+          "door": "open",
+          "yaw": -1.5707963267948966,
+          "fridge_y": 0.35,
+          "camera": "robot_side",
+          "open_angle": 2.2689280275926285,
+          "item_forward": 0.04,
+          "item_lateral": 0.035,
+          "seed": 2,
+          "steps": 160,
+          "gpu": 1,
+          "prompt": "skill",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "waypoints": null
+        },
+        "started": 1792414709.7715673,
+        "full_completion": null,
+        "hybrid": false,
+        "physics_version": "r1_limited_hinge_zero_closed_explicit_open_and_item_region_diagnostic_5deg",
+        "asset_sha256": "4f928ee9c0dee7d14f2e95aef425a4f713c10c41a590a4407f501f0d5dc3376a",
+        "sources": {
+          "scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+          "scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+          "configs/tasks/fridge_retrieval_dev.bddl": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d",
+          "src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+          "src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+          "src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+          "src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+          "src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+          "exp_record/agent_notes/closed_loop_recovery_r1_20261019.md": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+        },
+        "actor_build": {
+          "params": 7541237184,
+          "params_on_meta": 982,
+          "llm_layers": 32,
+          "hf_llm_id_used": false,
+          "patches": [
+            "GenerationMixin",
+            "_supports_sdpa",
+            "tie_weights"
+          ],
+          "unnorm_key": "libero_10",
+          "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+          "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+          "decode": "uncached_full_multimodal_greedy_tf5",
+          "H": 1,
+          "official_tf4401_decode_parity_verified": false
+        },
+        "steps_executed": 160,
+        "final": {
+          "door_angle_rad": 2.2689280275926285,
+          "door_speed": -8.95710665706853e-16,
+          "door_limited": true,
+          "item_position": [
+            -0.04367744547855582,
+            0.3825028418860304,
+            1.0039059214504333
+          ],
+          "eef_position": [
+            -0.16683290451598737,
+            -0.03584420831322075,
+            1.1605424476247752
+          ],
+          "eef_quat": [
+            0.9947841326601047,
+            0.10158560472130534,
+            -0.007753932755504478,
+            0.004977032038448055
+          ],
+          "gripper_qpos": [
+            0.0004909836913724743,
+            -0.0005087854455284632
+          ],
+          "grasped": false,
+          "native_success": false,
+          "contacts_endpoint": [
+            [
+              "gripper0_finger1_pad_collision",
+              "gripper0_finger2_pad_collision",
+              -2.308630990509367e-07
+            ],
+            [
+              "gripper0_finger1_pad_collision",
+              "gripper0_finger2_pad_collision",
+              -2.3086309905095492e-07
+            ],
+            [
+              "gripper0_finger1_pad_collision",
+              "gripper0_finger2_pad_collision",
+              -2.3086309905092718e-07
+            ],
+            [
+              "gripper0_finger1_pad_collision",
+              "gripper0_finger2_pad_collision",
+              -2.3086309905090897e-07
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.614342593302669e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.081657473981266e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -8.0816574603834e-08
+            ],
+            [
+              "cream_cheese_1_g1",
+              "short_fridge_1_g11",
+              -7.61434257970489e-08
+            ]
+          ]
+        },
+        "language": "pick up the cream cheese box",
+        "any_grasp": false,
+        "max_item_displacement_m": 5.391130928578064e-13,
+        "max_door_displacement_rad": 0.0,
+        "ended": 1792414839.1597576
+      },
+      "end": 1792414845.5077758
+    }
+  ],
+  "end": 1792414845.510394
+}

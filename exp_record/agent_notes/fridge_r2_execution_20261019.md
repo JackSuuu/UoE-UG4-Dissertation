@@ -1,5 +1,10 @@
 # R2 actual framework execution
 
+**Completed:** all four runs and both videos are finished. Full-task success was
+not achieved. See [results and event-accounting audit](fridge_r2_results_20261019.md)
+for the exact replay exception, corrected local-exit counts and user-directed pause
+on scene-specific repair tuning. Launch notes below remain historical.
+
 ## Launch
 
 User explicitly requests a real frozen-VLA versus VLA+framework comparison. Source

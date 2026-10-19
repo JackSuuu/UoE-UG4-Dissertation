@@ -1,0 +1,1007 @@
+{
+  "archive": "complete.tar.gz",
+  "archive_sha256": "6f58fa6352624ff38afeb7cf128c0e9ac0aad7b6e744df5de4b19757d782bec9",
+  "archive_bytes": 282424052,
+  "members": [
+    {
+      "path": "fridge_r2_framework_20261019_a/handoff_audit/audit.json",
+      "size": 1023,
+      "sha256": "cbd6a3be0cc22257ee45944433fa16b25fb82d70324460abdb0fa1cf0b9fddd6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/handoff_audit/scene.bddl",
+      "size": 983,
+      "sha256": "ba38b73192caf018a1e34af1f72908ab2aa87847fd74df05b8fcada76407be1a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/launch.json",
+      "size": 8040,
+      "sha256": "43229319d153594d7b0d46222e20170d15611bf31a4694e502441365d2d21b7b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/paired/closed_baseline_left_framework_right.json",
+      "size": 1559,
+      "sha256": "481ca4bbd34b1c9d4b2569587850a437156550c32c3bd021c11587f455175729"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/paired/closed_baseline_left_framework_right.mp4",
+      "size": 1246772,
+      "sha256": "1b24b17bd9378a0eeddd1c15b0c9c04cb5a9975ade4541ced60ad3322838f2dc"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/paired/open_baseline_left_framework_right.json",
+      "size": 1543,
+      "sha256": "49a43596154510278df90f757e1fcb83cb16a7df95c09b4dee8298be1dc3dad1"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/paired/open_baseline_left_framework_right.mp4",
+      "size": 1063886,
+      "sha256": "b90a3dbb57d2cda984ab8643c2f66dd9312998a64488e6af984eeecf9e710f2a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/render_closed.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/render_open.log",
+      "size": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_closed_actor/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_closed_actor/verification.json",
+      "size": 271,
+      "sha256": "f2696735fcb4db7481d4a9151a82ee9ff0666bc9fe5f55122864f533816009ec"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_closed_actor.log",
+      "size": 920,
+      "sha256": "6e4b2a471a9ee8cb7ffb3ac490c1b99d0100a4f7bd74d1f522c5ff440786195d"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_closed_framework/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_closed_framework/verification.json",
+      "size": 275,
+      "sha256": "06a8a4d5cf5737b5e8fd2109dd9a64703ad1ca2486dea30e0b30254c0636788b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_closed_framework.log",
+      "size": 924,
+      "sha256": "6a88a2dcd5a130e42f24321a8eb8ad41b11f5515acd04c70b9e21b3dbd2b3583"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_open_actor/scene.bddl",
+      "size": 983,
+      "sha256": "ba38b73192caf018a1e34af1f72908ab2aa87847fd74df05b8fcada76407be1a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_open_actor/verification.json",
+      "size": 269,
+      "sha256": "1bc86f68f9f11402a24e9d374e22fea499bd379c4101220fdc47a5d0f10ae5b1"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_open_actor.log",
+      "size": 918,
+      "sha256": "e412367ff1d0fb472f3e35be37735f3d5df20cac99ab59da1405d771c54197b3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_open_framework/scene.bddl",
+      "size": 983,
+      "sha256": "ba38b73192caf018a1e34af1f72908ab2aa87847fd74df05b8fcada76407be1a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_open_framework/verification.json",
+      "size": 715,
+      "sha256": "ab771634c121b8733f6c9f5aa3c4425ca80a14a44b24bb922ec15279fda39844"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/replay_seed0_open_framework.log",
+      "size": 1364,
+      "sha256": "7c1ac5715a5600a153fd41a39970ae21c2a7430c48aed9eb654ff0a23a7fc332"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/final.png",
+      "size": 58577,
+      "sha256": "125e7fae1d64e2a637647f7925384c935a13dd0c2e716b5e03fe4d9a2125943c"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/images.npz",
+      "size": 71810699,
+      "sha256": "feb1cbfbdb8056e85cc7a8447f4ee152f06dc9c05de48ff98eb86252b0b2f8b1"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/initial.json",
+      "size": 978,
+      "sha256": "b17cb36f27dc8b73e448b43889314b15578f1915a00c891fe467126cccd00450"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/model.xml",
+      "size": 50139,
+      "sha256": "02a0e9fdc246d3e3db758162e0dc93d901e96ee55a75c17d417c2c98b435f02b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/policy_input.png",
+      "size": 48239,
+      "sha256": "cbccc8ec8d38987d99e59d60a5bdf6ac50dcba4e54e0aaa29afd91f4e45e0c55"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/raw.mp4",
+      "size": 144649,
+      "sha256": "03a459c62f480f7aca8d65e2261b47721059cb99b891cf6f8be891f17cefb62a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/settled.png",
+      "size": 57188,
+      "sha256": "c4574f7b9253444f3cf6062cde90092823fd33b2817026cba34661debcc62b21"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/configs/tasks/fridge_retrieval_dev.bddl",
+      "size": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/exp_record/agent_notes/closed_loop_recovery_r1_20261019.md",
+      "size": 9244,
+      "sha256": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/exp_record/agent_notes/fridge_r2_framework_protocol_20261019.md",
+      "size": 4561,
+      "sha256": "5dbbb12ef48390f1331ca05460abda29b54b0f55fd24f5de41c67ca7514dee8b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/scripts/__pycache__/diagnose_fridge_skills.cpython-313.pyc",
+      "size": 25620,
+      "sha256": "e200436ffe91d698b04c911afb6b8fc67a6774b6c7de2fb3526bb12c24e41ea3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/scripts/__pycache__/probe_fridge_task.cpython-313.pyc",
+      "size": 12483,
+      "sha256": "c6a8f7a28b9fc768c0eef34335212a06715444ed6525ed1d67633f182b927e39"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/scripts/__pycache__/run_fridge_framework.cpython-313.pyc",
+      "size": 14550,
+      "sha256": "8faf5c21a30d3f7e05bb4ac05453bbab940ba84a331b56dc5c8c2e2907e1b262"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/scripts/diagnose_fridge_skills.py",
+      "size": 14207,
+      "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/scripts/probe_fridge_task.py",
+      "size": 7250,
+      "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/scripts/run_fridge_framework.py",
+      "size": 8383,
+      "sha256": "b902c54b9d6aedd4f547e34ddd35bc82fe04f7c54765b7fe7300a0d50fe8a41f"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/scripts/verify_fridge_framework.py",
+      "size": 4755,
+      "sha256": "7d1bf4d866da5ae78e1ac62fc9fa0e5395293b0b571dee618afc62eeb48afde3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/__pycache__/fridge_runtime.cpython-313.pyc",
+      "size": 20637,
+      "sha256": "a8a8745e8ae28780ffa51390d8355c4ae2dce05fb6e3e010507c2553e21ee5d7"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/__pycache__/libero_completion.cpython-313.pyc",
+      "size": 10821,
+      "sha256": "af729c347d6a214abee1c631444169f2f81b94b1de78a385c8e1ddcd555854dc"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/__pycache__/libero_preservation.cpython-313.pyc",
+      "size": 13385,
+      "sha256": "012dca2919bdfd37369185af75cbe47e4ff784b37d2b893096ecf1030abc22bf"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/__pycache__/libero_runtime.cpython-313.pyc",
+      "size": 5449,
+      "sha256": "cc8379e7ff142ed66676f1b92c3519b0baec8fb578b8a253f1201d7b1f565538"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/fridge_runtime.py",
+      "size": 11521,
+      "sha256": "be96c12308fa8abd7daff38ceb89de4fb8b247ac66953f34f14bd41dc9cfa597"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/libero_completion.py",
+      "size": 5647,
+      "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/libero_openvla.py",
+      "size": 3679,
+      "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/libero_preservation.py",
+      "size": 7265,
+      "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/libero_runtime.py",
+      "size": 3229,
+      "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/source/src/adapters/tf5_compat.py",
+      "size": 26212,
+      "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/states.npz",
+      "size": 143973,
+      "sha256": "211527f392b9e6e311775d6118e8361fc4138645def2fcecc17fde9821a84a71"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/status.json",
+      "size": 5142,
+      "sha256": "9775f94dcd53ea729b1d28a8986671ae526b7775840f94b3f059297c2b3daf5a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor/steps.jsonl",
+      "size": 1675839,
+      "sha256": "3e8d7bdeb4879184cdd9520a70f7245b54e31c65a4b4a87c6e386ae29df2da25"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_actor.log",
+      "size": 10308,
+      "sha256": "dde7fbfe40caca5f95a9f7f4969e2c27619ccfd2cd6e614bfbfca78b213a4416"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/final.png",
+      "size": 59507,
+      "sha256": "f9c5cb3fbeca8b58bc21f3261440d3cbfe51c66c3aa5e1bf75269d2295076a18"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/images.npz",
+      "size": 69871942,
+      "sha256": "9550021ee970b70bfafe177904af3b1492d1d01dde30ebceef14dc0d5fe1ae0e"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/initial.json",
+      "size": 978,
+      "sha256": "b17cb36f27dc8b73e448b43889314b15578f1915a00c891fe467126cccd00450"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/model.xml",
+      "size": 50139,
+      "sha256": "02a0e9fdc246d3e3db758162e0dc93d901e96ee55a75c17d417c2c98b435f02b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/policy_input.png",
+      "size": 48239,
+      "sha256": "cbccc8ec8d38987d99e59d60a5bdf6ac50dcba4e54e0aaa29afd91f4e45e0c55"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/raw.mp4",
+      "size": 222152,
+      "sha256": "e869d500317e2d34050a70a4d1181ab5104550eec9e7cd6a32b501e081efbe31"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/settled.png",
+      "size": 57188,
+      "sha256": "c4574f7b9253444f3cf6062cde90092823fd33b2817026cba34661debcc62b21"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/configs/tasks/fridge_retrieval_dev.bddl",
+      "size": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/exp_record/agent_notes/closed_loop_recovery_r1_20261019.md",
+      "size": 9244,
+      "sha256": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/exp_record/agent_notes/fridge_r2_framework_protocol_20261019.md",
+      "size": 4561,
+      "sha256": "5dbbb12ef48390f1331ca05460abda29b54b0f55fd24f5de41c67ca7514dee8b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/scripts/__pycache__/diagnose_fridge_skills.cpython-313.pyc",
+      "size": 25624,
+      "sha256": "5cd4c7eaa9af37ed17754d2d6746ecdc14406404605a609b6d39d0c177bd852a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/scripts/__pycache__/probe_fridge_task.cpython-313.pyc",
+      "size": 12487,
+      "sha256": "93da29f2cc13a46198193504ce1de92d877d419fdd8baea299d40229ee6dea84"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/scripts/__pycache__/run_fridge_framework.cpython-313.pyc",
+      "size": 14554,
+      "sha256": "7efca049573e15273ca4994136723c47e2a2d8ff93573bfe6da246350d464433"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/scripts/diagnose_fridge_skills.py",
+      "size": 14207,
+      "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/scripts/probe_fridge_task.py",
+      "size": 7250,
+      "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/scripts/run_fridge_framework.py",
+      "size": 8383,
+      "sha256": "b902c54b9d6aedd4f547e34ddd35bc82fe04f7c54765b7fe7300a0d50fe8a41f"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/scripts/verify_fridge_framework.py",
+      "size": 4755,
+      "sha256": "7d1bf4d866da5ae78e1ac62fc9fa0e5395293b0b571dee618afc62eeb48afde3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/__pycache__/fridge_runtime.cpython-313.pyc",
+      "size": 20641,
+      "sha256": "cdf46449b954531f6f28972878c7c6457e5384a2dc8af85646ac12311df51c38"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/__pycache__/libero_completion.cpython-313.pyc",
+      "size": 10825,
+      "sha256": "2018f92e9b754045921e9af69a639abf259fd6a977d5f4217b7d886fefacbcea"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/__pycache__/libero_preservation.cpython-313.pyc",
+      "size": 13389,
+      "sha256": "584cbb172f34f137f4663c5d9c63079bbc1b4c5f47755adfcaa99827e1f22d66"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/__pycache__/libero_runtime.cpython-313.pyc",
+      "size": 5453,
+      "sha256": "c6fcc00f618919a92de550e3f55d5ac3126193ff86e788b732fb8447e16a0e40"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/fridge_runtime.py",
+      "size": 11521,
+      "sha256": "be96c12308fa8abd7daff38ceb89de4fb8b247ac66953f34f14bd41dc9cfa597"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/libero_completion.py",
+      "size": 5647,
+      "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/libero_openvla.py",
+      "size": 3679,
+      "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/libero_preservation.py",
+      "size": 7265,
+      "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/libero_runtime.py",
+      "size": 3229,
+      "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/source/src/adapters/tf5_compat.py",
+      "size": 26212,
+      "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/states.npz",
+      "size": 142453,
+      "sha256": "2e8f29b0d45e952dce1940ed8ce221e524c810d14971ddc37b522e26371566a3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/status.json",
+      "size": 5153,
+      "sha256": "2bdd8d00367c6b61cd37336fb9d84bab9bd69e6fa0f75d5c3c99b2f4800c49fa"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework/steps.jsonl",
+      "size": 1699319,
+      "sha256": "f91edeceb2156e1593195be6d13f6e7229d14da07cbeef5179572e90b74db692"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_closed_framework.log",
+      "size": 10371,
+      "sha256": "3c0f04ba9903e24f04a1d5941b170e5f8fddfd7dde9e5a132b45d4a313d21113"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/final.png",
+      "size": 60020,
+      "sha256": "e4104c3ecfb7dae3461a1dd791374a7bd6f3348a152f57183613bd16a482750b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/images.npz",
+      "size": 68191161,
+      "sha256": "a0d38f10dc5d11449ff87cf5a6560e389126792ff0508ef4f54e0130a56216df"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/initial.json",
+      "size": 975,
+      "sha256": "d3d367bd32233d3eb1ab18371f011c72588b870e9010753ef31d5201e271a2e6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/model.xml",
+      "size": 50139,
+      "sha256": "02a0e9fdc246d3e3db758162e0dc93d901e96ee55a75c17d417c2c98b435f02b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/policy_input.png",
+      "size": 50425,
+      "sha256": "1805b8c6a20f4199ab507aa28fee25a11da8461d44da86692853e1032c8713c6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/raw.mp4",
+      "size": 71381,
+      "sha256": "07d181e9f9fbc392828b8d3e252100d43b60e7269319c6d93d18457aabe44fb6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/scene.bddl",
+      "size": 983,
+      "sha256": "ba38b73192caf018a1e34af1f72908ab2aa87847fd74df05b8fcada76407be1a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/settled.png",
+      "size": 59219,
+      "sha256": "450cf4677be6c6ce513474f7b76b28030a774a35b67aa7d56fc07618565ebb07"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/configs/tasks/fridge_retrieval_dev.bddl",
+      "size": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/exp_record/agent_notes/closed_loop_recovery_r1_20261019.md",
+      "size": 9244,
+      "sha256": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/exp_record/agent_notes/fridge_r2_framework_protocol_20261019.md",
+      "size": 4561,
+      "sha256": "5dbbb12ef48390f1331ca05460abda29b54b0f55fd24f5de41c67ca7514dee8b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/scripts/__pycache__/diagnose_fridge_skills.cpython-313.pyc",
+      "size": 25618,
+      "sha256": "45f1f73294e68379207613de18b6370706936a44d1f701d77f5a40e508aa45c8"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/scripts/__pycache__/probe_fridge_task.cpython-313.pyc",
+      "size": 12481,
+      "sha256": "bb583584cbaa3847f32fec69cdce9c8e601d5649b0d83b5574d26a2da28eadae"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/scripts/__pycache__/run_fridge_framework.cpython-313.pyc",
+      "size": 14548,
+      "sha256": "edba2c9b2f87ee4eced1e0235f19dcc86762b6c0718efc53bfa8ad382a193d46"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/scripts/diagnose_fridge_skills.py",
+      "size": 14207,
+      "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/scripts/probe_fridge_task.py",
+      "size": 7250,
+      "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/scripts/run_fridge_framework.py",
+      "size": 8383,
+      "sha256": "b902c54b9d6aedd4f547e34ddd35bc82fe04f7c54765b7fe7300a0d50fe8a41f"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/scripts/verify_fridge_framework.py",
+      "size": 4755,
+      "sha256": "7d1bf4d866da5ae78e1ac62fc9fa0e5395293b0b571dee618afc62eeb48afde3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/__pycache__/fridge_runtime.cpython-313.pyc",
+      "size": 20635,
+      "sha256": "76e1c8a1a9aff0b9c6a3439a22503de0b01d79ce763b2af2b90abca6187903f9"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/__pycache__/libero_completion.cpython-313.pyc",
+      "size": 10819,
+      "sha256": "86388f8642ce4f12f6339d02551dc77377108b7a8ad523b7c019926ad750d6d9"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/__pycache__/libero_preservation.cpython-313.pyc",
+      "size": 13383,
+      "sha256": "dad75217acc4d4c97de132d0a40925f6289e8d752888550c870ab7f6d322f3ef"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/__pycache__/libero_runtime.cpython-313.pyc",
+      "size": 5447,
+      "sha256": "bf2e237f9808594b6adde9459444af1c76b2c2bea04cfe886d1ed1e46ee3f6ea"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/fridge_runtime.py",
+      "size": 11521,
+      "sha256": "be96c12308fa8abd7daff38ceb89de4fb8b247ac66953f34f14bd41dc9cfa597"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/libero_completion.py",
+      "size": 5647,
+      "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/libero_openvla.py",
+      "size": 3679,
+      "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/libero_preservation.py",
+      "size": 7265,
+      "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/libero_runtime.py",
+      "size": 3229,
+      "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/source/src/adapters/tf5_compat.py",
+      "size": 26212,
+      "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/states.npz",
+      "size": 138587,
+      "sha256": "40597b37e1dc98c82fa177b382fdd9cc51064ffd64cc70c2568ccd69e674aa7e"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/status.json",
+      "size": 5666,
+      "sha256": "8b8fd6f63e55bde56dea59240a2fde34964c1bd2ca217cfab01fa2f81b4ac488"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor/steps.jsonl",
+      "size": 1800991,
+      "sha256": "3fee599db5d7c25a7fe32079c4cbe35c0c14ab3cb0d65a4468bca6f0b566e845"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_actor.log",
+      "size": 10338,
+      "sha256": "aa70ade4989ed049484d7b1b93c625865248e4888afb3fb6033a4bbfad980e43"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/final.png",
+      "size": 59722,
+      "sha256": "75d6f97d348064e671bdaeda36b72bcaae8daa69b28db5124a46d9e19d36aaee"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/images.npz",
+      "size": 65988582,
+      "sha256": "4186c0137af9d7fccfa9cccd5203c57dbc8dc5c29e95decc9399f886a97038e1"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/initial.json",
+      "size": 975,
+      "sha256": "d3d367bd32233d3eb1ab18371f011c72588b870e9010753ef31d5201e271a2e6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/model.xml",
+      "size": 50139,
+      "sha256": "02a0e9fdc246d3e3db758162e0dc93d901e96ee55a75c17d417c2c98b435f02b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/policy_input.png",
+      "size": 50425,
+      "sha256": "1805b8c6a20f4199ab507aa28fee25a11da8461d44da86692853e1032c8713c6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/raw.mp4",
+      "size": 218867,
+      "sha256": "52eeb25792b30a0d131a5dd71f670d80373af701d2dfba145bd558e1e6e58161"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/scene.bddl",
+      "size": 983,
+      "sha256": "ba38b73192caf018a1e34af1f72908ab2aa87847fd74df05b8fcada76407be1a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/settled.png",
+      "size": 59219,
+      "sha256": "450cf4677be6c6ce513474f7b76b28030a774a35b67aa7d56fc07618565ebb07"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/configs/tasks/fridge_retrieval_dev.bddl",
+      "size": 967,
+      "sha256": "38d454c11c7b37c5eeb44b1442a4e40d7340284b50b2bdc8a541e8695066335d"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/exp_record/agent_notes/closed_loop_recovery_r1_20261019.md",
+      "size": 9244,
+      "sha256": "d76dbad7cb16c51759ffc69c330e52d4dd2af530c32ac109fb6f31867b0d0a5a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/exp_record/agent_notes/fridge_r2_framework_protocol_20261019.md",
+      "size": 4561,
+      "sha256": "5dbbb12ef48390f1331ca05460abda29b54b0f55fd24f5de41c67ca7514dee8b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/scripts/__pycache__/diagnose_fridge_skills.cpython-313.pyc",
+      "size": 25622,
+      "sha256": "4b8d07039f0eccedd83f9b31d65472e4411927fe4b3d7e9a5ca5755ff523a264"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/scripts/__pycache__/probe_fridge_task.cpython-313.pyc",
+      "size": 12485,
+      "sha256": "8b775493ab7243c4b4af82758d1fdbfe73a7ab50afbf80e067bb9b8bc83e635b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/scripts/__pycache__/run_fridge_framework.cpython-313.pyc",
+      "size": 14552,
+      "sha256": "ef1524aeb35334e649bbe7b6c32ba14963799e8eb05f6b1c3974cb4318ccf1eb"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/scripts/diagnose_fridge_skills.py",
+      "size": 14207,
+      "sha256": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/scripts/probe_fridge_task.py",
+      "size": 7250,
+      "sha256": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/scripts/run_fridge_framework.py",
+      "size": 8383,
+      "sha256": "b902c54b9d6aedd4f547e34ddd35bc82fe04f7c54765b7fe7300a0d50fe8a41f"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/scripts/verify_fridge_framework.py",
+      "size": 4755,
+      "sha256": "7d1bf4d866da5ae78e1ac62fc9fa0e5395293b0b571dee618afc62eeb48afde3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/__pycache__/fridge_runtime.cpython-313.pyc",
+      "size": 20639,
+      "sha256": "1a954d95c348d7240760c5a767120a04db7de78ffaffc3b850c3bd9c7db68e25"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/__pycache__/libero_completion.cpython-313.pyc",
+      "size": 10823,
+      "sha256": "1db2059af6cee9ae8708a37501fb803290cd7e0ffb8320433d534b508fe13d2c"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/__pycache__/libero_preservation.cpython-313.pyc",
+      "size": 13387,
+      "sha256": "6d9d356e536920094bdf9e174b982196a7ca6a837b1c9cf37302babdd280add3"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/__pycache__/libero_runtime.cpython-313.pyc",
+      "size": 5451,
+      "sha256": "265ab069a15df6a8eaccf4efbef447d24bd35d1524a7f3455cfc0b60c884f515"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/fridge_runtime.py",
+      "size": 11521,
+      "sha256": "be96c12308fa8abd7daff38ceb89de4fb8b247ac66953f34f14bd41dc9cfa597"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/libero_completion.py",
+      "size": 5647,
+      "sha256": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/libero_openvla.py",
+      "size": 3679,
+      "sha256": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/libero_preservation.py",
+      "size": 7265,
+      "sha256": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/libero_runtime.py",
+      "size": 3229,
+      "sha256": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/source/src/adapters/tf5_compat.py",
+      "size": 26212,
+      "sha256": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/states.npz",
+      "size": 147353,
+      "sha256": "a48e6dbddf8c4b2fc3676cb8f8ce8b82334929e45ef3f781eee51077e937006e"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/status.json",
+      "size": 4932,
+      "sha256": "b1102902216be3c165860591b8b9420a3b5f6fa56174ace458c7533060468d5b"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework/steps.jsonl",
+      "size": 1989648,
+      "sha256": "635746b4f4bb655287590b6b7c385974f0e4482c01f6c0bf9e8985b0adbbe932"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a/seed0_open_framework.log",
+      "size": 10413,
+      "sha256": "9c38e481251afc9c424268a93789922c7487ddd3cbb3e6705ce30e5d069e1d92"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/final.png",
+      "size": 61932,
+      "sha256": "e99eecbe85ef51439ac0272515b8a77534efdbd056de1b6194760aae48dcb97a"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/raw.mp4",
+      "size": 78487,
+      "sha256": "0542dd50baad6a6cd0f9cd41e9fa895667e3cdd1dda147af6abf6e8099c59243"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/report.json",
+      "size": 1059,
+      "sha256": "7585529308ac8c7396597d30976abe55d6f9eb57cb8bec3ae55c6e1ddfa203f3"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/source/scripts/probe_fridge_door_repair.py",
+      "size": 3312,
+      "sha256": "25c3e669bbeb9d6f079ccf93f4561fe09f611eb5a647d1f18746cd4a911d1bc8"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/source/src/adapters/fridge_door_repair.py",
+      "size": 3985,
+      "sha256": "3f76b96a2a87f3b1be4144aae55b3da200942e03afdd64505fc17a40713eca06"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/states.npz",
+      "size": 48381,
+      "sha256": "74321256248a53a4453b13a7ee9e9bf191e61ec8ae1d8ff4b838d1f41cdb92e4"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1/steps.jsonl",
+      "size": 392656,
+      "sha256": "6906c00b7c01a64552a9de3d9d76c2a4a7d52af3dc7bf501e53150832e264315"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v1.log",
+      "size": 17317,
+      "sha256": "f9a2700dee33936863e968cc472b221f7e80d51f87030b61c57585b69400a5a3"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/final.png",
+      "size": 62054,
+      "sha256": "c816c6c8514a21d526cacebdd9daa3e6e2f0294b0340c553a578ee605a2ed1a9"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/raw.mp4",
+      "size": 92683,
+      "sha256": "684af19e1c10ec47b6b4b0c8e187109d47778cb0f7527ca26346d8e7a878938d"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/report.json",
+      "size": 1051,
+      "sha256": "d052c7d5f806b7ea4ff54b1a7c940a19cb21f25af75f0e987a6f4a9cf8d70b9e"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/source/scripts/probe_fridge_door_repair.py",
+      "size": 3312,
+      "sha256": "25c3e669bbeb9d6f079ccf93f4561fe09f611eb5a647d1f18746cd4a911d1bc8"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/source/src/adapters/fridge_door_repair.py",
+      "size": 4147,
+      "sha256": "d6ff638e40abf7aecf9674cd579118f5faea65193a68cc6ddef29bdfaec4a06b"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/states.npz",
+      "size": 48613,
+      "sha256": "f18e041c34da1cd6977a1f7fb84c38f2be9306570a35e821c0880ad2e0e9d4b7"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2/steps.jsonl",
+      "size": 396756,
+      "sha256": "a518668d9835365fbd00b0206957e819efa05b459908fa34da83a96cdd468882"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2.log",
+      "size": 17382,
+      "sha256": "4f5258f5614b149e004b72c13d59ea73fdb7e5d41f0a2954a246c82eedb21e51"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/final.png",
+      "size": 61383,
+      "sha256": "bb85a4ddf41a0e007bd05b7a3da84d6ff6616996d57c3e81e753c2130e296f89"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/raw.mp4",
+      "size": 176886,
+      "sha256": "f52f33f1987f1efcddc7cd2ca92cb4176516c2c1bab4e0b3d064aa38f1bec978"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/report.json",
+      "size": 1048,
+      "sha256": "29cbd69057d9c2803dc7eff30e32e364906ec3582b128e546eeec76cb7a9ed47"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/source/scripts/probe_fridge_door_repair.py",
+      "size": 3312,
+      "sha256": "25c3e669bbeb9d6f079ccf93f4561fe09f611eb5a647d1f18746cd4a911d1bc8"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/source/src/adapters/fridge_door_repair.py",
+      "size": 4147,
+      "sha256": "d6ff638e40abf7aecf9674cd579118f5faea65193a68cc6ddef29bdfaec4a06b"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/states.npz",
+      "size": 101136,
+      "sha256": "1b9ae15410e9b441eebad9c5558231287462a3752fb145dd815deee2bf4ff87c"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420/steps.jsonl",
+      "size": 865973,
+      "sha256": "5d5fa13ff19373eb045046231a85e86ec04209fedbdbf5cb87d5f56c97ef4f0c"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v2_budget420.log",
+      "size": 36534,
+      "sha256": "900a8cd6cf99db48b4a5d3619ff37413eeb9bf6a34d59cbff96d6122d58c9acb"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/final.png",
+      "size": 59328,
+      "sha256": "172d0d79b2c1c7e5fb913919306d6ea55d19198367bff077849829f6090b1090"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/raw.mp4",
+      "size": 179731,
+      "sha256": "e820bebd473dd0b1d229771439fa74ae45f2e1f51a8cd4a97f9adedd547778e3"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/report.json",
+      "size": 1050,
+      "sha256": "29ce688ab55f0a35896b6f2a19e117b62249e4e6aaee9cf0bb5b3ed9599cfd40"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/source/scripts/probe_fridge_door_repair.py",
+      "size": 3312,
+      "sha256": "25c3e669bbeb9d6f079ccf93f4561fe09f611eb5a647d1f18746cd4a911d1bc8"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/source/src/adapters/fridge_door_repair.py",
+      "size": 4544,
+      "sha256": "14d729388c61ba8fa84f22a67396f48cfde30feb6ce07e5b85699690c4a32640"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/states.npz",
+      "size": 101239,
+      "sha256": "8d0e105384281da26710c7b0e3989cddff62355987aeec7de5e1ed4061f9fef9"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420/steps.jsonl",
+      "size": 863793,
+      "sha256": "401fad6456bedec456a349194b8cce41df5fb7eb4070b48d7b5131468f4997ec"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v3_budget420.log",
+      "size": 36700,
+      "sha256": "34deac1f84935bb0b9ba4247ca5d272f91a3277277e65c504a62ab14a5f553d9"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v4_budget420/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/contact_v4_budget420.log",
+      "size": 649,
+      "sha256": "d73aa062b04641d6b9d0a65b7aca420ee7b45be677a5712740eff00860494031"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/geometry.json",
+      "size": 19385,
+      "sha256": "5d797c9c416715b488fa8846c92d29662822e49c8d72092712b91edaef7661f9"
+    },
+    {
+      "path": "fridge_open_diagnosis_20261019_a/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_r2_endpoint_20261019_a/qualification.json",
+      "size": 1132,
+      "sha256": "aa207ce93326a7561825a507ba1178419b4edb86df41208e0a331e057e30d8aa"
+    },
+    {
+      "path": "fridge_r2_endpoint_20261019_a/scene.bddl",
+      "size": 984,
+      "sha256": "4d76c80c9e5fba893e542b34c3f0a34eb3209c46d2a1e01d86c87e4db549c440"
+    },
+    {
+      "path": "fridge_r2_endpoint_20261019_a/supported_outside_region.png",
+      "size": 57237,
+      "sha256": "845c79240331e6df719486246a8bd137d48d738d68344c296ee2e4fb7d5a5d67"
+    },
+    {
+      "path": "fridge_r2_endpoint_20261019_a/supported_released_inside.png",
+      "size": 57721,
+      "sha256": "92ef7d0c305b1009f01b2bc10489be250443ec3eb5c1607a70c1d1308e003dfe"
+    },
+    {
+      "path": "fridge_r2_endpoint_20261019_a/unsupported_above_region.png",
+      "size": 57476,
+      "sha256": "70dba1d914dce8f7d6b5e2f6cb440ef2a649a2a5631ccd1ea3401c1af0b9d842"
+    },
+    {
+      "path": "fridge_r2_20261019_smoke/result.json",
+      "size": 401,
+      "sha256": "cf868f8e139ce2ae0244a2bf69d9d1e00842a02686bdda3552f02dfbb7a82d20"
+    },
+    {
+      "path": "fridge_r2_20261019_smoke/scene.bddl",
+      "size": 983,
+      "sha256": "ba38b73192caf018a1e34af1f72908ab2aa87847fd74df05b8fcada76407be1a"
+    },
+    {
+      "path": "audit_source/scripts/audit_fridge_r2_handoff.py",
+      "size": 3559,
+      "sha256": "29876c7a77d4b7431f939ba00db2a0ad4fa4c7673117bf6929a4c0065f389fa1"
+    },
+    {
+      "path": "audit_source/scripts/probe_fridge_door_repair.py",
+      "size": 3312,
+      "sha256": "25c3e669bbeb9d6f079ccf93f4561fe09f611eb5a647d1f18746cd4a911d1bc8"
+    },
+    {
+      "path": "audit_source/src/adapters/fridge_door_repair.py",
+      "size": 5232,
+      "sha256": "e3eb3253e7640b41fe9bf65cc7414473a0e649c2855bd1695028c6c218b58c58"
+    },
+    {
+      "path": "fridge_r2_framework_20261019_a.supervisor.log",
+      "size": 8040,
+      "sha256": "43229319d153594d7b0d46222e20170d15611bf31a4694e502441365d2d21b7b"
+    }
+  ]
+}

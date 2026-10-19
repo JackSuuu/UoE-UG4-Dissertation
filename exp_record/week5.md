@@ -3,6 +3,27 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — R2 finished; pause scene-specific repair tuning
+
+All four600-query/action trials finished. Closed-start baseline and wrapper both
+failed to open. Open-start wrapper grasped/extracted but did not place or complete;
+baseline never grasped. Both wrapper runs used420corrections (70%). Three exact
+replays pass; the fourth has exact physics/controller/decisions/agentview, with two
+wrist frames differing by three total RGB channels, each by1.
+
+Post-hoc frozen replay corrects an event-accounting bug: `retain_grip` overwrote two
+verified local exits (steps245/302). Neither immediately handed an unmodified
+proposal to VLA; subsequent sequence completion remains zero. Original records stay
+unchanged. Both601-frame/20fps baseline-left/framework-right videos are delivered.
+
+Door diagnostics found a32mm no-contact gap; contact-based branches moved the door
+partway but none passed opening. The user rejected per-scene coordinate tuning;
+it is paused. Next-version acceptance requires the same frozen repair across held-out
+layouts/instances, object-relative inputs, shared-primitives feedback ablations and
+a task-capable shared actor. These capabilities are not yet implemented.
+[Detailed results](agent_notes/fridge_r2_results_20261019.md) ·
+[Videos and complete archive](../backups/fridge_r2_20261019/README.md).
+
 ### Update 19 Oct — Implement actual VLA + five-layer refrigerator runtime
 
 User requests the integrated comparison directly. Added `fridge_runtime.py` and

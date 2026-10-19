@@ -1,5 +1,14 @@
 # R1 refrigerator capability diagnosis — execution record
 
+## Final actor cohort status
+
+All12trials completed160queries/actions and exact independent replay. None showed
+item grasp; maximum item displacement across all recorded endpoints was below
+6e-13m. No retrieval capability is established by this cohort. All373run/replay
+files plus the supervisor log are retained in the374-member
+[actor archive](../../backups/fridge_r1_20261019/actor_cohort.tar.gz), with final
+launch state and member hashes alongside it. Earlier launch notes below are historical.
+
 Protocol: [closed-loop recovery and R1](closed_loop_recovery_r1_20261019.md).
 Engineering output: `/home/ami/scratch/fridge_r1_20261019_a`.
 Actor cohort target: `/home/ami/scratch/fridge_r1_actor_20261019_a`.

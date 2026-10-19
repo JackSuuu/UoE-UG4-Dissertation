@@ -1,5 +1,13 @@
 # R1: contact extraction feasibility and frozen actor diagnosis
 
+## Frozen actor cohort completed
+
+All12native-actor trials completed160queries/actions and passed exact independent
+replay. None grasped or meaningfully displaced the item (maximum displacement
+below6e-13m). These are basic-skill diagnostics, not full-task efficacy trials.
+[Final status](actor_launch_final.json) · [374-member archive](actor_cohort.tar.gz) ·
+[SHA256 manifest](actor_cohort_manifest.json).
+
 ## Side-by-side review (baseline left / our engineering controller right)
 
 [Watch paired MP4](baseline_left_servo_right.mp4) · [pair manifest](baseline_left_servo_right.json)
@@ -25,8 +33,8 @@ phase/intervention/handoff labels, all-case indexes and explicit end states.
 
 `engineering.tar.gz` retains unsuccessful geometry/servo variants, initial launch
 errors, source freezes where available, raw videos, physics states and replay reports.
-The completed pixel replay is included; the newly launched actor cohort will be
-archived after completion. The earliest inventory probes predate
+The completed pixel replay is included; the finished actor cohort is separately
+archived above. The earliest inventory probes predate
 per-run source copying and retain hashes rather than full intermediate source copies.
 
 The video is **scripted geometric control, not OpenVLA or five-layer efficacy**.

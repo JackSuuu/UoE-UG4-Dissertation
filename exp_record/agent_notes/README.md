@@ -4,6 +4,7 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 
 ## Current
 
+* [R2 outcomes, handoff audit and generalization correction](fridge_r2_results_20261019.md)
 * [R2 actual frozen-VLA versus five-layer framework comparison](fridge_r2_framework_protocol_20261019.md)
 * [R2 launch and endpoint qualification](fridge_r2_execution_20261019.md)
 * [Verification–repair continuity, visual grounding and ICLR evidence targets](verification_repair_iclr_20261019.md)

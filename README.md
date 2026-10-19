@@ -55,7 +55,9 @@ Undergraduate (UG4) dissertation project — University of Edinburgh.
 
 **Locked architecture:** high-level subgoals → frozen OpenVLA → risk/event-boundary monitoring → dual-mode gate → bounded local repair. [Authoritative design](exp_record/agent_notes/libero_framework_design_20261014.md) · [layer-by-layer implementation / next long-horizon task](exp_record/agent_notes/libero_five_layer_implementation_20261014.md).
 
-**Latest completed experiment:** [A2:80/80verified trajectories](exp_record/agent_notes/assembly_a2_results_20261019.md). VLA8/20; shared-gate geometric feedback and hybrid18/20. Prediction ranking never overrides geometry, and the hybrid harms one baseline success. [VLA-left / hybrid-right paired videos, including negative cases](backups/assembly_a2_paired_review_20261019/README.md).
+**Latest completed experiment:** [R2: actual frozen VLA / refrigerator wrapper](exp_record/agent_notes/fridge_r2_results_20261019.md), four600-action/query trials. Closed-start arms both fail to open; open-start wrapper grasps/extracts but does not complete placement/retrieval. Both wrapper runs use420corrections. [Baseline-left / framework-right videos and all-case archive](backups/fridge_r2_20261019/README.md). This is privileged, scene-specific development; per-scene coordinate tuning is paused in favor of testing one frozen repair across held-out layouts/instances. Three exact replays pass; the fourth has only two wrist-frame pixel discrepancies. The results include a correction to overwritten local-exit event labels.
+
+**Earlier assembly evidence:** [A2:80/80verified trajectories](exp_record/agent_notes/assembly_a2_results_20261019.md). VLA8/20; shared-gate geometric feedback and hybrid18/20. Prediction ranking never overrides geometry, and the hybrid harms one baseline success. [VLA-left / hybrid-right paired videos, including negative cases](backups/assembly_a2_paired_review_20261019/README.md).
 
 **[Videos, artifact backup and recovery instructions](backups/README.md)** · **[Pinned LIBERO submodule](third_party/LIBERO)**. Large experiment files use Git LFS; clone with submodules and run `git lfs pull` to restore them.
 
