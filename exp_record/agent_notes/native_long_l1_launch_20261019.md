@@ -1,6 +1,13 @@
 # L1 parallel execution started — 2026-10-19
 
-**Actual state: running, not completed.** All three workers have entered actor
+**Latest state: paused after6/24episodes.** The initial cohort exited1with
+`complete_with_issues`: microwave roots0–2completed with2native successes and
+exact replay; two-pot roots0–2completed with1recorded native success, but wrist
+image mismatch at1/1/3frames blocked each lane. Physics/integration gaps are zero.
+The18remaining cells were not started. Diagnosis and a separately frozen
+continuation are pending; original outcomes and failed replay proofs are retained.
+
+**Historical startup state:** All three workers had entered actor
 execution. Initial health snapshot records4model actions per worker and no worker
 error; it is a launch check, not a task outcome or success-rate estimate.
 

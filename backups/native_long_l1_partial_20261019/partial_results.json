@@ -1,0 +1,83 @@
+{
+  "planned": 24,
+  "executed": 6,
+  "unstarted": 18,
+  "episodes": [
+    {
+      "case": "microwave_root0",
+      "native_success": false,
+      "actions": 520,
+      "queries": 520,
+      "termination": "action_budget",
+      "replay_status": "exact_replay_passed",
+      "max_state_gap": 0.0,
+      "max_integration_gap": 0.0,
+      "mismatch_frames": []
+    },
+    {
+      "case": "two_pots_root0",
+      "native_success": true,
+      "actions": 500,
+      "queries": 500,
+      "termination": "native_success",
+      "replay_status": "replay_mismatch",
+      "max_state_gap": 0.0,
+      "max_integration_gap": 0.0,
+      "mismatch_frames": [
+        482
+      ]
+    },
+    {
+      "case": "microwave_root1",
+      "native_success": true,
+      "actions": 444,
+      "queries": 444,
+      "termination": "native_success",
+      "replay_status": "exact_replay_passed",
+      "max_state_gap": 0.0,
+      "max_integration_gap": 0.0,
+      "mismatch_frames": []
+    },
+    {
+      "case": "two_pots_root1",
+      "native_success": false,
+      "actions": 520,
+      "queries": 520,
+      "termination": "action_budget",
+      "replay_status": "replay_mismatch",
+      "max_state_gap": 0.0,
+      "max_integration_gap": 0.0,
+      "mismatch_frames": [
+        155
+      ]
+    },
+    {
+      "case": "microwave_root2",
+      "native_success": true,
+      "actions": 397,
+      "queries": 397,
+      "termination": "native_success",
+      "replay_status": "exact_replay_passed",
+      "max_state_gap": 0.0,
+      "max_integration_gap": 0.0,
+      "mismatch_frames": []
+    },
+    {
+      "case": "two_pots_root2",
+      "native_success": false,
+      "actions": 520,
+      "queries": 520,
+      "termination": "action_budget",
+      "replay_status": "replay_mismatch",
+      "max_state_gap": 0.0,
+      "max_integration_gap": 0.0,
+      "mismatch_frames": [
+        237,
+        261,
+        275
+      ]
+    }
+  ],
+  "actions_total": 2901,
+  "scope": "actor_only_development_no_framework_gain"
+}

@@ -3,6 +3,18 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — First six L1 episodes completed; replay gate paused remaining18
+
+Microwave roots0/1/2: failure520actions, native success444, native success397;
+all three replay exactly. Two-pot roots0/1/2: recorded success500, failure520,
+failure520; physics and integration trajectories match exactly, but wrist-image
+differences in1/1/3frames caused strict replay failures. Agent-view images have
+no reported mismatches. The supervisor correctly stopped all three lanes;
+18cells remain unstarted. A rendering diagnostic and an explicit continuation
+are being prepared. Preserve the original replay failures and keep task
+selection provisional until all six cases per task pass the declared integrity
+review. These are actor-only development outcomes, not framework gains.
+
 ### Update 19 Oct — L1 parallel native screening launched; R0 readiness research completed
 
 User authorizes execution and parallel GPU use. Frozen implementation/protocol

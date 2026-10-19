@@ -16,8 +16,12 @@ No RoboCasa checkpoint is selected or qualified yet. Two different model/platfor
 pairs demonstrate replication across pairs; separating model and platform effects
 requires an additional shared-platform/model comparison.
 
-Latest execution status: user authorized parallel execution. L1started under
-frozen source/protocol `63fecbd`,24episodes on physicalGPUs1/2/3; R0source research
+Latest execution status: L1paused after6/24actor episodes under frozen source
+`63fecbd`. Microwave roots0–2:2successes/3completed, all exact replay. Two-pot
+roots0–2:1recorded success/3completed; all physics/integration states match but
+wrist-only image differences at1/1/3frames caused the prescribed lane stops.
+The remaining18cells are unstarted. Diagnose rendering and explicitly freeze a
+continuation before resuming; retain original replay failures. R0source research
 completed. See [actual launch and preflight evidence](native_long_l1_launch_20261019.md).
 L2/L3/R1remain unlaunched and their downstream branch budgets must be frozen from
 the preceding evidence. Labels below are new queue labels, not renamings of
