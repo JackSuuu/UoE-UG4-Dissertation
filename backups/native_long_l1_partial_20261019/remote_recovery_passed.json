@@ -1,0 +1,21 @@
+{
+  "status": "remote_recovery_verified",
+  "attempt": 2,
+  "commit": "0038f3888ecd2f88818aac76a427e92303ef4ed3",
+  "clone": "/tmp/opencode/native_long_partial_remote_0038f38",
+  "restore": "/tmp/opencode/native_long_partial_restore_0038f38",
+  "source": "existing_fresh_GitHub_clone_and_remote_LFS_no_original_artifact_copy",
+  "started": 1792436125.4794557,
+  "ended": 1792436194.6725693,
+  "manifest_sha256": "a21ed00b3196479b471eec71161bce532495dace428bd4e8a946b90bd186adc1",
+  "verifier_sha256": "dd7423b1f1abcd9bac17d686f3ce304b82fbadb3fa2027b783750688963c4e0b",
+  "archives": 4,
+  "verified_members": 4128,
+  "total_archive_bytes": 757735833,
+  "all_archive_bytes_valid_before_restore": true,
+  "previous_failure_preserved": true,
+  "full_execution_record": "/home/ami/scratch/native_long_partial_remote_recovery_retry_20261019.json",
+  "diagnostics": "/home/ami/scratch/native_long_remote_download_diagnosis_20261019",
+  "diagnosis": "Git LFS ls-tree -l scans lazily hydrate ordinary Git blobs serially in blob:none partial clones before LFS filtering. Mechanism reproduced: 14 remote fetches in 15 seconds; no-size scan takes 2.6ms with no fetches. Original timeout stage timing is reconstructed because no original trace existed.",
+  "future_prevention": "Shallow clone without blob:none and with GIT_LFS_SKIP_SMUDGE=1; explicitly download only requested LFS paths."
+}

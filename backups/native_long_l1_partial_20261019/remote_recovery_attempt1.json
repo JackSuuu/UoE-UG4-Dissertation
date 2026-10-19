@@ -1,0 +1,14 @@
+{
+  "status": "remote_download_timeout",
+  "commit": "0038f3888ecd2f88818aac76a427e92303ef4ed3",
+  "clone": "/tmp/opencode/native_long_partial_remote_0038f38",
+  "started": 1792435331.9042804,
+  "ended": 1792435937.5049407,
+  "completed_stages": ["fresh_remote_clone", "sparse_checkout", "pinned_checkout"],
+  "failed_stage": "git_lfs_pull",
+  "timeout_seconds": 600,
+  "stderr": "",
+  "post_timeout_inspection": "All four archives remain LFS pointers; no files under clone .git/lfs. No restoration performed.",
+  "full_execution_record": "/home/ami/scratch/native_long_partial_remote_recovery_20261019.json",
+  "next_action": "Diagnose remote download path before bounded retry; preserve original failures and avoid local archive copies."
+}

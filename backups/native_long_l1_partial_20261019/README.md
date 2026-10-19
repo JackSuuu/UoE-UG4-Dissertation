@@ -5,6 +5,14 @@ all6executed actor episodes and replay attempts,18blocked cells, source manifest
 both-camera tapes, physical/controller state fingerprints, query/action logs and
 raw videos. Manifest verification passed locally. Remote recovery is separate.
 
+Published at `0038f38`. First fresh-clone recovery timed out in the LFS pull after
+600s with no downloaded objects; all four files remained pointers. Evidence is
+retained in `remote_recovery_attempt1.json`. Diagnosis found serial ordinary-Git
+blob fetching during LFS full-tree size scanning in the partial clone. The bounded
+retry now independently restored all4archives/4,128members (757,735,833bytes), with
+all archive and member hashes passing the pinned verifier. See
+`remote_recovery_passed.json`; this specifically certifies the six-episode archive.
+
 `partial_results.json` records the6observed outcomes:
 
 | Task | Root0 | Root1 | Root2 | Integrity |
