@@ -21,7 +21,8 @@ two partial-progress failures, all6exact replay: the highest-priority task meets
 the frozen per-task L2admission rule. Two pots3/6recorded successes,4wrist-only
 replay issues. Two mugs2/5successes, drawer4/5; all ten completed tapes exact.
 Two-mug/drawer root3remain untouched after a further two-pot wrist-image mismatch;
-their final continuation and microwave L2protocol/runner preparation are underway.
+their final continuation is now running onGPU1(supervisor3735624), while microwave
+L2protocol/runner preparation proceeds. [Final-cell launch](native_long_l1_final_cells_20261019.md).
 No L2model branches or L3framework comparisons have run. Historical continuation:
 L1continuation launched under `53a74b3`, supervisor
 3727880, in `/home/ami/scratch/native_long_l1_20261019_b`;18untouched cells on
