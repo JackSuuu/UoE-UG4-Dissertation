@@ -3,6 +3,23 @@
 Newest entry at the top. [Weekly index](README.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 19 Oct — Candidate usefulness and verification attribution before cloth
+
+User approves two explicit next questions: whether model candidates advance the
+task, and whether verification improves selection/rechecking/actual handoff over
+simple feedback. Native-book3-arm preflight is negative: all strict completions
+fail, only nominal attains native success; verification handoffs are budget exits.
+Book actor qualification has3/3native milestones but0/3additional strict completion.
+Validate the stronger endpoint's feasibility rather than invalidating native success.
+
+Fridge camera diagnosis, closed-start candidate integration and LIBERO90 actor
+transfer are still active at this decision check. Assign the next GPU2 experiment
+after its current cohort: bounded exact-common-state candidate branches, with
+offline-only outcome labels, task-directed progress and fixed nominal continuation.
+Then use selection × rechecking controls for attribution, conditional on useful
+candidates/shared capability. Cloth experiments follow this rigid-body stage.
+[Protocol, costs, decision gates and execution snapshot](agent_notes/candidate_progress_verification_next_20261019.md).
+
 ### Update 19 Oct — Keep the fridge as the main rigid-body task
 
 User reiterates full refrigerator completion and framework-factor study as priority.
