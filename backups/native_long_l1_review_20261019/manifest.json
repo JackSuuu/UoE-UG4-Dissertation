@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "scope": "annotated_six_actor_only_baselines_no_framework_comparison",
+  "source_commit": "0038f38",
+  "archives": [
+    {
+      "file": "archives/review_records.tar.gz",
+      "bytes": 2338,
+      "sha256": "3285ca978534723d5e660238f2fb8e61dc290c553854682dce57edf4ba4bd10b",
+      "members": [
+        {
+          "path": "scratch/native_long_l1_partial_review_20261019/manifest.json",
+          "bytes": 2529,
+          "sha256": "2b76f3a40ca876417856fd43e3a4e321138672045df1272e53ba529aeeae86a9"
+        },
+        {
+          "path": "scratch/native_long_l1_partial_review_20261019/video_checks.json",
+          "bytes": 864,
+          "sha256": "2f1067120d41c58f0c072e5baa7e8a61ca994f05a7ba2821d7f6d5e6acf4325c"
+        },
+        {
+          "path": "repository/scripts/review_native_long_baselines.py",
+          "bytes": 4029,
+          "sha256": "d28cff4932bce2a4c459295b14c3d456f06b5a7e26e67bf520a3254304de870c"
+        }
+      ]
+    }
+  ],
+  "videos": [
+    {
+      "file": "videos/microwave_root0.mp4",
+      "bytes": 2601724,
+      "sha256": "0ca307ec2488e107ae09556252700120a74f13cac9daf58026c93ee44c88b310"
+    },
+    {
+      "file": "videos/microwave_root1.mp4",
+      "bytes": 2668634,
+      "sha256": "50115f2b40935fe64ff59020da4a48222b1d32f88c27f1cfab5406da61a47bae"
+    },
+    {
+      "file": "videos/microwave_root2.mp4",
+      "bytes": 2623728,
+      "sha256": "40a8823dafc9ceac72b2c5ad7f32cbcee107bc2b9ad0b5eecabe112fd45d8e4f"
+    },
+    {
+      "file": "videos/two_pots_root0.mp4",
+      "bytes": 3852188,
+      "sha256": "fe276c7de3e4ffa2f310e03508cb4722087750f520d3f3e5dc0a250cda3c68af"
+    },
+    {
+      "file": "videos/two_pots_root1.mp4",
+      "bytes": 3885112,
+      "sha256": "716abd29c7866e0644c386780fd3f62df8cec7e351721bcabc141b28032134da"
+    },
+    {
+      "file": "videos/two_pots_root2.mp4",
+      "bytes": 4059370,
+      "sha256": "f2c142b312f61a0c22cb4248a3569aaf3c468e8f7152f0deddc2d34f40585417"
+    }
+  ]
+}
