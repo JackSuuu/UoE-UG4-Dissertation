@@ -23,7 +23,10 @@ meets the original per-task admission rule and takes priority for frozen L2A.
 [Complete screening results](native_long_l1_results_20261019.md). L2Av1completed:
 18/18valid/exact branches,552calls; six greedy controls reproduce. Neither failure
 root has useful sampled32-action gain, so the precommitted L2Bgate is false.
-Stop v1and diagnose before freezing a one-mechanism revision. No framework gain.
+Stop v1. Failure analysis supports preparing a timing-only v2(first grasp+120
+instead of+180), with the same six roots/sources/seeds/H32and576-call cap; no v2
+model query yet. Root4's new boundary precedes original loss by15actions;
+preserving grasp alone still does not meet the useful-progress label. No framework gain.
 [L2A results](native_microwave_l2a_results_20261019.md).
 
 Historical22-cell checkpoint: Microwave4/6successes,

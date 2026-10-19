@@ -51,3 +51,9 @@ Auditor SHA256`89c85d3266927ceadc8f49a10dd61dae4ca79913dc2aa1b24ba05cbce4a6ade1`
 exact original/fresh controls, reconstruction/replay checks and the falseL2Bgate.
 Full run/audit archives and paired candidate videos are being prepared, including
 the negative failure-root cases.
+
+Full bank now locally archived:18,132files in11bounded archives. The
+[failure analysis](native_microwave_l2a_failure_analysis_20261019.md) distinguishes
+root0's restricted translational support from root4's disengaged late-state
+diversity. A separately frozen v2is being prepared with only snapshot timing
+changed from first-grasp+180to+120; v1remains closed and its L2Bgate remains false.
