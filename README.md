@@ -45,7 +45,7 @@ flowchart TD
 - [Complete comparison, six paired videos and recoverable raw evidence](backups/framework_comparison_20261019/README.md)
 - [Historical refrigerator R2](exp_record/agent_notes/fridge_r2_results_20261019.md): geometric correction actions, local extraction progress, no full completion; separate from the current model-generated repair method.
 
-**Current iteration:** repeat all six microwave initial states with fresh bare-VLA/framework pairs after correcting release/loss handling, recovery acceptance, milestone preservation and repeated failed intervention. The same framework then extends to closed-start refrigerator retrieval. Exact freeze, process status and results are maintained in the [current record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md).
+**Current iteration (launched 21 October):** all six microwave initial states with fresh bare-VLA/framework pairs after correcting release/loss handling, recovery acceptance, milestone preservation and repeated failed intervention. Revision `ab48b63` passed 16 controller checks and is running on GPUs 2/3. The same framework then extends to closed-start refrigerator retrieval. Exact freeze, process status and results are maintained in the [current record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md).
 
 Every treatment run uses the real five-layer framework. Paired arms share initial conditions, actor inputs and resource limits; all repair queries count against the lifetime budget. Full videos show baseline left/framework right, synchronized simulation time, control ownership, evidence, verification, exits and actual handoffs. Failures and harms remain included.
 

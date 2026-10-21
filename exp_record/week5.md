@@ -3,6 +3,26 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 21 Oct — English objective and real-framework v2 launched
+
+The research plan and README now center on **complete unstructured manipulation
+tasks**, with microwave development followed by refrigerator retrieval through
+the same five-layer framework. Physical prediction remains an optional evidence
+module inside verification; this run uses privileged measured feedback.
+
+Implemented phase-aware release handling, fixed recovery acceptance alternatives,
+new-milestone preservation and evidence-based failed-repair retries in the existing
+controller.16/16model-free contract tests pass; updated reporting/video rendering
+passes a zero-query smoke. All numerical task/repair commands remain model outputs.
+
+Revision `ab48b63` is frozen and launched:12fresh microwave episodes, roots0–5 ×
+baseline/framework, with unchanged520-query/action lifetime caps and32/160repair
+limits. Detached supervisor4082390uses physicalGPU2/3, batch1; both root0workers
+had152requested queries and151executed model actions at the launch-health check.
+Fresh replays and six full paired videos follow
+automatically. No new efficacy outcome is claimed yet. The [current record](agent_notes/current_goal_and_experiment_queue_20261019.md)
+contains the plan hash, source commit, run paths and exact transition rules.
+
 ### Update 21 Oct — Five-layer framework scope and next paired experiment
 
 Retain OpenVLA and optimize the actual five-layer runtime framework for microwave

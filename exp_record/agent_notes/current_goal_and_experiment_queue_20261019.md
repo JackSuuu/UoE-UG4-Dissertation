@@ -49,11 +49,26 @@ The runner's updated full-video overlays and legacy summary loading also passed
 a2-frame zero-query smoke at `/tmp/opencode/framework_v2_video_check_mp23yt18/`.
 README and core plan are now English, with local links checked.
 
-Launch status: code checks complete; preparing the immutable12-cell plan before
-detached launch on physicalGPU2/3. Launch hashes/PID will be recorded here once
-created. This section supersedes the earlier design-pending status below.
+**Launch status: running.** Source commit
+`ab48b63f0fc44ed4ecebc6c625045586e4c56688`; detached supervisor PID/session
+`4082390`. Baseline uses physicalGPU2/EGL1; framework uses physicalGPU3/EGL0,
+both UUID-masked and actor batch1. Both device identities were verified. At the
+launch-health checkpoint, both root0workers were in actor phase with152requested
+queries and151executed actions each; the last executed step150used unchanged
+saved model output and controller versionv2. The supervisor was alive. No
+completed result is claimed at this checkpoint.
 
-## Active experiment design — the real five-layer framework,21October
+* Freeze: `/home/ami/scratch/framework_comparison_freeze_20261021/plan.json`.
+* Plan SHA256: `7fac280cd77cf1b2cd57e6594e7f923937860672bdf84f81928351f4c1d23c5e`.
+* Run: `/home/ami/scratch/framework_comparison_run_20261021/`.
+* Supervisor log: `/home/ami/scratch/framework_comparison_freeze_20261021/supervisor.log`.
+* Durable live status: `launch.json` and each cell's `status.json` in the run.
+* The detached supervisor runs all12fresh episodes, fresh exact replays after
+  each pair, then automatically writes `report/report.json`, `report/report.md`
+  and all six full comparison videos. Git/LFS artifact publication and remote
+  recovery verification follow completion; the launcher does not itself publish.
+
+## Frozen cohort design — the real five-layer framework,21October
 
 The latest user instruction governs this queue and supersedes older execution
 orders below. Retain OpenVLA and the five layers: subgoals → frozen VLA →
@@ -67,7 +82,7 @@ bare VLA is the paired control. A geometric servo or isolated sampled branch is
 not a substitute treatment. The core plan now contains only current goals/design;
 historical decisions and results remain here or at their frozen commits.
 
-### Next microwave batch — design started, implementation freeze pending
+### Microwave batch — frozen and launched
 
 | Item | Planned configuration |
 |---|---|
@@ -82,7 +97,7 @@ historical decisions and results remain here or at their frozen commits.
 | Outcomes | Native success, paired rescues/harms, verified repair, actual handoff, downstream completion, regressions and cost |
 | Delivery | All12tapes/replays,6full paired videos, one table and current-record update |
 
-Implementation contract, to be frozen before fresh model calls:
+Implementation contract, frozen before fresh model calls:
 
 1. Distinguish release/settling near the receptacle from an actual falling or
    unrecovered loss. Use causal current/past evidence, not a root ID or the known
@@ -99,12 +114,11 @@ Implementation contract, to be frozen before fresh model calls:
    Count actual handoff only after a fresh full-instruction VLA action executes;
    count completed-during-repair separately. Never relabel an old budget exit.
 
-Thresholds and exact evidence schemas remain implementation decisions to freeze;
-this is a concrete cohort/mechanism design, not an executable frozen protocol yet.
-CPU transition tests cover transient loss, retained true loss, milestone protection,
-failed retry suppression and actual handoff. They are implementation checks, not
-new efficacy studies. Then launch the full pair batch directly; no isolated
-candidate-bank qualification or horizon sweep is scheduled.
+Exact thresholds and evidence schemas are frozen in the source/config and plan
+identified above. CPU transition tests cover transient loss, retained true loss,
+milestone protection, failed retry suppression and actual handoff. They are
+implementation checks, not efficacy studies. The full pair batch is launched
+directly; no isolated candidate-bank qualification or horizon sweep is scheduled.
 
 ### Fridge follow-on — same controller, task adapter only
 
@@ -132,9 +146,9 @@ Predictor-on/off attribution is a later same-framework comparison, not a competi
 method or a blocker for the next12episodes. Roots6–9calibration,10–19training and
 20–49confirmation remain reserved; roots0–5are reused development cases.
 
-Current status: design/document organization complete; no controller revision
-frozen and no new GPU/model run launched. Historical first comparison remains
-4/6vs4/6, with root4rescue and root3harm. The user-owned annual plan is untouched.
+Current status: framework v2 frozen and launched as recorded above. Historical
+first comparison remains4/6vs4/6, with root4rescue and root3harm. The user-owned
+annual plan is untouched. Current outcomes await full execution and replay.
 
 ## Historical evidence and superseded execution orders
 
