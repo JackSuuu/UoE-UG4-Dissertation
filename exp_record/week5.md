@@ -5,6 +5,17 @@ Newest entry at the top. [Weekly index](README.md). Detailed records live in
 
 ### Update 19 Oct — User redirects to direct complete-framework comparison
 
+21Oct follow-up: rechecked archived source hashes and executed action ownership
+for all four fridge R2episodes and12native comparison episodes. Both integrations
+use measured feedback, **not** the learned physics predictor used in historical
+assembly. Fridge correction actions are geometric primitives(420/600), unlike
+native model-generated repair. Native root3shows latched containment loss and
+repeated acquisition despite baseline recovery without regrasp; root4shows an
+acquire→close goal change that moves its verification target despite achieved In.
+The current queue contains the complete investigation and proposed same-runner
+iteration. Official pi0.5-LIBERO is an available second-policy candidate; `pi_2`
+identity remains unconfirmed. No new rollout, code/threshold change or relabeling.
+
 Direct comparison now completed under`09d4b2a`:12/12valid exact replays,
 baseline4/6 vs measured-framework4/6, one rescue(root4) and one harm(root3).
 5088model calls/actions;352framework repair actions. Six full paired videos.

@@ -1,5 +1,130 @@
 # Current goal and result-driven experiment queue
 
+## 21 October follow-up — actual verifier, fridge provenance, root3/root4
+
+Read-only audit following the user's three questions; no new actor episodes or
+threshold changes. The user referenced20251019; the existing evidence is dated
+20261019. Rechecked all13archived-source hashes for each of the four R2episodes,
+and archived controller/runner hashes across the12native comparison episodes.
+
+**Terminology correction:** the native comparison wired the five architectural
+layers, but did **not** integrate the learned physics predictor. Its frozen plan
+explicitly declares `learned_predictor=false`, `future_simulation=false` and
+`privileged_current_past_endpoint_measurements`. Neither native execution nor the
+R2fridge runner loads or calls `RefCheckVLA`/a learned dynamics checkpoint. The
+historical assembly runner does: `load_model` loads `AssemblyDynamics(40,7)` and
+`assembly_dynamics.pt`, wraps `RefCheckVLA`, then calls `forecast`. Its task-specific
+state/training contract is not a validated native microwave dynamics model.
+Five-layer measured feedback is an integrated development implementation, not a
+completed predictive-physics framework. Do not imply predictive integration from
+the architectural layer count or the word "verification".
+
+### Fridge R2 really used the wrapper, but its repair source was geometric
+
+Frozen source: `seed0_closed_framework/source/src/adapters/fridge_runtime.py`
+under `/home/ami/scratch/fridge_r2_framework_20261019_a`. `TaskMonitor`, frozen
+OpenVLA, `sense`/progress monitor, `FridgeRepair.decide` and `primitive`/`verified`
+actually execute. In the runner, baseline executes `proposal`; framework executes
+`candidate`. Recomputed all2400rows: baseline changes0/600actions per episode;
+framework changes420/600per episode. The paired trajectories first diverge at29
+(closed) and51(open); all preceding scientific prefixes match.
+
+The closed wrapper visibly approaches the door, but neither closed arm opens it:
+maximum angle in both is2.1981868044697224e-14rad. The open wrapper grasps at242
+and achieves held extraction at299; baseline does neither. All four runs fail
+remaining-sequence completion. This is real qualitative/local capability gain,
+not a statistically established full-task success improvement. Repair uses
+scene-specific geometry/pose servo and hand-coded target stages, including direct
+gripper edits; these are not VLA-generated repair actions. Shared phase prompts
+also mean the baseline is not completely unwrapped OpenVLA. Preserve the original
+open-framework strict wrist-image replay issue and corrected local-exit/handoff
+audit; neither is erased by this provenance check.
+
+### Native root3: loss classification and sticky repeated intervention
+
+All steps below are zero-based. Both arms first grasp at136, attain In at195–197,
+then the nominal action opens the gripper at198; grasp and In become false. At199
+the framework's latched `containment_lost` flag immediately selects `acquire`.
+The source chooses acquire for every uncontained state without held-clear grasp,
+even when the mug is at the microwave entrance/on its collision geometry.
+Baseline never regrasps after198: it restores In at314and closes at351(352actions).
+Thus an extra grasp is not a necessary stage of the actual successful trajectory.
+Framework reacquisition never succeeds; five32-action transactions separated by
+eight nominal actions consume160repair actions. No new evidence is required to
+rearm the persistent loss flag. The framework mug stays near
+(-0.027726,0.269664,0.945086)m from230onwards, with microwave contact.
+
+At199the baseline and framework produce different model actions from the same
+state under different instructions. The paired design establishes an integrated
+intervention harm here, but does not isolate first-trigger timing, prompt choice
+and later repeated repairs individually. Near-boundary release/settling must be
+distinguished from genuine falling/irrecoverable loss; merely delaying every
+grasp-loss trigger could remove root4's useful early intervention.
+
+### Native root4: real model-action rescue, moving verification target
+
+Both arms grasp at95and lose the grasp predicate at147while mug–gripper and
+mug–microwave contacts remain. At148baseline continues retreat/open
+([.002,-.771,.327,...,-1]); framework's acquisition-conditioned VLA instead
+commands([.267,.811,.220,...,+1]) and re-establishes grasp. These are the unchanged
+mapped model actions, not numeric edits by the wrapper. Baseline later remains
+contact-constrained and loses grasp at230; it never attains In. Framework attains
+In at155and retains it through completion at377(378actions).
+
+At156the controller changes the active transaction from acquire to close because
+In=true and the instantaneous grasp predicate=false, despite continuing mug–hand
+contact. This resets the streak and moves the verification target to native full
+completion. When grasp becomes true again at158, the active close goal does not
+refeed to release. In also was not true at entry, so the static preservation list
+does not promote newly acquired containment to a protected milestone.
+The32-action repair exits unverified at179; fresh full-instruction VLA executes
+at180and later succeeds. Existing verification further demands three consecutive
+native-success endpoints for a close repair, but native episode termination occurs
+on the first: the special terminal path records completion without a verified local
+exit. Terminal success and nonterminal three-check recovery need separate semantics.
+These findings explain current bookkeeping/control weaknesses; they do not prove
+that an earlier verified handoff would reproduce the observed rescue.
+
+### One next iteration, same direct comparison
+
+Keep the same canonical runner, six pairs, full-task outcomes and full videos.
+Within the controller: distinguish release/settling from loss; keep the repair
+recovery contract separate from the next task subgoal; verify useful task progress
+with preserved milestones before advancing; require fresh failure evidence or
+changed repair context before repeating an ineffective transaction. Record actual
+handoff and downstream outcomes. Do not fix root3by a blanket delay that suppresses
+root4, re-label old unverified exits, or add manual motion routes. Proposed changes
+remain untested. Learned physics must be explicitly accounted for: a future
+integration needs a native observation/action contract and a predictor that really
+forecasts it; report model/version/calls/decision influence. Existing closed-loop
+logs can support that work without another isolated rollout prerequisite.
+
+### Actor scope and possible second policy
+
+Existing native OpenVLA screening already provides a bounded capability map:
+microwave4/6, designated mugs3/6, bowl+drawer4/6(all exact); two pots3/6recorded,
+with four strict replay issues retained. Custom fridge full-task skill is unproven.
+No exhaustive new task sweep is needed before fixing the observed wrapper defects.
+
+Checked official OpenPI README and LIBERO example on21October: an explicitly
+released `pi05_libero` checkpoint and matching simulator interface exist; its
+reported LIBERO10score is92.4%, not a measurement on our six cases. The checked
+official public repository lists pi0/pi0-FAST/pi0.5, not a pi2checkpoint. Confirm
+what the user's `pi_2` refers to before treating it as an available model.
+Recommendation: retain OpenVLA for this controlled controller iteration, and use
+an available native LIBERO policy such as pi0.5as the next backbone comparison.
+For each backbone compare its own bare policy vs the same framework, with native
+inputs/action cadence declared and matched within that pair. Camera/state/chunk
+differences prevent attributing a cross-backbone score change to weights alone.
+Stronger native manipulation would not repair incorrect gating/handoff logic or
+automatically establish custom-fridge capability. No downloads or model calls
+were made during this source review.
+
+Sources: [OpenPI](https://github.com/Physical-Intelligence/openpi),
+[official LIBERO checkpoint/results](https://github.com/Physical-Intelligence/openpi/blob/main/examples/libero/README.md),
+[R2 original results](fridge_r2_results_20261019.md),
+[native paired evidence](../../backups/framework_comparison_20261019/README.md).
+
 ## Current execution directive — direct complete-framework comparison
 
 **Completed direct comparison (`09d4b2a`):12/12valid, exact fresh replays.**
