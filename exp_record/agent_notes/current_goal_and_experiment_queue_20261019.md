@@ -1,5 +1,115 @@
 # Current goal and result-driven experiment queue
 
+## Root4 forensic follow-up — regression starts before nominal handoff
+
+Read-only review of both complete saved trajectories, actual model inputs/outputs,
+endpoint images, contacts, controller versions and LIBERO predicate definitions.
+All step numbers below are zero-based. No new policy rollout or counterfactual
+completion result is implied by this analysis.
+
+### 1. Earliest causal split: the repair prompt, at156
+
+V1/v2 scientific trajectories are identical through155. At156, the saved preaction
+fingerprints and model-input PNG hashes are identical; the frozen greedy actor is
+the same. V1 requests **`close the microwave`**; v2 requests
+**`release the yellow and white mug in the microwave`** and gets a different action.
+The change follows `_subgoal` in `src/adapters/native_framework.py`: at155 the mug
+is In, grasp=False, but mug–gripper contact=True. V1 treats this as close; v2 requires
+both no grasp and no gripper contact before close. V1 subsequently keeps its close
+repair prompt despite intermittent regrasp; v2 reselects acquire/release after losses.
+
+At156–157, v2 repeats the same release-conditioned numerical action. At157 In
+becomes false **while repair still owns control**, seven actions before nominal
+handoff. This is the first observed containment regression, not164. V2 returns to
+acquire at158, then release again at162. In is true only at155–156 and161–163.
+The actual release-conditioned actions withdraw the mug in this state; the semantic
+word "release" is not evidence of a successful detach-and-leave-in-place maneuver.
+
+### 2. Acceptance misses an already deteriorating physical state
+
+At161–163, the frozen acquisition transaction accepts three In endpoints even
+though its active prompt is release. `_progress('contained')` only checks In; the
+stricter `contained_detached` contract is never used by this acquisition transaction.
+Freezing the recovery objective avoids the old moving target, but leaves a missing
+phase-appropriate handoff condition.
+
+| Endpoint | V1 mug y (m) / In | V2 mug y (m) / In | V2 owner / prompt goal |
+|---|---|---|---|
+|155|0.286467 / true|0.286467 / true|repair / acquire|
+|157|0.290442 / true|0.283428 / false|repair / contain_release|
+|161|0.301928 / true|0.287975 / true|repair / acquire|
+|162|0.303224 / true|0.291081 / true|repair / contain_release|
+|163|0.304523 / true|0.284707 / true|repair / contain_release; accepted|
+|164|0.302454 / true|0.273718 / false|nominal / full-task instruction|
+
+Positions are the saved object-observation values (rounded); predicate values are
+the separately recorded simulator evaluations. From162to163, v2 moves6.571mm,
+predominantly outward along negative y, and the saved mug-joint y velocity at163
+is approximately -0.164m/s. Mug–gripper contact remains true at161–163. Its microwave
+endpoint contacts at those checks are with `microwave_1_g4`, a side-wall geometry,
+not the bottom `microwave_1_g7`. A generic microwave-contact flag therefore does
+not establish settled support. The nominal action at164 continues the outward
+movement and loses In; it does not initiate all of the deterioration.
+
+The LIBERO predicate is weaker than its informal name suggests:
+`In.__call__` delegates to contact/containment; for this site-based region,
+`SiteObjectState.check_contact` always returns True and `check_contain` invokes
+`SiteObject.in_box`, which treats the mug as a point in an axis-aligned box. It
+does not check full-body insertion, support, detachment or velocity. Source:
+`libero/libero/envs/predicates/base_predicates.py:57–59`,
+`object_states/base_object_states.py:159–176`, and
+`objects/site_object.py:35–56` in the recorded LIBERO checkout.
+
+### 3. Why the old trajectory completes
+
+V1's close-conditioned repair keeps In continuously true from155through377,
+while moving the mug farther inward and lower. It exits unverified at its32-action
+cap (179), then gives the full instruction back at180. At179 the mug is **still
+grasped and touching the gripper**, so the old success cannot be explained by
+"it waited until detached." Nominal execution continues insertion/release; by196
+the mug has no gripper contact and contacts the microwave bottom and side wall.
+Later brief gripper recontacts do not lose In; the task completes at377.
+
+Thus the old run reaches a different, more favorable handoff state through a
+different repair action sequence. Its "close" prompt does not mean the door was
+already closing at156: the door joint stays near -1.9604rad through the early
+insertion/release segment. The old success remains an observed successful path,
+not evidence that its moving acceptance target was correct.
+
+### 4. Why the new trajectory does not recover later
+
+After164, repair165–196 fails to restore In. Table contact starts at192 and persists
+through519; a second32-action retry205–236 also fails. From245–519, all275 attempted
+reentries are blocked by `failed_repair_requires_changed_evidence`; the mug remains
+ungrasped on the table, outside the region. Nominal actions still execute, and only
+80of160 permitted repair actions have been used. This is a later recovery limitation,
+not the cause of the initial156–157 divergence; more repeated repair is not proven
+to help. The v2 release-transition exemption is never active anywhere in root4,
+so the exemption that preserves root3 is not the direct root4 mechanism.
+
+### Diagnosis and next revision target
+
+The supported failure chain is **changed phase/prompt selection → outward motion
+and an early repair-owned containment loss → overly weak local acceptance →
+handoff from an unstable state → ineffective reacquisition and eventual retry lockout**.
+This sharpens the earlier emphasis on164: simply delaying handoff does not address
+the already observed release-prompt failure at157.
+
+The next bounded revision should address repair-phase/action effectiveness and a
+separate phase-appropriate resumability check together: retain the fixed recovery
+objective, but do not equate three point-In samples with supported release or
+compatible nominal continuation. Contact type, motion direction and insertion
+progress are measured evidence available now. Universal detachment before every
+handoff is not justified by v1's successful still-held handoff. Any revised prompt
+or gate requires the same complete paired evaluation to establish success; the
+present traces cannot tell whether changing only the prompt or only exit timing
+would restore the rescue. No new threshold or controller revision is frozen here.
+
+Derived inspection files: `/home/ami/scratch/framework_comparison_run_20261021/report/root4_forensics/`
+contains `audit.json` and `v1_top_v2_bottom.png` (seven aligned endpoints; frame t+1
+is after action t). These are post-publication derivatives; original published
+archives and recovery manifests remain the frozen evidence source.
+
 ## Completed v2results — no net gain; local acceptance is not resumability
 
 The21October `ab48b63` batch is complete:12/12valid episodes and12/12fresh exact

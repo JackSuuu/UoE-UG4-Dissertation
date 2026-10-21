@@ -3,6 +3,21 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 21 Oct — Root4 regression starts inside repair, before handoff
+
+The root4 follow-up locates the first change at156: identical saved preaction
+state and actor-input image, but v1 requests close and v2 requests release.
+V2 first loses In at157 while still under repair;164 is a second loss at nominal
+handoff. At acceptance163 the cup is already moving outward, touching the gripper
+and microwave side wall. The site-based In predicate checks a position point,
+not supported/settled release. V1 instead maintains In continuously155–377 and
+hands back at180 while still grasped; nominal execution finishes insertion/release
+and eventually closes the door. Thus neither "just delay handoff" nor "always
+require detachment" is established by the old success. Later v2 reacquisition
+fails; table contact persists192–519 and unchanged-context gating blocks275
+reentries245–519. The release-transition exemption is never active in root4.
+Detailed evidence and code diagnosis: [current record](agent_notes/current_goal_and_experiment_queue_20261019.md#root4-forensic-follow-up--regression-starts-before-nominal-handoff).
+
 ### Update 21 Oct — Framework v2 completes: local verification fails to persist
 
 All12fresh microwave episodes and independent exact replays pass. Bare VLA4/6,
