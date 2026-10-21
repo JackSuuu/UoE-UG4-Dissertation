@@ -1,5 +1,48 @@
 # Current goal and result-driven experiment queue
 
+## Active direction — preserve OpenVLA and optimize the predictive verification loop
+
+User reaffirmed21October: retain OpenVLA; focus on refrigerator/microwave-style
+multi-stage contact manipulation; keep physical prediction and physical
+verification central. Optimize the existing method through direct full-episode
+experiments, rather than accumulating replacement methods or isolated diagnostics.
+Backbone/platform expansion is not the immediate main line.
+
+Reuse the existing five layers and prediction/verifier interfaces. Numerical
+task and repair commands must come from the frozen policy/model, not scene-known
+approach waypoints, hinge-arc servos or overwritten gripper commands. Physical
+geometry remains legitimate verification evidence; it must not silently become
+the action generator. Historical fridge geometric interventions remain evidence
+about that older controller, not results for model-generated repair.
+
+Concrete integration gap rechecked: `AssemblyDynamics` already subclasses the
+existing ensemble dynamics model and supports autoregressive action-conditioned
+state/risk prediction. Its40D nut/peg state and force/tilt risk labels are
+assembly-specific. Reuse this implementation/interface with declared native
+state/action features and task-relevant targets; do not reuse incompatible weights
+or pretend force/deformation outputs already predict containment/grasp loss.
+`RefCheckVLA` is the existing self-developed reference verifier; the official
+OrbiSim adapter remains a skeleton, not a loaded pretrained component.
+
+The next implementation work is one coherent change in the canonical comparison
+entrypoint: wire a genuinely applicable predictor into pre-action verification,
+retain measured post-action rechecks, correct release/loss classification and
+repair/next-subgoal separation, and use model-generated repair proposals. Training
+or calibration needed for native inputs must use declared data splits; the old
+six-root results remain development evidence. Inference must not select actions
+using future simulator branch outcomes. Forecast confidence/error, actual policy
+ownership and verified versus budget-exit handoff must be visible in the trace.
+
+Microwave provides the current paired rescue/harm regression cases; fridge is the
+next manipulation target using the same framework, with a task-specific observation
+adapter and goal predicates rather than a new hand-coded controller. Each completed
+iteration should deliver the same full-task comparison table and full paired videos,
+plus a short explanation of changed behavior and prediction's actual decision role.
+A measured-only result must remain labeled measured-only. Full-system gain and
+incremental predictive gain are different questions; the existing measured-only
+version is retained as a later attribution control. No new batch has been launched
+under this direction yet; no prediction readiness is claimed.
+
 ## 21 October follow-up — actual verifier, fridge provenance, root3/root4
 
 Read-only audit following the user's three questions; no new actor episodes or
