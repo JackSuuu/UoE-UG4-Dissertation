@@ -29,7 +29,8 @@ LIMITS = dict(roots=6, cells=12, seed=0, initialization_noops=10, actions=520,
               readiness_seconds=180, query_seconds=30, rollout_seconds=1200,
               outer_seconds=1800, replay_seconds=300, phase_seconds=14400, retries=0)
 SOURCES = ('scripts/run_framework_comparison.py', 'src/adapters/native_framework.py',
-           'scripts/run_native_long_branch.py', 'scripts/native_long_candidate_worker.py')
+           'scripts/run_native_long_branch.py', 'scripts/native_long_candidate_worker.py',
+           'scripts/test_native_framework.py')
 DESCRIPTION = ('Five-layer deterministic framework with privileged measured verification; '
                'no learned predictor. Native In & Close only. Frozen official greedy H1 VLA, '
                'batch one; scoped language during bounded repair; no numeric action edits.')
@@ -623,6 +624,10 @@ def cell_summary(run, cell):
         total_s=status.get('total_wall_s'), replay_s=proof.get('total_wall_s'),
         triggers=triggers, repair_actions=sum(is_repair(r['decision']) for r in after),
         repair_transactions=repairs, repair_verified=sum(r['verified'] for r in repairs),
+        verified_handoffs=sum(r['verified'] and r['handoff_step'] is not None for r in repairs),
+        verified_handoff_completions=sum(r['verified'] and r['handoff_step'] is not None
+            and r['completed_after_handoff'] for r in repairs),
+        completed_during_repair=sum(r.get('completed_during_repair', False) for r in repairs),
         unverified_exits=sum(r['exit_step'] is not None and not r['verified'] for r in repairs),
         verification_records=[dict(step=r['step'], verification=r['verification']) for r in after
                               if is_repair(r['decision'])],
@@ -647,7 +652,7 @@ def render_pair(run, root, summaries):
     path = run/'report'/f'root{root}_baseline_left_framework_right.mp4'
     with imageio.get_writer(path, fps=20, macro_block_size=16) as video:
         for tick in range(count):
-            canvas = Image.new('RGB', (1280, 832), '#111827')
+            canvas = Image.new('RGB', (1280, 960), '#111827')
             draw = ImageDraw.Draw(canvas)
             for column, (directory, frames, controls, summary) in enumerate(panels):
                 x = column*640
@@ -665,11 +670,14 @@ def render_pair(run, root, summaries):
                 events = result.get('events', [])
                 evidence = decision.get('evidence', {})
                 evidence_brief = {k: evidence.get(k) for k in ('evidence_through_step', 'first_grasp_step',
-                    'ever_lifted', 'in_streak', 'short_motion_diameter_m')}
+                    'in_streak', 'release_transition', 'short_motion_diameter_m')}
                 text = [f"{'HOLD: '+str(summary['termination']) if held else 'native endpoint'} | queries {max(endpoint, 0)}/520",
                     f"stage={decision.get('mode', 'initial')} subgoal={decision.get('subgoal')} owner={decision.get('owner')}",
                     'trigger='+str(decision.get('trigger')),
                     'evidence='+json.dumps(evidence_brief, sort_keys=True),
+                    'recovery='+str(decision.get('recovery_goal'))+' accepts='+str(decision.get('recovery_acceptance', [])),
+                    'blocked='+str(decision.get('intervention_blocked')),
+                    f"local {decision.get('local_used', 0)}/32 | repair total {result.get('budget', {}).get('repair_actions', 0)}/160",
                     f"repair_verified={verification.get('repair_verified', False)} rechecks={verification.get('consecutive', 0)}/3",
                     'exit='+str(next((e.get('reason') for e in events if e['type'] == 'local_exit'), None)),
                     'actual handoff (executed nominal action)='+str(record.get('actual_handoff', False))]
@@ -680,9 +688,9 @@ def render_pair(run, root, summaries):
                     for part in wrapped:
                         draw.text((x+12, y), part, font=font, fill='#e5e7eb')
                         y += 18
-                    if y > 792:
+                    if y > 920:
                         break
-            draw.text((18, 810), '20 fps = native simulator time | privileged measured verification, no learned predictor | all numeric actions: frozen VLA', font=font)
+            draw.text((18, 938), '20 fps = native simulator time | privileged measured verification, no learned predictor | all numeric actions: frozen VLA', font=font)
             video.append_data(np.asarray(canvas))
     return str(path)
 
@@ -712,6 +720,9 @@ def summarize(run):
             observed_native_successes=sum(c['native_success'] for c in selected),
             trigger_coverage_roots=sum(bool(c['triggers']) for c in selected),
             repair_verified=sum(c['repair_verified'] for c in selected),
+            verified_handoffs=sum(c['verified_handoffs'] for c in selected),
+            verified_handoff_completion_roots=sum(c['verified_handoff_completions'] > 0 for c in valid),
+            completed_during_repair_roots=sum(c['completed_during_repair'] > 0 for c in valid),
             unverified_exits=sum(c['unverified_exits'] for c in selected),
             actual_handoff_roots=sum(bool(c['actual_handoffs']) for c in selected),
             post_handoff_success_roots=sum(c['post_handoff_success'] for c in selected),

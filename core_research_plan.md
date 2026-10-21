@@ -1,92 +1,96 @@
-# Core Research Plan — 五层VLA验证与修复框架
+# Research Plan: Completing Unstructured Manipulation Tasks
 
-**更新：2026-10-21。本文是唯一当前研究目标；实验设计与状态见[当前实验记录](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md)。**
+**Updated: 21 October 2026**
 
-学位登记题目：*Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization*。
-本文取代此前累积的执行优先级，不改变已完成实验的协议和结果。[历史完整计划](https://github.com/JackSuuu/UoE-UG4-Dissertation/blob/465e0a2/core_research_plan.md)保留在Git中。
+## 1. Objective
 
-## 1. 具体研究目标
+**Improve end-to-end completion of unstructured, multi-stage manipulation tasks using our five-layer verification and repair framework around a frozen VLA.**
 
-**在相同冻结OpenVLA、初始状态、观测权限和资源预算下，验证我们的五层运行时框架能否提高冰箱、微波炉等多阶段接触操控任务的完整成功率，减少中途进展丢失，并在有界修复后实际交回VLA继续完成任务。**
+The immediate task families are **microwave manipulation and refrigerator retrieval**. Success means completing the requested task, including the remaining sequence after an intervention. A grasp, a local recovery, or a successful handoff alone is not the primary outcome.
 
-研究对象是整个验证—决策—修复闭环。物理预测、测量反馈、接触/几何约束、任务进展和不确定性均可为验证提供证据；不要求只用物理预测，也不把等待预测器训练完作为所有整程实验的前置条件。预测器如果有效，应在同一框架中发挥作用并用实验量化。
+We retain OpenVLA while improving the existing framework. Native LIBERO microwave episodes provide a reproducible development setting; refrigerator manipulation extends the task sequence. Generalization to unstructured conditions must subsequently be tested through declared variations in initial state, object placement, layout and contact conditions. Success in a fixed simulator scene does not establish that generalization.
 
-近期保留OpenVLA，集中微波炉与冰箱。暂不以换模型、增加平台或扩展布料任务替代当前框架优化。原生LIBERO任务是受控的多阶段操控评估；物体/布局变化等非结构化适应能力需要后续留出实验，不能由固定场景成功自动推断。
+## 2. Method: One Five-Layer Framework
 
-## 2. 五层架构保持不变
+| Layer | Responsibility |
+|---|---|
+| **1. High-level subgoals** | Track task stages, prerequisites and achieved milestones. Separate local recovery from the next task objective. |
+| **2. Frozen VLA** | Generate nominal and repair actions from current observations and the appropriate instruction. |
+| **3. Risk and event-boundary monitoring** | Observe progress, contact transitions, grasp loss, release, stagnation and uncertainty. Incorporate applicable physical forecasts. |
+| **4. Dual-mode gate** | Select nominal tracking or bounded intervention using the available verification evidence. |
+| **5. Local repair and reverification** | Execute model-generated corrections, check a declared recovery contract, and return control to a fresh nominal VLA action. |
 
-| 层 | 实际职责 | 每轮必须记录的证据 |
+**Verification is central; physical prediction is a supporting module.** Measured state, contact and geometric constraints, task progress, and learned forecasts can contribute within the same framework. Prediction is not the only admissible evidence source. Its incremental value must be measured when a task-compatible predictor is available.
+
+Every treatment experiment runs the actual five-layer framework from task initialization to success or termination. Bare VLA is the paired control. All task and repair numerical commands come from the model; geometry supplies verification evidence rather than scripted motion routes. Initialization noops are separately counted.
+
+The current implementation uses synchronous, greedy OpenVLA queries and privileged simulator measurements for verification. High-level subgoals are declared task semantics. A learned microwave/fridge predictor and sensor-only state estimation are not yet implemented. These limitations are reported explicitly.
+
+## 3. Research Questions and Measures
+
+1. **Task completion:** Does the framework improve full-task success under matched initial conditions and resource limits?
+2. **Recovery quality:** Does it rescue failures without disrupting successful nominal behavior, and does verified recovery lead to actual handoff and downstream completion?
+3. **Generalization:** Do improvements persist on reserved initial states and declared unstructured variations without scene-specific motion scripts?
+4. **Evidence contribution:** Which monitoring and verification components, including physical prediction, contribute to these outcomes?
+
+The primary measure is **complete-task success rate**. Report paired rescues and harms alongside it. Secondary measures include verified recoveries, executed handoffs, completion after verified handoff, completion during repair, milestone regressions, repeated failed interventions, queries, actions and elapsed time. Technical failures and replay mismatches remain visible and separate from valid task failures.
+
+## 4. Current Evidence
+
+| Experiment | Observation | Interpretation |
 |---|---|---|
-| 高层子目标 | 跟踪完整任务、阶段前提与已达里程碑；区分局部恢复和下一阶段 | 当前子目标、状态满足/违反/未知、切换原因 |
-| 冻结VLA | 根据当前观测和指令生成名义及修复动作 | checkpoint、输入、指令、模型输出和实际动作 |
-| 风险与事件边界监测 | 识别接触转换、释放、停滞、进展丢失及可能的物理风险 | 当前/历史证据；预测存在时记录预测、误差和不确定性 |
-| 双模门控决策 | 正常跟踪与接触/恢复模式之间切换；决定继续、进入修复或退出 | 触发理由、证据来源、控制权、预算和未确定项 |
-| 有界局部修复 | 执行模型生成的修复，持续复核，满足恢复契约后交回 | 修复契约、保持条件、复核结果、退出及真正执行的交回动作 |
+| First native microwave comparison, six paired initial states | Bare VLA **4/6**, framework **4/6**; one rescue and one harm; 12/12 exact replays | Real outcome changes, but no net completion gain yet |
+| Recovery in that comparison | All 11 transactions exited unverified; the rescued episode completed after an actual handoff | No demonstrated verified-recovery → handoff → completion chain |
+| Historical refrigerator R2 | Neither closed-start arm opened the door; open-start intervention grasped/extracted but did not finish | Handwritten geometric corrections; not evidence for the current model-action repair method |
 
-### 什么算“真实框架实验”
+The observed microwave defects are release/loss confusion, a moving recovery target, missing preservation of new progress, and repeated intervention on an unchanged failure flag. These motivate the next revision. [Published paired evidence](backups/framework_comparison_20261019/README.md).
 
-- 同一个主运行入口实际调用以上模块，从任务初态运行到成功或预算/技术终止。验证必须参与门控、修复继续或交回，不能只是事后打分。
-- 对照为冻结VLA，处理组为我们真实的五层框架。裸VLA作为必要对照不等于用另一方法替代框架。
-- 所有任务/修复数值动作来自模型；几何用于测量和验证，不生成已知场景路线，也不直接覆盖夹爪命令。初始化等待单独计数。
-- 物理预测器是框架内的证据模块，不是另一套框架。每轮明确加载的模型、调用次数、是否影响决策；没有加载就写“本轮未启用”，不能暗示已有预测收益。
-- 不再把脚本servo、独立候选分支、动作新颖性排序或仅局部代理指标当作完整框架收益。诊断从整程轨迹中提取；必要代码检查和零查询回放不充当效能实验。
+## 5. Experiment Sequence
 
-## 3. 已有证据与当前问题
+### A. Microwave: revise the framework and run complete paired episodes
 
-| 已完成实验 | 结果 | 当前结论 |
-|---|---|---|
-| 微波炉六初态配对 | VLA4/6，框架4/6；救回root4、误伤root3；12/12精确回放 | 框架确实改变结果，但尚无净成功率收益 |
-| 微波炉修复/交回 | 11次修复均未获复核通过，均预算退出；root4交回后完成 | 有模型动作救回，但未证明“复核成功→交回→完成” |
-| 冰箱R2 | 关门初态两组均未开门；开门框架曾抓持取出，未完成 | 旧版几何修复有局部进展，不能作为模型生成修复的正例 |
-| 原生能力筛查 | 微波炉4/6、指定双杯3/6、碗＋抽屉4/6 | OpenVLA存在原生任务能力；自定义冰箱整任务能力仍未建立 |
+**Question:** Can phase-aware monitoring and stable recovery contracts reduce harm, retain rescue, and improve complete-task success?
 
-当前需要解决的具体问题：
+| Item | Fixed design |
+|---|---|
+| Task | Put the yellow-and-white mug in the microwave and close it; original native `In AND Close` endpoint |
+| Cohort | Development initial states 0–5 × bare VLA / revised framework: **12 fresh episodes** |
+| Actor | Same frozen OpenVLA LIBERO-10 checkpoint, Transformers 4.40.1, greedy H1, batch 1, seed 0 |
+| Inputs | Same native camera and initial full-task instruction; scoped repair language is the framework intervention |
+| Budget | At most 520 queries and 520 task actions, plus 10 initialization noops; 1,200 s per rollout excluding model load |
+| Repair limits | 32 actions per transaction; 160 repair actions within the shared lifetime budget |
+| Termination | First native success, resource limit, or recorded technical failure |
+| Verification | Current/past measured evidence; learned prediction disabled for this revision |
+| Validation | Fresh exact replay of every episode and full paired videos for all six cases |
 
-1. **root3误伤：** 释放后短暂丢失目标被直接当作重抓需求，同一个持续失效标志又反复启动无效修复。
-2. **root4复核：** 放入进展出现后，修复目标改成关门，验收目标随之移动；新获得的进展没有及时纳入保持条件。
-3. **交回语义：** 预算退出、局部恢复、实际名义动作执行、交回后完成是四个不同事件，不能合并。
-4. **预测适用性：** 现有插接预测器的状态及风险目标是任务专用的；适配到门、杯子和接触转换后才能用于相应决策。当前微波炉实现没有学习式预测器。
+The revision distinguishes release near previously attained containment from genuine loss; freezes recovery acceptance independently of changing action prompts; preserves new durable milestones; and requires changed evidence before repeating a failed repair. Root-specific branches and manually generated corrections are excluded.
 
-详细轨迹与视频：[最新整程对比](backups/framework_comparison_20261019/README.md)、[冰箱R2](exp_record/agent_notes/fridge_r2_results_20261019.md)。六个初态是重复使用的开发案例，不能当留出测试。
+This is one bundled controller iteration, not a causal isolation of each change. Its fresh paired outcomes are compared with the historical revision as development evidence. Budgets, success criteria and actor weights remain fixed.
 
-## 4. 下一轮实验：优化同一框架，直接整程比较
+### B. Refrigerator: extend the same framework to a complete task
 
-### A. 微波炉框架迭代——近期执行批次
+Reuse the gate, recovery transaction and handoff implementation through task-specific observation, goal and instruction adapters. Start closed-door and empty-handed: **open → grasp/extract → place/release → close → clear the workspace**. Freeze supported placement, release, closure and dwell checks before execution.
 
-- **问题：** 修正事件分类、固定局部恢复契约和重复修复逻辑后，能否减少误伤、保留救回并得到真正经过复核的交回？
-- **任务/样本：** 原生“杯子放入微波炉并关门”，官方开发初态0–5；两个方法全部运行，共12条完整轨迹。不增加开门阶段，不筛掉成功初态。
-- **共同配置：** 同一OpenVLA checkpoint、官方TF4.40.1、原相机、seed0、batch1；每条最多520模型查询/520执行动作、10次单列初始化等待、1200秒执行时限。查询与修复均计入总预算，原生成功立即停止。
-- **框架改动：** 不把释放/落稳一律当掉落；局部恢复目标与下一阶段分开；新达成里程碑进入保持检查；同一无效修复需有新证据或改变的恢复上下文才能再次启动。
-- **保持可比：** 局部最多32动作、全程最多160修复动作不变。首轮沿用现有模型动作来源；不同时增加采样次数、训练actor、扩展时长或更换checkpoint。
-- **验证配置：** 首轮使用框架已有测量/接触/阶段证据实现上述修正，真实运行五层闭环。物理预测在匹配任务并可调用时接入同一验证接口；不临时伪装已启用，也不要求预测必须推翻反馈。
-- **比较：** 新鲜VLA vs修订后的真实框架。旧版4/6配对结果作为历史回归参考，不能混进新批次。完整执行与复核通过后才报告结果。
+The planned first cohort is seeds 0–2 × bare VLA / framework, six full episodes in the existing fixed scene/camera configuration. Each arm has 600 model queries/actions and a 1,200 s rollout cap, with identical initialization and stopping rules. Record how much the seeds actually vary the scene. Open-start experiments, if separately declared, are remaining-sequence evaluations and cannot count as closed-start completion.
 
-### B. 冰箱操控——同一框架的下一任务
+The task adapter must use model-generated repair, not the historical door/grasp servos. Full-task actor competence in this custom scene remains unresolved; complete failed attempts are useful evidence for the next framework iteration. This cohort follows the microwave revision rather than launching an independent replacement controller.
 
-- 复用同一门控、修复事务和交回实现，只接任务观测/谓词/合法子目标适配，不另写一套抓门路线。
-- 全任务从闭门、空手开始：开门→抓取取出→放置释放→关门→撤离。完整终点沿用已记录的支撑、释放、关闭及驻留检查；不能只看手臂靠近门。
-- 首批按现有场景配置预登记seed0–2，每个seed各运行VLA/框架，共6条整程尝试；同seed共享初态、相机和完整任务指令，每条600查询/动作及1200秒执行预算。场景的实际差异幅度必须报告，不把小扰动说成广泛泛化。
-- 开门初态若另行使用，只能标为剩余序列实验，不与闭门全任务混算。不重复旧几何servo作为处理组。
-- 该批次是完整框架探索，允许失败暴露actor能力或候选不足；不能靠手写路线补出成功。布局、输入与终点及模型动作接口在启动前冻结，未冻结即不声称运行中。
+### C. Confirmation and component attribution
 
-两项按一个队列推进：先微波炉当前可复现问题，再把同一修改带到冰箱。开发阶段不要求先证明每个局部候选有效才允许整程实验。
+After development, freeze the method before evaluating reserved initial states and task variations. For the native split, roots 0–5 are reused development cases, 6–9 are reserved for calibration, 10–19 for training, and 20–49 for final confirmation. Register every use; never present development results as held-out generalization.
 
-## 5. 判断收益、归因与确认
+Evaluate physical prediction through matched predictor-on/off comparisons **within the same framework**. Reuse existing predictor/verifier interfaces, but adapt and validate native state/action features and task-relevant targets before loading a predictor. Assembly-specific weights do not establish microwave or fridge prediction capability. Log forecast calls, uncertainty, errors and actual decision influence.
 
-**主要结果：** 完整成功率、同初态救回/误伤、复核通过且实际交回后的下游完成率。
+## 6. Execution and Deliverables
 
-**辅助结果：** 子目标达成/丢失、触发时刻、反复无效修复、修复占用、模型查询/动作数和实测延迟。物理碰撞、载荷及风险必须说明测量和标定边界，不能直接称安全保证。
+- **One runner:** `scripts/run_framework_comparison.py`.
+- **One controller:** `src/adapters/native_framework.py`.
+- **One current record:** [protocol, freeze, launch and results](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md).
+- **Checks:** meaningful model-free transition tests before freezing, then full paired episodes and independent replay. Diagnose complete trajectories rather than adding isolated candidate/horizon studies as prerequisites.
+- **Compute:** detached jobs on physical GPUs 2/3; exclude GPU 0; actor batch 1 and any microbatch at most 8. Preserve PID, source hashes and actual query counts.
+- **Each batch:** all-case completion table, rescue/harm accounting, complete synchronized videos, stepwise verification/ownership/budget/exit traces, raw evidence and Git/LFS publication with recovery verification.
+- **Records:** English weekly summaries in `exp_record/week*.md`; all detailed records in `exp_record/agent_notes/`.
 
-每轮均保留全部案例，分别记录任务失败、预算终止和技术/回放失败。新版本必须在全部六开发初态评估，不能只跑root3/4。没有收益时根据完整轨迹修下一处具体问题，不通过放宽成功标准或提高预算制造提升。
+This plan defines the research objective and sequence. Live execution status belongs in the current record; a launch is not a result. Historical plans remain in Git, including [the earlier cumulative plan](https://github.com/JackSuuu/UoE-UG4-Dissertation/blob/465e0a2/core_research_plan.md).
 
-物理预测的增量作用在同一真实框架中通过匹配信息、候选和预算的模块开/关对照检验，属于后续归因，不作为近期两组实验的前置。最终版本冻结后再使用留出初态20–49；6–9保留校准、10–19保留训练。任何实际使用均须登记，当前开发结果不报为泛化结论。
-
-## 6. 单一入口与每轮交付
-
-- 主入口：`scripts/run_framework_comparison.py`；控制器：`src/adapters/native_framework.py`。优先在这条实现线上修改，不复制新的版本化runner。
-- 当前协议、配置冻结、运行目录和结果只维护在[当前实验记录](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md)。本计划写目标和实验设计，周报写结果摘要。
-- `exp_record/`根目录仅保留`week*.md`；其余记录全部放`exp_record/agent_notes/`，见[索引](exp_record/agent_notes/README.md)。
-- 每轮交付一张结果表、全部完整配对视频、逐步验证/控制权/预算/退出/交回记录、独立回放及Git/LFS恢复证据。视频左VLA右框架，按仿真时间对齐，失败和误伤同样展示。
-- 使用GPU2/3并行配对，排除GPU0；microbatch≤8，当前actor batch1。长任务脱离SSH运行，记录PID、配置和真实查询数。
-
-**当前状态：** 已完成首轮配对及失败核查；本次确定修订实验设计和目录整理。下一轮控制器修订尚未冻结，尚未启动新模型运行。不能把设计完成、代码完成或进程提交混称为实验结果。
+**Registered dissertation topic:** *Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization*.

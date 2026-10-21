@@ -1,5 +1,58 @@
 # Current goal and result-driven experiment queue
 
+## 21 October execution — full-task objective and framework v2
+
+User requested an English, consolidated research plan and an updated README,
+and authorized starting experiments. The primary objective is **completion of
+unstructured multi-stage manipulation tasks**, with microwave and refrigerator
+manipulation as the immediate task families. Native microwave remains a controlled
+development setting, not evidence of broad unstructured generalization.
+
+Implemented `native_microwave_measured_framework_v2` in the existing controller.
+The actual five-layer runner, actor, initial states, endpoints and lifetime budgets
+are retained. This is a bundled development revision; individual changes are not
+causally isolated:
+
+* Release context requires previous durable In, a recent grasp→release transition,
+  no table contact, and distance ≤0.050m from the most recent durable-In position.
+  Only this event gets3executed endpoints of contact-transition grace; subsequent
+  exemption requires measured mug–microwave contact. Missing/out-of-region/table
+  evidence ends it. Contact is not claimed to prove support or native containment.
+  Loss before any durable containment still intervenes on the next query. Other
+  stagnation monitors remain active; no root IDs or numeric motion commands exist.
+* Entry freezes acceptance alternatives: acquire→held-clear OR contained;
+  transfer→contained; release→contained AND not grasped AND no mug–gripper contact;
+  close→native completion. Each alternative has its own3-endpoint streak, so
+  alternating alternatives cannot accumulate a false pass. Prompt updates do not
+  reset or replace this contract. Contact/unknown detachment requests release
+  rather than assuming a false grasp flag means free to close.
+* Newly durable In is promoted to the repair's preservation set. Violated or
+  unknown preservation prevents verified exit. Actual terminal success is recorded
+  separately as completed-during-repair, with no fabricated handoff or dwell.
+* A failed trigger stores its exit context. After cooldown it needs3new endpoints
+  showing the same changed known grasp/held/In/Close/table/microwave-contact value,
+  or each ≥0.020m from its failed-exit position. An unchanged latched flag or one
+  flickering endpoint cannot justify repeating that failed transaction.
+
+All thresholds are declared development choices, not calibrated safety limits.
+The six reused roots are development evidence. Learned prediction remains disabled;
+the measured verification participates in entry, continuation, rechecks and exits.
+No future simulator branches select actions.
+
+Validation:16/16CPU contract tests passed via
+`/home/ami/miniconda3/bin/python -B scripts/test_native_framework.py`.
+Checks include retained early loss intervention, conditional release grace and its
+expiry, fixed acceptance, promoted preservation, independent acceptance streaks,
+retries, both repair caps, budget ties, completion during repair, actual handoff,
+post-handoff regression, missing data and immutable action/decision contracts.
+The runner's updated full-video overlays and legacy summary loading also passed
+a2-frame zero-query smoke at `/tmp/opencode/framework_v2_video_check_mp23yt18/`.
+README and core plan are now English, with local links checked.
+
+Launch status: code checks complete; preparing the immutable12-cell plan before
+detached launch on physicalGPU2/3. Launch hashes/PID will be recorded here once
+created. This section supersedes the earlier design-pending status below.
+
 ## Active experiment design — the real five-layer framework,21October
 
 The latest user instruction governs this queue and supersedes older execution

@@ -14,7 +14,7 @@ import math
 
 
 class NativeFramework:
-    VERSION = 'native_microwave_measured_framework_v1'
+    VERSION = 'native_microwave_measured_framework_v2'
 
     def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it'):
         if mode not in ('baseline', 'framework') or not isinstance(language, str) or not language.strip():
@@ -25,6 +25,10 @@ class NativeFramework:
             action_cap=520, query_cap=520, local_cap=32, repair_cap=160,
             rechecks=3, cooldown=8, lift_m=.020, motion_m=.003,
             contact_window=12, acquisition_window=180,
+            release_radius_m=.050, release_flight_steps=3, retry_motion_m=.020,
+            recovery_contracts=dict(acquire=['held_clear', 'contained'],
+                transfer=['contained'], contain_release=['contained_detached'],
+                close=['native_complete']),
             verification='privileged_current_past_endpoint_measurements',
             subgoal_source='declared_task_semantics_not_model_generated',
             learned_predictor=False, future_simulation=False,
@@ -40,6 +44,9 @@ class NativeFramework:
         self._ever_lifted = False
         self._in_streak = 0
         self._in_achieved = self._in_lost = self._elevated_lost = False
+        self._containment_anchor = None
+        self._last_in_step = self._release_started = None
+        self._failed_contexts = {}
         self._milestones = {}
         self._active = self._handoff_pending = None
         self._transactions = []
@@ -121,6 +128,7 @@ class NativeFramework:
             self._in_achieved = True
             self._in_lost = False
             self._milestones.setdefault('durable_in', step)
+            self._containment_anchor = state['position']
         elif self._in_achieved and state['in_goal'] is False:
             self._in_lost = True
         if (previous and previous['held_clear'] is True and state['grasp'] is False
@@ -128,6 +136,30 @@ class NativeFramework:
             self._elevated_lost = True
         if state['grasp'] is True or state['in_goal'] is True:
             self._elevated_lost = False
+        if state['in_goal'] is True:
+            self._last_in_step = step
+        # A release from recently attained containment is a transition, not an
+        # automatic reacquisition request. Flight grace applies only to this
+        # event; losses before any containment still trigger immediately.
+        if (previous and previous['grasp'] is True and state['grasp'] is False
+                and self._in_achieved and self._last_in_step is not None
+                and step-self._last_in_step <= self._config['rechecks']):
+            self._release_started = step
+        anchor = self._containment_anchor
+        distance = (math.dist(anchor, state['position'])
+            if anchor is not None and state['position'] is not None else None)
+        near = distance is not None and distance <= self._config['release_radius_m']
+        flight = (self._release_started is not None
+            and step-self._release_started < self._config['release_flight_steps'])
+        release_context = (self._release_started is not None and near
+            and state['grasp'] is False and state['table'] is False
+            and (flight or state['mug_microwave'] is True))
+        state['release_transition'] = release_context
+        state['containment_anchor_distance_m'] = distance
+        # Once contact/near evidence is lost, a later unrelated contact cannot
+        # resurrect the exemption without a fresh release event.
+        if self._release_started is not None and not release_context:
+            self._release_started = None
         if state['native_complete']:
             self._milestones.setdefault('native_complete', step)
         self._history.append(state)
@@ -160,14 +192,16 @@ class NativeFramework:
             and s['step']-self._first_grasp >= cfg['acquisition_window'])
         entry_loss = (self._active is not None and any(
             s[key] is False for key in self._active['preserve']))
-        flags = dict(containment_lost=self._in_lost, entry_goal_lost=entry_loss,
-            elevated_grasp_lost=self._elevated_lost, contact_constrained_holding=contact_stall,
+        flags = dict(containment_lost=self._in_lost and not s['release_transition'], entry_goal_lost=entry_loss,
+            elevated_grasp_lost=self._elevated_lost and not s['release_transition'], contact_constrained_holding=contact_stall,
             persistent_low_grasp=low_grasp, acquisition_no_progress=acquisition_stall)
         missing = [key for key, value in s.items() if value is None]
         return dict(flags=flags, trigger=next((key for key, value in flags.items() if value), None),
             evidence_through_step=s['step'], state=deepcopy(s),
             first_grasp_step=self._first_grasp, first_grasp_z=self._grasp_z,
             ever_lifted=self._ever_lifted, in_streak=self._in_streak,
+            raw_containment_lost=self._in_lost, raw_elevated_grasp_lost=self._elevated_lost,
+            release_transition=s['release_transition'], release_started=self._release_started,
             short_motion_diameter_m=short_motion, acquisition_motion_diameter_m=long_motion,
             missing=missing, uncertainty='missing_measurements' if missing else 'uncalibrated_measured_rules',
             future_task_progress='unknown', future_collision='unknown',
@@ -176,8 +210,31 @@ class NativeFramework:
     @staticmethod
     def _subgoal(state):
         if state['in_goal'] is True:
-            return 'contain_release' if state['grasp'] is True else 'close'
+            detached = state['grasp'] is False and state['mug_gripper'] is False
+            return 'close' if detached else 'contain_release'
         return 'transfer' if state['held_clear'] is True else 'acquire'
+
+    def _retry_allowed(self, trigger):
+        """Require durable changed evidence since the last failure of this event.
+
+        One-frame grasp/contact flicker and the passage of a cooldown alone do
+        not justify spending another repair transaction. This only gates entry;
+        all original events and their measurements remain visible in the trace.
+        """
+        failed = self._failed_contexts.get(trigger)
+        if failed is None:
+            return True
+        recent = list(self._history)[-self._config['rechecks']:]
+        if len(recent) < self._config['rechecks'] or recent[0]['step'] <= failed['step']:
+            return False
+        for key in ('grasp', 'held_clear', 'in_goal', 'close_goal', 'table', 'mug_microwave'):
+            value = recent[0][key]
+            if (value is not None and failed[key] is not None and value != failed[key]
+                    and all(s[key] == value for s in recent)):
+                return True
+        return (failed['position'] is not None and all(s['position'] is not None
+            and math.dist(s['position'], failed['position']) >= self._config['retry_motion_m']
+            for s in recent))
 
     def _budget(self):
         return dict(actions=self._actions, queries=self._queries,
@@ -208,9 +265,15 @@ class NativeFramework:
                 blocked = 'unverified_exit_cooldown'
             elif self._repair_actions >= self._config['repair_cap']:
                 blocked = 'total_repair_budget'
+            elif not self._retry_allowed(monitor['trigger']):
+                blocked = 'failed_repair_requires_changed_evidence'
             else:
                 repair = dict(repair_id=len(self._transactions)+1, entry_step=step,
                     trigger=monitor['trigger'], subgoal=shadow_goal, used=0, streak=0,
+                    recovery_goal=shadow_goal,
+                    acceptance=list(self._config['recovery_contracts'][shadow_goal]),
+                    acceptance_streaks={k: 0 for k in self._config['recovery_contracts'][shadow_goal]},
+                    verified_by=None, completed_during_repair=False,
                     preserve=[k for k in ('in_goal', 'close_goal') if self._current[k] is True],
                     lost_entry_goals=[], preservation_unknown=False,
                     verified=False, exit_step=None, exit_reason=None,
@@ -221,14 +284,15 @@ class NativeFramework:
                 events.append(dict(type='local_entry', step=step, repair_id=repair['repair_id'],
                     trigger=monitor['trigger'], subgoal=shadow_goal))
         if self._active is not None:
-            # Refeed after observed loss; never release/close an uncontained mug.
+            # The action prompt may follow current evidence, but acceptance is
+            # frozen at entry. In particular, attaining In cannot move an
+            # acquisition contract to a three-native-success closing contract.
             goal = self._active['subgoal']
             if ((goal in ('contain_release', 'close') and self._current['in_goal'] is not True)
                     or (goal == 'transfer' and self._current['grasp'] is False
                         and self._current['in_goal'] is not True)
-                    or (goal == 'acquire' and self._current['in_goal'] is True)):
+                    or (self._current['in_goal'] is True and goal != shadow_goal)):
                 self._active['subgoal'] = shadow_goal
-                self._active['streak'] = 0
                 events.append(dict(type='local_goal_refeed', step=step,
                     repair_id=self._active['repair_id'], previous=goal, subgoal=shadow_goal))
         active = self._active
@@ -241,6 +305,8 @@ class NativeFramework:
             mode='contact_transition' if active else 'nominal_tracking', subgoal=goal,
             trigger=monitor['trigger'], evidence=monitor, milestones=deepcopy(self._milestones),
             repair_id=active['repair_id'] if active else None,
+            recovery_goal=active['recovery_goal'] if active else None,
+            recovery_acceptance=list(active['acceptance']) if active else [],
             handoff_repair_id=self._handoff_pending,
             local_used=active['used'] if active else 0, local_cap=self._config['local_cap'],
             shadow_only=self.mode == 'baseline', shadow_subgoal=shadow_goal,
@@ -249,15 +315,17 @@ class NativeFramework:
         self._pending = deepcopy(decision)
         return decision
 
-    def _progress(self, goal):
+    def _progress(self, criterion):
         s = self._current
-        if goal == 'acquire':
+        if criterion == 'held_clear':
             return s['held_clear'] is True
-        if goal == 'transfer':
+        if criterion == 'contained':
             return s['in_goal'] is True
-        if goal == 'contain_release':
+        if criterion == 'contained_detached':
             return s['in_goal'] is True and s['grasp'] is False and s['mug_gripper'] is False
-        return s['native_complete'] is True
+        if criterion == 'native_complete':
+            return s['native_complete'] is True
+        raise ValueError('Unknown recovery criterion: '+criterion)
 
     def after(self, step, diagnostics, action, decision):
         """Record an already executed VLA action and its fresh measured endpoint.
@@ -282,30 +350,46 @@ class NativeFramework:
             repair = self._active
             repair['used'] += 1
             self._repair_actions += 1
+            if self._in_streak >= self._config['rechecks'] and 'in_goal' not in repair['preserve']:
+                repair['preserve'].append('in_goal')
+                events.append(dict(type='preservation_promoted', step=step,
+                    repair_id=repair['repair_id'], predicate='in_goal'))
             for key in repair['preserve']:
                 if measured[key] is False and key not in repair['lost_entry_goals']:
                     repair['lost_entry_goals'].append(key)
                 if measured[key] is None:
                     repair['preservation_unknown'] = True
-            progress = self._progress(repair['subgoal'])
+            checks = {key: self._progress(key) for key in repair['acceptance']}
+            progress = any(checks.values())
             preserved = not repair['lost_entry_goals'] and not repair['preservation_unknown']
-            repair['streak'] = repair['streak']+1 if progress and preserved else 0
+            for key, passed in checks.items():
+                repair['acceptance_streaks'][key] = (repair['acceptance_streaks'][key]+1
+                    if passed and preserved else 0)
+            repair['streak'] = max(repair['acceptance_streaks'].values())
             verification.update(progress=progress, consecutive=repair['streak'],
+                recovery_goal=repair['recovery_goal'], acceptance_checks=checks,
+                acceptance_streaks=deepcopy(repair['acceptance_streaks']),
                 preserved=preserved, lost_entry_goals=list(repair['lost_entry_goals']),
                 preservation_unknown=repair['preservation_unknown'])
             reason = None
             # A capped exit never becomes a verified repair, even on a tied check.
-            if repair['used'] >= self._config['local_cap']:
+            if measured['native_complete']:
+                reason = 'native_completion_during_repair'
+                repair['completed_during_repair'] = True
+                events.append(dict(type='native_completion_during_repair', step=step,
+                    repair_id=repair['repair_id']))
+            elif repair['used'] >= self._config['local_cap']:
                 reason = 'local_budget_exit_unverified'
             elif self._repair_actions >= self._config['repair_cap']:
                 reason = 'total_repair_budget_exit_unverified'
             elif repair['streak'] >= self._config['rechecks']:
                 reason = 'measured_progress_verified'
                 repair['verified'] = True
+                repair['verified_by'] = next(k for k, n in repair['acceptance_streaks'].items()
+                    if n >= self._config['rechecks'])
                 verification['repair_verified'] = True
+                verification['verified_by'] = repair['verified_by']
                 events.append(dict(type='repair_verified', step=step, repair_id=repair['repair_id']))
-            elif measured['native_complete']:
-                reason = 'native_completion_before_three_rechecks'
             elif self._actions >= self._config['action_cap']:
                 reason = 'episode_budget_exit_unverified'
             if reason:
@@ -317,6 +401,7 @@ class NativeFramework:
                     self._handoff_pending = repair['repair_id']
                 if not repair['verified']:
                     self._cooldown_until = step+1+self._config['cooldown']
+                    self._failed_contexts[repair['trigger']] = deepcopy(self._current)
         elif expected['handoff_repair_id'] is not None:
             repair = self._transactions[expected['handoff_repair_id']-1]
             repair['handoff_step'] = step
@@ -329,7 +414,7 @@ class NativeFramework:
             if repair['handoff_step'] is None:
                 continue
             goal_lost = (self._current['held_clear'] is False and measured['in_goal'] is False
-                if repair['subgoal'] == 'acquire' else measured['in_goal'] is False)
+                if repair['verified_by'] == 'held_clear' else measured['in_goal'] is False)
             if repair['verified'] and goal_lost and repair['post_handoff_goal_loss_step'] is None:
                 repair['post_handoff_goal_loss_step'] = step
                 events.append(dict(type='post_handoff_goal_loss', step=step,

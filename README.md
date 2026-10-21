@@ -1,90 +1,69 @@
-# UoE-UG4-Dissertation
+# Completing Unstructured Manipulation Tasks
 
-## Five-layer runtime verification–repair architecture
+University of Edinburgh UG4 dissertation: improving **complete-task reliability** through a five-layer verification and repair framework around a frozen VLA.
 
-**Demo targets: refrigerator retrieval and cloth / garment folding.** The shared
-runtime wrapper monitors execution, applies bounded repair, and returns control
-to a frozen VLA. [Demo milestones and paper experiments](exp_record/agent_notes/two_demo_experiment_design_20261019.md).
+## Objective
 
-**Current research claim to test:** event/phase-aware closed-loop recovery beyond
-predictor-free simple feedback, with validated handoff and complete-task outcomes.
-Differentiable prediction is an optional, separately ablated mechanism.
-[Revised research and R1 diagnosis protocol](exp_record/agent_notes/closed_loop_recovery_r1_20261019.md).
+Enable OpenVLA to complete multi-stage **microwave and refrigerator manipulation**, recover from local errors, and continue the remaining task. Full completion is the primary outcome; isolated grasps, repairs and handoffs are supporting evidence.
 
-The central theme remains **verify → bounded repair → reverify → handoff**.
-[Visual/physical evidence boundaries and ICLR-quality experiment targets](exp_record/agent_notes/verification_repair_iclr_20261019.md).
+The current microwave benchmark is a controlled development setting. Generalization to unstructured object placements, layouts and contact conditions requires subsequent held-out evaluation.
 
-**Default experiment videos:** baseline VLA on the left, our framework on the right;
-matched initial conditions, common playback speed, phase/intervention/handoff labels
-and explicit end-frame holds. Engineering-only controllers are labeled as such.
+**[Research plan](core_research_plan.md)** · **[Current protocol and run status](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md)** · **[Week 5](exp_record/week5.md)**
 
-**Current priority:** [diagnose why the original VLA stalls](exp_record/agent_notes/vla_failure_audit_execution_20261019.md).
+## Our Five-Layer Framework
 
-**Parallel follow-up authorized:** fixed fridge observation controls, shared-actor
-strict qualification/data audit, and autonomous model-candidate verification pilot.
-Videos will show recorded decision evidence and actual control ownership.
-[Execution contract](exp_record/agent_notes/parallel_diagnosis_execution_20261019.md) ·
-[Preflight artifacts](backups/parallel_diagnosis_20261019/README.md).
-
-R2's first grasp/extraction occurred under hand-written motion primitives, so they
-do not demonstrate autonomous repair. Further route scripting is paused. Actor-only
-task/camera/official-inference controls have finished with five exact independent
-replays. Native book/basket tasks reach their benchmark predicates; changing the
-book camera loses grasp, and official inference still fails refrigerator retrieval.
-Stable book placement is not verified. [Results and diagnostic videos](exp_record/agent_notes/vla_failure_audit_results_20261019.md).
+1. **High-level subgoals:** track stages, prerequisites and achieved milestones.
+2. **Frozen VLA:** generate nominal and repair actions from current observations.
+3. **Risk/event monitoring:** observe progress, contact transitions, release, loss and uncertainty.
+4. **Dual-mode gate:** decide between nominal execution and bounded intervention.
+5. **Local repair and reverification:** check recovery, preserve progress, and execute a fresh nominal handoff.
 
 ```mermaid
-flowchart TB
-    Task["Task instruction + current observation"] --> L1
-    L1["1 · High-level subgoals<br/>Track milestones and phase transitions"] --> L2
-    L2["2 · Frozen OpenVLA backbone<br/>Timestamped nominal action proposal"] --> L3
-    Obs["Fresh sensor / state estimate<br/>RGB, proprioception, declared contact inputs"] --> L3
-    L1 --> L3
-    L3["3 · Risk and event-boundary monitor<br/>Progress, slip, clearance, contact, uncertainty"] --> L4
-    L4{"4 · Dual-mode gate<br/>Nominal tracking ↔ contact / transition management"}
-    L4 -->|"Nominal: accept fresh proposal"| Exec
-    L4 -->|"Risk / transition: bounded intervention"| L5
-    L5["5 · Local repair<br/>Measured feedback by default<br/>Predictive ranking only when trusted and better"] --> Exec
-    L5 -->|"Exit conditions satisfied: hand back"| L4
-    Exec["Robot execution + full-task completion check"] --> Obs
-    Exec -->|"Update task progress"| L1
-    L4 -.->|"Target: request fresh proposal; reject stale actions"| L2
-    Adapter["Task adapters<br/>Fridge: hinge, grasp, shelf clearance<br/>Cloth: grasp, material shape, fold alignment"] -.-> L1
-    Adapter -.-> L3
-    Adapter -.-> L5
+flowchart TD
+    Task[Task instruction and current observation] --> Goals[1. High-level subgoals]
+    Goals --> VLA[2. Frozen VLA]
+    Goals --> Monitor[3. Risk and event monitor]
+    Obs[Measured state and optional physical forecasts] --> Monitor
+    Monitor --> Gate{4. Dual-mode gate}
+    Gate -->|Nominal instruction| VLA
+    Gate -->|Recovery needed| Repair[5. Bounded model-generated repair and rechecks]
+    Repair -->|Scoped repair instruction| VLA
+    VLA --> Exec[Execute unchanged model action]
+    Exec --> Monitor
+    Exec --> Goals
+    Monitor --> Repair
+    Repair -->|Verified recovery or labeled budget exit| Gate
+    Exec --> End[Complete-task outcome]
 ```
 
-**Implementation status:** assembly-specific monitoring/gating/repair has been
-evaluated; refrigerator and folding adapters are under development. Current runs
-query the actor synchronously (~0.71 s/action). **Target real-time design:** a slow
-asynchronous VLA proposal loop and a fast fresh-feedback monitor/repair loop, with
-proposal-age limits, exclusive action ownership and measured response deadlines.
-This dual-rate scheduler is not yet implemented or validated. Simulator state used
-by current controllers is privileged; sensor-based estimation is a separate stage.
+**Verification is central.** Physical prediction can contribute alongside measured contact, geometric constraints and task progress within this framework. Current native runs use privileged measured verification; a learned microwave/fridge predictor is not enabled. High-level subgoals are declared task semantics, and every task/repair numerical action comes from OpenVLA.
 
-Undergraduate (UG4) dissertation project — University of Edinburgh.
+## Experiments and Evidence
 
-**Title:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization in Embodied Agents
+**Latest completed paired experiment:** bare VLA **4/6**, framework **4/6**, with one rescue and one harm. All 12 episodes passed exact replay. All 11 repair transactions exited unverified; one rescued episode completed after handoff. No net completion improvement or verified-recovery-to-completion gain has yet been established.
 
-**Current focus (19 Oct 2026):** build two demonstrators—refrigerator retrieval and cloth/garment folding—and test whether the shared runtime framework improves complete-task recovery. [Week5](exp_record/week5.md) · [demo and paper design](exp_record/agent_notes/two_demo_experiment_design_20261019.md) · [data/OOD contract](exp_record/agent_notes/unstructured_ood_design_20261019.md). [First refrigerator probes completed and replay-verified](exp_record/agent_notes/fridge_development_execution_20261019.md): neither native-actor trial retrieved the item; task-capability integration is the next step. Folding manipulation and dual-rate real-time control remain implementation milestones.
+- [Complete comparison, six paired videos and recoverable raw evidence](backups/framework_comparison_20261019/README.md)
+- [Historical refrigerator R2](exp_record/agent_notes/fridge_r2_results_20261019.md): geometric correction actions, local extraction progress, no full completion; separate from the current model-generated repair method.
 
-**Locked architecture:** high-level subgoals → frozen OpenVLA → risk/event-boundary monitoring → dual-mode gate → bounded local repair. [Authoritative design](exp_record/agent_notes/libero_framework_design_20261014.md) · [layer-by-layer implementation / next long-horizon task](exp_record/agent_notes/libero_five_layer_implementation_20261014.md).
+**Current iteration:** repeat all six microwave initial states with fresh bare-VLA/framework pairs after correcting release/loss handling, recovery acceptance, milestone preservation and repeated failed intervention. The same framework then extends to closed-start refrigerator retrieval. Exact freeze, process status and results are maintained in the [current record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md).
 
-**Latest completed experiment:** [R2: actual frozen VLA / refrigerator wrapper](exp_record/agent_notes/fridge_r2_results_20261019.md), four600-action/query trials. Closed-start arms both fail to open; open-start wrapper grasps/extracts but does not complete placement/retrieval. Both wrapper runs use420corrections. [Baseline-left / framework-right videos and all-case archive](backups/fridge_r2_20261019/README.md). This is privileged, scene-specific development; per-scene coordinate tuning is paused in favor of testing one frozen repair across held-out layouts/instances. Three exact replays pass; the fourth has only two wrist-frame pixel discrepancies. The results include a correction to overwritten local-exit event labels.
+Every treatment run uses the real five-layer framework. Paired arms share initial conditions, actor inputs and resource limits; all repair queries count against the lifetime budget. Full videos show baseline left/framework right, synchronized simulation time, control ownership, evidence, verification, exits and actual handoffs. Failures and harms remain included.
 
-**Earlier assembly evidence:** [A2:80/80verified trajectories](exp_record/agent_notes/assembly_a2_results_20261019.md). VLA8/20; shared-gate geometric feedback and hybrid18/20. Prediction ranking never overrides geometry, and the hybrid harms one baseline success. [VLA-left / hybrid-right paired videos, including negative cases](backups/assembly_a2_paired_review_20261019/README.md).
+## Code and Records
 
-**[Videos, artifact backup and recovery instructions](backups/README.md)** · **[Pinned LIBERO submodule](third_party/LIBERO)**. Large experiment files use Git LFS; clone with submodules and run `git lfs pull` to restore them.
+| Path | Purpose |
+|---|---|
+| [`core_research_plan.md`](core_research_plan.md) | Current objective, method, experiment sequence and evaluation |
+| [`scripts/run_framework_comparison.py`](scripts/run_framework_comparison.py) | Canonical preparation, execution, replay, reporting and video runner |
+| [`src/adapters/native_framework.py`](src/adapters/native_framework.py) | Current five-layer native controller |
+| [`scripts/test_native_framework.py`](scripts/test_native_framework.py) | Model-free recovery and execution-contract checks |
+| [`exp_record/`](exp_record/agent_notes/experiment_record_index.md) | Weekly summaries; detailed protocols and results under `agent_notes/` |
+| [`backups/`](backups/README.md) | Published videos, raw evidence and recovery instructions |
+| [`third_party/LIBERO`](third_party/LIBERO) | Pinned benchmark submodule |
+| `notes/` | Proposals, literature and historical planning |
 
-## Contents
+Run controller checks with `python -B scripts/test_native_framework.py`. Experiment execution uses the pinned server environments and source manifests documented in the current record; inspect runner options with `--help`.
 
-- [`core_research_plan.md`](core_research_plan.md) — authoritative research plan and current scope (Oct 2026 – Sep 2027)
-- `notes/` — proposals, experiment plans, papers, figures and working notes
-  - `Dissertation_Proposal_gsu.pdf` — original dissertation proposal
-  - `Dissertation_Proposal_gsu_new_sep_19.md` — revised proposal (Genesis, causal/structured Physical CoT, VLA/Embodied Data Pyramid updates)
-  - `Experiment_Phase_0.md` — Phase 0/1 benchmark plan (Robosuite NutAssembly, Diffusion Policy, OOD friction/mass evaluation)
-  - `Experiment_plan_Phase_1.md` — Phase 1 plan: CheckVLA + OrbiSim-Dynamics + Genesis execution-time physical verification
-  - `Experiment_plan_1year.md` — historical one-year planning notes; current scope is in the root plan above
-  - `note.md` — working notes
-- `exp_record/` — weekly summaries; all other records in `exp_record/agent_notes/` (see [record index](exp_record/agent_notes/experiment_record_index.md))
-- `src/` — Phase 1 experiment framework (see `src/README.md`)
+Large artifacts use Git LFS. Clone with submodules and follow each backup's scoped LFS recovery instructions.
+
+**Registered dissertation topic:** *Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization*.
