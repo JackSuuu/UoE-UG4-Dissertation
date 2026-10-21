@@ -1,5 +1,68 @@
 # Current goal and result-driven experiment queue
 
+## Completed v2results — no net gain; local acceptance is not resumability
+
+The21October `ab48b63` batch is complete:12/12valid episodes and12/12fresh exact
+replays. Bare VLA4/6; framework4/6;0paired rescues and0harms. Each arm used2531
+queries/actions (5062combined plus120initialization noops). Six full paired videos
+are generated. [All-case results and evidence](../../backups/framework_comparison_20261021/README.md).
+
+| Root | Baseline | Framework v1 | Framework v2 | v2actions | v2repair actions |
+|---|---|---|---|---:|---:|
+|0|Fail|Fail|Fail|520|96|
+|1|Success|Success|Success|444|0|
+|2|Success|Success|Success|397|0|
+|3|Success|Fail|Success|352|0|
+|4|Fail|Success|Fail|520|80|
+|5|Success|Success|Success|298|0|
+
+The revision removes root3's old harm but loses root4's old rescue. Framework
+repair actions fall352→176, transactions11→6, unverified exits11→5. One local
+repair now passes its declared contract and executes a handoff, but no repaired
+episode finishes. Reduced repair occupancy does not imply halved total query cost.
+
+**Verified from complete traces (zero-based steps):**
+
+* Root3has no repair; its complete scientific trajectory equals fresh baseline.
+  Release-transition classification is active198–351; full task completes at351.
+  This is preservation of nominal self-recovery, not a successful repair example.
+* Root4intervenes at148as before. V1/v2science matches through155, then prompt/
+  action diverges at156: old close vs new contain-release. V2In is true at155,
+  156and161–163only. At163the3-endpoint contained alternative passes the fixed
+  acquisition contract and In is promoted to preservation. Mug–gripper contact
+  remains true throughout161–163; position moves6.571mm from162to163. There is
+  no detachment, settling, independent-support or nominal-continuation check in
+  that acceptance alternative. At164the actual nominal action loses In; at165
+  a second repair starts. Two later32-action repairs do not restore In, and the
+  episode fails at520actions. All numerical actions are saved VLA outputs.
+* Root0still fails after3transactions/96repair actions. The old repeated entry
+  at294is suppressed; later context changes permit entries411and473. No transaction
+  gains accepted recovery. Retry gating is not evidence of better repair actions.
+
+**Interpretation:** the code correctly accepted its declared local condition,
+but the condition did not establish a state from which nominal execution would
+preserve progress. The important verifier–repair gap is therefore between local
+progress and reliable resumption. The root4prompt changes before handoff; this
+bundled run does not isolate prompt effects from acceptance/exit timing. Neither
+“three In checks imply stable recovery” nor “a later handoff would definitely
+restore success” is supported. No learned predictor was loaded in this batch.
+
+Integrity review recomputed5062query/action/input associations and checked all
+zero-query replay proofs. All six v2baseline trajectories match their v1science.
+Within v2, roots1/2/3/5match end to end; roots0/4first diverge at254/148, exactly
+their first interventions. Physical fingerprints, observations/diagnostics,
+actions, tokens and contacts are compared; timing/controller-version fields are
+not treated as physical divergence. The post-run audit is saved as
+`/home/ami/scratch/framework_comparison_run_20261021/report/review.json`.
+
+**Next research focus, not yet implemented/launched:** strengthen the verifier's
+resumption contract using phase-appropriate release/contact and measured motion
+evidence; keep recovery acceptance distinct from full task completion. Examine
+repair-prompt suitability alongside the root4handoff failure rather than assume
+that a more conservative exit alone fixes it. Use the same full six-pair framework
+comparison, fixed actor/budgets and all-case outcomes for a declared next revision.
+Fridge remains the next task adapter; reserved confirmation roots remain unused.
+
 ## Research framing clarification — verifier–repair remains the main contribution
 
 On21October the user asked to restore the earlier comprehensive research-plan
@@ -67,7 +130,7 @@ The runner's updated full-video overlays and legacy summary loading also passed
 a2-frame zero-query smoke at `/tmp/opencode/framework_v2_video_check_mp23yt18/`.
 README and core plan are now English, with local links checked.
 
-**Launch status: running.** Source commit
+**Historical launch checkpoint; batch now completed (results above).** Source commit
 `ab48b63f0fc44ed4ecebc6c625045586e4c56688`; detached supervisor PID/session
 `4082390`. Baseline uses physicalGPU2/EGL1; framework uses physicalGPU3/EGL0,
 both UUID-masked and actor batch1. Both device identities were verified. At the
@@ -164,9 +227,9 @@ Predictor-on/off attribution is a later same-framework comparison, not a competi
 method or a blocker for the next12episodes. Roots6–9calibration,10–19training and
 20–49confirmation remain reserved; roots0–5are reused development cases.
 
-Current status: framework v2 frozen and launched as recorded above. Historical
-first comparison remains4/6vs4/6, with root4rescue and root3harm. The user-owned
-annual plan is untouched. Current outcomes await full execution and replay.
+Current status: framework v2 completed and replay-verified as recorded above.
+Historical first comparison remains4/6vs4/6with root4rescue/root3harm; v2is4/6vs4/6
+with neither rescue nor harm. The user-owned annual plan is untouched.
 
 ## Historical evidence and superseded execution orders
 

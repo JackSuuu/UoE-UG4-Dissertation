@@ -1,6 +1,14 @@
 # Research recovery and videos
 
-## Latest: 19 October 2026
+## Latest: 21 October 2026
+
+**[Native framework v2: all six full paired videos and raw evidence](framework_comparison_20261021/README.md)**:
+12/12exact replays; VLA4/6and framework4/6,0rescues/0harms. One locally verified
+repair loses containment on the first actual nominal handoff; no repaired episode
+completes. The earlier root3harm disappears but the root4rescue is lost.
+[First comparison:4/6vs4/6, one rescue/one harm](framework_comparison_20261019/README.md).
+
+## Earlier: 19 October 2026
 
 **[R2 refrigerator: actual VLA-left / wrapper-right paired videos](fridge_r2_20261019/README.md)**:
 all four600-action/query runs finished without complete-task recovery. The open-start

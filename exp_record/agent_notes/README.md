@@ -6,7 +6,8 @@ Weekly summaries: [Week5](../week5.md), [all weeks](experiment_record_index.md).
 
 * [Research goal: the real five-layer verification/repair framework](../../core_research_plan.md)
 * [Next full-framework experiment design and current results](current_goal_and_experiment_queue_20261019.md)
-* [Completed native paired comparison:4/6 vs4/6, one rescue and one harm](../../backups/framework_comparison_20261019/README.md)
+* [Latest v2:4/6 vs4/6, no rescue/harm; verified local recovery fails at handoff](../../backups/framework_comparison_20261021/README.md)
+* [First native comparison:4/6 vs4/6, one rescue and one harm](../../backups/framework_comparison_20261019/README.md)
 * [Completed24-episode native capability screen](native_long_l1_results_20261019.md)
 
 ## Historical protocols, results and exploration

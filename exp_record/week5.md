@@ -3,6 +3,27 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 21 Oct — Framework v2 completes: local verification fails to persist
+
+All12fresh microwave episodes and independent exact replays pass. Bare VLA4/6,
+framework4/6,0rescues/0harms; each arm2531queries/actions. Root3's old harm is
+removed: v2does not intervene and its full trajectory matches baseline. Root4's
+old rescue is lost. Framework repair occupancy falls352→176actions (11→6repair
+transactions), but this is not a50%query-cost reduction.
+
+Root4's first repair passes the fixed contained alternative at step163after In
+holds at161–163. Mug–gripper contact remains true and position changes6.571mm over
+162→163. The actual nominal handoff at164immediately loses In; later repairs fail
+and the task does not finish. The local contract checks containment, not stable
+release or resumability. This supplies1verified local repair/actual handoff, but
+0verified-handoff completions. V1/v2already diverge at156because their prompts
+differ, so exit timing alone is not causally isolated.
+
+All5062query/action/input associations were recomputed. All six baselines match
+v1science; paired roots1/2/3/5are identical throughout, and roots0/4first diverge
+exactly at interventions254/148. Six full paired videos are generated. No learned
+prediction or held-out gain is claimed. [Complete table, videos and evidence](../backups/framework_comparison_20261021/README.md).
+
 ### Update 21 Oct — Restore the comprehensive verifier–repair research plan
 
 Clarified the contribution hierarchy: **verification coupled to bounded repair

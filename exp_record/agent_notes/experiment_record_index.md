@@ -15,8 +15,9 @@ The authoritative research plan is [`core_research_plan.md`](../../core_research
 ## Current findings
 
 * [Current goal and next full-framework experiment](current_goal_and_experiment_queue_20261019.md).
-* [Latest paired comparison](../../backups/framework_comparison_20261019/README.md):
-  VLA4/6 and framework4/6; one rescue and one harm,12/12exact replays.
+* [Latest paired comparison, v2](../../backups/framework_comparison_20261021/README.md):
+  VLA4/6 and framework4/6; no rescues/harms,12/12exact replays. One local recovery
+  passes verification but loses progress on its first actual nominal handoff.
 * [A2 results](assembly_a2_results_20261019.md):80/80verified trajectories.
   VLA8/20; shared-gate feedback and hybrid18/20. Prediction ranking never overrides
   geometry. No task-family generalization or real-time claim.

@@ -42,12 +42,13 @@ flowchart TD
 
 ## Experiments and Evidence
 
-**Latest completed paired experiment:** bare VLA **4/6**, framework **4/6**, with one rescue and one harm. All 12 episodes passed exact replay. All 11 repair transactions exited unverified; one rescued episode completed after handoff. No net completion improvement or verified-recovery-to-completion gain has yet been established.
+**Latest completed paired experiment (v2):** bare VLA **4/6**, framework **4/6**, with zero rescues and zero harms. All 12 episodes passed exact replay. The previous root3 harm disappeared, but the root4 rescue was lost. One repair passed local verification and actually handed back; containment was lost on the first nominal action and the task failed. No net completion improvement or verified-recovery-to-completion gain has yet been established.
 
-- [Complete comparison, six paired videos and recoverable raw evidence](backups/framework_comparison_20261019/README.md)
+- [Latest v2 comparison, six full paired videos and raw evidence](backups/framework_comparison_20261021/README.md)
+- [First comparison: one rescue and one harm](backups/framework_comparison_20261019/README.md)
 - [Historical refrigerator R2](exp_record/agent_notes/fridge_r2_results_20261019.md): geometric correction actions, local extraction progress, no full completion; separate from the current model-generated repair method.
 
-**Current iteration (launched 21 October):** all six microwave initial states with fresh bare-VLA/framework pairs after correcting release/loss handling, recovery acceptance, milestone preservation and repeated failed intervention. Revision `ab48b63` passed 16 controller checks and is running on GPUs 2/3. The same framework then extends to closed-start refrigerator retrieval. Exact freeze, process status and results are maintained in the [current record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md).
+**Current focus after v2:** distinguish verified local progress from a state that supports reliable nominal resumption. Root4's prompt also changes before handoff, so the failure cannot be attributed solely to earlier exit. Revision `ab48b63` is complete; no further revision has launched. Refrigerator retrieval remains the next task extension of the same framework. Exact protocols, status and results are maintained in the [current record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md).
 
 Every treatment run uses the real five-layer framework. Paired arms share initial conditions, actor inputs and resource limits; all repair queries count against the lifetime budget. Full videos show baseline left/framework right, synchronized simulation time, control ownership, evidence, verification, exits and actual handoffs. Failures and harms remain included.
 

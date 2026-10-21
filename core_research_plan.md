@@ -68,11 +68,12 @@ Differentiability is a possible property of a predictor, not the definition of t
 |---|---|---|
 | First native microwave comparison | Bare VLA4/6; framework4/6; one rescue, one harm;12/12exact replays | The loop affects outcomes, but net completion benefit is not established |
 | Its recovery transactions | All11exited unverified at their local cap; root4completed after an actual handoff | Local intervention and downstream success do not yet demonstrate verified recovery followed by successful resumption |
+| Revised native microwave comparison, v2 | Bare VLA4/6; framework4/6;0rescues/0harms;12/12exact replays;1verified local repair with actual handoff,0downstream completions | The old harm is removed but the rescue is lost; containment acceptance alone does not establish reliable resumption |
 | Root3/root4trajectory analysis | Release/loss confusion, repeated failed reacquisition, changing acceptance targets and missing preservation of new progress | Revise monitoring and recovery contracts within the same controller |
 | Historical refrigerator R2 | Closed-start arms never opened; open-start intervention grasped/extracted but did not finish | Handwritten geometric corrections demonstrate neither current model-generated repair nor full-task competence |
 | Earlier assembly experiments | Feedback/hybrid gains were observed; predictive ranking added no demonstrated advantage | Measured-feedback gains cannot be attributed to physical prediction |
 
-The first six native roots are reused development cases. Historical push/assembly results retain their original protocols and limitations; they cannot be pooled with current native evidence. See [published native comparison](backups/framework_comparison_20261019/README.md), [fridge R2](exp_record/agent_notes/fridge_r2_results_20261019.md) and [assembly results](exp_record/agent_notes/assembly_a2_results_20261019.md).
+The first six native roots are reused development cases. Historical push/assembly results retain their original protocols and limitations; they cannot be pooled with current native evidence. See [first native comparison](backups/framework_comparison_20261019/README.md), [v2results and handoff regression](backups/framework_comparison_20261021/README.md), [fridge R2](exp_record/agent_notes/fridge_r2_results_20261019.md) and [assembly results](exp_record/agent_notes/assembly_a2_results_20261019.md).
 
 ## 2. Core Research Question and Hypotheses
 
@@ -148,7 +149,7 @@ Newly achieved durable milestones enter preservation checks. Unsuccessful repair
 | Evidence | Privileged current/past measurements; learned prediction disabled |
 | Verification of execution | Fresh exact replay per episode; saved model inputs/actions; six full paired videos |
 
-Revision `ab48b63` implements release/loss handling, stable acceptance, milestone preservation and evidence-based retry in the existing controller. It passed16model-free checks and was launched on21October. This is a **bundled development iteration**, so its result cannot isolate the causal contribution of each code change. Live status and exact thresholds remain in the current record.
+Revision `ab48b63` implements release/loss handling, stable acceptance, milestone preservation and evidence-based retry in the existing controller. It passed16model-free checks and completed all12episodes and exact replays on21October. Both arms scored4/6. Root4passed local containment verification at163but lost containment on the first nominal action at164; its prompt had already diverged from v1at156. This is a **bundled development iteration**, so its result cannot isolate the causal contribution of each code change. Exact thresholds, complete outcomes and the proposed resumption-contract focus remain in the current record.
 
 #### Refrigerator follow-on
 
@@ -314,11 +315,11 @@ These gates govern claims and prioritization. They do not reinstate an isolated-
 
 ## 9. Immediate Next Steps
 
-1. **Complete the launched v2microwave batch.** Retain all12cells, fresh replays, the six full paired videos and both budget/technical failures. The exact frozen source and live state are in the current record.
-2. **Evaluate the verifier–repair chain, not just the final score.** Check which triggers changed, whether recovery was truly verified, whether nominal handoffs executed, and whether subsequent task progress persisted. Report the complete success table first, followed by its mechanism evidence.
+1. **Consolidate the completed v2microwave batch.** Preserve all12valid/replayed cells, six full paired videos and all budget exits. The all-case result is4/6vs4/6with no rescue/harm; the exact frozen source and evidence are in the current record.
+2. **Address the observed verifier–repair gap.** Root4satisfies the declared local containment contract while still contacting the gripper, then immediately loses that progress at handoff. Investigate phase-appropriate release/contact, object motion and nominal-resumption compatibility. The earlier prompt difference must be considered alongside acceptance timing; no single cause has yet been isolated.
 3. **Use those trajectories to choose the next bounded change or attribution comparison.** Avoid changing multiple unrelated components without declaring the comparison bundled.
 4. **Integrate closed-start fridge manipulation through the same framework.** Freeze task predicates, initialization, actor inputs and model-generated repair interface before the planned six-episode development cohort.
 5. **Specify and adapt the native physical predictor.** Establish state/action and target contracts using permitted data, then test its incremental role in complete framework runs. This remains a planned research work package, not a claim about the currently running measured-only controller.
 6. **Publish and verify evidence.** Update the existing current record and weekly summary, archive the full batch and check fresh remote recovery. Preserve reserved confirmation states and user-owned planning edits.
 
-The comprehensive plan supplies the research structure; it is not a replacement launch protocol. The current experiment continues under its already frozen configuration.
+The comprehensive plan supplies the research structure; it is not a replacement launch protocol. The v2experiment is complete under its frozen configuration; no next revision is launched by this result review.
