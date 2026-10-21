@@ -2,7 +2,7 @@
 
 ## New execution protocol — complete-task resumption factorial (21 October)
 
-**Status: source/configuration frozen and preflight passed; launch pending.** This is
+**Status: launched, running under a detached supervisor; results pending.** This is
 the next experiment authorized after the root4 forensic review, using the same
 five-layer framework and canonical `scripts/run_framework_comparison.py`.
 
@@ -114,7 +114,14 @@ Plan SHA256: `c07685e35acea529bf7470773b0f9a861078454e54af32149f7a8bcb469ecfca`.
 Planned output: `/home/ami/scratch/framework_factorial_run_20261021/`.
 The freeze includes the five execution/test sources, all original reference/runtime
 and checkpoint pins, `v2_decision_equivalence.json` and `report_smoke.json`.
-The launch receipt will pin the source commit and detached supervisor identity.
+Frozen source commit: `528a91cebd8da0adaa08333bcfe6ae73a58e7b3f`.
+Supervisor PID/session: `4102858` (separate process group; terminal-detached).
+Receipt: `/home/ami/scratch/framework_factorial_freeze_20261021/launch_receipt.json`.
+Log: `/home/ami/scratch/framework_factorial_freeze_20261021/supervisor.log`.
+Initial status inspection confirms both root0baseline/v2 jobs reached scene setup
+after model load, with no recorded error. No efficacy result is available yet.
+The supervisor runs every wave, fresh exact replays, then the all-case report and
+24full paired videos. Publication and independent remote recovery follow completion.
 
 ## Root4 forensic follow-up — regression starts before nominal handoff
 

@@ -3,7 +3,7 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
-### Update 21 Oct — Full-task prompt/resumption factorial prepared
+### Update 21 Oct — Full-task prompt/resumption factorial launched
 
 The next experiment separates the root4 prompt and handoff hypotheses using all
 six development roots and five fresh cohorts: bare VLA, v2, prompt_only, gate_only
@@ -16,6 +16,11 @@ model-generated numerical actions remain fixed. Each cohort uses GPUs2/3 equally
 with at most two actors concurrently. All30cases and24full baseline/variant videos
 are planned, regardless of root4 outcomes. The25CPU checks and all5062saved v2
 decision-equivalence checks pass. [Exact protocol and launch status](agent_notes/current_goal_and_experiment_queue_20261019.md#new-execution-protocol--complete-task-resumption-factorial-21-october).
+
+Source freeze`528a91c`; detached supervisor PID/session`4102858`; plan SHA256
+`c07685e35acea529bf7470773b0f9a861078454e54af32149f7a8bcb469ecfca`.
+Output:`/home/ami/scratch/framework_factorial_run_20261021/`. Both initial jobs
+passed model load into scene setup. Outcomes remain pending; no success claim.
 
 ### Update 21 Oct — Root4 regression starts inside repair, before handoff
 
