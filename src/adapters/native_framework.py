@@ -14,13 +14,20 @@ import math
 
 
 class NativeFramework:
-    VERSION = 'native_microwave_measured_framework_v2'
+    VERSION = 'native_microwave_measured_framework_v3_factorial'
 
-    def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it'):
+    def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it',
+                 variant='v2'):
         if mode not in ('baseline', 'framework') or not isinstance(language, str) or not language.strip():
             raise ValueError('Expected baseline/framework and nonempty native language')
         self.mode, self.language = mode, language
-        self._config = dict(version=self.VERSION, target='white_yellow_mug_1',
+        if variant not in ('v2', 'prompt_only', 'gate_only', 'combined'):
+            raise ValueError('Unknown frozen factorial variant')
+        self._config = dict(version=self.VERSION, variant=variant,
+            prompt_factor=variant in ('prompt_only', 'combined'),
+            resumption_factor=variant in ('gate_only', 'combined'),
+            resumption_motion_m=.003, resumption_endpoints=3,
+            target='white_yellow_mug_1',
             receptacle='microwave_1', region='microwave_1_heating_region',
             action_cap=520, query_cap=520, local_cap=32, repair_cap=160,
             rechecks=3, cooldown=8, lift_m=.020, motion_m=.003,
@@ -36,6 +43,10 @@ class NativeFramework:
                 transfer='put the yellow and white mug in the microwave',
                 contain_release='release the yellow and white mug in the microwave',
                 close='close the microwave'))
+        if self._config['prompt_factor']:
+            # Preserve the placement objective while contact remains. This is
+            # still one unchanged model proposal, never a gripper override.
+            self._config['prompts']['contain_release'] = self._config['prompts']['transfer']
         self._history = deque(maxlen=181)
         self._current = None
         self._pending = None
@@ -272,7 +283,8 @@ class NativeFramework:
                     trigger=monitor['trigger'], subgoal=shadow_goal, used=0, streak=0,
                     recovery_goal=shadow_goal,
                     acceptance=list(self._config['recovery_contracts'][shadow_goal]),
-                    acceptance_streaks={k: 0 for k in self._config['recovery_contracts'][shadow_goal]},
+                     acceptance_streaks={k: 0 for k in self._config['recovery_contracts'][shadow_goal]},
+                    local_recovery_step=None, resumption_by=None,
                     verified_by=None, completed_during_repair=False,
                     preserve=[k for k in ('in_goal', 'close_goal') if self._current[k] is True],
                     lost_entry_goals=[], preservation_unknown=False,
@@ -327,6 +339,41 @@ class NativeFramework:
             return s['native_complete'] is True
         raise ValueError('Unknown recovery criterion: '+criterion)
 
+    def _resumption(self, criterion):
+        """Measured candidate readiness, not a forecast of nominal success.
+
+        Each alternative must hold over the same three post-entry endpoints;
+        mixing held and released endpoints cannot create a passing window.
+        Contact alone is not a support or settling certificate.
+        """
+        cfg = self._config
+        recent = list(self._history)[-cfg['resumption_endpoints']:]
+        window = (len(recent) == cfg['resumption_endpoints']
+            and recent[0]['step'] >= self._active['entry_step'])
+        motion = self._diameter(recent) if window else None
+        stable = motion is not None and motion <= cfg['resumption_motion_m']
+        alternatives = {}
+        if criterion == 'held_clear':
+            alternatives['free_held'] = window and all(
+                s['held_clear'] is True and s['in_goal'] is False
+                and s['mug_microwave'] is False and s['gripper_microwave'] is False
+                for s in recent)
+        if criterion in ('contained', 'contained_detached'):
+            if criterion == 'contained':
+                alternatives['contained_held'] = window and all(
+                    s['in_goal'] is True and s['held_clear'] is True
+                    and s['mug_gripper'] is True for s in recent)
+            alternatives['contained_released_contact'] = window and all(
+                s['in_goal'] is True and s['grasp'] is False
+                and s['mug_gripper'] is False and s['mug_microwave'] is True
+                and s['table'] is False for s in recent)
+        if criterion == 'native_complete':
+            alternatives['native_complete'] = window and all(s['native_complete'] is True for s in recent)
+        ready_by = next((name for name, passed in alternatives.items() if passed and stable), None)
+        return dict(ready=ready_by is not None, ready_by=ready_by,
+            motion_diameter_m=motion, stable=stable, complete_window=window,
+            alternatives=alternatives)
+
     def after(self, step, diagnostics, action, decision):
         """Record an already executed VLA action and its fresh measured endpoint.
 
@@ -371,6 +418,18 @@ class NativeFramework:
                 acceptance_streaks=deepcopy(repair['acceptance_streaks']),
                 preserved=preserved, lost_entry_goals=list(repair['lost_entry_goals']),
                 preservation_unknown=repair['preservation_unknown'])
+            local_candidates = [k for k, n in repair['acceptance_streaks'].items()
+                if n >= self._config['rechecks']]
+            if local_candidates and repair['local_recovery_step'] is None:
+                repair['local_recovery_step'] = step
+                events.append(dict(type='local_condition_met', step=step,
+                    repair_id=repair['repair_id'], criteria=local_candidates))
+            readiness = {key: self._resumption(key) for key in repair['acceptance']}
+            eligible = [k for k in local_candidates if not self._config['resumption_factor']
+                or readiness[k]['ready']]
+            verification.update(resumption_required=self._config['resumption_factor'],
+                resumption_checks=readiness, local_condition_met=bool(local_candidates),
+                exit_condition_met=bool(eligible))
             reason = None
             # A capped exit never becomes a verified repair, even on a tied check.
             if measured['native_complete']:
@@ -382,11 +441,12 @@ class NativeFramework:
                 reason = 'local_budget_exit_unverified'
             elif self._repair_actions >= self._config['repair_cap']:
                 reason = 'total_repair_budget_exit_unverified'
-            elif repair['streak'] >= self._config['rechecks']:
+            elif eligible:
                 reason = 'measured_progress_verified'
                 repair['verified'] = True
-                repair['verified_by'] = next(k for k, n in repair['acceptance_streaks'].items()
-                    if n >= self._config['rechecks'])
+                repair['verified_by'] = eligible[0]
+                repair['resumption_by'] = (readiness[eligible[0]]['ready_by']
+                    if self._config['resumption_factor'] else 'not_required_v2_contract')
                 verification['repair_verified'] = True
                 verification['verified_by'] = repair['verified_by']
                 events.append(dict(type='repair_verified', step=step, repair_id=repair['repair_id']))

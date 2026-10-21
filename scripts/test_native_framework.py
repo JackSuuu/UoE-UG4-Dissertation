@@ -281,5 +281,134 @@ class FrameworkTests(unittest.TestCase):
             c.after(0, missing, ACTION, decision)
 
 
+class ResumptionFactorialTests(unittest.TestCase):
+    def enter_acquire(self, variant):
+        c = NativeFramework('framework', LANGUAGE, variant=variant)
+        high = state(z=.93, table=False)
+        lost = state(z=.93, table=False, grasp=False, contact=True)
+        execute(c, 0, state(), high)
+        execute(c, 1, high, lost)
+        return c, lost
+
+    def test_factors_are_independent_and_baseline_keeps_full_language(self):
+        for variant, prompt, gate in [('v2', False, False), ('prompt_only', True, False),
+                                     ('gate_only', False, True), ('combined', True, True)]:
+            c, before = self.enter_acquire(variant)
+            inside = state(z=.93, grasp=False, table=False, contact=True,
+                           inside=True, gripper_contact=True)
+            execute(c, 2, before, inside)
+            decision, _ = execute(c, 3, inside, inside)
+            self.assertEqual(decision['language'], 'put the yellow and white mug in the microwave'
+                             if prompt else 'release the yellow and white mug in the microwave')
+            self.assertEqual(c.config['resumption_factor'], gate)
+            baseline = NativeFramework('baseline', LANGUAGE, variant=variant)
+            d, _ = execute(baseline, 0, before, inside)
+            self.assertEqual(d['owner'], 'nominal')
+            self.assertEqual(d['language'], LANGUAGE)
+
+    def test_root4_like_local_containment_cannot_verify_while_withdrawing(self):
+        for variant in ('gate_only', 'combined'):
+            c, before = self.enter_acquire(variant)
+            for step, x in enumerate((.008, .011, .004), 2):
+                after = state(z=.93, x=x, inside=True, grasp=False, table=False,
+                              contact=True, gripper_contact=True)
+                _, record = execute(c, step, before, after)
+                before = after
+            self.assertTrue(record['verification']['local_condition_met'])
+            self.assertFalse(record['verification']['repair_verified'])
+            self.assertFalse(record['verification']['resumption_checks']['contained']['stable'])
+            self.assertEqual(c.summary['repairs'][0]['local_recovery_step'], 4)
+            self.assertIsNone(c.summary['repairs'][0]['handoff_step'])
+
+    def test_stationary_one_sided_gripper_contact_is_not_held_or_released(self):
+        c, before = self.enter_acquire('gate_only')
+        after = state(z=.93, inside=True, grasp=False, table=False,
+                      contact=True, gripper_contact=True)
+        for step in range(2, 7):
+            _, record = execute(c, step, before, after)
+            before = after
+        self.assertTrue(record['verification']['resumption_checks']['contained']['stable'])
+        self.assertFalse(record['verification']['exit_condition_met'])
+
+    def test_stable_contained_held_and_released_are_distinct_valid_routes(self):
+        for grasp, expected in [(True, 'contained_held'), (False, 'contained_released_contact')]:
+            c, before = self.enter_acquire('combined')
+            after = state(z=.93, inside=True, grasp=grasp, table=False, contact=True)
+            for step in range(2, 5):
+                _, record = execute(c, step, before, after)
+                before = after
+            self.assertTrue(record['verification']['repair_verified'])
+            self.assertEqual(c.summary['repairs'][0]['verified_by'], 'contained')
+            self.assertEqual(c.summary['repairs'][0]['resumption_by'], expected)
+            self.assertIsNone(c.summary['repairs'][0]['handoff_step'])
+            decision, _ = execute(c, 5, after, after)
+            self.assertEqual(decision['language'], LANGUAGE)
+            self.assertEqual(c.summary['repairs'][0]['handoff_step'], 5)
+
+    def test_mixed_held_released_windows_do_not_combine(self):
+        c, before = self.enter_acquire('gate_only')
+        for step in range(2, 9):
+            after = state(z=.93, inside=True, grasp=step%2 == 0, table=False, contact=True)
+            _, record = execute(c, step, before, after)
+            before = after
+        self.assertTrue(record['verification']['local_condition_met'])
+        self.assertFalse(record['verification']['repair_verified'])
+
+    def test_unknown_contact_position_and_fast_detached_motion_block_readiness(self):
+        for missing in ('position', 'contact', 'fast'):
+            c, before = self.enter_acquire('gate_only')
+            for step in range(2, 6):
+                after = state(z=.93, inside=True, grasp=False, table=False, contact=True,
+                              x=.004*step if missing == 'fast' else 0.)
+                if missing == 'position':
+                    after.pop('object_observations')
+                if missing == 'contact':
+                    after.pop('contacts_endpoint')
+                _, record = execute(c, step, before, after)
+                before = after
+            self.assertFalse(record['verification']['repair_verified'])
+
+    def test_free_held_recovery_can_handoff_without_full_placement(self):
+        c, before = self.enter_acquire('combined')
+        after = state(z=.93, inside=False, table=False, contact=False)
+        for step in range(2, 5):
+            _, record = execute(c, step, before, after)
+            before = after
+        self.assertTrue(record['verification']['repair_verified'])
+        self.assertEqual(c.summary['repairs'][0]['resumption_by'], 'free_held')
+
+    def test_motion_window_must_be_inside_repair_and_budget_tie_stays_unverified(self):
+        c = NativeFramework('framework', LANGUAGE, variant='combined')
+        start, before = contact_entry(c)
+        for offset in range(32):
+            after = state(z=.93, inside=True, grasp=False, table=False, contact=True) if offset >= 29 else before
+            _, record = execute(c, start+offset, before, after)
+            if offset == 0:
+                self.assertFalse(record['verification']['resumption_checks']['contained']['complete_window'])
+            before = after
+        self.assertTrue(record['verification']['exit_condition_met'])
+        self.assertFalse(record['verification']['repair_verified'])
+        self.assertEqual(c.summary['repairs'][0]['exit_reason'], 'local_budget_exit_unverified')
+
+    def test_thirty_cells_have_one_lane_per_concurrent_job_and_balanced_roots(self):
+        source = SOURCE.parents[2]/'scripts/run_framework_comparison.py'
+        spec = importlib.util.spec_from_file_location('comparison_schedule_test', source)
+        runner = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(runner)
+        cells = runner.cohort_cells([dict(baseline=f'reference_{r}') for r in range(6)])
+        waves = runner.launch_waves(cells)
+        self.assertEqual([c for wave in waves for c in wave], cells)
+        self.assertEqual(len({c['name'] for c in cells}), 30)
+        for wave in waves:
+            self.assertLessEqual(len(wave), 2)
+            self.assertEqual(len({c['lane']['physical_uuid'] for c in wave}), len(wave))
+            self.assertEqual(len({c['root'] for c in wave}), 1)
+            self.assertTrue(all(c['lane']['gpu'] in (2, 3) for c in wave))
+        for cohort in runner.COHORTS:
+            selected = [c for c in cells if c['cohort'] == cohort]
+            self.assertEqual(sum(c['lane']['gpu'] == 2 for c in selected), 3)
+            self.assertEqual(sum(c['lane']['gpu'] == 3 for c in selected), 3)
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

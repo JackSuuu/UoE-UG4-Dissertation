@@ -3,6 +3,20 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 21 Oct — Full-task prompt/resumption factorial prepared
+
+The next experiment separates the root4 prompt and handoff hypotheses using all
+six development roots and five fresh cohorts: bare VLA, v2, prompt_only, gate_only
+and combined (30episodes). The prompt factor retains the placement objective
+instead of the release-only instruction. The gate factor adds3compatible post-entry
+endpoints with≤3mm position diameter; stable held containment remains admissible,
+as does detached containment with microwave contact. Neither is treated as a
+forecast guarantee. All prior per-episode budgets, native endpoints and unchanged
+model-generated numerical actions remain fixed. Each cohort uses GPUs2/3 equally,
+with at most two actors concurrently. All30cases and24full baseline/variant videos
+are planned, regardless of root4 outcomes. The25CPU checks and all5062saved v2
+decision-equivalence checks pass. [Exact protocol and launch status](agent_notes/current_goal_and_experiment_queue_20261019.md#new-execution-protocol--complete-task-resumption-factorial-21-october).
+
 ### Update 21 Oct — Root4 regression starts inside repair, before handoff
 
 The root4 follow-up locates the first change at156: identical saved preaction

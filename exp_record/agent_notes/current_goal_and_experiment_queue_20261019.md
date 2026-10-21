@@ -1,5 +1,121 @@
 # Current goal and result-driven experiment queue
 
+## New execution protocol — complete-task resumption factorial (21 October)
+
+**Status: source/configuration frozen and preflight passed; launch pending.** This is
+the next experiment authorized after the root4 forensic review, using the same
+five-layer framework and canonical `scripts/run_framework_comparison.py`.
+
+### Question and complete-episode treatment matrix
+
+Does replacing the release-only repair prompt, adding a separate measured handoff
+check, or their combination restore full-task completion without reintroducing
+harm? Run **six reused development roots × five cohorts =30fresh episodes**:
+
+| Cohort | Placement-prompt factor | Resumption-gate factor |
+|---|---|---|
+|baseline|Bare frozen OpenVLA, original full instruction throughout|No intervention|
+|v2|Off: original release prompt|Off: original v2 local acceptance|
+|prompt_only|On|Off|
+|gate_only|Off|On|
+|combined|On|On|
+
+All four framework cohorts use the same v2 trigger, release exemption, frozen
+recovery objective, milestone preservation, changed-evidence retry and bounded
+repair implementation. The new controller version is
+`native_microwave_measured_framework_v3_factorial`; its `v2` variant retains v2
+execution decisions with additional diagnostic logging. CPU refeeding all5062
+saved v2 actions/measurements reproduced all original decisions (excluding version
+metadata), transaction outcomes, milestones and action/query counts. This checks
+implementation equivalence, not new execution efficacy.
+
+### Two precisely scoped factors
+
+**P — placement-context prompt.** Only the `contain_release` repair prompt changes
+from `release the yellow and white mug in the microwave` to
+`put the yellow and white mug in the microwave`. Subgoal selection stays v2; acquire,
+transfer, close and nominal prompts stay as declared. This tests whether preserving
+the placement objective gives better actions than the release-only instruction.
+It is a candidate intervention, not an assumption that its wording guarantees
+correct insertion. All numerical actions remain unchanged model outputs.
+
+**G — independent measured resumption check.** The fixed local acceptance contract
+still counts each alternative separately over3endpoints. A verified exit additionally
+requires a compatible branch over the same last3post-entry endpoints and a maximum
+pairwise mug-position displacement **≤0.003m** within that window. This reuses the
+existing declared motion scale, without fitting a root4-specific position/route.
+The tested readiness branches are:
+
+* `held_clear` acceptance: held-clear, outside In, no mug–microwave contact and no
+  gripper–microwave contact at all3endpoints (`free_held`).
+* `contained` acceptance: In and held-clear with gripper contact at all3endpoints
+  (`contained_held`), **or** In, no grasp, no gripper contact, microwave contact and
+  no table contact at all3endpoints (`contained_released_contact`).
+* `contained_detached` acceptance: only the latter released-contact branch.
+
+Unknown positions/contact evidence fail the check. Held/released samples cannot
+be mixed into a passing3-endpoint window. Stable held containment remains an allowed
+handoff; universal detachment is not imposed. Generic microwave contact still does
+not prove supporting contact, and3stable endpoints do not predict nominal success;
+these remain falsifiable limitations of this measured candidate gate. The gate
+does not wait with hand-written noops: while repair owns control, every next action
+is another model proposal under the active task-semantic prompt.
+
+Local recovery, gate readiness, verified exit, native completion during repair,
+executed nominal handoff, later regression and downstream completion are recorded
+separately. A32-action local-cap tie remains unverified even if the gate passes;
+native completion is separately terminal. Budget exits still return nominal control
+and remain explicitly unverified. This preserves the resource/stopping contract.
+
+### Resources, matching and analysis fixed before launch
+
+* Per episode:520queries/actions maximum,10initialization noops,1200s rollout
+  excluding model load;32local/160total repair actions. Batch1, greedy H1, frozen
+  official OpenVLA revision and native input images. Maximum15,600model queries
+  plus300initialization actions over this experiment; no sampled candidate search.
+* GPUs2/3 only, at most two actors concurrently. For each root, run baseline/v2,
+  then prompt_only/gate_only, then combined; each wave is followed by independent
+  zero-query exact replays. Lane assignments alternate by root so every cohort
+  uses each GPU for3roots. Supervisor/actor process groups are terminal-detached.
+* Primary outcome: native full-task success across **all six roots per cohort**.
+  Report each framework's rescues/harms against the fresh baseline. Root4rescue
+  and root3preserved success are prespecified diagnostic cases, not early-stop rules.
+* Factor contrasts per root: prompt_only−v2 and combined−gate_only; gate_only−v2
+  and combined−prompt_only; interaction combined−prompt_only−gate_only+v2. Missing,
+  technical-failed or replay-mismatched cells invalidate the affected full factorial
+  contrast and remain visible. Six reused roots do not constitute held-out evidence.
+* Recheck whether fresh baseline/v2 scientific trajectories reproduce the prior
+  runs, including alternate GPU lanes. Report any divergence rather than assume
+  historical controls are interchangeable with fresh execution.
+* Secondary outcomes: local-recovery counts, actual handoffs, immediate/later
+  regressions, verified-handoff→full-completion, and repair/action/query/time costs.
+  A rescued task after an unverified budget exit is not a verified-chain success.
+* Complete every planned cell regardless of early root4outcomes. Retain all tapes,
+  exact model input/output/action provenance and24complete synchronized videos
+  (six roots × four baseline/framework-variant contrasts). Publish via Git/LFS and
+  verify fresh remote recovery after completion. Baseline repeats in videos are
+  presentation reuse, not additional independent episodes.
+
+Interpretation is explicit: prompt_only rescue supports sufficiency of this prompt
+change on that development case; gate_only rescue supports sufficiency of this gate;
+combined-only rescue suggests an interaction in these tested interventions. If all
+fail, the selected revision is unsuccessful. None establishes universal superiority,
+and a gate that only changes verification labels without improving downstream
+outcomes does not establish reliable handoff benefit.
+
+Preflight:25model-free checks passed, including factor independence, moving and
+one-sided-contact rejection, stable held/released acceptance, missing evidence,
+mixed-window rejection, cap precedence, actual execution/handoff accounting and
+thirty-cell GPU scheduling. The zero-query/no-simulation report smoke retains all30
+unavailable cells without scoring them and decodes24one-frame comparison videos.
+
+Freeze directory: `/home/ami/scratch/framework_factorial_freeze_20261021/`.
+Plan SHA256: `c07685e35acea529bf7470773b0f9a861078454e54af32149f7a8bcb469ecfca`.
+Planned output: `/home/ami/scratch/framework_factorial_run_20261021/`.
+The freeze includes the five execution/test sources, all original reference/runtime
+and checkpoint pins, `v2_decision_equivalence.json` and `report_smoke.json`.
+The launch receipt will pin the source commit and detached supervisor identity.
+
 ## Root4 forensic follow-up — regression starts before nominal handoff
 
 Read-only review of both complete saved trajectories, actual model inputs/outputs,
