@@ -1,47 +1,92 @@
 # Current goal and result-driven experiment queue
 
-## Active direction — preserve OpenVLA and optimize the predictive verification loop
+## Active experiment design — the real five-layer framework,21October
 
-User reaffirmed21October: retain OpenVLA; focus on refrigerator/microwave-style
-multi-stage contact manipulation; keep physical prediction and physical
-verification central. Optimize the existing method through direct full-episode
-experiments, rather than accumulating replacement methods or isolated diagnostics.
-Backbone/platform expansion is not the immediate main line.
+The latest user instruction governs this queue and supersedes older execution
+orders below. Retain OpenVLA and the five layers: subgoals → frozen VLA →
+risk/event monitoring → dual-mode gate → bounded model-generated repair/recheck/
+actual handoff. The objective is complete-task reliability in microwave and fridge
+manipulation. **Physical prediction is one possible evidence source within this
+framework, not the only verification method or a prerequisite for every run.**
+Measured contact/support, phase progress, uncertainty and applicable prediction
+can work together. Every treatment run must execute our real framework end to end;
+bare VLA is the paired control. A geometric servo or isolated sampled branch is
+not a substitute treatment. The core plan now contains only current goals/design;
+historical decisions and results remain here or at their frozen commits.
 
-Reuse the existing five layers and prediction/verifier interfaces. Numerical
-task and repair commands must come from the frozen policy/model, not scene-known
-approach waypoints, hinge-arc servos or overwritten gripper commands. Physical
-geometry remains legitimate verification evidence; it must not silently become
-the action generator. Historical fridge geometric interventions remain evidence
-about that older controller, not results for model-generated repair.
+### Next microwave batch — design started, implementation freeze pending
 
-Concrete integration gap rechecked: `AssemblyDynamics` already subclasses the
-existing ensemble dynamics model and supports autoregressive action-conditioned
-state/risk prediction. Its40D nut/peg state and force/tilt risk labels are
-assembly-specific. Reuse this implementation/interface with declared native
-state/action features and task-relevant targets; do not reuse incompatible weights
-or pretend force/deformation outputs already predict containment/grasp loss.
-`RefCheckVLA` is the existing self-developed reference verifier; the official
-OrbiSim adapter remains a skeleton, not a loaded pretrained component.
+| Item | Planned configuration |
+|---|---|
+| Question | Can phase-aware loss handling, stable recovery contracts and evidence-based retry reduce harm while retaining rescue? |
+| Cells | roots0–5 × bare VLA / revised real framework =12fresh complete episodes |
+| Task | Native mug In microwave AND Close; no added opening stage |
+| Actor | Same frozen LIBERO10OpenVLA revision8097032, TF4.40.1, greedy H1, seed0, native agentview/language |
+| Budgets |520queries and520actions per cell,10separate initialization noops,1200s rollout excluding actor load; repairs count inside |
+| Repair budget |32actions per transaction,160total; no budget increase to manufacture recovery |
+| Evidence | Existing measured contact/goal/history verification; learned predictor not enabled in this planned first revision |
+| Runtime | Existing `run_framework_comparison.py` and `native_framework.py`; GPU2/3 paired, batch1, detached supervisor |
+| Outcomes | Native success, paired rescues/harms, verified repair, actual handoff, downstream completion, regressions and cost |
+| Delivery | All12tapes/replays,6full paired videos, one table and current-record update |
 
-The next implementation work is one coherent change in the canonical comparison
-entrypoint: wire a genuinely applicable predictor into pre-action verification,
-retain measured post-action rechecks, correct release/loss classification and
-repair/next-subgoal separation, and use model-generated repair proposals. Training
-or calibration needed for native inputs must use declared data splits; the old
-six-root results remain development evidence. Inference must not select actions
-using future simulator branch outcomes. Forecast confidence/error, actual policy
-ownership and verified versus budget-exit handoff must be visible in the trace.
+Implementation contract, to be frozen before fresh model calls:
 
-Microwave provides the current paired rescue/harm regression cases; fridge is the
-next manipulation target using the same framework, with a task-specific observation
-adapter and goal predicates rather than a new hand-coded controller. Each completed
-iteration should deliver the same full-task comparison table and full paired videos,
-plus a short explanation of changed behavior and prediction's actual decision role.
-A measured-only result must remain labeled measured-only. Full-system gain and
-incremental predictive gain are different questions; the existing measured-only
-version is retained as a later attribution control. No new batch has been launched
-under this direction yet; no prediction readiness is claimed.
+1. Distinguish release/settling near the receptacle from an actual falling or
+   unrecovered loss. Use causal current/past evidence, not a root ID or the known
+   later baseline result. Do not suppress all grasp-loss events by a global delay.
+2. Give each repair an explicit, stable recovery target, separate from the next
+   task subgoal. A newly attained relevant task milestone can satisfy an explicitly
+   declared recovery alternative after rechecks; it does not silently change the
+   target to a harder full-task stage. Promote durable acquired goals to preservation
+   constraints. Missing support/release evidence stays unknown.
+3. A failed transaction cannot rearm indefinitely on the same latched flag alone.
+   Require renewed evidence or a materially changed recovery context; keep all
+   failure/abstention/budget outcomes in the trace. No hand-coded movement fallback.
+4. Keep nonterminal recovery checks distinct from absorbing native task success.
+   Count actual handoff only after a fresh full-instruction VLA action executes;
+   count completed-during-repair separately. Never relabel an old budget exit.
+
+Thresholds and exact evidence schemas remain implementation decisions to freeze;
+this is a concrete cohort/mechanism design, not an executable frozen protocol yet.
+CPU transition tests cover transient loss, retained true loss, milestone protection,
+failed retry suppression and actual handoff. They are implementation checks, not
+new efficacy studies. Then launch the full pair batch directly; no isolated
+candidate-bank qualification or horizon sweep is scheduled.
+
+### Fridge follow-on — same controller, task adapter only
+
+Reuse the actual framework's gate/transaction/handoff with fridge state/goal
+adapters. Planned first cohort: existing fixed scene and camera, seed0–2 × two
+arms =6closed-start, empty-hand full-sequence episodes;600queries/actions and1200s
+per arm. Both arms get the same full-task instruction initially; scoped repair
+language belongs to the framework intervention. Preserve the registered released/
+supported placement, closed-door and clearance dwell endpoint. Open-start runs,
+if later declared, are remaining-sequence cases only. The old R2manual door/grasp
+primitives are not executable repair fallbacks. Freeze the scene, initialization,
+endpoint and shared-model interface before launch; these are integration tasks,
+not a reason to replace the real framework with another method.
+
+### Prediction and evidence policy
+
+The existing self-developed `AssemblyDynamics`/`RefCheckVLA` implementation can be
+reused, but its nut/peg40D state and force/tilt targets are not native microwave or
+fridge models. The official OrbiSim adapter remains a skeleton. Applicable learned
+prediction may later supply prospective risk/progress evidence to the same gate;
+declare model/version, training/calibration data, calls, confidence and actual
+decision influence. Do not force overrides to prove participation, use future
+simulator outcomes online, or claim prediction is enabled when it is absent.
+Predictor-on/off attribution is a later same-framework comparison, not a competing
+method or a blocker for the next12episodes. Roots6–9calibration,10–19training and
+20–49confirmation remain reserved; roots0–5are reused development cases.
+
+Current status: design/document organization complete; no controller revision
+frozen and no new GPU/model run launched. Historical first comparison remains
+4/6vs4/6, with root4rescue and root3harm. The user-owned annual plan is untouched.
+
+## Historical evidence and superseded execution orders
+
+The sections below preserve what was measured or proposed at the time. Only the
+active design above determines the next run.
 
 ## 21 October follow-up — actual verifier, fridge provenance, root3/root4
 

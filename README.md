@@ -86,5 +86,5 @@ Undergraduate (UG4) dissertation project — University of Edinburgh.
   - `Experiment_plan_Phase_1.md` — Phase 1 plan: CheckVLA + OrbiSim-Dynamics + Genesis execution-time physical verification
   - `Experiment_plan_1year.md` — historical one-year planning notes; current scope is in the root plan above
   - `note.md` — working notes
-- `exp_record/` — weekly summaries; detailed protocols/results in `exp_record/agent_notes/` (see `exp_record/README.md`)
+- `exp_record/` — weekly summaries; all other records in `exp_record/agent_notes/` (see [record index](exp_record/agent_notes/experiment_record_index.md))
 - `src/` — Phase 1 experiment framework (see `src/README.md`)

@@ -81,7 +81,7 @@ def launch(out):
     files += [p.relative_to(REPO) for p in (REPO/'scripts').glob('experiment3_candidate_*.py')]
     files += [Path('scripts')/name for name in ('test_experiment3_candidate.py', 'diagnose_vla_failure.py',
         'diagnose_fridge_skills.py', 'probe_fridge_task.py')]
-    files += [Path('exp_record/experiment3_candidate_20261019/protocol.md')]
+    files += [Path('exp_record/agent_notes/experiment3_candidate_20261019/protocol.md')]
     sources = {}
     for relative in files:
         dest = out/'source'/relative
@@ -98,7 +98,7 @@ def launch(out):
     freeze = dict(frozen_at=time.time(), gpu=2, gpu_uuid=GPUS[2], sources=sources,
         snapshot=SNAPSHOT, model_files={str(p):sha(p) for p in model_files},
         model_code={str(p):sha(p) for p in code_files}, external_sources={str(p):sha(p) for p in external},
-        protocol='exp_record/experiment3_candidate_20261019/protocol.md',
+        protocol='exp_record/agent_notes/experiment3_candidate_20261019/protocol.md',
         no_outcome_seen_before_freeze=True, planned=list(ARMS))
     save(out/'freeze.json', freeze)
     with (out/'supervisor.log').open('w') as log:

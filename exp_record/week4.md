@@ -1,6 +1,6 @@
 # Week 4 (12–18 Oct 2026) — Verifier reliability before simulated-arm transfer
 
-Newest entry at the top. Index and conventions: [README.md](README.md).
+Newest entry at the top. Index and conventions: [weekly index](agent_notes/experiment_record_index.md).
 
 ---
 

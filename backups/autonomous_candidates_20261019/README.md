@@ -43,9 +43,9 @@ reconstruction; the accompanying fridge archive contains the original source tap
 Weights/runtime installations and disposable `__pycache__` are excluded; upstream
 model/code revisions and hashes are retained.
 
-* [Book archive](book_candidates.tar.gz) · [results](../../exp_record/experiment3_candidate_20261019/results.md)
-* [Fridge archive](fridge_candidates.tar.gz) · [results](../../exp_record/experiment3_fridge_candidate_20261019/results.md)
-* [Q1 archive](fridge_q1.tar.gz) · [results](../../exp_record/experiment3_fridge_q1_20261019/results.md)
+* [Book archive](book_candidates.tar.gz) · [results](../../exp_record/agent_notes/experiment3_candidate_20261019/results.md)
+* [Fridge archive](fridge_candidates.tar.gz) · [results](../../exp_record/agent_notes/experiment3_fridge_candidate_20261019/results.md)
+* [Q1 archive](fridge_q1.tar.gz) · [results](../../exp_record/agent_notes/experiment3_fridge_q1_20261019/results.md)
 
 17pre-freeze unit tests passed across the three implementations. Independent replay
 passes for1604book,1656fridge and288Q1branch actions. Q1 additionally replays exact

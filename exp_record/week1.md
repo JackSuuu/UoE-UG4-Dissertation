@@ -1,6 +1,6 @@
 # Week 1 (to 29 Sep 2026) — Plan phase P1, Month 1
 
-Bring-up week: Genesis probe, box-peg Task A, first full pipeline, v5. Newest entry at the top. Index: [README.md](README.md).
+Bring-up week: Genesis probe, box-peg Task A, first full pipeline, v5. Newest entry at the top. Index: [weekly index](agent_notes/experiment_record_index.md).
 
 ---
 

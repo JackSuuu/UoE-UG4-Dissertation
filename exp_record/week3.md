@@ -1,6 +1,6 @@
 # Week 3 (from 5 Oct 2026) — Plan phase P1, Month 1
 
-Newest entry at the top. Index and conventions: [README.md](README.md).
+Newest entry at the top. Index and conventions: [weekly index](agent_notes/experiment_record_index.md).
 
 ---
 

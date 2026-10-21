@@ -62,7 +62,7 @@ def launch(out):
         'experiment3_candidate_launch.py', 'diagnose_vla_failure.py', 'diagnose_fridge_skills.py',
         'probe_fridge_task.py', 'fridge_observation_experiment.py', 'run_fridge_r1.py')]
     files += [Path('configs/tasks/fridge_retrieval_dev.bddl'),
-        Path('exp_record/experiment3_fridge_candidate_20261019/protocol.md')]
+        Path('exp_record/agent_notes/experiment3_fridge_candidate_20261019/protocol.md')]
     sources={}
     for rel in files:
         dest=out/'source'/rel

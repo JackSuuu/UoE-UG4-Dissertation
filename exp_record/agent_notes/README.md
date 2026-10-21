@@ -1,22 +1,26 @@
 # Detailed experiment notes
 
-Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
+Weekly summaries: [Week5](../week5.md), [all weeks](experiment_record_index.md).
 
 ## Current
 
-* [L1 actually running:24native long-task episodes, three GPUs, corrected EGL mapping](native_long_l1_launch_20261019.md)
-* [R0 source audit complete: native RoboCasa365 policies, interfaces and readiness blockers](robocasa365_readiness_20261019.md)
+* [Research goal: the real five-layer verification/repair framework](../../core_research_plan.md)
+* [Next full-framework experiment design and current results](current_goal_and_experiment_queue_20261019.md)
+* [Completed native paired comparison:4/6 vs4/6, one rescue and one harm](../../backups/framework_comparison_20261019/README.md)
+* [Completed24-episode native capability screen](native_long_l1_results_20261019.md)
 
-* [Authoritative goal and result-driven queue: LIBERO mechanisms, RoboCasa365 replication](current_goal_and_experiment_queue_20261019.md)
+## Historical protocols, results and exploration
 
-* [Current: fixed OpenVLA + native LIBERO-Long task selection and experiment plan](openvla_native_long_selection_20261019.md)
+* [L1 historical launch](native_long_l1_launch_20261019.md)
+* [R0 source audit: deferred second-platform readiness](robocasa365_readiness_20261019.md)
+* [Earlier native task selection](openvla_native_long_selection_20261019.md)
 * [Cancelled alternate setup: deletion record, zero actor actions](robocasa_cancelled_20261019.json)
 * [Earlier capability-first proposal (execution route superseded)](capability_first_reliability_plan_20261019.md)
 * [Completed fixed-camera cohort: no grasps, exact pairing, limited seed diversity](fridge_observation_results_20261019.md)
 * [Failure audit: late triggering, non-goal-directed selection and corrective ordering](fridge_failure_accountability_20261019.md)
-* [Q1 completed: no useful candidates in three exact-common-state opportunities](../experiment3_fridge_q1_20261019/results.md)
-* [Autonomous fridge candidate pilot: no opening or verified recovery](../experiment3_fridge_candidate_20261019/results.md)
-* [Native-book autonomous candidate preflight: negative result](../experiment3_candidate_20261019/results.md)
+* [Q1 completed: no useful candidates in three exact-common-state opportunities](experiment3_fridge_q1_20261019/results.md)
+* [Autonomous fridge candidate pilot: no opening or verified recovery](experiment3_fridge_candidate_20261019/results.md)
+* [Native-book autonomous candidate preflight: negative result](experiment3_candidate_20261019/results.md)
 * [Shared actor fridge transfer: no qualified fridge baseline](shared_actor_fridge90_results_20261019.md)
 * [Shared actor book qualification: native3/3, strict0/3](shared_actor_qualification_results_20261019.md)
 * [Genuine fridge data/checkpoints and embodiment compatibility audit](shared_actor_fridge_pretrained_audit_20261019.md)
@@ -48,6 +52,12 @@ Weekly summaries: [Week5](../week5.md), [all weeks](../README.md).
 * [LIBERO baseline](libero_baseline_results_20261013.md), [continuation](libero_continuation_results_20261013.md)
 * [Preservation](libero_preservation_results_20261014.md), [drawer](libero_drawer_target_results_20261014.md)
 * [R5 negative result](immediate_gate_results_20261013.md)
+
+On21October the three experiment3record folders moved here with their folder
+structure preserved. The former `exp_record/README.md` is now
+[experiment_record_index.md](experiment_record_index.md). All three moved protocol
+files retain their bytes; only navigation and current launcher paths are updated.
+The `exp_record/` root now contains only week logs and this directory.
 
 All other dated notes in this folder are retained historical evidence.38files were
 moved on19Oct; see[relocation manifest](relocation_manifest.json). Frozen protocol

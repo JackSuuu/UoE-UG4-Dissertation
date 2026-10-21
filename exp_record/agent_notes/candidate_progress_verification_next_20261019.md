@@ -87,9 +87,9 @@ including the unresolved observation/domain contract and genuinely learned skill
 Independent demonstrations and splits remain missing prerequisites for adaptation;
 no new training or scripted motion substitute is introduced.
 
-[Q1 frozen protocol and results](../experiment3_fridge_q1_20261019/results.md)
-· [Fridge integration results](../experiment3_fridge_candidate_20261019/results.md)
-· [Book mechanism preflight](../experiment3_candidate_20261019/results.md).
+[Q1 frozen protocol and results](experiment3_fridge_q1_20261019/results.md)
+· [Fridge integration results](experiment3_fridge_candidate_20261019/results.md)
+· [Book mechanism preflight](experiment3_candidate_20261019/results.md).
 
 ## Q1: common-state candidate outcome diagnostic (next queued experiment)
 

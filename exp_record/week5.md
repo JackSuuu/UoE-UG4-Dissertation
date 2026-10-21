@@ -1,7 +1,27 @@
 # Week 5 (19–25 Oct 2026) — Unstructured transfer, honest OOD and paired evidence
 
-Newest entry at the top. [Weekly index](README.md). Detailed records live in
+Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
+
+### Update 21 Oct — Five-layer framework scope and next paired experiment
+
+Retain OpenVLA and optimize the actual five-layer runtime framework for microwave
+and fridge manipulation. Physical prediction may contribute alongside measured
+contact, progress and uncertainty evidence; it is not the sole verification
+method or a prerequisite for the next full-episode comparison. Every treatment
+run must use the real framework, with model-generated task and repair commands.
+
+The next planned batch is12fresh microwave episodes: roots0–5, bare VLA versus
+revised framework, unchanged520-query/action budget. The revision targets release
+versus loss classification, stable recovery contracts, milestone preservation and
+evidence-based retries. Fridge follows through the same controller with task
+adapters. Design is recorded in the [current queue](agent_notes/current_goal_and_experiment_queue_20261019.md);
+implementation is not frozen and no new model run has launched.
+
+All nonweekly records now reside in `agent_notes/`, including the three historical
+experiment3folders and the former root index. Protocol bytes are preserved;
+navigation and launcher paths are updated. The Chinese core plan now states the
+current goal, five-layer contract, paired cohorts and required evidence directly.
 
 ### Update 19 Oct — User redirects to direct complete-framework comparison
 
@@ -242,9 +262,9 @@ advances opening usefully under the fixed greedy continuation; maximum direction
 progress1.33e-15rad. Conditional useful-selection rates are undefined, not equivalent
 between selectors. Q2 remains gated; prioritize shared skill/proposal capability
 and observation-interface qualification before further attribution or cloth.
-[Q1 results](experiment3_fridge_q1_20261019/results.md)
-· [Fridge pilot](experiment3_fridge_candidate_20261019/results.md)
-· [Book negative preflight](experiment3_candidate_20261019/results.md).
+[Q1 results](agent_notes/experiment3_fridge_q1_20261019/results.md)
+· [Fridge pilot](agent_notes/experiment3_fridge_candidate_20261019/results.md)
+· [Book negative preflight](agent_notes/experiment3_candidate_20261019/results.md).
 
 Published four baseline-left paired videos plus the offline all-candidate video
 and three complete archives in`0cb42b8`. Fresh GitHub/LFS recovery verifies403/403

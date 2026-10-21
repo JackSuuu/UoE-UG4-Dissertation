@@ -101,4 +101,4 @@ The preceding sentence describes the agent handoff. Parent publication is now
 artifact commit`0cb42b8`: complete book/fridge/Q1 archives, four baseline-left paired
 videos and the offline Q1 video. Fresh GitHub/LFS recovery restores403/403archive
 members and verifies all five standalone videos. Parent source/action/query/replay/
-video checks also pass. [Published evidence and remote proof](../../backups/autonomous_candidates_20261019/README.md).
+video checks also pass. [Published evidence and remote proof](../../../backups/autonomous_candidates_20261019/README.md).

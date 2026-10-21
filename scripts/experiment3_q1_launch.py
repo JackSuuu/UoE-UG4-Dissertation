@@ -124,7 +124,7 @@ def launch(out):
         planned_setup_actions=2*len(branches)*20,opportunities=opportunities,branches=branches)
     save(out/'plan.json',plan)
     files=[p.relative_to(REPO) for p in (REPO/'scripts').glob('experiment3_q1_*.py')]
-    files += [Path('scripts/test_experiment3_q1.py'),Path('exp_record/experiment3_fridge_q1_20261019/protocol.md')]
+    files += [Path('scripts/test_experiment3_q1.py'),Path('exp_record/agent_notes/experiment3_fridge_q1_20261019/protocol.md')]
     sources={}
     for rel in files:
         dest=out/'source'/rel
