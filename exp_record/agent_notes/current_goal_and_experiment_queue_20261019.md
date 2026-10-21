@@ -1,5 +1,23 @@
 # Current goal and result-driven experiment queue
 
+## Research framing clarification — verifier–repair remains the main contribution
+
+On21October the user asked to restore the earlier comprehensive research-plan
+structure in English. The previous condensed plan overemphasized the application
+objective. The methodological subject is **runtime verification coupled to bounded
+model-generated repair, reverification and reliable resumption**. Complete-task
+success is its primary evaluation; unstructured manipulation is the application
+and generalization setting. Microwave/fridge priorities and the five layers remain.
+
+The core plan now restores contribution boundaries, falsifiable RQ1signal-quality /
+RQ2closed-loop-benefit / RQ3robustness-and-feasibility questions, a one-year timeline,
+detailed work packages, within-framework ablations, prediction adaptation, metrics
+and statistical design, implementation gaps, thesis chapters, risks and gates.
+Physical prediction is an explicit mechanism study inside the verifier; its
+incremental contribution still requires actual native integration and experiments.
+The README uses the same framing. This documentation revision changes neither the
+running v2sources nor its frozen protocol; no additional experiment is launched.
+
 ## 21 October execution — full-task objective and framework v2
 
 User requested an English, consolidated research plan and an updated README,

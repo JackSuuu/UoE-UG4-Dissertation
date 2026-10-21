@@ -1,10 +1,12 @@
-# Completing Unstructured Manipulation Tasks
+# Verification and Repair for Frozen VLAs
 
-University of Edinburgh UG4 dissertation: improving **complete-task reliability** through a five-layer verification and repair framework around a frozen VLA.
+University of Edinburgh UG4 dissertation: **runtime verification coupled to bounded, model-generated repair**, evaluated through complete-task reliability in unstructured manipulation.
 
 ## Objective
 
-Enable OpenVLA to complete multi-stage **microwave and refrigerator manipulation**, recover from local errors, and continue the remaining task. Full completion is the primary outcome; isolated grasps, repairs and handoffs are supporting evidence.
+**Core research question:** how should a verifier guide intervention, check recovery and support reliable resumption of a frozen VLA? When does physical prediction improve this loop beyond measured feedback?
+
+The **verifier–repair loop is the method**, **full-task completion is the primary outcome**, and **unstructured microwave/refrigerator manipulation is the application and generalization setting**. The five-layer architecture below implements this research subject.
 
 The current microwave benchmark is a controlled development setting. Generalization to unstructured object placements, layouts and contact conditions requires subsequent held-out evaluation.
 

@@ -3,6 +3,18 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 21 Oct — Restore the comprehensive verifier–repair research plan
+
+Clarified the contribution hierarchy: **verification coupled to bounded repair
+and reliable resumption** is the methodological subject; complete-task success is
+the primary outcome; unstructured manipulation is the evaluation setting. The
+English core plan again follows the earlier comprehensive structure, including
+RQ1verification quality, RQ2closed-loop benefit, RQ3robustness/resource feasibility,
+phase details, attribution experiments, physical-prediction adaptation, metrics,
+statistical design, timeline, implementation gaps, thesis chapters and risk gates.
+README framing is aligned. The existing v2experiment continues under its frozen
+configuration; this revision is documentation, not a new method or launch.
+
 ### Update 21 Oct — English objective and real-framework v2 launched
 
 The research plan and README now center on **complete unstructured manipulation
