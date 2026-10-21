@@ -83,7 +83,12 @@ Failed-context gating suppresses some repeats but does not make the repair effec
   outputs/actions, physics/image tapes, archived sources, exact-replay proofs,
   supervisor logs and reports. Six videos are also separately available through LFS.
 - `manifest.json` pins archive bytes and every member, plus the full videos.
-  Remote recovery status is recorded separately when verification completes.
+- [Independent remote recovery passed](remote_recovery.json): fresh nonpartial
+  shallow clone of`8d8340c`, scoped LFS fetch,7archives/12,639restored members and
+  all6decoded videos verified. Recomputed5062saved query/action/input associations
+  and4/6vs4/6outcomes from recovered artifacts, without new actor/simulator calls.
+  Recovery directories are recorded in the proof. Fetch only this batch with
+  `git lfs pull --include="backups/framework_comparison_20261021/**" --exclude=""`.
 
 These are development results. They establish neither a net full-task gain nor
 learned-prediction benefit nor verified-repair→handoff→full-completion success.

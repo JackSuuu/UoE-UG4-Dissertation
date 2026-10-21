@@ -1,0 +1,177 @@
+{
+  "status": "remote_recovery_verified",
+  "source_commit": "8d8340cddf7789ebab6400f852e9944e5f06af85",
+  "clone": "/tmp/opencode/framework_remote_20261021_8d8340c",
+  "restored": "/tmp/opencode/framework_restore_20261021_8d8340c",
+  "fresh_remote_clone": true,
+  "scoped_lfs": "backups/framework_comparison_20261021/**",
+  "archives": [
+    {
+      "file": "archives/root0.tar.gz",
+      "sha256": "ff074e06a794e5568ca5d37b7d8ca0ef25092169caa1b1a20ad80e981536ac84",
+      "members": 2496,
+      "verified": true
+    },
+    {
+      "file": "archives/root1.tar.gz",
+      "sha256": "83d115c3c946d1159a1f61ff275220705c309b0439d153cd4e69ef58b9a3f538",
+      "members": 2192,
+      "verified": true
+    },
+    {
+      "file": "archives/root2.tar.gz",
+      "sha256": "350ef1acccd12388df0fc983144f6f63fd46c8105872c4043cbc490212bd7c0e",
+      "members": 2004,
+      "verified": true
+    },
+    {
+      "file": "archives/root3.tar.gz",
+      "sha256": "08b4a071c8af39c54d1d62623bdf4d7d774eb61d27930241cdd88559a7c67ada",
+      "members": 1824,
+      "verified": true
+    },
+    {
+      "file": "archives/root4.tar.gz",
+      "sha256": "123c7acaa9ba0273dde7e9c8194a2d45520af96079f125e1eccd6dfbfed97f96",
+      "members": 2496,
+      "verified": true
+    },
+    {
+      "file": "archives/root5.tar.gz",
+      "sha256": "119f6d05929248d1cb15e3e0e61b1f739275a1db985172475dbc3a7d944802b7",
+      "members": 1608,
+      "verified": true
+    },
+    {
+      "file": "archives/metadata.tar.gz",
+      "sha256": "fc87fd399a8346275e805f19771fde95986ab91d94de8e401c2c217f1c6d3f06",
+      "members": 19,
+      "verified": true
+    }
+  ],
+  "members_checked": 12639,
+  "videos": [
+    {
+      "file": "videos/root0_baseline_left_framework_right.mp4",
+      "sha256": "ac2d1b3666c5a29035d72bb631d9bea1e7e9c4b52c2c68271963cc3f0bb89f19",
+      "decoded": true
+    },
+    {
+      "file": "videos/root1_baseline_left_framework_right.mp4",
+      "sha256": "4c19c17ea6af4650326eaf8114b029009a261830b6e6fc9e89dd986c2f463243",
+      "decoded": true
+    },
+    {
+      "file": "videos/root2_baseline_left_framework_right.mp4",
+      "sha256": "75c84bb3fa0105face4379612fedc50a0e2972ef9e58ce94a403ce46bbd721d5",
+      "decoded": true
+    },
+    {
+      "file": "videos/root3_baseline_left_framework_right.mp4",
+      "sha256": "ae2baeb8b1d81c09c2b339438aa316bf1a21bc5e64af1319fe9e2934ec6400fb",
+      "decoded": true
+    },
+    {
+      "file": "videos/root4_baseline_left_framework_right.mp4",
+      "sha256": "c6dd2c4e477ab27d8f3ead55264bd2018d0d9a52242649729fadb7ee8287ec5e",
+      "decoded": true
+    },
+    {
+      "file": "videos/root5_baseline_left_framework_right.mp4",
+      "sha256": "caf1fbfaa07e685a891b894ed53cb25dd643cc185fe2c5619446d01c81325fdb",
+      "decoded": true
+    }
+  ],
+  "query_action_input_associations": 5062,
+  "cells": [
+    {
+      "name": "baseline_root0",
+      "arm": "baseline",
+      "actions": 520,
+      "success": false,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "framework_root0",
+      "arm": "framework",
+      "actions": 520,
+      "success": false,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "baseline_root1",
+      "arm": "baseline",
+      "actions": 444,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "framework_root1",
+      "arm": "framework",
+      "actions": 444,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "baseline_root2",
+      "arm": "baseline",
+      "actions": 397,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "framework_root2",
+      "arm": "framework",
+      "actions": 397,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "baseline_root3",
+      "arm": "baseline",
+      "actions": 352,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "framework_root3",
+      "arm": "framework",
+      "actions": 352,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "baseline_root4",
+      "arm": "baseline",
+      "actions": 520,
+      "success": false,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "framework_root4",
+      "arm": "framework",
+      "actions": 520,
+      "success": false,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "baseline_root5",
+      "arm": "baseline",
+      "actions": 298,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    },
+    {
+      "name": "framework_root5",
+      "arm": "framework",
+      "actions": 298,
+      "success": true,
+      "exact_replay_artifact_verified": true
+    }
+  ],
+  "no_new_actor_or_simulator_calls": true,
+  "successes": {
+    "baseline": 4,
+    "framework": 4
+  }
+}

@@ -55,6 +55,12 @@ actions, tokens and contacts are compared; timing/controller-version fields are
 not treated as physical divergence. The post-run audit is saved as
 `/home/ami/scratch/framework_comparison_run_20261021/report/review.json`.
 
+Publication completed at`8d8340c`:7LFSarchives,12,639members and6full paired videos.
+A fresh shallow nonpartial remote clone and scoped LFS download restored every
+member byte-for-byte, decoded all videos, and independently recomputed all5062
+saved query/action/input associations and4/6vs4/6outcomes. [Recovery proof](../../backups/framework_comparison_20261021/remote_recovery.json).
+Restore root: `/tmp/opencode/framework_restore_20261021_8d8340c`.
+
 **Next research focus, not yet implemented/launched:** strengthen the verifier's
 resumption contract using phase-appropriate release/contact and measured motion
 evidence; keep recovery acceptance distinct from full task completion. Examine

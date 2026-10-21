@@ -24,6 +24,10 @@ v1science; paired roots1/2/3/5are identical throughout, and roots0/4first diverg
 exactly at interventions254/148. Six full paired videos are generated. No learned
 prediction or held-out gain is claimed. [Complete table, videos and evidence](../backups/framework_comparison_20261021/README.md).
 
+Published at`8d8340c`; fresh remote recovery verified7archives/12,639members and
+6decoded videos, then recomputed5062saved query/action/input associations and
+the paired outcome totals. [Independent recovery proof](../backups/framework_comparison_20261021/remote_recovery.json).
+
 ### Update 21 Oct — Restore the comprehensive verifier–repair research plan
 
 Clarified the contribution hierarchy: **verification coupled to bounded repair
