@@ -17,13 +17,18 @@ class NativeFramework:
     VERSION = 'native_microwave_measured_framework_v4_prompt_refine'
 
     def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it',
-                 variant='v2', fusion_mode='off'):
+                 variant='v2', fusion_mode='off', joint_mode=False):
         if mode not in ('baseline', 'framework') or not isinstance(language, str) or not language.strip():
             raise ValueError('Expected baseline/framework and nonempty native language')
         self.mode, self.language = mode, language
         if fusion_mode not in ('off', 'log', 'gate') or (mode == 'baseline' and fusion_mode == 'gate'):
             raise ValueError('Expected off/log/gate fusion; baseline cannot use a gate')
         self.fusion_mode = fusion_mode
+        self.joint_mode = joint_mode
+        if joint_mode and (mode != 'framework' or fusion_mode != 'gate'):
+            raise ValueError('Joint integration requires framework arm and causal fusion gating')
+        if joint_mode:
+            self.VERSION = 'joint_visual_physical_framework_v6_h1'
         if variant not in ('v2', 'prompt_only', 'gate_only', 'combined', 'prompt_place', 'prompt_deepen', 'prompt_settle'):
             raise ValueError('Unknown frozen factorial variant')
         self._config = dict(version=self.VERSION, variant=variant,
@@ -58,6 +63,9 @@ class NativeFramework:
             self._config['prompts']['contain_release'] = self._config['prompts']['transfer']
         if fusion_mode != 'off':
             self._config['fusion_mode'] = fusion_mode
+        if joint_mode:
+            self._config.update(joint_mode=True, subgoal_source='pretrained_visual_episodic_memory_physical_constraints',
+                learned_risk=True, repair_generation='frozen_policy_h1_remaining_execution_v1')
         self._history = deque(maxlen=181)
         self._current = None
         self._pending = None
@@ -263,7 +271,7 @@ class NativeFramework:
             repair_actions=self._repair_actions, remaining_actions=520-self._actions,
             remaining_queries=520-self._queries, remaining_repair=160-self._repair_actions)
 
-    def before(self, step, diagnostics):
+    def before(self, step, diagnostics, joint_evidence=None):
         """Return one greedy H1 request; call after only once that action executes."""
         if self._pending is not None or step != self._actions:
             raise ValueError('Expected sequential before/after pairs starting at step zero')
@@ -278,6 +286,18 @@ class NativeFramework:
             raise RuntimeError('native_complete_no_further_action')
         monitor = self._monitor()
         shadow_goal = self._subgoal(self._current)
+        native_goal = shadow_goal
+        if self.joint_mode:
+            if (not isinstance(joint_evidence, dict) or
+                    joint_evidence.get('schema') != 'joint_visual_physical_prediction_memory_risk_h1_v1' or
+                    joint_evidence.get('observation_index') != step or
+                    joint_evidence.get('selected_stage') not in self._config['recovery_contracts']):
+                raise ValueError('Fresh joint visual/predictive/memory/risk evidence is required')
+            monitor['joint'] = deepcopy(joint_evidence)
+            monitor['native_trigger'] = monitor['trigger']
+            if monitor['trigger'] is None:
+                monitor['trigger'] = joint_evidence['trigger']
+            shadow_goal = joint_evidence['selected_stage']
         events = []
         blocked = None
         if self.mode == 'framework' and self._active is None and monitor['trigger']:
@@ -292,9 +312,9 @@ class NativeFramework:
             else:
                 repair = dict(repair_id=len(self._transactions)+1, entry_step=step,
                     trigger=monitor['trigger'], subgoal=shadow_goal, used=0, streak=0,
-                    recovery_goal=shadow_goal,
-                    acceptance=list(self._config['recovery_contracts'][shadow_goal]),
-                     acceptance_streaks={k: 0 for k in self._config['recovery_contracts'][shadow_goal]},
+                    recovery_goal=native_goal,
+                    acceptance=list(self._config['recovery_contracts'][native_goal]),
+                     acceptance_streaks={k: 0 for k in self._config['recovery_contracts'][native_goal]},
                     local_recovery_step=None, resumption_by=None,
                     verified_by=None, completed_during_repair=False,
                     preserve=[k for k in ('in_goal', 'close_goal') if self._current[k] is True],
@@ -311,7 +331,8 @@ class NativeFramework:
             # frozen at entry. In particular, attaining In cannot move an
             # acquisition contract to a three-native-success closing contract.
             goal = self._active['subgoal']
-            if ((goal in ('contain_release', 'close') and self._current['in_goal'] is not True)
+            if ((self.joint_mode and goal != shadow_goal)
+                    or (goal in ('contain_release', 'close') and self._current['in_goal'] is not True)
                     or (goal == 'transfer' and self._current['grasp'] is False
                         and self._current['in_goal'] is not True)
                     or (self._current['in_goal'] is True and goal != shadow_goal)):
@@ -465,6 +486,8 @@ class NativeFramework:
                         and evidence.get('feature_schema') == 'controller_state_values12_validity12_v2'
                         and isinstance(evidence.get('model_sha256'), str) and len(evidence['model_sha256']) == 64)
                 accepted = bool(valid and evidence['probability'] >= evidence['threshold'])
+                if self.joint_mode:
+                    accepted = accepted and evidence.get('joint_prediction_veto') is False and evidence.get('joint_risk_veto') is False
                 fusion_pass = self.fusion_mode != 'gate' or accepted
                 verification['fusion'] = dict(mode=self.fusion_mode, evidence=evidence,
                     evidence_valid=valid, accepted=accepted,

@@ -1,0 +1,59 @@
+{
+  "encoder": {
+    "name": "dinov2_vits14",
+    "checkpoint": "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth",
+    "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "source": "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main",
+    "source_sha256": "00e7d5d0bc030a7e1fee248650f3ff861e8a6b6ba2ef6ceac18740129a8d0fe5",
+    "transform": "policy_rgb_pil_bicubic_224_imagenet_l2_v1",
+    "feature_dim": 384,
+    "pretrained": true
+  },
+  "risk_schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+  "threshold": 0.2741200923919678,
+  "calibration": "validation_negative_sample_95percent_quantile_not_conformal_coverage",
+  "train_labels": {
+    "0": 92,
+    "1": 17
+  },
+  "validation_labels": {
+    "0": 145,
+    "1": 146
+  },
+  "validation": {
+    "n": 291,
+    "positives": 146,
+    "negatives": 145,
+    "tp": 0,
+    "fp": 6,
+    "tn": 139,
+    "fn": 146,
+    "false_accept_rate": 0.041379310344827586,
+    "false_reject_rate": 1.0,
+    "unsafe_among_accepted": 1.0,
+    "accuracy": 0.47766323024054985
+  },
+  "bank_entries": 144,
+  "bank_stages": {
+    "acquire": 77,
+    "transfer": 14,
+    "contain_release": 11,
+    "close": 42
+  },
+  "roots": {
+    "train": [
+      1,
+      2,
+      5
+    ],
+    "validation": [
+      3,
+      4
+    ],
+    "excluded_evaluation": [
+      0
+    ]
+  },
+  "definition": "24 nominal actions: preserved predicate/lift loss or sustained acquisition stagnation",
+  "risk_artifact_sha256": "cc2535a07f27871e34695acaa9f3607b384a7925f11e1c0bf0f1a3e2dbd6b5bf"
+}

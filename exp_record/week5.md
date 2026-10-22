@@ -3,6 +3,56 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Unified causal framework implemented; isolated ablation superseded
+
+User requested one joint framework experiment instead of continuing isolated
+MLP work. Stopped the prior ablation supervisor and its log-mode worker during
+model loading. The off-mode episode completed (520 steps, task failure,
+143 corrections, exact replay); log-mode interruption is **not a task outcome**;
+gate-mode was not launched. All artifacts remain at
+`/home/ami/scratch/fusion_handoff_ablation_20261022_r1/`, with `superseded.json`.
+No historical evidence was discarded or rewritten as a successful comparison.
+
+Implemented a single **v6 joint runtime**, using one strict real DINOv2 encoding
+per observed endpoint for stage inference, memory, trained temporal risk and
+fusion. Training-only successful trajectory keyframes seed all four stage
+prototypes (144 entries). Nearest-neighbor retrieval and centroid scores jointly
+select a physically admissible repair stage, so these modules can actually
+change the next frozen-policy request. Fixed measured recovery contracts do not
+change when the visual/memory-selected action stage changes.
+
+Trained a temporal outcome-risk MLP on roots 1/2/5 (109 samples), with threshold
+selected on roots 3/4 (291 samples); this script excludes evaluation root0
+entirely. It uses real vision, masked measured state and parsed recent history,
+not raw diagnostics under an incompatible feature schema. The first artifact
+is weak: validation TP=0, FP=6, TN=139, FN=146 at threshold 0.2741200923919678.
+It is an empirically thresholded detector, **not conformal coverage**. Both
+scores and effective causal contribution are recorded rather than hidden.
+
+Prediction now operates on observed world displacement without mixing normalized
+action units into metre velocities. Live simulator region position/orientation
+and official site half-sizes define containment-exit checks. Predicted exit,
+observed no-lift and persistent learned risk can start bounded repair. They can
+also veto a passing fusion score at handoff; measured completion and explicitly
+unverified budget exits retain priority. Missing intervals reset prediction.
+
+Repair actions now come directly from fresh frozen OpenVLA queries, with
+remaining stage-plan revision provenance. **No numerical nudges** or legacy
+random visual/untrained risk paths run in this joint mode. Installed actor is
+H1: this is genuine policy-generated closed-loop repair of remaining execution,
+not cached multi-action chunk regeneration. Online memory writes wait for
+12 already observed preservation endpoints and do not assume local success is
+a safe nominal handoff.
+
+Seven new causal integration tests demonstrate that vision/retrieval can change
+repair requests, prediction and risk can each enter repair, and joint vetoes
+block otherwise accepted MLP exits. Existing 40 regression tests still pass;
+a 40-frame real-DINOv2 joint preflight completed without an actor query. New
+entry point `scripts/run_joint_framework.py` uses the canonical worker, then
+performs tape replay **and independent full joint-model recomputation**, with
+all 521 policy RGB endpoints retained for a capped episode. No new root0
+success is claimed before the live run finishes.
+
 ### Update 22 Oct — Matched trained-fusion root0 ablation launched
 
 Source/artifact freeze **`98967c6`** is pushed to `origin/main`. Detached

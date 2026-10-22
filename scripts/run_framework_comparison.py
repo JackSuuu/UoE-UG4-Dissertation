@@ -39,6 +39,7 @@ SOURCES = ('scripts/run_framework_comparison.py', 'src/controller.py', 'src/__in
             'scripts/test_native_framework.py', 'scripts/test_action_correction.py',
            'scripts/test_fusion_handoff.py',
            'scripts/run_fusion_handoff_ablation.py',
+           'scripts/test_joint_framework.py', 'scripts/run_joint_framework.py',
            *tuple(str(path.relative_to(REPO)) for folder in (
                'adapters', 'perception', 'verification', 'prediction', 'repair', 'memory', 'training')
                for path in sorted((REPO/'src'/folder).glob('*.py'))))
@@ -148,7 +149,7 @@ def launch_waves(jobs):
             for r in range(6) for start in range(0, len(COHORTS), 2)]
 
 
-def prepare(directory, mlp_path=None):
+def prepare(directory, mlp_path=None, joint_path=None):
     """CPU-only hashes and plan; no torch, simulator, GPU discovery, or model imports."""
     directory = directory.resolve()
     require(not directory.exists(), f'Output exists: {directory}')
@@ -176,6 +177,14 @@ def prepare(directory, mlp_path=None):
             pin(path)
         fusion = dict(model=str(mlp_path), sha256=sha(mlp_path), metadata=metadata,
                       allowed_modes=['off', 'log', 'gate'])
+    joint = None
+    if joint_path is not None:
+        require(fusion is not None, 'Joint runtime requires pinned real fusion artifact')
+        joint_path = joint_path.resolve()
+        pin(joint_path)
+        pin(joint_path.parent/'report.json')
+        joint = dict(artifact=str(joint_path), sha256=sha(joint_path),
+            report=load(joint_path.parent/'report.json'), schema='joint_visual_physical_prediction_memory_risk_h1_v1')
     for root in range(6):
         baseline = Path(f'/home/ami/scratch/native_long_l1_20261019_{"a" if root < 3 else "b"}')/f'microwave_root{root}'
         status, manifest = load(baseline/'status.json'), load(baseline/'source_manifest.json')
@@ -207,7 +216,7 @@ def prepare(directory, mlp_path=None):
     controller = {variant: cls(mode='framework', variant=variant).config for variant in COHORTS[1:]}
     cells = cohort_cells(references)
     plan = dict(schema=3, description=DESCRIPTION, limits=LIMITS, cells=cells,
-                 references=references, source_sha256=pins, weights=weights, fusion=fusion,
+                 references=references, source_sha256=pins, weights=weights, fusion=fusion, joint=joint,
                  controller_constants=controller, python=PYTHON, created=time.time(),
                  study=dict(name='native_prompt_refine_20261021', development_only=True,
                      primary='native full-task success for root4 and root0; regression checks on others',
@@ -268,15 +277,27 @@ def is_repair(decision):
     return 'repair' in str(decision.get('owner', '')).lower() or decision.get('mode') == 'repair'
 
 
-def controllers(arm, language, variant='v2', fusion_mode='off'):
+def controllers(arm, language, variant='v2', fusion_mode='off', joint_mode=False):
     cls = framework_class()
-    return cls(mode=arm, language=language, variant=variant, fusion_mode=fusion_mode), cls(
+    return cls(mode=arm, language=language, variant=variant, fusion_mode=fusion_mode, joint_mode=joint_mode), cls(
         mode='framework' if arm == 'baseline' else 'baseline', language=language, variant=variant)
 
 
 def runtime(cell):
     from run_native_long_branch import frozen_runner
     return frozen_runner(Path(cell['baseline']))
+
+
+def live_region(env, config):
+    """Official region box and live orientation; no invented receptacle bounds."""
+    import numpy as np
+    site = env.sim.model.site_name2id(config['region'])
+    require(site >= 0, 'Declared task region site is absent')
+    size = np.asarray(env.sim.model.site_size[site], dtype=float)
+    require(size.shape == (3,) and np.all(size > 0), 'Region must be a nondegenerate box')
+    return dict(name=config['region'], source='official_simulator_region_site_box',
+        center=np.asarray(env.sim.data.site_xpos[site]).tolist(),
+        rotation=np.asarray(env.sim.data.site_xmat[site]).reshape(3, 3).tolist(), half_size=size.tolist())
 
 
 def episode(args):
@@ -288,6 +309,10 @@ def episode(args):
     if args.fusion_mode != 'off':
         require(args.mlp_path is not None and plan.get('fusion') is not None and
                 str(args.mlp_path.resolve()) == plan['fusion']['model'], 'Fusion model must be pinned in plan')
+    if args.joint_components is not None:
+        require(not args.use_v5 and args.fusion_mode == 'gate' and plan.get('joint') is not None and
+            str(args.joint_components.resolve()) == plan['joint']['artifact'],
+            'Joint mode needs pinned components, gate mode, and no legacy/fallback v5 path')
     cell = next(c for c in plan['cells'] if c['name'] == args.cell)
     require(not args.use_v5 or cell['arm'] == 'framework',
             'Numeric-correction prototype cannot be used as bare-VLA baseline')
@@ -308,8 +333,13 @@ def episode(args):
                        'not genuine suffix regeneration; legacy monitor evidence remains advisory.'),
                   action_protocol='bounded_translation_v1' if args.use_v5 else 'unchanged_vla',
                   fusion_mode=args.fusion_mode,
+                  joint_mode=args.joint_components is not None,
+                  repair_protocol='frozen_policy_h1_remaining_execution_v1' if args.joint_components else None,
                   plan_sha256=sha(args.plan), pid=os.getpid())
     save(out/'status.json', status)
+    if args.joint_components is not None:
+        status['description'] = ('Joint real-vision/physical/prediction/trained-risk/episodic-memory controller; '
+            'frozen-policy H1 repair and fusion/risk/prediction handoff veto; no numeric offsets.')
     actor = env = recorder = tape = settle = None
     handles, executed, control_rows = [], [], []
     initial = episode_start = active = shadow = None
@@ -343,17 +373,28 @@ def episode(args):
             require(sha(out/'model.xml') == baseline_manifest['model_xml_sha256'], 'Compiled scene drift')
             diag = runner.Diagnostics(env)
             language = env.language_instruction
-            active, shadow = controllers(cell['arm'], language, cell['variant'], args.fusion_mode)
+            active, shadow = controllers(cell['arm'], language, cell['variant'], args.fusion_mode,
+                                         args.joint_components is not None)
             status.update(language=language, goal_clauses=diag.clauses)
 
             # --- v5 vision+physical verification layer (optional) ---
             v5_monitor = None
             v5_subgoal = None
             fusion_verifier = None
-            if args.fusion_mode != 'off':
+            joint_runtime = joint_evidence = suffix = None
+            if args.joint_components is not None:
+                sys.path.insert(0, str(REPO))
+                from src.verification.joint_runtime import JointRuntime
+                from src.repair.receding_horizon_repair import RecedingHorizonRepair
+                joint_runtime = JointRuntime(args.mlp_path, args.joint_components, device='cuda:0')
+                fusion_verifier = joint_runtime.handoff
+                suffix = RecedingHorizonRepair()
+                status['joint_components'] = plan['joint']
+            elif args.fusion_mode != 'off':
                 sys.path.insert(0, str(REPO))
                 from src.verification.handoff_verifier import HandoffVerifier
                 fusion_verifier = HandoffVerifier(args.mlp_path, device='cuda:0')
+            if fusion_verifier is not None:
                 status['fusion_model'] = dict(path=str(args.mlp_path.resolve()),
                     sha256=fusion_verifier.model_sha256, threshold=fusion_verifier.threshold,
                     encoder=fusion_verifier.encoder.provenance)
@@ -383,6 +424,8 @@ def episode(args):
                 ('steps.jsonl', 'queries.jsonl', 'controller.jsonl')]
             handles.extend((stream, queries, controls))
             (out/'model_inputs').mkdir()
+            if joint_runtime is not None:
+                (out/'joint_inputs').mkdir()
             status['phase'] = 'actor'
             v5_evidence = None
             if initial['native_success']:
@@ -402,7 +445,12 @@ def episode(args):
                             step=step,
                         )
 
-                    decision = active.before(step, deepcopy(measured))
+                    if joint_runtime is not None and joint_evidence is None:
+                        joint_image = policy_image(obs['agentview_image'])
+                        joint_image.save(out/'joint_inputs'/f'{step:06d}.png')
+                        joint_evidence = joint_runtime.observe(np.asarray(joint_image),
+                            active.preview_fusion_state(measured), step, live_region(env, active.config))
+                    decision = active.before(step, deepcopy(measured), joint_evidence=joint_evidence)
                     if v5_evidence is not None:
                         decision['v5_evidence'] = v5_evidence
                     shadow_decision = shadow.before(step, deepcopy(measured))
@@ -418,6 +466,11 @@ def episode(args):
                         source='greedy', seed=0, before=tape.last['fingerprint'],
                         policy_png_sha256=hashlib.sha256(png).hexdigest(),
                         policy_rgb_sha256=hashlib.sha256(np.ascontiguousarray(image).tobytes()).hexdigest())
+                    query_request = dict(language=decision['language'], source='greedy', seed=0)
+                    repair_replanning = None
+                    if suffix is not None:
+                        query_request, repair_replanning = suffix.request(decision)
+                        metadata['repair_replanning'] = repair_replanning
                     before_controller = controller_fields(env)
                     runner.write_row(controls, dict(event='before', step=step, decision=decision,
                         shadow_decision=shadow_decision, diagnostics=measured,
@@ -426,7 +479,7 @@ def episode(args):
                     runner.write_row(queries, dict(event='requested', **metadata))
                     save(out/'status.json', status)
                     start = time.monotonic()
-                    decode = actor.query(png, decision['language'], 'greedy', 0, step)
+                    decode = actor.query(png, query_request['language'], query_request['source'], query_request['seed'], step)
                     inference_s = time.monotonic()-start
                     runner.write_row(queries, dict(event='returned', **metadata, decode=decode,
                                                    inference_s=inference_s))
@@ -438,6 +491,8 @@ def episode(args):
                         decision=decision, shadow_decision=shadow_decision,
                         action_owner=decision['owner'], controller_before=before_controller,
                         episode_elapsed_s=time.monotonic()-episode_start)
+                    if repair_replanning is not None:
+                        extra['repair_replanning'] = repair_replanning
                     # --- v5: action suffix correction before execution (CheckVLA Module 3) ---
                     executed_action = list(decode['action'])
                     action_modified = False
@@ -515,12 +570,23 @@ def episode(args):
                         v5_evidence = v5_evidence_after  # overwrite with post-execution evidence
 
                     fusion_evidence = None
-                    if fusion_verifier is not None and decision['owner'] == 'repair':
+                    if joint_runtime is not None:
+                        post_state = active.preview_fusion_state(row['diagnostics'])
+                        joint_image = policy_image(obs['agentview_image'])
+                        joint_image.save(out/'joint_inputs'/f'{step+1:06d}.png')
+                        joint_evidence = joint_runtime.observe(np.asarray(joint_image),
+                            post_state, step+1, live_region(env, active.config))
+                        if decision['owner'] == 'repair':
+                            fusion_evidence = joint_runtime.score_handoff(post_state, decision['recovery_goal'])
+                        status['joint_counters'] = dict(joint_runtime.counters)
+                    elif fusion_verifier is not None and decision['owner'] == 'repair':
                         fusion_evidence = fusion_verifier.score(policy_image(obs['agentview_image']),
                             active.preview_fusion_state(row['diagnostics']), decision['recovery_goal'])
                     verification = active.after(step, deepcopy(row['diagnostics']),
                                                 list(row['action']), deepcopy(decision),
                                                 handoff_evidence=fusion_evidence)
+                    if joint_runtime is not None:
+                        verification['joint_after'] = deepcopy(joint_evidence)
                     shadow_verification = shadow.after(step, deepcopy(row['diagnostics']),
                         list(row['action']), deepcopy(shadow_decision))
                     if v5_evidence is not None:
@@ -632,7 +698,8 @@ def replay(args):
             require(load(out/'initial_source.json') == load(source/'initial_source.json'), 'Initial state drift')
             diag = runner.Diagnostics(env)
             active, shadow = controllers(status['cell']['arm'], env.language_instruction,
-                                         status['cell']['variant'], status.get('fusion_mode', 'off'))
+                                          status['cell']['variant'], status.get('fusion_mode', 'off'),
+                                          status.get('joint_mode', False))
             recorder = runner.ContactRecorder(env.sim, keywords=(*diag.relevant, 'gripper'))
             before_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'before'}
             after_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'after'}
@@ -655,7 +722,8 @@ def replay(args):
                     fields = []
                     if phase == 'actor':
                         require(not measured['native_success'], 'Action after native success')
-                        decision = active.before(index, deepcopy(measured))
+                        joint_saved = before_controls[index]['decision']['evidence'].get('joint')
+                        decision = active.before(index, deepcopy(measured), joint_evidence=joint_saved)
                         shadow_decision = shadow.before(index, deepcopy(measured))
                         validate_decision(decision, status['cell']['arm'], env.language_instruction)
                         saved = before_controls[index]
@@ -701,6 +769,9 @@ def replay(args):
                             handoff_evidence=fusion_saved.get('evidence'))
                         if status.get('fusion_mode', 'off') != 'off':
                             report['fusion_scores_recomputed'] = False
+                        if status.get('joint_mode'):
+                            verification['joint_after'] = after_controls[index]['verification']['joint_after']
+                            report['joint_models_recomputed'] = False
                         shadow_verification = shadow.after(index, deepcopy(after), list(row['action']), deepcopy(shadow_decision))
                         expected = after_controls[index]
                         if status.get('use_v5'):
@@ -1014,6 +1085,8 @@ def parse_args(argv=None):
                         help='Versioned MLP artifact; pass at preparation and worker time')
     parser.add_argument('--fusion-mode', choices=('off', 'log', 'gate'), default='off',
                         help='Matched ablation: off, score-only, or conservative verified-exit gate')
+    parser.add_argument('--joint-components', type=Path,
+                        help='Pinned trained risk + episodic-stage artifact; activates the joint causal runtime')
     args = parser.parse_args(argv)
     if (args.launch or args.worker) and not args.plan:
         parser.error('--plan is required')
@@ -1029,7 +1102,7 @@ def parse_args(argv=None):
 def main(argv=None):
     args = parse_args(argv)
     if args.prepare:
-        return prepare(args.prepare, args.mlp_path)
+        return prepare(args.prepare, args.mlp_path, args.joint_components)
     if args.summarize:
         return summarize(args.summarize)
     if args.launch:

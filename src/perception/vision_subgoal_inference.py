@@ -1,11 +1,7 @@
-"""Vision + physical subgoal inference.
-
-Replaces hard-coded _subgoal() rules.  Current stage is inferred from visual
-features with physical boundary correction.  Task-agnostic: new stages added
-by registering new visual prototypes, not by rewriting Python control flow.
-"""
+"""Visual prototype stage inference with explicit physical admissibility."""
 from typing import Optional, Dict, Any, List
 from .visual_grounding import VisualGroundingModule
+import numpy as np
 
 
 class VisionSubgoalInference:
@@ -55,6 +51,35 @@ class VisionSubgoalInference:
             'all_scores': all_scores,
             'visual_stage': visual.get('stage'),
         }
+
+    @staticmethod
+    def admissible_stages(measured):
+        if measured.get('in_goal') is True:
+            if measured.get('grasp') is False and measured.get('mug_gripper') is False:
+                return ['close']
+            return ['transfer', 'contain_release']
+        if measured.get('grasp') is False:
+            return ['acquire']
+        if measured.get('grasp') is True:
+            # Acquisition can still be incomplete while transfer is beginning.
+            # Vision/memory resolve this ambiguity, rather than a fixed switch.
+            return ['acquire', 'transfer']
+        return ['acquire']  # Unknown grasp never authorizes release or closing.
+
+    def infer_features(self, visual_feature, measured, prototypes):
+        q = np.asarray(visual_feature, dtype=np.float32)
+        if q.shape != (384,) or not np.isfinite(q).all() or np.linalg.norm(q) < 1e-6:
+            raise ValueError('Missing real visual features for joint stage inference')
+        q = q/np.linalg.norm(q)
+        scores = {stage: float(np.dot(q, feature)) for stage, feature in prototypes.items()
+                  if feature is not None and stage in self.STAGES}
+        allowed = self.admissible_stages(measured)
+        candidates = [stage for stage in allowed if stage in scores]
+        if not candidates:
+            raise ValueError('No train-supported prototype for physically admissible stages')
+        selected = max(candidates, key=lambda stage: scores[stage])
+        return dict(subgoal=selected, source='pretrained_visual_prototypes_physical_admissibility',
+            all_scores=scores, admissible=allowed, confidence=scores[selected])
 
 
 def make_subgoal_inference(offline: bool = True, device: str = 'cuda:0') -> VisionSubgoalInference:

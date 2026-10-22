@@ -58,6 +58,26 @@ It launches one actor at a time on the recorded root0 GPU3 lane, with identical
 `gate` only vetoes verified exits; unchanged local/total caps can still force
 an explicitly **unverified** handoff. No unbounded wait or extra action budget.
 
+## Joint framework experiment
+
+The unified v6 path connects **real visual stage inference + physical contracts
++ short-term prediction + trained risk + episodic retrieval + policy-generated
+repair + joint handoff** in one run, rather than loading unused interfaces.
+
+```bash
+python -B scripts/run_framework_comparison.py --prepare NEW_JOINT_PLAN \
+  --mlp-path src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt \
+  --joint-components src/checkpoints/joint_components_v1_20261022/joint_components.pt
+python -B scripts/run_joint_framework.py --plan NEW_JOINT_PLAN/plan.json --out NEW_JOINT_RUN
+```
+
+The supervisor selects only root0, uses one actor on physical GPU3, then runs
+tape replay and independent joint-model recomputation. The other plan cells are
+not scheduled. The new mode disables the legacy untrained/random monitor and
+numeric offsets. H1 repair is generated step by step by frozen OpenVLA, not a
+pretended native multi-action chunk. See [artifact limits and measured risk
+performance](checkpoints/joint_components_v1_20261022/README.md).
+
 `native_framework.py` was moved to `controller.py` without changing controller
 logic during the layout migration. Old import-path aliases are not retained.
 Prepare a fresh source-pinned plan after migration; old plans/artifacts retain

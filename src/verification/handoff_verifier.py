@@ -31,6 +31,15 @@ class HandoffVerifier:
                 feature_schema=FEATURE_SCHEMA, model_sha256=self.model_sha256)
         rgb = np.asarray(policy_rgb)
         visual = self.encoder.encode(rgb)
+        return self.score_features(visual, state, stage, rgb)
+
+    def score_features(self, visual, state, stage, policy_rgb):
+        """Share the exact current pretrained features with the joint controller."""
+        if stage not in self.model.metadata.get('supported_stages', []):
+            return dict(probability=0., threshold=self.threshold, accepted=False,
+                stage=stage, supported=False, reason='stage_has_no_outcome_training_support',
+                feature_schema=FEATURE_SCHEMA, model_sha256=self.model_sha256)
+        rgb = np.asarray(policy_rgb)
         physics = extract_physics_features(state)
         probability = self.model.predict_verify_probability(visual, physics, stage)
         return dict(probability=probability, threshold=self.threshold,

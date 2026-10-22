@@ -12,6 +12,44 @@ is limited to development microwave trajectories; generalization is untested.
 - `adapters/libero_openvla.py`, `adapters/tf5_compat.py`: actor/image and compatibility utilities.
 - Canonical runner: `../scripts/run_framework_comparison.py`.
 
+### Joint causal mode (v6)
+
+`--joint-components checkpoints/joint_components_v1_20261022/joint_components.pt`
+with a pinned fusion model and `--fusion-mode gate` connects the components in
+**one** execution path. It must not be combined with the legacy `--use-v5` path.
+
+- `verification/joint_runtime.py`: one pretrained encoding per observation,
+  shared by visual stage inference, episodic retrieval, outcome risk and fusion.
+- `perception/vision_subgoal_inference.py`: real visual prototype scores plus
+  retrieved nearest successful train examples select a physically admissible
+  stage; this selection now changes repair requests. Measured entry recovery
+  contracts remain fixed independently, preventing an easy stage from changing
+  the acceptance criterion.
+- `verification/outcome_risk.py`: trained temporal-risk head with an empirical
+  validation-selected threshold; persistent high risk can enter repair and veto
+  verified handoff. Validation sensitivity is zero in this first artifact;
+  integration is not evidence that the trained detector is useful.
+- `prediction/short_term_predictor.py`: observed constant-velocity predictions
+  are checked in the **live oriented official region frame**; no normalized
+  action/metres blending. Predicted exit and observed no-lift can enter repair
+  and veto handoff. This remains a heuristic, not a learned world model.
+- `memory/keyframe_bank.py`: initialized from train-only successful trajectories;
+  nearest-neighbor scores influence stage selection. Online writes are delayed
+  until 12 already observed preservation endpoints, not immediate local success.
+- `repair/receding_horizon_repair.py`: remaining stage-plan revisions with one
+  fresh frozen-policy H1 query per executed action. No hand-written offsets;
+  no unexecuted numeric action chunk is claimed to exist.
+- `controller.py`: v6 combines native and learned/predictive triggers, fixed
+  measured contracts, MLP acceptance and risk/prediction vetoes. Original action,
+  query, repair caps and unverified capped exits are unchanged.
+
+`../scripts/run_joint_framework.py` runs root0, tape replay, and a separate full
+neural/memory/predictor recomputation from all saved policy RGB endpoints,
+including the final endpoint. It distinguishes consulted modules from effective
+triggers and blocked exits. Full-task efficacy still uses original native In AND
+Close, not component scores. Geometry remains privileged; no reconstructed
+physical scene, learned simulator, RL or held-out task generalization is claimed.
+
 ## Experimental components (`--use-v5`)
 
 | File | Current status |
