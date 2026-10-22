@@ -13,10 +13,12 @@ src/
 │   └── tf5_compat.py
 ├── perception/                   # Visual features and subgoal inference
 │   ├── visual_grounding.py
+│   ├── frozen_visual_encoder.py    # Strict pretrained DINOv2 path for fusion
 │   └── vision_subgoal_inference.py
 ├── verification/                 # Physical evidence, fusion and risk scoring
 │   ├── physical_verifier.py
 │   ├── fusion_mlp.py
+│   ├── handoff_verifier.py
 │   ├── calibrated_risk_head.py
 │   └── vision_physical_monitor.py
 ├── prediction/                   # Short-horizon motion/progress diagnostics
@@ -26,9 +28,11 @@ src/
 ├── memory/                       # Episodic keyframes and prototype retrieval
 │   └── keyframe_bank.py
 ├── training/                     # Offline training, not runtime control
+│   ├── handoff_dataset.py
 │   └── train_fusion_mlp.py
 ├── checkpoints/                  # Weight artifacts, separated from source
-│   └── fusion_mlp.pt
+│   ├── fusion_mlp.pt               # Legacy weights; new loader rejects these
+│   └── fusion_handoff_v2_20261022/ # Outcome-trained weights + report/manifest
 └── results/                      # Existing output directory (left untouched)
 ```
 
@@ -40,9 +44,19 @@ src/
   `src.repair` and `src.memory`; package initializers do not load model weights.
 - CPU checks: `python -B scripts/test_native_framework.py` and
   `python -B scripts/test_action_correction.py`, from the repository root.
+- Fusion checks: `python -B scripts/test_fusion_handoff.py`.
 - Offline training: `python -m src.training.train_fusion_mlp --help`.
-  Weights now live at `src/checkpoints/fusion_mlp.pt`; training methodology
-  limitations are recorded in [COMPONENT_STATUS.md](COMPONENT_STATUS.md).
+  New weights and their validation report live under
+  `src/checkpoints/fusion_handoff_v2_20261022/`. Legacy weights are retained separately.
+  See [training evidence](../backups/fusion_handoff_20261022/README.md).
+
+For the matched off/log/gate experiment, prepare a new canonical plan with
+`--prepare NEW_PLAN --mlp-path src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt`.
+Then run `scripts/run_fusion_handoff_ablation.py --plan NEW_PLAN/plan.json --out NEW_RUN`.
+It launches one actor at a time on the recorded root0 GPU3 lane, with identical
+520-action/query limits and bounded-correction treatment in all three arms.
+`gate` only vetoes verified exits; unchanged local/total caps can still force
+an explicitly **unverified** handoff. No unbounded wait or extra action budget.
 
 `native_framework.py` was moved to `controller.py` without changing controller
 logic during the layout migration. Old import-path aliases are not retained.

@@ -1,0 +1,436 @@
+{
+  "metadata": {
+    "feature_schema": "controller_state_values12_validity12_v2",
+    "label_spec": "current_contract_and_preserved_goals_survive_12_nominal_actions_v1",
+    "encoder": {
+      "name": "dinov2_vits14",
+      "checkpoint": "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth",
+      "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+      "source": "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main",
+      "source_sha256": "00e7d5d0bc030a7e1fee248650f3ff861e8a6b6ba2ef6ceac18740129a8d0fe5",
+      "transform": "policy_rgb_pil_bicubic_224_imagenet_l2_v1",
+      "feature_dim": 384,
+      "pretrained": true
+    },
+    "threshold": 0.993425726890564,
+    "threshold_split": "validation",
+    "threshold_population": "current_contract_true",
+    "supported_stages": [
+      "acquire",
+      "transfer",
+      "contain_release"
+    ],
+    "max_empirical_false_accept": 0.05,
+    "seed": 0,
+    "dataset_manifest_sha256": "88e5d41db061f61bf422d6355aaf4c71dc5437cd56967ac5e1745720809248c9",
+    "roots": {
+      "train": [
+        1,
+        2,
+        5
+      ],
+      "validation": [
+        3,
+        4
+      ],
+      "evaluation": [
+        0
+      ]
+    },
+    "horizon": 12,
+    "scope": "reused-development nominal continuation; not unseen-task generalization",
+    "control_ready": true,
+    "efficacy_validated": false,
+    "training_losses": [
+      0.6921959363243142,
+      0.6660886207215432,
+      0.6369957323338583,
+      0.6030589154445254,
+      0.5608135197564997,
+      0.5107324276522965,
+      0.45977449537224374,
+      0.40918631675261397,
+      0.3498531230150602,
+      0.2973079443428318,
+      0.2528670912500593,
+      0.22578093026687276,
+      0.20165105071153389,
+      0.19444255020366208,
+      0.18454120925601844,
+      0.18706107837727448,
+      0.1819913804399727,
+      0.1823374351266049,
+      0.1808708081918039,
+      0.17278847886573157,
+      0.17350705729924162,
+      0.16065703054669522,
+      0.15757690407617267,
+      0.1438436915614743,
+      0.1434788255757589,
+      0.14663591476096313,
+      0.13502651509319805,
+      0.13447829653093737,
+      0.12367810847552056,
+      0.11782893863147692,
+      0.10889277522750106,
+      0.11674106830463601,
+      0.11781130838078877,
+      0.11047942508528155,
+      0.10222502991144243,
+      0.10161379167354978,
+      0.09396439807616193,
+      0.10692579017703419,
+      0.10684109364708966,
+      0.08499993369809025
+    ]
+  },
+  "splits": {
+    "train": {
+      "rule_current_contract": {
+        "n": 397,
+        "positives": 158,
+        "negatives": 239,
+        "tp": 158,
+        "fp": 4,
+        "tn": 235,
+        "fn": 0,
+        "false_accept_rate": 0.016736401673640166,
+        "false_reject_rate": 0.0,
+        "unsafe_among_accepted": 0.024691358024691357,
+        "accuracy": 0.9899244332493703
+      },
+      "always_accept": {
+        "n": 397,
+        "positives": 158,
+        "negatives": 239,
+        "tp": 158,
+        "fp": 239,
+        "tn": 0,
+        "fn": 0,
+        "false_accept_rate": 1.0,
+        "false_reject_rate": 0.0,
+        "unsafe_among_accepted": 0.6020151133501259,
+        "accuracy": 0.3979848866498741
+      },
+      "always_reject": {
+        "n": 397,
+        "positives": 158,
+        "negatives": 239,
+        "tp": 0,
+        "fp": 0,
+        "tn": 239,
+        "fn": 158,
+        "false_accept_rate": 0.0,
+        "false_reject_rate": 1.0,
+        "unsafe_among_accepted": null,
+        "accuracy": 0.6020151133501259
+      },
+      "mlp": {
+        "n": 397,
+        "positives": 158,
+        "negatives": 239,
+        "tp": 65,
+        "fp": 0,
+        "tn": 239,
+        "fn": 93,
+        "false_accept_rate": 0.0,
+        "false_reject_rate": 0.5886075949367089,
+        "unsafe_among_accepted": 0.0,
+        "accuracy": 0.7657430730478589
+      },
+      "actual_handoffs": {
+        "n": 0,
+        "mlp": {
+          "n": 0,
+          "positives": 0,
+          "negatives": 0,
+          "tp": 0,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "false_accept_rate": null,
+          "false_reject_rate": null,
+          "unsafe_among_accepted": null,
+          "accuracy": null
+        },
+        "rule_current_contract": {
+          "n": 0,
+          "positives": 0,
+          "negatives": 0,
+          "tp": 0,
+          "fp": 0,
+          "tn": 0,
+          "fn": 0,
+          "false_accept_rate": null,
+          "false_reject_rate": null,
+          "unsafe_among_accepted": null,
+          "accuracy": null
+        }
+      },
+      "current_contract_true": {
+        "n": 162,
+        "mlp": {
+          "n": 162,
+          "positives": 158,
+          "negatives": 4,
+          "tp": 65,
+          "fp": 0,
+          "tn": 4,
+          "fn": 93,
+          "false_accept_rate": 0.0,
+          "false_reject_rate": 0.5886075949367089,
+          "unsafe_among_accepted": 0.0,
+          "accuracy": 0.42592592592592593
+        },
+        "rule_current_contract": {
+          "n": 162,
+          "positives": 158,
+          "negatives": 4,
+          "tp": 158,
+          "fp": 4,
+          "tn": 0,
+          "fn": 0,
+          "false_accept_rate": 1.0,
+          "false_reject_rate": 0.0,
+          "unsafe_among_accepted": 0.024691358024691357,
+          "accuracy": 0.9753086419753086
+        }
+      },
+      "labels": {
+        "0": 239,
+        "1": 158
+      }
+    },
+    "validation": {
+      "rule_current_contract": {
+        "n": 1131,
+        "positives": 283,
+        "negatives": 848,
+        "tp": 283,
+        "fp": 28,
+        "tn": 820,
+        "fn": 0,
+        "false_accept_rate": 0.0330188679245283,
+        "false_reject_rate": 0.0,
+        "unsafe_among_accepted": 0.09003215434083602,
+        "accuracy": 0.9752431476569408
+      },
+      "always_accept": {
+        "n": 1131,
+        "positives": 283,
+        "negatives": 848,
+        "tp": 283,
+        "fp": 848,
+        "tn": 0,
+        "fn": 0,
+        "false_accept_rate": 1.0,
+        "false_reject_rate": 0.0,
+        "unsafe_among_accepted": 0.7497789566755084,
+        "accuracy": 0.2502210433244916
+      },
+      "always_reject": {
+        "n": 1131,
+        "positives": 283,
+        "negatives": 848,
+        "tp": 0,
+        "fp": 0,
+        "tn": 848,
+        "fn": 283,
+        "false_accept_rate": 0.0,
+        "false_reject_rate": 1.0,
+        "unsafe_among_accepted": null,
+        "accuracy": 0.7497789566755084
+      },
+      "mlp": {
+        "n": 1131,
+        "positives": 283,
+        "negatives": 848,
+        "tp": 90,
+        "fp": 9,
+        "tn": 839,
+        "fn": 193,
+        "false_accept_rate": 0.01061320754716981,
+        "false_reject_rate": 0.6819787985865724,
+        "unsafe_among_accepted": 0.09090909090909091,
+        "accuracy": 0.8213969938107869
+      },
+      "actual_handoffs": {
+        "n": 11,
+        "mlp": {
+          "n": 11,
+          "positives": 2,
+          "negatives": 9,
+          "tp": 0,
+          "fp": 1,
+          "tn": 8,
+          "fn": 2,
+          "false_accept_rate": 0.1111111111111111,
+          "false_reject_rate": 1.0,
+          "unsafe_among_accepted": 1.0,
+          "accuracy": 0.7272727272727273
+        },
+        "rule_current_contract": {
+          "n": 11,
+          "positives": 2,
+          "negatives": 9,
+          "tp": 2,
+          "fp": 3,
+          "tn": 6,
+          "fn": 0,
+          "false_accept_rate": 0.3333333333333333,
+          "false_reject_rate": 0.0,
+          "unsafe_among_accepted": 0.6,
+          "accuracy": 0.7272727272727273
+        }
+      },
+      "current_contract_true": {
+        "n": 311,
+        "mlp": {
+          "n": 311,
+          "positives": 283,
+          "negatives": 28,
+          "tp": 90,
+          "fp": 1,
+          "tn": 27,
+          "fn": 193,
+          "false_accept_rate": 0.03571428571428571,
+          "false_reject_rate": 0.6819787985865724,
+          "unsafe_among_accepted": 0.01098901098901099,
+          "accuracy": 0.3762057877813505
+        },
+        "rule_current_contract": {
+          "n": 311,
+          "positives": 283,
+          "negatives": 28,
+          "tp": 283,
+          "fp": 28,
+          "tn": 0,
+          "fn": 0,
+          "false_accept_rate": 1.0,
+          "false_reject_rate": 0.0,
+          "unsafe_among_accepted": 0.09003215434083602,
+          "accuracy": 0.909967845659164
+        }
+      },
+      "labels": {
+        "0": 848,
+        "1": 283
+      }
+    },
+    "evaluation": {
+      "rule_current_contract": {
+        "n": 525,
+        "positives": 0,
+        "negatives": 525,
+        "tp": 0,
+        "fp": 3,
+        "tn": 522,
+        "fn": 0,
+        "false_accept_rate": 0.005714285714285714,
+        "false_reject_rate": null,
+        "unsafe_among_accepted": 1.0,
+        "accuracy": 0.9942857142857143
+      },
+      "always_accept": {
+        "n": 525,
+        "positives": 0,
+        "negatives": 525,
+        "tp": 0,
+        "fp": 525,
+        "tn": 0,
+        "fn": 0,
+        "false_accept_rate": 1.0,
+        "false_reject_rate": null,
+        "unsafe_among_accepted": 1.0,
+        "accuracy": 0.0
+      },
+      "always_reject": {
+        "n": 525,
+        "positives": 0,
+        "negatives": 525,
+        "tp": 0,
+        "fp": 0,
+        "tn": 525,
+        "fn": 0,
+        "false_accept_rate": 0.0,
+        "false_reject_rate": null,
+        "unsafe_among_accepted": null,
+        "accuracy": 1.0
+      },
+      "mlp": {
+        "n": 525,
+        "positives": 0,
+        "negatives": 525,
+        "tp": 0,
+        "fp": 0,
+        "tn": 525,
+        "fn": 0,
+        "false_accept_rate": 0.0,
+        "false_reject_rate": null,
+        "unsafe_among_accepted": null,
+        "accuracy": 1.0
+      },
+      "actual_handoffs": {
+        "n": 4,
+        "mlp": {
+          "n": 4,
+          "positives": 0,
+          "negatives": 4,
+          "tp": 0,
+          "fp": 0,
+          "tn": 4,
+          "fn": 0,
+          "false_accept_rate": 0.0,
+          "false_reject_rate": null,
+          "unsafe_among_accepted": null,
+          "accuracy": 1.0
+        },
+        "rule_current_contract": {
+          "n": 4,
+          "positives": 0,
+          "negatives": 4,
+          "tp": 0,
+          "fp": 1,
+          "tn": 3,
+          "fn": 0,
+          "false_accept_rate": 0.25,
+          "false_reject_rate": null,
+          "unsafe_among_accepted": 1.0,
+          "accuracy": 0.75
+        }
+      },
+      "current_contract_true": {
+        "n": 3,
+        "mlp": {
+          "n": 3,
+          "positives": 0,
+          "negatives": 3,
+          "tp": 0,
+          "fp": 0,
+          "tn": 3,
+          "fn": 0,
+          "false_accept_rate": 0.0,
+          "false_reject_rate": null,
+          "unsafe_among_accepted": null,
+          "accuracy": 1.0
+        },
+        "rule_current_contract": {
+          "n": 3,
+          "positives": 0,
+          "negatives": 3,
+          "tp": 0,
+          "fp": 3,
+          "tn": 0,
+          "fn": 0,
+          "false_accept_rate": 1.0,
+          "false_reject_rate": null,
+          "unsafe_among_accepted": 1.0,
+          "accuracy": 0.0
+        }
+      },
+      "labels": {
+        "0": 525
+      }
+    }
+  }
+}

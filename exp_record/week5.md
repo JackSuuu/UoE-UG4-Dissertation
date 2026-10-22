@@ -3,6 +3,53 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Root0 result and genuinely trained causal fusion implemented
+
+The component-layout root0 run at
+`/home/ami/scratch/framework_root0_components_20261022_r1/` completed validly:
+**520 queries/actions, native task failure at the action budget**, 143 bounded
+numeric corrections, 13 native repair actions. Exact 520-step tape replay
+passed, with zero mismatches and no actor queries. This is not a rescue.
+Held-clear was first observed at step 264; local repair verified at 266 and
+nominal handoff executed at 267, but recovery was lost at 274. All evidence is
+retained. A local lift is not a successful complete task or reliable handoff.
+
+Implemented and trained a replacement fusion classifier, rather than loading
+the old weak-label checkpoint for display:
+
+- Real frozen pretrained DINOv2 ViT-S/14 policy-RGB features (384-D), strict
+  hash/source/preprocessing provenance and no fallback in this path.
+- Shared controller-state feature schema with 12 values and explicit validity
+  masks; train-only normalization; class **1** consistently means pass.
+- Outcome labels require a current recovery contract and preservation through
+  12 observed nominal actions, or native completion. Nominal ownership alone
+  is not a positive label; missing/truncated/repair-interrupted futures censor.
+- All variants of initial-state roots stay in one split: train 1/2/5,
+  validation 3/4, evaluation 0. Identical executed trajectories deduplicate to
+  13 trajectories (397/1,131/525 labelled contract samples). No reserved roots
+  or tasks were consumed. Root0 is reused-development evaluation, not unseen-task
+  evidence, and its features/outcomes do not fit weights or select thresholds.
+- Threshold selection uses **current-contract-true validation samples**, because
+  easy current-false negatives dilute the risk of actual candidate handoffs.
+  Fixed threshold 0.993425726890564 gives 1/28 unsafe acceptances and 193/283
+  safe rejections in this population. Actual validation handoffs are poor:
+  both safe examples rejected, one unsafe accepted. Root0 has no positive
+  labels; its rejection accuracy cannot establish safe-handoff capability.
+- `off`/`log`/`gate` modes are now causally distinct: `log` cannot change a
+  decision; `gate` vetoes measured verified exits. Completion and original
+  local/total budget exits retain priority and remain explicitly unverified.
+  This is an experimental learned veto, not an enabled-by-default safety head.
+- Added independent recomputation from saved causal PNGs, distinct from tape
+  replay (which copies fusion scores). Seven new fusion regression tests,
+  25 controller tests and 8 correction/package tests pass.
+
+Training evidence, exact weights, metrics and manifests:
+[`backups/fusion_handoff_20261022/README.md`](../backups/fusion_handoff_20261022/README.md).
+New artifact: `src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt`;
+the historical `fusion_mlp.pt` is preserved and rejected by the new loader.
+Next is the matched off/log/gate complete-task root0 comparison, with the same
+initial state, actor, correction treatment, cadence and stopping rules.
+
 ### Update 22 Oct — Component-layout root0 diagnostic launched
 
 Pushed source freeze `f99ac78fba8bf08160e1a4ca480316acfb6bd5a7` after

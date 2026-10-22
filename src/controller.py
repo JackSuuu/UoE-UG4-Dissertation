@@ -17,10 +17,13 @@ class NativeFramework:
     VERSION = 'native_microwave_measured_framework_v4_prompt_refine'
 
     def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it',
-                 variant='v2'):
+                 variant='v2', fusion_mode='off'):
         if mode not in ('baseline', 'framework') or not isinstance(language, str) or not language.strip():
             raise ValueError('Expected baseline/framework and nonempty native language')
         self.mode, self.language = mode, language
+        if fusion_mode not in ('off', 'log', 'gate') or (mode == 'baseline' and fusion_mode == 'gate'):
+            raise ValueError('Expected off/log/gate fusion; baseline cannot use a gate')
+        self.fusion_mode = fusion_mode
         if variant not in ('v2', 'prompt_only', 'gate_only', 'combined', 'prompt_place', 'prompt_deepen', 'prompt_settle'):
             raise ValueError('Unknown frozen factorial variant')
         self._config = dict(version=self.VERSION, variant=variant,
@@ -53,6 +56,8 @@ class NativeFramework:
             # Preserve the placement objective while contact remains. This is
             # still one unchanged model proposal, never a gripper override.
             self._config['prompts']['contain_release'] = self._config['prompts']['transfer']
+        if fusion_mode != 'off':
+            self._config['fusion_mode'] = fusion_mode
         self._history = deque(maxlen=181)
         self._current = None
         self._pending = None
@@ -380,7 +385,19 @@ class NativeFramework:
             motion_diameter_m=motion, stable=stable, complete_window=window,
             alternatives=alternatives)
 
-    def after(self, step, diagnostics, action, decision):
+    def preview_fusion_state(self, diagnostics):
+        """Current endpoint features without mutating history or using future data."""
+        state = self._measure(diagnostics)
+        grasp_z = self._grasp_z
+        if self._first_grasp is None and state['grasp'] is True:
+            grasp_z = None if state['position'] is None else state['position'][2]
+        height = None if state['position'] is None or grasp_z is None else state['position'][2]-grasp_z
+        state['rise_m'] = height
+        state['held_clear'] = (state['grasp'] and height > self._config['lift_m'] and not state['table']
+            if state['grasp'] is not None and height is not None and state['table'] is not None else None)
+        return state
+
+    def after(self, step, diagnostics, action, decision, handoff_evidence=None):
         """Record an already executed VLA action and its fresh measured endpoint.
 
         The runner owns token/action provenance and env.step; this pure module
@@ -436,6 +453,22 @@ class NativeFramework:
             verification.update(resumption_required=self._config['resumption_factor'],
                 resumption_checks=readiness, local_condition_met=bool(local_candidates),
                 exit_condition_met=bool(eligible))
+            fusion_pass = True
+            if self.fusion_mode != 'off':
+                evidence = deepcopy(handoff_evidence)
+                valid = isinstance(evidence, dict) and evidence.get('stage') == repair['recovery_goal']
+                if valid:
+                    probability, threshold = evidence.get('probability'), evidence.get('threshold')
+                    valid = (isinstance(probability, (int, float)) and math.isfinite(probability)
+                        and 0 <= probability <= 1 and isinstance(threshold, (int, float))
+                        and math.isfinite(threshold) and 0 <= threshold <= 1
+                        and evidence.get('feature_schema') == 'controller_state_values12_validity12_v2'
+                        and isinstance(evidence.get('model_sha256'), str) and len(evidence['model_sha256']) == 64)
+                accepted = bool(valid and evidence['probability'] >= evidence['threshold'])
+                fusion_pass = self.fusion_mode != 'gate' or accepted
+                verification['fusion'] = dict(mode=self.fusion_mode, evidence=evidence,
+                    evidence_valid=valid, accepted=accepted,
+                    blocked_verified_exit=bool(eligible) and not fusion_pass)
             reason = None
             # A capped exit never becomes a verified repair, even on a tied check.
             if measured['native_complete']:
@@ -447,7 +480,7 @@ class NativeFramework:
                 reason = 'local_budget_exit_unverified'
             elif self._repair_actions >= self._config['repair_cap']:
                 reason = 'total_repair_budget_exit_unverified'
-            elif eligible:
+            elif eligible and fusion_pass:
                 reason = 'measured_progress_verified'
                 repair['verified'] = True
                 repair['verified_by'] = eligible[0]

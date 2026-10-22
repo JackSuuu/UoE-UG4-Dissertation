@@ -4,7 +4,8 @@ The five-layer controller uses privileged measured verification, not a learned
 predictor. Every post-initialization action is one frozen official VLA proposal.
 
 With --use-v5, experimental advisory evidence and bounded normalized translation
-edits are enabled. Native repair entry/handoff remain controlled by NativeFramework.
+edits are enabled. --fusion-mode log/gate uses a pinned trained fusion artifact
+to record scores or additionally veto verified exits (budget exits stay bounded).
 
 This entry point is foreground/setsid compatible; only --launch starts models.
 """
@@ -35,7 +36,9 @@ LIMITS = dict(roots=6, cells=36, seed=0, initialization_noops=10, actions=520,
               outer_seconds=1800, replay_seconds=300, phase_seconds=14400, retries=0)
 SOURCES = ('scripts/run_framework_comparison.py', 'src/controller.py', 'src/__init__.py',
            'scripts/run_native_long_branch.py', 'scripts/native_long_candidate_worker.py',
-           'scripts/test_native_framework.py', 'scripts/test_action_correction.py',
+            'scripts/test_native_framework.py', 'scripts/test_action_correction.py',
+           'scripts/test_fusion_handoff.py',
+           'scripts/run_fusion_handoff_ablation.py',
            *tuple(str(path.relative_to(REPO)) for folder in (
                'adapters', 'perception', 'verification', 'prediction', 'repair', 'memory', 'training')
                for path in sorted((REPO/'src'/folder).glob('*.py'))))
@@ -145,7 +148,7 @@ def launch_waves(jobs):
             for r in range(6) for start in range(0, len(COHORTS), 2)]
 
 
-def prepare(directory):
+def prepare(directory, mlp_path=None):
     """CPU-only hashes and plan; no torch, simulator, GPU discovery, or model imports."""
     directory = directory.resolve()
     require(not directory.exists(), f'Output exists: {directory}')
@@ -159,6 +162,20 @@ def prepare(directory):
 
     for name in SOURCES:
         pin(REPO/name)
+    fusion = None
+    if mlp_path is not None:
+        mlp_path = mlp_path.resolve()
+        report = mlp_path.parent/'report.json'
+        metadata = load(report)['metadata']
+        require(metadata.get('control_ready') and metadata.get('threshold') is not None,
+                'Fusion artifact has no validation-selected experimental threshold')
+        for path in (mlp_path, report, mlp_path.parent/'dataset_manifest.json',
+                     Path(metadata['encoder']['checkpoint'])):
+            pin(path)
+        for path in sorted((Path(metadata['encoder']['source'])/'dinov2').rglob('*.py')):
+            pin(path)
+        fusion = dict(model=str(mlp_path), sha256=sha(mlp_path), metadata=metadata,
+                      allowed_modes=['off', 'log', 'gate'])
     for root in range(6):
         baseline = Path(f'/home/ami/scratch/native_long_l1_20261019_{"a" if root < 3 else "b"}')/f'microwave_root{root}'
         status, manifest = load(baseline/'status.json'), load(baseline/'source_manifest.json')
@@ -190,7 +207,7 @@ def prepare(directory):
     controller = {variant: cls(mode='framework', variant=variant).config for variant in COHORTS[1:]}
     cells = cohort_cells(references)
     plan = dict(schema=3, description=DESCRIPTION, limits=LIMITS, cells=cells,
-                references=references, source_sha256=pins, weights=weights,
+                 references=references, source_sha256=pins, weights=weights, fusion=fusion,
                  controller_constants=controller, python=PYTHON, created=time.time(),
                  study=dict(name='native_prompt_refine_20261021', development_only=True,
                      primary='native full-task success for root4 and root0; regression checks on others',
@@ -251,9 +268,9 @@ def is_repair(decision):
     return 'repair' in str(decision.get('owner', '')).lower() or decision.get('mode') == 'repair'
 
 
-def controllers(arm, language, variant='v2'):
+def controllers(arm, language, variant='v2', fusion_mode='off'):
     cls = framework_class()
-    return cls(mode=arm, language=language, variant=variant), cls(
+    return cls(mode=arm, language=language, variant=variant, fusion_mode=fusion_mode), cls(
         mode='framework' if arm == 'baseline' else 'baseline', language=language, variant=variant)
 
 
@@ -268,6 +285,9 @@ def episode(args):
         validate_model_sources, controller_fields, WorkerTimeout, InvalidGeneration)
     plan = load(args.plan)
     check_plan(plan)
+    if args.fusion_mode != 'off':
+        require(args.mlp_path is not None and plan.get('fusion') is not None and
+                str(args.mlp_path.resolve()) == plan['fusion']['model'], 'Fusion model must be pinned in plan')
     cell = next(c for c in plan['cells'] if c['name'] == args.cell)
     require(not args.use_v5 or cell['arm'] == 'framework',
             'Numeric-correction prototype cannot be used as bare-VLA baseline')
@@ -285,8 +305,9 @@ def episode(args):
                   actor_queries=0, steps_executed=0, initialization_actions=0,
                   description=(DESCRIPTION if not args.use_v5 else
                       'Development-only bounded normalized-action translation correction; '
-                      'not genuine suffix regeneration; visual/risk/MLP evidence is advisory.'),
+                       'not genuine suffix regeneration; legacy monitor evidence remains advisory.'),
                   action_protocol='bounded_translation_v1' if args.use_v5 else 'unchanged_vla',
+                  fusion_mode=args.fusion_mode,
                   plan_sha256=sha(args.plan), pid=os.getpid())
     save(out/'status.json', status)
     actor = env = recorder = tape = settle = None
@@ -322,13 +343,20 @@ def episode(args):
             require(sha(out/'model.xml') == baseline_manifest['model_xml_sha256'], 'Compiled scene drift')
             diag = runner.Diagnostics(env)
             language = env.language_instruction
-            active, shadow = controllers(cell['arm'], language, cell['variant'])
+            active, shadow = controllers(cell['arm'], language, cell['variant'], args.fusion_mode)
             status.update(language=language, goal_clauses=diag.clauses)
 
             # --- v5 vision+physical verification layer (optional) ---
             v5_monitor = None
             v5_subgoal = None
-            v5_mlp = None
+            fusion_verifier = None
+            if args.fusion_mode != 'off':
+                sys.path.insert(0, str(REPO))
+                from src.verification.handoff_verifier import HandoffVerifier
+                fusion_verifier = HandoffVerifier(args.mlp_path, device='cuda:0')
+                status['fusion_model'] = dict(path=str(args.mlp_path.resolve()),
+                    sha256=fusion_verifier.model_sha256, threshold=fusion_verifier.threshold,
+                    encoder=fusion_verifier.encoder.provenance)
             correction_actions = 0
             correction_streak = 0
             if args.use_v5:
@@ -336,11 +364,7 @@ def episode(args):
                 v5_monitor = v5m['make_monitor'](offline=True, device='cuda:0', lift_threshold_m=0.02,
                                                target=active.config['target'])
                 v5_subgoal = v5m['make_subgoal_inference'](offline=True, device='cuda:0')
-                v5_mlp = None
-                if args.mlp_path and args.mlp_path.exists():
-                    v5_mlp = v5m['load_model'](str(args.mlp_path), device='cuda:0')
                 status['use_v5'] = True
-                status['mlp_path'] = str(args.mlp_path) if args.mlp_path else None
             recorder = runner.ContactRecorder(env.sim, keywords=(*diag.relevant, 'gripper'))
             settle = runner.Tape(out/'initialization')
             settle.capture(env, obs, diag.measure(obs))
@@ -377,17 +401,6 @@ def episode(args):
                             proposed_action=None,
                             step=step,
                         )
-                        # MLP verification probability (advisory, does not block framework)
-                        if v5_mlp is not None:
-                            from src.verification.fusion_mlp import extract_physics_features as _epf
-                            phys_feat = _epf(measured)
-                            prob = v5_mlp.predict_verify_probability(
-                                vision_feat=np.zeros(384, dtype=np.float32),
-                                physics_feat=phys_feat,
-                                stage='transfer',
-                            )
-                            v5_evidence['mlp_verify_probability'] = prob
-                            v5_evidence['mlp_gate_pass'] = bool(prob >= 0.5)
 
                     decision = active.before(step, deepcopy(measured))
                     if v5_evidence is not None:
@@ -499,21 +512,15 @@ def episode(args):
                             proposed_action=list(executed_action),
                             step=step + 1,
                         )
-                        # MLP verification probability on post-execution state
-                        if v5_mlp is not None:
-                            from src.verification.fusion_mlp import extract_physics_features as _epf
-                            phys_feat = _epf(row['diagnostics'])
-                            prob = v5_mlp.predict_verify_probability(
-                                vision_feat=np.zeros(384, dtype=np.float32),
-                                physics_feat=phys_feat,
-                                stage='transfer',
-                            )
-                            v5_evidence_after['mlp_verify_probability'] = prob
-                            v5_evidence_after['mlp_gate_pass'] = bool(prob >= 0.5)
                         v5_evidence = v5_evidence_after  # overwrite with post-execution evidence
 
+                    fusion_evidence = None
+                    if fusion_verifier is not None and decision['owner'] == 'repair':
+                        fusion_evidence = fusion_verifier.score(policy_image(obs['agentview_image']),
+                            active.preview_fusion_state(row['diagnostics']), decision['recovery_goal'])
                     verification = active.after(step, deepcopy(row['diagnostics']),
-                                                list(row['action']), deepcopy(decision))
+                                                list(row['action']), deepcopy(decision),
+                                                handoff_evidence=fusion_evidence)
                     shadow_verification = shadow.after(step, deepcopy(row['diagnostics']),
                         list(row['action']), deepcopy(shadow_decision))
                     if v5_evidence is not None:
@@ -527,8 +534,6 @@ def episode(args):
                             'action_physics_score': v5_evidence.get('action_physics_score'),
                             'short_term_exit': v5_evidence.get('short_term_exit'),
                             'short_term_lift': v5_evidence.get('short_term_lift'),
-                            'mlp_verify_probability': v5_evidence.get('mlp_verify_probability'),
-                            'mlp_gate_pass': v5_evidence.get('mlp_gate_pass'),
                         }
                     handoff = bool(last_decision and is_repair(last_decision) and not is_repair(decision))
                     control = dict(event='after', step=step, decision=decision,
@@ -626,7 +631,8 @@ def replay(args):
             require(sha(out/'model.xml') == manifest['model_xml_sha256'], 'Replay scene drift')
             require(load(out/'initial_source.json') == load(source/'initial_source.json'), 'Initial state drift')
             diag = runner.Diagnostics(env)
-            active, shadow = controllers(status['cell']['arm'], env.language_instruction, status['cell']['variant'])
+            active, shadow = controllers(status['cell']['arm'], env.language_instruction,
+                                         status['cell']['variant'], status.get('fusion_mode', 'off'))
             recorder = runner.ContactRecorder(env.sim, keywords=(*diag.relevant, 'gripper'))
             before_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'before'}
             after_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'after'}
@@ -690,7 +696,11 @@ def replay(args):
                         if row[key] != value:
                             fields.append(key)
                     if phase == 'actor':
-                        verification = active.after(index, deepcopy(after), list(row['action']), deepcopy(decision))
+                        fusion_saved = after_controls[index]['verification']['verification'].get('fusion', {})
+                        verification = active.after(index, deepcopy(after), list(row['action']), deepcopy(decision),
+                            handoff_evidence=fusion_saved.get('evidence'))
+                        if status.get('fusion_mode', 'off') != 'off':
+                            report['fusion_scores_recomputed'] = False
                         shadow_verification = shadow.after(index, deepcopy(after), list(row['action']), deepcopy(shadow_decision))
                         expected = after_controls[index]
                         if status.get('use_v5'):
@@ -1001,7 +1011,9 @@ def parse_args(argv=None):
     parser.add_argument('--use-v5', action='store_true',
                         help='Enable experimental visual/physical evidence and bounded numeric corrections')
     parser.add_argument('--mlp-path', type=Path, metavar='PT',
-                        help='Path to advisory MLP weights (src/checkpoints/fusion_mlp.pt)')
+                        help='Versioned MLP artifact; pass at preparation and worker time')
+    parser.add_argument('--fusion-mode', choices=('off', 'log', 'gate'), default='off',
+                        help='Matched ablation: off, score-only, or conservative verified-exit gate')
     args = parser.parse_args(argv)
     if (args.launch or args.worker) and not args.plan:
         parser.error('--plan is required')
@@ -1017,7 +1029,7 @@ def parse_args(argv=None):
 def main(argv=None):
     args = parse_args(argv)
     if args.prepare:
-        return prepare(args.prepare)
+        return prepare(args.prepare, args.mlp_path)
     if args.summarize:
         return summarize(args.summarize)
     if args.launch:

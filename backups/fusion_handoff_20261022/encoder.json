@@ -1,0 +1,10 @@
+{
+  "name": "dinov2_vits14",
+  "checkpoint": "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth",
+  "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+  "source": "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main",
+  "source_sha256": "00e7d5d0bc030a7e1fee248650f3ff861e8a6b6ba2ef6ceac18740129a8d0fe5",
+  "transform": "policy_rgb_pil_bicubic_224_imagenet_l2_v1",
+  "feature_dim": 384,
+  "pretrained": true
+}
