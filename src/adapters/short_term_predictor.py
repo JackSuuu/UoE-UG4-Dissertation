@@ -171,6 +171,7 @@ class ShortTermMotionPredictor:
         self,
         grasp: Optional[bool],
         current_pos: Optional[List[float]],
+        step: Optional[int] = None,
         max_steps_since_grasp: int = 30,
     ) -> Optional[Dict[str, Any]]:
         """Check whether the object has not been lifted after grasp.
