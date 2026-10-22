@@ -1,0 +1,80 @@
+{
+  "status": "completed",
+  "started": 1792678601.226176,
+  "pid": 109054,
+  "actors": 1,
+  "code_commit": "5ab4d0fab02af7046c954db4f5774e7879ef83b5",
+  "plan": "/home/ami/scratch/joint_framework_root0_20261022_r1_plan/plan.json",
+  "plan_sha256": "db8c5aeda6170c0a73d99a0a54d58816017e37d7570be92f71c99bdcb6c0218a",
+  "lane": {
+    "gpu": 3,
+    "egl_device": 0,
+    "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+  },
+  "cell": "v2_root0",
+  "joint_mode": true,
+  "use_legacy_v5": false,
+  "enabled": [
+    "real_visual_stage",
+    "physical_contracts",
+    "short_term_prediction",
+    "trained_outcome_risk",
+    "episodic_retrieval",
+    "frozen_policy_h1_repair",
+    "joint_handoff_veto"
+  ],
+  "commands": [
+    {
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-B",
+        "/home/ami/UoE-UG4-Dissertation/scripts/run_framework_comparison.py",
+        "--worker",
+        "--plan",
+        "/home/ami/scratch/joint_framework_root0_20261022_r1_plan/plan.json",
+        "--cell",
+        "v2_root0",
+        "--out",
+        "/home/ami/scratch/joint_framework_root0_20261022_r1/joint_root0",
+        "--fusion-mode",
+        "gate",
+        "--mlp-path",
+        "/home/ami/UoE-UG4-Dissertation/src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt",
+        "--joint-components",
+        "/home/ami/UoE-UG4-Dissertation/src/checkpoints/joint_components_v1_20261022/joint_components.pt"
+      ],
+      "pid": 109056,
+      "log": "episode.log"
+    },
+    {
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-B",
+        "/home/ami/UoE-UG4-Dissertation/scripts/run_framework_comparison.py",
+        "--replay",
+        "/home/ami/scratch/joint_framework_root0_20261022_r1/joint_root0",
+        "--out",
+        "/home/ami/scratch/joint_framework_root0_20261022_r1/replay_joint_root0"
+      ],
+      "pid": 109492,
+      "log": "replay.log"
+    },
+    {
+      "command": [
+        "/home/ami/miniconda3/bin/python",
+        "-B",
+        "/home/ami/UoE-UG4-Dissertation/scripts/run_joint_framework.py",
+        "--audit",
+        "/home/ami/scratch/joint_framework_root0_20261022_r1/joint_root0"
+      ],
+      "pid": 109580,
+      "log": "audit.log"
+    }
+  ],
+  "phase": "finished",
+  "child_pid": 109580,
+  "episode_returncode": 0,
+  "replay_returncode": 0,
+  "audit_returncode": 0,
+  "ended": 1792678858.4234698
+}

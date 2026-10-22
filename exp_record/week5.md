@@ -3,6 +3,45 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Unified v6 root0 failed; exact replay and full joint audit passed
+
+Run `/home/ami/scratch/joint_framework_root0_20261022_r1/` is complete under
+source freeze `5ab4d0f`: **520 queries/actions, zero numeric corrections,
+native task failure at the action budget**. Neither In nor Close was attained.
+It is a valid task failure, not an infrastructure failure or a rescue.
+
+All joint paths actually ran: 521 real-visual/stage, risk and prediction
+evaluations, 935 nonempty memory retrievals, two delayed online writes and
+160 fusion handoff evaluations. First grasp was step 73. Predictive no-lift
+entered repair at 104; five 32-action transactions used the full 160-action
+repair budget by step 388. Every transaction exited unverified, followed by
+explicitly unverified nominal handoff. Held-clear first appeared at 426, after
+the repair budget was exhausted. All 160 repair actions requested acquire;
+none met the original local recovery exit condition.
+
+**Do not infer module efficacy from execution counts:** no otherwise-eligible
+handoff was blocked by the MLP (eligible=0, blocked=0). Therefore this failure
+is not evidence that the MLP gate prevented a successful recovery. Risk reached
+its persistent-high criterion on 240 post-action observations, but prediction
+had primary trigger priority; the primary-risk-trigger counter is zero, not the
+risk-exceedance count. Memory-plus-dwell changed seven stage selections relative
+to centroid-only inference, but repair-stage choices did not differ from the
+measured-stage rule in this episode. There is no demonstrated task-level gain
+from memory/risk/fusion in this single failure.
+
+Verification: exact executed-tape replay passed (520 actions, 532 frames,
+zero mismatch, zero queries). A separate audit recomputed **all 521 joint
+observations and 160 handoff scores**, including online memory history, and
+passed with zero mismatches (discrete decisions exact; numeric tolerance 1e-5).
+This establishes joint implementation/recomputation correctness, not efficacy.
+
+Full raw evidence, source, policy PNGs, decisions and reports are retained in
+a 1,237-file archive with hashes and a causal-contribution summary:
+[`joint_framework_root0_20261022`](../backups/joint_framework_root0_20261022/README.md).
+No post-result prompt, threshold, repair cap or stopping-rule change was made.
+The immediate bottleneck is the frozen-policy recovery behavior failing its
+contract, not another disconnected module or missing MLP gate.
+
 ### Update 22 Oct — Unified v6 root0 running with all components in one causal path
 
 Pushed source freeze **`5ab4d0fab02af7046c954db4f5774e7879ef83b5`** and launched

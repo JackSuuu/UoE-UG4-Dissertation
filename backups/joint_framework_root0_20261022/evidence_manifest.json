@@ -1,0 +1,45 @@
+{
+  "source": "/home/ami/scratch/joint_framework_root0_20261022_r1/joint_root0",
+  "files": {
+    "controller.jsonl": {
+      "bytes": 16050705,
+      "sha256": "e8cec768c2a5f85c5eb846efac2336ea0dff45a9ac16583f04979b767e0a8d0b"
+    },
+    "steps.jsonl": {
+      "bytes": 37429138,
+      "sha256": "614aaafdd066edde79e423df632b8ff92c8cf3b3ea541a9c8afb61ef9643a33c"
+    },
+    "queries.jsonl": {
+      "bytes": 2338885,
+      "sha256": "ffe874b3fab1aaf8b579dc2dc1d89974c4fbd98adb3e243cc73a21053b43938d"
+    },
+    "actions.npz": {
+      "bytes": 11229,
+      "sha256": "656267f012f2243ea197e31a61ceaa5ed6d4d7ad94fee6f7ff84224b5fe5918e"
+    },
+    "states.npz": {
+      "bytes": 461613,
+      "sha256": "7d20e8f2f192b15f868766d1f16caeaac2454386bbc980367a098da288461d6c"
+    },
+    "images.npz": {
+      "bytes": 52412048,
+      "sha256": "4cfe3e7254f3e85105ae8fc9c98e285deeea997c4e2461ed7b267ce9e62a0e67"
+    },
+    "selected_initial_state.npy": {
+      "bytes": 504,
+      "sha256": "ae90aef56416ad928884aa74316b42cc911c75cbe2fc03c72097bcf0383909b6"
+    },
+    "scene.bddl": {
+      "bytes": 1836,
+      "sha256": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420"
+    },
+    "model.xml": {
+      "bytes": 65183,
+      "sha256": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+    },
+    "plan.json": {
+      "bytes": 172134,
+      "sha256": "db8c5aeda6170c0a73d99a0a54d58816017e37d7570be92f71c99bdcb6c0218a"
+    }
+  }
+}

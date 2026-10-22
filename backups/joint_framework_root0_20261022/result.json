@@ -1,0 +1,202 @@
+{
+  "run": "/home/ami/scratch/joint_framework_root0_20261022_r1",
+  "code_commit": "5ab4d0fab02af7046c954db4f5774e7879ef83b5",
+  "task_success": false,
+  "termination": "action_budget",
+  "actions": 520,
+  "queries": 520,
+  "corrections": 0,
+  "repair_actions": 160,
+  "milestones": {
+    "first_grasp": 73,
+    "held_clear": 426
+  },
+  "repairs": [
+    {
+      "repair_id": 1,
+      "entry_step": 104,
+      "trigger": "joint_no_lift",
+      "subgoal": "acquire",
+      "used": 32,
+      "streak": 0,
+      "recovery_goal": "acquire",
+      "acceptance": [
+        "held_clear",
+        "contained"
+      ],
+      "acceptance_streaks": {
+        "held_clear": 0,
+        "contained": 0
+      },
+      "local_recovery_step": null,
+      "resumption_by": null,
+      "verified_by": null,
+      "completed_during_repair": false,
+      "preserve": [],
+      "lost_entry_goals": [],
+      "preservation_unknown": false,
+      "verified": false,
+      "exit_step": 135,
+      "exit_reason": "local_budget_exit_unverified",
+      "handoff_step": 136,
+      "recurrence_step": 253,
+      "post_handoff_goal_loss_step": null,
+      "completed_after_handoff": false
+    },
+    {
+      "repair_id": 2,
+      "entry_step": 205,
+      "trigger": "joint_no_lift",
+      "subgoal": "acquire",
+      "used": 32,
+      "streak": 0,
+      "recovery_goal": "acquire",
+      "acceptance": [
+        "held_clear",
+        "contained"
+      ],
+      "acceptance_streaks": {
+        "held_clear": 0,
+        "contained": 0
+      },
+      "local_recovery_step": null,
+      "resumption_by": null,
+      "verified_by": null,
+      "completed_during_repair": false,
+      "preserve": [],
+      "lost_entry_goals": [],
+      "preservation_unknown": false,
+      "verified": false,
+      "exit_step": 236,
+      "exit_reason": "local_budget_exit_unverified",
+      "handoff_step": 237,
+      "recurrence_step": 253,
+      "post_handoff_goal_loss_step": null,
+      "completed_after_handoff": false
+    },
+    {
+      "repair_id": 3,
+      "entry_step": 252,
+      "trigger": "joint_no_lift",
+      "subgoal": "acquire",
+      "used": 32,
+      "streak": 0,
+      "recovery_goal": "acquire",
+      "acceptance": [
+        "held_clear",
+        "contained"
+      ],
+      "acceptance_streaks": {
+        "held_clear": 0,
+        "contained": 0
+      },
+      "local_recovery_step": null,
+      "resumption_by": null,
+      "verified_by": null,
+      "completed_during_repair": false,
+      "preserve": [],
+      "lost_entry_goals": [],
+      "preservation_unknown": false,
+      "verified": false,
+      "exit_step": 283,
+      "exit_reason": "local_budget_exit_unverified",
+      "handoff_step": 284,
+      "recurrence_step": 284,
+      "post_handoff_goal_loss_step": null,
+      "completed_after_handoff": false
+    },
+    {
+      "repair_id": 4,
+      "entry_step": 292,
+      "trigger": "persistent_low_grasp",
+      "subgoal": "acquire",
+      "used": 32,
+      "streak": 0,
+      "recovery_goal": "acquire",
+      "acceptance": [
+        "held_clear",
+        "contained"
+      ],
+      "acceptance_streaks": {
+        "held_clear": 0,
+        "contained": 0
+      },
+      "local_recovery_step": null,
+      "resumption_by": null,
+      "verified_by": null,
+      "completed_during_repair": false,
+      "preserve": [],
+      "lost_entry_goals": [],
+      "preservation_unknown": false,
+      "verified": false,
+      "exit_step": 323,
+      "exit_reason": "local_budget_exit_unverified",
+      "handoff_step": 324,
+      "recurrence_step": 324,
+      "post_handoff_goal_loss_step": null,
+      "completed_after_handoff": false
+    },
+    {
+      "repair_id": 5,
+      "entry_step": 357,
+      "trigger": "persistent_low_grasp",
+      "subgoal": "acquire",
+      "used": 32,
+      "streak": 0,
+      "recovery_goal": "acquire",
+      "acceptance": [
+        "held_clear",
+        "contained"
+      ],
+      "acceptance_streaks": {
+        "held_clear": 0,
+        "contained": 0
+      },
+      "local_recovery_step": null,
+      "resumption_by": null,
+      "verified_by": null,
+      "completed_during_repair": false,
+      "preserve": [],
+      "lost_entry_goals": [],
+      "preservation_unknown": false,
+      "verified": false,
+      "exit_step": 388,
+      "exit_reason": "local_budget_exit_unverified",
+      "handoff_step": 389,
+      "recurrence_step": 389,
+      "post_handoff_goal_loss_step": null,
+      "completed_after_handoff": false
+    }
+  ],
+  "joint_counters": {
+    "observations": 521,
+    "visual_stage_evaluations": 521,
+    "memory_retrievals": 935,
+    "risk_evaluations": 521,
+    "prediction_evaluations": 521,
+    "online_memory_writes": 2,
+    "risk_trigger_observations": 0,
+    "prediction_trigger_observations": 323,
+    "handoff_scores": 160
+  },
+  "repair_stage_counts": {
+    "acquire": 160
+  },
+  "all_stage_counts": {
+    "acquire": 458,
+    "transfer": 62
+  },
+  "repair_stage_differs_from_measured": 0,
+  "memory_plus_dwell_selection_differs_from_visual_prototype": 7,
+  "risk_exceeds_threshold_observations": 252,
+  "risk_persistence_reached_observations": 240,
+  "fusion": {
+    "scores": 160,
+    "accepted": 0,
+    "blocked_verified_exits": 0,
+    "locally_eligible": 0,
+    "risk_veto_observations": 128,
+    "prediction_veto_observations": 160
+  },
+  "note": "Consulted components are distinguished from causal changes; no root0 rescue or cross-task efficacy established."
+}

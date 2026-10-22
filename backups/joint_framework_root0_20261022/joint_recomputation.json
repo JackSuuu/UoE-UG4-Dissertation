@@ -1,0 +1,10 @@
+{
+  "status": "joint_recomputation_passed",
+  "actor_queries": 0,
+  "observations_recomputed": 521,
+  "handoff_scores_recomputed": 160,
+  "mismatches": [],
+  "numeric_absolute_tolerance": 1e-05,
+  "source": "/home/ami/scratch/joint_framework_root0_20261022_r1/joint_root0",
+  "source_plan_sha256": "db8c5aeda6170c0a73d99a0a54d58816017e37d7570be92f71c99bdcb6c0218a"
+}
