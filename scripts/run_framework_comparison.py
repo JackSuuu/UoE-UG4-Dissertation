@@ -3,6 +3,9 @@
 The five-layer controller uses privileged measured verification, not a learned
 predictor. Every post-initialization action is one frozen official VLA proposal.
 
+With --use-v5, an additional vision+physical verification layer (src/adapters/)
+is consulted before repair entry and handoff; it does not generate actions.
+
 This entry point is foreground/setsid compatible; only --launch starts models.
 """
 import argparse
@@ -37,6 +40,40 @@ DESCRIPTION = ('Five-layer deterministic framework with privileged measured veri
                 'no learned predictor. Native In & Close only. Frozen official greedy H1 VLA, '
                 'batch one; scoped language during bounded repair; no numeric action edits. '
                 'Full-task prompt-refinement study focused on contain_release direction; no gate changes.')
+
+# Lazy-loaded v5 components (only imported when --use-v5 is set)
+_V5_MODULES = None
+
+
+def _load_v5_modules():
+    global _V5_MODULES
+    if _V5_MODULES is not None:
+        return _V5_MODULES
+    sys.path.insert(0, str(REPO))
+    from src.adapters.physical_verifier import PhysicalVerifier, extract_physics_state
+    from src.adapters.visual_grounding import make_grounding
+    from src.adapters.vision_physical_monitor import make_monitor
+    from src.adapters.vision_subgoal_inference import make_subgoal_inference
+    from src.adapters.fusion_mlp import VerificationFusionMLP, load_model, extract_physics_features
+    from src.adapters.short_term_predictor import make_short_term_predictor
+    from src.adapters.calibrated_risk_head import make_risk_head
+    from src.adapters.action_suffix_corrector import make_action_suffix_corrector
+    from src.adapters.keyframe_bank import make_keyframe_bank
+    _V5_MODULES = dict(
+        PhysicalVerifier=PhysicalVerifier,
+        extract_physics_state=extract_physics_state,
+        make_grounding=make_grounding,
+        make_monitor=make_monitor,
+        make_subgoal_inference=make_subgoal_inference,
+        VerificationFusionMLP=VerificationFusionMLP,
+        load_model=load_model,
+        extract_physics_features=extract_physics_features,
+        make_short_term_predictor=make_short_term_predictor,
+        make_risk_head=make_risk_head,
+        make_action_suffix_corrector=make_action_suffix_corrector,
+        make_keyframe_bank=make_keyframe_bank,
+    )
+    return _V5_MODULES
 
 
 def require(condition, message):
@@ -278,6 +315,20 @@ def episode(args):
             language = env.language_instruction
             active, shadow = controllers(cell['arm'], language, cell['variant'])
             status.update(language=language, goal_clauses=diag.clauses)
+
+            # --- v5 vision+physical verification layer (optional) ---
+            v5_monitor = None
+            v5_subgoal = None
+            v5_mlp = None
+            if args.use_v5:
+                v5m = _load_v5_modules()
+                v5_monitor = v5m['make_monitor'](offline=True, device='cuda:0')
+                v5_subgoal = v5m['make_subgoal_inference'](offline=True, device='cuda:0')
+                v5_mlp = None
+                if args.mlp_path and args.mlp_path.exists():
+                    v5_mlp = v5m['load_model'](str(args.mlp_path), device='cuda:0')
+                status['use_v5'] = True
+                status['mlp_path'] = str(args.mlp_path) if args.mlp_path else None
             recorder = runner.ContactRecorder(env.sim, keywords=(*diag.relevant, 'gripper'))
             settle = runner.Tape(out/'initialization')
             settle.capture(env, obs, diag.measure(obs))
@@ -302,7 +353,33 @@ def episode(args):
             else:
                 for step in range(520):
                     measured = tape.last['diagnostics']
+
+                    # --- v5: vision+physical evidence before controller decision ---
+                    v5_evidence = None
+                    if v5_monitor is not None:
+                        import numpy as np
+                        img_arr = np.ascontiguousarray(obs['agentview_image'])
+                        v5_evidence = v5_monitor.evaluate(
+                            current_image=img_arr,
+                            diagnostics=measured,
+                            proposed_action=None,
+                            step=step,
+                        )
+                        # MLP verification probability (advisory, does not block framework)
+                        if v5_mlp is not None:
+                            from src.adapters.fusion_mlp import extract_physics_features as _epf
+                            phys_feat = _epf(measured)
+                            prob = v5_mlp.predict_verify_probability(
+                                vision_feat=np.zeros(384, dtype=np.float32),
+                                physics_feat=phys_feat,
+                                stage='transfer',
+                            )
+                            v5_evidence['mlp_verify_probability'] = prob
+                            v5_evidence['mlp_gate_pass'] = bool(prob >= 0.5)
+
                     decision = active.before(step, deepcopy(measured))
+                    if v5_evidence is not None:
+                        decision['v5_evidence'] = v5_evidence
                     shadow_decision = shadow.before(step, deepcopy(measured))
                     validate_decision(decision, cell['arm'], language)
                     validate_decision(shadow_decision,
@@ -336,16 +413,80 @@ def episode(args):
                         decision=decision, shadow_decision=shadow_decision,
                         action_owner=decision['owner'], controller_before=before_controller,
                         episode_elapsed_s=time.monotonic()-episode_start)
-                    validate_action(dict(step=step, action=decode['action'],
-                        executed_mapped_action=decode['action'], **extra), step)
-                    obs, row = runner.step_once(env, obs, decode['action'], diag, recorder,
+                    # --- v5: action suffix correction before execution (CheckVLA Module 3) ---
+                    executed_action = list(decode['action'])
+                    action_modified = False
+                    if v5_monitor is not None and v5_evidence is not None:
+                        ap_consistent = v5_evidence.get('action_physics_consistent')
+                        ap_score = v5_evidence.get('action_physics_score')
+                        short_term = v5_evidence.get('short_term_prediction')
+                        # Correct if: action-physics inconsistent, or pre-emptive exit predicted
+                        need_correct = False
+                        if ap_consistent is False:
+                            need_correct = True
+                        elif short_term is not None and short_term.get('exit_predicted'):
+                            need_correct = True
+                        if need_correct:
+                            phys_state = v5_evidence.get('physics_state', {})
+                            prev_pos = v5_monitor._prev_object_pos  # last stored pos
+                            curr_pos = phys_state.get('object_pos')
+                            receptacle_bounds = phys_state.get('receptacle_bounds')
+                            corrected = v5_monitor.correct_action_with_physics(
+                                executed_action, prev_pos, curr_pos, receptacle_bounds,
+                            )
+                            if corrected != executed_action:
+                                executed_action = corrected
+                                action_modified = True
+                                extra['action_modified'] = True
+                                extra['original_action'] = list(decode['action'])
+                    extra['action_modified'] = action_modified
+
+                    validate_action(dict(step=step, action=executed_action,
+                        executed_mapped_action=executed_action, **extra), step)
+                    obs, row = runner.step_once(env, obs, executed_action, diag, recorder,
                                                 tape, stream, step, 'actor', extra)
                     executed.append(row)
                     status['steps_executed'] = len(executed)
+
+                    # --- v5: re-evaluate with executed action for action-physics consistency ---
+                    if v5_monitor is not None:
+                        import numpy as np
+                        img_arr = np.ascontiguousarray(obs['agentview_image'])
+                        v5_evidence_after = v5_monitor.evaluate(
+                            current_image=img_arr,
+                            diagnostics=row['diagnostics'],
+                            proposed_action=list(executed_action),
+                            step=step,
+                        )
+                        # MLP verification probability on post-execution state
+                        if v5_mlp is not None:
+                            from src.adapters.fusion_mlp import extract_physics_features as _epf
+                            phys_feat = _epf(row['diagnostics'])
+                            prob = v5_mlp.predict_verify_probability(
+                                vision_feat=np.zeros(384, dtype=np.float32),
+                                physics_feat=phys_feat,
+                                stage='transfer',
+                            )
+                            v5_evidence_after['mlp_verify_probability'] = prob
+                            v5_evidence_after['mlp_gate_pass'] = bool(prob >= 0.5)
+                        v5_evidence = v5_evidence_after  # overwrite with post-execution evidence
+
                     verification = active.after(step, deepcopy(row['diagnostics']),
                                                 list(row['action']), deepcopy(decision))
                     shadow_verification = shadow.after(step, deepcopy(row['diagnostics']),
                         list(row['action']), deepcopy(shadow_decision))
+                    if v5_evidence is not None:
+                        verification['v5'] = {
+                            'trigger': v5_evidence.get('trigger'),
+                            'vision_in_goal': v5_evidence.get('vision_evidence', {}).get('in_goal_vision'),
+                            'vision_score': v5_evidence.get('vision_evidence', {}).get('score'),
+                            'physical_in_goal': v5_evidence.get('physical_evidence', {}).get('in_goal'),
+                            'physical_score': v5_evidence.get('physical_evidence', {}).get('score'),
+                            'action_physics_consistent': v5_evidence.get('action_physics_consistent'),
+                            'action_physics_score': v5_evidence.get('action_physics_score'),
+                            'mlp_verify_probability': v5_evidence.get('mlp_verify_probability'),
+                            'mlp_gate_pass': v5_evidence.get('mlp_gate_pass'),
+                        }
                     handoff = bool(last_decision and is_repair(last_decision) and not is_repair(decision))
                     control = dict(event='after', step=step, decision=decision,
                         verification=verification, shadow_verification=shadow_verification,
@@ -806,6 +947,10 @@ def parse_args(argv=None):
     parser.add_argument('--plan', type=Path)
     parser.add_argument('--out', type=Path, help='New output directory')
     parser.add_argument('--cell', help=argparse.SUPPRESS)
+    parser.add_argument('--use-v5', action='store_true',
+                        help='Enable vision+physical verification layer (src/adapters/)')
+    parser.add_argument('--mlp-path', type=Path, metavar='PT',
+                        help='Path to trained fusion_mlp.pt for v5 gating')
     args = parser.parse_args(argv)
     if (args.launch or args.worker) and not args.plan:
         parser.error('--plan is required')

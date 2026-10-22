@@ -57,6 +57,6 @@ class VisionSubgoalInference:
         }
 
 
-def make_subgoal_inference() -> VisionSubgoalInference:
-    grounding = VisualGroundingModule()
+def make_subgoal_inference(offline: bool = True, device: str = 'cuda:0') -> VisionSubgoalInference:
+    grounding = VisualGroundingModule(offline=offline, device=device)
     return VisionSubgoalInference(grounding=grounding)

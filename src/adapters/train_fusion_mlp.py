@@ -49,11 +49,13 @@ def build_training_pairs(run_dir: Path, max_cells: int = 20):
         ctrl_by_step = {}
         for row in ctrl:
             dec = row.get('decision', {})
-            ver = row.get('verification', {})
+            ver_outer = row.get('verification', {})
+            # repair_verified is nested: verification.verification.repair_verified
+            ver_inner = ver_outer.get('verification', {}) if isinstance(ver_outer, dict) else {}
             step = dec.get('step')
             if step is not None:
                 ctrl_by_step[step] = {
-                    'verified': ver.get('repair_verified', False),
+                    'verified': ver_inner.get('repair_verified', False),
                     'owner': dec.get('owner'),
                     'subgoal': dec.get('subgoal'),
                 }
@@ -65,7 +67,20 @@ def build_training_pairs(run_dir: Path, max_cells: int = 20):
             if not isinstance(measured, dict):
                 continue
 
-            label = 1.0 if info.get('verified') is True else 0.0
+            owner = info.get('owner', 'nominal')
+            verified = info.get('verified', False)
+
+            # Label logic:
+            #   - Nominal (non-repair) steps: verified = 1.0 (original VLA running normally)
+            #   - Repair steps with repair_verified=True: verified = 1.0
+            #   - Repair steps that exited unverified (budget): verified = 0.0
+            if owner == 'nominal':
+                label = 1.0
+            elif verified is True:
+                label = 1.0
+            else:
+                label = 0.0
+
             subgoal = info.get('subgoal') or 'transfer'
 
             vision_feat = np.zeros(384, dtype=np.float32)  # placeholder until encoder wired

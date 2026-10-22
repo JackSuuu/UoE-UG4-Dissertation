@@ -57,10 +57,11 @@ class VerificationFusionMLP(nn.Module if HAS_TORCH else object):
 
     def predict_verify_probability(self, vision_feat, physics_feat, stage) -> float:
         self.eval()
+        device = next(self.parameters()).device
         with torch.no_grad():
-            vf = torch.from_numpy(vision_feat.astype(np.float32)).unsqueeze(0)
-            pf = torch.from_numpy(physics_feat.astype(np.float32)).unsqueeze(0)
-            soh = torch.zeros(1, self.num_stages, dtype=torch.float32)
+            vf = torch.from_numpy(vision_feat.astype(np.float32)).unsqueeze(0).to(device)
+            pf = torch.from_numpy(physics_feat.astype(np.float32)).unsqueeze(0).to(device)
+            soh = torch.zeros(1, self.num_stages, dtype=torch.float32, device=device)
             if stage in STAGE_TO_IDX:
                 soh[0, STAGE_TO_IDX[stage]] = 1.0
             logits = self.forward(vf, pf, soh)
@@ -133,15 +134,16 @@ def train_on_pairs(
         v_list.append(pair['vision_feat'].astype(np.float32))
         p_list.append(extract_physics_features(pair['measured']))
         s_list.append(STAGE_TO_IDX.get(pair['stage'], 0))
-        y_list.append(float(pair['label']))
+        y_list.append(int(pair['label'] > 0.5))  # class 0 = fail, class 1 = pass
 
     X_v = torch.from_numpy(np.stack(v_list)).to(device)
     X_p = torch.from_numpy(np.stack(p_list)).to(device)
     X_s = torch.zeros(len(pairs), len(STAGES), dtype=torch.float32).to(device)
     for i, si in enumerate(s_list):
         X_s[i, si] = 1.0
-    Y = torch.from_numpy(np.array(y_list, dtype=np.float32)).unsqueeze(1).to(device)
+    Y = torch.from_numpy(np.array(y_list, dtype=np.int64)).to(device)
 
+    criterion = nn.CrossEntropyLoss()
     n = len(pairs)
     losses: List[float] = []
     model.train()
