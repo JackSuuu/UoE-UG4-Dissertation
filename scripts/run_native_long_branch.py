@@ -166,7 +166,7 @@ def evidence_tape(runner, directory, out):
     return EvidenceTape(directory)
 
 
-def validate_action(row, index, initialization=False):
+def validate_action(row, index, initialization=False, *, allow_correction=False):
     require(row['step'] == index, f'Nonsequential action at {index}')
     action = np.asarray(row['action'], dtype=float)
     require(action.shape == (7,) and np.isfinite(action).all(), 'Invalid action shape/value')
@@ -174,13 +174,28 @@ def validate_action(row, index, initialization=False):
     if initialization:
         require(row['action'] == [0., 0., 0., 0., 0., 0., -1.], 'Non-native initialization')
     else:
-        require(row['action'] == row['proposal'], 'Action differs from model proposal')
         require(len(row['tokens']) == 7, 'Expected seven official tokens')
         native = np.asarray(row['native_proposal'], dtype=float)
         require(native.shape == (7,) and np.isfinite(native).all(), 'Invalid native proposal')
         mapped = native.copy()
         mapped[-1] = -np.sign(2*mapped[-1]-1)
-        np.testing.assert_array_equal(action, mapped)
+        proposal = np.asarray(row['proposal'], dtype=float)
+        np.testing.assert_array_equal(proposal, mapped)
+        if row.get('action_modified', False):
+            require(allow_correction, 'Numeric correction not enabled by caller')
+            require(row.get('action_protocol') == 'bounded_translation_v1', 'Unknown correction protocol')
+            require(row.get('correction_reason') in (
+                'action_physics_inconsistent', 'preemptive_exit', 'no_lift_after_grasp'),
+                'Missing correction reason')
+            np.testing.assert_array_equal(row['original_action'], proposal)
+            np.testing.assert_array_equal(action[3:], proposal[3:])
+            delta = action - proposal
+            np.testing.assert_allclose(row['correction_delta'], delta, rtol=0, atol=1e-12)
+            require(0 < np.linalg.norm(delta[:3]) <= 0.10 + 1e-12,
+                    'Translation correction exceeds normalized-action bound')
+            require(np.all(np.abs(action[:3]) <= 1), 'Corrected translation outside action range')
+        else:
+            np.testing.assert_array_equal(action, mapped)
 
 
 def validate_model_sources(runner, original, out, manifest, baseline_manifest):

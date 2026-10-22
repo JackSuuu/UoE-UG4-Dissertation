@@ -14,17 +14,17 @@ import math
 
 
 class NativeFramework:
-    VERSION = 'native_microwave_measured_framework_v3_factorial'
+    VERSION = 'native_microwave_measured_framework_v4_prompt_refine'
 
     def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it',
                  variant='v2'):
         if mode not in ('baseline', 'framework') or not isinstance(language, str) or not language.strip():
             raise ValueError('Expected baseline/framework and nonempty native language')
         self.mode, self.language = mode, language
-        if variant not in ('v2', 'prompt_only', 'gate_only', 'combined'):
+        if variant not in ('v2', 'prompt_only', 'gate_only', 'combined', 'prompt_place', 'prompt_deepen', 'prompt_settle'):
             raise ValueError('Unknown frozen factorial variant')
         self._config = dict(version=self.VERSION, variant=variant,
-            prompt_factor=variant in ('prompt_only', 'combined'),
+            prompt_factor=variant in ('prompt_only', 'combined', 'prompt_place', 'prompt_deepen', 'prompt_settle'),
             resumption_factor=variant in ('gate_only', 'combined'),
             resumption_motion_m=.003, resumption_endpoints=3,
             target='white_yellow_mug_1',
@@ -43,7 +43,13 @@ class NativeFramework:
                 transfer='put the yellow and white mug in the microwave',
                 contain_release='release the yellow and white mug in the microwave',
                 close='close the microwave'))
-        if self._config['prompt_factor']:
+        if variant == 'prompt_place':
+            self._config['prompts']['contain_release'] = 'place the yellow and white mug fully inside the microwave'
+        elif variant == 'prompt_deepen':
+            self._config['prompts']['contain_release'] = 'push the yellow and white mug to the back of the microwave and place it inside'
+        elif variant == 'prompt_settle':
+            self._config['prompts']['contain_release'] = 'place the yellow and white mug fully inside the microwave and leave it there'
+        elif self._config['prompt_factor']:
             # Preserve the placement objective while contact remains. This is
             # still one unchanged model proposal, never a gripper override.
             self._config['prompts']['contain_release'] = self._config['prompts']['transfer']

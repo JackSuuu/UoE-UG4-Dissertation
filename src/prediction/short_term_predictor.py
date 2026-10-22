@@ -39,6 +39,7 @@ class ShortTermMotionPredictor:
         self._position_history: List[np.ndarray] = []
         self._grasp_start_pos: Optional[np.ndarray] = None
         self._grasp_start_step: Optional[int] = None
+        self._lift_observed = False
 
     # ------------------------------------------------------------------
     # Update history (call once per step after execution)
@@ -58,10 +59,15 @@ class ShortTermMotionPredictor:
         if grasp is True and self._grasp_start_pos is None and object_pos is not None:
             self._grasp_start_pos = np.array(object_pos, dtype=np.float32)
             self._grasp_start_step = step
-        elif grasp is False:
+            self._lift_observed = False
+        if (grasp is True and self._grasp_start_pos is not None and object_pos is not None
+                and object_pos[2] - self._grasp_start_pos[2] >= self.lift_threshold_m):
+            self._lift_observed = True
+        if grasp is False or grasp is None:
             # Grasp released: reset lift tracking
             self._grasp_start_pos = None
             self._grasp_start_step = None
+            self._lift_observed = False
 
     # ------------------------------------------------------------------
     # Predict future positions
@@ -197,7 +203,8 @@ class ShortTermMotionPredictor:
         no_lift = z_rise < self.lift_threshold_m
 
         # Only flag if we've waited long enough to conclude it's stuck
-        stuck = no_lift and (steps_since is None or steps_since >= max_steps_since_grasp)
+        stuck = (no_lift and not self._lift_observed and steps_since is not None
+                 and steps_since >= max_steps_since_grasp)
 
         return {
             'no_lift_predicted': stuck,
@@ -211,6 +218,7 @@ class ShortTermMotionPredictor:
         self._position_history = []
         self._grasp_start_pos = None
         self._grasp_start_step = None
+        self._lift_observed = False
 
 
 def make_short_term_predictor(

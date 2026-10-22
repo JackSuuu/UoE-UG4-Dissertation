@@ -1,55 +1,67 @@
-# src — Current five-layer verifier–repair framework
+# Source layout
 
-This directory contains only the adapters for the **five-layer verifier–repair–reverification–reliable-handoff framework** around the frozen OpenVLA actor (LIBERO microwave task).
+Components are grouped by responsibility, not collected in `adapters/`.
+The objective is a cross-task verifier–repair framework around frozen OpenVLA;
+the measured controller is currently microwave-specific and the visual–physical
+extensions remain experimental. See [implementation status](COMPONENT_STATUS.md).
 
-## Layout
-
-```
+```text
 src/
-├── adapters/        # All runtime adapters (see src/adapters/README.md)
-│   ├── native_framework.py   # Core 5-layer controller (FROZEN)
-│   ├── libero_openvla.py     # OpenVLA actor wrapper (policy_image)
-│   ├── tf5_compat.py         # TF compat layer (imported by libero_openvla)
-│   ├── physical_verifier.py  # Task-agnostic physics verification
-│   ├── visual_grounding.py   # Frozen DINOv2/V-JEPA encoder
-│   ├── vision_physical_monitor.py  # Joint vision+physical monitor
-│   ├── vision_subgoal_inference.py # Vision-based stage inference
-│   ├── fusion_mlp.py         # Verification fusion MLP
-│   ├── train_fusion_mlp.py   # Training script for fusion MLP
-│   ├── short_term_predictor.py   # Pre-emptive exit prediction
-│   ├── calibrated_risk_head.py   # Conformal-calibrated risk scorer
-│   ├── action_suffix_corrector.py  # Lightweight action safety nudge
-│   ├── keyframe_bank.py      # Episodic context for stage inference
-│   └── README.md             # Adapter architecture doc
-├── results/          # Experiment outputs (gitignored / not tracked)
-└── README.md         # This file
+├── controller.py                 # Stage tracking, triggers, budgets, repair/handoff
+├── adapters/                     # External model/runtime integration only
+│   ├── libero_openvla.py
+│   └── tf5_compat.py
+├── perception/                   # Visual features and subgoal inference
+│   ├── visual_grounding.py
+│   └── vision_subgoal_inference.py
+├── verification/                 # Physical evidence, fusion and risk scoring
+│   ├── physical_verifier.py
+│   ├── fusion_mlp.py
+│   ├── calibrated_risk_head.py
+│   └── vision_physical_monitor.py
+├── prediction/                   # Short-horizon motion/progress diagnostics
+│   └── short_term_predictor.py
+├── repair/                       # Bounded action-correction prototype
+│   └── action_suffix_corrector.py
+├── memory/                       # Episodic keyframes and prototype retrieval
+│   └── keyframe_bank.py
+├── training/                     # Offline training, not runtime control
+│   └── train_fusion_mlp.py
+├── checkpoints/                  # Weight artifacts, separated from source
+│   └── fusion_mlp.pt
+└── results/                      # Existing output directory (left untouched)
 ```
+
+## Entry points and imports
+
+- Run/prepare/replay: [`../scripts/run_framework_comparison.py`](../scripts/run_framework_comparison.py).
+- Controller: `from src.controller import NativeFramework` (class API unchanged).
+- Components use `src.perception`, `src.verification`, `src.prediction`,
+  `src.repair` and `src.memory`; package initializers do not load model weights.
+- CPU checks: `python -B scripts/test_native_framework.py` and
+  `python -B scripts/test_action_correction.py`, from the repository root.
+- Offline training: `python -m src.training.train_fusion_mlp --help`.
+  Weights now live at `src/checkpoints/fusion_mlp.pt`; training methodology
+  limitations are recorded in [COMPONENT_STATUS.md](COMPONENT_STATUS.md).
+
+`native_framework.py` was moved to `controller.py` without changing controller
+logic during the layout migration. Old import-path aliases are not retained.
+Prepare a fresh source-pinned plan after migration; old plans/artifacts retain
+their original paths and should use their archived source tree, not be rewritten.
 
 ## Deleted Phase 1 code
 
-The following Phase 1 directories/files were removed because they are not used by the current LIBERO microwave five-layer framework:
+Browse the exact pre-deletion tree:
+**[Phase 1 source at `72bd689`](https://github.com/JackSuuu/UoE-UG4-Dissertation/tree/72bd6892d01d2c148b8953d00bff40d951065dcf/src)**.
+Deletion commit: [`d0438e4`](https://github.com/JackSuuu/UoE-UG4-Dissertation/commit/d0438e4).
 
-- `src/experiments/`, `src/models/`, `src/sims/`, `src/systems/`, `src/tests/`, `src/vla/`, `src/demo/`
-- `src/common.py`, `src/interfaces.py`, `src/registry.py`, `src/requirements.txt`, `src/run_all.sh`
-- `src/checkvla/` (CheckVLA stand-in implementation)
+This includes the old `experiments/`, `models/`, `sims/`, `systems/`, `tests/`,
+`vla/`, `demo/`, `checkvla/`, and Phase 1 core files. Historical scripts importing
+removed modules require that historical tree; the current refactor does not
+restore those obsolete dependencies.
 
-All of the above are preserved in git history. To restore them, check out the commit before deletion:
+To inspect it without overwriting current work:
 
 ```bash
-# See the commit that deleted Phase 1 code
-git log --oneline --diff-filter=D -- src/
-
-# Restore Phase 1 tree (example, replace <commit> with actual hash)
-git checkout <commit>^ -- src/experiments src/models src/sims src/systems src/tests src/vla src/demo src/common.py src/interfaces.py src/registry.py src/requirements.txt src/run_all.sh src/checkvla
+git worktree add --detach ../dissertation-phase1 72bd6892d01d2c148b8953d00bff40d951065dcf
 ```
-
-The most recent commit containing Phase 1 code is the parent of the commit that removed it. Use `git log -- src/` to find the exact hash.
-
-## Current focus
-
-Root0 failure analysis: root0 fails in the **acquire phase** (persistent_low_grasp), never reaching contain_release. All prompt-only variants had zero effect on root0. The current improvement direction is:
-
-1. Wire a real DINOv2/V-JEPA encoder into `visual_grounding.py` (currently using deterministic random projection fallback).
-2. Train `CalibratedRiskHead` on success trajectories so it can fire a `high_risk` trigger for root0's acquire-phase failures.
-3. Extend `ShortTermMotionPredictor` to detect "object not lifting after grasp" in the acquire phase.
-4. Add a refusal/safe-action option in `ActionSuffixCorrector` when risk is extreme, instead of only nudging translation.

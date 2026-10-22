@@ -13,11 +13,11 @@ candidate that the runner may choose to use or ignore.
 from typing import Optional, Dict, Any, List
 import numpy as np
 from .physical_verifier import PhysicalVerifier, extract_physics_state
-from .visual_grounding import VisualGroundingModule
-from .short_term_predictor import ShortTermMotionPredictor, make_short_term_predictor
+from ..perception.visual_grounding import VisualGroundingModule
+from ..prediction.short_term_predictor import ShortTermMotionPredictor, make_short_term_predictor
 from .calibrated_risk_head import CalibratedRiskHead, extract_trajectory_stats, make_risk_head
-from .action_suffix_corrector import ActionSuffixCorrector, make_action_suffix_corrector
-from .keyframe_bank import KeyframeBank, make_keyframe_bank
+from ..repair.action_suffix_corrector import ActionSuffixCorrector, make_action_suffix_corrector
+from ..memory.keyframe_bank import KeyframeBank, make_keyframe_bank
 
 
 class VisionPhysicalMonitor:
@@ -31,6 +31,7 @@ class VisionPhysicalMonitor:
         keyframe_bank: KeyframeBank,
         vision_threshold: float = 0.75,
         risk_alpha: float = 0.05,
+        target: Optional[str] = None,
     ):
         self.verifier = verifier
         self.grounding = grounding
@@ -40,6 +41,7 @@ class VisionPhysicalMonitor:
         self.keyframe_bank = keyframe_bank
         self.vision_threshold = vision_threshold
         self.risk_alpha = risk_alpha
+        self.target = target
 
         # History for trajectory stats + predictor
         self._history: List[Dict[str, Any]] = []
@@ -123,7 +125,7 @@ class VisionPhysicalMonitor:
         vision_score = vision.get('score')
 
         # --- Physical ---
-        phys_state = extract_physics_state(diagnostics)
+        phys_state = extract_physics_state(diagnostics, target=self.target)
         phys_in_goal = self.verifier.verify_in_goal(
             phys_state['object_pos'],
             phys_state['receptacle_bounds'],
@@ -133,15 +135,7 @@ class VisionPhysicalMonitor:
         # --- Update predictor history (with grasp state for no-lift tracking) ---
         # Grasp boolean: from diagnostics['grasped'][target] if available,
         # else from phys_state['grasp'] (which may be None).
-        grasp = None
-        grasped_dict = diagnostics.get('grasped')
-        if isinstance(grasped_dict, dict):
-            for _key, _val in grasped_dict.items():
-                if isinstance(_val, bool):
-                    grasp = _val
-                    break
-        if grasp is None:
-            grasp = phys_state.get('grasp')
+        grasp = phys_state.get('grasp')
         self.predictor.update(
             phys_state['object_pos'],
             grasp=grasp,
@@ -267,6 +261,7 @@ def make_monitor(
     device: str = 'cuda:0',
     risk_alpha: float = 0.05,
     lift_threshold_m: float = 0.02,
+    target: Optional[str] = None,
 ) -> VisionPhysicalMonitor:
     verifier = PhysicalVerifier()
     grounding = VisualGroundingModule(offline=offline, device=device)
@@ -278,5 +273,5 @@ def make_monitor(
         verifier=verifier, grounding=grounding,
         predictor=predictor, risk_head=risk_head,
         corrector=corrector, keyframe_bank=keyframe_bank,
-        vision_threshold=vision_threshold, risk_alpha=risk_alpha,
+        vision_threshold=vision_threshold, risk_alpha=risk_alpha, target=target,
     )

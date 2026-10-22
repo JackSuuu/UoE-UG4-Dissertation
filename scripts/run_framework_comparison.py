@@ -3,8 +3,8 @@
 The five-layer controller uses privileged measured verification, not a learned
 predictor. Every post-initialization action is one frozen official VLA proposal.
 
-With --use-v5, an additional vision+physical verification layer (src/adapters/)
-is consulted before repair entry and handoff; it does not generate actions.
+With --use-v5, experimental advisory evidence and bounded normalized translation
+edits are enabled. Native repair entry/handoff remain controlled by NativeFramework.
 
 This entry point is foreground/setsid compatible; only --launch starts models.
 """
@@ -33,9 +33,12 @@ LIMITS = dict(roots=6, cells=36, seed=0, initialization_noops=10, actions=520,
               queries=520, total_queries=18720, batch=1, parallel=2,
               readiness_seconds=180, query_seconds=30, rollout_seconds=1200,
               outer_seconds=1800, replay_seconds=300, phase_seconds=14400, retries=0)
-SOURCES = ('scripts/run_framework_comparison.py', 'src/adapters/native_framework.py',
+SOURCES = ('scripts/run_framework_comparison.py', 'src/controller.py', 'src/__init__.py',
            'scripts/run_native_long_branch.py', 'scripts/native_long_candidate_worker.py',
-           'scripts/test_native_framework.py')
+           'scripts/test_native_framework.py', 'scripts/test_action_correction.py',
+           *tuple(str(path.relative_to(REPO)) for folder in (
+               'adapters', 'perception', 'verification', 'prediction', 'repair', 'memory', 'training')
+               for path in sorted((REPO/'src'/folder).glob('*.py'))))
 DESCRIPTION = ('Five-layer deterministic framework with privileged measured verification; '
                 'no learned predictor. Native In & Close only. Frozen official greedy H1 VLA, '
                 'batch one; scoped language during bounded repair; no numeric action edits. '
@@ -50,15 +53,15 @@ def _load_v5_modules():
     if _V5_MODULES is not None:
         return _V5_MODULES
     sys.path.insert(0, str(REPO))
-    from src.adapters.physical_verifier import PhysicalVerifier, extract_physics_state
-    from src.adapters.visual_grounding import make_grounding
-    from src.adapters.vision_physical_monitor import make_monitor
-    from src.adapters.vision_subgoal_inference import make_subgoal_inference
-    from src.adapters.fusion_mlp import VerificationFusionMLP, load_model, extract_physics_features
-    from src.adapters.short_term_predictor import make_short_term_predictor
-    from src.adapters.calibrated_risk_head import make_risk_head
-    from src.adapters.action_suffix_corrector import make_action_suffix_corrector
-    from src.adapters.keyframe_bank import make_keyframe_bank
+    from src.verification.physical_verifier import PhysicalVerifier, extract_physics_state
+    from src.perception.visual_grounding import make_grounding
+    from src.verification.vision_physical_monitor import make_monitor
+    from src.perception.vision_subgoal_inference import make_subgoal_inference
+    from src.verification.fusion_mlp import VerificationFusionMLP, load_model, extract_physics_features
+    from src.prediction.short_term_predictor import make_short_term_predictor
+    from src.verification.calibrated_risk_head import make_risk_head
+    from src.repair.action_suffix_corrector import make_action_suffix_corrector
+    from src.memory.keyframe_bank import make_keyframe_bank
     _V5_MODULES = dict(
         PhysicalVerifier=PhysicalVerifier,
         extract_physics_state=extract_physics_state,
@@ -121,8 +124,8 @@ def environment(lane):
 
 def framework_class():
     # The archived adapters package must remain selected for every L1 primitive.
-    spec = importlib.util.spec_from_file_location('comparison_native_framework',
-                                                 REPO/'src/adapters/native_framework.py')
+    spec = importlib.util.spec_from_file_location('comparison_controller',
+                                                 REPO/'src/controller.py')
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
@@ -266,6 +269,8 @@ def episode(args):
     plan = load(args.plan)
     check_plan(plan)
     cell = next(c for c in plan['cells'] if c['name'] == args.cell)
+    require(not args.use_v5 or cell['arm'] == 'framework',
+            'Numeric-correction prototype cannot be used as bare-VLA baseline')
     runner, baseline_manifest = runtime(cell)
     from adapters.libero_openvla import policy_image
     original = argparse.Namespace(**load(Path(cell['baseline'])/'status.json')['args'])
@@ -278,7 +283,11 @@ def episode(args):
     save(out/'plan.json', plan)
     status = dict(status='started', cell=cell, args=vars(original), started=time.time(),
                   actor_queries=0, steps_executed=0, initialization_actions=0,
-                  description=DESCRIPTION, plan_sha256=sha(args.plan), pid=os.getpid())
+                  description=(DESCRIPTION if not args.use_v5 else
+                      'Development-only bounded normalized-action translation correction; '
+                      'not genuine suffix regeneration; visual/risk/MLP evidence is advisory.'),
+                  action_protocol='bounded_translation_v1' if args.use_v5 else 'unchanged_vla',
+                  plan_sha256=sha(args.plan), pid=os.getpid())
     save(out/'status.json', status)
     actor = env = recorder = tape = settle = None
     handles, executed, control_rows = [], [], []
@@ -320,9 +329,12 @@ def episode(args):
             v5_monitor = None
             v5_subgoal = None
             v5_mlp = None
+            correction_actions = 0
+            correction_streak = 0
             if args.use_v5:
                 v5m = _load_v5_modules()
-                v5_monitor = v5m['make_monitor'](offline=True, device='cuda:0', lift_threshold_m=0.02)
+                v5_monitor = v5m['make_monitor'](offline=True, device='cuda:0', lift_threshold_m=0.02,
+                                               target=active.config['target'])
                 v5_subgoal = v5m['make_subgoal_inference'](offline=True, device='cuda:0')
                 v5_mlp = None
                 if args.mlp_path and args.mlp_path.exists():
@@ -348,6 +360,7 @@ def episode(args):
             handles.extend((stream, queries, controls))
             (out/'model_inputs').mkdir()
             status['phase'] = 'actor'
+            v5_evidence = None
             if initial['native_success']:
                 status['termination'] = 'native_success'
             else:
@@ -355,8 +368,7 @@ def episode(args):
                     measured = tape.last['diagnostics']
 
                     # --- v5: vision+physical evidence before controller decision ---
-                    v5_evidence = None
-                    if v5_monitor is not None:
+                    if v5_monitor is not None and v5_evidence is None:
                         import numpy as np
                         img_arr = np.ascontiguousarray(obs['agentview_image'])
                         v5_evidence = v5_monitor.evaluate(
@@ -367,7 +379,7 @@ def episode(args):
                         )
                         # MLP verification probability (advisory, does not block framework)
                         if v5_mlp is not None:
-                            from src.adapters.fusion_mlp import extract_physics_features as _epf
+                            from src.verification.fusion_mlp import extract_physics_features as _epf
                             phys_feat = _epf(measured)
                             prob = v5_mlp.predict_verify_probability(
                                 vision_feat=np.zeros(384, dtype=np.float32),
@@ -434,7 +446,7 @@ def episode(args):
                         elif short_term_lift is not None and short_term_lift.get('no_lift_predicted'):
                             need_correct = True
                             correction_reason = 'no_lift_after_grasp'
-                        if need_correct:
+                        if need_correct and correction_actions < 160 and correction_streak < 32:
                             phys_state = v5_evidence.get('physics_state', {})
                             prev_pos = v5_monitor._prev_object_pos  # last stored pos
                             curr_pos = phys_state.get('object_pos')
@@ -450,6 +462,11 @@ def episode(args):
                                         corrected[2] + 0.05, -1.0, 1.0  # nudge upward
                                     ))
                             if corrected != executed_action:
+                                delta = np.asarray(corrected) - np.asarray(executed_action)
+                                norm = np.linalg.norm(delta[:3])
+                                if norm > 0.10:
+                                    delta[:3] *= 0.10 / norm
+                                corrected = (np.asarray(executed_action) + delta).tolist()
                                 executed_action = corrected
                                 action_modified = True
                                 extra['action_modified'] = True
@@ -457,9 +474,16 @@ def episode(args):
                                 extra['correction_reason'] = correction_reason
                     extra['action_modified'] = action_modified
                     extra['correction_reason'] = correction_reason
+                    extra['action_protocol'] = status['action_protocol']
+                    extra['correction_delta'] = (np.asarray(executed_action) -
+                                                 np.asarray(decode['action'])).tolist()
+                    correction_actions += int(action_modified)
+                    correction_streak = correction_streak + 1 if action_modified else 0
+                    status['numeric_correction_actions'] = correction_actions
 
                     validate_action(dict(step=step, action=executed_action,
-                        executed_mapped_action=executed_action, **extra), step)
+                        executed_mapped_action=executed_action, **extra), step,
+                        allow_correction=args.use_v5)
                     obs, row = runner.step_once(env, obs, executed_action, diag, recorder,
                                                 tape, stream, step, 'actor', extra)
                     executed.append(row)
@@ -473,11 +497,11 @@ def episode(args):
                             current_image=img_arr,
                             diagnostics=row['diagnostics'],
                             proposed_action=list(executed_action),
-                            step=step,
+                            step=step + 1,
                         )
                         # MLP verification probability on post-execution state
                         if v5_mlp is not None:
-                            from src.adapters.fusion_mlp import extract_physics_features as _epf
+                            from src.verification.fusion_mlp import extract_physics_features as _epf
                             phys_feat = _epf(row['diagnostics'])
                             prob = v5_mlp.predict_verify_probability(
                                 vision_feat=np.zeros(384, dtype=np.float32),
@@ -618,7 +642,8 @@ def replay(args):
                 if phase == 'actor':
                     require(controller_fields(env) == load(source/'initial_controller.json'), 'Initial controller drift')
                 for index, row in enumerate(recorded):
-                    validate_action(row, index, phase == 'initialization')
+                    validate_action(row, index, phase == 'initialization',
+                        allow_correction=status.get('action_protocol') == 'bounded_translation_v1')
                     measured = diag.measure(obs)
                     before = runner.fingerprint(env, obs)
                     fields = []
@@ -628,6 +653,11 @@ def replay(args):
                         shadow_decision = shadow.before(index, deepcopy(measured))
                         validate_decision(decision, status['cell']['arm'], env.language_instruction)
                         saved = before_controls[index]
+                        # Replay the executed tape, not the untrained advisory models.
+                        # This checks the native controller and dynamics, not monitor reproducibility.
+                        if status.get('use_v5'):
+                            report['monitor_evidence_recomputed'] = False
+                            decision['v5_evidence'] = saved['decision']['v5_evidence']
                         for key, value in dict(decision=decision, shadow_decision=shadow_decision,
                                                diagnostics=measured).items():
                             if saved[key] != value:
@@ -641,7 +671,7 @@ def replay(args):
                                 query['query_index'] == index and query['source'] == 'greedy' and
                                 query['seed'] == 0, 'Query differs from causal decision')
                         validate_decode(row['decode'], query)
-                        require(row['decode'] == query['decode'] and row['decode']['action'] == row['action'] and
+                        require(row['decode'] == query['decode'] and row['decode']['action'] == row['proposal'] and
                             row['decode']['native_action'] == row['native_proposal'] and
                             row['decode']['tokens'] == row['tokens'], 'Saved proposal/query mismatch')
                         require(sha(source/'model_inputs'/f'{index:06d}.png') == query['policy_png_sha256'],
@@ -663,6 +693,8 @@ def replay(args):
                         verification = active.after(index, deepcopy(after), list(row['action']), deepcopy(decision))
                         shadow_verification = shadow.after(index, deepcopy(after), list(row['action']), deepcopy(shadow_decision))
                         expected = after_controls[index]
+                        if status.get('use_v5'):
+                            verification['v5'] = expected['verification']['v5']
                         for key, value in dict(verification=verification, shadow_verification=shadow_verification,
                             controller_after=controller_fields(env), actual_handoff=bool(prior_decision and
                             is_repair(prior_decision) and not is_repair(decision))).items():
@@ -967,9 +999,9 @@ def parse_args(argv=None):
     parser.add_argument('--out', type=Path, help='New output directory')
     parser.add_argument('--cell', help=argparse.SUPPRESS)
     parser.add_argument('--use-v5', action='store_true',
-                        help='Enable vision+physical verification layer (src/adapters/)')
+                        help='Enable experimental visual/physical evidence and bounded numeric corrections')
     parser.add_argument('--mlp-path', type=Path, metavar='PT',
-                        help='Path to trained fusion_mlp.pt for v5 gating')
+                        help='Path to advisory MLP weights (src/checkpoints/fusion_mlp.pt)')
     args = parser.parse_args(argv)
     if (args.launch or args.worker) and not args.plan:
         parser.error('--plan is required')

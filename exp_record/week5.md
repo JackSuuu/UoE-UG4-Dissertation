@@ -3,61 +3,81 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
-### Update 22 Oct — root0 failure analysis + CheckVLA-inspired modules implemented
+### Update 22 Oct — Source packages separated by responsibility
 
-Killed framework_prompt_refine_run_20261021 (PID 4175289). Completed cells: root0×6,
-root1×6, baseline_root2, v2_root2 (14 cells).
+Moved `src/adapters/native_framework.py` to `src/controller.py`; the
+`NativeFramework` class API and controller logic are unchanged by this move,
+including all pre-existing working-tree edits. Components now live under
+`perception/`, `verification/`, `prediction/`, `repair/`, `memory/`, and
+`training/`. `adapters/` retains only external OpenVLA/Transformers integration.
+The existing MLP weights moved byte-for-byte to `src/checkpoints/fusion_mlp.pt`
+(SHA256 `3a1891b22f1efb071b5393dd3dd0efa901059379f4f8f03637be8885acf503d2`).
 
-**Root0 failure cause:** ALL 6 cohorts fail at ACQUIRE phase (trigger=persistent_low_grasp,
-subgoal=acquire), never reaching contain_release. contain_release prompt changes have
-ZERO effect on root0. v2_root0 with --use-v5 also fails identically (3 repairs, all
-unverified, local_budget_exit_unverified). Confirmed: language-only intervention cannot
-fix acquire-phase physical failures.
+Updated active imports, source-freeze paths, controller/correction tests,
+training CLI examples and README links. Source plans now include package
+initializers and component files. Old pinned plans must use their archived
+tree; they are not silently migrated. Obsolete Phase 1 scripts remain
+historical and their deleted dependencies are not restored.
 
-**Phase 1 cleanup:** Deleted src/experiments/, src/models/, src/sims/, src/systems/,
-src/tests/, src/vla/, src/demo/, src/common.py, src/interfaces.py, src/registry.py,
-src/requirements.txt, src/run_all.sh, src/checkvla/. Restoration path recorded in
-src/README.md (git checkout parent of deletion commit).
+The root0 attempt at `/tmp/opencode/root0_correction_20261022_r1/` was
+interrupted by SIGTERM during model loading (0 queries/actions), before the
+layout migration. No actor remained running when files were moved. Its
+artifacts are retained; no task outcome can be inferred from that attempt.
 
-**New components (src/adapters/, frozen native_framework.py NOT modified):**
-- short_term_predictor.py: ShortTermMotionPredictor with TWO checks:
-  (a) predicts_exit(): object leaving receptacle bounds (contain_release phase)
-  (b) predicts_no_lift(): object grasped but not lifted above threshold (acquire phase,
-    root0's failure mode). Tracks grasp start position and Z rise over time.
-- calibrated_risk_head.py: CalibratedRiskHead with conformal calibration (alpha=0.05).
-  Trains MLP on (vision+physics+traj_stats) -> risk label, fits delta_t threshold on
-  success trajectories to bound false-intervention rate.
-- action_suffix_corrector.py: ActionSuffixCorrector with THREE correction modes:
-  action_physics_inconsistent (nudge translation opposite), preemptive_exit (nudge away
-  from boundary), no_lift_after_grasp (nudge Z upward). Gripper channel never touched.
-  Correction magnitude bounded at 0.10m per step.
-- keyframe_bank.py: KeyframeBank stores (visual_feature, stage, success) from successful
-  steps; reads back stage prototypes to augment vision stage inference.
+Migration validation: 25 controller tests and 8 correction/package-import tests
+pass; the training module's `--help` works. All `src/` Python files parse.
+Controller bytes match the pre-migration archived working-tree source, and the
+checkpoint SHA256 is unchanged. CPU-only plan preparation succeeded at
+`/tmp/opencode/component_layout_20261022_plan/plan.json` (SHA256
+`7aa44392c5c48fcf3432f6c3119a46edfe1a7bae7d666ce3f453a0c67f07cea2`).
+No GPU episode was relaunched during this structural refactor.
 
-**Runner integration (run_framework_comparison.py --use-v5):**
-- VisionPhysicalMonitor.evaluate() now calls predicts_exit() AND predicts_no_lift(),
-  emits trigger 'no_lift_after_grasp' for root0-type failures.
-- Action suffix correction applied BEFORE step_once(): if no_lift_after_grasp detected,
-  nudges Z upward by 0.05m in addition to standard physics correction.
-- v5_evidence recorded in decision and verification logs for offline analysis.
+### Update 22 Oct — Corrected status and bounded-correction diagnostic protocol
 
-**Difference from CheckVLA (not a copy):**
-1. Action-first: VLA proposal executes by default; only minimal nudge on physical
-   contradiction (not full suffix rewriting/replanning).
-2. Three-way gating: short-term prediction + action-physics consistency + calibrated
-   risk head must all agree before correction fires.
-3. Gripper channel never modified (avoids gripper override harm seen in fridge R2).
-4. Correction magnitude hard-bounded (0.10m/step) — never replaces VLA intent.
+Correction to the earlier account: the original
+`/home/ami/scratch/framework_prompt_refine_run_20261021/` contains **36 completed
+cells**, not 14: 25 terminated at native success and 11 at the action budget.
+These are cell totals, not independent generalization trials or replay counts.
+Root0's acquire-stage failures motivate a no-lift diagnostic; they do not prove
+that every language-based intervention must fail.
 
-run_framework_comparison.py: --use-v5 / --mlp-path flags added; core runner unchanged
-for non-v5 runs.
+Phase 1 was deleted in `d0438e4`. The exact historical source is linked in
+`src/README.md` at `72bd6892d01d2c148b8953d00bff40d951065dcf`.
+Historical scripts with removed imports require that historical tree.
 
-Next steps:
-1. Wire frozen DINOv2 encoder into VisualGroundingModule (currently random projection
-   fallback due to offline torch.hub).
-2. Train CalibratedRiskHead on success trajectories, calibrate delta_t via conformal
-   method on held-out success data.
-3. Launch v5 experiment on root0 first (currently unsolved).
+The latest `/tmp/v5_test_root0/` attempt is **infrastructure_failed**, with
+104 queries and 103 executed actions: the first proposed numeric correction
+was rejected by the unchanged-action validator. This is not a completed task
+failure or evidence of correction efficacy. Its artifacts are retained.
+
+Follow-up changes:
+- Keep strict unchanged-action validation by default. Numeric edits require
+  explicit caller opt-in and `bounded_translation_v1` provenance; validate
+  official proposal mapping, original action, reason, exact delta, unchanged
+  rotation/gripper, and translation L2 delta <=0.10 normalized action units.
+  The previous claims of 0.05m/0.10m offsets were incorrect.
+- Bind position/grasp to the declared task target, not the first dictionary
+  vector. Update monitor history once per observed state. Missing timing does
+  not trigger no-lift; release/unknown grasp resets tracking, and a lift already
+  observed suppresses subsequent false acquisition-stall warnings.
+- Numeric corrections have separate caps (160 total, 32 consecutive), within
+  the unchanged 520 action/query budget. Native repair remains separately
+  accounted; this diagnostic is not a matched unchanged-action treatment.
+- Pin experimental adapter sources in newly prepared plans. Tape replay checks
+  executed dynamics/native decisions but explicitly does not recompute monitor
+  evidence. No monitor-reproducibility claim follows from a replay pass.
+
+Implementation limitations: real frozen visual weights/prototypes are not wired;
+the risk head is untrained and uncalibrated; fusion MLP uses zero visual inputs
+and weak labels and is advisory, not a handoff gate. Physics checks are measured
+diagnostic heuristics, not scene reconstruction/forward simulation. Memory and
+visual subgoal APIs do not replace native decisions. Triggers use priority/OR,
+not the previously claimed three-way agreement. Translation nudges are **not**
+genuine suffix regeneration or an established CheckVLA improvement.
+
+Next: CPU regression tests, a fresh retained root0 diagnostic and tape replay;
+then real feature/label/calibration and proposal-regeneration work before a
+frozen cross-task evaluation. No RL or held-out generalization result yet.
 
 ### Update 21 Oct — Full-task prompt/resumption factorial launched
 

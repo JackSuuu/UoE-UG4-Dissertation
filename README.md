@@ -58,7 +58,8 @@ Every treatment run uses the real five-layer framework. Paired arms share initia
 |---|---|
 | [`core_research_plan.md`](core_research_plan.md) | Current objective, method, experiment sequence and evaluation |
 | [`scripts/run_framework_comparison.py`](scripts/run_framework_comparison.py) | Canonical preparation, execution, replay, reporting and video runner |
-| [`src/adapters/native_framework.py`](src/adapters/native_framework.py) | Current five-layer native controller |
+| [`src/controller.py`](src/controller.py) | Current five-layer measured controller |
+| [`src/README.md`](src/README.md) | Component layout, implementation status and Phase 1 history |
 | [`scripts/test_native_framework.py`](scripts/test_native_framework.py) | Model-free recovery and execution-contract checks |
 | [`exp_record/`](exp_record/agent_notes/experiment_record_index.md) | Weekly summaries; detailed protocols and results under `agent_notes/` |
 | [`backups/`](backups/README.md) | Published videos, raw evidence and recovery instructions |

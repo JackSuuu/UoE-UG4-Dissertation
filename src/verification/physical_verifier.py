@@ -147,25 +147,34 @@ class PhysicalVerifier:
         return False
 
 
-def extract_physics_state(diagnostics: Dict[str, Any]) -> Dict[str, Any]:
-    """Task-agnostic extraction of physics state from diagnostics."""
+def extract_physics_state(diagnostics: Dict[str, Any], target: Optional[str] = None) -> Dict[str, Any]:
+    """Extract a bound object's absolute position; ambiguous evidence stays missing."""
     obj_obs = diagnostics.get('object_observations', {}) or {}
     object_pos = None
+    candidates = [key for key in obj_obs if key.endswith('_pos') and '_to_' not in key]
+    selected = f'{target}_pos' if target else candidates[0] if len(candidates) == 1 else None
     for key, val in obj_obs.items():
+        if key != selected:
+            continue
         if isinstance(val, dict) and 'pos' in val:
             try:
                 object_pos = [float(v) for v in val['pos']]
                 if len(object_pos) == 3 and all(math.isfinite(v) for v in object_pos):
                     break
             except (TypeError, ValueError):
-                continue
+                object_pos = None
         elif isinstance(val, (list, tuple)) and len(val) == 3:
             try:
                 object_pos = [float(v) for v in val]
                 if all(math.isfinite(v) for v in object_pos):
                     break
             except (TypeError, ValueError):
-                continue
+                object_pos = None
+
+    if object_pos is not None and (len(object_pos) != 3 or not all(math.isfinite(v) for v in object_pos)):
+        object_pos = None
+    grasped = diagnostics.get('grasped', {})
+    grasp = grasped.get(target) if isinstance(grasped, dict) and target else None
 
     receptacle_bounds = diagnostics.get('receptacle_bounds')
     contact_info = diagnostics.get('contacts_endpoint')
@@ -185,4 +194,5 @@ def extract_physics_state(diagnostics: Dict[str, Any]) -> Dict[str, Any]:
         'receptacle_bounds': receptacle_bounds,
         'contact_info': contact_info,
         'gripper_force': grasp_force,
+        'grasp': grasp if isinstance(grasp, bool) else None,
     }

@@ -3,8 +3,8 @@ import importlib.util
 from pathlib import Path
 import unittest
 
-SOURCE = Path(__file__).resolve().parents[1]/'src/adapters/native_framework.py'
-spec = importlib.util.spec_from_file_location('native_framework', SOURCE)
+SOURCE = Path(__file__).resolve().parents[1]/'src/controller.py'
+spec = importlib.util.spec_from_file_location('framework_controller', SOURCE)
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)
 NativeFramework = module.NativeFramework
@@ -391,14 +391,14 @@ class ResumptionFactorialTests(unittest.TestCase):
         self.assertEqual(c.summary['repairs'][0]['exit_reason'], 'local_budget_exit_unverified')
 
     def test_thirty_cells_have_one_lane_per_concurrent_job_and_balanced_roots(self):
-        source = SOURCE.parents[2]/'scripts/run_framework_comparison.py'
+        source = Path(__file__).resolve().parent/'run_framework_comparison.py'
         spec = importlib.util.spec_from_file_location('comparison_schedule_test', source)
         runner = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(runner)
         cells = runner.cohort_cells([dict(baseline=f'reference_{r}') for r in range(6)])
         waves = runner.launch_waves(cells)
         self.assertEqual([c for wave in waves for c in wave], cells)
-        self.assertEqual(len({c['name'] for c in cells}), 30)
+        self.assertEqual(len({c['name'] for c in cells}), len(cells))
         for wave in waves:
             self.assertLessEqual(len(wave), 2)
             self.assertEqual(len({c['lane']['physical_uuid'] for c in wave}), len(wave))

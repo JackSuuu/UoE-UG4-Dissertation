@@ -9,7 +9,7 @@ VLA's grasp channel and rotational intent.
 Design constraints:
 - Only the first 3 dims (translation) are adjusted.
 - Gripper channel (last dim) is never touched.
-- Correction magnitude is bounded (max 0.1 m per step).
+- Offsets use normalized action units, not metres. The runner caps total L2 delta at 0.10.
 - Applied only when action-physics consistency is low.
 """
 from typing import Optional, List

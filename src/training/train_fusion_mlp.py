@@ -1,9 +1,9 @@
 """Train VerificationFusionMLP on completed framework trajectories.
 
 Usage:
-    python src/adapters/train_fusion_mlp.py \
+    python -m src.training.train_fusion_mlp \
         --run-dir /home/ami/scratch/framework_prompt_refine_run_20261021 \
-        --out src/adapters/fusion_mlp.pt \
+        --out src/checkpoints/fusion_mlp.pt \
         --epochs 50
 
 Reads steps.jsonl + controller.jsonl from completed cells, labels each step
@@ -17,8 +17,8 @@ import sys
 from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from adapters.fusion_mlp import (
+sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+from src.verification.fusion_mlp import (
     VerificationFusionMLP, extract_physics_features, train_on_pairs,
     save_model, STAGES, STAGE_TO_IDX,
 )
