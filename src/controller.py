@@ -4,7 +4,9 @@ Call before(step, diagnostics), query the frozen VLA ONCE with its language,
 source and seed, execute that unchanged mapped action, then call after(...).
 Only after() records execution/handoff. This module has no model/simulator access
 and generates no robot actions. Semantic subgoals are declared task definitions,
-not model-generated plans; every task/repair action must come from external VLA.
+not model-generated plans. Default actions come from the external VLA; explicit
+v7 recovery mode instead delegates oracle skills to the runner and records their
+feedback. This controller never produces numeric actions itself.
 Measured endpoint checks are not learned prediction or a safety certificate.
 """
 from collections import deque
@@ -17,7 +19,7 @@ class NativeFramework:
     VERSION = 'native_microwave_measured_framework_v4_prompt_refine'
 
     def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it',
-                 variant='v2', fusion_mode='off', joint_mode=False):
+                  variant='v2', fusion_mode='off', joint_mode=False, recovery_options=False):
         if mode not in ('baseline', 'framework') or not isinstance(language, str) or not language.strip():
             raise ValueError('Expected baseline/framework and nonempty native language')
         self.mode, self.language = mode, language
@@ -25,10 +27,15 @@ class NativeFramework:
             raise ValueError('Expected off/log/gate fusion; baseline cannot use a gate')
         self.fusion_mode = fusion_mode
         self.joint_mode = joint_mode
+        self.recovery_options = recovery_options
+        if recovery_options and not joint_mode:
+            raise ValueError('Recovery options require the joint runtime')
         if joint_mode and (mode != 'framework' or fusion_mode != 'gate'):
             raise ValueError('Joint integration requires framework arm and causal fusion gating')
         if joint_mode:
             self.VERSION = 'joint_visual_physical_framework_v6_h1'
+        if recovery_options:
+            self.VERSION = 'joint_framework_v7_oracle_recovery_options'
         if variant not in ('v2', 'prompt_only', 'gate_only', 'combined', 'prompt_place', 'prompt_deepen', 'prompt_settle'):
             raise ValueError('Unknown frozen factorial variant')
         self._config = dict(version=self.VERSION, variant=variant,
@@ -66,6 +73,10 @@ class NativeFramework:
         if joint_mode:
             self._config.update(joint_mode=True, subgoal_source='pretrained_visual_episodic_memory_physical_constraints',
                 learned_risk=True, repair_generation='frozen_policy_h1_remaining_execution_v1')
+        if recovery_options:
+            from src.repair.recovery_options import CONFIG
+            self._config.update(recovery_options=deepcopy(CONFIG),
+                repair_generation='oracle_closed_loop_options_with_matched_unused_vla_queries')
         self._history = deque(maxlen=181)
         self._current = None
         self._pending = None
@@ -298,6 +309,8 @@ class NativeFramework:
             if monitor['trigger'] is None:
                 monitor['trigger'] = joint_evidence['trigger']
             shadow_goal = joint_evidence['selected_stage']
+            if self.recovery_options and joint_evidence.get('recovery_admission', {}).get('schema') != 'oracle_recovery_options_v1':
+                raise ValueError('Fresh recovery admission evidence required')
         events = []
         blocked = None
         if self.mode == 'framework' and self._active is None and monitor['trigger']:
@@ -307,7 +320,9 @@ class NativeFramework:
                 blocked = 'unverified_exit_cooldown'
             elif self._repair_actions >= self._config['repair_cap']:
                 blocked = 'total_repair_budget'
-            elif not self._retry_allowed(monitor['trigger']):
+            elif self.recovery_options and not joint_evidence['recovery_admission']['allowed']:
+                blocked = 'same_context_all_options_failed'
+            elif not self.recovery_options and not self._retry_allowed(monitor['trigger']):
                 blocked = 'failed_repair_requires_changed_evidence'
             else:
                 repair = dict(repair_id=len(self._transactions)+1, entry_step=step,
@@ -418,7 +433,7 @@ class NativeFramework:
             if state['grasp'] is not None and height is not None and state['table'] is not None else None)
         return state
 
-    def after(self, step, diagnostics, action, decision, handoff_evidence=None):
+    def after(self, step, diagnostics, action, decision, handoff_evidence=None, recovery_feedback=None):
         """Record an already executed VLA action and its fresh measured endpoint.
 
         The runner owns token/action provenance and env.step; this pure module
@@ -437,6 +452,10 @@ class NativeFramework:
         verification = dict(scope=self._config['verification'], repair_id=expected['repair_id'],
             progress=False, consecutive=0, required=self._config['rechecks'],
             repair_verified=False, native_complete=measured['native_complete'] is True)
+        if recovery_feedback is not None:
+            if not self.recovery_options or recovery_feedback.get('schema') != 'oracle_recovery_options_v1':
+                raise ValueError('Unexpected recovery feedback')
+            verification['recovery_feedback'] = deepcopy(recovery_feedback)
         if expected['owner'] == 'repair':
             repair = self._active
             repair['used'] += 1
@@ -514,6 +533,8 @@ class NativeFramework:
                 events.append(dict(type='repair_verified', step=step, repair_id=repair['repair_id']))
             elif self._actions >= self._config['action_cap']:
                 reason = 'episode_budget_exit_unverified'
+            elif self.recovery_options and recovery_feedback and recovery_feedback['exhausted']:
+                reason = 'recovery_options_exhausted_unverified'
             if reason:
                 repair.update(exit_step=step, exit_reason=reason)
                 events.append(dict(type='local_exit', step=step, repair_id=repair['repair_id'],

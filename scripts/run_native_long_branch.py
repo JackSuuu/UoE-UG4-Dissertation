@@ -166,7 +166,7 @@ def evidence_tape(runner, directory, out):
     return EvidenceTape(directory)
 
 
-def validate_action(row, index, initialization=False, *, allow_correction=False):
+def validate_action(row, index, initialization=False, *, allow_correction=False, allow_recovery=False):
     require(row['step'] == index, f'Nonsequential action at {index}')
     action = np.asarray(row['action'], dtype=float)
     require(action.shape == (7,) and np.isfinite(action).all(), 'Invalid action shape/value')
@@ -181,7 +181,12 @@ def validate_action(row, index, initialization=False, *, allow_correction=False)
         mapped[-1] = -np.sign(2*mapped[-1]-1)
         proposal = np.asarray(row['proposal'], dtype=float)
         np.testing.assert_array_equal(proposal, mapped)
-        if row.get('action_modified', False):
+        if row.get('recovery_action') is not None:
+            require(allow_recovery, 'Oracle recovery skills not enabled by caller')
+            np.testing.assert_array_equal(row['original_action'], proposal)
+            from src.repair.recovery_options import validate_skill
+            validate_skill(row)
+        elif row.get('action_modified', False):
             require(allow_correction, 'Numeric correction not enabled by caller')
             require(row.get('action_protocol') == 'bounded_translation_v1', 'Unknown correction protocol')
             require(row.get('correction_reason') in (

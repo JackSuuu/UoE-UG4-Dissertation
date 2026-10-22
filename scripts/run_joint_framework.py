@@ -46,7 +46,7 @@ def audit(source):
     def observe(index, state, expected):
         rgb = np.asarray(Image.open(source/'joint_inputs'/f'{index:06d}.png').convert('RGB'))
         value = runtime.observe(rgb, state, index, expected['physical']['official_region'])
-        compare(expected, value, f'observation{index}')
+        compare({k: v for k, v in expected.items() if k != 'recovery_admission'}, value, f'observation{index}')
         report['observations_recomputed'] += 1
 
     observe(0, initial['decision']['evidence']['state'], initial['decision']['evidence']['joint'])

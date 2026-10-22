@@ -8,6 +8,9 @@ edits are enabled. --fusion-mode log/gate uses a pinned trained fusion artifact
 to record scores or additionally veto verified exits (budget exits stay bounded).
 
 This entry point is foreground/setsid compatible; only --launch starts models.
+Explicit --recovery-options is a distinct oracle-skill action protocol, not an
+unchanged VLA or bounded-translation experiment. Skill proposals are recomputed
+from live measurements in tape replay; unused VLA proposals remain recorded.
 """
 import argparse
 from copy import deepcopy
@@ -39,7 +42,8 @@ SOURCES = ('scripts/run_framework_comparison.py', 'src/controller.py', 'src/__in
             'scripts/test_native_framework.py', 'scripts/test_action_correction.py',
            'scripts/test_fusion_handoff.py',
            'scripts/run_fusion_handoff_ablation.py',
-           'scripts/test_joint_framework.py', 'scripts/run_joint_framework.py',
+            'scripts/test_joint_framework.py', 'scripts/run_joint_framework.py',
+            'scripts/test_recovery_options.py', 'scripts/run_recovery_comparison.py',
            *tuple(str(path.relative_to(REPO)) for folder in (
                'adapters', 'perception', 'verification', 'prediction', 'repair', 'memory', 'training')
                for path in sorted((REPO/'src'/folder).glob('*.py'))))
@@ -277,9 +281,10 @@ def is_repair(decision):
     return 'repair' in str(decision.get('owner', '')).lower() or decision.get('mode') == 'repair'
 
 
-def controllers(arm, language, variant='v2', fusion_mode='off', joint_mode=False):
+def controllers(arm, language, variant='v2', fusion_mode='off', joint_mode=False, recovery_options=False):
     cls = framework_class()
-    return cls(mode=arm, language=language, variant=variant, fusion_mode=fusion_mode, joint_mode=joint_mode), cls(
+    return cls(mode=arm, language=language, variant=variant, fusion_mode=fusion_mode, joint_mode=joint_mode,
+               recovery_options=recovery_options), cls(
         mode='framework' if arm == 'baseline' else 'baseline', language=language, variant=variant)
 
 
@@ -313,6 +318,8 @@ def episode(args):
         require(not args.use_v5 and args.fusion_mode == 'gate' and plan.get('joint') is not None and
             str(args.joint_components.resolve()) == plan['joint']['artifact'],
             'Joint mode needs pinned components, gate mode, and no legacy/fallback v5 path')
+    require(not args.recovery_options or args.joint_components is not None,
+            'Recovery options require pinned joint components')
     cell = next(c for c in plan['cells'] if c['name'] == args.cell)
     require(not args.use_v5 or cell['arm'] == 'framework',
             'Numeric-correction prototype cannot be used as bare-VLA baseline')
@@ -334,6 +341,7 @@ def episode(args):
                   action_protocol='bounded_translation_v1' if args.use_v5 else 'unchanged_vla',
                   fusion_mode=args.fusion_mode,
                   joint_mode=args.joint_components is not None,
+                  recovery_options=args.recovery_options,
                   repair_protocol='frozen_policy_h1_remaining_execution_v1' if args.joint_components else None,
                   plan_sha256=sha(args.plan), pid=os.getpid())
     save(out/'status.json', status)
@@ -374,7 +382,7 @@ def episode(args):
             diag = runner.Diagnostics(env)
             language = env.language_instruction
             active, shadow = controllers(cell['arm'], language, cell['variant'], args.fusion_mode,
-                                         args.joint_components is not None)
+                                         args.joint_components is not None, args.recovery_options)
             status.update(language=language, goal_clauses=diag.clauses)
 
             # --- v5 vision+physical verification layer (optional) ---
@@ -382,6 +390,7 @@ def episode(args):
             v5_subgoal = None
             fusion_verifier = None
             joint_runtime = joint_evidence = suffix = None
+            recovery = None
             if args.joint_components is not None:
                 sys.path.insert(0, str(REPO))
                 from src.verification.joint_runtime import JointRuntime
@@ -390,6 +399,11 @@ def episode(args):
                 fusion_verifier = joint_runtime.handoff
                 suffix = RecedingHorizonRepair()
                 status['joint_components'] = plan['joint']
+                if args.recovery_options:
+                    from src.repair.recovery_options import RecoveryOptions, SCHEMA
+                    recovery = RecoveryOptions(active.config, controller_fields(env))
+                    status.update(action_protocol=SCHEMA,
+                        description='Joint runtime with oracle-state recovery skills, progress early stopping and cross-trigger option failure memory; matched unused VLA query every step.')
             elif args.fusion_mode != 'off':
                 sys.path.insert(0, str(REPO))
                 from src.verification.handoff_verifier import HandoffVerifier
@@ -450,6 +464,9 @@ def episode(args):
                         joint_image.save(out/'joint_inputs'/f'{step:06d}.png')
                         joint_evidence = joint_runtime.observe(np.asarray(joint_image),
                             active.preview_fusion_state(measured), step, live_region(env, active.config))
+                    if recovery is not None:
+                        joint_evidence['recovery_admission'] = recovery.admission(
+                            active.preview_fusion_state(measured), step)
                     decision = active.before(step, deepcopy(measured), joint_evidence=joint_evidence)
                     if v5_evidence is not None:
                         decision['v5_evidence'] = v5_evidence
@@ -468,7 +485,7 @@ def episode(args):
                         policy_rgb_sha256=hashlib.sha256(np.ascontiguousarray(image).tobytes()).hexdigest())
                     query_request = dict(language=decision['language'], source='greedy', seed=0)
                     repair_replanning = None
-                    if suffix is not None:
+                    if suffix is not None and recovery is None:
                         query_request, repair_replanning = suffix.request(decision)
                         metadata['repair_replanning'] = repair_replanning
                     before_controller = controller_fields(env)
@@ -540,18 +557,29 @@ def episode(args):
                                 extra['action_modified'] = True
                                 extra['original_action'] = list(decode['action'])
                                 extra['correction_reason'] = correction_reason
+                    if recovery is not None:
+                        executed_action, skill_record = recovery.command(decision, measured, decode['action'])
+                        if skill_record is not None:
+                            extra['recovery_action'] = skill_record
+                            extra['original_action'] = list(decode['action'])
+                            extra['executed_action_source'] = 'oracle_closed_loop_recovery_skill'
+                            action_modified = executed_action != list(decode['action'])
+                        else:
+                            extra['executed_action_source'] = 'frozen_vla'
                     extra['action_modified'] = action_modified
                     extra['correction_reason'] = correction_reason
                     extra['action_protocol'] = status['action_protocol']
                     extra['correction_delta'] = (np.asarray(executed_action) -
                                                  np.asarray(decode['action'])).tolist()
-                    correction_actions += int(action_modified)
+                    correction_actions += int(action_modified and recovery is None)
                     correction_streak = correction_streak + 1 if action_modified else 0
                     status['numeric_correction_actions'] = correction_actions
+                    if recovery is not None:
+                        status['oracle_skill_actions'] = status.get('oracle_skill_actions', 0)+int(extra.get('recovery_action') is not None)
 
                     validate_action(dict(step=step, action=executed_action,
                         executed_mapped_action=executed_action, **extra), step,
-                        allow_correction=args.use_v5)
+                         allow_correction=args.use_v5, allow_recovery=args.recovery_options)
                     obs, row = runner.step_once(env, obs, executed_action, diag, recorder,
                                                 tape, stream, step, 'actor', extra)
                     executed.append(row)
@@ -582,9 +610,13 @@ def episode(args):
                     elif fusion_verifier is not None and decision['owner'] == 'repair':
                         fusion_evidence = fusion_verifier.score(policy_image(obs['agentview_image']),
                             active.preview_fusion_state(row['diagnostics']), decision['recovery_goal'])
+                    recovery_feedback = None if recovery is None else recovery.observe(
+                        row['diagnostics'], active.preview_fusion_state(row['diagnostics']))
+                    if recovery is not None:
+                        status['recovery_events'] = deepcopy(recovery.events)
                     verification = active.after(step, deepcopy(row['diagnostics']),
                                                 list(row['action']), deepcopy(decision),
-                                                handoff_evidence=fusion_evidence)
+                                                 handoff_evidence=fusion_evidence, recovery_feedback=recovery_feedback)
                     if joint_runtime is not None:
                         verification['joint_after'] = deepcopy(joint_evidence)
                     shadow_verification = shadow.after(step, deepcopy(row['diagnostics']),
@@ -699,7 +731,8 @@ def replay(args):
             diag = runner.Diagnostics(env)
             active, shadow = controllers(status['cell']['arm'], env.language_instruction,
                                           status['cell']['variant'], status.get('fusion_mode', 'off'),
-                                          status.get('joint_mode', False))
+                                           status.get('joint_mode', False), status.get('recovery_options', False))
+            recovery = None
             recorder = runner.ContactRecorder(env.sim, keywords=(*diag.relevant, 'gripper'))
             before_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'before'}
             after_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'after'}
@@ -714,15 +747,22 @@ def replay(args):
                 tape.compare(0, env, obs, diag.measure(obs), report, phase)
                 if phase == 'actor':
                     require(controller_fields(env) == load(source/'initial_controller.json'), 'Initial controller drift')
+                    if status.get('recovery_options'):
+                        from src.repair.recovery_options import RecoveryOptions
+                        recovery = RecoveryOptions(active.config, controller_fields(env))
                 for index, row in enumerate(recorded):
                     validate_action(row, index, phase == 'initialization',
-                        allow_correction=status.get('action_protocol') == 'bounded_translation_v1')
+                         allow_correction=status.get('action_protocol') == 'bounded_translation_v1',
+                         allow_recovery=status.get('recovery_options', False))
                     measured = diag.measure(obs)
                     before = runner.fingerprint(env, obs)
                     fields = []
                     if phase == 'actor':
                         require(not measured['native_success'], 'Action after native success')
                         joint_saved = before_controls[index]['decision']['evidence'].get('joint')
+                        if recovery is not None:
+                            joint_saved = deepcopy(joint_saved)
+                            joint_saved['recovery_admission'] = recovery.admission(active.preview_fusion_state(measured), index)
                         decision = active.before(index, deepcopy(measured), joint_evidence=joint_saved)
                         shadow_decision = shadow.before(index, deepcopy(measured))
                         validate_decision(decision, status['cell']['arm'], env.language_instruction)
@@ -745,6 +785,10 @@ def replay(args):
                                 query['query_index'] == index and query['source'] == 'greedy' and
                                 query['seed'] == 0, 'Query differs from causal decision')
                         validate_decode(row['decode'], query)
+                        if recovery is not None:
+                            skill_action, skill_record = recovery.command(decision, measured, row['proposal'])
+                            require(skill_action == row['action'] and skill_record == row.get('recovery_action'),
+                                    'Recomputed recovery skill differs from execution')
                         require(row['decode'] == query['decode'] and row['decode']['action'] == row['proposal'] and
                             row['decode']['native_action'] == row['native_proposal'] and
                             row['decode']['tokens'] == row['tokens'], 'Saved proposal/query mismatch')
@@ -766,7 +810,8 @@ def replay(args):
                     if phase == 'actor':
                         fusion_saved = after_controls[index]['verification']['verification'].get('fusion', {})
                         verification = active.after(index, deepcopy(after), list(row['action']), deepcopy(decision),
-                            handoff_evidence=fusion_saved.get('evidence'))
+                            handoff_evidence=fusion_saved.get('evidence'),
+                            recovery_feedback=None if recovery is None else recovery.observe(after, active.preview_fusion_state(after)))
                         if status.get('fusion_mode', 'off') != 'off':
                             report['fusion_scores_recomputed'] = False
                         if status.get('joint_mode'):
@@ -1081,6 +1126,8 @@ def parse_args(argv=None):
     parser.add_argument('--cell', help=argparse.SUPPRESS)
     parser.add_argument('--use-v5', action='store_true',
                         help='Enable experimental visual/physical evidence and bounded numeric corrections')
+    parser.add_argument('--recovery-options', action='store_true',
+                        help='Oracle-state closed-loop recovery skills; NOT unchanged VLA actions')
     parser.add_argument('--mlp-path', type=Path, metavar='PT',
                         help='Versioned MLP artifact; pass at preparation and worker time')
     parser.add_argument('--fusion-mode', choices=('off', 'log', 'gate'), default='off',

@@ -3,6 +3,43 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Recovery-options implementation and frozen comparison design
+
+Following the joint failure analysis and user authorization, implemented a scoped
+oracle-state recovery-capability baseline rather than another module-integration
+exercise. `src/repair/recovery_options.py` adds a closed-loop lift probe and a
+release/retract/reapproach/reclose/lift option. Both have per-option bounds,
+observed progress checks and cross-trigger failed-option memory. Contact-grasp
+alone does not establish effective attachment; EEF/object motion coupling is
+logged. Details and limitations: [`RECOVERY_EXPERIMENT.md`](../src/repair/RECOVERY_EXPERIMENT.md).
+
+Skill actions are explicitly **not frozen-VLA-generated**, unchanged-VLA actions,
+or legacy bounded numeric corrections. The original actor is still queried once
+per executed action for matched query costs; unused proposals remain in the
+trace. Live OSC scale converts capped Cartesian errors to normalized controls,
+with zero rotation delta and explicit gripper commands. This is a hand-designed
+oracle recovery baseline, not a neural-physics contribution. No grasp-pose search,
+collision guarantee or general transfer/placement recovery is claimed.
+
+Preserved original 520 action/query, 32 local and 160 repair caps; all measured
+recovery criteria, learned thresholds and native In AND Close success stay
+unchanged. Two exhausted options lead to an unverified early exit, not a success.
+Trigger-name changes, elapsed cooldown and grasp/contact flicker cannot reenable
+an already failed option. Durable physical context displacement can do so.
+
+Prepared a three-arm full-task comparison: frozen baseline, unchanged current
+joint v6, and the same joint loop with recovery options/progress stop/failure
+memory. Root0 checks implementation first; then all six **already reused
+development roots** are compared under the same frozen method. This is not a
+held-out task or pristine evaluation result. No reserved conditions are used.
+Each run gets exact tape replay (including recomputation of skills and their
+stateful memory), plus independent neural joint audit for joint arms. Failures,
+rescue/harm, complete-task success, unverified exits and model costs remain
+separate. The bundled new arm does not independently identify the effect of
+every repair change. **55 regression tests pass**, including eight new recovery
+tests for explicit skill authorization, progress stop, sequence, failure-memory
+reset and unverified early exits. User annual-plan edits remain untouched.
+
 ### Update 22 Oct — Unified v6 root0 failed; exact replay and full joint audit passed
 
 Run `/home/ami/scratch/joint_framework_root0_20261022_r1/` is complete under
