@@ -2,6 +2,7 @@
 
 The five-layer controller uses privileged measured verification, not a learned
 predictor. Every post-initialization action is one frozen official VLA proposal.
+
 This entry point is foreground/setsid compatible; only --launch starts models.
 """
 import argparse
@@ -24,9 +25,9 @@ REPO = SCRIPT.parent.parent
 PYTHON = '/home/ami/miniconda3/bin/python'
 LANES = [dict(gpu=2, egl_device=1, physical_uuid='GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8'),
          dict(gpu=3, egl_device=0, physical_uuid='GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b')]
-COHORTS = ('baseline', 'v2', 'prompt_only', 'gate_only', 'combined')
-LIMITS = dict(roots=6, cells=30, seed=0, initialization_noops=10, actions=520,
-              queries=520, total_queries=15600, batch=1, parallel=2,
+COHORTS = ('baseline', 'v2', 'prompt_only', 'prompt_place', 'prompt_deepen', 'prompt_settle')
+LIMITS = dict(roots=6, cells=36, seed=0, initialization_noops=10, actions=520,
+              queries=520, total_queries=18720, batch=1, parallel=2,
               readiness_seconds=180, query_seconds=30, rollout_seconds=1200,
               outer_seconds=1800, replay_seconds=300, phase_seconds=14400, retries=0)
 SOURCES = ('scripts/run_framework_comparison.py', 'src/adapters/native_framework.py',
@@ -35,7 +36,7 @@ SOURCES = ('scripts/run_framework_comparison.py', 'src/adapters/native_framework
 DESCRIPTION = ('Five-layer deterministic framework with privileged measured verification; '
                 'no learned predictor. Native In & Close only. Frozen official greedy H1 VLA, '
                 'batch one; scoped language during bounded repair; no numeric action edits. '
-                'Full-task 2x2 placement-prompt / measured-resumption factorial plus bare VLA.')
+                'Full-task prompt-refinement study focused on contain_release direction; no gate changes.')
 
 
 def require(condition, message):
@@ -148,19 +149,19 @@ def prepare(directory):
     # Freeze public numeric/string controller constants without inventing a second protocol.
     controller = {variant: cls(mode='framework', variant=variant).config for variant in COHORTS[1:]}
     cells = cohort_cells(references)
-    plan = dict(schema=2, description=DESCRIPTION, limits=LIMITS, cells=cells,
+    plan = dict(schema=3, description=DESCRIPTION, limits=LIMITS, cells=cells,
                 references=references, source_sha256=pins, weights=weights,
                  controller_constants=controller, python=PYTHON, created=time.time(),
-                 study=dict(name='native_resumption_factorial_20261021', development_only=True,
-                     primary='native full-task success for all six roots per cohort',
-                     factors=['placement_prompt_for_contain_release', 'measured_resumption_gate'],
+                 study=dict(name='native_prompt_refine_20261021', development_only=True,
+                     primary='native full-task success for root4 and root0; regression checks on others',
+                     factors=['contain_release_prompt_refinement'],
                      secondary=['paired rescues and harms', 'local recovery vs verified exit',
                          'actual nominal handoff', 'post-handoff regression and full completion',
                          'repair/query/action/time costs'],
-                     sentinel_roots=dict(root4='old rescue lost in v2', root3='old harm removed in v2'),
-                     analysis='per-root factorial contrasts; six reused development roots, no held-out or population claim',
-                     stopping='complete all thirty cells regardless of root4 outcome; no efficacy early stopping',
-                     recovery='retain all cases; exact replay; 24 baseline/variant full videos; publish and fresh remote recovery'),
+                     sentinel_roots=dict(root4='prompt_only rescued it', root0='failed in all previous cohorts', root3='must not regress'),
+                     analysis='compare against prompt_only baseline; six reused development roots, no held-out or population claim',
+                     stopping='complete all thirty-six cells regardless of root4 outcome; no efficacy early stopping',
+                     recovery='retain all cases; exact replay; 30 baseline/variant full videos; publish and fresh remote recovery'),
                  success='native env.check_success(): original In & Close',
                 wall_scope='scene setup + ten noops + rollout, excluding actor load',
                  schedule='per root: baseline/v2, prompt_only/gate_only, combined; each wave then fresh replays; lanes alternate by root',

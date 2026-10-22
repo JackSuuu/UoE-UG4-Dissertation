@@ -1,20 +1,15 @@
-"""Train the VerificationFusionMLP on completed framework trajectories.
+"""Train VerificationFusionMLP on completed framework trajectories.
 
 Usage:
-    python src/adapters/v5/train_fusion_mlp.py \
+    python src/adapters/train_fusion_mlp.py \
         --run-dir /home/ami/scratch/framework_prompt_refine_run_20261021 \
-        --out /home/ami/UoE-UG4-Dissertation/src/adapters/v5/fusion_mlp.pt \
+        --out src/adapters/fusion_mlp.pt \
         --epochs 50
 
 Reads steps.jsonl + controller.jsonl from completed cells, labels each step
-by whether the framework's verification passed at that step, extracts physics
-features from measured diagnostics, and (placeholder) encodes vision features
-from saved model_inputs PNGs.
-
-Because the frozen vision encoder (V-JEPA/DINOv2) is not yet wired, this
-script trains on *physics-only features + zero vision features* as a warm-up.
-Once the encoder is connected, replace the zero vision features with real
-encoder outputs and retrain.
+by verification outcome, extracts physics features from measured diagnostics,
+and trains the fusion MLP.  Vision features are zero placeholders until the
+frozen encoder (DINOv2/V-JEPA) is wired and used to encode saved PNGs.
 """
 import argparse
 import json
@@ -22,15 +17,14 @@ import sys
 from pathlib import Path
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
-from v5.fusion_mlp import (
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from adapters.fusion_mlp import (
     VerificationFusionMLP, extract_physics_features, train_on_pairs,
     save_model, STAGES, STAGE_TO_IDX,
 )
 
 
 def load_cell(cell_dir: Path):
-    """Load steps and controller records for one cell."""
     steps_path = cell_dir / 'steps.jsonl'
     ctrl_path = cell_dir / 'controller.jsonl'
     if not steps_path.exists() or not ctrl_path.exists():
@@ -41,12 +35,6 @@ def load_cell(cell_dir: Path):
 
 
 def build_training_pairs(run_dir: Path, max_cells: int = 20):
-    """Build (state, label) pairs from completed cells.
-
-    Label = 1.0 if the step's verification passed (repair_verified or
-    native completion), 0.0 if the step was in an unverified repair that
-    eventually exited at budget.
-    """
     pairs = []
     cells = sorted([d for d in run_dir.iterdir() if d.is_dir() and not d.name.startswith('replay_')])
     used = 0
@@ -58,7 +46,6 @@ def build_training_pairs(run_dir: Path, max_cells: int = 20):
             continue
         used += 1
 
-        # Index controller events by step for label lookup
         ctrl_by_step = {}
         for row in ctrl:
             dec = row.get('decision', {})
@@ -67,15 +54,9 @@ def build_training_pairs(run_dir: Path, max_cells: int = 20):
             if step is not None:
                 ctrl_by_step[step] = {
                     'verified': ver.get('repair_verified', False),
-                    'exit_reason': None,
-                    'post_handoff_goal_loss': False,
                     'owner': dec.get('owner'),
                     'subgoal': dec.get('subgoal'),
                 }
-        # Find exit reason from the last after-event at this step
-        for row in ctrl:
-            for ev in row.get('verification', {}).get('events', []) if isinstance(row.get('verification'), dict) else []:
-                pass  # events live in the framework's after() return; approximate below
 
         for i, step_row in enumerate(steps):
             step_num = step_row.get('step', i)
@@ -84,15 +65,10 @@ def build_training_pairs(run_dir: Path, max_cells: int = 20):
             if not isinstance(measured, dict):
                 continue
 
-            # Label: verification passed at this step
             label = 1.0 if info.get('verified') is True else 0.0
-            # Additional negative: post-handoff goal loss
-            # (We approximate from the cell's overall outcome if not per-step)
-            # Subgoal from decision
             subgoal = info.get('subgoal') or 'transfer'
 
-            # Vision feature: zeros placeholder (encoder not yet wired)
-            vision_feat = np.zeros(256, dtype=np.float32)
+            vision_feat = np.zeros(384, dtype=np.float32)  # placeholder until encoder wired
 
             pairs.append({
                 'vision_feat': vision_feat,
@@ -106,15 +82,12 @@ def build_training_pairs(run_dir: Path, max_cells: int = 20):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--run-dir', required=True, type=Path,
-                        help='Directory containing completed cell folders')
-    parser.add_argument('--out', required=True, type=Path,
-                        help='Output .pt model path')
+    parser.add_argument('--run-dir', required=True, type=Path)
+    parser.add_argument('--out', required=True, type=Path)
     parser.add_argument('--epochs', type=int, default=50)
     parser.add_argument('--lr', type=float, default=1e-3)
     parser.add_argument('--batch-size', type=int, default=32)
-    parser.add_argument('--max-cells', type=int, default=20,
-                        help='Max number of cells to read (for quick runs)')
+    parser.add_argument('--max-cells', type=int, default=20)
     parser.add_argument('--device', default='cpu')
     args = parser.parse_args()
 

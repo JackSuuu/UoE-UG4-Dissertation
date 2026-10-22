@@ -1,21 +1,12 @@
 """Small MLP for multi-modal fusion in the verification loop.
 
 Fuses vision features (frozen encoder), physical measurements (position,
-contact, grasp force), and the current subgoal into a single verification
-probability.  This is the learned component that sits *between* the raw
-evidence and the framework's accept / handoff decision.
-
-Design principles:
-- The MLP does NOT generate robot actions.  It only scores whether the
-  current state satisfies the repair acceptance contract and whether it is
-  safe to hand control back to the nominal VLA policy.
-- Inputs are low-dimensional and interpretable; the model is tiny (~30K
-  parameters) so it can be trained on a handful of paired trajectories.
-- At inference time it runs in eval() mode with no gradients.
+contact, grasp), and the current subgoal into a single verification
+probability.  Does NOT generate robot actions — only scores accept/handoff
+safety.
 """
 from typing import Optional, Dict, Any, List
 import json
-import math
 import os
 from pathlib import Path
 
@@ -25,7 +16,7 @@ try:
     import torch
     import torch.nn as nn
     HAS_TORCH = True
-except ImportError:  # pragma: no cover - torch optional at import time
+except ImportError:
     HAS_TORCH = False
 
 
@@ -34,11 +25,9 @@ STAGE_TO_IDX = {s: i for i, s in enumerate(STAGES)}
 
 
 class VerificationFusionMLP(nn.Module if HAS_TORCH else object):
-    """Fusion MLP: vision + physics + subgoal -> verification probability."""
-
     def __init__(
         self,
-        vision_dim: int = 256,
+        vision_dim: int = 384,
         physics_dim: int = 12,
         num_stages: int = 4,
         hidden1: int = 128,
@@ -59,28 +48,14 @@ class VerificationFusionMLP(nn.Module if HAS_TORCH else object):
             nn.Linear(hidden1, hidden2),
             nn.ReLU(),
             nn.Dropout(0.1),
-            nn.Linear(hidden2, 2),  # [verify_pass, verify_fail] logits
+            nn.Linear(hidden2, 2),
         )
 
-    def forward(
-        self,
-        vision_feat: 'torch.Tensor',        # [B, vision_dim]
-        physics_feat: 'torch.Tensor',       # [B, physics_dim]
-        stage_onehot: 'torch.Tensor',       # [B, num_stages]
-    ) -> 'torch.Tensor':
+    def forward(self, vision_feat, physics_feat, stage_onehot):
         x = torch.cat([vision_feat, physics_feat, stage_onehot], dim=-1)
-        logits = self.net(x)
-        return logits  # [B, 2]
+        return self.net(x)
 
-    def predict_verify_probability(
-        self,
-        vision_feat: np.ndarray,
-        physics_feat: np.ndarray,
-        stage: str,
-    ) -> float:
-        """Return P(verification passes) for a single state."""
-        if not HAS_TORCH:
-            raise RuntimeError('PyTorch required for inference')
+    def predict_verify_probability(self, vision_feat, physics_feat, stage) -> float:
         self.eval()
         with torch.no_grad():
             vf = torch.from_numpy(vision_feat.astype(np.float32)).unsqueeze(0)
@@ -93,26 +68,7 @@ class VerificationFusionMLP(nn.Module if HAS_TORCH else object):
             return float(probs[0, 0].item())
 
 
-def extract_physics_features(
-    measured: Dict[str, Any],
-    diagnostics: Optional[Dict[str, Any]] = None,
-) -> np.ndarray:
-    """Convert measured diagnostics into a fixed-length physics feature vector.
-
-    Features (all physical, no learned embeddings):
-      [0]  in_goal (0/1)
-      [1]  close_goal (0/1)
-      [2]  grasp (0/1)
-      [3]  held_clear (0/1)
-      [4]  table contact (0/1)
-      [5]  mug_microwave contact (0/1)
-      [6]  gripper_microwave contact (0/1)
-      [7]  mug_gripper contact (0/1)
-      [8]  object x position (m, clamped)
-      [9]  object y position (m, clamped)
-      [10] object z position (m, clamped)
-      [11] rise_m (m, clamp at 0)
-    """
+def extract_physics_features(measured: Dict[str, Any]) -> np.ndarray:
     def b(val):
         return 1.0 if val is True else 0.0
 
@@ -155,9 +111,6 @@ def load_model(path: str, device='cpu') -> VerificationFusionMLP:
     return model
 
 
-# ------------------------------------------------------------------
-# Minimal training loop (supervised on paired trajectories)
-# ------------------------------------------------------------------
 def train_on_pairs(
     model: VerificationFusionMLP,
     pairs: List[Dict[str, Any]],
@@ -166,14 +119,6 @@ def train_on_pairs(
     batch_size: int = 32,
     device='cpu',
 ) -> List[float]:
-    """Train the MLP on (state, label) pairs.
-
-    Each pair dict must contain:
-      - 'vision_feat': np.ndarray [vision_dim]
-      - 'measured': dict with measured diagnostics
-      - 'stage': str in STAGES
-      - 'label': float in {0.0, 1.0}  (1 = verification should pass)
-    """
     if not HAS_TORCH:
         raise RuntimeError('PyTorch required for training')
 
@@ -183,7 +128,6 @@ def train_on_pairs(
     optimizer = optim.Adam(model.parameters(), lr=lr)
     criterion = nn.BCEWithLogitsLoss()
 
-    # Build tensors
     v_list, p_list, s_list, y_list = [], [], [], []
     for pair in pairs:
         v_list.append(pair['vision_feat'].astype(np.float32))
@@ -219,15 +163,7 @@ def train_on_pairs(
 def build_pairs_from_trajectory(
     steps: List[Dict[str, Any]],
     vision_feats: List[np.ndarray],
-    positive_phase: str = 'post_handoff_stable',
 ) -> List[Dict[str, Any]]:
-    """Construct training pairs from a single trajectory.
-
-    Positive examples: steps after a verified handoff where the state remains
-    stable (goal preserved).
-    Negative examples: steps where a trigger fired but the repair was later
-    unverified (budget exit), or where post-handoff goal loss occurred.
-    """
     pairs = []
     for i, step in enumerate(steps):
         if i >= len(vision_feats):
@@ -235,15 +171,12 @@ def build_pairs_from_trajectory(
         measured = step.get('measured', {})
         stage = step.get('stage', 'transfer')
         label = 0.0
-
-        # Heuristic labeling: replace with real verification outcomes
         if step.get('verified') is True:
             label = 1.0
         elif step.get('exit_reason') == 'local_budget_exit_unverified':
             label = 0.0
         elif step.get('post_handoff_goal_loss') is True:
             label = 0.0
-
         pairs.append({
             'vision_feat': vision_feats[i],
             'measured': measured,

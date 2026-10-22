@@ -3,7 +3,7 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
-### Update 22 Oct — Prompt-refinement run killed; v5 vision+physical framework implemented
+### Update 22 Oct — Prompt-refinement run killed; vision+physical framework implemented
 
 Killed framework_prompt_refine_run_20261021 (PID 4175289 and all child workers).
 Completed cells before kill: root0 × 6 cohorts, root1 × 6 cohorts, baseline_root2, v2_root2
@@ -20,13 +20,14 @@ Key finding from completed data:
 
 Conclusion: tuning a single contain_release prompt is not a general method.
 root0 needs physical state understanding (grasp quality, object motion) not
-language rewording. This motivates the v5 vision+physical layer.
+language rewording. This motivates the vision+physical layer.
 
-New v5 components (src/adapters/v5/, frozen native_framework.py NOT modified):
+New components (src/adapters/, frozen native_framework.py NOT modified):
 - physical_verifier.py: PhysicalVerifier checks object-in-region, grasp reality,
   and action-vs-physics motion consistency against simulator physics state.
-- visual_grounding.py: VisualGroundingModule encodes images with frozen V-JEPA/
-  DINOv2, compares against goal/stage prototypes for vision-side predicates.
+  Task-agnostic: no object/receptacle names hard-coded.
+- visual_grounding.py: VisualGroundingModule encodes images with frozen DINOv2/
+  V-JEPA, compares against goal/stage prototypes for vision-side predicates.
 - vision_physical_monitor.py: VisionPhysicalMonitor fires a repair trigger ONLY
   when vision AND physical verifier agree; adds action-physics consistency check
   (catches root4's "push in but move out" regression).
@@ -36,17 +37,14 @@ New v5 components (src/adapters/v5/, frozen native_framework.py NOT modified):
   + subgoal one-hot into P(verification passes). Tiny MLP (~30K params), does
   NOT generate actions — only scores accept/handoff safety.
 - train_fusion_mlp.py: supervised training script on completed trajectory pairs.
-- v5_integration.py: wrapper showing how to plug v5 evidence into the runner's
-  before()/after() loop without changing frozen framework source.
 
-Five-layer mapping for v5:
+Five-layer mapping:
 - L1 subgoal: vision prototype matching + physical correction (replaces hard-coded
   acquire/transfer/contain_release/close rules).
 - L2 frozen VLA: unchanged; still receives only language, outputs unchanged actions.
 - L3 monitor: trigger = vision anomaly AND physical verifier agree; suppresses
-  false interventions (e.g. root3 release-transition false alarm).
-- L4 gate: unchanged control flow; trigger source becomes vision+physical evidence;
-  MLP probability can additionally gate repair entry / handoff.
+  false interventions.
+- L4 gate: unchanged control flow; trigger source becomes vision+physical evidence.
 - L5 repair + handoff: fusion MLP probability is a pre-handoff safety check;
   physical consistency (action vs observed motion) prevents unverified handoffs.
 
@@ -54,13 +52,18 @@ Sim-to-real: physics checker is sim-time ground-truth calibrator; once calibrate
 vision-only path transfers to real hardware where privileged predicates are
 unavailable.
 
+run_framework_comparison.py: cleaned of all v5 integration code; core runner
+unchanged. v5 components are standalone and can be called from a new runner
+or training script without touching the frozen prompt-refinement pipeline.
+
 Next steps:
 1. Wire frozen V-JEPA/DINOv2 encoder into VisualGroundingModule._make_frozen_encoder().
 2. Train fusion_mlp on completed root0/root1/root2 trajectories (train_fusion_mlp.py).
-3. Edit run_framework_comparison.py to call V5VerificationWrapper in the actor loop.
-4. Launch v5 experiment on root0 (the currently-unsolved failure mode) first.
+3. Build a new runner (or add --use-v5 flag) that calls the vision+physical
+   monitor before repair entry and the fusion MLP before handoff.
+4. Launch experiment on root0 (the currently-unsolved failure mode) first.
 
-Plan location: agent_notes/current_goal_and_experiment_queue_20261019.md (v5 plan hash TBD).
+Plan location: agent_notes/current_goal_and_experiment_queue_20261019.md (plan hash TBD).
 
 ### Update 21 Oct — Full-task prompt/resumption factorial launched
 
