@@ -3,6 +3,38 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Unified v6 root0 running with all components in one causal path
+
+Pushed source freeze **`5ab4d0fab02af7046c954db4f5774e7879ef83b5`** and launched
+one detached joint experiment, not a sequence of component ablations.
+Supervisor PID/session **109054**; episode PID **109056**; physical GPU3 UUID
+`GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`; one actor, no GPU0 use.
+
+Run: `/home/ami/scratch/joint_framework_root0_20261022_r1/`.
+Plan: `/home/ami/scratch/joint_framework_root0_20261022_r1_plan/plan.json`;
+SHA256 `db8c5aeda6170c0a73d99a0a54d58816017e37d7570be92f71c99bdcb6c0218a`.
+Only `v2_root0` is launched from the normal 36-cell plan. The active controller
+identifies itself as `joint_visual_physical_framework_v6_h1`. Real vision,
+physical checks, prediction, trained risk, populated episodic memory,
+frozen-policy H1 repair and combined handoff gating are all enabled together.
+Legacy v5 random/untrained monitor and manual numeric offsets are disabled.
+Frozen actor, root0 initial state, 10 noops, 520 queries/actions, native repair
+caps and native In AND Close stopping condition are retained.
+
+First health check: **75 queries, 74 actions**, no error; recorded counters show
+75 actual pretrained visual/stage evaluations, 76 nonempty memory retrievals,
+75 trained-risk evaluations and 75 prediction evaluations. No repair/handoff
+had occurred at that observation. These are real per-observation execution
+counts, not module-constructor counts or evidence of task success.
+
+On valid completion the supervisor automatically runs exact executed-tape replay
+and then independent full joint recomputation from saved endpoint RGB/state
+evidence. The latter checks visual decisions, retrieved memory, risk scores,
+predictions, online memory updates and handoff scores (float tolerance 1e-5,
+discrete decisions exact). All **47** controller/correction/fusion/joint tests
+pass. User's annual-plan edits remain uncommitted and untouched. No task outcome
+is claimed at launch.
+
 ### Update 22 Oct — Unified causal framework implemented; isolated ablation superseded
 
 User requested one joint framework experiment instead of continuing isolated
