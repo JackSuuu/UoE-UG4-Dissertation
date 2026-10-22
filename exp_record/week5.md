@@ -3,6 +3,29 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Matched trained-fusion root0 ablation launched
+
+Source/artifact freeze **`98967c6`** is pushed to `origin/main`. Detached
+supervisor PID/session **107477** runs one actor at a time on physical GPU3,
+with no GPU0 use, at `/home/ami/scratch/fusion_handoff_ablation_20261022_r1/`.
+Its plan is `/home/ami/scratch/fusion_handoff_ablation_20261022_r1_plan/plan.json`,
+SHA256 `0ad9ba17441d477c1d64dd08681a0272982ec9dfb7093c78da230b043f81ce30`.
+The plan contains the normal cohort grid but the supervisor selects **only
+v2_root0**, running three explicit modes: `off`, `log`, `gate`.
+
+All three arms share the bounded-translation treatment (`--use-v5`), frozen
+greedy H1 actor, initial state, 10 noops, cadence, 520 query/action caps and
+original native repair/correction budgets. The experiment changes only fusion
+loading/scoring/verified-exit veto behavior. The pinned MLP SHA256 is
+`68efc4bf103c6baac634401a36091e758fb94d5762a8610f20719a9baa61c08b`;
+no threshold re-selection or retraining occurs during the comparison.
+
+Each valid completed episode gets zero-query tape replay. Log/gate arms also
+get independent fusion score recomputation from causal PNGs and measured states.
+The supervisor preserves all failures and produces `comparison.json`, including
+off/log action-tape equality, blocked exits, repair transactions and task success.
+At launch, the first off-mode worker has started; no ablation result is claimed.
+
 ### Update 22 Oct — Root0 result and genuinely trained causal fusion implemented
 
 The component-layout root0 run at
