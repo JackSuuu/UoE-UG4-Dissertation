@@ -29,21 +29,39 @@ class ShortTermMotionPredictor:
         dt: float = 0.05,
         velocity_window: int = 3,
         action_blend: float = 0.5,
+        lift_threshold_m: float = 0.02,
     ):
         self.horizon_steps = horizon_steps
         self.dt = dt
         self.velocity_window = velocity_window
         self.action_blend = action_blend  # weight on action intent vs observed velocity
+        self.lift_threshold_m = lift_threshold_m  # min Z rise to count as lifted
         self._position_history: List[np.ndarray] = []
+        self._grasp_start_pos: Optional[np.ndarray] = None
+        self._grasp_start_step: Optional[int] = None
 
     # ------------------------------------------------------------------
     # Update history (call once per step after execution)
     # ------------------------------------------------------------------
-    def update(self, object_pos: Optional[List[float]]) -> None:
+    def update(
+        self,
+        object_pos: Optional[List[float]],
+        grasp: Optional[bool] = None,
+        step: Optional[int] = None,
+    ) -> None:
         if object_pos is not None:
             self._position_history.append(np.array(object_pos, dtype=np.float32))
             if len(self._position_history) > self.velocity_window + 1:
                 self._position_history.pop(0)
+
+        # Track grasp start for no-lift detection (acquire phase)
+        if grasp is True and self._grasp_start_pos is None and object_pos is not None:
+            self._grasp_start_pos = np.array(object_pos, dtype=np.float32)
+            self._grasp_start_step = step
+        elif grasp is False:
+            # Grasp released: reset lift tracking
+            self._grasp_start_pos = None
+            self._grasp_start_step = None
 
     # ------------------------------------------------------------------
     # Predict future positions
@@ -146,8 +164,52 @@ class ShortTermMotionPredictor:
             'min_distance_to_boundary': min_dist if not exit_predicted else 0.0,
         }
 
+    # ------------------------------------------------------------------
+    # Check if object has not lifted after being grasped (acquire phase)
+    # ------------------------------------------------------------------
+    def predicts_no_lift(
+        self,
+        grasp: Optional[bool],
+        current_pos: Optional[List[float]],
+        max_steps_since_grasp: int = 30,
+    ) -> Optional[Dict[str, Any]]:
+        """Check whether the object has not been lifted after grasp.
+
+        root0 failure mode: object is grasped but never lifted above
+        lift_threshold_m within max_steps_since_grasp steps.
+
+        Returns:
+          - 'no_lift_predicted': bool
+          - 'steps_since_grasp': int or None
+          - 'z_rise_m': float or None
+        """
+        if self._grasp_start_pos is None or current_pos is None:
+            return None
+        if grasp is not True:
+            return None
+
+        steps_since = None
+        if self._grasp_start_step is not None and step is not None:
+            steps_since = step - self._grasp_start_step
+
+        z_rise = float(current_pos[2] - self._grasp_start_pos[2])
+        no_lift = z_rise < self.lift_threshold_m
+
+        # Only flag if we've waited long enough to conclude it's stuck
+        stuck = no_lift and (steps_since is None or steps_since >= max_steps_since_grasp)
+
+        return {
+            'no_lift_predicted': stuck,
+            'steps_since_grasp': steps_since,
+            'z_rise_m': z_rise,
+            'grasp_start_pos': self._grasp_start_pos.tolist(),
+            'current_pos': current_pos,
+        }
+
     def reset(self) -> None:
         self._position_history = []
+        self._grasp_start_pos = None
+        self._grasp_start_step = None
 
 
 def make_short_term_predictor(
@@ -155,10 +217,12 @@ def make_short_term_predictor(
     dt: float = 0.05,
     velocity_window: int = 3,
     action_blend: float = 0.5,
+    lift_threshold_m: float = 0.02,
 ) -> ShortTermMotionPredictor:
     return ShortTermMotionPredictor(
         horizon_steps=horizon_steps,
         dt=dt,
         velocity_window=velocity_window,
         action_blend=action_blend,
+        lift_threshold_m=lift_threshold_m,
     )

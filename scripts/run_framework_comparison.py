@@ -322,7 +322,7 @@ def episode(args):
             v5_mlp = None
             if args.use_v5:
                 v5m = _load_v5_modules()
-                v5_monitor = v5m['make_monitor'](offline=True, device='cuda:0')
+                v5_monitor = v5m['make_monitor'](offline=True, device='cuda:0', lift_threshold_m=0.02)
                 v5_subgoal = v5m['make_subgoal_inference'](offline=True, device='cuda:0')
                 v5_mlp = None
                 if args.mlp_path and args.mlp_path.exists():
@@ -416,16 +416,24 @@ def episode(args):
                     # --- v5: action suffix correction before execution (CheckVLA Module 3) ---
                     executed_action = list(decode['action'])
                     action_modified = False
+                    correction_reason = None
                     if v5_monitor is not None and v5_evidence is not None:
                         ap_consistent = v5_evidence.get('action_physics_consistent')
                         ap_score = v5_evidence.get('action_physics_score')
-                        short_term = v5_evidence.get('short_term_prediction')
-                        # Correct if: action-physics inconsistent, or pre-emptive exit predicted
+                        short_term_exit = v5_evidence.get('short_term_exit')
+                        short_term_lift = v5_evidence.get('short_term_lift')
+                        # Correct if: action-physics inconsistent, pre-emptive exit,
+                        # or no-lift after grasp (root0 acquire-phase failure)
                         need_correct = False
                         if ap_consistent is False:
                             need_correct = True
-                        elif short_term is not None and short_term.get('exit_predicted'):
+                            correction_reason = 'action_physics_inconsistent'
+                        elif short_term_exit is not None and short_term_exit.get('exit_predicted'):
                             need_correct = True
+                            correction_reason = 'preemptive_exit'
+                        elif short_term_lift is not None and short_term_lift.get('no_lift_predicted'):
+                            need_correct = True
+                            correction_reason = 'no_lift_after_grasp'
                         if need_correct:
                             phys_state = v5_evidence.get('physics_state', {})
                             prev_pos = v5_monitor._prev_object_pos  # last stored pos
@@ -434,12 +442,21 @@ def episode(args):
                             corrected = v5_monitor.correct_action_with_physics(
                                 executed_action, prev_pos, curr_pos, receptacle_bounds,
                             )
+                            # Additional lift correction for no-lift case: nudge Z upward
+                            if correction_reason == 'no_lift_after_grasp' and curr_pos is not None:
+                                z_rise = short_term_lift.get('z_rise_m', 0.0)
+                                if z_rise < 0.02:  # below lift threshold
+                                    corrected[2] = float(np.clip(
+                                        corrected[2] + 0.05, -1.0, 1.0  # nudge upward
+                                    ))
                             if corrected != executed_action:
                                 executed_action = corrected
                                 action_modified = True
                                 extra['action_modified'] = True
                                 extra['original_action'] = list(decode['action'])
+                                extra['correction_reason'] = correction_reason
                     extra['action_modified'] = action_modified
+                    extra['correction_reason'] = correction_reason
 
                     validate_action(dict(step=step, action=executed_action,
                         executed_mapped_action=executed_action, **extra), step)
@@ -484,6 +501,8 @@ def episode(args):
                             'physical_score': v5_evidence.get('physical_evidence', {}).get('score'),
                             'action_physics_consistent': v5_evidence.get('action_physics_consistent'),
                             'action_physics_score': v5_evidence.get('action_physics_score'),
+                            'short_term_exit': v5_evidence.get('short_term_exit'),
+                            'short_term_lift': v5_evidence.get('short_term_lift'),
                             'mlp_verify_probability': v5_evidence.get('mlp_verify_probability'),
                             'mlp_gate_pass': v5_evidence.get('mlp_gate_pass'),
                         }

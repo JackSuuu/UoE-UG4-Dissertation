@@ -3,67 +3,61 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
-### Update 22 Oct — Prompt-refinement run killed; vision+physical framework implemented
+### Update 22 Oct — root0 failure analysis + CheckVLA-inspired modules implemented
 
-Killed framework_prompt_refine_run_20261021 (PID 4175289 and all child workers).
-Completed cells before kill: root0 × 6 cohorts, root1 × 6 cohorts, baseline_root2, v2_root2
-(14 cells + replays). Root2 remaining 4 cohorts + root3/4/5 (20 cells) were not started.
+Killed framework_prompt_refine_run_20261021 (PID 4175289). Completed cells: root0×6,
+root1×6, baseline_root2, v2_root2 (14 cells).
 
-Key finding from completed data:
-- root0: ALL 6 cohorts FAIL. prompt_only/place/deepen/settle are IDENTICAL to v2 —
-  contain_release prompt changes have ZERO effect on root0. All 3 repairs per cell
-  trigger persistent_low_grasp with subgoal=acquire, all unverified
-  (local_budget_exit_unverified), handoffs at identical steps 286/443/505.
-  root0 fails in the ACQUIRE phase, never reaching contain_release.
-- root1: all 6 SUCCESS, 0 repairs (baseline already solves it).
-- root2: baseline+v2 both SUCCESS, 0 repairs.
+**Root0 failure cause:** ALL 6 cohorts fail at ACQUIRE phase (trigger=persistent_low_grasp,
+subgoal=acquire), never reaching contain_release. contain_release prompt changes have
+ZERO effect on root0. v2_root0 with --use-v5 also fails identically (3 repairs, all
+unverified, local_budget_exit_unverified). Confirmed: language-only intervention cannot
+fix acquire-phase physical failures.
 
-Conclusion: tuning a single contain_release prompt is not a general method.
-root0 needs physical state understanding (grasp quality, object motion) not
-language rewording. This motivates the vision+physical layer.
+**Phase 1 cleanup:** Deleted src/experiments/, src/models/, src/sims/, src/systems/,
+src/tests/, src/vla/, src/demo/, src/common.py, src/interfaces.py, src/registry.py,
+src/requirements.txt, src/run_all.sh, src/checkvla/. Restoration path recorded in
+src/README.md (git checkout parent of deletion commit).
 
-New components (src/adapters/, frozen native_framework.py NOT modified):
-- physical_verifier.py: PhysicalVerifier checks object-in-region, grasp reality,
-  and action-vs-physics motion consistency against simulator physics state.
-  Task-agnostic: no object/receptacle names hard-coded.
-- visual_grounding.py: VisualGroundingModule encodes images with frozen DINOv2/
-  V-JEPA, compares against goal/stage prototypes for vision-side predicates.
-- vision_physical_monitor.py: VisionPhysicalMonitor fires a repair trigger ONLY
-  when vision AND physical verifier agree; adds action-physics consistency check
-  (catches root4's "push in but move out" regression).
-- vision_subgoal_inference.py: VisionSubgoalInference replaces hard-coded
-  _subgoal() with visual-prototype matching + physical boundary correction.
-- fusion_mlp.py: VerificationFusionMLP fuses vision features + physics features
-  + subgoal one-hot into P(verification passes). Tiny MLP (~30K params), does
-  NOT generate actions — only scores accept/handoff safety.
-- train_fusion_mlp.py: supervised training script on completed trajectory pairs.
+**New components (src/adapters/, frozen native_framework.py NOT modified):**
+- short_term_predictor.py: ShortTermMotionPredictor with TWO checks:
+  (a) predicts_exit(): object leaving receptacle bounds (contain_release phase)
+  (b) predicts_no_lift(): object grasped but not lifted above threshold (acquire phase,
+    root0's failure mode). Tracks grasp start position and Z rise over time.
+- calibrated_risk_head.py: CalibratedRiskHead with conformal calibration (alpha=0.05).
+  Trains MLP on (vision+physics+traj_stats) -> risk label, fits delta_t threshold on
+  success trajectories to bound false-intervention rate.
+- action_suffix_corrector.py: ActionSuffixCorrector with THREE correction modes:
+  action_physics_inconsistent (nudge translation opposite), preemptive_exit (nudge away
+  from boundary), no_lift_after_grasp (nudge Z upward). Gripper channel never touched.
+  Correction magnitude bounded at 0.10m per step.
+- keyframe_bank.py: KeyframeBank stores (visual_feature, stage, success) from successful
+  steps; reads back stage prototypes to augment vision stage inference.
 
-Five-layer mapping:
-- L1 subgoal: vision prototype matching + physical correction (replaces hard-coded
-  acquire/transfer/contain_release/close rules).
-- L2 frozen VLA: unchanged; still receives only language, outputs unchanged actions.
-- L3 monitor: trigger = vision anomaly AND physical verifier agree; suppresses
-  false interventions.
-- L4 gate: unchanged control flow; trigger source becomes vision+physical evidence.
-- L5 repair + handoff: fusion MLP probability is a pre-handoff safety check;
-  physical consistency (action vs observed motion) prevents unverified handoffs.
+**Runner integration (run_framework_comparison.py --use-v5):**
+- VisionPhysicalMonitor.evaluate() now calls predicts_exit() AND predicts_no_lift(),
+  emits trigger 'no_lift_after_grasp' for root0-type failures.
+- Action suffix correction applied BEFORE step_once(): if no_lift_after_grasp detected,
+  nudges Z upward by 0.05m in addition to standard physics correction.
+- v5_evidence recorded in decision and verification logs for offline analysis.
 
-Sim-to-real: physics checker is sim-time ground-truth calibrator; once calibrated,
-vision-only path transfers to real hardware where privileged predicates are
-unavailable.
+**Difference from CheckVLA (not a copy):**
+1. Action-first: VLA proposal executes by default; only minimal nudge on physical
+   contradiction (not full suffix rewriting/replanning).
+2. Three-way gating: short-term prediction + action-physics consistency + calibrated
+   risk head must all agree before correction fires.
+3. Gripper channel never modified (avoids gripper override harm seen in fridge R2).
+4. Correction magnitude hard-bounded (0.10m/step) — never replaces VLA intent.
 
-run_framework_comparison.py: cleaned of all v5 integration code; core runner
-unchanged. v5 components are standalone and can be called from a new runner
-or training script without touching the frozen prompt-refinement pipeline.
+run_framework_comparison.py: --use-v5 / --mlp-path flags added; core runner unchanged
+for non-v5 runs.
 
 Next steps:
-1. Wire frozen V-JEPA/DINOv2 encoder into VisualGroundingModule._make_frozen_encoder().
-2. Train fusion_mlp on completed root0/root1/root2 trajectories (train_fusion_mlp.py).
-3. Build a new runner (or add --use-v5 flag) that calls the vision+physical
-   monitor before repair entry and the fusion MLP before handoff.
-4. Launch experiment on root0 (the currently-unsolved failure mode) first.
-
-Plan location: agent_notes/current_goal_and_experiment_queue_20261019.md (plan hash TBD).
+1. Wire frozen DINOv2 encoder into VisualGroundingModule (currently random projection
+   fallback due to offline torch.hub).
+2. Train CalibratedRiskHead on success trajectories, calibrate delta_t via conformal
+   method on held-out success data.
+3. Launch v5 experiment on root0 first (currently unsolved).
 
 ### Update 21 Oct — Full-task prompt/resumption factorial launched
 

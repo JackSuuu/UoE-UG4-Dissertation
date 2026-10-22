@@ -130,8 +130,23 @@ class VisionPhysicalMonitor:
             phys_state['contact_info'],
         )
 
-        # --- Update predictor history ---
-        self.predictor.update(phys_state['object_pos'])
+        # --- Update predictor history (with grasp state for no-lift tracking) ---
+        # Grasp boolean: from diagnostics['grasped'][target] if available,
+        # else from phys_state['grasp'] (which may be None).
+        grasp = None
+        grasped_dict = diagnostics.get('grasped')
+        if isinstance(grasped_dict, dict):
+            for _key, _val in grasped_dict.items():
+                if isinstance(_val, bool):
+                    grasp = _val
+                    break
+        if grasp is None:
+            grasp = phys_state.get('grasp')
+        self.predictor.update(
+            phys_state['object_pos'],
+            grasp=grasp,
+            step=step,
+        )
 
         # --- Action-physics consistency (post-execution, uses prev_pos) ---
         action_phys = None
@@ -144,11 +159,18 @@ class VisionPhysicalMonitor:
         if phys_state['object_pos'] is not None:
             self._prev_object_pos = phys_state['object_pos']
 
-        # --- Short-term motion prediction (pre-emptive exit check) ---
-        short_term = self.predictor.predicts_exit(
+        # --- Short-term motion prediction: containment exit (contain_release phase) ---
+        short_term_exit = self.predictor.predicts_exit(
             phys_state['object_pos'],
             proposed_action,
             phys_state['receptacle_bounds'],
+        )
+
+        # --- Short-term motion prediction: no-lift after grasp (acquire phase) ---
+        short_term_lift = self.predictor.predicts_no_lift(
+            grasp=grasp,
+            current_pos=phys_state['object_pos'],
+            step=step,
         )
 
         # --- Risk head ---
@@ -169,7 +191,9 @@ class VisionPhysicalMonitor:
         trigger = None
         if risk_trigger:
             trigger = 'high_risk'
-        elif short_term is not None and short_term['exit_predicted']:
+        elif short_term_lift is not None and short_term_lift['no_lift_predicted']:
+            trigger = 'no_lift_after_grasp'
+        elif short_term_exit is not None and short_term_exit['exit_predicted']:
             trigger = 'preemptive_exit'
         elif (in_goal_vision is False and not phys_in_goal.consistent):
             trigger = 'containment_lost'
@@ -189,7 +213,8 @@ class VisionPhysicalMonitor:
                 action_phys.consistent if action_phys else None),
             'action_physics_score': (
                 action_phys.score if action_phys else None),
-            'short_term_prediction': short_term,
+            'short_term_exit': short_term_exit,
+            'short_term_lift': short_term_lift,
             'risk_score': risk_score,
             'risk_threshold': self.risk_head.threshold if self.risk_head else None,
             'risk_trigger': risk_trigger,
@@ -241,10 +266,11 @@ def make_monitor(
     offline: bool = True,
     device: str = 'cuda:0',
     risk_alpha: float = 0.05,
+    lift_threshold_m: float = 0.02,
 ) -> VisionPhysicalMonitor:
     verifier = PhysicalVerifier()
     grounding = VisualGroundingModule(offline=offline, device=device)
-    predictor = make_short_term_predictor()
+    predictor = make_short_term_predictor(lift_threshold_m=lift_threshold_m)
     risk_head = make_risk_head(alpha=risk_alpha)
     corrector = make_action_suffix_corrector()
     keyframe_bank = make_keyframe_bank()
