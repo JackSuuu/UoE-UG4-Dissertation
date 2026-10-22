@@ -3,6 +3,7 @@ import copy
 from pathlib import Path
 import sys
 import unittest
+import subprocess
 
 import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -27,6 +28,14 @@ def decision(step=0):
 
 
 class RecoveryTests(unittest.TestCase):
+    def test_standalone_worker_controller_import_without_repository_cwd(self):
+        root=Path(__file__).resolve().parents[1]
+        code=(f"import sys;sys.path.insert(0,{str(root/'scripts')!r});"
+            "from run_framework_comparison import framework_class;"
+            "c=framework_class()(mode='framework',fusion_mode='gate',joint_mode=True,recovery_options=True);"
+            "assert c.config['recovery_options']['schema']=='oracle_recovery_options_v1'")
+        subprocess.run([sys.executable,'-I','-B','-c',code],cwd='/tmp/opencode',check=True,capture_output=True)
+
     def test_live_scale_and_unknowns_fail_closed(self):
         c = controller(); c['use_delta'] = False
         with self.assertRaises(ValueError): RecoveryOptions(dict(target='obj'), c)

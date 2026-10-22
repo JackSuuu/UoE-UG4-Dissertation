@@ -132,6 +132,10 @@ def environment(lane):
 
 def framework_class():
     # The archived adapters package must remain selected for every L1 primitive.
+    # A directly executed scripts/ worker does not put REPO on sys.path. Keep
+    # archived adapter precedence while enabling explicit src.* skill imports.
+    if str(REPO) not in sys.path:
+        sys.path.append(str(REPO))
     spec = importlib.util.spec_from_file_location('comparison_controller',
                                                  REPO/'src/controller.py')
     module = importlib.util.module_from_spec(spec)

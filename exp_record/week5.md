@@ -3,6 +3,22 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — First recovery launch stopped for a zero-action infrastructure error
+
+The initial `recovery_options_comparison_20261022_r1` root0 option worker failed
+before any query/action: dynamically loaded controller could not import `src`
+under direct `scripts/` execution. This is **not a task failure**. Stopped the
+supervisor and the following control worker, retained all output and marked the
+launch `superseded_infrastructure_fix`. The bug was not visible in unit tests
+that already placed the repository on `sys.path`.
+
+Fixed canonical controller loading to append the repository import path without
+changing archived adapter precedence. Added an isolated subprocess test launched
+outside the repository with `python -I`, ensuring the actual standalone import
+path works. This changes infrastructure only, not option parameters, thresholds,
+prompts, budget, labels or outcome conditions. Fresh plan/run directories will
+be used; the failed evidence is not overwritten.
+
 ### Update 22 Oct — Recovery-options implementation and frozen comparison design
 
 Following the joint failure analysis and user authorization, implemented a scoped
