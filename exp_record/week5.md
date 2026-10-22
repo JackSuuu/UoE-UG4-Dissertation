@@ -3,6 +3,30 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — User paused oracle expansion; return to stepwise diagnosis
+
+User explicitly requested a smaller, interpretable next step rather than new
+oracle skills or broad multi-root execution. Stopped the r2 comparison supervisor
+(111577) and its current baseline worker (111666), preserving all outputs at
+`/home/ami/scratch/recovery_options_comparison_20261022_r2/`. Marked the run
+`paused_user_requested_stepwise_diagnosis`; no further cases are scheduled.
+
+The r2 oracle option worker also failed before any queries/actions: the live OSC
+`action_scale` was still None at that initialization point. This is a second
+infrastructure failure, not evidence about the effectiveness of recovery skills.
+Do not count either zero-action option launch as a task failure. No fix or further
+oracle experiment is being pursued under this pause. Added skill code remains
+opt-in; the historical default/joint v6 protocol is not replaced.
+
+The immediate scientific target is the already observed original v6 behavior:
+no-lift detection leads to repeated acquire requests without reaching measured
+recovery. First establish its images, actions, object motion and contacts in the
+first repair window (104–135); do not infer that the prompt causes the failure
+without a matched intervention. Five repair windows within one trajectory are
+not five independent reproductions. Exact saved-tape replay establishes replay
+consistency, not independent policy-rollout reproducibility. New model training,
+threshold changes and method expansion are deferred.
+
 ### Update 22 Oct — First recovery launch stopped for a zero-action infrastructure error
 
 The initial `recovery_options_comparison_20261022_r1` root0 option worker failed
