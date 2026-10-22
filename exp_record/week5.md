@@ -3,28 +3,64 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
-### Update 22 Oct — Visual-grounding + physical-consistency extension planned (not launched)
+### Update 22 Oct — Prompt-refinement run killed; v5 vision+physical framework implemented
 
-The current prompt-refinement run (framework_prompt_refine_run_20261021, PID 4175289) is still executing its frozen 36-cell plan; sources/config are frozen and must not be touched mid-run. The next experiment branch (v5_visual_physical) will extend the five-layer framework with vision-based state inference and physical-consistency checking, rather than tuning another prompt.
+Killed framework_prompt_refine_run_20261021 (PID 4175289 and all child workers).
+Completed cells before kill: root0 × 6 cohorts, root1 × 6 cohorts, baseline_root2, v2_root2
+(14 cells + replays). Root2 remaining 4 cohorts + root3/4/5 (20 cells) were not started.
 
-New components (under src/adapters/, not modifying the frozen native_framework.py):
-- VisualGroundingModule: frozen V-JEPA/DINOv2 encoder; compares current image against goal prototypes to infer candidate predicates (in_goal_vision, held_clear_vision, etc.).
-- PhysicalConsistencyChecker: uses simulator physics (position, contact, grasp) as ground truth during sim development to validate visual inferences; outputs a consistency score that gates whether a vision predicate is adopted.
-- VisionBasedSubgoalInference: replaces the hard-coded _subgoal() phase rules; infers the current stage from visual features, with physical checker as boundary correction.
-- VisionConditionedVerifier: goal-conditioned success classifier (current image + goal image -> success probability) to replace hard predicate checks in _progress().
+Key finding from completed data:
+- root0: ALL 6 cohorts FAIL. prompt_only/place/deepen/settle are IDENTICAL to v2 —
+  contain_release prompt changes have ZERO effect on root0. All 3 repairs per cell
+  trigger persistent_low_grasp with subgoal=acquire, all unverified
+  (local_budget_exit_unverified), handoffs at identical steps 286/443/505.
+  root0 fails in the ACQUIRE phase, never reaching contain_release.
+- root1: all 6 SUCCESS, 0 repairs (baseline already solves it).
+- root2: baseline+v2 both SUCCESS, 0 repairs.
 
-Five-layer mapping:
-- L1 subgoal: vision feature clustering / classifier instead of hand-written acquire/transfer/contain_release/close rules.
-- L2 frozen VLA: unchanged; still receives only language, outputs unchanged model actions.
-- L3 monitor: trigger fires only when visual anomaly AND physical checker agree, reducing false interventions.
-- L4 gate: unchanged control flow; trigger source becomes vision+physical joint evidence.
-- L5 repair + handoff: VisionConditionedVerifier accepts repair; physical consistency is a pre-handoff safety check (no "visually in but physically out" handoff).
+Conclusion: tuning a single contain_release prompt is not a general method.
+root0 needs physical state understanding (grasp quality, object motion) not
+language rewording. This motivates the v5 vision+physical layer.
 
-Sim-to-real positioning: the physics checker is a sim-time ground-truth calibrator for the vision encoder and consistency thresholds. Once calibrated, the vision-only path transfers to real hardware where privileged predicates are unavailable.
+New v5 components (src/adapters/v5/, frozen native_framework.py NOT modified):
+- physical_verifier.py: PhysicalVerifier checks object-in-region, grasp reality,
+  and action-vs-physics motion consistency against simulator physics state.
+- visual_grounding.py: VisualGroundingModule encodes images with frozen V-JEPA/
+  DINOv2, compares against goal/stage prototypes for vision-side predicates.
+- vision_physical_monitor.py: VisionPhysicalMonitor fires a repair trigger ONLY
+  when vision AND physical verifier agree; adds action-physics consistency check
+  (catches root4's "push in but move out" regression).
+- vision_subgoal_inference.py: VisionSubgoalInference replaces hard-coded
+  _subgoal() with visual-prototype matching + physical boundary correction.
+- fusion_mlp.py: VerificationFusionMLP fuses vision features + physics features
+  + subgoal one-hot into P(verification passes). Tiny MLP (~30K params), does
+  NOT generate actions — only scores accept/handoff safety.
+- train_fusion_mlp.py: supervised training script on completed trajectory pairs.
+- v5_integration.py: wrapper showing how to plug v5 evidence into the runner's
+  before()/after() loop without changing frozen framework source.
 
-Rationale: this directly addresses the generalization concern. Prompt-only (v4) rescued root4 but failed root0 across all variants, proving that changing a single instruction string is not a method. The visual+physical layer makes verification and repair task-agnostic rather than microwave-specific. Current run must finish before any code change; no efficacy claim is made for v5 until it launches and completes.
+Five-layer mapping for v5:
+- L1 subgoal: vision prototype matching + physical correction (replaces hard-coded
+  acquire/transfer/contain_release/close rules).
+- L2 frozen VLA: unchanged; still receives only language, outputs unchanged actions.
+- L3 monitor: trigger = vision anomaly AND physical verifier agree; suppresses
+  false interventions (e.g. root3 release-transition false alarm).
+- L4 gate: unchanged control flow; trigger source becomes vision+physical evidence;
+  MLP probability can additionally gate repair entry / handoff.
+- L5 repair + handoff: fusion MLP probability is a pre-handoff safety check;
+  physical consistency (action vs observed motion) prevents unverified handoffs.
 
-Plan location: agent_notes/current_goal_and_experiment_queue_20261019.md (to be updated with v5 plan hash after launch).
+Sim-to-real: physics checker is sim-time ground-truth calibrator; once calibrated,
+vision-only path transfers to real hardware where privileged predicates are
+unavailable.
+
+Next steps:
+1. Wire frozen V-JEPA/DINOv2 encoder into VisualGroundingModule._make_frozen_encoder().
+2. Train fusion_mlp on completed root0/root1/root2 trajectories (train_fusion_mlp.py).
+3. Edit run_framework_comparison.py to call V5VerificationWrapper in the actor loop.
+4. Launch v5 experiment on root0 (the currently-unsolved failure mode) first.
+
+Plan location: agent_notes/current_goal_and_experiment_queue_20261019.md (v5 plan hash TBD).
 
 ### Update 21 Oct — Full-task prompt/resumption factorial launched
 
