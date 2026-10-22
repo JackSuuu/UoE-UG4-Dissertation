@@ -3,6 +3,29 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Visual-grounding + physical-consistency extension planned (not launched)
+
+The current prompt-refinement run (framework_prompt_refine_run_20261021, PID 4175289) is still executing its frozen 36-cell plan; sources/config are frozen and must not be touched mid-run. The next experiment branch (v5_visual_physical) will extend the five-layer framework with vision-based state inference and physical-consistency checking, rather than tuning another prompt.
+
+New components (under src/adapters/, not modifying the frozen native_framework.py):
+- VisualGroundingModule: frozen V-JEPA/DINOv2 encoder; compares current image against goal prototypes to infer candidate predicates (in_goal_vision, held_clear_vision, etc.).
+- PhysicalConsistencyChecker: uses simulator physics (position, contact, grasp) as ground truth during sim development to validate visual inferences; outputs a consistency score that gates whether a vision predicate is adopted.
+- VisionBasedSubgoalInference: replaces the hard-coded _subgoal() phase rules; infers the current stage from visual features, with physical checker as boundary correction.
+- VisionConditionedVerifier: goal-conditioned success classifier (current image + goal image -> success probability) to replace hard predicate checks in _progress().
+
+Five-layer mapping:
+- L1 subgoal: vision feature clustering / classifier instead of hand-written acquire/transfer/contain_release/close rules.
+- L2 frozen VLA: unchanged; still receives only language, outputs unchanged model actions.
+- L3 monitor: trigger fires only when visual anomaly AND physical checker agree, reducing false interventions.
+- L4 gate: unchanged control flow; trigger source becomes vision+physical joint evidence.
+- L5 repair + handoff: VisionConditionedVerifier accepts repair; physical consistency is a pre-handoff safety check (no "visually in but physically out" handoff).
+
+Sim-to-real positioning: the physics checker is a sim-time ground-truth calibrator for the vision encoder and consistency thresholds. Once calibrated, the vision-only path transfers to real hardware where privileged predicates are unavailable.
+
+Rationale: this directly addresses the generalization concern. Prompt-only (v4) rescued root4 but failed root0 across all variants, proving that changing a single instruction string is not a method. The visual+physical layer makes verification and repair task-agnostic rather than microwave-specific. Current run must finish before any code change; no efficacy claim is made for v5 until it launches and completes.
+
+Plan location: agent_notes/current_goal_and_experiment_queue_20261019.md (to be updated with v5 plan hash after launch).
+
 ### Update 21 Oct — Full-task prompt/resumption factorial launched
 
 The next experiment separates the root4 prompt and handoff hypotheses using all
