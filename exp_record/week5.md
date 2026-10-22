@@ -3,6 +3,34 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Component-layout root0 diagnostic launched
+
+Pushed source freeze `f99ac78fba8bf08160e1a4ca480316acfb6bd5a7` after
+25 controller tests and 8 correction/package-import tests passed. The annual
+plan's pre-existing working-tree changes remain uncommitted.
+
+Run directory: `/home/ami/scratch/framework_root0_components_20261022_r1/`.
+Fresh plan SHA256:
+`bf8e680ce8bd13ab03d1535ebbbd24e041aec6e20213ceff7cdeadc8b806f046`.
+Only `v2_root0` is selected from the plan; the other 35 cells are not launched.
+Detached supervisor PID/session `105878`; launch/progress are recorded in
+`launch.json` and `supervisor_status.json`. Episode output is `v2_root0/`,
+with `episode.log`; after a valid completed episode, the supervisor automatically
+runs zero-query tape replay into `replay_v2_root0/`, with `replay.log`.
+
+One actor on physical GPU3 (`GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b`),
+no GPU0 use. Frozen actor, matched root0 initial state, 10 initialization noops,
+520 query/action limits and original stopping rule are retained. Treatment is
+explicitly `--use-v5` / `bounded_translation_v1`, with separate numeric-edit
+accounting/caps; it is not the old unchanged-action protocol. No fusion MLP
+is loaded. Native repair decisions still come from `src/controller.py`.
+
+This is a development diagnostic of the no-lift/bounded-offset prototype,
+not a trained visual/physical framework or a generalization evaluation.
+Real visual encoder integration, risk training/calibration and genuine suffix
+regeneration remain unfinished. All earlier attempts and evidence are retained.
+No completion or rescue outcome is claimed at launch.
+
 ### Update 22 Oct — Source packages separated by responsibility
 
 Moved `src/adapters/native_framework.py` to `src/controller.py`; the
