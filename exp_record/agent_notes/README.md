@@ -4,6 +4,10 @@ Weekly summaries: [Week5](../week5.md), [all weeks](experiment_record_index.md).
 
 ## Current
 
+* [Repair-only candidate scoring interface and executed recovery-data experiment](framework_repair_candidates_20261022.md)
+* [Recent papers and inspected code: action-conditioned verification, recovery generation and handoff](framework_literature_review_20261022.md)
+* [Admission-only isolation, then diagnosis-conditioned recovery](framework_admission_and_repair_20261022.md)
+* [18-episode diagnostics: baseline4/6, joint2/6, measured+fusion4/6; admission, repair and handoff findings](framework_diagnostic_study_20261022.md)
 * [Research goal: the real five-layer verification/repair framework](../../core_research_plan.md)
 * [Next full-framework experiment design and current results](current_goal_and_experiment_queue_20261019.md)
 * [Latest v2:4/6 vs4/6, no rescue/harm; verified local recovery fails at handoff](../../backups/framework_comparison_20261021/README.md)

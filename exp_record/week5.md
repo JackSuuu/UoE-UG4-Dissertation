@@ -3,6 +3,87 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 22 Oct — Repair-only candidate coverage and recovery-data collection
+
+Follow-up: user requested more data/conditions and the persistently failed fridge.
+The [training expansion and fridge pilot](agent_notes/repair_data_expansion_and_fridge_20261022.md)
+are frozen and launched in a serialized queue:10fridge episodes first, followed by
+20mandatory microwave root10–19controls plus up to30triggered candidate siblings.
+Both fridge scene preflights and two new training-state preflights passed without
+actor queries.71unit-check executions passed. The fridge pilot uses an explicitly
+new measured task adapter with unchanged VLA actions, not transferred microwave
+neural thresholds. Results pending; calibration/confirmation rollouts stay reserved.
+
+User approved borrowing candidate scoring and verified-recovery data designs,
+and explicitly reaffirmed verification→repair→reverification→resumption as the
+main line. The [new implementation and frozen protocol](agent_notes/framework_repair_candidates_20261022.md)
+add a repair-scoped scorer interface, unchanged sampled-action selection and
+executed outcome labels with root-group splits and unknown/infrastructure censoring.
+70checks pass;28previous controller traces /12,403actions remain exact.
+
+The ten-case development collector completed: roots0/4×four first-repair
+candidate slots, plus two root1inactive-path sentinels. All four candidates are
+queried before fixed-slot selection;520actions and at most523actual actor queries
+are budgeted equally across slots. Later repair and handoff control remains the
+existing framework. Root0's four proposals are identical and all runs fail;
+root1's two inactive-path sentinels both succeed. Root4has four distinct proposals:
+slots0/1/2fail, while slot3rescues the task in506actions /509queries with11repair
+actions. It passes verified exit at158, executes nominal handoff at159, then
+preserves containment for347nominal actions through completion at505(zero-based).
+This is candidate-coverage evidence, not a trained scorer's selection benefit.
+All10episodes pass replay and independent joint audits:5,154frames,
+5,044joint observations and656handoff scores. Eight executed recovery records
+and one verified successful segment are exported with compact hashed evidence.
+
+### Update 22 Oct — Isolate admission, then couple diagnosis to recovery behavior
+
+User authorized the [admission and recovery sequence](agent_notes/framework_admission_and_repair_20261022.md).
+Six admission-only episodes are complete and fully audited: success4/6, no harms
+or rescues versus baseline,176repair actions. Their full action/physical tapes
+equal measured+fusion on all six roots despite retaining joint computation and
+handoff vetoes. Admission isolation is sufficient to remove the two joint harms;
+it does not rescue roots0/4. Compact evidence is retained alongside the note.
+
+Phase B completed four diagnostic episodes on roots0/4: measured-stage requests,
+then measured-stage plus contract-progress early exit. The latter inherits the
+12-endpoint /3mm window; retry logic, prompts and fusion thresholds are fixed.
+60tests pass and all24previous controller traces (10,323actions) remain exact
+under their recorded modes. These experiments test actual behavior changes,
+not added diagnosis text alone. Both modes failed both tasks, each using520total
+actions per episode, with zero verified repairs. Progress exit reduced repair
+actions from160to121across the two roots, without a rescue or total-action saving.
+All2,080actions pass unchanged-action checks;2,128frames pass exact replay and
+2,084joint observations /281handoff scores pass independent audit.
+
+The [literature and source review](agent_notes/framework_literature_review_20261022.md)
+compares recent action-conditioned verification, learned corrective execution,
+and recovery-data methods against frozen OpenVLA H1. It recommends separating
+candidate recoverability from verifier selection before another online change.
+
+### Update 22 Oct — Matched framework diagnostics and richer repair logs
+
+User requested experiments to identify how to adjust the existing architecture.
+The [diagnostic protocol and evidence](agent_notes/framework_diagnostic_study_20261022.md)
+compare bare VLA, full joint and measured-controller-plus-fusion on six reused
+microwave roots. Eight episodes were reused and ten newly collected with the
+same model/action budgets. All18episodes pass exact replay; six joint audits
+and both applicable measured-fusion audits pass without mismatch.
+Detailed logs separate trigger validity, actual recovery, gate vetoes, retries,
+handoffs and complete-task outcomes.
+
+Final success: **baseline4/6, full joint2/6, measured + fusion4/6**. Joint has
+0rescues / 2harms and spends640repair actions with0verified repairs. Measured +
+fusion spends176repair actions; its four successful action tapes equal baseline.
+Its only verified repair (root4) loses containment on the first nominal handoff
+action. Root4 also exposes stage-selection and fusion-rejection issues in joint.
+GPU baseline-shadow inference exactly matches all1,090shared-prefix observations.
+
+Next proposed adjustment: isolate anomaly-to-intervention admission while
+retaining joint computation, then test objective-progress-based repair/retry
+control and continuation-based handoff verification separately. These proposals
+are not yet implemented. This remains single-task, reused-root development
+evidence. No commit/push was made.
+
 ### Update 22 Oct — User paused oracle expansion; return to stepwise diagnosis
 
 User explicitly requested a smaller, interpretable next step rather than new

@@ -29,7 +29,29 @@ import traceback
 sys.dont_write_bytecode = True
 SCRIPT = Path(__file__).resolve()
 REPO = SCRIPT.parent.parent
-PYTHON = '/home/ami/miniconda3/bin/python'
+PYTHON = '/home/jack/miniconda3/bin/python'
+
+# Lazy-loaded scorer components (only imported when --recovery-scorer or
+# --handoff-scorer is set).
+_SCORER_MODULES = None
+
+
+def _load_scorer_modules():
+    global _SCORER_MODULES
+    if _SCORER_MODULES is not None:
+        return _SCORER_MODULES
+    sys.path.insert(0, str(REPO))
+    from src.perception.frozen_visual_encoder import FrozenVisualEncoder
+    from src.verification.fusion_mlp import extract_physics_features
+    from src.repair.recovery_scorer import RecoveryScorer
+    from src.repair.handoff_scorer import HandoffScorer
+    _SCORER_MODULES = dict(
+        FrozenVisualEncoder=FrozenVisualEncoder,
+        extract_physics_features=extract_physics_features,
+        RecoveryScorer=RecoveryScorer,
+        HandoffScorer=HandoffScorer,
+    )
+    return _SCORER_MODULES
 LANES = [dict(gpu=2, egl_device=1, physical_uuid='GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8'),
          dict(gpu=3, egl_device=0, physical_uuid='GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b')]
 COHORTS = ('baseline', 'v2', 'prompt_only', 'prompt_place', 'prompt_deepen', 'prompt_settle')
@@ -42,7 +64,13 @@ SOURCES = ('scripts/run_framework_comparison.py', 'src/controller.py', 'src/__in
             'scripts/test_native_framework.py', 'scripts/test_action_correction.py',
            'scripts/test_fusion_handoff.py',
            'scripts/run_fusion_handoff_ablation.py',
-            'scripts/test_joint_framework.py', 'scripts/run_joint_framework.py',
+             'scripts/test_joint_framework.py', 'scripts/run_joint_framework.py',
+             'scripts/run_framework_diagnostic_study.py', 'scripts/check_framework_trace_compatibility.py',
+              'src/repair/experimental/contract_progress.py', 'scripts/test_repair_contract_progress.py',
+              'scripts/test_repair_candidates.py', 'scripts/run_repair_candidate_study.py',
+              'scripts/analyze_repair_candidates.py',
+               'scripts/run_repair_data_expansion.py', 'scripts/test_repair_data_expansion.py',
+               'scripts/run_fridge_repair_probe.py', 'scripts/test_fridge_repair_probe.py',
             'scripts/test_recovery_options.py', 'scripts/run_recovery_comparison.py',
            *tuple(str(path.relative_to(REPO)) for folder in (
                'adapters', 'perception', 'verification', 'prediction', 'repair', 'memory', 'training')
@@ -157,8 +185,22 @@ def launch_waves(jobs):
             for r in range(6) for start in range(0, len(COHORTS), 2)]
 
 
-def prepare(directory, mlp_path=None, joint_path=None):
-    """CPU-only hashes and plan; no torch, simulator, GPU discovery, or model imports."""
+TRAINING_ROOTS = tuple(range(10, 20))
+TRAINING_LIMITS = dict(LIMITS, roots=10, cells=20, queries=523, total_queries=26150,
+                      maximum_collection_episodes=50)
+
+
+def training_cells(references):
+    """New initial states; root0 supplies runtime/model provenance, not outcomes."""
+    return [dict(name=f'{cohort}_root{root}', root=root, cohort=cohort,
+        arm='baseline' if cohort == 'baseline' else 'framework', variant='v2',
+        baseline=references[0]['baseline'], runtime_reference_root=0,
+        data_split='training', lane=deepcopy(LANES[root % 2]))
+        for root in TRAINING_ROOTS for cohort in ('baseline', 'v2')]
+
+
+def prepare(directory, mlp_path=None, joint_path=None, repair_candidates=False, training_data=False):
+    """CPU-only plan; training expansion additionally reads selected official states."""
     directory = directory.resolve()
     require(not directory.exists(), f'Output exists: {directory}')
     pins, weights, references = {}, {}, []
@@ -194,7 +236,7 @@ def prepare(directory, mlp_path=None, joint_path=None):
         joint = dict(artifact=str(joint_path), sha256=sha(joint_path),
             report=load(joint_path.parent/'report.json'), schema='joint_visual_physical_prediction_memory_risk_h1_v1')
     for root in range(6):
-        baseline = Path(f'/home/ami/scratch/native_long_l1_20261019_{"a" if root < 3 else "b"}')/f'microwave_root{root}'
+        baseline = Path(f'/home/jack/scratch/native_long_l1_20261019_{"a" if root < 3 else "b"}')/f'microwave_root{root}'
         status, manifest = load(baseline/'status.json'), load(baseline/'source_manifest.json')
         original = status['args']
         require(original['init_index'] == root and original['seed'] == 0 and
@@ -240,26 +282,65 @@ def prepare(directory, mlp_path=None, joint_path=None):
                 wall_scope='scene setup + ten noops + rollout, excluding actor load',
                  schedule='per root: baseline/v2, prompt_only/gate_only, combined; each wave then fresh replays; lanes alternate by root',
                 invalid_policy='retain all cells; replay image mismatches remain failures')
+    if repair_candidates:
+        require(joint is not None, 'Repair candidates require pinned joint verification')
+        from src.repair.candidate_pool import CONFIG
+        plan['repair_candidates'] = deepcopy(CONFIG)
+    if training_data:
+        require(repair_candidates, 'Training collection requires the pinned candidate protocol')
+        # CPU-only official state selection, no policy/model construction. Full
+        # file is hash-pinned; only designated training rows are inspected.
+        import numpy as np
+        import torch
+        reference = load(Path(references[0]['baseline'])/'initial_source.json')
+        states = torch.load(reference['path'], weights_only=False, map_location='cpu')
+        initial_sources = {}
+        for root in TRAINING_ROOTS:
+            chosen = np.asarray(states[root])
+            initial_sources[str(root)] = dict(reference, index=root,
+                selected_state_sha256=hashlib.sha256(np.ascontiguousarray(chosen).tobytes()).hexdigest(),
+                selected_state_shape=list(chosen.shape), selected_state_dtype=str(chosen.dtype))
+        plan.update(schema=4, training_data=True, cells=training_cells(references), limits=TRAINING_LIMITS,
+            training_initial_sources=initial_sources,
+            description='Training-only independent initial-state expansion of verification/repair candidate data',
+            study=dict(name='repair_training_roots10_19', data_split='training',
+                roots=list(TRAINING_ROOTS), calibration_roots=list(range(6,10)),
+                final_confirmation_roots=list(range(20,50)),
+                primary='Complete native task outcome; collection is not held-out evaluation',
+                stopping='All ten baseline/greedy-framework pairs; fixed candidate siblings only when first repair exists'))
     directory.mkdir(parents=True)
     for name in SOURCES:
         target = directory/'source'/name
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes((REPO/name).read_bytes())
     save(directory/'plan.json', plan)
-    print(json.dumps(dict(plan=str(directory/'plan.json'), sha256=sha(directory/'plan.json'), cells=len(cells))))
+    print(json.dumps(dict(plan=str(directory/'plan.json'), sha256=sha(directory/'plan.json'), cells=len(plan['cells']))))
     return 0
 
 
 def check_plan(plan, check_files=True):
-    require(plan['limits'] == LIMITS, 'Frozen limits changed')
-    require([(c['root'], c['cohort']) for c in plan['cells']] ==
-            [(r, a) for r in range(6) for a in COHORTS], 'Expected thirty ordered cells')
-    for cell in plan['cells']:
-        require(cell['name'] == f"{cell['cohort']}_root{cell['root']}" and
-                cell['lane'] == LANES[(COHORTS.index(cell['cohort'])+cell['root'])%2], 'Cell identity drift')
-        require(cell['arm'] == ('baseline' if cell['cohort'] == 'baseline' else 'framework')
-            and cell['variant'] == ('v2' if cell['cohort'] == 'baseline' else cell['cohort']), 'Treatment drift')
-        require(cell['baseline'] == plan['references'][cell['root']]['baseline'], 'Reference drift')
+    require(plan['limits'] == (TRAINING_LIMITS if plan.get('training_data') else LIMITS), 'Frozen limits changed')
+    if plan.get('repair_candidates') is not None:
+        if str(REPO) not in sys.path:
+            sys.path.append(str(REPO))
+        from src.repair.candidate_pool import CONFIG
+        require(plan['repair_candidates'] == CONFIG, 'Candidate protocol drift')
+    if plan.get('training_data'):
+        require(plan.get('schema') == 4 and plan.get('repair_candidates') is not None, 'Invalid training plan')
+        require(plan['cells'] == training_cells(plan['references']), 'Training cells/splits/lanes changed')
+        require(set(plan['training_initial_sources']) == {str(r) for r in TRAINING_ROOTS}, 'Training split drift')
+        for root, initial in plan['training_initial_sources'].items():
+            require(initial['index'] == int(root) and
+                plan['source_sha256'].get(initial['path']) == initial['sha256'], 'Initial-state provenance drift')
+    else:
+        require([(c['root'], c['cohort']) for c in plan['cells']] ==
+                [(r, a) for r in range(6) for a in COHORTS], 'Expected thirty-six ordered cells')
+        for cell in plan['cells']:
+            require(cell['name'] == f"{cell['cohort']}_root{cell['root']}" and
+                    cell['lane'] == LANES[(COHORTS.index(cell['cohort'])+cell['root'])%2], 'Cell identity drift')
+            require(cell['arm'] == ('baseline' if cell['cohort'] == 'baseline' else 'framework')
+                and cell['variant'] == ('v2' if cell['cohort'] == 'baseline' else cell['cohort']), 'Treatment drift')
+            require(cell['baseline'] == plan['references'][cell['root']]['baseline'], 'Reference drift')
     cls = framework_class()
     require(plan['controller_constants'] == {v: cls(mode='framework', variant=v).config for v in COHORTS[1:]},
             'Controller constants changed')
@@ -285,10 +366,11 @@ def is_repair(decision):
     return 'repair' in str(decision.get('owner', '')).lower() or decision.get('mode') == 'repair'
 
 
-def controllers(arm, language, variant='v2', fusion_mode='off', joint_mode=False, recovery_options=False):
+def controllers(arm, language, variant='v2', fusion_mode='off', joint_mode=False, recovery_options=False,
+                joint_admission='all', repair_control='existing'):
     cls = framework_class()
     return cls(mode=arm, language=language, variant=variant, fusion_mode=fusion_mode, joint_mode=joint_mode,
-               recovery_options=recovery_options), cls(
+               recovery_options=recovery_options, joint_admission=joint_admission, repair_control=repair_control), cls(
         mode='framework' if arm == 'baseline' else 'baseline', language=language, variant=variant)
 
 
@@ -324,12 +406,24 @@ def episode(args):
             'Joint mode needs pinned components, gate mode, and no legacy/fallback v5 path')
     require(not args.recovery_options or args.joint_components is not None,
             'Recovery options require pinned joint components')
+    require(args.joint_admission == 'all' or (args.joint_components is not None and not args.recovery_options),
+            'Admission ablation requires joint unchanged-policy execution')
+    require(args.repair_control == 'existing' or (args.joint_components is not None and not args.recovery_options),
+            'Contract repair control requires joint unchanged-policy execution')
+    candidate_enabled = args.candidate_slot is not None
+    require(not candidate_enabled or (plan.get('repair_candidates') is not None and
+        args.joint_components is not None and args.joint_admission == 'measured_only' and
+        args.repair_control == 'existing' and not args.recovery_options and not args.use_v5),
+        'Candidate collection requires pinned measured-admission existing repair with no action edits')
+    query_cap = plan['repair_candidates']['total_query_cap'] if candidate_enabled or plan.get('training_data') else 520
     cell = next(c for c in plan['cells'] if c['name'] == args.cell)
     require(not args.use_v5 or cell['arm'] == 'framework',
             'Numeric-correction prototype cannot be used as bare-VLA baseline')
     runner, baseline_manifest = runtime(cell)
     from adapters.libero_openvla import policy_image
     original = argparse.Namespace(**load(Path(cell['baseline'])/'status.json')['args'])
+    if plan.get('training_data'):
+        original.init_index = cell['root']
     for key in ('gpu', 'egl_device'):
         setattr(original, key, cell['lane'][key])
     original.out = str(args.out.resolve())
@@ -346,9 +440,17 @@ def episode(args):
                   fusion_mode=args.fusion_mode,
                   joint_mode=args.joint_components is not None,
                   recovery_options=args.recovery_options,
+                  joint_admission=args.joint_admission,
+                  repair_control=args.repair_control,
+                   actor_query_cap=query_cap,
                   repair_protocol='frozen_policy_h1_remaining_execution_v1' if args.joint_components else None,
                   plan_sha256=sha(args.plan), pid=os.getpid())
     save(out/'status.json', status)
+    if candidate_enabled:
+        status.update(candidate_protocol=plan['repair_candidates'], candidate_slot=args.candidate_slot,
+            candidate_pools=0, candidate_extra_queries=0, actor_query_cap=query_cap,
+            query_accounting='controller counts executed H1 requests; actor_queries includes every candidate',
+            action_protocol='selected_unchanged_vla_candidate_v1')
     if args.joint_components is not None:
         status['description'] = ('Joint real-vision/physical/prediction/trained-risk/episodic-memory controller; '
             'frozen-policy H1 repair and fusion/risk/prediction handoff veto; no numeric offsets.')
@@ -380,13 +482,16 @@ def episode(args):
             save(out/'status.json', status)
             env, obs = runner.make_scene(original, out, base)
             runner.record_scene_sources(env, out, manifest)
-            require(load(out/'initial_source.json') == load(Path(cell['baseline'])/'initial_source.json'),
+            expected_initial = (plan['training_initial_sources'][str(cell['root'])] if plan.get('training_data')
+                else load(Path(cell['baseline'])/'initial_source.json'))
+            require(load(out/'initial_source.json') == expected_initial,
                     'Official initial state or scene changed')
             require(sha(out/'model.xml') == baseline_manifest['model_xml_sha256'], 'Compiled scene drift')
             diag = runner.Diagnostics(env)
             language = env.language_instruction
             active, shadow = controllers(cell['arm'], language, cell['variant'], args.fusion_mode,
-                                         args.joint_components is not None, args.recovery_options)
+                                         args.joint_components is not None, args.recovery_options, args.joint_admission,
+                                         args.repair_control)
             status.update(language=language, goal_clauses=diag.clauses)
 
             # --- v5 vision+physical verification layer (optional) ---
@@ -446,6 +551,20 @@ def episode(args):
                 (out/'joint_inputs').mkdir()
             status['phase'] = 'actor'
             v5_evidence = None
+            vision_encoder = recovery_scorer = handoff_scorer = scorer_modules = None
+            if args.recovery_scorer is not None or args.handoff_scorer is not None:
+                scorer_modules = _load_scorer_modules()
+                vision_encoder = scorer_modules['FrozenVisualEncoder'](
+                    args.encoder_checkpoint, args.encoder_source, device='cuda:0',
+                    expected_sha=args.encoder_sha)
+                if args.recovery_scorer is not None:
+                    recovery_scorer = scorer_modules['RecoveryScorer'](args.recovery_scorer, device='cuda:0')
+                if args.handoff_scorer is not None:
+                    handoff_scorer = scorer_modules['HandoffScorer'](args.handoff_scorer, device='cuda:0')
+                status['scorer_modules'] = dict(
+                    encoder=vision_encoder.provenance,
+                    recovery_scorer=recovery_scorer.metadata if recovery_scorer else None,
+                    handoff_scorer=handoff_scorer.metadata if handoff_scorer else None)
             if initial['native_success']:
                 status['termination'] = 'native_success'
             else:
@@ -495,23 +614,64 @@ def episode(args):
                     before_controller = controller_fields(env)
                     runner.write_row(controls, dict(event='before', step=step, decision=decision,
                         shadow_decision=shadow_decision, diagnostics=measured,
-                        query_budget=dict(used=step, remaining=520-step)))
-                    status['actor_queries'] += 1
-                    runner.write_row(queries, dict(event='requested', **metadata))
-                    save(out/'status.json', status)
-                    start = time.monotonic()
-                    decode = actor.query(png, query_request['language'], query_request['source'], query_request['seed'], step)
-                    inference_s = time.monotonic()-start
-                    runner.write_row(queries, dict(event='returned', **metadata, decode=decode,
-                                                   inference_s=inference_s))
-                    validate_decode(decode, metadata)
-                    if not decode.get('valid'):
-                        raise InvalidGeneration(str(decode.get('invalid_reason')))
+                        query_budget=dict(used=status['actor_queries'], remaining=query_cap-status['actor_queries'])))
+                    probe = candidate_enabled and decision['owner'] == 'repair' and status['candidate_pools'] == 0
+                    requests = [query_request]
+                    scoring_context = selection = None
+                    vision_feat = physics_feat = None
+                    if probe:
+                        from src.repair import candidate_pool
+                        requests = candidate_pool.requests(decision, cell['root'], step)
+                        post_state = active.preview_fusion_state(measured)
+                        scoring_context = candidate_pool.context(decision,
+                            post_state, metadata['policy_png_sha256'],
+                            [r['action'] for r in executed[-6:]])
+                        if recovery_scorer is not None:
+                            img_arr = np.ascontiguousarray(obs['agentview_image'])
+                            vision_feat = vision_encoder.encode(img_arr)
+                            physics_feat = scorer_modules['extract_physics_features'](post_state)
+                        if repair_replanning is not None:
+                            repair_replanning = dict(repair_replanning,
+                                additional_queries=len(requests)-1,
+                                candidate_protocol=plan['repair_candidates']['schema'])
+                            metadata['repair_replanning'] = repair_replanning
+                    require(status['actor_queries']+len(requests) <= query_cap, 'Actor query budget exhausted')
+                    candidates, inference_s = [], 0.
+                    for request in requests:
+                        query_index = status['actor_queries']
+                        query_metadata = dict(metadata, query_index=query_index,
+                            source=request['source'], seed=request['seed'])
+                        status['actor_queries'] += 1
+                        runner.write_row(queries, dict(event='requested', **query_metadata))
+                        save(out/'status.json', status)
+                        start = time.monotonic()
+                        decode = actor.query(png, request['language'], request['source'], request['seed'], query_index)
+                        elapsed = time.monotonic()-start
+                        inference_s += elapsed
+                        runner.write_row(queries, dict(event='returned', **query_metadata,
+                            decode=decode, inference_s=elapsed))
+                        validate_decode(decode, query_metadata)
+                        if not decode.get('valid'):
+                            raise InvalidGeneration(str(decode.get('invalid_reason')))
+                        candidates.append(dict(candidate_id=len(candidates), metadata=query_metadata, decode=decode))
+                    if probe:
+                        if recovery_scorer is not None:
+                            decode, selection = candidate_pool.select(
+                                candidates, scoring_context,
+                                scorer=recovery_scorer,
+                                vision_feat=vision_feat, physics_feat=physics_feat)
+                        else:
+                            decode, selection = candidate_pool.select(
+                                candidates, scoring_context, collection_slot=args.candidate_slot)
+                        status['candidate_pools'] += 1
+                        status['candidate_extra_queries'] += len(requests)-1
                     extra = dict(proposal=decode['action'], native_proposal=decode['native_action'],
                         tokens=decode['tokens'], decode=decode, inference_s=inference_s,
                         decision=decision, shadow_decision=shadow_decision,
                         action_owner=decision['owner'], controller_before=before_controller,
                         episode_elapsed_s=time.monotonic()-episode_start)
+                    if selection is not None:
+                        extra['candidate_selection'] = selection
                     if repair_replanning is not None:
                         extra['repair_replanning'] = repair_replanning
                     # --- v5: action suffix correction before execution (CheckVLA Module 3) ---
@@ -614,13 +774,21 @@ def episode(args):
                     elif fusion_verifier is not None and decision['owner'] == 'repair':
                         fusion_evidence = fusion_verifier.score(policy_image(obs['agentview_image']),
                             active.preview_fusion_state(row['diagnostics']), decision['recovery_goal'])
+                    handoff_evidence = dict(fusion_evidence or {})
+                    if handoff_scorer is not None and decision['owner'] == 'repair':
+                        post_state = active.preview_fusion_state(row['diagnostics'])
+                        img_arr = np.ascontiguousarray(obs['agentview_image'])
+                        vf = vision_encoder.encode(img_arr)
+                        pf = scorer_modules['extract_physics_features'](post_state)
+                        handoff_result = handoff_scorer.score(vf, pf)
+                        handoff_evidence['handoff_scorer'] = handoff_result
                     recovery_feedback = None if recovery is None else recovery.observe(
                         row['diagnostics'], active.preview_fusion_state(row['diagnostics']))
                     if recovery is not None:
                         status['recovery_events'] = deepcopy(recovery.events)
                     verification = active.after(step, deepcopy(row['diagnostics']),
                                                 list(row['action']), deepcopy(decision),
-                                                 handoff_evidence=fusion_evidence, recovery_feedback=recovery_feedback)
+                                                 handoff_evidence=handoff_evidence, recovery_feedback=recovery_feedback)
                     if joint_runtime is not None:
                         verification['joint_after'] = deepcopy(joint_evidence)
                     shadow_verification = shadow.after(step, deepcopy(row['diagnostics']),
@@ -642,7 +810,9 @@ def episode(args):
                         verification=verification, shadow_verification=shadow_verification,
                         controller_after=controller_fields(env), actual_handoff=handoff,
                         actual_handoff_definition='first executed nominal action following repair action',
-                        query_budget=dict(used=step+1, remaining=519-step))
+                        query_budget=dict(used=status['actor_queries'], remaining=query_cap-status['actor_queries']))
+                    if candidate_enabled:
+                        control['recovery_dataset_state'] = active.preview_fusion_state(row['diagnostics'])
                     runner.write_row(controls, control)
                     control_rows.append(control)
                     last_decision = decision
@@ -668,7 +838,7 @@ def episode(args):
         if active is not None:
             status.update(controller_summary=active.summary, shadow_summary=shadow.summary)
         exit_record = dict(event='episode_exit', termination=status.get('termination'),
-            actions=len(executed), queries=status['actor_queries'], remaining=520-status['actor_queries'],
+            actions=len(executed), queries=status['actor_queries'], remaining=query_cap-status['actor_queries'],
             last_decision=last_decision, repair_active=bool(last_decision and is_repair(last_decision)),
             verification=control_rows[-1]['verification'] if control_rows else None,
             actual_handoffs=[r['step'] for r in control_rows if r['actual_handoff']])
@@ -690,7 +860,8 @@ def episode(args):
             tokens=np.asarray([r['tokens'] for r in executed], dtype=np.int64).reshape(-1, 7))
         status.update(ended=time.time(), total_wall_s=time.time()-status['started'])
         status['valid_episode'] = (status['status'] == 'completed' and
-            status['actor_queries'] == status['steps_executed'] and
+            status['actor_queries'] == status['steps_executed']+status.get('candidate_extra_queries', 0) and
+            status['actor_queries'] <= query_cap and
             (status.get('termination') == 'native_success' or status['steps_executed'] == 520))
         save(out/'status.json', status)
     return 0 if status['valid_episode'] else 1
@@ -715,6 +886,10 @@ def replay(args):
         zero_query_guard(runner, report)
         from adapters.libero_openvla import policy_image
         original = argparse.Namespace(**status['args'])
+        if plan.get('training_data'):
+            require(original.init_index == status['cell']['root'] and
+                load(source/'initial_source.json') == plan['training_initial_sources'][str(original.init_index)],
+                'Training episode differs from registered initial condition')
         require(os.environ.get('CUDA_VISIBLE_DEVICES') == status['cell']['lane']['physical_uuid'],
                 'Replay must use recorded UUID lane')
         with runner.deadline(300):
@@ -735,12 +910,26 @@ def replay(args):
             diag = runner.Diagnostics(env)
             active, shadow = controllers(status['cell']['arm'], env.language_instruction,
                                           status['cell']['variant'], status.get('fusion_mode', 'off'),
-                                           status.get('joint_mode', False), status.get('recovery_options', False))
+                                            status.get('joint_mode', False), status.get('recovery_options', False),
+                                            status.get('joint_admission', 'all'), status.get('repair_control', 'existing'))
             recovery = None
             recorder = runner.ContactRecorder(env.sim, keywords=(*diag.relevant, 'gripper'))
             before_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'before'}
             after_controls = {r['step']: r for r in rows(source/'controller.jsonl') if r['event'] == 'after'}
-            returned = {r['step']: r for r in rows(source/'queries.jsonl') if r['event'] == 'returned'}
+            query_rows = rows(source/'queries.jsonl')
+            returned_rows = [r for r in query_rows if r['event'] == 'returned']
+            requested_rows = [r for r in query_rows if r['event'] == 'requested']
+            require(len(returned_rows) == len(requested_rows) == status['actor_queries'], 'Missing query records')
+            require([r['query_index'] for r in returned_rows] == list(range(len(returned_rows))),
+                    'Nonsequential actor queries')
+            for request, response in zip(requested_rows, returned_rows):
+                require(all(response[k] == v for k, v in request.items() if k != 'event'), 'Query request drift')
+                validate_decode(response['decode'], response)
+            returned = {r['query_index']: r for r in returned_rows}
+            query_cursor, candidate_pools = 0, 0
+            candidate_enabled = status.get('candidate_protocol') is not None
+            if candidate_enabled:
+                require(status['candidate_protocol'] == plan.get('repair_candidates'), 'Candidate plan drift')
             prior_decision = None
             for phase, directory in (('initialization', source/'initialization'), ('actor', source)):
                 tape = evidence_tape(runner, directory, out)
@@ -784,10 +973,40 @@ def replay(args):
                             fields.append('action_decisions')
                         if controller_fields(env) != row['controller_before']:
                             fields.append('controller_before')
-                        query = returned[index]
-                        require(query['language'] == decision['language'] and query['step'] == index and
-                                query['query_index'] == index and query['source'] == 'greedy' and
-                                query['seed'] == 0, 'Query differs from causal decision')
+                        probe = candidate_enabled and decision['owner'] == 'repair' and candidate_pools == 0
+                        count = 1
+                        query = returned[query_cursor]
+                        if probe:
+                            from src.repair import candidate_pool
+                            requests = candidate_pool.requests(decision, status['cell']['root'], index)
+                            candidates = []
+                            for offset, request in enumerate(requests):
+                                q = returned[query_cursor+offset]
+                                require(q['step'] == index and all(q[k] == request[k]
+                                    for k in ('source', 'seed', 'language')), 'Candidate request drift')
+                                require(q['before'] == before and
+                                    q['policy_png_sha256'] == query['policy_png_sha256'] and
+                                    q['policy_rgb_sha256'] == query['policy_rgb_sha256'], 'Candidate context drift')
+                                candidates.append(dict(candidate_id=offset,
+                                    metadata={k: v for k, v in q.items() if k not in ('event', 'decode', 'inference_s')},
+                                    decode=q['decode']))
+                            scoring_context = candidate_pool.context(decision,
+                                active.preview_fusion_state(measured), query['policy_png_sha256'],
+                                [r['action'] for r in recorded[max(0,index-6):index]])
+                            selected, selection = candidate_pool.select(candidates, scoring_context,
+                                collection_slot=status['candidate_slot'])
+                            require(selection == row.get('candidate_selection') and selected == row['decode'],
+                                    'Candidate selection/provenance mismatch')
+                            query = returned[selected['query_index']]
+                            count = len(requests)
+                            candidate_pools += 1
+                        else:
+                            require('candidate_selection' not in row, 'Candidate outside first repair')
+                            require(query['source'] == 'greedy' and query['seed'] == 0,
+                                    'Non-probe action must remain greedy')
+                        require(query['language'] == decision['language'] and query['step'] == index,
+                                'Query differs from causal decision')
+                        query_cursor += count
                         validate_decode(row['decode'], query)
                         if recovery is not None:
                             skill_action, skill_record = recovery.command(decision, measured, row['proposal'])
@@ -823,6 +1042,9 @@ def replay(args):
                             report['joint_models_recomputed'] = False
                         shadow_verification = shadow.after(index, deepcopy(after), list(row['action']), deepcopy(shadow_decision))
                         expected = after_controls[index]
+                        if candidate_enabled:
+                            require(expected.get('recovery_dataset_state') == active.preview_fusion_state(after),
+                                    'Recovery label state drift')
                         if status.get('use_v5'):
                             verification['v5'] = expected['verification']['v5']
                         for key, value in dict(verification=verification, shadow_verification=shadow_verification,
@@ -838,6 +1060,11 @@ def replay(args):
                 for name, key in (('mapped', 'action'), ('native', 'native_proposal'), ('tokens', 'tokens')):
                     require(np.array_equal(actions[name], np.asarray([r[key] for r in recorded]).reshape(-1, 7)),
                             f'Action archive drift: {name}')
+            require(query_cursor == status['actor_queries'], 'Unaccounted model queries')
+            require(candidate_pools == status.get('candidate_pools', 0), 'Candidate pool count drift')
+            if candidate_enabled:
+                require(status['candidate_extra_queries'] == candidate_pools*(plan['repair_candidates']['size']-1)
+                    and status['actor_queries'] <= plan['repair_candidates']['total_query_cap'], 'Candidate budget drift')
             if active.summary != status.get('controller_summary') or shadow.summary != status.get('shadow_summary'):
                 report['mismatches'].append(dict(phase='actor', fields=['controller_summary']))
             report.update(status='replay_mismatch' if report['mismatches'] else 'exact_replay_passed',
@@ -1138,6 +1365,26 @@ def parse_args(argv=None):
                         help='Matched ablation: off, score-only, or conservative verified-exit gate')
     parser.add_argument('--joint-components', type=Path,
                         help='Pinned trained risk + episodic-stage artifact; activates the joint causal runtime')
+    parser.add_argument('--joint-admission', choices=('all', 'measured_only'), default='all',
+                        help='Only changes repair entry: joint-only anomalies stay advisory in measured_only mode')
+    parser.add_argument('--repair-control', choices=('existing', 'measured_stage', 'measured_stage_progress'),
+                         default='existing', help='Isolate measured-stage requests and progress-based unverified exits')
+    parser.add_argument('--repair-candidates', action='store_true',
+                        help='Pin repair-only candidate coverage protocol during preparation')
+    parser.add_argument('--training-data', action='store_true',
+                        help='Prepare only reserved training roots10..19; requires --repair-candidates')
+    parser.add_argument('--candidate-slot', type=int, choices=range(4),
+                        help='Worker-only first-repair fixed slot for executed recovery-data collection')
+    parser.add_argument('--recovery-scorer', type=Path, metavar='PT',
+                        help='Trained recovery action scorer checkpoint (module A)')
+    parser.add_argument('--handoff-scorer', type=Path, metavar='PT',
+                        help='Trained handoff-readiness scorer checkpoint (module B)')
+    parser.add_argument('--encoder-checkpoint', type=Path, metavar='PT',
+                        help='DINOv2 checkpoint for scorer vision encoding')
+    parser.add_argument('--encoder-source', type=Path, metavar='DIR',
+                        help='DINOv2 source directory for scorer vision encoding')
+    parser.add_argument('--encoder-sha', type=str, metavar='SHA',
+                        help='Expected SHA256 of encoder checkpoint')
     args = parser.parse_args(argv)
     if (args.launch or args.worker) and not args.plan:
         parser.error('--plan is required')
@@ -1147,13 +1394,32 @@ def parse_args(argv=None):
         parser.error('private worker requires --cell')
     if args.cell and not args.worker:
         parser.error('--cell is private to --worker')
+    if args.joint_admission != 'all' and not args.worker:
+        parser.error('--joint-admission is a worker-only contrast; replay uses the recorded mode')
+    if args.repair_control != 'existing' and not args.worker:
+        parser.error('--repair-control is a worker-only contrast; replay uses the recorded mode')
+    if args.repair_candidates and not args.prepare:
+        parser.error('--repair-candidates is preparation-only')
+    if args.training_data and (not args.prepare or not args.repair_candidates):
+        parser.error('--training-data requires --prepare and --repair-candidates')
+    if args.candidate_slot is not None and not args.worker:
+        parser.error('--candidate-slot is worker-only')
+    if (args.recovery_scorer is not None or args.handoff_scorer is not None) and not args.worker:
+        parser.error('--recovery-scorer/--handoff-scorer are worker-only')
+    if (args.recovery_scorer is not None or args.handoff_scorer is not None) and (
+            args.encoder_checkpoint is None or args.encoder_source is None):
+        parser.error('--recovery-scorer/--handoff-scorer require --encoder-checkpoint and --encoder-source')
     return args
 
 
 def main(argv=None):
+    argv = sys.argv[1:] if argv is None else argv
+    if argv and argv[0] == '--fridge-probe':
+        from run_fridge_repair_probe import main as fridge_main
+        return fridge_main(argv[1:])
     args = parse_args(argv)
     if args.prepare:
-        return prepare(args.prepare, args.mlp_path, args.joint_components)
+        return prepare(args.prepare, args.mlp_path, args.joint_components, args.repair_candidates, args.training_data)
     if args.summarize:
         return summarize(args.summarize)
     if args.launch:

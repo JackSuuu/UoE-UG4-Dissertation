@@ -19,7 +19,8 @@ class NativeFramework:
     VERSION = 'native_microwave_measured_framework_v4_prompt_refine'
 
     def __init__(self, mode='baseline', language='put the yellow and white mug in the microwave and close it',
-                  variant='v2', fusion_mode='off', joint_mode=False, recovery_options=False):
+                  variant='v2', fusion_mode='off', joint_mode=False, recovery_options=False,
+                  joint_admission='all', repair_control='existing'):
         if mode not in ('baseline', 'framework') or not isinstance(language, str) or not language.strip():
             raise ValueError('Expected baseline/framework and nonempty native language')
         self.mode, self.language = mode, language
@@ -28,6 +29,17 @@ class NativeFramework:
         self.fusion_mode = fusion_mode
         self.joint_mode = joint_mode
         self.recovery_options = recovery_options
+        if joint_admission not in ('all', 'measured_only'):
+            raise ValueError('Expected all/measured_only joint admission')
+        if joint_admission != 'all' and (not joint_mode or recovery_options):
+            raise ValueError('Admission ablation requires joint unchanged-policy execution')
+        self.joint_admission = joint_admission
+        if repair_control not in ('existing', 'measured_stage', 'measured_stage_progress'):
+            raise ValueError('Unknown repair request/continuation control')
+        if repair_control != 'existing' and (not joint_mode or recovery_options):
+            raise ValueError('Contract repair control requires joint unchanged-policy execution')
+        self.repair_control = repair_control
+        self._repair_progress = None
         if recovery_options and not joint_mode:
             raise ValueError('Recovery options require the joint runtime')
         if joint_mode and (mode != 'framework' or fusion_mode != 'gate'):
@@ -36,6 +48,10 @@ class NativeFramework:
             self.VERSION = 'joint_visual_physical_framework_v6_h1'
         if recovery_options:
             self.VERSION = 'joint_framework_v7_oracle_recovery_options'
+        if joint_admission != 'all':
+            self.VERSION = 'joint_v6_measured_admission_h1'
+        if repair_control != 'existing':
+            self.VERSION += '_'+repair_control
         if variant not in ('v2', 'prompt_only', 'gate_only', 'combined', 'prompt_place', 'prompt_deepen', 'prompt_settle'):
             raise ValueError('Unknown frozen factorial variant')
         self._config = dict(version=self.VERSION, variant=variant,
@@ -73,6 +89,11 @@ class NativeFramework:
         if joint_mode:
             self._config.update(joint_mode=True, subgoal_source='pretrained_visual_episodic_memory_physical_constraints',
                 learned_risk=True, repair_generation='frozen_policy_h1_remaining_execution_v1')
+        if joint_admission != 'all':
+            self._config['joint_admission'] = joint_admission
+        if repair_control != 'existing':
+            self._config.update(repair_control=repair_control,
+                subgoal_source='measured_repair_stage_with_joint_evidence_retained')
         if recovery_options:
             from src.repair.recovery_options import CONFIG
             self._config.update(recovery_options=deepcopy(CONFIG),
@@ -313,8 +334,13 @@ class NativeFramework:
                 raise ValueError('Fresh recovery admission evidence required')
         events = []
         blocked = None
+        request_goal = native_goal if self.repair_control != 'existing' else shadow_goal
         if self.mode == 'framework' and self._active is None and monitor['trigger']:
-            if self._handoff_pending is not None:
+            if self.joint_admission == 'measured_only' and monitor['native_trigger'] is None:
+                # Keep the joint diagnosis and selected stage intact. Only the
+                # right to START a repair changes; active repair/handoff does not.
+                blocked = 'joint_trigger_advisory'
+            elif self._handoff_pending is not None:
                 blocked = 'pending_actual_handoff'
             elif step < self._cooldown_until:
                 blocked = 'unverified_exit_cooldown'
@@ -326,7 +352,7 @@ class NativeFramework:
                 blocked = 'failed_repair_requires_changed_evidence'
             else:
                 repair = dict(repair_id=len(self._transactions)+1, entry_step=step,
-                    trigger=monitor['trigger'], subgoal=shadow_goal, used=0, streak=0,
+                    trigger=monitor['trigger'], subgoal=request_goal, used=0, streak=0,
                     recovery_goal=native_goal,
                     acceptance=list(self._config['recovery_contracts'][native_goal]),
                      acceptance_streaks={k: 0 for k in self._config['recovery_contracts'][native_goal]},
@@ -339,27 +365,32 @@ class NativeFramework:
                     completed_after_handoff=False)
                 self._transactions.append(repair)
                 self._active = repair
+                if self.repair_control == 'measured_stage_progress':
+                    from src.repair.experimental.contract_progress import ContractProgress
+                    self._repair_progress = ContractProgress(native_goal,
+                        self._config['contact_window'], self._config['motion_m'])
                 events.append(dict(type='local_entry', step=step, repair_id=repair['repair_id'],
-                    trigger=monitor['trigger'], subgoal=shadow_goal))
+                    trigger=monitor['trigger'], subgoal=request_goal))
         if self._active is not None:
             # The action prompt may follow current evidence, but acceptance is
             # frozen at entry. In particular, attaining In cannot move an
             # acquisition contract to a three-native-success closing contract.
             goal = self._active['subgoal']
-            if ((self.joint_mode and goal != shadow_goal)
+            if ((self.joint_mode and goal != request_goal)
                     or (goal in ('contain_release', 'close') and self._current['in_goal'] is not True)
                     or (goal == 'transfer' and self._current['grasp'] is False
                         and self._current['in_goal'] is not True)
-                    or (self._current['in_goal'] is True and goal != shadow_goal)):
-                self._active['subgoal'] = shadow_goal
+                    or (self._current['in_goal'] is True and goal != request_goal)):
+                self._active['subgoal'] = request_goal
                 events.append(dict(type='local_goal_refeed', step=step,
-                    repair_id=self._active['repair_id'], previous=goal, subgoal=shadow_goal))
+                    repair_id=self._active['repair_id'], previous=goal, subgoal=request_goal))
         active = self._active
         goal = active['subgoal'] if active else shadow_goal
         owner = 'repair' if active else 'nominal'
         self._queries += 1
+        repair_language = self._config['prompts'][goal] if active else self.language
         decision = dict(version=self.VERSION, arm=self.mode, step=step,
-            language=self._config['prompts'][goal] if active else self.language,
+            language=repair_language,
             source='greedy', seed=0, owner=owner,
             mode='contact_transition' if active else 'nominal_tracking', subgoal=goal,
             trigger=monitor['trigger'], evidence=monitor, milestones=deepcopy(self._milestones),
@@ -371,6 +402,14 @@ class NativeFramework:
             shadow_only=self.mode == 'baseline', shadow_subgoal=shadow_goal,
             intervention_blocked=blocked, budget=self._budget(), events=events,
             subgoal_source=self._config['subgoal_source'], verification=self._config['verification'])
+        if self.repair_control != 'existing' and active:
+            decision['request_diagnosis'] = dict(schema='measured_repair_request_v1',
+                recovery_goal=active['recovery_goal'], acceptance=list(active['acceptance']),
+                preserve=list(active['preserve']), joint_selected_stage=shadow_goal,
+                measured_stage=native_goal, requested_stage=goal,
+                request_changed_from_joint=goal != shadow_goal,
+                reason='request_tracks_current_measured_stage_acceptance_stays_fixed',
+                additional_queries=0, numeric_action_edits=False)
         self._pending = deepcopy(decision)
         return decision
 
@@ -493,6 +532,10 @@ class NativeFramework:
             verification.update(resumption_required=self._config['resumption_factor'],
                 resumption_checks=readiness, local_condition_met=bool(local_candidates),
                 exit_condition_met=bool(eligible))
+            diagnosis = None
+            if self.repair_control == 'measured_stage_progress':
+                diagnosis = self._repair_progress.observe(self._current, checks, preserved)
+                verification['repair_diagnosis'] = diagnosis
             fusion_pass = True
             if self.fusion_mode != 'off':
                 evidence = deepcopy(handoff_evidence)
@@ -511,6 +554,13 @@ class NativeFramework:
                 verification['fusion'] = dict(mode=self.fusion_mode, evidence=evidence,
                     evidence_valid=valid, accepted=accepted,
                     blocked_verified_exit=bool(eligible) and not fusion_pass)
+            # --- handoff-readiness scorer gate (module B) ---
+            handoff_evidence = handoff_evidence or {}
+            handoff_result = handoff_evidence.get('handoff_scorer') or {}
+            handoff_pass = bool(handoff_result.get('accept', True))
+            verification['handoff_scorer'] = dict(
+                accept=handoff_pass, probability=handoff_result.get('probability'),
+                threshold=handoff_result.get('threshold'), schema=handoff_result.get('schema'))
             reason = None
             # A capped exit never becomes a verified repair, even on a tied check.
             if measured['native_complete']:
@@ -522,7 +572,7 @@ class NativeFramework:
                 reason = 'local_budget_exit_unverified'
             elif self._repair_actions >= self._config['repair_cap']:
                 reason = 'total_repair_budget_exit_unverified'
-            elif eligible and fusion_pass:
+            elif eligible and fusion_pass and handoff_pass:
                 reason = 'measured_progress_verified'
                 repair['verified'] = True
                 repair['verified_by'] = eligible[0]
@@ -533,6 +583,8 @@ class NativeFramework:
                 events.append(dict(type='repair_verified', step=step, repair_id=repair['repair_id']))
             elif self._actions >= self._config['action_cap']:
                 reason = 'episode_budget_exit_unverified'
+            elif diagnosis is not None and diagnosis['stop_unverified']:
+                reason = 'contract_'+diagnosis['diagnosis']+'_exit_unverified'
             elif self.recovery_options and recovery_feedback and recovery_feedback['exhausted']:
                 reason = 'recovery_options_exhausted_unverified'
             if reason:
