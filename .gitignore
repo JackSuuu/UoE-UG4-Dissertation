@@ -1,6 +1,7 @@
 .DS_Store
 **/__pycache__/
 *.pyc
+.runtime/
 src/results/
 # contact sheets the camera test writes; regenerate with tests/test_camera.py
 camera_frames*.png

@@ -27,6 +27,9 @@ ChatPlanner → RecoveryPlan → bounded repair → rechecks → nominal proposa
 - `src/controller.py`: generic progress monitoring, repair transactions, fixed
   entry acceptance, preservation, endpoint rechecks, budgets and actual handoff.
 - `src/runtime.py`: sole owner of policy queries and environment execution.
+- `src/interfaces.py`: structural backend contracts and the finite H1 `Proposal`.
+  Source API: `from src import Session, Limits, Proposal`. ML/simulator packages
+  are not imported by this API. A Session runs once; the caller owns cleanup.
 - `src/verification/physical_verifier.py`: tri-state predicate evaluation and
   four-dimensional measured evidence, always used in the main loop.
 - `src/adapters/libero_environment.py`: one environment bridge across tasks.
@@ -35,6 +38,15 @@ ChatPlanner → RecoveryPlan → bounded repair → rechecks → nominal proposa
 - `src/adapters/openvla_policy.py`: frozen official OpenVLA `predict_action` H1,
   with the official LIBERO gripper mapping. No numerical repair edits.
 - `src/journal.py`: append-only events plus exact input PNGs.
+- `src/perception/`: strict pretrained DINOv2 and visual generated-predicate
+  prototype context; no fixed `acquire/transfer/close` stage list.
+- `src/memory/keyframe_bank.py`: read-only measured-success training keyframes.
+- `src/prediction/short_term_predictor.py`: causal constant-velocity forecasts.
+- `src/verification/vision_physical_monitor.py`: shared live module context.
+  Vision/memory/forecasts enter recovery planning; loaded learned risk can add
+  persistent triggers and exact-handoff vetoes in `gate` mode. Similarity and
+  forecasts never establish measured predicate truth.
+- `src/experiment/`: all active experiment entry points, collection and tests.
 
 Model-generated semantics can be wrong. Schema validation checks structure and
 bindings, not language entailment or perceptual correctness. The prompt forbids
@@ -111,51 +123,48 @@ or predicted consequence. For multi-object tasks this initial evidence view uses
 the first object in the goal clauses; the full observation and all clauses remain
 available to scorers/verifiers. Articulation-only tasks may have missing values.
 
-Existing `repair/recovery_scorer.py`, `repair/handoff_scorer.py`, fusion/risk/stage
-models and their checkpoints belong to the historical experiment. They are not
-silently converted to this schema: the old B labels were repair-entry outcomes,
-not actual nominal-action-conditioned continuation labels. A generic trained
-implementation must consume generated task/contract context and compatible
-features, and be evaluated on root-separated data before efficacy claims.
+Generic implementations now exist in `repair/recovery_scorer.py`,
+`verification/handoff_verifier.py`, `verification/calibrated_risk_head.py` and
+`verification/fusion_mlp.py`. Their new versioned vector includes pretrained
+visual384, physical4 + mask4, generated predicate grammar/truth pooling, acceptance
+summaries, causal history and the exact optional action. It is not unrestricted
+language encoding, action-conditioned physical prediction or proof of entailment.
+Old stage checkpoints are rejected, not padded or reinterpreted. Compatible heads
+and memory require matching visual weight/source/preprocessing signatures.
+
+Training labels and supervised fitting are implemented in `src/training/`;
+collection/training commands are in `src/experiment/`. New risk predicts observed
+nominal24 progress loss; B labels the actual nominal action's observed contract
+continuation; A labels the executed first proposal's observed measured recovery.
+Unknown evidence/future repair is censored. Real-data training and efficacy are
+pending. No untrained head is used, and empirical thresholding is not claimed to
+provide conformal/episode-level guarantees.
+
+`Session(..., monitor=VisionPhysicalMonitor(...))` shares one encoding per image
+across subgoal context, retrieval, risk and A/B. `--monitor-mode log` records risk
+without intervention/veto; `gate` requires the supplied trained head to influence
+control. Default sessions without an encoder still log observed-motion forecasts
+but explicitly lack visual/learned modules. Memory is read-only during episodes;
+new keyframes are built offline from measured successful roots10–19 only.
 
 ## CPU checks
 
 ```bash
-python -B scripts/test_task_runtime.py
+python -B -m unittest discover -s src/experiment/tests
 ```
 
-No torch, NumPy, GPU or downloaded model is required. The suite exercises the
+The core tests require no torch, NumPy, GPU or downloaded model. With torch,
+an additional synthetic CPU training/save/load test runs. The suite exercises the
 production planner transport through mocked HTTP replies, production controller,
 runtime, verifier, journal and a simulated LIBERO API. Policy/planner fixtures
 are confined to tests; they are not runtime fallbacks.
 
-Historical checks (in the existing environment with NumPy/torch):
-
-```bash
-PYTHONPATH=scripts:. python -B -m unittest \
-  test_native_framework test_joint_framework test_fusion_handoff \
-  test_repair_candidates test_repair_contract_progress \
-  test_repair_data_expansion test_fridge_repair_probe \
-  test_action_correction test_recovery_options
-```
-
 ## GPU-machine launch
 
-Clone code and the pinned benchmark:
-
-```bash
-GIT_LFS_SKIP_SMUDGE=1 git clone --recurse-submodules \
-  https://github.com/JackSuuu/UoE-UG4-Dissertation.git
-cd UoE-UG4-Dissertation
-python -B scripts/run_task.py --help
-```
-
-Prerequisites: a working LIBERO/robosuite/MuJoCo environment, official initial
-states/assets, PyTorch, OpenVLA-compatible `transformers==4.40.1`, AutoProcessor
-dependencies (including timm), and TensorFlow for official image preprocessing.
-Use a Python environment compatible with those packages (typically Python 3.10).
-Do not blindly install LIBERO's old requirements over the OpenVLA transformers
-version. This refactor has **not** produced a newly validated environment lock.
+Follow [GPU setup](gpu_setup.md) for the candidate Python 3.10 dependency recipe,
+editable LIBERO registration, noninteractive asset paths and model download.
+This is **not** a GPU-validated lockfile. Do not use an old launcher or install
+LIBERO's old requirements over OpenVLA's `transformers==4.40.1`.
 
 Start a vision-capable small MLLM service separately. It must accept image data
 URLs and JSON-object output requests at `/v1/chat/completions`. The repository
@@ -166,7 +175,7 @@ Example: LIBERO-10 task index **9**, task order 0, is the native microwave
 placement-and-close task. Initial-state index is independent of task index.
 
 ```bash
-CUDA_VISIBLE_DEVICES=0 python -B scripts/run_task.py \
+CUDA_VISIBLE_DEVICES=0 python -B -m src.experiment.run_task \
   --suite libero_10 --task-index 9 --init-index 0 \
   --policy-checkpoint /models/openvla-libero-10 \
   --unnorm-key libero_10 --device cuda:0 --egl-device 0 \
@@ -180,6 +189,22 @@ sentence explicitly. Use `--mode baseline` for unchanged full-instruction VLA
 execution with recovery disabled. An optional `--scorer-factory module:function`
 loads a Python factory returning `{'recovery': A, 'handoff': B}`; it is a model
 integration option, not a task configuration. Use a fresh output directory.
+Built-in generic loaders use `--visual-checkpoint`, `--visual-source`, optional
+`--memory-bank`, `--risk-checkpoint`, `--recovery-checkpoint`, `--handoff-checkpoint`
+and `--monitor-mode log|gate`. All experiment commands are documented in the
+[microwave protocol](../src/experiment/README.md), including strict full-arm gates.
+
+Before an episode, use the same entry point with `--preflight scene`,
+`--preflight planner` or `--preflight policy`. Scene needs neither model; planner
+requires only its URL/model; policy requires only its checkpoint. These checks
+perform initial settling, save the actual image and never execute policy actions.
+Planner check generates/measures a TaskSpec; policy check makes one H1 query.
+`--preflight components` additionally checks real encoding/memory/risk at the
+initial image, requiring visual paths and planner but no OpenVLA checkpoint.
+Preflight completion is **not** task success. Full episodes (including baseline)
+require a planner to define generated goals; baseline never requests recovery.
+The wall deadline includes setup/model loading; increase `--rollout-seconds` if
+needed and record it identically for paired arms.
 
 Outputs include `status.json`, `result.json`, `events.jsonl`, `images/`, the scene
 BDDL and selected official initial state. Events retain all proposed actions,
@@ -190,12 +215,14 @@ replay-audited experimental results**.
 
 ## Historical boundary and next validation
 
-The old controller was moved (not copied into a second active framework) to
-`src/legacy/microwave_controller.py`. Historical comparison/training/analysis
-imports point there. `scripts/run_framework_comparison.py` remains the historical
-microwave experiment driver; `--use-v5` and its numerical-correction launch path
-have been removed. Old archives retain their original source/manifests and must
-not be edited to pretend compatibility with new sources.
+Obsolete fixed-task controllers/runners/training paths were removed. Required
+visual/risk/memory/prediction/A/B roles are retained and adapted to generated
+semantics, not left as an empty five-layer shell. No old
+runner is aliased to the new Controller: their interfaces are incompatible.
+Records, archives, results and checkpoints remain intact. Reproduction of an
+old experiment requires its original Git revision or pinned source snapshot.
+`scripts/backup_research_progress.py` is retained only for archive restore/verify,
+not as an alternative experiment entry point. Archived source is not active code.
 
 Next GPU checks: real endpoint structured-output/grounding smoke, one complete
 microwave episode, exact action/input audit, then paired runs and calibrated A/B

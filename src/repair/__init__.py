@@ -1,1 +1,1 @@
-"""Bounded action-correction prototypes."""
+"""Unchanged policy-proposal ranking and measured, bounded recovery."""

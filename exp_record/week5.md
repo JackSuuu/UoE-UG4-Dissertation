@@ -3,6 +3,235 @@
 Newest entry at the top. [Weekly index](agent_notes/experiment_record_index.md). Detailed records live in
 [`agent_notes/`](agent_notes/README.md).
 
+### Update 23 Oct — Full architecture restored; microwave experiment plan
+
+**Correction:** remove obsolete implementations, not the visual, learned-risk,
+memory or short-term-prediction responsibilities. Those modules are restored /
+refactored around generated predicates and connected to the live runtime.
+Experiment launch, collection, training CLI, summary and tests now live in
+[`src/experiment/`](../src/experiment/README.md), not mixed into `scripts/`.
+Old stage checkpoints are preserved but incompatible with the new feature schema.
+
+#### 1. Prepare the other machine
+
+Follow [GPU setup](../docs/gpu_setup.md): candidate Python 3.10 packages,
+editable LIBERO install, assets/config, explicit OpenVLA directory, pretrained
+DINOv2 source/weights and a separately provisioned vision chat endpoint.
+**Installation and real-model rollouts remain unvalidated.** A planner checkpoint /
+server has not been selected and validated; `/models` alone is not a smoke test.
+
+From the repository root, set actual paths and the exact served model ID:
+
+```bash
+conda activate uoe-runtime
+export LIBERO_CONFIG_PATH="$PWD/.runtime/libero"
+export POLICY_DIR="$HOME/models/openvla-libero-10"
+export DINO_SOURCE="$HOME/models/dinov2-source"
+export DINO_WEIGHTS="$HOME/models/dinov2_vits14_pretrain.pth"
+export PLANNER_URL="http://localhost:8000/v1"
+export PLANNER_MODEL="YOUR_ACTUAL_SERVED_VISION_MODEL"
+export RUN_ROOT="$HOME/scratch/microwave_generated_20261023"
+export CUDA_VISIBLE_DEVICES=0
+python -B -m unittest discover -s src/experiment/tests
+common=(--policy-checkpoint "$POLICY_DIR" --unnorm-key libero_10
+        --device cuda:0 --egl-device 0 --planner-url "$PLANNER_URL"
+        --planner-model "$PLANNER_MODEL" --planner-timeout 60 --planner-calls 24
+        --rollout-seconds 2400)
+visual=(--visual-source "$DINO_SOURCE" --visual-checkpoint "$DINO_WEIGHTS"
+        --feature-device cpu)
+```
+
+Use a fresh RUN_ROOT. Record dependency versions, GPU/driver, source commits and
+model/source checksums beside it. Keep the planner's serving env separate.
+
+#### 2. Stop-gated backend checks
+
+```bash
+python -B -m src.experiment.run_task --suite libero_10 --task-index 9 \
+  --preflight scene --out "$RUN_ROOT/check_scene"
+python -B -m src.experiment.run_task --suite libero_10 --task-index 9 \
+  --preflight planner --planner-url "$PLANNER_URL" --planner-model "$PLANNER_MODEL" \
+  --out "$RUN_ROOT/check_planner"
+python -B -m src.experiment.run_task --suite libero_10 --task-index 9 \
+  --preflight policy --policy-checkpoint "$POLICY_DIR" \
+  --out "$RUN_ROOT/check_policy"
+python -B -m src.experiment.run_task --suite libero_10 --task-index 9 \
+  --preflight components --planner-url "$PLANNER_URL" --planner-model "$PLANNER_MODEL" \
+  "${visual[@]}" --out "$RUN_ROOT/check_components"
+```
+
+Each performs ten settling noops but zero policy actions; policy check queries
+one unexecuted proposal. Inspect actual image, IDs, generated In AND Close goals,
+unknown measurements, real DINO provenance and `monitor` events. Stop on missing
+assets, incorrect semantics or backend errors. Initial memory is explicitly empty
+and learned risk absent: this is not the full-module experiment.
+
+#### 3. Root0 pilot, then matched roots0–5
+
+```bash
+for arm in baseline measured context; do
+  extra=()
+  if [[ "$arm" == context ]]; then extra=("${visual[@]}"); fi
+  python -B -m src.experiment.microwave --arm "$arm" --init-index 0 --seed 0 \
+    "${common[@]}" "${extra[@]}" --out "$RUN_ROOT/dev/root0/$arm" || break
+done
+python -B -m src.experiment.summarize --root "$RUN_ROOT/dev" --treatment context
+```
+
+- baseline: original-instruction frozen VLA, no recovery.
+- measured: generated repair plus measured-contract gate.
+- context: adds pretrained visual encoding, generated-milestone inference,
+  memory lookup and causal motion forecasts to recovery planning. Empty retrieval
+  is logged, not claimed useful. No learned risk/A/B in this collection arm.
+- full: requires compatible trained risk/A/B and a training memory bank; missing
+  artifacts reject startup, not fall back to a simpler arm.
+
+After the pilot input/action/query/contract audit passes, repeat for roots1–5,
+matching init-index and seed across arms. Compare native full-task completion
+primarily, generated-goal completion separately, rescue/harm, repair cost,
+verified handoffs and post-handoff loss. Source/model/goal/milestone/initial-state
+mismatches invalidate pairing. Infrastructure failures are not task failures.
+
+#### 4. Training collection and full-module evaluation
+
+Use roots10–19 only. The [detailed protocol](../src/experiment/README.md) provides
+four fixed first-repair candidate sibling commands, dataset/memory construction
+and head training. Label only executed proposals; B labels the actual nominal
+action's observed continuation. Future repair/unknown evidence is censored.
+Train roots10–17, validate18–19. If a split lacks positive/negative labels, stop
+and collect more; do not load old weights or treat an untrained head as learned.
+
+Once compatible artifacts and reports exist, run full and component ablations
+through the same runtime. Keep roots6–9 for calibration and20–49 for confirmation.
+Budgets: 520 actions / 520 queries / 32 local repair / 160 total repair. All
+candidate/rejected-nominal queries count. No numerical repair edits or world
+model. Independent simulator replay remains pending; these are not final
+replay-audited results.
+
+Implementation checks:64 tests pass with the local torch environment, including
+synthetic training/loading and inference for risk/A/B; standard Python runs the
+same suite with one optional torch test skipped. Six experiment CLI help checks
+and source syntax checks pass. Historical backups/results/weights are unchanged.
+These checks do not validate real-model inference or episode efficacy. Before
+running on another machine, pull the latest main containing this refactor.
+
+<details>
+<summary>Superseded draft from earlier in this session — do not execute</summary>
+
+The draft below contains outdated paths, incomplete dependencies and an invalid
+model-cache recipe. Use the corrected plan above and GPU setup instead.
+
+#### Superseded generated-task draft
+
+This plan runs the new task-agnostic runtime (`scripts/run_task.py`) on a GPU
+machine for the microwave task. Old per-task adapters/configs and the legacy
+microwave controller have been removed; the planner generates goals/recovery
+contracts from instruction + image + scene inventory.
+
+#### 0. Clone (submodules + LFS)
+
+```bash
+cd ~
+mkdir -p diss && cd diss
+git clone --recurse-submodules https://github.com/JackSuuu/UoE-UG4-Dissertation.git
+cd UoE-UG4-Dissertation
+git lfs pull
+ls third_party/LIBERO/
+```
+
+#### 1. Conda environment (Python 3.10; do NOT install LIBERO's old transformers pin over 4.40.1)
+
+```bash
+conda create -n uoe-diss python=3.10 -y
+conda activate uoe-diss
+conda install -y -c pytorch -c nvidia cuda=12.1 pytorch torchvision torchaudio
+pip install numpy transformers==4.40.1 robosuite gymnasium imageio[ffmpeg] pillow einops tqdm safetensors accelerate tensorflow-cpu
+python -c "import torch; print(torch.__version__, torch.cuda.is_available())"
+```
+
+Verify OpenVLA backend loads offline:
+
+```bash
+HF_HOME=~/.cache/huggingface huggingface-cli download openvla/openvla-7b-finetuned-libero-10 \
+  --local-dir ~/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/main \
+  --local-dir-use-symlinks False
+```
+
+(Confirm the actual `snapshots/` subdir name from the HF page if `main` differs.)
+
+DINOv2 for scorer/verifier features:
+
+```bash
+mkdir -p ~/.cache/torch/hub/checkpoints
+cd ~/.cache/torch/hub/checkpoints
+wget https://dl.fbaipublicfiles.com/dinov2/dinov2_vits14/dinov2_vits14_pretrain.pth
+sha256sum dinov2_vits14_pretrain.pth
+# expect b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9
+```
+
+#### 2. Start the vision-language planner service (required by the new runtime)
+
+The runtime needs an OpenAI-compatible `/v1/chat/completions` vision endpoint accepting image data URLs and JSON-object output. Start it separately on the GPU machine; the repo does not select a specific checkpoint yet.
+
+```bash
+export PLANNER_API_KEY=<optional>
+# Example (replace with your actual MLLM server launcher):
+# python -m your_vllm_server --model <served_vision_model_id> --port 8000
+```
+
+Smoke check:
+
+```bash
+curl -s http://localhost:8000/v1/models | head -c 500
+```
+
+#### 3. Run one microwave episode
+
+LIBERO-10 task index 9 in task order 0 is "put the yellow and white mug in the microwave and close it".
+
+```bash
+cd ~/diss/UoE-UG4-Dissertation
+export PYTHONPATH=scripts:.
+
+CUDA_VISIBLE_DEVICES=0 python -B scripts/run_task.py \
+  --suite libero_10 --task-index 9 --init-index 0 \
+  --policy-checkpoint ~/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/main \
+  --unnorm-key libero_10 --device cuda:0 --egl-device 0 \
+  --planner-url http://localhost:8000/v1 \
+  --planner-model <your_served_vision_model> \
+  --planner-timeout 60 --planner-calls 24 \
+  --rollout-seconds 1200 --mode framework \
+  --out ~/scratch/microwave_run_root0
+```
+
+To use your own instruction instead of the native benchmark sentence, add `--instruction "..."`.
+For bare-VLA control (recovery disabled), use `--mode baseline`.
+
+Outputs: `status.json`, `result.json`, `events.jsonl`, `images/`, `scene.bddl`, `selected_initial_state.npy`, `source/`.
+
+#### 4. Paired comparison (baseline vs framework)
+
+Run the same root twice, once `--mode baseline` and once `--mode framework`, with identical `--init-index` and `--seed`. Compare `result.json` termination/completion and `events.jsonl` handoff/exit records.
+
+#### 5. CPU checks (no GPU needed, run anywhere)
+
+```bash
+python -B scripts/test_task_runtime.py
+```
+
+30 tests, standard library only, mocked planner transport.
+
+#### 6. Notes
+
+- No per-task adapter/JSON to write. The planner output is validated by `src/planning/schema.py` but semantic correctness still needs real-model evaluation.
+- The new runner has no independent simulator tape replay yet; treat first runs as implementation smoke, not final experimental evidence.
+- Budgets: 520 actions / 520 queries / 32 local repair / 160 total repair per episode; planner calls capped separately (24 default).
+- Old `--use-v5` numeric-correction path and `src/legacy/` are removed; do not reuse historical launch commands that reference them.
+
+---
+
+</details>
+
 ### Update 22 Oct — Repair-only candidate coverage and recovery-data collection
 
 Follow-up: user requested more data/conditions and the persistently failed fridge.
@@ -132,7 +361,7 @@ exercise. `src/repair/recovery_options.py` adds a closed-loop lift probe and a
 release/retract/reapproach/reclose/lift option. Both have per-option bounds,
 observed progress checks and cross-trigger failed-option memory. Contact-grasp
 alone does not establish effective attachment; EEF/object motion coupling is
-logged. Details and limitations: [`RECOVERY_EXPERIMENT.md`](../src/repair/RECOVERY_EXPERIMENT.md).
+logged. Details and limitations: [historical recovery protocol](agent_notes/historical_recovery_experiment_20261023.md).
 
 Skill actions are explicitly **not frozen-VLA-generated**, unchanged-VLA actions,
 or legacy bounded numeric corrections. The original actor is still queried once

@@ -1,13 +1,9 @@
-# External runtime adapters
+# Backend bridges
 
-Only external VLA/runtime integration belongs here:
+- `libero_environment.py`: task-independent scene inventory and predicate measurements.
+- `libero_image.py`: image preprocessing, applied once by the environment bridge.
+- `openvla_policy.py`: frozen official H1 action generation; only the standard LIBERO gripper mapping.
 
-- `libero_openvla.py`: OpenVLA wrapper and policy-image conversion.
-- `tf5_compat.py`: Transformers compatibility helpers.
-
-The controller is [`../controller.py`](../controller.py). Perception,
-verification, prediction, repair, memory and training have their own packages;
-see the [source layout](../README.md) and [implementation status](../COMPONENT_STATUS.md).
-
-Historical archived runners import these utilities as `adapters.*` with `src/`
-on their import path. That external-adapter namespace is intentionally retained.
+Backends implement [`../interfaces.py`](../interfaces.py). No model/simulator is
+imported until a backend is constructed or used. The caller owns cleanup;
+`Session` alone owns policy queries and environment steps during an episode.

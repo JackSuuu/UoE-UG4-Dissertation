@@ -1,1 +1,1 @@
-"""Offline component training entry points; not runtime control."""
+"""Offline generated-contract datasets, memory construction and learned heads."""

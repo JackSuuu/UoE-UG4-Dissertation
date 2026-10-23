@@ -5,7 +5,7 @@ Policy image preprocessing is owned by the LIBERO bridge and applied once.
 """
 from io import BytesIO
 
-from ..runtime import Proposal
+from ..interfaces import Proposal
 
 
 class OpenVLAPolicy:
@@ -43,6 +43,8 @@ class OpenVLAPolicy:
             torch.manual_seed(seed)
             native = self.model.predict_action(**inputs, unnorm_key=self.key, **options)
         action = np.asarray(native, dtype=float).copy()
+        if action.shape != (7,) or not np.isfinite(action).all():
+            raise ValueError('OpenVLA must return a finite H1 action with shape (7,)')
         # Official LIBERO action-space mapping, not a repair edit.
         action[-1] = -np.sign(2*action[-1]-1)
         return Proposal(tuple(action.tolist()), dict(self.provenance, native_action=np.asarray(native).tolist(),

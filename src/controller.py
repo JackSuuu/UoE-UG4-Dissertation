@@ -92,11 +92,13 @@ class Controller:
                 self._last_progress = observation.index
         self.complete = self.verifier.check_all(self.task.goals, observation, self.history) is True
 
-    def _event(self, observation):
+    def _event(self, observation, context=None):
         lost = [p.to_dict() for p in self._achieved
                 if self._lost_streaks.get(p, 0) >= self.limits.rechecks]
         if lost:
             return dict(reason='durable_progress_lost', predicates=sorted(lost, key=str))
+        if context and context.get('trigger') is True:
+            return dict(reason='persistent_learned_risk', risk=deepcopy(context['risk']))
         if observation.index-self._last_progress >= self.limits.stagnation:
             return dict(reason='no_verified_progress', since=self._last_progress)
         return None
@@ -119,7 +121,7 @@ class Controller:
         return any(all(key in o.positions and math.dist(pos, o.positions[key]) >= .020 for o in recent)
                    for key, pos in old['positions'].items())
 
-    def before(self, observation):
+    def before(self, observation, *, context=None):
         if self.pending is not None or observation.index != self.actions:
             raise ValueError('Expected sequential before/after pairs')
         if self.actions >= self.limits.actions or self.queries >= self.limits.queries:
@@ -130,7 +132,11 @@ class Controller:
             raise ValueError('Current endpoint changed without execution')
         if self.complete:
             raise RuntimeError('task_complete_no_further_action')
-        event, blocked = self._event(observation), None
+        event, blocked = self._event(observation, context), None
+        if event and context:
+            # Visual prototypes, train-only memory and causal forecasts are
+            # available to recovery generation, never substituted for truth.
+            event['context'] = deepcopy(context)
         if (self.mode == 'framework' and self.active is None and self.handoff_pending is None
                 and event and self.actions >= self._cooldown_until
                 and self.repair_actions < self.limits.total_repair and self._changed(observation)):
@@ -143,6 +149,8 @@ class Controller:
                 if plan is None:
                     blocked = 'planner_deferred'
                 else:
+                    if not isinstance(plan, RecoveryPlan):
+                        raise PlanningError('Planner.recover must return a RecoveryPlan or None')
                     plan = RecoveryPlan.parse(plan.to_dict(), {e.id for e in observation.entities},
                                               self.capabilities)
                     # The environment may need to measure new generated clauses.
@@ -162,8 +170,9 @@ class Controller:
         self._force_repair = False
         decision = dict(step=self.actions, owner=owner, handoff=handoff,
                         language=active['plan'].instruction if owner == 'repair' else self.task.instruction,
-                        repair_id=active['id'] if active else None,
-                        trigger=event, blocked=blocked, budget=self.budget)
+                         repair_id=active['id'] if active else None,
+                        trigger=event, blocked=blocked, budget=self.budget,
+                        context=deepcopy(context))
         self.pending = deepcopy(decision)
         return decision
 
@@ -206,7 +215,9 @@ class Controller:
                 or len(action) != 7 or not all(math.isfinite(float(v)) for v in action)):
             raise ValueError('Expected unchanged pending decision and fresh executed H1 endpoint')
         if decision['handoff'] and (not isinstance(handoff_assessment, dict)
-                                    or handoff_assessment.get('accept') is not True):
+                                    or handoff_assessment.get('accept') is not True
+                                    or handoff_assessment.get('nominal_action') != list(action)
+                                    or handoff_assessment.get('observation_index') != self.actions):
             raise ValueError('A handoff needs an accepted assessment of its nominal proposal')
         self.actions += 1
         self._remember(observation)

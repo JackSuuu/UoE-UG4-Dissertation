@@ -1,1 +1,1 @@
-"""Visual features and prototype-based subgoal inference."""
+"""Frozen visual encoding and evidence-grounded subgoal context."""

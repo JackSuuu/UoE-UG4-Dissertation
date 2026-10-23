@@ -5,6 +5,8 @@ def policy_image(raw):
     import numpy as np
     import tensorflow as tf
     from PIL import Image
+    # Image preprocessing must not reserve GPU memory needed by frozen OpenVLA.
+    tf.config.set_visible_devices([], 'GPU')
     # Rotate, JPEG round trip, antialiased Lanczos resize and center crop.
     image = np.ascontiguousarray(raw[::-1, ::-1])
     image = tf.io.decode_image(tf.image.encode_jpeg(image), expand_animations=False, dtype=tf.uint8)

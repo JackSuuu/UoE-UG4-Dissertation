@@ -1,1 +1,1 @@
-"""Physical evidence, verification fusion and risk-scoring prototypes."""
+"""Tri-state contract verification and causal measured physical evidence."""

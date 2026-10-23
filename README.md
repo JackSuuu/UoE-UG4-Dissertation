@@ -14,9 +14,9 @@ The current microwave benchmark is a controlled development setting. The new run
 
 ## Our Five-Layer Framework
 
-1. **High-level subgoals:** track stages, prerequisites and achieved milestones.
+1. **Generated task semantics:** grounded goals and optional progress milestones.
 2. **Frozen VLA:** generate nominal and repair actions from current observations.
-3. **Risk/event monitoring:** observe progress, contact transitions, release, loss and uncertainty.
+3. **Visual–physical event monitoring:** measured progress plus optional trained risk, retrieved context and causal short-term forecasts.
 4. **Dual-mode gate:** decide between nominal execution and bounded intervention.
 5. **Local repair and reverification:** check recovery, preserve progress, and execute a fresh nominal handoff.
 
@@ -42,12 +42,15 @@ flowchart TD
 
 ## Task-agnostic runtime
 
-- Entry point: [`scripts/run_task.py`](scripts/run_task.py).
-- Architecture, GPU-machine command and scorer interfaces: [runtime guide](docs/task_runtime.md).
-- CPU integration checks: `python -B scripts/test_task_runtime.py` (standard library only).
+- Experiment home: [`src/experiment/`](src/experiment/README.md).
+- Shared entry point: `python -m src.experiment.run_task`; microwave: `python -m src.experiment.microwave --arm …`.
+- Architecture and backend interfaces: [runtime guide](docs/task_runtime.md).
+- Cross-machine setup and staged checks: [GPU setup](docs/gpu_setup.md) and the top of [Week 5](exp_record/week5.md).
+- CPU checks: `python -B -m unittest discover -s src/experiment/tests` (optional extra torch test).
 - Main components: `src/planning/`, `src/controller.py`, `src/runtime.py`, `src/verification/physical_verifier.py` and environment/model bridges in `src/adapters/`.
 - No per-task Python adapter or JSON goal configuration. The LIBERO bridge supplies scene IDs and measurements for any supported task; the MLLM generates the task and recovery records.
-- The new path has CPU integration coverage. Real MLLM/OpenVLA rollouts, grounding accuracy, and general-purpose learned A/B artifacts are pending GPU validation.
+- Visual encoding, visual subgoals, memory retrieval, short-term prediction and learned risk/A/B implementations are retained and connected to the new runtime; see [component status](src/COMPONENT_STATUS.md).
+- CPU integration and synthetic head-training coverage are not evidence of real-model efficacy. Real MLLM/OpenVLA/DINO rollouts, grounding accuracy and useful compatible trained risk/A/B artifacts remain pending.
 
 ## Experiments and Evidence
 
@@ -59,25 +62,28 @@ flowchart TD
 
 **Historical post-v2 study:** a complete-task placement-prompt / measured-resumption-gate comparison was launched from frozen source `528a91c`. Its launch and results belong to that archived protocol; see the [experiment record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md) and [session recovery status](exp_record/agent_notes/session_recovery_status_20261023.md). These outcomes are not results of the generated-task runtime.
 
-Every treatment run uses the real five-layer framework. Paired arms share initial conditions, actor inputs and resource limits; all repair queries count against the lifetime budget. Full videos show baseline left/framework right, synchronized simulation time, control ownership, evidence, verification, exits and actual handoffs. Failures and harms remain included.
+The historical paired evidence includes full baseline/framework videos and replay audits. New-runtime runs do not yet have independent tape replay; do not describe them as replay-audited results.
 
 ## Code and Records
 
 | Path | Purpose |
 |---|---|
 | [`core_research_plan.md`](core_research_plan.md) | Current objective, method, experiment sequence and evaluation |
-| [`scripts/run_task.py`](scripts/run_task.py) | Generated-task runtime and LIBERO execution |
-| [`scripts/run_framework_comparison.py`](scripts/run_framework_comparison.py) | Historical microwave preparation, execution and replay |
+| [`src/experiment/`](src/experiment/README.md) | Microwave arms, shared runner, collection, training CLI, summary and tests |
 | [`src/controller.py`](src/controller.py) | Task-independent budgets, repair verification and handoff |
-| [`src/legacy/microwave_controller.py`](src/legacy/microwave_controller.py) | Historical measured microwave controller |
-| [`src/README.md`](src/README.md) | Component layout, implementation status and Phase 1 history |
-| [`scripts/test_native_framework.py`](scripts/test_native_framework.py) | Model-free recovery and execution-contract checks |
+| [`src/interfaces.py`](src/interfaces.py) | Environment, policy, planner and optional A/B contracts |
+| [`src/README.md`](src/README.md) | Current component layout and implementation status |
+| [`src/experiment/tests/`](src/experiment/tests) | CPU runtime/component/experiment checks |
 | [`exp_record/`](exp_record/agent_notes/experiment_record_index.md) | Weekly summaries; detailed protocols and results under `agent_notes/` |
 | [`backups/`](backups/README.md) | Published videos, raw evidence and recovery instructions |
 | [`third_party/LIBERO`](third_party/LIBERO) | Pinned benchmark submodule |
 | `notes/` | Proposals, literature and historical planning |
 
-Run current controller checks with `python -B scripts/test_task_runtime.py`; `scripts/test_native_framework.py` checks the historical protocol. Old source-pinned experiments require their archived sources. Inspect runner options with `--help`.
+Run checks with `python -B -m unittest discover -s src/experiment/tests`. Obsolete
+controllers/runners and fixed-stage training paths have been removed; historical experiments require their archived
+sources or original Git revisions. Records, results and weights are preserved.
+The source API is `from src import Session, Limits, Proposal`; installation as a
+package is deferred. Inspect runner options with `--help`.
 
 Large artifacts use Git LFS. Clone with submodules and follow each backup's scoped LFS recovery instructions.
 
