@@ -1,0 +1,211 @@
+{
+  "episodes": [
+    {
+      "root": 0,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root0",
+      "actor_queries": 0,
+      "device": "cuda:0",
+      "complete_task_success": false,
+      "observations": 520,
+      "scope": "risk/no-lift only; region-dependent exit is unavailable; reused development roots",
+      "labels": {
+        "missing_evidence": 73,
+        "observed_nominal_window_without_defined_violation": 6,
+        "observed_sustained_grasp_without_lift": 418,
+        "right_censored": 23
+      },
+      "risk_entry_confusion": {
+        "tp": 368,
+        "fp": 0,
+        "tn": 6,
+        "fn": 50
+      },
+      "no_lift_confusion": {
+        "tp": 393,
+        "fp": 0,
+        "tn": 6,
+        "fn": 25
+      },
+      "first_risk_eligible": 129,
+      "first_no_lift_eligible": 104,
+      "risk_eligible_observations": 391,
+      "no_lift_eligible_observations": 416,
+      "source_controller_sha256": "292d1347a4d5dac3bc01fcf94de1faa6e54d2f041c5083dab11867398970678c",
+      "source_actions_sha256": "f8ae15fd87f5355f7babf08a213f9a17f9b21fc36f024e4049240894a6c91168"
+    },
+    {
+      "root": 1,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root1",
+      "actor_queries": 0,
+      "device": "cuda:0",
+      "complete_task_success": true,
+      "observations": 444,
+      "scope": "risk/no-lift only; region-dependent exit is unavailable; reused development roots",
+      "labels": {
+        "missing_evidence": 86,
+        "observed_nominal_window_without_defined_violation": 205,
+        "observed_sustained_grasp_without_lift": 129,
+        "native_completion_without_regression": 24
+      },
+      "risk_entry_confusion": {
+        "tp": 129,
+        "fp": 26,
+        "tn": 203,
+        "fn": 0
+      },
+      "no_lift_confusion": {
+        "tp": 104,
+        "fp": 24,
+        "tn": 205,
+        "fn": 25
+      },
+      "first_risk_eligible": 89,
+      "first_no_lift_eligible": 117,
+      "risk_eligible_observations": 155,
+      "no_lift_eligible_observations": 128,
+      "source_controller_sha256": "986beaebe53414fc27f4e2ec2f8604421fb7083205e15eb62a52071bbe4dff9b",
+      "source_actions_sha256": "81dfebc78b249281b5809e2eba4d3e232dc945dff9ffe73f0582db47808ee6df"
+    },
+    {
+      "root": 2,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root2",
+      "actor_queries": 0,
+      "device": "cuda:0",
+      "complete_task_success": true,
+      "observations": 397,
+      "scope": "risk/no-lift only; region-dependent exit is unavailable; reused development roots",
+      "labels": {
+        "missing_evidence": 95,
+        "observed_nominal_window_without_defined_violation": 268,
+        "observed_sustained_grasp_without_lift": 6,
+        "observed_acquisition_no_motion": 4,
+        "native_completion_without_regression": 24
+      },
+      "risk_entry_confusion": {
+        "tp": 6,
+        "fp": 37,
+        "tn": 255,
+        "fn": 4
+      },
+      "no_lift_confusion": {
+        "tp": 0,
+        "fp": 5,
+        "tn": 287,
+        "fn": 10
+      },
+      "first_risk_eligible": 145,
+      "first_no_lift_eligible": 198,
+      "risk_eligible_observations": 43,
+      "no_lift_eligible_observations": 5,
+      "source_controller_sha256": "f17cb559d1796fd9f3e5c6c9a3d3c297a934a22c35ad1cda34c6f069b9d2656b",
+      "source_actions_sha256": "b11ed00b668ee90eeb4875eaf05303ea1cefec0119785f357d8ff3c7e6459655"
+    },
+    {
+      "root": 3,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root3",
+      "actor_queries": 0,
+      "device": "cuda:0",
+      "complete_task_success": true,
+      "observations": 352,
+      "scope": "risk/no-lift only; region-dependent exit is unavailable; reused development roots",
+      "labels": {
+        "missing_evidence": 136,
+        "observed_nominal_window_without_defined_violation": 83,
+        "measured_lift_loss": 21,
+        "measured_preserved_goal_loss": 3,
+        "observed_acquisition_no_motion": 85,
+        "native_completion_without_regression": 24
+      },
+      "risk_entry_confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 107,
+        "fn": 109
+      },
+      "no_lift_confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 107,
+        "fn": 109
+      },
+      "first_risk_eligible": null,
+      "first_no_lift_eligible": null,
+      "risk_eligible_observations": 0,
+      "no_lift_eligible_observations": 0,
+      "source_controller_sha256": "c497cdad069e1413e924d424a26178345ae81644f6b50efba953019f0eb73513",
+      "source_actions_sha256": "1dee6ad8f5eb30e036cc06b2992d140b2069e4f8b6d21230707158dbd1c4c6f2"
+    },
+    {
+      "root": 4,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/baseline_root4",
+      "actor_queries": 0,
+      "device": "cuda:0",
+      "complete_task_success": false,
+      "observations": 520,
+      "scope": "risk/no-lift only; region-dependent exit is unavailable; reused development roots",
+      "labels": {
+        "missing_evidence": 95,
+        "observed_nominal_window_without_defined_violation": 158,
+        "measured_lift_loss": 51,
+        "observed_acquisition_no_motion": 193,
+        "right_censored": 23
+      },
+      "risk_entry_confusion": {
+        "tp": 0,
+        "fp": 2,
+        "tn": 156,
+        "fn": 244
+      },
+      "no_lift_confusion": {
+        "tp": 24,
+        "fp": 18,
+        "tn": 140,
+        "fn": 220
+      },
+      "first_risk_eligible": 98,
+      "first_no_lift_eligible": 189,
+      "risk_eligible_observations": 2,
+      "no_lift_eligible_observations": 42,
+      "source_controller_sha256": "05c99b79e8c9972a399d468e6684be89ccf5f2c890a8e71d3aab96db629d6eab",
+      "source_actions_sha256": "80c7a142febe12e1e2111db2ac061ba0e333040fc516492e675bc289f01009dc"
+    },
+    {
+      "root": 5,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/baseline_root5",
+      "actor_queries": 0,
+      "device": "cuda:0",
+      "complete_task_success": true,
+      "observations": 298,
+      "scope": "risk/no-lift only; region-dependent exit is unavailable; reused development roots",
+      "labels": {
+        "missing_evidence": 92,
+        "observed_nominal_window_without_defined_violation": 182,
+        "native_completion_without_regression": 24
+      },
+      "risk_entry_confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 206,
+        "fn": 0
+      },
+      "no_lift_confusion": {
+        "tp": 0,
+        "fp": 0,
+        "tn": 206,
+        "fn": 0
+      },
+      "first_risk_eligible": null,
+      "first_no_lift_eligible": null,
+      "risk_eligible_observations": 0,
+      "no_lift_eligible_observations": 0,
+      "source_controller_sha256": "29c2a6037f95d451bcfaab7ac95e9ef951bb5470c2db9ce469d3db34a9dd33a2",
+      "source_actions_sha256": "bfd515b6cd25abf98fac8bf8c7403de960199c2ea4cf26ae3de6426aada09b2f"
+    }
+  ],
+  "script_sha256": "96c38c9116ee437c18ad0e4ee90082ef155d0de1aab3d4fc3befb45cf849a2a5",
+  "plan_sha256": "11d1ebc243a27383a7ddf09de9bfeac505572a8910a2f47e12217020eac1f9bd",
+  "actor_queries": 0,
+  "thresholds_reselected": false,
+  "trained": false,
+  "warning": "Adjacent windows overlap. Confusion counts are per observation, not independent episode samples."
+}

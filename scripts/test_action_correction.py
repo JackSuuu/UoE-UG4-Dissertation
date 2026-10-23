@@ -12,19 +12,13 @@ from src.prediction.short_term_predictor import ShortTermMotionPredictor
 
 class PackageLayoutTests(unittest.TestCase):
     def test_runtime_imports_and_pinned_sources(self):
-        from run_framework_comparison import REPO, SOURCES, _load_v5_modules, framework_class
-        from src.controller import NativeFramework
+        from run_framework_comparison import REPO, SOURCES, framework_class
+        from src.legacy.microwave_controller import NativeFramework
         self.assertEqual(framework_class().__name__, NativeFramework.__name__)
-        self.assertIn('src/controller.py', SOURCES)
+        self.assertIn('src/legacy/microwave_controller.py', SOURCES)
         self.assertNotIn('src/adapters/native_framework.py', SOURCES)
         self.assertEqual(len(SOURCES), len(set(SOURCES)))
         self.assertTrue(all((REPO / path).is_file() for path in SOURCES))
-        modules = _load_v5_modules()
-        self.assertEqual(modules['make_monitor'].__module__, 'src.verification.vision_physical_monitor')
-        self.assertEqual(modules['make_grounding'].__module__, 'src.perception.visual_grounding')
-        self.assertEqual(modules['make_short_term_predictor'].__module__, 'src.prediction.short_term_predictor')
-        self.assertEqual(modules['make_action_suffix_corrector'].__module__, 'src.repair.action_suffix_corrector')
-        self.assertEqual(modules['make_keyframe_bank'].__module__, 'src.memory.keyframe_bank')
 
 
 class ActionValidationTests(unittest.TestCase):

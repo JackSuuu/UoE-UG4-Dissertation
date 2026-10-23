@@ -1,0 +1,10 @@
+{
+  "status": "joint_recomputation_passed",
+  "actor_queries": 0,
+  "observations_recomputed": 521,
+  "handoff_scores_recomputed": 160,
+  "mismatches": [],
+  "numeric_absolute_tolerance": 1e-05,
+  "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root2",
+  "source_plan_sha256": "11d1ebc243a27383a7ddf09de9bfeac505572a8910a2f47e12217020eac1f9bd"
+}

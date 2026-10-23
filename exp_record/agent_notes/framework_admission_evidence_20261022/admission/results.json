@@ -1,0 +1,176 @@
+[
+  {
+    "name": "joint_admission_root1",
+    "arm": "joint_admission",
+    "root": 1,
+    "cell": {
+      "name": "v2_root1",
+      "root": 1,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root1",
+    "reused": false,
+    "status": "finished",
+    "actor_returncode": 0,
+    "episode_status": "completed",
+    "valid_episode": true,
+    "any_native_success": true,
+    "steps": 444,
+    "termination": "native_success",
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "joint_admission_root3",
+    "arm": "joint_admission",
+    "root": 3,
+    "cell": {
+      "name": "v2_root3",
+      "root": 3,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root3",
+    "reused": false,
+    "status": "finished",
+    "actor_returncode": 0,
+    "episode_status": "completed",
+    "valid_episode": true,
+    "any_native_success": true,
+    "steps": 352,
+    "termination": "native_success",
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "joint_admission_root5",
+    "arm": "joint_admission",
+    "root": 5,
+    "cell": {
+      "name": "v2_root5",
+      "root": 5,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root5",
+    "reused": false,
+    "status": "finished",
+    "actor_returncode": 0,
+    "episode_status": "completed",
+    "valid_episode": true,
+    "any_native_success": true,
+    "steps": 298,
+    "termination": "native_success",
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "joint_admission_root0",
+    "arm": "joint_admission",
+    "root": 0,
+    "cell": {
+      "name": "v2_root0",
+      "root": 0,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root0",
+    "reused": false,
+    "status": "finished",
+    "actor_returncode": 0,
+    "episode_status": "completed",
+    "valid_episode": true,
+    "any_native_success": false,
+    "steps": 520,
+    "termination": "action_budget",
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "joint_admission_root2",
+    "arm": "joint_admission",
+    "root": 2,
+    "cell": {
+      "name": "v2_root2",
+      "root": 2,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root2",
+    "reused": false,
+    "status": "finished",
+    "actor_returncode": 0,
+    "episode_status": "completed",
+    "valid_episode": true,
+    "any_native_success": true,
+    "steps": 397,
+    "termination": "native_success",
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "joint_admission_root4",
+    "arm": "joint_admission",
+    "root": 4,
+    "cell": {
+      "name": "v2_root4",
+      "root": 4,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root4",
+    "reused": false,
+    "status": "finished",
+    "actor_returncode": 0,
+    "episode_status": "completed",
+    "valid_episode": true,
+    "any_native_success": false,
+    "steps": 520,
+    "termination": "action_budget",
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  }
+]

@@ -45,13 +45,15 @@ def validate_candidates(candidates):
 
 
 def select(candidates, scoring_context, *, observation=None, scorer=None,
-           collection_slot=None, vision_feat=None, physics_feat=None):
+           collection_slot=None, vision_feat=None, physics_feat=None,
+           evidence_list=None):
     """score(observation, context, candidates) -> per-action scores.
 
-    A supplied scorer must implement score_candidates(vision_feat, physics_feat,
-    candidates) -> list[float].  The coverage collector deliberately has no
-    fabricated scores.  Exact argmax ties prefer the first candidate (greedy).
-    No action is edited.
+    A supplied scorer must implement
+    score_candidates(vision_feat, physics_feat, candidates, evidence_list=None)
+    -> list[float].  The coverage collector deliberately has no fabricated
+    scores.  Exact argmax ties prefer the first candidate (greedy).  No action
+    is edited.
     """
     validate_candidates(candidates)
     if (scorer is None) == (collection_slot is None):
@@ -64,7 +66,10 @@ def select(candidates, scoring_context, *, observation=None, scorer=None,
     else:
         if vision_feat is None or physics_feat is None:
             raise ValueError('Learned scorer needs vision_feat and physics_feat')
-        scores = scorer.score_candidates(vision_feat, physics_feat, deepcopy(candidates))
+        if evidence_list is not None and len(evidence_list) != len(candidates):
+            raise ValueError('Evidence list must align with candidates')
+        scores = scorer.score_candidates(vision_feat, physics_feat,
+                                         deepcopy(candidates), evidence_list)
         if len(scores) != len(candidates) or not all(math.isfinite(float(v)) for v in scores):
             raise ValueError('Expected one finite score per candidate')
         scores = [float(v) for v in scores]

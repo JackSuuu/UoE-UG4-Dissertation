@@ -1,0 +1,2220 @@
+{
+  "schema": 3,
+  "description": "Five-layer deterministic framework with privileged measured verification; no learned predictor. Native In & Close only. Frozen official greedy H1 VLA, batch one; scoped language during bounded repair; no numeric action edits. Full-task prompt-refinement study focused on contain_release direction; no gate changes.",
+  "limits": {
+    "roots": 6,
+    "cells": 36,
+    "seed": 0,
+    "initialization_noops": 10,
+    "actions": 520,
+    "queries": 520,
+    "total_queries": 18720,
+    "batch": 1,
+    "parallel": 2,
+    "readiness_seconds": 180,
+    "query_seconds": 30,
+    "rollout_seconds": 1200,
+    "outer_seconds": 1800,
+    "replay_seconds": 300,
+    "phase_seconds": 14400,
+    "retries": 0
+  },
+  "cells": [
+    {
+      "name": "baseline_root0",
+      "root": 0,
+      "cohort": "baseline",
+      "arm": "baseline",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "v2_root0",
+      "root": 0,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_only_root0",
+      "root": 0,
+      "cohort": "prompt_only",
+      "arm": "framework",
+      "variant": "prompt_only",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_place_root0",
+      "root": 0,
+      "cohort": "prompt_place",
+      "arm": "framework",
+      "variant": "prompt_place",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_deepen_root0",
+      "root": 0,
+      "cohort": "prompt_deepen",
+      "arm": "framework",
+      "variant": "prompt_deepen",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_settle_root0",
+      "root": 0,
+      "cohort": "prompt_settle",
+      "arm": "framework",
+      "variant": "prompt_settle",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "baseline_root1",
+      "root": 1,
+      "cohort": "baseline",
+      "arm": "baseline",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "v2_root1",
+      "root": 1,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_only_root1",
+      "root": 1,
+      "cohort": "prompt_only",
+      "arm": "framework",
+      "variant": "prompt_only",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_place_root1",
+      "root": 1,
+      "cohort": "prompt_place",
+      "arm": "framework",
+      "variant": "prompt_place",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_deepen_root1",
+      "root": 1,
+      "cohort": "prompt_deepen",
+      "arm": "framework",
+      "variant": "prompt_deepen",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_settle_root1",
+      "root": 1,
+      "cohort": "prompt_settle",
+      "arm": "framework",
+      "variant": "prompt_settle",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "baseline_root2",
+      "root": 2,
+      "cohort": "baseline",
+      "arm": "baseline",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "v2_root2",
+      "root": 2,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_only_root2",
+      "root": 2,
+      "cohort": "prompt_only",
+      "arm": "framework",
+      "variant": "prompt_only",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_place_root2",
+      "root": 2,
+      "cohort": "prompt_place",
+      "arm": "framework",
+      "variant": "prompt_place",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_deepen_root2",
+      "root": 2,
+      "cohort": "prompt_deepen",
+      "arm": "framework",
+      "variant": "prompt_deepen",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_settle_root2",
+      "root": 2,
+      "cohort": "prompt_settle",
+      "arm": "framework",
+      "variant": "prompt_settle",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "baseline_root3",
+      "root": 3,
+      "cohort": "baseline",
+      "arm": "baseline",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "v2_root3",
+      "root": 3,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_only_root3",
+      "root": 3,
+      "cohort": "prompt_only",
+      "arm": "framework",
+      "variant": "prompt_only",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_place_root3",
+      "root": 3,
+      "cohort": "prompt_place",
+      "arm": "framework",
+      "variant": "prompt_place",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_deepen_root3",
+      "root": 3,
+      "cohort": "prompt_deepen",
+      "arm": "framework",
+      "variant": "prompt_deepen",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_settle_root3",
+      "root": 3,
+      "cohort": "prompt_settle",
+      "arm": "framework",
+      "variant": "prompt_settle",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "baseline_root4",
+      "root": 4,
+      "cohort": "baseline",
+      "arm": "baseline",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "v2_root4",
+      "root": 4,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_only_root4",
+      "root": 4,
+      "cohort": "prompt_only",
+      "arm": "framework",
+      "variant": "prompt_only",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_place_root4",
+      "root": 4,
+      "cohort": "prompt_place",
+      "arm": "framework",
+      "variant": "prompt_place",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_deepen_root4",
+      "root": 4,
+      "cohort": "prompt_deepen",
+      "arm": "framework",
+      "variant": "prompt_deepen",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_settle_root4",
+      "root": 4,
+      "cohort": "prompt_settle",
+      "arm": "framework",
+      "variant": "prompt_settle",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "baseline_root5",
+      "root": 5,
+      "cohort": "baseline",
+      "arm": "baseline",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "v2_root5",
+      "root": 5,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_only_root5",
+      "root": 5,
+      "cohort": "prompt_only",
+      "arm": "framework",
+      "variant": "prompt_only",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_place_root5",
+      "root": 5,
+      "cohort": "prompt_place",
+      "arm": "framework",
+      "variant": "prompt_place",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    {
+      "name": "prompt_deepen_root5",
+      "root": 5,
+      "cohort": "prompt_deepen",
+      "arm": "framework",
+      "variant": "prompt_deepen",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    {
+      "name": "prompt_settle_root5",
+      "root": 5,
+      "cohort": "prompt_settle",
+      "arm": "framework",
+      "variant": "prompt_settle",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    }
+  ],
+  "references": [
+    {
+      "root": 0,
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "original_args": {
+        "out": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+        "root": "/home/ami/scratch/LIBERO",
+        "task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+        "init_index": 0,
+        "seed": 0,
+        "gpu": 1,
+        "egl_device": 2,
+        "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "pinned_python": "/home/ami/scratch/openvla_tf440_audit_20261019/venv/bin/python",
+        "steps": 520,
+        "smoke": false,
+        "replay": null
+      },
+      "checkpoint": {
+        "repository": "openvla/openvla-7b-finetuned-libero-10",
+        "revision": "80970322773f81baa2e22fe495d0487b93a05cfa",
+        "files": {
+          ".gitattributes": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/.gitattributes",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+            "bytes": 1519,
+            "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+          },
+          "README.md": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/README.md",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/726ee244264b4ee19c4528cf8ce1e00352a73cd4",
+            "bytes": 1865,
+            "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+          },
+          "added_tokens.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/added_tokens.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/8671820d1bb0dfd4dd92d5bd0fa9b5a7773f843e",
+            "bytes": 21,
+            "sha256": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1"
+          },
+          "config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/d6e1fc630c9fd92c626d7f1c19cc9b074814a7e2",
+            "bytes": 3528,
+            "sha256": "f1119b0e0d6c93f10fbd0ad1996c3bff5a7bbb18040d8b2b828c69d302eacd4d"
+          },
+          "dataset_statistics.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/dataset_statistics.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/110dd3b99faa604df07e99151ae57eb2f6c1bd4c",
+            "bytes": 2129,
+            "sha256": "54ca346948d5e62e9519a9ed93e45f0a069b9ec997ad1f48f1d8867d4d2d86d2"
+          },
+          "generation_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/generation_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/2cefc1e51e6ccfe846d2b509ced403df73a8efe2",
+            "bytes": 136,
+            "sha256": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1"
+          },
+          "model-00001-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00001-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/15/1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186",
+            "bytes": 4925122448,
+            "cached_blob_id_not_rehashed": "1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186"
+          },
+          "model-00002-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00002-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/28/28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d",
+            "bytes": 4947392496,
+            "cached_blob_id_not_rehashed": "28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d"
+          },
+          "model-00003-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00003-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/44/44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280",
+            "bytes": 4947417456,
+            "cached_blob_id_not_rehashed": "44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280"
+          },
+          "model-00004-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00004-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/ce/cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746",
+            "bytes": 262668432,
+            "cached_blob_id_not_rehashed": "cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746"
+          },
+          "model.safetensors.index.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model.safetensors.index.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/bd7cc8ff8070ead248023feae55303f5a3b900d1",
+            "bytes": 94764,
+            "sha256": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659"
+          },
+          "preprocessor_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/preprocessor_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/c804c0dfcb9655fe2933d2fe20ec3a210068bb82",
+            "bytes": 1690,
+            "sha256": "52ca6dd7fb31a2757658f94775b659553bc3532ab04babef02779387b3dec214"
+          },
+          "special_tokens_map.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/special_tokens_map.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/ab75c8e0a22550f0667501a0c52758f071a9efd8",
+            "bytes": 552,
+            "sha256": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61"
+          },
+          "tokenizer.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/591f1fc6ff695d967513100f707e66d5bf731414",
+            "bytes": 1842976,
+            "sha256": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527"
+          },
+          "tokenizer.model": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.model",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/91/91bf184ab12793d0754344f9095332759432e666320cc6c07f637af50e36db6f",
+            "bytes": 499723,
+            "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347"
+          },
+          "tokenizer_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/7566269cef6fd7301700397bcc988fcab8ca0e52",
+            "bytes": 1212,
+            "sha256": "0d9176185eb68a54a7be757961c1957b979920cc81339c4def0202dae5b602bc"
+          }
+        }
+      }
+    },
+    {
+      "root": 1,
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "original_args": {
+        "out": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+        "root": "/home/ami/scratch/LIBERO",
+        "task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+        "init_index": 1,
+        "seed": 0,
+        "gpu": 2,
+        "egl_device": 1,
+        "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "pinned_python": "/home/ami/scratch/openvla_tf440_audit_20261019/venv/bin/python",
+        "steps": 520,
+        "smoke": false,
+        "replay": null
+      },
+      "checkpoint": {
+        "repository": "openvla/openvla-7b-finetuned-libero-10",
+        "revision": "80970322773f81baa2e22fe495d0487b93a05cfa",
+        "files": {
+          ".gitattributes": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/.gitattributes",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+            "bytes": 1519,
+            "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+          },
+          "README.md": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/README.md",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/726ee244264b4ee19c4528cf8ce1e00352a73cd4",
+            "bytes": 1865,
+            "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+          },
+          "added_tokens.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/added_tokens.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/8671820d1bb0dfd4dd92d5bd0fa9b5a7773f843e",
+            "bytes": 21,
+            "sha256": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1"
+          },
+          "config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/d6e1fc630c9fd92c626d7f1c19cc9b074814a7e2",
+            "bytes": 3528,
+            "sha256": "f1119b0e0d6c93f10fbd0ad1996c3bff5a7bbb18040d8b2b828c69d302eacd4d"
+          },
+          "dataset_statistics.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/dataset_statistics.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/110dd3b99faa604df07e99151ae57eb2f6c1bd4c",
+            "bytes": 2129,
+            "sha256": "54ca346948d5e62e9519a9ed93e45f0a069b9ec997ad1f48f1d8867d4d2d86d2"
+          },
+          "generation_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/generation_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/2cefc1e51e6ccfe846d2b509ced403df73a8efe2",
+            "bytes": 136,
+            "sha256": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1"
+          },
+          "model-00001-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00001-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/15/1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186",
+            "bytes": 4925122448,
+            "cached_blob_id_not_rehashed": "1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186"
+          },
+          "model-00002-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00002-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/28/28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d",
+            "bytes": 4947392496,
+            "cached_blob_id_not_rehashed": "28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d"
+          },
+          "model-00003-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00003-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/44/44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280",
+            "bytes": 4947417456,
+            "cached_blob_id_not_rehashed": "44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280"
+          },
+          "model-00004-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00004-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/ce/cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746",
+            "bytes": 262668432,
+            "cached_blob_id_not_rehashed": "cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746"
+          },
+          "model.safetensors.index.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model.safetensors.index.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/bd7cc8ff8070ead248023feae55303f5a3b900d1",
+            "bytes": 94764,
+            "sha256": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659"
+          },
+          "preprocessor_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/preprocessor_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/c804c0dfcb9655fe2933d2fe20ec3a210068bb82",
+            "bytes": 1690,
+            "sha256": "52ca6dd7fb31a2757658f94775b659553bc3532ab04babef02779387b3dec214"
+          },
+          "special_tokens_map.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/special_tokens_map.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/ab75c8e0a22550f0667501a0c52758f071a9efd8",
+            "bytes": 552,
+            "sha256": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61"
+          },
+          "tokenizer.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/591f1fc6ff695d967513100f707e66d5bf731414",
+            "bytes": 1842976,
+            "sha256": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527"
+          },
+          "tokenizer.model": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.model",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/91/91bf184ab12793d0754344f9095332759432e666320cc6c07f637af50e36db6f",
+            "bytes": 499723,
+            "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347"
+          },
+          "tokenizer_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/7566269cef6fd7301700397bcc988fcab8ca0e52",
+            "bytes": 1212,
+            "sha256": "0d9176185eb68a54a7be757961c1957b979920cc81339c4def0202dae5b602bc"
+          }
+        }
+      }
+    },
+    {
+      "root": 2,
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+      "original_args": {
+        "out": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+        "root": "/home/ami/scratch/LIBERO",
+        "task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+        "init_index": 2,
+        "seed": 0,
+        "gpu": 3,
+        "egl_device": 0,
+        "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "pinned_python": "/home/ami/scratch/openvla_tf440_audit_20261019/venv/bin/python",
+        "steps": 520,
+        "smoke": false,
+        "replay": null
+      },
+      "checkpoint": {
+        "repository": "openvla/openvla-7b-finetuned-libero-10",
+        "revision": "80970322773f81baa2e22fe495d0487b93a05cfa",
+        "files": {
+          ".gitattributes": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/.gitattributes",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+            "bytes": 1519,
+            "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+          },
+          "README.md": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/README.md",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/726ee244264b4ee19c4528cf8ce1e00352a73cd4",
+            "bytes": 1865,
+            "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+          },
+          "added_tokens.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/added_tokens.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/8671820d1bb0dfd4dd92d5bd0fa9b5a7773f843e",
+            "bytes": 21,
+            "sha256": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1"
+          },
+          "config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/d6e1fc630c9fd92c626d7f1c19cc9b074814a7e2",
+            "bytes": 3528,
+            "sha256": "f1119b0e0d6c93f10fbd0ad1996c3bff5a7bbb18040d8b2b828c69d302eacd4d"
+          },
+          "dataset_statistics.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/dataset_statistics.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/110dd3b99faa604df07e99151ae57eb2f6c1bd4c",
+            "bytes": 2129,
+            "sha256": "54ca346948d5e62e9519a9ed93e45f0a069b9ec997ad1f48f1d8867d4d2d86d2"
+          },
+          "generation_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/generation_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/2cefc1e51e6ccfe846d2b509ced403df73a8efe2",
+            "bytes": 136,
+            "sha256": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1"
+          },
+          "model-00001-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00001-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/15/1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186",
+            "bytes": 4925122448,
+            "cached_blob_id_not_rehashed": "1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186"
+          },
+          "model-00002-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00002-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/28/28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d",
+            "bytes": 4947392496,
+            "cached_blob_id_not_rehashed": "28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d"
+          },
+          "model-00003-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00003-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/44/44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280",
+            "bytes": 4947417456,
+            "cached_blob_id_not_rehashed": "44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280"
+          },
+          "model-00004-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00004-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/ce/cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746",
+            "bytes": 262668432,
+            "cached_blob_id_not_rehashed": "cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746"
+          },
+          "model.safetensors.index.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model.safetensors.index.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/bd7cc8ff8070ead248023feae55303f5a3b900d1",
+            "bytes": 94764,
+            "sha256": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659"
+          },
+          "preprocessor_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/preprocessor_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/c804c0dfcb9655fe2933d2fe20ec3a210068bb82",
+            "bytes": 1690,
+            "sha256": "52ca6dd7fb31a2757658f94775b659553bc3532ab04babef02779387b3dec214"
+          },
+          "special_tokens_map.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/special_tokens_map.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/ab75c8e0a22550f0667501a0c52758f071a9efd8",
+            "bytes": 552,
+            "sha256": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61"
+          },
+          "tokenizer.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/591f1fc6ff695d967513100f707e66d5bf731414",
+            "bytes": 1842976,
+            "sha256": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527"
+          },
+          "tokenizer.model": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.model",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/91/91bf184ab12793d0754344f9095332759432e666320cc6c07f637af50e36db6f",
+            "bytes": 499723,
+            "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347"
+          },
+          "tokenizer_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/7566269cef6fd7301700397bcc988fcab8ca0e52",
+            "bytes": 1212,
+            "sha256": "0d9176185eb68a54a7be757961c1957b979920cc81339c4def0202dae5b602bc"
+          }
+        }
+      }
+    },
+    {
+      "root": 3,
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+      "original_args": {
+        "out": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+        "root": "/home/ami/scratch/LIBERO",
+        "task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+        "init_index": 3,
+        "seed": 0,
+        "gpu": 1,
+        "egl_device": 2,
+        "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "pinned_python": "/home/ami/scratch/openvla_tf440_audit_20261019/venv/bin/python",
+        "steps": 520,
+        "smoke": false,
+        "replay": null
+      },
+      "checkpoint": {
+        "repository": "openvla/openvla-7b-finetuned-libero-10",
+        "revision": "80970322773f81baa2e22fe495d0487b93a05cfa",
+        "files": {
+          ".gitattributes": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/.gitattributes",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+            "bytes": 1519,
+            "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+          },
+          "README.md": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/README.md",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/726ee244264b4ee19c4528cf8ce1e00352a73cd4",
+            "bytes": 1865,
+            "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+          },
+          "added_tokens.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/added_tokens.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/8671820d1bb0dfd4dd92d5bd0fa9b5a7773f843e",
+            "bytes": 21,
+            "sha256": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1"
+          },
+          "config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/d6e1fc630c9fd92c626d7f1c19cc9b074814a7e2",
+            "bytes": 3528,
+            "sha256": "f1119b0e0d6c93f10fbd0ad1996c3bff5a7bbb18040d8b2b828c69d302eacd4d"
+          },
+          "dataset_statistics.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/dataset_statistics.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/110dd3b99faa604df07e99151ae57eb2f6c1bd4c",
+            "bytes": 2129,
+            "sha256": "54ca346948d5e62e9519a9ed93e45f0a069b9ec997ad1f48f1d8867d4d2d86d2"
+          },
+          "generation_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/generation_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/2cefc1e51e6ccfe846d2b509ced403df73a8efe2",
+            "bytes": 136,
+            "sha256": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1"
+          },
+          "model-00001-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00001-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/15/1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186",
+            "bytes": 4925122448,
+            "cached_blob_id_not_rehashed": "1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186"
+          },
+          "model-00002-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00002-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/28/28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d",
+            "bytes": 4947392496,
+            "cached_blob_id_not_rehashed": "28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d"
+          },
+          "model-00003-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00003-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/44/44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280",
+            "bytes": 4947417456,
+            "cached_blob_id_not_rehashed": "44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280"
+          },
+          "model-00004-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00004-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/ce/cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746",
+            "bytes": 262668432,
+            "cached_blob_id_not_rehashed": "cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746"
+          },
+          "model.safetensors.index.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model.safetensors.index.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/bd7cc8ff8070ead248023feae55303f5a3b900d1",
+            "bytes": 94764,
+            "sha256": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659"
+          },
+          "preprocessor_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/preprocessor_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/c804c0dfcb9655fe2933d2fe20ec3a210068bb82",
+            "bytes": 1690,
+            "sha256": "52ca6dd7fb31a2757658f94775b659553bc3532ab04babef02779387b3dec214"
+          },
+          "special_tokens_map.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/special_tokens_map.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/ab75c8e0a22550f0667501a0c52758f071a9efd8",
+            "bytes": 552,
+            "sha256": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61"
+          },
+          "tokenizer.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/591f1fc6ff695d967513100f707e66d5bf731414",
+            "bytes": 1842976,
+            "sha256": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527"
+          },
+          "tokenizer.model": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.model",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/91/91bf184ab12793d0754344f9095332759432e666320cc6c07f637af50e36db6f",
+            "bytes": 499723,
+            "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347"
+          },
+          "tokenizer_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/7566269cef6fd7301700397bcc988fcab8ca0e52",
+            "bytes": 1212,
+            "sha256": "0d9176185eb68a54a7be757961c1957b979920cc81339c4def0202dae5b602bc"
+          }
+        }
+      }
+    },
+    {
+      "root": 4,
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "original_args": {
+        "out": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+        "root": "/home/ami/scratch/LIBERO",
+        "task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+        "init_index": 4,
+        "seed": 0,
+        "gpu": 2,
+        "egl_device": 1,
+        "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "pinned_python": "/home/ami/scratch/openvla_tf440_audit_20261019/venv/bin/python",
+        "steps": 520,
+        "smoke": false,
+        "replay": null
+      },
+      "checkpoint": {
+        "repository": "openvla/openvla-7b-finetuned-libero-10",
+        "revision": "80970322773f81baa2e22fe495d0487b93a05cfa",
+        "files": {
+          ".gitattributes": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/.gitattributes",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+            "bytes": 1519,
+            "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+          },
+          "README.md": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/README.md",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/726ee244264b4ee19c4528cf8ce1e00352a73cd4",
+            "bytes": 1865,
+            "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+          },
+          "added_tokens.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/added_tokens.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/8671820d1bb0dfd4dd92d5bd0fa9b5a7773f843e",
+            "bytes": 21,
+            "sha256": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1"
+          },
+          "config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/d6e1fc630c9fd92c626d7f1c19cc9b074814a7e2",
+            "bytes": 3528,
+            "sha256": "f1119b0e0d6c93f10fbd0ad1996c3bff5a7bbb18040d8b2b828c69d302eacd4d"
+          },
+          "dataset_statistics.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/dataset_statistics.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/110dd3b99faa604df07e99151ae57eb2f6c1bd4c",
+            "bytes": 2129,
+            "sha256": "54ca346948d5e62e9519a9ed93e45f0a069b9ec997ad1f48f1d8867d4d2d86d2"
+          },
+          "generation_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/generation_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/2cefc1e51e6ccfe846d2b509ced403df73a8efe2",
+            "bytes": 136,
+            "sha256": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1"
+          },
+          "model-00001-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00001-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/15/1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186",
+            "bytes": 4925122448,
+            "cached_blob_id_not_rehashed": "1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186"
+          },
+          "model-00002-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00002-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/28/28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d",
+            "bytes": 4947392496,
+            "cached_blob_id_not_rehashed": "28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d"
+          },
+          "model-00003-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00003-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/44/44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280",
+            "bytes": 4947417456,
+            "cached_blob_id_not_rehashed": "44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280"
+          },
+          "model-00004-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00004-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/ce/cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746",
+            "bytes": 262668432,
+            "cached_blob_id_not_rehashed": "cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746"
+          },
+          "model.safetensors.index.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model.safetensors.index.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/bd7cc8ff8070ead248023feae55303f5a3b900d1",
+            "bytes": 94764,
+            "sha256": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659"
+          },
+          "preprocessor_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/preprocessor_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/c804c0dfcb9655fe2933d2fe20ec3a210068bb82",
+            "bytes": 1690,
+            "sha256": "52ca6dd7fb31a2757658f94775b659553bc3532ab04babef02779387b3dec214"
+          },
+          "special_tokens_map.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/special_tokens_map.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/ab75c8e0a22550f0667501a0c52758f071a9efd8",
+            "bytes": 552,
+            "sha256": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61"
+          },
+          "tokenizer.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/591f1fc6ff695d967513100f707e66d5bf731414",
+            "bytes": 1842976,
+            "sha256": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527"
+          },
+          "tokenizer.model": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.model",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/91/91bf184ab12793d0754344f9095332759432e666320cc6c07f637af50e36db6f",
+            "bytes": 499723,
+            "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347"
+          },
+          "tokenizer_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/7566269cef6fd7301700397bcc988fcab8ca0e52",
+            "bytes": 1212,
+            "sha256": "0d9176185eb68a54a7be757961c1957b979920cc81339c4def0202dae5b602bc"
+          }
+        }
+      }
+    },
+    {
+      "root": 5,
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+      "original_args": {
+        "out": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+        "root": "/home/ami/scratch/LIBERO",
+        "task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+        "init_index": 5,
+        "seed": 0,
+        "gpu": 3,
+        "egl_device": 0,
+        "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+        "pinned_python": "/home/ami/scratch/openvla_tf440_audit_20261019/venv/bin/python",
+        "steps": 520,
+        "smoke": false,
+        "replay": null
+      },
+      "checkpoint": {
+        "repository": "openvla/openvla-7b-finetuned-libero-10",
+        "revision": "80970322773f81baa2e22fe495d0487b93a05cfa",
+        "files": {
+          ".gitattributes": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/.gitattributes",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/a6344aac8c09253b3b630fb776ae94478aa0275b",
+            "bytes": 1519,
+            "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361"
+          },
+          "README.md": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/README.md",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/726ee244264b4ee19c4528cf8ce1e00352a73cd4",
+            "bytes": 1865,
+            "sha256": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394"
+          },
+          "added_tokens.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/added_tokens.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/8671820d1bb0dfd4dd92d5bd0fa9b5a7773f843e",
+            "bytes": 21,
+            "sha256": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1"
+          },
+          "config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/d6e1fc630c9fd92c626d7f1c19cc9b074814a7e2",
+            "bytes": 3528,
+            "sha256": "f1119b0e0d6c93f10fbd0ad1996c3bff5a7bbb18040d8b2b828c69d302eacd4d"
+          },
+          "dataset_statistics.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/dataset_statistics.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/110dd3b99faa604df07e99151ae57eb2f6c1bd4c",
+            "bytes": 2129,
+            "sha256": "54ca346948d5e62e9519a9ed93e45f0a069b9ec997ad1f48f1d8867d4d2d86d2"
+          },
+          "generation_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/generation_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/2cefc1e51e6ccfe846d2b509ced403df73a8efe2",
+            "bytes": 136,
+            "sha256": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1"
+          },
+          "model-00001-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00001-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/15/1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186",
+            "bytes": 4925122448,
+            "cached_blob_id_not_rehashed": "1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186"
+          },
+          "model-00002-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00002-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/28/28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d",
+            "bytes": 4947392496,
+            "cached_blob_id_not_rehashed": "28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d"
+          },
+          "model-00003-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00003-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/44/44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280",
+            "bytes": 4947417456,
+            "cached_blob_id_not_rehashed": "44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280"
+          },
+          "model-00004-of-00004.safetensors": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00004-of-00004.safetensors",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/ce/cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746",
+            "bytes": 262668432,
+            "cached_blob_id_not_rehashed": "cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746"
+          },
+          "model.safetensors.index.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model.safetensors.index.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/bd7cc8ff8070ead248023feae55303f5a3b900d1",
+            "bytes": 94764,
+            "sha256": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659"
+          },
+          "preprocessor_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/preprocessor_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/c804c0dfcb9655fe2933d2fe20ec3a210068bb82",
+            "bytes": 1690,
+            "sha256": "52ca6dd7fb31a2757658f94775b659553bc3532ab04babef02779387b3dec214"
+          },
+          "special_tokens_map.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/special_tokens_map.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/ab75c8e0a22550f0667501a0c52758f071a9efd8",
+            "bytes": 552,
+            "sha256": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61"
+          },
+          "tokenizer.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/591f1fc6ff695d967513100f707e66d5bf731414",
+            "bytes": 1842976,
+            "sha256": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527"
+          },
+          "tokenizer.model": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.model",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/91/91bf184ab12793d0754344f9095332759432e666320cc6c07f637af50e36db6f",
+            "bytes": 499723,
+            "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347"
+          },
+          "tokenizer_config.json": {
+            "path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer_config.json",
+            "resolved_path": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/blobs/7566269cef6fd7301700397bcc988fcab8ca0e52",
+            "bytes": 1212,
+            "sha256": "0d9176185eb68a54a7be757961c1957b979920cc81339c4def0202dae5b602bc"
+          }
+        }
+      }
+    }
+  ],
+  "source_sha256": {
+    "/home/ami/UoE-UG4-Dissertation/scripts/run_framework_comparison.py": "df49fbf2df51b1ae10d7277cd5282ac0df8764310a578a7391375408797da387",
+    "/home/ami/UoE-UG4-Dissertation/src/controller.py": "afeea0374eb5b811f708e6d9bd93c8e6a30066170b1254a0b787dc71a562b003",
+    "/home/ami/UoE-UG4-Dissertation/src/__init__.py": "016bb58e87cfbab8e0a37a1fb6c918fa5eeb056eb2182af340316022e3072510",
+    "/home/ami/UoE-UG4-Dissertation/scripts/run_native_long_branch.py": "4093db091d52deddbb6f03f8e6feca2318a9e36ac7e6581bf40a23b47de64d8c",
+    "/home/ami/UoE-UG4-Dissertation/scripts/native_long_candidate_worker.py": "04afbdbeea70eb23551aa524c4de59ef583469260880e9139462661724091db2",
+    "/home/ami/UoE-UG4-Dissertation/scripts/test_native_framework.py": "5194ab99bbacda25512ac1a84bd963ab20dcf8cec4223894023485d730b36465",
+    "/home/ami/UoE-UG4-Dissertation/scripts/test_action_correction.py": "5514816ff242e2baeb9317ed68bf1e950a323f131c0917f1a517aa192f1f7ed5",
+    "/home/ami/UoE-UG4-Dissertation/scripts/test_fusion_handoff.py": "41686dfba9eee17779db5b2f982ccdd6c1562cde5b3d596be68a6d6d7f665ff3",
+    "/home/ami/UoE-UG4-Dissertation/scripts/run_fusion_handoff_ablation.py": "2abd6447e35dc9a81aed01eec0569aa35c1f5826c3d9d47bcd0899da87a4887c",
+    "/home/ami/UoE-UG4-Dissertation/scripts/test_joint_framework.py": "517e7eacfab8c3e8dc9bcb54f3badc346deec6432956bf6015f848e9c26b4112",
+    "/home/ami/UoE-UG4-Dissertation/scripts/run_joint_framework.py": "a761b167ca647287b5a45bdc60466acb44fc3e22d16eb0dcf321336d87da8a19",
+    "/home/ami/UoE-UG4-Dissertation/scripts/run_framework_diagnostic_study.py": "8eadb8f87bc633105cfc3d213e373faa34a88e52fe54321cf8f6cc0eb3c674c1",
+    "/home/ami/UoE-UG4-Dissertation/scripts/check_framework_trace_compatibility.py": "f057e215c9f09c7ae827ba31c46cf8bbd93bf34f15305c6ed3b44764dc0b8fdb",
+    "/home/ami/UoE-UG4-Dissertation/src/repair/experimental/contract_progress.py": "d47c9fca5d07fd80881c9efa4f387f4b7e983c4003755c16363f5268854b930f",
+    "/home/ami/UoE-UG4-Dissertation/scripts/test_repair_contract_progress.py": "b1747c16d238ca076be576e85e4f30d56ef50e46798b50eff75534936388b757",
+    "/home/ami/UoE-UG4-Dissertation/scripts/test_repair_candidates.py": "0231f8351984f83dd83b66bbe63eb081caa3aaf5951efc6304028a8a60200b93",
+    "/home/ami/UoE-UG4-Dissertation/scripts/run_repair_candidate_study.py": "4e1a68ab96ec639730b7bc43e5683b45c8eef5bae4c2d56f70be6585cd79a1d9",
+    "/home/ami/UoE-UG4-Dissertation/scripts/analyze_repair_candidates.py": "1b3a1a9675eb6349dc86252ccdcc9da2826485f0640eee259f83666d11d9baef",
+    "/home/ami/UoE-UG4-Dissertation/scripts/test_recovery_options.py": "74d17a50f9cf279d1d69c1696f2bcf61b4513cdbe4dedfc1f0e13789cc558d0b",
+    "/home/ami/UoE-UG4-Dissertation/scripts/run_recovery_comparison.py": "14e84aa5253c43b232ecad1f2a6ec6011a5990c7b94f307f78b13679909b7703",
+    "/home/ami/UoE-UG4-Dissertation/src/adapters/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/ami/UoE-UG4-Dissertation/src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "/home/ami/UoE-UG4-Dissertation/src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "/home/ami/UoE-UG4-Dissertation/src/perception/__init__.py": "42347641904b1c2fb65fb4d43302ed64ceb4d9b1d846d31dc9296924a34e951c",
+    "/home/ami/UoE-UG4-Dissertation/src/perception/frozen_visual_encoder.py": "c3f90f0052e9d7d87861fa3ae61be45d94faa085c228f61f72f6a7c0a7ea62cb",
+    "/home/ami/UoE-UG4-Dissertation/src/perception/vision_subgoal_inference.py": "d01ee56d5352cc553249463c4817d965b5e73ab818a027dcd3c987fbdd84bf11",
+    "/home/ami/UoE-UG4-Dissertation/src/perception/visual_grounding.py": "244544504dbe362257e67ce5cb726c3e5d0efba15c49ee77eb59ca48d0760818",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/__init__.py": "56100eae6bade6a227220e24440871bfcb4d52a63e8b01d39fa225cb4d8b534c",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/calibrated_risk_head.py": "a477f26c622fd82477acda095f148fec7bdc3e6033855bfd14d39ae64a174542",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/fusion_mlp.py": "fbdcbcf44506a507f701ee7b6f63377c1fe2dcf5f2273ba72ee06f93dd9a4547",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/handoff_verifier.py": "a51bc5d9a3798441088f8dc8200e48b4a4390bafacf4b0e1a98b18ec2f912f8d",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/joint_runtime.py": "56b9d9ec46a07c737c52f816b46df92a426c1c12d667c3ca8120d08adf89279f",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/outcome_risk.py": "7db57ce33af67ba98cc71b106dd0f8da80565d3260befb863c1a1a1adc82e37b",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/physical_verifier.py": "9d756a8be0ab894f2d95a269dc85d89abd8daeb9e4f00b445957deb7f51c950b",
+    "/home/ami/UoE-UG4-Dissertation/src/verification/vision_physical_monitor.py": "d72fe2a6b75eeadf67ed69d8fe47ca0387838391536fa2c657c5672c1e59e6b7",
+    "/home/ami/UoE-UG4-Dissertation/src/prediction/__init__.py": "f7608786d37b47352bba1d135c514e54549c3b6ffa200bd93a16de5308ef3272",
+    "/home/ami/UoE-UG4-Dissertation/src/prediction/short_term_predictor.py": "338ec21fc8b928ef07758741952117664c9c721288feebd0abde9f445bc65c59",
+    "/home/ami/UoE-UG4-Dissertation/src/repair/__init__.py": "1046111e1571fde3679f56870ab24474aed3caffe775bdb0c4aed5f9466c704e",
+    "/home/ami/UoE-UG4-Dissertation/src/repair/action_suffix_corrector.py": "43782de0b32406f3e9e8c9d46b23d06ed8aa5d599970597d96bdc1a7c2c72a63",
+    "/home/ami/UoE-UG4-Dissertation/src/repair/candidate_pool.py": "294d18a0e95ae0cf20607125c768482458efd66531d70013a393890a4a3d253a",
+    "/home/ami/UoE-UG4-Dissertation/src/repair/receding_horizon_repair.py": "503bddcb9d609769e4a9cdac0487c4c0c3f296656e9e52dce81610fa55f756f8",
+    "/home/ami/UoE-UG4-Dissertation/src/repair/recovery_options.py": "1d8774f54d3d0c214b5cd596eb9e1e9c3a00728f0033b6e053370ad72a9e39d6",
+    "/home/ami/UoE-UG4-Dissertation/src/memory/__init__.py": "30d19da505921b1407f383137537c6c7c160d99b443f31c03e9f0798062f5f83",
+    "/home/ami/UoE-UG4-Dissertation/src/memory/keyframe_bank.py": "210c42d8de9a79a29c40b03c0f42fd6944ab03a649cd0b7a3b7673690c262683",
+    "/home/ami/UoE-UG4-Dissertation/src/training/__init__.py": "9c7cb590f8361b402572fd24257db17783a874217988b1e755f209770a94e2da",
+    "/home/ami/UoE-UG4-Dissertation/src/training/handoff_dataset.py": "ef468ea1e808f1aad35ad7799fe51de3cf705927f262f6d6dd6a7795d792bed4",
+    "/home/ami/UoE-UG4-Dissertation/src/training/recovery_dataset.py": "163e5ee33e1b603589b2cf1fddd24b3c38f8f19126d6e7048cbacfc2c2a20238",
+    "/home/ami/UoE-UG4-Dissertation/src/training/train_fusion_mlp.py": "1353183a2885e34bc39de70632d1aef876705dd197696b99d91f58cbf6548068",
+    "/home/ami/UoE-UG4-Dissertation/src/training/train_joint_components.py": "955563d413d5029f58f991d53411cc28764312eaf09d004d792913e0917156df",
+    "/home/ami/UoE-UG4-Dissertation/src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt": "68efc4bf103c6baac634401a36091e758fb94d5762a8610f20719a9baa61c08b",
+    "/home/ami/UoE-UG4-Dissertation/src/checkpoints/fusion_handoff_v2_20261022/report.json": "96c48c10cf6317038f0fb12667ce69d411c9d562a8cb4f9c57509cfcf7319e09",
+    "/home/ami/UoE-UG4-Dissertation/src/checkpoints/fusion_handoff_v2_20261022/dataset_manifest.json": "88e5d41db061f61bf422d6355aaf4c71dc5437cd56967ac5e1745720809248c9",
+    "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/__init__.py": "0d2b87b7e71c7f7279ccc4b4f8b541d26071425284a0ea01a5a435fac4511cfe",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/configs/__init__.py": "be6503fea5e43bf81c504247a35f731f12541e567b18607152eff102137f8dc0",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/__init__.py": "a3d422bc188029270a69b231306eed8482093c0317b0ba406867a115f2e67f01",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/accumulators.py": "f7b8677699afbaaef17bb42573db0d45e1bc9a5e6f7da16573672a35f1f9a06f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/adapters.py": "1d24004ce6ead1e35408f590867d0b1c09a4a3a65278771f574f1a3ba0d7ccba",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/augmentations.py": "10e949f266c7cffa57ffc8c5cf9dc094a8e701cdc74f1a3fefd2e02f78f8cdf7",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/cell_dino/augmentations.py": "b87c8283f717945c8429f220a769aeb0278604a38ded1c75b8adadfa1d2f3ddf",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/cell_dino/transforms.py": "18f435ff0a346d972a95c66d8b20bb1fee2fa275740e0fcc99253d982f5e3cd8",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/collate.py": "0d2bb0060094b8c86838ad5af2572a9ff0e66c73660b61be70d60f64b9508570",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/__init__.py": "00057731a94738bf3fdbc15af2bcc64f8c21e954e7ff79c0e48dae38b79202f2",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/cell_dino/chammi_cp.py": "bd35d07dec62ab3b5f99c78d97cdfa3fad8a617db5b844e81ded17142ef90361",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/cell_dino/chammi_hpa.py": "dc40cfc28ae02d2275b896189520c85c0c5d8aa9ad1d06f0ed3cd4a760ef488a",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/cell_dino/chammi_wtc.py": "e90ddea42e9273495f294ef584c467667bb8002758707cb154da55d37a24dc37",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/cell_dino/hpafov.py": "065108a515651ef21411e6951fa64197646e2887c8b772185673d3df65c4a779",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/cell_dino/hpaone.py": "16b080fd09d61c8241409d0e444d0b23464f7590f11df612e45efd354526ffe2",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/decoders.py": "a43ca26d46b973943ff17c5e6d0d4115cd07e01851e4fc9d46e4b13738da17f8",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/extended.py": "4f042450ff939a13d284df30a859a16f8c13ac8e3ece48e3437b8bca473980f0",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/image_net.py": "748a6d9f39b1ca9e94a2bdd61a78c40d1655508fcfae40057057fe8c74bb611b",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/datasets/image_net_22k.py": "e94c0bffc3f1aa78d770c871ecb72fbbf66a5dfcd0703f8319b263708698e351",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/loaders.py": "1f6c2f709f880c8b94717fc3ee2531f18e034ff98986c0a7e90096dc42b82b6e",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/masking.py": "4fcbc5aa4cfa069a32200b3eb39f86e09de3ac476afa7a12a2fbdfb160a892c3",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/samplers.py": "5f19029f6da99de6c81ec5e8d313d85739c66020cf8447b5b35e7f80c9071ebb",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/data/transforms.py": "725823be317c6a549810740c6566a2a448ba1eba85eea87769c10b986dda2e5b",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/distributed/__init__.py": "b6aaa4151999c88a4ff031e786dc66bb2ecbc8b5421ffe72169c9c305c1414e5",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/__init__.py": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/cell_dino/knn.py": "1360aaaf72fa561315e269e1c714d431aa6e5aa0ec64abe4d1c26be14b4c1750",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/cell_dino/linear.py": "0f103e6a5578138c614a445fc36c8555a74751cc5b6a90218fe0a417baf43df8",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/cell_dino/utils.py": "4117190b6b216f0ad48b2dab91cea55a09a861d27cb8d8993677274b01a76fd6",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/__init__.py": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/__init__.py": "6d2d9aa7396eafa2c3d04d5609b39c068b210a5ca8368d2f7cd47f5fc3e7d152",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/backbones/__init__.py": "e6e25365ad291aad30d8bce4c9f9b906580f204c141d62be4bcc3699e563d901",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/backbones/vision_transformer.py": "9aa72220970247ccb8399e5a95d82721679c479e0f0c0096c4ef0bdff4fe6735",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/builder.py": "0b1dcd672ba5a6b5acec2fa70cfea70ee280aba264a3236e7c1139976b2d02dc",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/decode_heads/__init__.py": "38268a3d08272273b7a1cf03b88b1eff6604cbef519637476e9652dcef4f43bc",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/decode_heads/decode_head.py": "4d163967518b4ef251dbd400792a295033983a7c3eb9ce2b362df32f1bc57046",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/decode_heads/dpt_head.py": "4de04fd7fd8681d0bb5977f250be89d76314f97d626f717d1d09eeff14e059f7",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/decode_heads/linear_head.py": "bf6c448f2635a5db0eb0423bf7854899c1e36f0e0897107c14dfb2bf064d0160",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/depther/__init__.py": "a00bcccdea87b79d23b0085ad3db9728169103c236749dfda09184dc0fefa8aa",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/depther/base.py": "59233aeb2bdf0266937213d5d1f12628835bc5a204f11a7b6982838f61adf28f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/depther/encoder_decoder.py": "96d0d2ff321707888191b52ee9180ef6f38d6b7212f5d604891c764b4b46d248",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/losses/__init__.py": "5dacc4c02607b64ee63906bbda9de9158d59d50fc2d1e4cf360455f6f749bee0",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/losses/gradientloss.py": "61d625dd618ca3fb2443d1e831949f1e79c2bc4081d72355ff932a41c8b47f89",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/models/losses/sigloss.py": "97ff67edf57ebfd6570be45859545580171cfbca489803429005529ccc0e4135",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/ops/__init__.py": "1640dd76d0d09a1db46df8a1c767ff04d2a0d6004d9c9b6134d80a0f53f6c4e7",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/depth/ops/wrappers.py": "85d58e303eff9a0a306d97101c8b35c24196bfe55e8da019df1e4817411a4dc7",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/knn.py": "5f59977c5d697579d64b1acb19244d819c54a253cdcf1b023b818418bdf841e1",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/linear.py": "cd6cb057561ab180557711b20d2f5f4916393a848375b0cefae11ff61d339865",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/log_regression.py": "273648c0937183af4b2f516b8009e7ef4ffda91b599e8512422e2c3b51829615",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/metrics.py": "2f436b2a67949955bddce0b6b58d73fe338ba362a3de4834290593f7a134e9aa",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/__init__.py": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/hooks/__init__.py": "590638a03129a24077f4dff2477b3d9326e234f23590d5c5715c37dff26b5638",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/hooks/optimizer.py": "1c116c35dfad8fa9abdfa5738c7e621e75c9277304fd009f48c2592571204ab1",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/models/__init__.py": "8d3601782bc10c5477243d1d6760c94e78a8ef8e7028476c70ee4781a693fd36",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/models/backbones/__init__.py": "e6e25365ad291aad30d8bce4c9f9b906580f204c141d62be4bcc3699e563d901",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/models/backbones/vision_transformer.py": "ed687476a2381bc708c6035b5f77e7b2560baaee36313c55f5e26aa5253adbb7",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/models/decode_heads/__init__.py": "f440e7a342f485db7c5766359f5b747f0ed810172e89521b218e50057a94c5e4",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/models/decode_heads/linear_head.py": "14500d7aa301797f77774348bd6912ee2ee3e68909c9f511a2730ff340349340",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/utils/__init__.py": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation/utils/colormaps.py": "5c421de6f63e74b098fa9bd75f5410d816336bb3bcee0194e483682766aa4036",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/__init__.py": "7fb45f0041dd007542578ecf31414a883a9e028a591f9570eec0d25afd928e9d",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/__init__.py": "99e3920edbb8635012e51b583c4264556f540f098a80dee90534a454c34b4c68",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/anchor/__init__.py": "cd269c97e28579d99706f3f31241173b22210429249742005b8a00bc8528d366",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/anchor/builder.py": "fa8456a4f2941fb3b6bc88d210c6ce43298d0b081d00af9ac0ea9050edf6d16e",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/anchor/point_generator.py": "23ff9cf80fef4472cf8a361d2df8f211fab4092925d6bb9cce18bb68a60cd6f0",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/box/__init__.py": "7b0b68761110103819b5e8ef0733327021bcca5ac78168e8f27a5a721b1bfa43",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/box/builder.py": "93ad53a18707547dc53c28c52ae616da19e43064d7e4f30240d08ea50dfb955f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/box/samplers/__init__.py": "b3383233672410d9f13fdfb9dc47ae4543a98c45ee2361a0cc825afc5dd00e32",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/box/samplers/base_sampler.py": "91fd7bc656e0519b6f732a55a0f00457ba339bd98c6d3393d7ba35280442a1ed",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/box/samplers/mask_pseudo_sampler.py": "3ac44707526239d782a1653ad641d447ecb1003eea399e0a718790a92a476305",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/box/samplers/mask_sampling_result.py": "527d952b5001c86ca285a3f7895d804d12dd47b9d3c07535b6494a8b35e21d39",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/box/samplers/sampling_result.py": "c4b34191ab9589a098b0e46116ca9a53eedeae3adda515b8078f635096b1d492",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/utils/__init__.py": "17ecc2ee748e92194c272e63a0db74dae0bb2ef921cecedc9cffe5c23b86dea9",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/utils/dist_utils.py": "a3747a307397dbc10c09838d44fa90438f758977254ed305647ce96bd16bd045",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/core/utils/misc.py": "97409a32ac290d34da2bb7d28a3f6ecbc975537a3aa76060fd16ab5924de400f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/__init__.py": "2c8e40b6362d507e4d1ad18700feb53897ec7403e32033065d7927dae6ccf818",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/backbones/__init__.py": "f35535dbddb96f998a9bd1a7734cbc02abb652c18a5c6df7a47e7548ac33440c",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/backbones/adapter_modules.py": "e103c8bdff5c3427a59a0bf84dc70677d5fef5ac9d43445815da16537944ccbe",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/backbones/drop_path.py": "068b166f953c0939f5479ef1735736116d91bc9942990472b60d104d95f9c83a",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/backbones/vit.py": "7ad30e14310c5bee54743459f128b076195554760eefd60e1593fbfde2234021",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/backbones/vit_adapter.py": "cb89b1d4943049c0ee3e3993738fb56806239221dce72345ea054fc7fa8785b0",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/builder.py": "e96e68e45a5139d16e3238c7f5690d72d4e7838c9fe9fc85273215a3b7a0115f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/decode_heads/__init__.py": "8bea632762d84b954373d0fb2e35a224786eb4692f2bf6acf4b61b0c5fc89c06",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/decode_heads/mask2former_head.py": "c7b5d0d307da7737ac087b368de5d8160053d2e7fb9c705e805e7930ad9446ad",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/losses/__init__.py": "ca75161c95771d281968c329697642f7f84e0deaa6ec780262f4fe2c4a33fd4c",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/losses/cross_entropy_loss.py": "b5cf193e70a20c9a0936222dab0546918940b9dee714cac2c4836197ed6bf940",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/losses/dice_loss.py": "d6dc52a33494d569b98dc165f176c1444060d2f6bd8c8f458aabcea72d2edeee",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/losses/match_costs.py": "4cccb76ea151a0c38581f73d4da727ecb1d95a4b92ac294680adb588e6534046",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/plugins/__init__.py": "80ed4eab0a7f3c8a03c96a328a94cd972fb804cff30ccfc68e87b066ffb08fb5",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/plugins/msdeformattn_pixel_decoder.py": "66fc2f5a58638747576492250ce43e076bb119fe54a5e82569f4e6bd88a5a95b",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/segmentors/__init__.py": "02bc4c748360de2f9b4fe61b112fbd49cfcd943265f0c6f78afc2802b0d11a96",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/segmentors/encoder_decoder_mask2former.py": "06fdad9b0f24a0a3af4e4213bc1beb288fca7ad9010b24b3284103f2b9ea4e04",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/utils/__init__.py": "091931518ac32103e9ef30be7a7b57839c1970bb4a8658f5bce0643735c73bb2",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/utils/assigner.py": "47d015ce3a022c720fa5c8d37260c1bd39b19f77808b51dae25a0a9c7fdd70f3",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/utils/point_sample.py": "e4f2dc0a1a4d5db984a590a85a0fb4ef224cfbfa013c1a212ee9cbcb8b49a9ae",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/utils/positional_encoding.py": "3b07f2b2127f03048dcd10266e3d14818334becb56970a8cfe9ac680ec0b8753",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/models/utils/transformer.py": "6bc659898dd0d4e75bbb941bb1720f696eb840667cda52fbac46feab1eac20ab",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/ops/modules/__init__.py": "2b1c15f2a30741376faebf09ac22e3fdf672b768c1717a3b7bbffaa844c0f111",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/segmentation_m2f/ops/modules/ms_deform_attn.py": "ef8d800b0e3139b6ec2dbe22de3a39da653dcc88129bc246239fc47abf6524ec",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/setup.py": "629eea62ca20ad2694b4979a91fb85e644cda429049580360a3a86be4bbe477c",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/eval/utils.py": "3eb42fa16c97b21c8e69c229e71388b2db04923097912e42c29676c82f03ed44",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/fsdp/__init__.py": "672fc23d385c86530e439c42f8c73abb585a5bb96ce87c6ad5e8fb004e631efa",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/__init__.py": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/backbones.py": "871fca671b12a9ff02e810654baf509e97ccf461bf8196ce5ddeefff2fd87d3e",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/cell_dino/backbones.py": "5e2be2a84f04bab20050f8e9c6e14870d5a2d3e7894631dd8747e00f3b5299d2",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/classifiers.py": "e2dcf8c2aaec1c695bb20dae8f808811e28f27032338f3450f2ac17e309e0e1d",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/depth/__init__.py": "de8f3fbecabae6552ebb8f3d7dee27987b1dbc11e94143c95137c438e86a9123",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/depth/decode_heads.py": "04eb9639a4441409b80651c3d019a6e850c32b7e709236ceb6dbbaeb9fa17713",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/depth/encoder_decoder.py": "1baf6f59269fb99faf274900f12910a22e038a3bb6d81c6fc712c0c482041a57",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/depth/ops.py": "85d58e303eff9a0a306d97101c8b35c24196bfe55e8da019df1e4817411a4dc7",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/depthers.py": "098e10859c1e8188d5245318911025eef1c5f37331d01e6014167027b25cd5b7",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/dinotxt.py": "9124df0f7f8f21995f33a86a4e6545c11e25591f7bafcbe96a299ae6bd070677",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/text/dinotxt_model.py": "7ef7bfceaacfd1566a3984038a691edeaf9b9f42910583e5de62a00e3cf852d0",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/text/dinov2_wrapper.py": "834423f869038ce7c2b1794564018e0d3ca8194faa6d4c17f0d208b1625d0c64",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/text/text_tower.py": "fa591e45ad0e7400290e716ff0ddca102fd646edc2da448807c1006a5b94744f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/text/text_transformer.py": "7138271bc95251d33a172cead1392434b9f8f7b1401fe1e0b4c37e64ff2bf354",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/text/tokenizer.py": "85078188841107932343123f29104288615b41ca4e5d1eb2d8623e02a8ac749a",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/text/vision_tower.py": "2496418c885c01ba7b7b9172d72906911ad950211c08a6e085ef2ee574405ebb",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/utils.py": "579613e3d7b82c2a387eddc215ad9f076b8740f9618229628395fe5755dbd131",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/hub/xray_dino/backbones.py": "23c4513ac900815772d6076d2dd8c6e8564cd85ec11873c8ebe62e5de0647d03",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/__init__.py": "1b55deed39d5ab0b589bef421bbfe06f24a10cd590a0f8403234c9ee4e34109d",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/attention.py": "79c7be7a452b3aad96698ec38d5d5150b9f4d8ac084fa93324510dc9f624775d",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/block.py": "60c0ac7dfa4474be313fabfa5a23d82faf6f0cecd4e720a88be35de9788cb636",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/dino_head.py": "9fdb1fa61c0609dc0876f711f9d0d828c33bf9fd972aab3d9c968d44e16b98d1",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/drop_path.py": "b9f8236e86054b9d9a71275efcad2a9ecaa1f86b529d4b8d6109ddb5e806f67a",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/layer_scale.py": "dadd5aafe178f1bf72a205a02a6645c7e635cacbad585d4a7369c200c6e89135",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/mlp.py": "255825c73b60a916dd00eb1e38aacbcdbf316e40d6a005efb46e245b7edb43aa",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/patch_embed.py": "40da6add3d811198ea3e17cb99cdd4e5cda59e369efbbe3d18d89308618cf142",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/layers/swiglu_ffn.py": "e46d2948fb97e497cf991ff82ce30cb59b59fdf2e12a19568417113716b4f119",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/logging/__init__.py": "fff00c7e5d5381b55d8f820ba3a1f8f0902af15dacb3159fe5c6e3b542771c40",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/logging/helpers.py": "5c2ee4b35f6c160836c7f5e7f3db1246662499ecc6ec8e53d06f14fef71504ae",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/loss/__init__.py": "e5ae2143dd98108f81d26c276e2048fa339cde5f5fe369e2d6797acea09912bf",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/loss/dino_clstoken_loss.py": "49f0b2b75c2feba83b3fc9dfb40ef5eb4e3db350ab1e12a63d75d3060a88f7df",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/loss/ibot_patch_loss.py": "19c0ffc85c8af01657ad2e6cffc2d4d311415b10807f63c2d6341195c7a62ddb",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/loss/koleo_loss.py": "ddccd75b7985d5e584f0fe6f3fb1ac474b9cbd9a6fd6fb6c6ae471ca479085d1",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/models/__init__.py": "b93329ce676f3eb0c9a7790d1b3b2b114a0855ea8dc76e32e262d1a7dc6c55ae",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/models/vision_transformer.py": "7799a260f2d7d0fe197331d08502fb8c542f9b7424723650f6a39b64fa2639ea",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/__init__.py": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/eval/cell_dino/knn.py": "944113cdf344910011150a52e7874dce69640e0afb8e438a4c7e582349bbe1ff",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/eval/cell_dino/linear.py": "efb20708485a41bacd8db2a6a274988fac3e1e7cfec5290050293a8b587e7601",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/eval/knn.py": "21d1ed25bc9206b412e2d17bac150549f69929f5d0c924b7400a72d1bd295c31",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/eval/linear.py": "f89eb0a2eccdd2f35e27f7a5ca91ded95e4a5699f57e8e568c58547625f87ac5",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/eval/log_regression.py": "b4c4ddd086408c681b8b5642a26858b6c9e1a798c483a5283a983f2cd2b44c46",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/submit.py": "64597db2041e9c16a7640eeac00a299cb2761329af980f33f26a6dd025ffb541",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/run/train/train.py": "b469e29aaa460e509d52f19c787aad50963265d242200cad5f9ee3ce85938ba5",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/thirdparty/CLIP/clip/simple_tokenizer.py": "47b4a3678fed8a7a8b9ca614e7728c33c6ccda5aea3bd2acebf24c081cb25b64",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/train/__init__.py": "64dde70804b782a876524b529b00b9775559314a88d738cf4aee914bd4dbb9c4",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/train/ssl_meta_arch.py": "a97cdcc721e9312f5e088f78257dbbeb98cb3af40e3e3b975aefbd6bfd1996c4",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/train/train.py": "04c4829d6cb428df546536cba4b2a313fae38bac084abf82758bf69483b03e89",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/utils/__init__.py": "2932e94a2d67be87b717c49468214c1127be7864aedf37f5891d26be7bc1437f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/utils/checkpoint.py": "36335648d4574417c41e0fe82ddb8cc23653bbbc251b580541167b73a83b8eff",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/utils/cluster.py": "be49f48f01edbc7d209941e1078be309bef7d06631da851cafcfdec7112d269f",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/utils/config.py": "588574a78951ccfe7ffaad9ef7cab53d37e837e3ae98cfc1b6a976189073d87c",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/utils/dtype.py": "610251537bcf55de8961a17dd625560eae5cfa5082e9382bbd9ded86db92e1c6",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/utils/param_groups.py": "ec1daae9eb7c50492091504f97087e3179d46a080d7b7f131967c07cb15cf6d4",
+    "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main/dinov2/utils/utils.py": "4e1419e8dd4a24d48689357ca48d304d1f895fa49f5dbf42d400ac941216e9f7",
+    "/home/ami/UoE-UG4-Dissertation/src/checkpoints/joint_components_v1_20261022/joint_components.pt": "cc2535a07f27871e34695acaa9f3607b384a7925f11e1c0bf0f1a3e2dbd6b5bf",
+    "/home/ami/UoE-UG4-Dissertation/src/checkpoints/joint_components_v1_20261022/report.json": "3c513191c54c6a6b8d9b1191f505d0ae578568c2c1b8f9c6d569851170d13f55",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/status.json": "01dc9b6f17264c33107ac750dfc5edc5b0b6d4d047d3614c718b86ba2b45ac28",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source_manifest.json": "9a25c320735b20628af06e06d4cfe3464cf540ab8f6c6d671fee6e607e5e8c25",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/initial_source.json": "05c6893faa43f7d7cc946ecdc6000176d04f08345e0d5295f4e30f2134a5b682",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/selected_initial_state.npy": "ae90aef56416ad928884aa74316b42cc911c75cbe2fc03c72097bcf0383909b6",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/scene.bddl": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/steps.jsonl": "5a6732cc51df948ce02ef48b2d6756de360322b2509465d26a529f9bcfb3fd61",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/frames.jsonl": "338dc3c1f82465903ec86fd14b61bee9f4da193763fe93be686e5690f91e99ed",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/scripts/run_native_long_episode.py": "e8bfa142d223b677bee6ff645f8ec59ea67807b8c868e1d38ac9cd0710a93a71",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/scripts/audit_openvla_long_tasks.py": "f7a1105ef6c558aded9d3cb84f8f317b4aeb9c1f195faab242a1a3576ff845a4",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/scripts/diagnose_vla_failure.py": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/scripts/openvla_tf440_worker.py": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0/source/src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/__init__.py": "b99601b6b44de6d0078baa66054113881492826bbfbe8cd41e2d39d5bf6f0875",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/__init__.py": "a148bff0a3b0eb37b1d9d22579fbf3b05c7a26753ea026f5621576aa3f82fcb1",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/coffee_table_arena.py": "a1321848013495e1194c495eecb6c9da36e2260ce64ec636aea6f404e35abc04",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/empty_arena.py": "1032b22ff518a37dd94609a525291082e1ac7151abc2d509e76b588625437260",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/kitchen_arena.py": "fab3692ad931ce3e910b318626cd3d1f8c67a0100fbdb9fb28b6118fe42ec8f1",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/living_room_arena.py": "8267ca85d85a4b83815543f1f5405002da81b0462259c1ca45a146b612277581",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/study_arena.py": "274c663111069f77795151667e962afaa78ab43ea45d206f6b202c8cfba40387",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/style.py": "e9ccc2a8d68be6e8d831d4cd683e022ac05fb7ba62fb3a2a5c9b716cf997a409",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/arenas/table_arena.py": "a47a23d3736d35b34b279f90f267f9f3fa2426431a96c8f038d18ed44cc9a834",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/base_object.py": "88ee0d4b2a39f39437d97fb12ec08831cb5064e23a7456d2f882e3baab246f1a",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/bddl_base_domain.py": "055836670ac5fcac7e033fc86404718fd53854996e5776b1ff68b646f7bbcc9d",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/bddl_utils.py": "f8148a5054e7818cee1ceddda300ff9f15272f8e6600389abd38f102e477cd8c",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/env_wrapper.py": "a782fb76c9792268d28979474fe72849e1e98ada49c8e997a65359a8d6b6acd0",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/object_states/__init__.py": "1fb9ad68a61066a7a4986f3f5f8610ba4d725b290e3d8944ab628d3e9f8a2d9f",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/object_states/base_object_states.py": "ca6f53123336b6487bdb4feb02534ddb3a0627a4b847fe89da4460520ef01366",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/objects/__init__.py": "cced646bb88ab95e21b5475d8d7dc46a5db4e6c881c63637a1a27e15dd844c04",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/objects/articulated_objects.py": "f5187b0381d69a2a8736c1dcb646e5fa7c138a42950f92e30c21c2efaed52faa",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/objects/google_scanned_objects.py": "626e25dfa8b102f7f7b406ef6a997003f1308b48cf52e7c22762e9eb86a1ec4c",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/objects/hope_objects.py": "70ee607faf5dca4f69c5db96fbf79080990b7c39a0f08d99b074c67f0acbd62d",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/objects/site_object.py": "4907bf2550945c395b85fd92725763ada4da533ad50966eb179e637dabeeebf6",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/objects/target_zones.py": "49a14627103648fbb620c3a6c1ae14f52fae6e2f4db81b0074e602f01aaf7205",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/objects/turbosquid_objects.py": "4de4205eabb588600fd9669f6ee6e2ef12e47e13d9b421257215d34f836f9804",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/predicates/__init__.py": "e059a52d635ae4bdfe0e4bd6f0a0ca9b53a04444b39b53664fffb38d0838679e",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/predicates/base_predicates.py": "319137e95330dbb22a266a8dceb8110f18413c2bf17461550222228c4bc310a1",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/problems/__init__.py": "2d1980568bf81fe7c27f62ed59a2c0376722f726654eb07ced6ea8c6bce017bc",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/problems/libero_coffee_table_manipulation.py": "cd04e469c3e8852421cbec73c92c4bbe135ef8eb0a36c12851eb912101a3cd94",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/problems/libero_floor_manipulation.py": "38fce9925399651977033647525a64c28f50d45a110d72ecf35efa92054e9234",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/problems/libero_kitchen_tabletop_manipulation.py": "e5ea541118d19aa120d08ffec655da0f65d2e2a21c2045cd49e7e0a73f695cd3",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/problems/libero_living_room_tabletop_manipulation.py": "a13bc0a92ff746d572a6d76e09add98dafad70d88928555068728641c6c9de10",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/problems/libero_study_tabletop_manipulation.py": "a25d06b4dda1ecd5dbf7083145cc2720639db55c0485ca0983da0202a2e756ca",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/problems/libero_tabletop_manipulation.py": "0defb17c0bbab8f6bd34c021ac15598ea101fe1e48690cb440d4ef92762880fe",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/regions/__init__.py": "64fd7ecbbb1b7fe04b0c2240e0f6c79419cba1b29db8f7f13a91ab2718cce5ed",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/regions/base_region_sampler.py": "08c12685b443d723bdffc3e1820cfb1a9b54eeda54a261ccaeacb7f04f9ab88d",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/regions/object_property_sampler.py": "051fbce5a9aadcdf26bd42b447c1b677e610e0e539132807a3ffb578b6feab60",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/regions/workspace_region_sampler.py": "66b8ce7f7eb18e316fdc1a44a4210ee0a25a24e9a9d49be88dde970960a58b75",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/robots/__init__.py": "92d2667dcd9fce0d0ba744bcc317bfc07104136e90f066df04d09cbad5bd489e",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/robots/mounted_panda.py": "c89ab36decca6d9fa242021971513960c3ce31aa42735009c73258f397be126c",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/robots/on_the_ground_panda.py": "7d580aeee632e164f327cf6b1951861bec40cf814cdbe92bcfc469a93e1f9fa8",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/textures.py": "bcc631c6da38a148db316862d847222361ddc0416277dd6c860c70a3c437bf17",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/utils.py": "81813480479dbd7fd938479dcdc17c258608b3ea4efdefc3e13aff100a89fd6a",
+    "/home/ami/scratch/LIBERO/libero/libero/envs/venv.py": "a970353a592190152f313424738b05457f8e10cbafc7303c756b85aa9425d1e7",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/__init__.py": "9f4ffe94647599699878b94bc9cf7cae3cff075b5c54529d9840a1c13e6aad3e",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/base_controller.py": "61f99a2daeb4eb6e39bfb996d94c5a5689ef3bc771d030d070193ea56d6a8332",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/controller_factory.py": "1dab09602c41dcf3749bed43dd3bc4e098040cabc8f7fbfd030d9008bd3d5776",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/ik.py": "ec39309777593fcc9265d971d716adcceec094e51b93bb9a420232e8b81ec1cb",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/interpolators/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/interpolators/base_interpolator.py": "43aa220c75a4a419e875f4374eabac97633d5cf9e1aa66f4d79981b9b2b1fd43",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/interpolators/linear_interpolator.py": "39d741c08d4afad50f5b535df5383a5269685d0f0af3a9ecbbdc4eec06d7f548",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/joint_pos.py": "7a8fab0200c499722e238e39a3735347bdc518138105e4d823490a9575071793",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/joint_tor.py": "2510a03b6ffdb36c4dc284bc444e82a5203b9151ad86d0192a7cb46ee3365d2c",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/joint_vel.py": "57b7ac41a89a1c6d867b58e87ae4a1acf5f0966214d43175cf270aa1676a9294",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/controllers/osc.py": "cfa62a0e719bc53ef0c701efa66f7b3e2272d4fca2150ec73c05bb145eba85cb",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/__init__.py": "101229e0c16c4aeb222946333ad24423bbe14329bafb51fe7f3d5d7249dcf7aa",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/assets_utils.py": "ee3df77390a92e2618e85db1c484e50516970efce3c50381252773c2d44fca64",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/binding_utils.py": "5ac3c9da0cb9f85d694c6147103268df65151f751612a6c575ae0da4eb4988e4",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/buffers.py": "ce7772170f8de25213488e639c21290be0803c19c3db577725f237f573a6a9b3",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/camera_utils.py": "7cb6ce02936b181c296a38c0c79d6dd436618656a08fb67a5553a733a8652247",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/control_utils.py": "1d0f1a063894b1e8289339e223665e14e8aec492c31e9e00f42edea8dc735f43",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/errors.py": "01d6e2c3ff46b6fe3e13f5f07598365807c19d77664b67e67a66ddda115d8edf",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/input_utils.py": "f792c59fdc2860e29bf3fb5619796b94b2aea1b041822be1a3598fe12febe8ac",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/log_utils.py": "4c7a5910d6b3c5ec61b99f6f62f80e2ab71d94cb1d4b9dc9a4f6662900a2cdb1",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/macros.py": "3d538d9d4cd9de7d6102095799e17c5eef0a0f5cefb90651e606385cd1977369",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/mjcf_utils.py": "85edc2ffc5ba3e79f8372468259aa8d16ba886ede9ab556593f88817c0dfaddd",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/mjmod.py": "cbb70d4d5f63987e173a700eca8ed690b9d6b84b289f073c3c65a1e4a8d77049",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/numba.py": "bc07c5837d30dc91de2b028e28bdb029ca6505341ba3b93bee50d6e86f70a56f",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/observables.py": "19ea2e0e2cfb4ebcd5911cd2526dd645859535d25fc7bc55944c54a90e6672dc",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/opencv_renderer.py": "ec668b66850097f07b39f5a85640bc113bb3ba405b07b8dd15498dbf1f4798b7",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/placement_samplers.py": "58e76fcc04a995bb97734341174076e59c3485834afd8ec85a33345b8319fba7",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/robot_utils.py": "b41df30fd31a9a227949442ae36137af79f5bf6d37422093191970d9b9034e7d",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/sim_utils.py": "117200047fa29848f84924a5f9703a185269fcb12c6995c831736e3606df1b03",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/utils/transform_utils.py": "1c2317895733449883b56af0decefb3529649b3a7779dc2ef3ed00816bb25bb0",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/__init__.py": "2a0f2d38c17004d519946144d03e081d8ace8ea4e04509b38719db75ff6cfc2e",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/base.py": "60eab4afd3dc95b4ac4cf0659fb9afe6360161912a4ac6931efe86ce1e1de519",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/door.py": "d2e3ddb12599b2d309718bde0c658fc8f533a68b15e1e819e937b9abf0f9afc4",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/lift.py": "3e9569fd5bf2af714364de75faa68d60bfc085734ed4ef7f35290bcf90652270",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/manipulation_env.py": "13375356b4ab98bea62dce25b002b137c58669bfba77f0db84cf04c04a4cc457",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/nut_assembly.py": "142c6d8cc8ee02f686188fad271de5084e68dc16d386ae307bee1e469550f755",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/pick_place.py": "26dcb1dfb5289cbe4c2cff10e4a7562939e67d9fa341eccabbabe456a2ad0e7e",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/single_arm_env.py": "a852195738eb01b89539b11fe9bc668f5153febef0313683f566163440d27fe2",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/stack.py": "a80dbddc14ca1c9bf85b761e3dded45b84e43a106ca516ec658f160b4fe5bd9c",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/tool_hang.py": "da87623a6067bb6efd9714cfff0a61dce2107ad46356eb549810259d03e04ac0",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/two_arm_env.py": "d4d14a96b729016ec3eeb66e54206d914e01852e56592c668f2e30b068c62ace",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/two_arm_handover.py": "eefa2b97b85d61a208e89b071d619b7d1bdd10b50148ea3bbae202b49a6a487f",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/two_arm_lift.py": "cd5a7944b98b6cc6d6238ea0fea3f1322bda99d9c828de6cae92d991a8c23033",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/two_arm_peg_in_hole.py": "89c5ff5e82b73a390744426c08c7a9752c9c4671a19548875c2a14e1b6123d66",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/two_arm_transport.py": "942beebb6e22de796f642b3b64a24df0e292448b9d01cbc30870ae64c73d7586",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/manipulation/wipe.py": "fabd56beea588ebf1aec4125b3071002788253a2cef16f1de741e6f9602733de",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/environments/robot_env.py": "a0b39012c175272a2037a7a66a771d416b905a5a7b847e53c60a0588407398af",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/robots/__init__.py": "fab00e6347f9b329284ed4cc2c5f321a1193446ce08c2fad22d2831a52fdfbc0",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/robots/bimanual.py": "01d2823974ece382fc84e9a8aff1a02eddcba015de0e89cfba9ee3a669b22fcf",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/robots/manipulator.py": "d37ff4c00112cfba9bf4b96bf48ad5664422fd824dd4fbcd1eebda650a451b64",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/robots/robot.py": "7a3a98eb75b4e7cb1b822a918d0c693d441356279a8e796cfc02eb1fd5963f23",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/robots/single_arm.py": "38237d7b68c876b413f0df811b135ca3b2fb91061c011696baab07db5e87fa14",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/__init__.py": "8669fcd5e67fa0371874034add25cad19e7fa5cc5bd4a6c3d8e7568d44371c1b",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/gripper_factory.py": "31f60e794c7fff46f505d47797a0dd8a98149d7c5cf96f7c80830a5546873b75",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/gripper_model.py": "0543b5a9e1d8b41e21880d8445c5d8fbf8535a4ac6fd55c5e70a3b1f323c3735",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/gripper_tester.py": "551500ee08fe0e36d756db9c5c215ce8e91d7e98e92b7d9a77ca932725f3927f",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/jaco_three_finger_gripper.py": "9cae26cc8c56360c14eb5b46bcf0f493f48b8057ec6a3143eb9f16487c331a98",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/null_gripper.py": "2717a3d59121e6d8b83db8729ad53d078517ef16227a9f1b77209a6da7d6c355",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/panda_gripper.py": "a3760a8fc4599fa6f79914304b82466f3c1bda1a945943ca693bb57f00dc59eb",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/rethink_gripper.py": "da63fc1b37d8ce68fdc7bc21043f49e5e0dc6e070da89d9abc31e33062d13b53",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/robotiq_140_gripper.py": "3ef08fa5ecf82efb210f031cecd56fb3e8acbf50b978fb339674bdbbd317145f",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/robotiq_85_gripper.py": "e99c5f7ddd69abfc44c818ab38363ed7f6719e66fe6f85e93682c8cece67d78d",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/robotiq_three_finger_gripper.py": "01d4f47bf7f75f983bbfaca629b99ce374ea79b44504a11bd44dd35e585470b8",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/grippers/wiping_gripper.py": "df56cdbc1474be34d0b01f6b627056584ab2b068137a302ff7d5f9157564f958",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/textures/gray_ceramic_tile.png": "93a1c2b647f31aded62b4125439e17aa1a55c8f4e77820909d9a1c235f6c7315",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/textures/martin_novak_wood_table.png": "9d714fbf44d4d44f279761c0ddd0b2fd7271446cdbb85fcbef8677fe5f929850",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/textures/yellow_linen_wall_texture.png": "292d1bb3a8536b2faf73c91b9d6b11ac90c58136cbaade2af0d7b941f70904aa",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/kitchen_background/kitchen_background.png": "cb9379766b531eb8e6f44a1fa3df92430e0c73c6c3856a88521510e689bca15a",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/kitchen_background_pot/kitchen_background_pot.png": "d953b50c28c2e7c42e5a31bee757984ea398ce464917edb4d02cb188dfc9b44f",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/kitchen_background_stove/kitchen_background_stove.png": "05be4ff65b6f9f4e89332b97628e9b9f1a176562afca6e14f5d325bd41f36e72",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/fridge/metal.png": "93784216a66b52be9c8ccc3732e50f511815291e32f34f97bd139ed7229061fa",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/turbosquid_objects/porcelain_mug/porcelain_mug_texture.png": "bab4363b4e86e3352718ef1c3849a632fa06f83528bb408f4b533ceb01b3bc25",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/turbosquid_objects/white_yellow_mug/white_yellow_mug_texture.png": "152a4b711c33e8cb6956233043580331bd0f54d5b3dbc13a9bc870201b295890",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/articulated_objects/textures/metal1.png": "0d25fa8affbb0f579220f0cdad6ee74f875495822ee79bb5afd23d73671f6363",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/kitchen_background/visual/kitchen_background_vis.msh": "6b2487166e07650ba787129919fb3c4f77bfd912fdd4e265f5bf68992175417a",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/kitchen_background_pot/visual/kitchen_background_pot_vis.msh": "f3348ee8738bcaf84b6f9df6cae65d764bbc159410aea32d5d40c09dc58b69ec",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/kitchen_background_hot_pot/visual/kitchen_background_hot_pot_vis.msh": "05c173fb9ae96f7ed2fdccbeb14abb38e8db601f7802e9b78db04d9a5e2b0ce2",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/kitchen_background_stove/visual/kitchen_background_stove_vis.msh": "0efe7517df5bb76730dd0b951dcf40644e7c494005a89421229b422217998702",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/scenes/fridge/visual/fridge_vis.msh": "41edbedd182c3c27ffe8bc2c2808f61bc575c80bc37d717a17af71d10a04a208",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link0.stl": "dfc6d94330de8ddb005b311bfdba9f3b8e1aa7c256b71592ee7ff32cb9a9a5aa",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link1.stl": "d24e332dffccf260b91d05dde17c5998bb9559d37da8608a8ee5213d9661f603",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link2.stl": "370f7605a0fae3529db169ded50f52f171024aa792d4d773bc84197301f6a039",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link3.stl": "0a8d638b9349c6c0eefc4e888636ac4838c4b27170f18a51699321118af709c1",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link4.stl": "0180ebb5772ec9840cb049750cffb29a9ddc90311752a16ea34757782ef9e48d",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link5.stl": "dd17e688c7870e722283525879643d53a74c0024d328b0e14b034b54c8b6c31a",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link6.stl": "20b768e99a0e0440b5754dcca108016434e57937cc356acd9c352ccd3cb27f77",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/meshes/link7.stl": "92ac6afcf7574c034d3170d8a68e95ac9048ab9d0dd5bbd8311b86e551b9ab1c",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_0.obj": "6c4415add409c161a92dc7cccbecf6819a3a92aba3b0cf043cd513b58aa23257",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_1.obj": "ac248e0725c1eb29a0dd6490fc8d349dc57c5c3f51f15752266d4cc55753e1ee",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_2.obj": "e112cdf4c9071ae6c277ae9c92b165060d02bc8b954da7df24e67aaf11deede0",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_3.obj": "ba273f526f3b3d4e8489ddd89813f5d109f0e289ca993550c9a06beca5a83416",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_4.obj": "df932880c83025fdef4a8366926679c924adb395c3313aa445c151387c5a12b3",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_5.obj": "ae616a8d11339861af3b83d6bf1d0d1038c61984a7ddae5af93ffb96cc32a122",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_6.obj": "d9b40045d90e0202640437e66dc9b02c5c449b9169f97d70099dfc35a88f2eb4",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_7.obj": "c61618cad1396e6a134ba8b32ec754fc67bd576d411417142f1a36f4003c7017",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_8.obj": "82b9aedf8ff51ebde219529fa366c079311f5528203276cd1eedfcba90574d52",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_9.obj": "00b9daacb7c18b0ab071b089515b9e87a8785abafb36cf63355e3b8afdce8022",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_10.obj": "b4b1a66f689dededc8c45cc2fc01aa3bdf8f2cf689ee83eb3db0f9400af9883f",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link0_vis/link0_vis_11.obj": "3f22c57436629d8f1d06650f105a822cb3b85f071f3c268210561abf2812b809",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link1_vis/link1_vis.obj": "912779814d93a7d2c6f0413f6eb5042291b08e11b3dae769019aaa0ddb64e23f",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link2_vis/link2_vis.obj": "96c6ea002e2c6474ac1473014e3f0df1f90b7aa2beb5c6182671fda890a3cb74",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_0.obj": "b2119dee4b4a5e3a5bdac57b7fa04d379da8af502860496946a90c1b904db590",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_1.obj": "ebfed3850a693ac1a1b97a418742ec98355f7008de1e14037cdbdbc75a0d5fb9",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_2.obj": "81e20d3187dcafcc4ce8bca69c74d6ad985491d263939a93b6aac8b478a4cc86",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link3_vis/link3_vis_3.obj": "53abcab5d93f13797f34450929dfe8c0ddbcd72266130611487d10be23cd736a",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_0.obj": "591f8533b4020ebbaafc4a4cb62c7e0988f204879dd1cbd30a78c3bc197f380b",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_1.obj": "3c1a7e83814a54522b91dc069e2448b6f0ca10149869fd68713e97e9f1dd5d05",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_2.obj": "931bdb58e44e8b328842708e00ef80c0e8e48f47949804b7c8b10dc8e9d8dbf2",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link4_vis/link4_vis_3.obj": "dd8ab577710fbe454ca463f0d69edf36f717d2868355288a76b77f586a384aa9",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link5_vis/link5_vis_0.obj": "65417fb042a34286b6aa5fee2e0a7ff60a567f1296738f985b666cd319fb3d7a",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link5_vis/link5_vis_1.obj": "f61bc98778d9e22a422ac2a339603d606b8e6af7727d8629a442cc04419a2789",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link5_vis/link5_vis_2.obj": "ebca16efc559c30fa812168764d0b4b353049965bdc6cbbf25708a945948b2b4",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_0.obj": "e66366f5bdd2a04b75d17abd251019bf59b57f3f74dcfdbefa870c437121b790",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_1.obj": "05fa8ccb4bc50585862c374a2c1e2a072c6422b6e3088404767d5bb7fc714500",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_2.obj": "a7aaca55658be11af36f2388a1c674d6ce09973dd8b9f87c30bf00bb245b55e8",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_3.obj": "ad289bd24071568198d907b001ae659676637b6c868212ad1d49177a2352bb7b",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_4.obj": "606af8cc5fe30b63a2a28c0c78b423c780ca3b73cc88356570a92145941ffde8",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_5.obj": "06d573ce2e042a4ffbf080e79ae1cdc84e3a63e4d1bf72272d81410789bb61d6",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_6.obj": "4382b6e12dc5dbcc1ca3fdc595dd82e73e1dc4a6b8ceca545bfdd0338ca12d21",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_7.obj": "2777f33115993dec3af8eb6d614af6165ae2836ffd1ea4e41849ed32c5a60326",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_8.obj": "aef37fabd21f209461bdb9ed6873ebc3ded6807bb01ec88cf1a002499ae629d2",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_9.obj": "c1a7246819060a248d61291ae3a9a629f7e11d866090f32729e6e434eda7cefd",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_10.obj": "a846ef010d109e6e66bfd67f995263c4cef5e2e0a56560c3ce6831e0abc8c07b",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_11.obj": "ffd2103606b3288c98c3c3f29cccb3e202dc12d92d58225e4fbf5ef023a8c28f",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_12.obj": "bc34f87c700531402a64cde7f7f9f25c4f5351ce6ec96f3b078e75a55b70bd42",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_13.obj": "a476a77077eeec8bdb0db07163dd20f8213e2106c6d88ac554346293434bd479",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_14.obj": "289cbb1e35b09f158dcaf7025d815d76f935e2d5ca956bb03d25c5f10748af51",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_15.obj": "f66985ec70db62eec18669848e53c1509ac4e68d6b97a58874fedc180c1cd85c",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link6_vis/link6_vis_16.obj": "45af20fc788566fdc76053167264685792f20f22c683dfd0cc382d8c8bbb640a",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_0.obj": "2d35397b9d9289e3cfaa9de5cf689185b5d3b0bba7b204efffbc8443ea9c615d",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_1.obj": "32ca565d7e3923a9b10a536043845d28911756de976f51c84e426aea3cc719ab",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_2.obj": "da959a052900a8d03914b03bf0cd79662a49c2462e1737cc177591be33be5951",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_3.obj": "6af51159175526f823c37a59fc22e78ebad90809662d30e154da8cbabf355bd2",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_4.obj": "b72d69f2da72512b48c0c418a7169b023d5bcddb12e894fe97bf8eeee57e5090",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_5.obj": "d91d2892366a36f82f5bfc7e0fe60b360faf5ace94f8ba1ef38b15d6d9c4ffac",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_6.obj": "6f8e94925a34c5e0fecae66c11460d7c4ff70dcf448a5da6de14e1badf0e71da",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/robots/panda/obj_meshes/link7_vis/link7_vis_7.obj": "36957666d65f3bee84661c5d8276711b4958aae10c9a5192c0fdfd5a8b7f7770",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/mounts/meshes/rethink_mount/pedestal.stl": "f96ff12bfb347c77580e4392556b15e47ef7228711c45b0f1193b100af22866a",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/grippers/meshes/panda_gripper/hand.stl": "94493e94f30fe940f2c8ca2f155c3bbe67bbff406d3edf5e261670d2f0f6e2ed",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/grippers/meshes/panda_gripper/hand_vis.stl": "fdeb1a924b8d0f1f997f47d6d8af102c7290a1d5144145efdc39501dc13f0fa1",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/grippers/meshes/panda_gripper/finger.stl": "2d07a740392f3b9b0816f65d64fff9927d3d57c897870fc4b6ff9c56fff3a0c8",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/grippers/meshes/panda_gripper/finger_vis.stl": "e49613148a74f1ba9b5793813078e5becf15833e0296073dc1c523508be35ae4",
+    "/home/ami/miniconda3/lib/python3.13/site-packages/robosuite/models/assets/grippers/meshes/panda_gripper/finger_longer.stl": "8857e33ee59c3a395c3036a11e4f1731c88c203c821bb03ca97737a2d04cba27",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/turbosquid_objects/porcelain_mug/visual/porcelain_mug_vis.msh": "e0dc3f0a0585d172c6ff22e49173774e37bc8a4a8e74d8c583ecb7eb314ffc13",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/turbosquid_objects/white_yellow_mug/visual/white_yellow_mug_vis.msh": "aeabcc3a57b84549568a1d6907542ef9e65ea126c101f6f3985deb8b55d3aa79",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/articulated_objects/meshes/microwave/micro.stl": "0825383a47b711561328d1db63ee9aa15c2c182f362298c315ee2cb2cd0fba1d",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/articulated_objects/meshes/microwave/microdoor.stl": "e65499c915972f081c969636022ffe8a31a884ea9f0fa8aa9252993644575976",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/articulated_objects/meshes/microwave/microbutton.stl": "d932505444c465f2a73aebbb4f2bf220f4b0978ebafd1e49f2e1c0a23f9f27b7",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/articulated_objects/meshes/microwave/microfeet.stl": "07dc873d4e1f9a2fc5dc6e376729e5b4f5b8ed11a54e10d0bc7a22c6c7bd6bec",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/articulated_objects/meshes/microwave/microhandle.stl": "b0610f828666b21e38d63c78b1e561ad28bb0914633f8af46a1dc64396b9aeab",
+    "/home/ami/scratch/LIBERO/libero/libero/assets/articulated_objects/meshes/microwave/microwindow.stl": "9f9638d4dbded50ee3ee25e6b77aa8f8abda3b17ce801528fb5c8e85d1adc7ae",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f/configuration_prismatic.py": "68cc5ae34f1b46af3168d8d479cb81bb776965653453fd904aa8eefb6c8f9f68",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f/modeling_prismatic.py": "9ce241c5ca09a4bed73654d0ca509baaff0fc5887d0bdd62e360ca8254f7794a",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f/processing_prismatic.py": "06563586bbc73d36501a14a231a3174904ede830d33174d0c625ece8e931ef1e",
+    "/home/ami/scratch/LIBERO/libero/libero/init_files/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.pruned_init": "6b75c8d4d1e1c40b5d99c78ceea380d99ccffb0a484a4cb2d3153488a0afbbe2",
+    "/home/ami/scratch/LIBERO/libero/libero/bddl_files/libero_10/KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it.bddl": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/.gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/README.md": "2f4d1ee4a885e3b4c0049a26b657a894415837d38bc94c99765ea9b49b59b394",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/added_tokens.json": "ab43123267b190cb7990bc9f2ae4ad32dcb7ed029fb0fccb1b4e062c6f54a2a1",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/config.json": "f1119b0e0d6c93f10fbd0ad1996c3bff5a7bbb18040d8b2b828c69d302eacd4d",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/dataset_statistics.json": "54ca346948d5e62e9519a9ed93e45f0a069b9ec997ad1f48f1d8867d4d2d86d2",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/generation_config.json": "67fbe17b12e8beb5be98eb911483971cc78589e51a37ac0cce9cd499d06a8bf1",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model.safetensors.index.json": "ca8b53fed8133ee2afcd2fc483de8febf7f5bb0f6bcb09f91189772e59e8f659",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/preprocessor_config.json": "52ca6dd7fb31a2757658f94775b659553bc3532ab04babef02779387b3dec214",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/special_tokens_map.json": "cb90ee5cf5793aa444039af9795b00db59d3fef8942e7eca9cf1990bab370d61",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.json": "8f5e2869e1807b8bb3c7717a294539c37e9de5d728ad60e31ef57e83cc5ea527",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/tokenizer_config.json": "0d9176185eb68a54a7be757961c1957b979920cc81339c4def0202dae5b602bc",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/status.json": "025fecd6f4e0ac3f571d74b572cedef58c5d79c4a2e9395143d5fa3e2025b66b",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source_manifest.json": "99694ec89c87c58222177b1f68ae8aab467c0f11967c6013f03f62e78dd0a8d2",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/initial_source.json": "97fbf2c989e18379c78b98959966277c42aef0037f5375985b971e00e8f428cd",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/selected_initial_state.npy": "300694339c0fa2707d9955886fc6a42928388f3f8d192bfe0cab6862d8d7a3dc",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/scene.bddl": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/steps.jsonl": "a917430d768a488b182f15f51203f1344797bf4b8f203c376ac924627c5e14ca",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/frames.jsonl": "f2ed96b956b5fc72aa3847e57593034773e4e1cb4000e05df287a191d4744ff8",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/scripts/run_native_long_episode.py": "e8bfa142d223b677bee6ff645f8ec59ea67807b8c868e1d38ac9cd0710a93a71",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/scripts/audit_openvla_long_tasks.py": "f7a1105ef6c558aded9d3cb84f8f317b4aeb9c1f195faab242a1a3576ff845a4",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/scripts/diagnose_vla_failure.py": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/scripts/openvla_tf440_worker.py": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1/source/src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/status.json": "c91e92889b5f503d30aa7879533d2db57489e3672925490db2f1d7b281c6ff78",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source_manifest.json": "88a49d7e34b2fd52dc425763c45568e46f65f6bd90068c9d712afb853f4dd5e8",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/initial_source.json": "756106925af81a6c5132f3341da84844a01e450a0fa906cc4be4b5eb0232813c",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/selected_initial_state.npy": "bf9c20fd109592d6c1cd2c4d7897bb5a9ac50a9f188c1a0e60464404cadd33bc",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/scene.bddl": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/steps.jsonl": "3f8cb87881b035d66024982258bf3ab1740d6d587606d34fc85d998ca94c6114",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/frames.jsonl": "5a337a365f13dff98ece7e0010a2e31fddcce3b97323021cd062ecbae2981b6d",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/scripts/run_native_long_episode.py": "e8bfa142d223b677bee6ff645f8ec59ea67807b8c868e1d38ac9cd0710a93a71",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/scripts/audit_openvla_long_tasks.py": "f7a1105ef6c558aded9d3cb84f8f317b4aeb9c1f195faab242a1a3576ff845a4",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/scripts/diagnose_vla_failure.py": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/scripts/openvla_tf440_worker.py": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2/source/src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/status.json": "3abdd9875ba20068c70ab08dc9a4a914985efa4031b3119264b3810b97c9f4d9",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source_manifest.json": "d8560cba5fc76f289cf26af6d8c636e7f506aac12f2eaf0537eb13ae82b61946",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/initial_source.json": "0d2657e0d3fa860d89ffee339f85ba271722307ad28f24bf6559e20143003112",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/selected_initial_state.npy": "5349ef38f0f8eb672336ee2788238e3f4f48e37dbd391c722d2001e4a3d1cb1b",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/scene.bddl": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/steps.jsonl": "370e6ccacee25da6daca52fbbd11d18a675c1e28dda14cc252d37ed7f6333b33",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/frames.jsonl": "15f0bfa709fc61ca891fc83f992c128662522afbbceef32aa37a0af686878782",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/scripts/run_native_long_episode.py": "e8bfa142d223b677bee6ff645f8ec59ea67807b8c868e1d38ac9cd0710a93a71",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/scripts/audit_openvla_long_tasks.py": "f7a1105ef6c558aded9d3cb84f8f317b4aeb9c1f195faab242a1a3576ff845a4",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/scripts/diagnose_vla_failure.py": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/scripts/openvla_tf440_worker.py": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3/source/src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/status.json": "608371f1fd5ea40cfce2c73b767578880f9abf9bf7d758887443c35c028caa60",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source_manifest.json": "109bbac164fe913fce5a526c13b32fa17210e82cad139777a1b7c92190c1518c",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/initial_source.json": "12daf832f6a499e52f46bdfaa53a8ac8f70bbdaef596b9f5d7b5a77d2e3cacf7",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/selected_initial_state.npy": "c9a4f2a178959a39fa9f452c07232aa8001ccc013568e3d4e83c7503cfeec61c",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/scene.bddl": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/steps.jsonl": "604d0c87601f5d67862aeeb332825c1f7615819751abfce7d9cc645f0143e87f",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/frames.jsonl": "bb3182f42b52d7648e229ca3ec77fd14df6ee229b994ffd65219498c8e94462b",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/scripts/run_native_long_episode.py": "e8bfa142d223b677bee6ff645f8ec59ea67807b8c868e1d38ac9cd0710a93a71",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/scripts/audit_openvla_long_tasks.py": "f7a1105ef6c558aded9d3cb84f8f317b4aeb9c1f195faab242a1a3576ff845a4",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/scripts/diagnose_vla_failure.py": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/scripts/openvla_tf440_worker.py": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4/source/src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/status.json": "9eb00bc4b14c25f283a04d702982c040ccb3ef0e6d46ed417e2dee18b36bf827",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source_manifest.json": "9f043308af3737db4d3b595ff551fc9473f7bfd385df422431a95b40ac2e6194",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/initial_source.json": "13ecc32833674eb4a8495484f68fb1f405b890e200b3b1b0b85aca48281c5907",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/selected_initial_state.npy": "4cb2f17736f62be8a56cf0c0b0c759c1070f76a1f530c435368cf20c7e2c830d",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/scene.bddl": "456d145f92be049f445fc77673dc583d9d17ea7afe92f6ffcb2fd1fa5565d420",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/steps.jsonl": "304d1a631039470def30fa78abb4c56d1a0f7a4e996eb87b08521c3b8af0e4e1",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/frames.jsonl": "5995f933ae8e4300056d67717e540cbe0cf02ccb161a7dc5ea1591530ce08098",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/scripts/run_native_long_episode.py": "e8bfa142d223b677bee6ff645f8ec59ea67807b8c868e1d38ac9cd0710a93a71",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/scripts/audit_openvla_long_tasks.py": "f7a1105ef6c558aded9d3cb84f8f317b4aeb9c1f195faab242a1a3576ff845a4",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/scripts/diagnose_vla_failure.py": "2cd84af2f5e978c8f59d80c737b186303abcebff0c1c762ca3e9624deab9f8c7",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/scripts/openvla_tf440_worker.py": "018aae5fafccf53f739bd523e10afaa9154df5f6a31ad33e48ec3664702baf54",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/scripts/diagnose_fridge_skills.py": "ffbe02967bc7fadfa868eed3d69e4c10e45f8b66da8fea3745d2252457ed2d42",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/scripts/probe_fridge_task.py": "b35539dca7fa50d2fc7b2cdab78ff840805fe79da7f5856ba6cce968f68f3d05",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/src/adapters/libero_runtime.py": "cac037b2c9cd4b016188f39c741753e81efb7f388cdf90be55fbffc9ef839e4a",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/src/adapters/libero_preservation.py": "35f0f8d28b9f24c1989c1d9e8cb0aa7b3c3796a27b38e8334a329d9440ff4f86",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/src/adapters/libero_completion.py": "f697543ad9fbdb6ec4131c3bc7f280b16225e9c84038039e0064ef2c92bea6d6",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/src/adapters/libero_openvla.py": "b6f5dc559a016f23b93f6b7399e36cf5a16e30097e67698e7bd349b0ff843991",
+    "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5/source/src/adapters/tf5_compat.py": "7f11e7572683af827ed54b6c1893ad1dcaee94a1c3df49ce2d396d89c5540d03"
+  },
+  "weights": {
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00001-of-00004.safetensors": {
+      "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/15/1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186",
+      "bytes": 4925122448,
+      "cached_blob_id_not_rehashed": "1540cd25648f8d1189d35087dc2d96ebdc8c51e38c040a57b71bad68eca12186"
+    },
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00002-of-00004.safetensors": {
+      "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/28/28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d",
+      "bytes": 4947392496,
+      "cached_blob_id_not_rehashed": "28984aadddf7dfc94989f44e2bc6fd611d97a0ad1a6b9d10f7529c34c6b6ad8d"
+    },
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00003-of-00004.safetensors": {
+      "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/44/44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280",
+      "bytes": 4947417456,
+      "cached_blob_id_not_rehashed": "44b29c576a7cf9c01e4d42757f4041666b2735f4eb3109d508d57066e56dc280"
+    },
+    "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa/model-00004-of-00004.safetensors": {
+      "resolved_path": "/home/ami/.cache/huggingface/hub/blobs/ce/cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746",
+      "bytes": 262668432,
+      "cached_blob_id_not_rehashed": "cea8ac403d8ef09109b7ddfc2d439768710377e80958023c44362ddae8712746"
+    }
+  },
+  "fusion": {
+    "model": "/home/ami/UoE-UG4-Dissertation/src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt",
+    "sha256": "68efc4bf103c6baac634401a36091e758fb94d5762a8610f20719a9baa61c08b",
+    "metadata": {
+      "feature_schema": "controller_state_values12_validity12_v2",
+      "label_spec": "current_contract_and_preserved_goals_survive_12_nominal_actions_v1",
+      "encoder": {
+        "name": "dinov2_vits14",
+        "checkpoint": "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth",
+        "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+        "source": "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main",
+        "source_sha256": "00e7d5d0bc030a7e1fee248650f3ff861e8a6b6ba2ef6ceac18740129a8d0fe5",
+        "transform": "policy_rgb_pil_bicubic_224_imagenet_l2_v1",
+        "feature_dim": 384,
+        "pretrained": true
+      },
+      "threshold": 0.993425726890564,
+      "threshold_split": "validation",
+      "threshold_population": "current_contract_true",
+      "supported_stages": [
+        "acquire",
+        "transfer",
+        "contain_release"
+      ],
+      "max_empirical_false_accept": 0.05,
+      "seed": 0,
+      "dataset_manifest_sha256": "88e5d41db061f61bf422d6355aaf4c71dc5437cd56967ac5e1745720809248c9",
+      "roots": {
+        "train": [
+          1,
+          2,
+          5
+        ],
+        "validation": [
+          3,
+          4
+        ],
+        "evaluation": [
+          0
+        ]
+      },
+      "horizon": 12,
+      "scope": "reused-development nominal continuation; not unseen-task generalization",
+      "control_ready": true,
+      "efficacy_validated": false,
+      "training_losses": [
+        0.6921959363243142,
+        0.6660886207215432,
+        0.6369957323338583,
+        0.6030589154445254,
+        0.5608135197564997,
+        0.5107324276522965,
+        0.45977449537224374,
+        0.40918631675261397,
+        0.3498531230150602,
+        0.2973079443428318,
+        0.2528670912500593,
+        0.22578093026687276,
+        0.20165105071153389,
+        0.19444255020366208,
+        0.18454120925601844,
+        0.18706107837727448,
+        0.1819913804399727,
+        0.1823374351266049,
+        0.1808708081918039,
+        0.17278847886573157,
+        0.17350705729924162,
+        0.16065703054669522,
+        0.15757690407617267,
+        0.1438436915614743,
+        0.1434788255757589,
+        0.14663591476096313,
+        0.13502651509319805,
+        0.13447829653093737,
+        0.12367810847552056,
+        0.11782893863147692,
+        0.10889277522750106,
+        0.11674106830463601,
+        0.11781130838078877,
+        0.11047942508528155,
+        0.10222502991144243,
+        0.10161379167354978,
+        0.09396439807616193,
+        0.10692579017703419,
+        0.10684109364708966,
+        0.08499993369809025
+      ]
+    },
+    "allowed_modes": [
+      "off",
+      "log",
+      "gate"
+    ]
+  },
+  "joint": {
+    "artifact": "/home/ami/UoE-UG4-Dissertation/src/checkpoints/joint_components_v1_20261022/joint_components.pt",
+    "sha256": "cc2535a07f27871e34695acaa9f3607b384a7925f11e1c0bf0f1a3e2dbd6b5bf",
+    "report": {
+      "encoder": {
+        "name": "dinov2_vits14",
+        "checkpoint": "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth",
+        "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+        "source": "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main",
+        "source_sha256": "00e7d5d0bc030a7e1fee248650f3ff861e8a6b6ba2ef6ceac18740129a8d0fe5",
+        "transform": "policy_rgb_pil_bicubic_224_imagenet_l2_v1",
+        "feature_dim": 384,
+        "pretrained": true
+      },
+      "risk_schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+      "threshold": 0.2741200923919678,
+      "calibration": "validation_negative_sample_95percent_quantile_not_conformal_coverage",
+      "train_labels": {
+        "0": 92,
+        "1": 17
+      },
+      "validation_labels": {
+        "0": 145,
+        "1": 146
+      },
+      "validation": {
+        "n": 291,
+        "positives": 146,
+        "negatives": 145,
+        "tp": 0,
+        "fp": 6,
+        "tn": 139,
+        "fn": 146,
+        "false_accept_rate": 0.041379310344827586,
+        "false_reject_rate": 1.0,
+        "unsafe_among_accepted": 1.0,
+        "accuracy": 0.47766323024054985
+      },
+      "bank_entries": 144,
+      "bank_stages": {
+        "acquire": 77,
+        "transfer": 14,
+        "contain_release": 11,
+        "close": 42
+      },
+      "roots": {
+        "train": [
+          1,
+          2,
+          5
+        ],
+        "validation": [
+          3,
+          4
+        ],
+        "excluded_evaluation": [
+          0
+        ]
+      },
+      "definition": "24 nominal actions: preserved predicate/lift loss or sustained acquisition stagnation",
+      "risk_artifact_sha256": "cc2535a07f27871e34695acaa9f3607b384a7925f11e1c0bf0f1a3e2dbd6b5bf"
+    },
+    "schema": "joint_visual_physical_prediction_memory_risk_h1_v1"
+  },
+  "controller_constants": {
+    "v2": {
+      "version": "native_microwave_measured_framework_v4_prompt_refine",
+      "variant": "v2",
+      "prompt_factor": false,
+      "resumption_factor": false,
+      "resumption_motion_m": 0.003,
+      "resumption_endpoints": 3,
+      "target": "white_yellow_mug_1",
+      "receptacle": "microwave_1",
+      "region": "microwave_1_heating_region",
+      "action_cap": 520,
+      "query_cap": 520,
+      "local_cap": 32,
+      "repair_cap": 160,
+      "rechecks": 3,
+      "cooldown": 8,
+      "lift_m": 0.02,
+      "motion_m": 0.003,
+      "contact_window": 12,
+      "acquisition_window": 180,
+      "release_radius_m": 0.05,
+      "release_flight_steps": 3,
+      "retry_motion_m": 0.02,
+      "recovery_contracts": {
+        "acquire": [
+          "held_clear",
+          "contained"
+        ],
+        "transfer": [
+          "contained"
+        ],
+        "contain_release": [
+          "contained_detached"
+        ],
+        "close": [
+          "native_complete"
+        ]
+      },
+      "verification": "privileged_current_past_endpoint_measurements",
+      "subgoal_source": "declared_task_semantics_not_model_generated",
+      "learned_predictor": false,
+      "future_simulation": false,
+      "prompts": {
+        "acquire": "pick up the yellow and white mug",
+        "transfer": "put the yellow and white mug in the microwave",
+        "contain_release": "release the yellow and white mug in the microwave",
+        "close": "close the microwave"
+      }
+    },
+    "prompt_only": {
+      "version": "native_microwave_measured_framework_v4_prompt_refine",
+      "variant": "prompt_only",
+      "prompt_factor": true,
+      "resumption_factor": false,
+      "resumption_motion_m": 0.003,
+      "resumption_endpoints": 3,
+      "target": "white_yellow_mug_1",
+      "receptacle": "microwave_1",
+      "region": "microwave_1_heating_region",
+      "action_cap": 520,
+      "query_cap": 520,
+      "local_cap": 32,
+      "repair_cap": 160,
+      "rechecks": 3,
+      "cooldown": 8,
+      "lift_m": 0.02,
+      "motion_m": 0.003,
+      "contact_window": 12,
+      "acquisition_window": 180,
+      "release_radius_m": 0.05,
+      "release_flight_steps": 3,
+      "retry_motion_m": 0.02,
+      "recovery_contracts": {
+        "acquire": [
+          "held_clear",
+          "contained"
+        ],
+        "transfer": [
+          "contained"
+        ],
+        "contain_release": [
+          "contained_detached"
+        ],
+        "close": [
+          "native_complete"
+        ]
+      },
+      "verification": "privileged_current_past_endpoint_measurements",
+      "subgoal_source": "declared_task_semantics_not_model_generated",
+      "learned_predictor": false,
+      "future_simulation": false,
+      "prompts": {
+        "acquire": "pick up the yellow and white mug",
+        "transfer": "put the yellow and white mug in the microwave",
+        "contain_release": "put the yellow and white mug in the microwave",
+        "close": "close the microwave"
+      }
+    },
+    "prompt_place": {
+      "version": "native_microwave_measured_framework_v4_prompt_refine",
+      "variant": "prompt_place",
+      "prompt_factor": true,
+      "resumption_factor": false,
+      "resumption_motion_m": 0.003,
+      "resumption_endpoints": 3,
+      "target": "white_yellow_mug_1",
+      "receptacle": "microwave_1",
+      "region": "microwave_1_heating_region",
+      "action_cap": 520,
+      "query_cap": 520,
+      "local_cap": 32,
+      "repair_cap": 160,
+      "rechecks": 3,
+      "cooldown": 8,
+      "lift_m": 0.02,
+      "motion_m": 0.003,
+      "contact_window": 12,
+      "acquisition_window": 180,
+      "release_radius_m": 0.05,
+      "release_flight_steps": 3,
+      "retry_motion_m": 0.02,
+      "recovery_contracts": {
+        "acquire": [
+          "held_clear",
+          "contained"
+        ],
+        "transfer": [
+          "contained"
+        ],
+        "contain_release": [
+          "contained_detached"
+        ],
+        "close": [
+          "native_complete"
+        ]
+      },
+      "verification": "privileged_current_past_endpoint_measurements",
+      "subgoal_source": "declared_task_semantics_not_model_generated",
+      "learned_predictor": false,
+      "future_simulation": false,
+      "prompts": {
+        "acquire": "pick up the yellow and white mug",
+        "transfer": "put the yellow and white mug in the microwave",
+        "contain_release": "place the yellow and white mug fully inside the microwave",
+        "close": "close the microwave"
+      }
+    },
+    "prompt_deepen": {
+      "version": "native_microwave_measured_framework_v4_prompt_refine",
+      "variant": "prompt_deepen",
+      "prompt_factor": true,
+      "resumption_factor": false,
+      "resumption_motion_m": 0.003,
+      "resumption_endpoints": 3,
+      "target": "white_yellow_mug_1",
+      "receptacle": "microwave_1",
+      "region": "microwave_1_heating_region",
+      "action_cap": 520,
+      "query_cap": 520,
+      "local_cap": 32,
+      "repair_cap": 160,
+      "rechecks": 3,
+      "cooldown": 8,
+      "lift_m": 0.02,
+      "motion_m": 0.003,
+      "contact_window": 12,
+      "acquisition_window": 180,
+      "release_radius_m": 0.05,
+      "release_flight_steps": 3,
+      "retry_motion_m": 0.02,
+      "recovery_contracts": {
+        "acquire": [
+          "held_clear",
+          "contained"
+        ],
+        "transfer": [
+          "contained"
+        ],
+        "contain_release": [
+          "contained_detached"
+        ],
+        "close": [
+          "native_complete"
+        ]
+      },
+      "verification": "privileged_current_past_endpoint_measurements",
+      "subgoal_source": "declared_task_semantics_not_model_generated",
+      "learned_predictor": false,
+      "future_simulation": false,
+      "prompts": {
+        "acquire": "pick up the yellow and white mug",
+        "transfer": "put the yellow and white mug in the microwave",
+        "contain_release": "push the yellow and white mug to the back of the microwave and place it inside",
+        "close": "close the microwave"
+      }
+    },
+    "prompt_settle": {
+      "version": "native_microwave_measured_framework_v4_prompt_refine",
+      "variant": "prompt_settle",
+      "prompt_factor": true,
+      "resumption_factor": false,
+      "resumption_motion_m": 0.003,
+      "resumption_endpoints": 3,
+      "target": "white_yellow_mug_1",
+      "receptacle": "microwave_1",
+      "region": "microwave_1_heating_region",
+      "action_cap": 520,
+      "query_cap": 520,
+      "local_cap": 32,
+      "repair_cap": 160,
+      "rechecks": 3,
+      "cooldown": 8,
+      "lift_m": 0.02,
+      "motion_m": 0.003,
+      "contact_window": 12,
+      "acquisition_window": 180,
+      "release_radius_m": 0.05,
+      "release_flight_steps": 3,
+      "retry_motion_m": 0.02,
+      "recovery_contracts": {
+        "acquire": [
+          "held_clear",
+          "contained"
+        ],
+        "transfer": [
+          "contained"
+        ],
+        "contain_release": [
+          "contained_detached"
+        ],
+        "close": [
+          "native_complete"
+        ]
+      },
+      "verification": "privileged_current_past_endpoint_measurements",
+      "subgoal_source": "declared_task_semantics_not_model_generated",
+      "learned_predictor": false,
+      "future_simulation": false,
+      "prompts": {
+        "acquire": "pick up the yellow and white mug",
+        "transfer": "put the yellow and white mug in the microwave",
+        "contain_release": "place the yellow and white mug fully inside the microwave and leave it there",
+        "close": "close the microwave"
+      }
+    }
+  },
+  "python": "/home/ami/miniconda3/bin/python",
+  "created": 1792704355.7451887,
+  "study": {
+    "name": "native_prompt_refine_20261021",
+    "development_only": true,
+    "primary": "native full-task success for root4 and root0; regression checks on others",
+    "factors": [
+      "contain_release_prompt_refinement"
+    ],
+    "secondary": [
+      "paired rescues and harms",
+      "local recovery vs verified exit",
+      "actual nominal handoff",
+      "post-handoff regression and full completion",
+      "repair/query/action/time costs"
+    ],
+    "sentinel_roots": {
+      "root4": "prompt_only rescued it",
+      "root0": "failed in all previous cohorts",
+      "root3": "must not regress"
+    },
+    "analysis": "compare against prompt_only baseline; six reused development roots, no held-out or population claim",
+    "stopping": "complete all thirty-six cells regardless of root4 outcome; no efficacy early stopping",
+    "recovery": "retain all cases; exact replay; 30 baseline/variant full videos; publish and fresh remote recovery"
+  },
+  "success": "native env.check_success(): original In & Close",
+  "wall_scope": "scene setup + ten noops + rollout, excluding actor load",
+  "schedule": "per root: baseline/v2, prompt_only/gate_only, combined; each wave then fresh replays; lanes alternate by root",
+  "invalid_policy": "retain all cells; replay image mismatches remain failures",
+  "repair_candidates": {
+    "schema": "repair_candidate_probe_v1",
+    "size": 4,
+    "max_pools": 1,
+    "schedule": "first_executed_repair_action",
+    "base_seed": 20261022,
+    "action_cap": 520,
+    "nominal_query_cap": 520,
+    "additional_query_cap": 3,
+    "total_query_cap": 523,
+    "modification": "select_unchanged_model_proposal",
+    "collection": "fixed_slot_not_learned_ranking",
+    "continuation": "existing_controller"
+  }
+}

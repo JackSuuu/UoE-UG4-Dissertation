@@ -1,0 +1,4868 @@
+{
+  "indexing": "zero-based action index; after action t is observation t+1",
+  "development_only": true,
+  "invalid_episodes": [],
+  "episodes": [
+    {
+      "name": "baseline_root0",
+      "arm": "baseline",
+      "root": 0,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root0",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 73
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "5b5e8acf2933e76f08e514b391b4b54b60a17d0077a3127830fb79c5d3ad85b8",
+        "controller.jsonl": "292d1347a4d5dac3bc01fcf94de1faa6e54d2f041c5083dab11867398970678c",
+        "steps.jsonl": "2a2ff3f484a887ec0448a8bf1e4dc62f4402c7c0ea68943dc8a88b5bac28ab7b",
+        "frames.jsonl": "338dc3c1f82465903ec86fd14b61bee9f4da193763fe93be686e5690f91e99ed",
+        "actions.npz": "f8ae15fd87f5355f7babf08a213f9a17f9b21fc36f024e4049240894a6c91168",
+        "selected_initial_state.npy": "ae90aef56416ad928884aa74316b42cc911c75cbe2fc03c72097bcf0383909b6",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "joint_root0",
+      "arm": "joint",
+      "root": 0,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root0",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 160,
+      "milestones": {
+        "first_grasp": 73,
+        "held_clear": 426
+      },
+      "repairs": [
+        {
+          "repair_id": 1,
+          "entry_step": 104,
+          "trigger": "joint_no_lift",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 135,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 136,
+          "recurrence_step": 253,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.06349638849496841,
+            "threshold": 0.2741200923919678,
+            "exceeds": false,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 0,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                -0.019537711516022682,
+                -0.010297357104718685,
+                0.8992506265640259
+              ],
+              [
+                -0.019533826038241386,
+                -0.009970403276383877,
+                0.8986238241195679
+              ],
+              [
+                -0.01952994056046009,
+                -0.009643449448049068,
+                0.8979970216751099
+              ],
+              [
+                -0.019526055082678795,
+                -0.00931649561971426,
+                0.8973702192306519
+              ],
+              [
+                -0.0195221696048975,
+                -0.008989541791379452,
+                0.8967434167861938
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.2934497540156774,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 30,
+              "z_rise_m": -0.00157928466796875,
+              "grasp_start_pos": [
+                -0.022269444540143013,
+                -0.025068292394280434,
+                0.9014567136764526
+              ],
+              "current_pos": [
+                -0.019541596137834006,
+                -0.010624310496223826,
+                0.8998774073815902
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.019541596137834006,
+              -0.010624310496223826,
+              0.8998774073815902
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 103,
+            "rise_m": -0.001579303516259456,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.01793643213152203,
+              -0.013679148724587729,
+              0.9011100338016665
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 135,
+            "rise_m": -0.00034667709618307896,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.0016051640063119745,
+            -0.003054838228363903,
+            0.001232626420076377
+          ],
+          "eef_delta_m": [
+            0.014793586345954549,
+            -0.008615668489859452,
+            -0.0043797495799983155
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.004018640145659447,
+            0.038415487855672836
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 2,
+          "entry_step": 205,
+          "trigger": "joint_no_lift",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 236,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 237,
+          "recurrence_step": 253,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.6624150276184082,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 26,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                -0.007662787567824125,
+                0.008457163348793983,
+                0.9046865701675415
+              ],
+              [
+                -0.007176326587796211,
+                0.009843758307397366,
+                0.9046276807785034
+              ],
+              [
+                -0.006689865607768297,
+                0.011230353266000748,
+                0.9045687913894653
+              ],
+              [
+                -0.006203404627740383,
+                0.01261694822460413,
+                0.9045099020004272
+              ],
+              [
+                -0.005716943647712469,
+                0.014003543183207512,
+                0.9044510126113892
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.27469523356216474,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 131,
+              "z_rise_m": 0.003288745880126953,
+              "grasp_start_pos": [
+                -0.022269444540143013,
+                -0.025068292394280434,
+                0.9014567136764526
+              ],
+              "current_pos": [
+                -0.008149248367165362,
+                0.007070568717521569,
+                0.9047454819184635
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.008149248367165362,
+              0.007070568717521569,
+              0.9047454819184635
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 204,
+            "rise_m": 0.0032887710206138676,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.005234584420391983,
+              0.0071026161027289035,
+              0.9064966751402339
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 236,
+            "rise_m": 0.005039964242384287,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.002914663946773379,
+            3.204738520733424e-05,
+            0.0017511932217704196
+          ],
+          "eef_delta_m": [
+            0.012056962780746201,
+            -0.008958085179823355,
+            -0.014498418430501814
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0038997891824692488,
+            0.03805744647979736
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 1,
+            "changed_stable_predicates": [],
+            "displaced_20mm": true
+          }
+        },
+        {
+          "repair_id": 3,
+          "entry_step": 252,
+          "trigger": "joint_no_lift",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 283,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 284,
+          "recurrence_step": 284,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.4547143280506134,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 73,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.0003352964122314006,
+                0.017802828922867775,
+                0.9075642824172974
+              ],
+              [
+                0.0010194715578109026,
+                0.018841469660401344,
+                0.9077622890472412
+              ],
+              [
+                0.001703646732494235,
+                0.019880110397934914,
+                0.9079602956771851
+              ],
+              [
+                0.0023878219071775675,
+                0.020918751135468483,
+                0.9081583023071289
+              ],
+              [
+                0.0030719970818609,
+                0.021957391873002052,
+                0.9083563089370728
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.26534956798809095,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 178,
+              "z_rise_m": 0.005909562110900879,
+              "grasp_start_pos": [
+                -0.022269444540143013,
+                -0.025068292394280434,
+                0.9014567136764526
+              ],
+              "current_pos": [
+                -0.000348878698423335,
+                0.016764188250466737,
+                0.9073662864777616
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.000348878698423335,
+              0.016764188250466737,
+              0.9073662864777616
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 251,
+            "rise_m": 0.0059095755799120075,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0014227442552609908,
+              0.01819136968826026,
+              0.9062408522723766
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 283,
+            "rise_m": 0.0047841413745269845,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.0017716229536843258,
+            0.0014271814377935232,
+            -0.001125434205385023
+          ],
+          "eef_delta_m": [
+            0.0030459275767170876,
+            -0.0003799921161157932,
+            -0.0037714796719404697
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.005383885465562344,
+            0.05563735216856003
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 2,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 4,
+          "entry_step": 292,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 323,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 324,
+          "recurrence_step": 324,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.7686025500297546,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 113,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.00517941964790225,
+                0.022668994963169098,
+                0.9067009687423706
+              ],
+              [
+                0.0058730910532176495,
+                0.02355346828699112,
+                0.9066544771194458
+              ],
+              [
+                0.006566762458533049,
+                0.02443794161081314,
+                0.906607985496521
+              ],
+              [
+                0.007260433863848448,
+                0.025322414934635162,
+                0.9065614938735962
+              ],
+              [
+                0.00795410480350256,
+                0.026206888258457184,
+                0.9065150022506714
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.26048340194778963,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 218,
+              "z_rise_m": 0.0052907466888427734,
+              "grasp_start_pos": [
+                -0.022269444540143013,
+                -0.025068292394280434,
+                0.9014567136764526
+              ],
+              "current_pos": [
+                0.00448574829359756,
+                0.021784521578080418,
+                0.9067474666932676
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.00448574829359756,
+              0.021784521578080418,
+              0.9067474666932676
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 291,
+            "rise_m": 0.005290755795417934,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.005879369796369993,
+              0.02235027991164725,
+              0.9062949754619304
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 323,
+            "rise_m": 0.004838264564080763,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.0013936215027724333,
+            0.0005657583335668334,
+            -0.00045249123133717095
+          ],
+          "eef_delta_m": [
+            0.0023345205545268408,
+            -0.00032683755002752,
+            -0.0021286332055346913
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.004487432539463043,
+            0.00565703772008419
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 5,
+          "entry_step": 357,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 388,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 389,
+          "recurrence_step": 389,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.8402270674705505,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 178,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.015060050413012505,
+                0.03757432848215103,
+                0.9071260690689087
+              ],
+              [
+                0.015542223118245602,
+                0.039004333317279816,
+                0.9072585701942444
+              ],
+              [
+                0.0160243958234787,
+                0.0404343381524086,
+                0.9073910713195801
+              ],
+              [
+                0.01650656946003437,
+                0.041864342987537384,
+                0.9075235724449158
+              ],
+              [
+                0.016988743096590042,
+                0.04329434782266617,
+                0.9076560735702515
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.2455780684288077,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 283,
+              "z_rise_m": 0.005536854267120361,
+              "grasp_start_pos": [
+                -0.022269444540143013,
+                -0.025068292394280434,
+                0.9014567136764526
+              ],
+              "current_pos": [
+                0.014577877389882454,
+                0.03614432217680499,
+                0.9069935687285731
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.014577877389882454,
+              0.03614432217680499,
+              0.9069935687285731
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 356,
+            "rise_m": 0.005536857830723441,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.018706321929169885,
+              0.039749244987607874,
+              0.9069300555233935
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 388,
+            "rise_m": 0.00547334462554383,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.004128444539287431,
+            0.0036049228108028866,
+            -6.351320517961057e-05
+          ],
+          "eef_delta_m": [
+            0.0007879821179624033,
+            0.0023733559669124327,
+            0.0002600025585790533
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.005249154753983021,
+            0.04774891212582588
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 4,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        }
+      ],
+      "blocked_entries": {
+        "pending_actual_handoff": 5,
+        "unverified_exit_cooldown": 35,
+        "failed_repair_requires_changed_evidence": 93,
+        "total_repair_budget": 62
+      },
+      "source_hashes": {
+        "status.json": "ff3f66776bed998ec6f2f5a031e70db99c076968403816a529a1297e17c5550c",
+        "controller.jsonl": "e8cec768c2a5f85c5eb846efac2336ea0dff45a9ac16583f04979b767e0a8d0b",
+        "steps.jsonl": "ba2ab22fb67a786fc209d64c1df3488826ec62c3703a15402e442a4b06968616",
+        "frames.jsonl": "59bbdec978ffdef1734309fe18b0043f015057506e626d5be2681b1bc1f10e69",
+        "actions.npz": "656267f012f2243ea197e31a61ceaa5ed6d4d7ad94fee6f7ff84224b5fe5918e",
+        "selected_initial_state.npy": "ae90aef56416ad928884aa74316b42cc911c75cbe2fc03c72097bcf0383909b6",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "measured_fusion_root0",
+      "arm": "measured_fusion",
+      "root": 0,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root0",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 96,
+      "milestones": {
+        "first_grasp": 73
+      },
+      "repairs": [
+        {
+          "repair_id": 1,
+          "entry_step": 254,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 285,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 286,
+          "recurrence_step": 286,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": null,
+          "entry_prediction": null,
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.01038244620120395,
+              0.0037414276091770893,
+              0.9030301853450741
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 253,
+            "rise_m": 0.0015734744472244433,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.010851167019506506,
+              0.003670573440371297,
+              0.9050626035999584
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 285,
+            "rise_m": 0.0036058927021087595,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.0004687208183025565,
+            -7.085416880579223e-05,
+            0.002032418254884316
+          ],
+          "eef_delta_m": [
+            0.004090194252346684,
+            -0.00808658540834023,
+            -0.00808424520080575
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.004218583460897207,
+            0.006631575524806976
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 2,
+          "entry_step": 411,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 442,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 443,
+          "recurrence_step": 443,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": null,
+          "entry_prediction": null,
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.013872624158583249,
+              0.007873089008458147,
+              0.9064743497856882
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 410,
+            "rise_m": 0.005017638887838571,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.02273070299489536,
+              0.01973787034304168,
+              0.9083219679937076
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 442,
+            "rise_m": 0.006865257095857946,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.00885807883631211,
+            0.011864781334583532,
+            0.0018476182080193748
+          ],
+          "eef_delta_m": [
+            0.004881876054282461,
+            0.011457986753851998,
+            0.002299041296989879
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 30,
+            "open": 2
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.004223288968205452,
+            0.054062776267528534
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 1,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 3,
+          "entry_step": 473,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 504,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 505,
+          "recurrence_step": 505,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": null,
+          "entry_prediction": null,
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.03348276790761385,
+              0.015390584963420223,
+              0.9058018572785707
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 472,
+            "rise_m": 0.004345146380721032,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.050627826648332014,
+              0.016363350003417862,
+              0.9079202212248269
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 504,
+            "rise_m": 0.006463510326977229,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.017145058740718165,
+            0.0009727650399976393,
+            0.0021183639462561965
+          ],
+          "eef_delta_m": [
+            0.016260064756312045,
+            0.00015726341014207779,
+            0.0010705416022650516
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0038041474763303995,
+            0.04400496929883957
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 2,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        }
+      ],
+      "blocked_entries": {
+        "pending_actual_handoff": 3,
+        "unverified_exit_cooldown": 21,
+        "failed_repair_requires_changed_evidence": 146
+      },
+      "source_hashes": {
+        "status.json": "1a945822f0fa21e0f26e6ce364af92d53b43d0ef0235cd7b39ad08f3f93848da",
+        "controller.jsonl": "8e4f89970cf276f7343134d32be0a31ad826dbe75d2a12c3e55c99c4ec08244b",
+        "steps.jsonl": "9b123f087f9e662d4001b8c97012ceaa4c5bb0b9a7ac5517253d32c62c2eeaf0",
+        "frames.jsonl": "a3da594c21c198395353d13a4f2f66d12dc871c93ef459fabbf863641049d720",
+        "actions.npz": "4d41a287f732d8b46ce38f05d740de6f97ae5e2a6ad46a60a0ddd04e3b5dd3d8",
+        "selected_initial_state.npy": "ae90aef56416ad928884aa74316b42cc911c75cbe2fc03c72097bcf0383909b6",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "baseline_root1",
+      "arm": "baseline",
+      "root": 1,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root1",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 444,
+      "queries": 444,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 86,
+        "held_clear": 244,
+        "durable_in": 279,
+        "native_complete": 443
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "93c78f20ff094bc3bd9c022ac4caf6bc171d63e0b698c8dc74d96125da9ec249",
+        "controller.jsonl": "986beaebe53414fc27f4e2ec2f8604421fb7083205e15eb62a52071bbe4dff9b",
+        "steps.jsonl": "294f6a585d145f2eb5f06ac13cb249b2910340efcf9d29e3c1704417bb843ff4",
+        "frames.jsonl": "f2ed96b956b5fc72aa3847e57593034773e4e1cb4000e05df287a191d4744ff8",
+        "actions.npz": "81dfebc78b249281b5809e2eba4d3e232dc945dff9ffe73f0582db47808ee6df",
+        "selected_initial_state.npy": "300694339c0fa2707d9955886fc6a42928388f3f8d192bfe0cab6862d8d7a3dc",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "joint_root1",
+      "arm": "joint",
+      "root": 1,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root1",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 160,
+      "milestones": {
+        "first_grasp": 86,
+        "held_clear": 351,
+        "durable_in": 384
+      },
+      "repairs": [
+        {
+          "repair_id": 1,
+          "entry_step": 89,
+          "trigger": "joint_outcome_risk",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 120,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 121,
+          "recurrence_step": 266,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.5682440996170044,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 3,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.003435881109908223,
+                0.044376175850629807,
+                0.9010717272758484
+              ],
+              [
+                0.002704931888729334,
+                0.044224146753549576,
+                0.9011089205741882
+              ],
+              [
+                0.0019739826675504446,
+                0.044072117656469345,
+                0.9011461138725281
+              ],
+              [
+                0.0012430334463715553,
+                0.043920088559389114,
+                0.9011833071708679
+              ],
+              [
+                0.000512084283400327,
+                0.043768059462308884,
+                0.9012205004692078
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.23938433744864984,
+            "no_lift": {
+              "no_lift_predicted": false,
+              "steps_since_grasp": 2,
+              "z_rise_m": 0.00021266937255859375,
+              "grasp_start_pos": [
+                0.003985922783613205,
+                0.04453021660447121,
+                0.90082186460495
+              ],
+              "current_pos": [
+                0.004166830241916017,
+                0.044528204533048656,
+                0.9010345478432407
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.004166830241916017,
+              0.044528204533048656,
+              0.9010345478432407
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 88,
+            "rise_m": 0.00021267813156033988,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.001999690565014472,
+              0.043482673622708974,
+              0.9019737962717556
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 120,
+            "rise_m": 0.0011519265600752338,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            -0.0021671396769015446,
+            -0.0010455309103396815,
+            0.0009392484285148939
+          ],
+          "eef_delta_m": [
+            0.001246869900465115,
+            -0.000263785887664493,
+            0.0011795977862706364
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.002477046800777316,
+            0.023121003061532974
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 2,
+          "entry_step": 129,
+          "trigger": "joint_no_lift",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 160,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 161,
+          "recurrence_step": 266,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.9792607426643372,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 43,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.00232996279373765,
+                0.04323068633675575,
+                0.9020224213600159
+              ],
+              [
+                0.0023658154532313347,
+                0.04319516196846962,
+                0.9020252823829651
+              ],
+              [
+                0.0024016681127250195,
+                0.04315963760018349,
+                0.9020281434059143
+              ],
+              [
+                0.0024375207722187042,
+                0.043124113231897354,
+                0.9020310044288635
+              ],
+              [
+                0.002473373431712389,
+                0.04308858886361122,
+                0.9020338654518127
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.2400638080473475,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 42,
+              "z_rise_m": 0.0011976957321166992,
+              "grasp_start_pos": [
+                0.003985922783613205,
+                0.04453021660447121,
+                0.90082186460495
+              ],
+              "current_pos": [
+                0.0022941102063618276,
+                0.04326621206599537,
+                0.9020195645281321
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0022941102063618276,
+              0.04326621206599537,
+              0.9020195645281321
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 128,
+            "rise_m": 0.001197694816451822,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0022453148960645533,
+              0.04270432295609664,
+              0.9017252489938793
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 160,
+            "rise_m": 0.0009033792821989683,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            -4.8795310297274335e-05,
+            -0.000561889109898725,
+            -0.0002943155342528536
+          ],
+          "eef_delta_m": [
+            2.6523429161083058e-05,
+            -0.0008935758333906904,
+            -0.00044916417095364203
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0026916656643152237,
+            0.003078585024923086
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 3,
+          "entry_step": 189,
+          "trigger": "joint_no_lift",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 220,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 221,
+          "recurrence_step": 266,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.9638152122497559,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 103,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.003351054387167096,
+                0.041526731103658676,
+                0.9019038081169128
+              ],
+              [
+                0.0034051372203975916,
+                0.041430868208408356,
+                0.90195631980896
+              ],
+              [
+                0.003459220053628087,
+                0.041335005313158035,
+                0.9020088315010071
+              ],
+              [
+                0.0035133028868585825,
+                0.041239142417907715,
+                0.9020613431930542
+              ],
+              [
+                0.003567385720089078,
+                0.041143279522657394,
+                0.9021138548851013
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.24200911738830133,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 102,
+              "z_rise_m": 0.0010294318199157715,
+              "grasp_start_pos": [
+                0.003985922783613205,
+                0.04453021660447121,
+                0.90082186460495
+              ],
+              "current_pos": [
+                0.0032969714442107217,
+                0.041622592437165,
+                0.9018512965273865
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0032969714442107217,
+              0.041622592437165,
+              0.9018512965273865
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 188,
+            "rise_m": 0.0010294268157061692,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0036217418233651017,
+              0.04103916056103026,
+              0.9017034893597052
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 220,
+            "rise_m": 0.0008816196480249117,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.00032477037915438003,
+            -0.0005834318761347365,
+            -0.00014780716768125757
+          ],
+          "eef_delta_m": [
+            -2.824845683603236e-06,
+            -0.0006629881816421282,
+            -0.0001553532630763632
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0025716922245919704,
+            0.022322768345475197
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 2,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 4,
+          "entry_step": 230,
+          "trigger": "joint_no_lift",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 261,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 262,
+          "recurrence_step": 266,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.9161733984947205,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 144,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.00019451932166703045,
+                0.040788449347019196,
+                0.9017500877380371
+              ],
+              [
+                -0.00028658105293288827,
+                0.040757227689027786,
+                0.9017719030380249
+              ],
+              [
+                -0.0007676813984289765,
+                0.04072600603103638,
+                0.9017937183380127
+              ],
+              [
+                -0.0012487818021327257,
+                0.04069478437304497,
+                0.9018155336380005
+              ],
+              [
+                -0.001729882205836475,
+                0.04066356271505356,
+                0.9018373489379883
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.24248883419590517,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 143,
+              "z_rise_m": 0.0009064078330993652,
+              "grasp_start_pos": [
+                0.003985922783613205,
+                0.04453021660447121,
+                0.90082186460495
+              ],
+              "current_pos": [
+                0.0006756196999306862,
+                0.04081967139104321,
+                0.9017282910392792
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0006756196999306862,
+              0.04081967139104321,
+              0.9017282910392792
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 229,
+            "rise_m": 0.000906421327598883,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0009522866331475983,
+              0.04040169975237182,
+              0.9018754026187508
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 261,
+            "rise_m": 0.0010535329070704424,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.000276666933216912,
+            -0.0004179716386713897,
+            0.0001471115794715594
+          ],
+          "eef_delta_m": [
+            0.0004147026330188963,
+            -0.0001580794012105216,
+            0.0002737050877573699
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0025379511062055826,
+            0.021113315597176552
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 3,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 5,
+          "entry_step": 270,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 301,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 302,
+          "recurrence_step": 302,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.9278557300567627,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 184,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                -0.0006706336862407625,
+                0.04028800502419472,
+                0.9020558595657349
+              ],
+              [
+                -0.0006617573671974242,
+                0.040265679359436035,
+                0.9020596742630005
+              ],
+              [
+                -0.0006528810481540859,
+                0.04024335369467735,
+                0.9020634889602661
+              ],
+              [
+                -0.0006440047291107476,
+                0.04022102802991867,
+                0.9020673036575317
+              ],
+              [
+                -0.0006351284100674093,
+                0.04019870236515999,
+                0.9020711183547974
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.24295369454579874,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 183,
+              "z_rise_m": 0.0012301802635192871,
+              "grasp_start_pos": [
+                0.003985922783613205,
+                0.04453021660447121,
+                0.90082186460495
+              ],
+              "current_pos": [
+                -0.0006795099883279555,
+                0.04031033241570957,
+                0.90205203101845
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.0006795099883279555,
+              0.04031033241570957,
+              0.90205203101845
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 269,
+            "rise_m": 0.0012301613067696726,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.002433949055849909,
+              0.04337056715724925,
+              0.9054047600116575
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 301,
+            "rise_m": 0.00458289029997716,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            -0.0017544390675219533,
+            0.003060234741539679,
+            0.0033527289932074877
+          ],
+          "eef_delta_m": [
+            -0.000678991132912761,
+            0.004862575541898194,
+            0.0041843214115265814
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.02115233615040779,
+            0.031167754903435707
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        }
+      ],
+      "blocked_entries": {
+        "pending_actual_handoff": 5,
+        "unverified_exit_cooldown": 35,
+        "failed_repair_requires_changed_evidence": 21,
+        "total_repair_budget": 43
+      },
+      "source_hashes": {
+        "status.json": "d88c31d2872192d2e32e193d995aa202e04edcaa91e57414af581db6dc266662",
+        "controller.jsonl": "1419e3703e6ed0d5a0c54ffc75bb43cbbe26562e21730d51731af704ea238a02",
+        "steps.jsonl": "770cedb9d65048d347e08690e9f8cf679d767cb2cd7786fb78790e7bdf31fb4b",
+        "frames.jsonl": "f0ac0d4672366841d140665a71fa5695a3d7349c9b2f5d2283a9a6f80263faa8",
+        "actions.npz": "90f768e5b459fa5891145b3676fc00d98a464efaa3d1e35e8c6eea72549b8733",
+        "selected_initial_state.npy": "300694339c0fa2707d9955886fc6a42928388f3f8d192bfe0cab6862d8d7a3dc",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "measured_fusion_root1",
+      "arm": "measured_fusion",
+      "root": 1,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root1",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 444,
+      "queries": 444,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 86,
+        "held_clear": 244,
+        "durable_in": 279,
+        "native_complete": 443
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "378aea29b706b8ca541f059cbc79b7855a8052b63e53020a715071a6ff5b8b24",
+        "controller.jsonl": "38e9bab89c920992b11f8bdf8d5ef84dadcd61ca33eb21c35ba3f29fc0ee3453",
+        "steps.jsonl": "2446a9f91bce46a349e4308b79747dd5353e2c0d81e46c5bbfe40990c8bbd727",
+        "frames.jsonl": "f2ed96b956b5fc72aa3847e57593034773e4e1cb4000e05df287a191d4744ff8",
+        "actions.npz": "81dfebc78b249281b5809e2eba4d3e232dc945dff9ffe73f0582db47808ee6df",
+        "selected_initial_state.npy": "300694339c0fa2707d9955886fc6a42928388f3f8d192bfe0cab6862d8d7a3dc",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "baseline_root2",
+      "arm": "baseline",
+      "root": 2,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root2",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 397,
+      "queries": 397,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 95,
+        "held_clear": 251,
+        "durable_in": 298,
+        "native_complete": 396
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "c4ad02da7e033a9d73ffecf97cce6a5477b31f0cbf6ef5f305da6d9ab412be0f",
+        "controller.jsonl": "f17cb559d1796fd9f3e5c6c9a3d3c297a934a22c35ad1cda34c6f069b9d2656b",
+        "steps.jsonl": "e46f0653601a190ca9ed7914db66105970df211aa3e65d1cee3fc6eb64a08fff",
+        "frames.jsonl": "5a337a365f13dff98ece7e0010a2e31fddcce3b97323021cd062ecbae2981b6d",
+        "actions.npz": "b11ed00b668ee90eeb4875eaf05303ea1cefec0119785f357d8ff3c7e6459655",
+        "selected_initial_state.npy": "bf9c20fd109592d6c1cd2c4d7897bb5a9ac50a9f188c1a0e60464404cadd33bc",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "joint_root2",
+      "arm": "joint",
+      "root": 2,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root2",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 160,
+      "milestones": {
+        "first_grasp": 95,
+        "held_clear": 406,
+        "durable_in": 448
+      },
+      "repairs": [
+        {
+          "repair_id": 1,
+          "entry_step": 145,
+          "trigger": "joint_outcome_risk",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 176,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 177,
+          "recurrence_step": 275,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.2818678021430969,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 3,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                -0.00993060227483511,
+                -0.008388819172978401,
+                0.9035019278526306
+              ],
+              [
+                -0.009818699210882187,
+                -0.008298596367239952,
+                0.9034899473190308
+              ],
+              [
+                -0.009706796146929264,
+                -0.008208373561501503,
+                0.9034779667854309
+              ],
+              [
+                -0.009594893082976341,
+                -0.008118150755763054,
+                0.903465986251831
+              ],
+              [
+                -0.009482990019023418,
+                -0.008027927950024605,
+                0.9034540057182312
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.2915412160839371,
+            "no_lift": {
+              "no_lift_predicted": false,
+              "steps_since_grasp": 24,
+              "z_rise_m": -0.00034630298614501953,
+              "grasp_start_pos": [
+                -0.012584513984620571,
+                -0.010420441627502441,
+                0.9038602113723755
+              ],
+              "current_pos": [
+                -0.01004250579001827,
+                -0.008479042051691529,
+                0.9035138900925765
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.01004250579001827,
+              -0.008479042051691529,
+              0.9035138900925765
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 144,
+            "rise_m": -0.0006878212855422339,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.006797379680882241,
+              -0.00859561261233229,
+              0.9022094212779478
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 176,
+            "rise_m": -0.0019922901001709903,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.0032451261091360284,
+            -0.00011657056064076111,
+            -0.0013044688146287564
+          ],
+          "eef_delta_m": [
+            0.006546979780927449,
+            -0.004416355095701006,
+            -0.00247987689308915
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0024510486982762814,
+            0.025264890864491463
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 2,
+          "entry_step": 185,
+          "trigger": "joint_no_lift",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 216,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 217,
+          "recurrence_step": 275,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.7053990960121155,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 34,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                -0.005828043911606073,
+                -0.004551829304546118,
+                0.9015724658966064
+              ],
+              [
+                -0.005800282116979361,
+                -0.004527601413428783,
+                0.9014517068862915
+              ],
+              [
+                -0.005772520322352648,
+                -0.004503373522311449,
+                0.9013309478759766
+              ],
+              [
+                -0.005744758527725935,
+                -0.004479145631194115,
+                0.9012101888656616
+              ],
+              [
+                -0.005716996733099222,
+                -0.00445491774007678,
+                0.9010894298553467
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.28770422621550484,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 33,
+              "z_rise_m": -0.0016132593154907227,
+              "grasp_start_pos": [
+                -0.008776780217885971,
+                -0.007813753560185432,
+                0.9033064842224121
+              ],
+              "current_pos": [
+                -0.005855805762548851,
+                -0.004576057290037929,
+                0.9016932137396871
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.005855805762548851,
+              -0.004576057290037929,
+              0.9016932137396871
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 184,
+            "rise_m": -0.0025084976384316393,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              -0.006312164175866618,
+              -0.005270753337746335,
+              0.9015464429817843
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 216,
+            "rise_m": -0.0026552683963344537,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            -0.00045635841331776675,
+            -0.0006946960477084057,
+            -0.00014677075790281435
+          ],
+          "eef_delta_m": [
+            -0.0011223995132484356,
+            -0.0017557682134111685,
+            6.451482243319262e-06
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0023302477784454823,
+            0.002732268301770091
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 3,
+          "entry_step": 276,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 307,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 308,
+          "recurrence_step": 308,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.8081792593002319,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 9,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.0005980528658255935,
+                0.004136824980378151,
+                0.9006198048591614
+              ],
+              [
+                0.0006282377289608121,
+                0.004177679307758808,
+                0.9005539417266846
+              ],
+              [
+                0.0006584225920960307,
+                0.004218533635139465,
+                0.9004880785942078
+              ],
+              [
+                0.0006886074552312493,
+                0.0042593879625201225,
+                0.900422215461731
+              ],
+              [
+                0.000718792318366468,
+                0.00430024228990078,
+                0.9003563523292542
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.2790155719305806,
+            "no_lift": {
+              "no_lift_predicted": false,
+              "steps_since_grasp": 21,
+              "z_rise_m": -0.0014598369598388672,
+              "grasp_start_pos": [
+                -0.003958672750741243,
+                -0.0009569528046995401,
+                0.902145504951477
+              ],
+              "current_pos": [
+                0.0005678679603563791,
+                0.004095970719123201,
+                0.9006856528590231
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.0005678679603563791,
+              0.004095970719123201,
+              0.9006856528590231
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 275,
+            "rise_m": -0.003516058519095644,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.003116651572879563,
+              0.003208228623193841,
+              0.9008286141936356
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 307,
+            "rise_m": -0.003373097184483198,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.002548783612523184,
+            -0.0008877420959293599,
+            0.00014296133461244587
+          ],
+          "eef_delta_m": [
+            0.00040604431922182296,
+            -0.0010420564056773177,
+            0.000260170329226761
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.0025038013700395823,
+            0.024129966273903847
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 4,
+          "entry_step": 316,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 347,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 348,
+          "recurrence_step": 348,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.6525235772132874,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 49,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.004746553488075733,
+                0.005663943476974964,
+                0.9061543345451355
+              ],
+              [
+                0.005168793257325888,
+                0.006235991604626179,
+                0.9075492024421692
+              ],
+              [
+                0.005591033026576042,
+                0.006808039732277393,
+                0.9089440703392029
+              ],
+              [
+                0.006013272795826197,
+                0.007380087859928608,
+                0.9103389382362366
+              ],
+              [
+                0.006435512565076351,
+                0.007952135987579823,
+                0.9117338061332703
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.27748845343398376,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 61,
+              "z_rise_m": 0.002613961696624756,
+              "grasp_start_pos": [
+                -0.003958672750741243,
+                -0.0009569528046995401,
+                0.902145504951477
+              ],
+              "current_pos": [
+                0.004324313602151516,
+                0.0050918957060496275,
+                0.9047594666896115
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.004324313602151516,
+              0.0050918957060496275,
+              0.9047594666896115
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 315,
+            "rise_m": 0.0005577553114927136,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.010291571508855948,
+              0.015319979638187292,
+              0.9089960066387753
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 347,
+            "rise_m": 0.004794295260656556,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.005967257906704432,
+            0.010228083932137665,
+            0.004236539949163842
+          ],
+          "eef_delta_m": [
+            0.00694045422391878,
+            0.013861634686025123,
+            0.006064391945744929
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.025129854679107666,
+            0.036879509687423706
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 3,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 5,
+          "entry_step": 356,
+          "trigger": "persistent_low_grasp",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 387,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 388,
+          "recurrence_step": 388,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.5340842604637146,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 7,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.009751217439770699,
+                0.015061437152326107,
+                0.9026677012443542
+              ],
+              [
+                0.009710317477583885,
+                0.015038433484733105,
+                0.9022231698036194
+              ],
+              [
+                0.009669417515397072,
+                0.015015429817140102,
+                0.9017786383628845
+              ],
+              [
+                0.009628517553210258,
+                0.0149924261495471,
+                0.9013341069221497
+              ],
+              [
+                0.009587617591023445,
+                0.014969422481954098,
+                0.9008895754814148
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.26818297442900463,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 101,
+              "z_rise_m": 0.0009667277336120605,
+              "grasp_start_pos": [
+                -0.003958672750741243,
+                -0.0009569528046995401,
+                0.902145504951477
+              ],
+              "current_pos": [
+                0.009792117439720265,
+                0.015084440436863545,
+                0.9031122535096524
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": true,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.009792117439720265,
+              0.015084440436863545,
+              0.9031122535096524
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 355,
+            "rise_m": -0.0010894578684663703,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.011212894753315737,
+              0.016368176060521177,
+              0.9045642064517156
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 387,
+            "rise_m": 0.00036249507359686906,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.0014207773135954723,
+            0.0012837356236576319,
+            0.0014519529420632393
+          ],
+          "eef_delta_m": [
+            0.0011715008317503203,
+            0.0024691161266818112,
+            0.0020245172350100704
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.002646642504259944,
+            0.025429921224713326
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 4,
+            "changed_stable_predicates": [
+              "table"
+            ],
+            "displaced_20mm": false
+          }
+        }
+      ],
+      "blocked_entries": {
+        "pending_actual_handoff": 5,
+        "unverified_exit_cooldown": 34,
+        "failed_repair_requires_changed_evidence": 6,
+        "total_repair_budget": 11
+      },
+      "source_hashes": {
+        "status.json": "10bbff2caa070c4c904e669bbb8ccedf07c60a110f61f55712c7bf1f07bf8fe5",
+        "controller.jsonl": "27f7c23116f4c86cdcc841557281acac3e7722354852f18fdccc43a6f368bcdb",
+        "steps.jsonl": "aee42016e5ed619953b096f1bc242c4dba134ee737b7b5c18ddd2110be966d12",
+        "frames.jsonl": "d452f803e0e45c81d42c446e65457f5d4fb2bfabd66c3b015ab32f78e8e2e2ef",
+        "actions.npz": "523dc66616e983727187b3fdbd23ab1b1cb0979b2d2dd51e1682dbb58ddae563",
+        "selected_initial_state.npy": "bf9c20fd109592d6c1cd2c4d7897bb5a9ac50a9f188c1a0e60464404cadd33bc",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "measured_fusion_root2",
+      "arm": "measured_fusion",
+      "root": 2,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root2",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 397,
+      "queries": 397,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 95,
+        "held_clear": 251,
+        "durable_in": 298,
+        "native_complete": 396
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "e55a674bc4b11ded5e4535f084bedbc04cc93ca42d3c5073c512041a2cce40b6",
+        "controller.jsonl": "be489e63e8701f741196e017e216242d99cf5970a81ad6bf211bdfdf9442d0c5",
+        "steps.jsonl": "98c99b8052ef1ce3d45e12c2a7624ccea30fb1c642d266adc9d7a6df4c322702",
+        "frames.jsonl": "5a337a365f13dff98ece7e0010a2e31fddcce3b97323021cd062ecbae2981b6d",
+        "actions.npz": "b11ed00b668ee90eeb4875eaf05303ea1cefec0119785f357d8ff3c7e6459655",
+        "selected_initial_state.npy": "bf9c20fd109592d6c1cd2c4d7897bb5a9ac50a9f188c1a0e60464404cadd33bc",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "baseline_root3",
+      "arm": "baseline",
+      "root": 3,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root3",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 352,
+      "queries": 352,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 136,
+        "held_clear": 155,
+        "durable_in": 197,
+        "native_complete": 351
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "590c69573775aab728de059725eb265c9dae0ceee220361c25066bc1c454b2be",
+        "controller.jsonl": "c497cdad069e1413e924d424a26178345ae81644f6b50efba953019f0eb73513",
+        "steps.jsonl": "7b1c9192a71cb69e64953cc22988dfc15d72cc1db2af0890cd7a0e076bf5e802",
+        "frames.jsonl": "15f0bfa709fc61ca891fc83f992c128662522afbbceef32aa37a0af686878782",
+        "actions.npz": "1dee6ad8f5eb30e036cc06b2992d140b2069e4f8b6d21230707158dbd1c4c6f2",
+        "selected_initial_state.npy": "5349ef38f0f8eb672336ee2788238e3f4f48e37dbd391c722d2001e4a3d1cb1b",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "joint_root3",
+      "arm": "joint",
+      "root": 3,
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root3",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 352,
+      "queries": 352,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 136,
+        "held_clear": 155,
+        "durable_in": 197,
+        "native_complete": 351
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "5c24e480721e3c5a978a4f0d74a8d802f86957d34ecea5e3a9c9a666c3a34f54",
+        "controller.jsonl": "54f170e199245aef2558af376e08a79303e3b118edfb06a348a457663571629a",
+        "steps.jsonl": "b58b463b721070cad5c8dc12bdd4dc60f1956ac83e40ee755557163acfb18790",
+        "frames.jsonl": "15f0bfa709fc61ca891fc83f992c128662522afbbceef32aa37a0af686878782",
+        "actions.npz": "1dee6ad8f5eb30e036cc06b2992d140b2069e4f8b6d21230707158dbd1c4c6f2",
+        "selected_initial_state.npy": "5349ef38f0f8eb672336ee2788238e3f4f48e37dbd391c722d2001e4a3d1cb1b",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "measured_fusion_root3",
+      "arm": "measured_fusion",
+      "root": 3,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root3",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 352,
+      "queries": 352,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 136,
+        "held_clear": 155,
+        "durable_in": 197,
+        "native_complete": 351
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "74b5fea83f35280ffb795d299d98191ad3a865756138c68f7b26cc6f3fc0bf45",
+        "controller.jsonl": "4163a959270ad1f52be0e991ba327b1eeeb808f447d2184ffa15a269fc1f6172",
+        "steps.jsonl": "2b1338efd73b2e06a8d900c1e9a078a89cdcd45e7ba74f021c864a895d538f6b",
+        "frames.jsonl": "15f0bfa709fc61ca891fc83f992c128662522afbbceef32aa37a0af686878782",
+        "actions.npz": "1dee6ad8f5eb30e036cc06b2992d140b2069e4f8b6d21230707158dbd1c4c6f2",
+        "selected_initial_state.npy": "5349ef38f0f8eb672336ee2788238e3f4f48e37dbd391c722d2001e4a3d1cb1b",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "baseline_root4",
+      "arm": "baseline",
+      "root": 4,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/baseline_root4",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 95,
+        "held_clear": 107
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "a0789194efabd963564e8392b15f20f0432b178bd31a292f81842c114f074f3f",
+        "controller.jsonl": "05c99b79e8c9972a399d468e6684be89ccf5f2c890a8e71d3aab96db629d6eab",
+        "steps.jsonl": "319af279199d089f40aa2cc08c3dcbdeaf41b8e9715a936948504ecfe9f1879a",
+        "frames.jsonl": "bb3182f42b52d7648e229ca3ec77fd14df6ee229b994ffd65219498c8e94462b",
+        "actions.npz": "80c7a142febe12e1e2111db2ac061ba0e333040fc516492e675bc289f01009dc",
+        "selected_initial_state.npy": "c9a4f2a178959a39fa9f452c07232aa8001ccc013568e3d4e83c7503cfeec61c",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "joint_root4",
+      "arm": "joint",
+      "root": 4,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/joint_root4",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 160,
+      "milestones": {
+        "first_grasp": 95,
+        "held_clear": 104
+      },
+      "repairs": [
+        {
+          "repair_id": 1,
+          "entry_step": 98,
+          "trigger": "joint_outcome_risk",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 26,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 26,
+            "contained": 0
+          },
+          "local_recovery_step": 106,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 129,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 130,
+          "recurrence_step": 171,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.37473419308662415,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 3,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.009241839870810509,
+                -0.0005796389887109399,
+                0.9085444211959839
+              ],
+              [
+                0.009281630627810955,
+                0.0011196502018719912,
+                0.9099200963973999
+              ],
+              [
+                0.009321421384811401,
+                0.0028189392760396004,
+                0.9112957715988159
+              ],
+              [
+                0.009361212141811848,
+                0.004518228583037853,
+                0.9126714468002319
+              ],
+              [
+                0.009401002898812294,
+                0.006217517890036106,
+                0.914047122001648
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.28373203589966967,
+            "no_lift": {
+              "no_lift_predicted": false,
+              "steps_since_grasp": 2,
+              "z_rise_m": 0.004236161708831787,
+              "grasp_start_pos": [
+                0.009086331352591515,
+                -0.005517506971955299,
+                0.9029325842857361
+              ],
+              "current_pos": [
+                0.009202049136080904,
+                -0.0022789282534842006,
+                0.9071687373779354
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.009202049136080904,
+              -0.0022789282534842006,
+              0.9071687373779354
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 97,
+            "rise_m": 0.004236144109204587,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.05194094327875472,
+              0.038479921955155774,
+              0.9724695060338538
+            ],
+            "table": false,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 129,
+            "rise_m": 0.06953691276512308,
+            "held_clear": true,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.04273889414267382,
+            0.04075885020863997,
+            0.0653007686559185
+          ],
+          "eef_delta_m": [
+            0.045460623615656386,
+            0.0442887965957873,
+            0.06704182915584345
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 25,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 24,
+          "fusion_blocked_eligible_steps": 24,
+          "fusion_blocked_before_local_total_caps": 23,
+          "eligible_fusion_reasons": {
+            "score_below_threshold": 24
+          },
+          "fusion_probability_range": [
+            0.03844987973570824,
+            0.7148270010948181
+          ],
+          "any_acceptance_steps": 26,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 2,
+          "entry_step": 172,
+          "trigger": "elevated_grasp_lost",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": 177,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 203,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 204,
+          "recurrence_step": 204,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.01956086792051792,
+            "threshold": 0.2741200923919678,
+            "exceeds": false,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 0,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.051299311220645905,
+                0.20282621681690216,
+                0.9981127977371216
+              ],
+              [
+                0.05152512341737747,
+                0.20287786424160004,
+                0.9978954195976257
+              ],
+              [
+                0.05175093561410904,
+                0.2029295116662979,
+                0.9976780414581299
+              ],
+              [
+                0.05197674781084061,
+                0.2029811590909958,
+                0.997460663318634
+              ],
+              [
+                0.052202560007572174,
+                0.20303280651569366,
+                0.9972432851791382
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.08032618009405658,
+            "no_lift": null
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": true,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              0.05107349987116226,
+              0.20277456341963188,
+              0.998330148934561
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 171,
+            "rise_m": 0.09539755566583019,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              0.06449282995151834,
+              0.1965889483756582,
+              0.9927740819326797
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 203,
+            "rise_m": 0.08984148866394892,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.013419330080356076,
+            -0.0061856150439736635,
+            -0.005556067001881271
+          ],
+          "eef_delta_m": [
+            0.015187868221421624,
+            -0.008030183674369418,
+            -0.007224501376441594
+          ],
+          "stage_counts": {
+            "acquire": 18,
+            "transfer": 14
+          },
+          "stage_differs_from_measured_reference_steps": 4,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 14,
+          "fusion_blocked_eligible_steps": 14,
+          "fusion_blocked_before_local_total_caps": 14,
+          "eligible_fusion_reasons": {
+            "score_below_threshold": 14
+          },
+          "fusion_probability_range": [
+            0.9788460731506348,
+            0.9878931641578674
+          ],
+          "any_acceptance_steps": 18,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 3,
+          "entry_step": 288,
+          "trigger": "joint_outcome_risk",
+          "subgoal": "transfer",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "transfer",
+          "acceptance": [
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 319,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 320,
+          "recurrence_step": 320,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.31215402483940125,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 3,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.08197551220655441,
+                0.1919749230146408,
+                0.9902065992355347
+              ],
+              [
+                0.08203712850809097,
+                0.19198432564735413,
+                0.9901813268661499
+              ],
+              [
+                0.08209874480962753,
+                0.19199372828006744,
+                0.9901560544967651
+              ],
+              [
+                0.08216036111116409,
+                0.19200313091278076,
+                0.9901307821273804
+              ],
+              [
+                0.08222197741270065,
+                0.19201253354549408,
+                0.9901055097579956
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.09117747389631793,
+            "no_lift": {
+              "no_lift_predicted": false,
+              "steps_since_grasp": 9,
+              "z_rise_m": -0.00011289119720458984,
+              "grasp_start_pos": [
+                0.08145312964916229,
+                0.19209715723991394,
+                0.990344762802124
+              ],
+              "current_pos": [
+                0.08191389813260337,
+                0.19196552711149248,
+                0.9902318969940643
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.08191389813260337,
+              0.19196552711149248,
+              0.9902318969940643
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 287,
+            "rise_m": 0.08729930372533357,
+            "held_clear": true,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.08633378040545,
+              0.19141726683609164,
+              0.9906588191882413
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 319,
+            "rise_m": 0.08772622591951051,
+            "held_clear": true,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.004419882272846634,
+            -0.0005482602754008359,
+            0.00042692219417694854
+          ],
+          "eef_delta_m": [
+            0.000918721346871848,
+            0.0005110803413144183,
+            -0.0008061856959107327
+          ],
+          "stage_counts": {
+            "transfer": 16,
+            "acquire": 16
+          },
+          "stage_differs_from_measured_reference_steps": 16,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.7711939811706543,
+            0.8102591633796692
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 1,
+            "changed_stable_predicates": [
+              "mug_microwave"
+            ],
+            "displaced_20mm": true
+          }
+        },
+        {
+          "repair_id": 4,
+          "entry_step": 328,
+          "trigger": "contact_constrained_holding",
+          "subgoal": "transfer",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "transfer",
+          "acceptance": [
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 359,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 360,
+          "recurrence_step": 360,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.4676075279712677,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 43,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.08747553080320358,
+                0.19126316905021667,
+                0.9910129904747009
+              ],
+              [
+                0.08756474405527115,
+                0.19125156104564667,
+                0.9910621643066406
+              ],
+              [
+                0.08765395730733871,
+                0.19123995304107666,
+                0.9911113381385803
+              ],
+              [
+                0.08774317055940628,
+                0.19122834503650665,
+                0.99116051197052
+              ],
+              [
+                0.08783238381147385,
+                0.19121673703193665,
+                0.9912096858024597
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.0919356598790221,
+            "no_lift": {
+              "no_lift_predicted": true,
+              "steps_since_grasp": 49,
+              "z_rise_m": 0.000619053840637207,
+              "grasp_start_pos": [
+                0.08145312964916229,
+                0.19209715723991394,
+                0.990344762802124
+              ],
+              "current_pos": [
+                0.08738631411971987,
+                0.19127477180970634,
+                0.9909637970352102
+              ]
+            }
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": true,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.08738631411971987,
+              0.19127477180970634,
+              0.9909637970352102
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 327,
+            "rise_m": 0.08803120376647944,
+            "held_clear": true,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": true,
+            "position": [
+              0.09248486534273583,
+              0.19162974763355003,
+              0.9891361984210041
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 359,
+            "rise_m": 0.08620360515227332,
+            "held_clear": true,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.00509855122301596,
+            0.0003549758238436951,
+            -0.0018275986142061162
+          ],
+          "eef_delta_m": [
+            0.009682475137875998,
+            -0.0014269803852101637,
+            -0.0018527596489756881
+          ],
+          "stage_counts": {
+            "transfer": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.7374235987663269,
+            0.806736946105957
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 5,
+          "entry_step": 393,
+          "trigger": "elevated_grasp_lost",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 424,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 425,
+          "recurrence_step": 425,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": {
+            "score": 0.7957358956336975,
+            "threshold": 0.2741200923919678,
+            "exceeds": true,
+            "schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+            "calibration": "empirical_validation_negative_sample_quantile_not_coverage",
+            "consecutive": 108,
+            "required": 3
+          },
+          "entry_prediction": {
+            "method": "observed_constant_velocity_world_coordinates",
+            "predicted_positions": [
+              [
+                0.0966983363032341,
+                0.18924319744110107,
+                0.9927530288696289
+              ],
+              [
+                0.09687530994415283,
+                0.1891569197177887,
+                0.9928541779518127
+              ],
+              [
+                0.09705228358507156,
+                0.18907064199447632,
+                0.9929553270339966
+              ],
+              [
+                0.0972292572259903,
+                0.18898436427116394,
+                0.9930564761161804
+              ],
+              [
+                0.09740623086690903,
+                0.18889808654785156,
+                0.9931576251983643
+              ]
+            ],
+            "region_available": true,
+            "exit_predicted": false,
+            "minimum_margin_m": -0.09425431036310718,
+            "no_lift": null
+          },
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": true,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              0.09652136468291576,
+              0.18932947069363634,
+              0.9926518966061117
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 392,
+            "rise_m": 0.08971930333738098,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              0.10732349239401935,
+              0.19089066000738025,
+              0.9957497607755338
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 424,
+            "rise_m": 0.09281716750680302,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "object_delta_m": [
+            0.010802127711103587,
+            0.0015611893137439103,
+            0.0030978641694220377
+          ],
+          "eef_delta_m": [
+            0.013251292448123786,
+            0.004441578116063716,
+            0.00322536182525357
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "close": 32
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.9780599474906921,
+            0.9854320883750916
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 2,
+            "changed_stable_predicates": [],
+            "displaced_20mm": true
+          }
+        }
+      ],
+      "blocked_entries": {
+        "pending_actual_handoff": 4,
+        "unverified_exit_cooldown": 28,
+        "failed_repair_requires_changed_evidence": 92,
+        "total_repair_budget": 87
+      },
+      "source_hashes": {
+        "status.json": "80a03cb73f8463028e445a7dc84d53d30c3f3a8134517b13a5d069b08242a91d",
+        "controller.jsonl": "b31b6fa021fef0eb335a0085ab1748fb2b33104908443163adb5a729597b8267",
+        "steps.jsonl": "ed3a74818a115c3e48cb5d583dfa8519e57bb07bc935308a58fda827a6f9524f",
+        "frames.jsonl": "742e9aa6b116da23c7f8542d5fe813ac5989c6562dd8cb3d60dddaf48bbca97e",
+        "actions.npz": "ecd12c6b95d1e2ca374420d2d041ca7e97dc6fe507978b83abe97e312df86e33",
+        "selected_initial_state.npy": "c9a4f2a178959a39fa9f452c07232aa8001ccc013568e3d4e83c7503cfeec61c",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "measured_fusion_root4",
+      "arm": "measured_fusion",
+      "root": 4,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root4",
+      "status": "completed",
+      "valid_episode": true,
+      "success": false,
+      "termination": "action_budget",
+      "actions": 520,
+      "queries": 520,
+      "action_modifications": 0,
+      "repair_actions": 80,
+      "milestones": {
+        "first_grasp": 95,
+        "held_clear": 107,
+        "durable_in": 163
+      },
+      "repairs": [
+        {
+          "repair_id": 1,
+          "entry_step": 148,
+          "trigger": "elevated_grasp_lost",
+          "subgoal": "contain_release",
+          "used": 16,
+          "streak": 3,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 3
+          },
+          "local_recovery_step": 163,
+          "resumption_by": "not_required_v2_contract",
+          "verified_by": "contained",
+          "completed_during_repair": false,
+          "preserve": [
+            "in_goal"
+          ],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": true,
+          "exit_step": 163,
+          "exit_reason": "measured_progress_verified",
+          "handoff_step": 164,
+          "recurrence_step": 164,
+          "post_handoff_goal_loss_step": 164,
+          "completed_after_handoff": false,
+          "entry_risk": null,
+          "entry_prediction": null,
+          "entry_native_flags": {
+            "containment_lost": false,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": true,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              -0.000448265068395622,
+              0.2715242551908673,
+              0.9829284900100721
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 147,
+            "rise_m": 0.07999589674134133,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": null
+          },
+          "exit_state": {
+            "in_goal": true,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              0.00032492583589169814,
+              0.2847066858409531,
+              0.9809765545520905
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": true,
+            "step": 163,
+            "rise_m": 0.07804396128335978,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": 0.0
+          },
+          "object_delta_m": [
+            0.0007731909042873201,
+            0.013182430650085786,
+            -0.0019519354579815573
+          ],
+          "eef_delta_m": [
+            0.010647142143408561,
+            0.011138559092396,
+            -0.002972980215344645
+          ],
+          "stage_counts": {
+            "acquire": 12,
+            "contain_release": 4
+          },
+          "stage_differs_from_measured_reference_steps": 2,
+          "gripper_command_counts": {
+            "close": 10,
+            "open": 6
+          },
+          "local_condition_steps": 1,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.9482666850090027,
+            0.9940940737724304
+          ],
+          "any_acceptance_steps": 7,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 2,
+          "entry_step": 165,
+          "trigger": "containment_lost",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 196,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 197,
+          "recurrence_step": 197,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": null,
+          "entry_prediction": null,
+          "entry_native_flags": {
+            "containment_lost": true,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": false,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              -0.0016567936296988548,
+              0.27371819247023255,
+              0.9826475075290745
+            ],
+            "table": false,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": false,
+            "step": 164,
+            "rise_m": 0.07971491426034372,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": 0.01129009665370326
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              -0.010918285152116283,
+              0.24405516916831158,
+              0.9349232889342949
+            ],
+            "table": true,
+            "mug_microwave": true,
+            "gripper_microwave": false,
+            "mug_gripper": false,
+            "step": 196,
+            "rise_m": 0.03199069566556412,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": 0.06244885007083922
+          },
+          "object_delta_m": [
+            -0.009261491522417429,
+            -0.02966302330192097,
+            -0.0477242185947796
+          ],
+          "eef_delta_m": [
+            0.029748005761919365,
+            -0.0066427433616677856,
+            0.04148494161737548
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 2,
+          "gripper_command_counts": {
+            "close": 19,
+            "open": 13
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.5032603740692139,
+            0.9927883744239807
+          ],
+          "any_acceptance_steps": 2,
+          "retry_admission": {
+            "previous_failed_same_trigger": null,
+            "changed_stable_predicates": [],
+            "displaced_20mm": false
+          }
+        },
+        {
+          "repair_id": 3,
+          "entry_step": 205,
+          "trigger": "containment_lost",
+          "subgoal": "acquire",
+          "used": 32,
+          "streak": 0,
+          "recovery_goal": "acquire",
+          "acceptance": [
+            "held_clear",
+            "contained"
+          ],
+          "acceptance_streaks": {
+            "held_clear": 0,
+            "contained": 0
+          },
+          "local_recovery_step": null,
+          "resumption_by": null,
+          "verified_by": null,
+          "completed_during_repair": false,
+          "preserve": [],
+          "lost_entry_goals": [],
+          "preservation_unknown": false,
+          "verified": false,
+          "exit_step": 236,
+          "exit_reason": "local_budget_exit_unverified",
+          "handoff_step": 237,
+          "recurrence_step": 237,
+          "post_handoff_goal_loss_step": null,
+          "completed_after_handoff": false,
+          "entry_risk": null,
+          "entry_prediction": null,
+          "entry_native_flags": {
+            "containment_lost": true,
+            "entry_goal_lost": false,
+            "elevated_grasp_lost": true,
+            "contact_constrained_holding": false,
+            "persistent_low_grasp": false,
+            "acquisition_no_progress": false
+          },
+          "entry_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              -0.007078145072220345,
+              0.24192225715452814,
+              0.9321529272078913
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": false,
+            "step": 204,
+            "rise_m": 0.02922033393916057,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": 0.06533803933345073
+          },
+          "exit_state": {
+            "in_goal": false,
+            "close_goal": false,
+            "native_complete": false,
+            "grasp": false,
+            "position": [
+              -0.0070781535730645205,
+              0.241922259594772,
+              0.9321529385990077
+            ],
+            "table": true,
+            "mug_microwave": false,
+            "gripper_microwave": false,
+            "mug_gripper": false,
+            "step": 236,
+            "rise_m": 0.029220345330276953,
+            "held_clear": false,
+            "release_transition": false,
+            "containment_anchor_distance_m": 0.06533803018674762
+          },
+          "object_delta_m": [
+            -8.500844175286792e-09,
+            2.440243868084835e-09,
+            1.1391116383485667e-08
+          ],
+          "eef_delta_m": [
+            -0.04013758385317315,
+            0.00796950800238555,
+            -0.046526988137014724
+          ],
+          "stage_counts": {
+            "acquire": 32
+          },
+          "stage_differs_from_measured_reference_steps": 0,
+          "gripper_command_counts": {
+            "open": 17,
+            "close": 15
+          },
+          "local_condition_steps": 0,
+          "fusion_blocked_eligible_steps": 0,
+          "fusion_blocked_before_local_total_caps": 0,
+          "eligible_fusion_reasons": {},
+          "fusion_probability_range": [
+            0.6022380590438843,
+            0.7276625633239746
+          ],
+          "any_acceptance_steps": 0,
+          "retry_admission": {
+            "previous_failed_same_trigger": 2,
+            "changed_stable_predicates": [
+              "mug_microwave"
+            ],
+            "displaced_20mm": false
+          }
+        }
+      ],
+      "blocked_entries": {
+        "pending_actual_handoff": 2,
+        "unverified_exit_cooldown": 14,
+        "failed_repair_requires_changed_evidence": 275
+      },
+      "source_hashes": {
+        "status.json": "9c74cb48e08d1c61497e2fec6097559417ae60e45c8e83ae6696c76a1a399efc",
+        "controller.jsonl": "148d4f583dde43726bb1b7fba97ae813ef05cfec34706a270b30e3b6ef7b2f65",
+        "steps.jsonl": "e90a4a7c56c32362def61105b7feafe79c75b878d23ea66608923cf4aa228979",
+        "frames.jsonl": "ae8285a0ca0c3f5c463011cd149a1a1ab0168a4f4181b302248f241785afc46b",
+        "actions.npz": "e99c0b759bf1812f8b99c43681ff1dc488f8b3116f1982cb0f05f5cfac23d3bc",
+        "selected_initial_state.npy": "c9a4f2a178959a39fa9f452c07232aa8001ccc013568e3d4e83c7503cfeec61c",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "baseline_root5",
+      "arm": "baseline",
+      "root": 5,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/baseline_root5",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 298,
+      "queries": 298,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 92,
+        "held_clear": 107,
+        "durable_in": 145,
+        "native_complete": 297
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "e99291ad7b5496c47db367f93115713d5ad2a2613362224b3d865c451a4ae0e1",
+        "controller.jsonl": "29c2a6037f95d451bcfaab7ac95e9ef951bb5470c2db9ce469d3db34a9dd33a2",
+        "steps.jsonl": "10dfd626800a07dbc7acd8e7f8e35a173c0bd507459ecce6032f6a3f46d4b98d",
+        "frames.jsonl": "5995f933ae8e4300056d67717e540cbe0cf02ccb161a7dc5ea1591530ce08098",
+        "actions.npz": "bfd515b6cd25abf98fac8bf8c7403de960199c2ea4cf26ae3de6426aada09b2f",
+        "selected_initial_state.npy": "4cb2f17736f62be8a56cf0c0b0c759c1070f76a1f530c435368cf20c7e2c830d",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "joint_root5",
+      "arm": "joint",
+      "root": 5,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/joint_root5",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 298,
+      "queries": 298,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 92,
+        "held_clear": 107,
+        "durable_in": 145,
+        "native_complete": 297
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "8b33f06f2051f50bfb15d5e7c8c817f7f4acdea657382a7bc638d8b0e1e3e318",
+        "controller.jsonl": "bb4a5ab0b7061913ed84cdf068f6d5de3ff4dc784ebe637c86418a81f16d5cf1",
+        "steps.jsonl": "eb1891bb3ab8453f615a3bf36984d81731939d1ef8719f2314ba614b72cad796",
+        "frames.jsonl": "5995f933ae8e4300056d67717e540cbe0cf02ccb161a7dc5ea1591530ce08098",
+        "actions.npz": "bfd515b6cd25abf98fac8bf8c7403de960199c2ea4cf26ae3de6426aada09b2f",
+        "selected_initial_state.npy": "4cb2f17736f62be8a56cf0c0b0c759c1070f76a1f530c435368cf20c7e2c830d",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    },
+    {
+      "name": "measured_fusion_root5",
+      "arm": "measured_fusion",
+      "root": 5,
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root5",
+      "status": "completed",
+      "valid_episode": true,
+      "success": true,
+      "termination": "native_success",
+      "actions": 298,
+      "queries": 298,
+      "action_modifications": 0,
+      "repair_actions": 0,
+      "milestones": {
+        "first_grasp": 92,
+        "held_clear": 107,
+        "durable_in": 145,
+        "native_complete": 297
+      },
+      "repairs": [],
+      "blocked_entries": {},
+      "source_hashes": {
+        "status.json": "9a4561459d3a71220412cfd4186c89b4b989cdac87331e44f1f70711409024f2",
+        "controller.jsonl": "062c243d0b0228ed4a725d8a5b9855a444881c8e2e1c8b15e8857b2f90f8b91c",
+        "steps.jsonl": "086c0c1e2b3fc2caf873af8a834896f2bf4c0c9f2995583b1ef3b171107a02de",
+        "frames.jsonl": "5995f933ae8e4300056d67717e540cbe0cf02ccb161a7dc5ea1591530ce08098",
+        "actions.npz": "bfd515b6cd25abf98fac8bf8c7403de960199c2ea4cf26ae3de6426aada09b2f",
+        "selected_initial_state.npy": "4cb2f17736f62be8a56cf0c0b0c759c1070f76a1f530c435368cf20c7e2c830d",
+        "model.xml": "1d043706996cecb4733ec24fa4bb2784547ace4a2bff0d23d958e2cbceba910c"
+      }
+    }
+  ],
+  "pairs": [
+    {
+      "root": 0,
+      "treatment": "joint",
+      "baseline_success": false,
+      "treatment_success": false,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 105,
+      "first_action_divergence": 104,
+      "action_tapes_identical": false,
+      "first_repair_entry": 104,
+      "rescue": false,
+      "harm": false,
+      "first_entry_shared_state": true,
+      "baseline_nominal24_risk_label_at_entry": {
+        "label": 1,
+        "reason": "observed_sustained_grasp_without_lift",
+        "semantics": "Training-defined short-horizon label, NOT complete-task failure or intervention benefit"
+      },
+      "baseline_first_future_attainment": {
+        "held_clear": null,
+        "in_goal": null,
+        "native_complete": null
+      }
+    },
+    {
+      "root": 0,
+      "treatment": "measured_fusion",
+      "baseline_success": false,
+      "treatment_success": false,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 255,
+      "first_action_divergence": 254,
+      "action_tapes_identical": false,
+      "first_repair_entry": 254,
+      "rescue": false,
+      "harm": false,
+      "first_entry_shared_state": true,
+      "baseline_nominal24_risk_label_at_entry": {
+        "label": 1,
+        "reason": "observed_sustained_grasp_without_lift",
+        "semantics": "Training-defined short-horizon label, NOT complete-task failure or intervention benefit"
+      },
+      "baseline_first_future_attainment": {
+        "held_clear": null,
+        "in_goal": null,
+        "native_complete": null
+      }
+    },
+    {
+      "root": 1,
+      "treatment": "joint",
+      "baseline_success": true,
+      "treatment_success": false,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 90,
+      "first_action_divergence": 89,
+      "action_tapes_identical": false,
+      "first_repair_entry": 89,
+      "rescue": false,
+      "harm": true,
+      "first_entry_shared_state": true,
+      "baseline_nominal24_risk_label_at_entry": {
+        "label": 0,
+        "reason": "observed_nominal_window_without_defined_violation",
+        "semantics": "Training-defined short-horizon label, NOT complete-task failure or intervention benefit"
+      },
+      "baseline_first_future_attainment": {
+        "held_clear": 244,
+        "in_goal": 277,
+        "native_complete": 443
+      }
+    },
+    {
+      "root": 1,
+      "treatment": "measured_fusion",
+      "baseline_success": true,
+      "treatment_success": true,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 444,
+      "first_action_divergence": null,
+      "action_tapes_identical": true,
+      "first_repair_entry": null,
+      "rescue": false,
+      "harm": false
+    },
+    {
+      "root": 2,
+      "treatment": "joint",
+      "baseline_success": true,
+      "treatment_success": false,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 146,
+      "first_action_divergence": 145,
+      "action_tapes_identical": false,
+      "first_repair_entry": 145,
+      "rescue": false,
+      "harm": true,
+      "first_entry_shared_state": true,
+      "baseline_nominal24_risk_label_at_entry": {
+        "label": 0,
+        "reason": "observed_nominal_window_without_defined_violation",
+        "semantics": "Training-defined short-horizon label, NOT complete-task failure or intervention benefit"
+      },
+      "baseline_first_future_attainment": {
+        "held_clear": 251,
+        "in_goal": 296,
+        "native_complete": 396
+      }
+    },
+    {
+      "root": 2,
+      "treatment": "measured_fusion",
+      "baseline_success": true,
+      "treatment_success": true,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 397,
+      "first_action_divergence": null,
+      "action_tapes_identical": true,
+      "first_repair_entry": null,
+      "rescue": false,
+      "harm": false
+    },
+    {
+      "root": 3,
+      "treatment": "joint",
+      "baseline_success": true,
+      "treatment_success": true,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 352,
+      "first_action_divergence": null,
+      "action_tapes_identical": true,
+      "first_repair_entry": null,
+      "rescue": false,
+      "harm": false
+    },
+    {
+      "root": 3,
+      "treatment": "measured_fusion",
+      "baseline_success": true,
+      "treatment_success": true,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 352,
+      "first_action_divergence": null,
+      "action_tapes_identical": true,
+      "first_repair_entry": null,
+      "rescue": false,
+      "harm": false
+    },
+    {
+      "root": 4,
+      "treatment": "joint",
+      "baseline_success": false,
+      "treatment_success": false,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 99,
+      "first_action_divergence": 98,
+      "action_tapes_identical": false,
+      "first_repair_entry": 98,
+      "rescue": false,
+      "harm": false,
+      "first_entry_shared_state": true,
+      "baseline_nominal24_risk_label_at_entry": {
+        "label": 0,
+        "reason": "observed_nominal_window_without_defined_violation",
+        "semantics": "Training-defined short-horizon label, NOT complete-task failure or intervention benefit"
+      },
+      "baseline_first_future_attainment": {
+        "held_clear": 107,
+        "in_goal": null,
+        "native_complete": null
+      }
+    },
+    {
+      "root": 4,
+      "treatment": "measured_fusion",
+      "baseline_success": false,
+      "treatment_success": false,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 149,
+      "first_action_divergence": 148,
+      "action_tapes_identical": false,
+      "first_repair_entry": 148,
+      "rescue": false,
+      "harm": false,
+      "first_entry_shared_state": true,
+      "baseline_nominal24_risk_label_at_entry": {
+        "label": 0,
+        "reason": "observed_nominal_window_without_defined_violation",
+        "semantics": "Training-defined short-horizon label, NOT complete-task failure or intervention benefit"
+      },
+      "baseline_first_future_attainment": {
+        "held_clear": 151,
+        "in_goal": null,
+        "native_complete": null
+      }
+    },
+    {
+      "root": 5,
+      "treatment": "joint",
+      "baseline_success": true,
+      "treatment_success": true,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 298,
+      "first_action_divergence": null,
+      "action_tapes_identical": true,
+      "first_repair_entry": null,
+      "rescue": false,
+      "harm": false
+    },
+    {
+      "root": 5,
+      "treatment": "measured_fusion",
+      "baseline_success": true,
+      "treatment_success": true,
+      "valid_pair": true,
+      "same_initial_state": true,
+      "same_scene": true,
+      "shared_before_observation_prefix": 298,
+      "first_action_divergence": null,
+      "action_tapes_identical": true,
+      "first_repair_entry": null,
+      "rescue": false,
+      "harm": false
+    }
+  ],
+  "analysis_source_sha256": "d202910eb6e157009fd3e9af72ff35609d581104c3781c03aa4ef5c6e542ec1c",
+  "risk_label_source_sha256": "955563d413d5029f58f991d53411cc28764312eaf09d004d792913e0917156df",
+  "gripper_semantics": "Mapped robosuite PandaGripper command: +1 closes, -1 opens. Native proposal is a different representation.",
+  "arms": {
+    "baseline": {
+      "successes": 4,
+      "valid_episodes": 6,
+      "repair_actions": 0,
+      "verified_repairs": 0
+    },
+    "joint": {
+      "successes": 2,
+      "valid_episodes": 6,
+      "repair_actions": 640,
+      "verified_repairs": 0
+    },
+    "measured_fusion": {
+      "successes": 4,
+      "valid_episodes": 6,
+      "repair_actions": 176,
+      "verified_repairs": 1
+    }
+  }
+}

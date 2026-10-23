@@ -1,0 +1,120 @@
+{
+  "status": "passed",
+  "plan_sha256": "3b763db8f11d3f1893d94183c19087530eeaeb34b5a31962188beff965d1bd5d",
+  "slot0_historical_tape_matches": [
+    {
+      "root": 0,
+      "actions": 520,
+      "reference": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root0"
+    },
+    {
+      "root": 1,
+      "actions": 444,
+      "reference": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root1"
+    },
+    {
+      "root": 4,
+      "actions": 520,
+      "reference": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root4"
+    }
+  ],
+  "cases": [
+    {
+      "name": "candidate0_root1",
+      "unchanged_actions": 444,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "ff2eee50026c20d1b7be641d7f102b29a606c1fa4087a01f86820bc58b242b86",
+      "joint_audit_sha256": "da8663c6b12c2c66fa142a7752fe12dcd7ede81f29a64cf37267d54394c33d64"
+    },
+    {
+      "name": "candidate1_root1",
+      "unchanged_actions": 444,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "066398717b0522bc8391b9511527e23413b78b78fdd9aedd5e3c159c13dc4bd1",
+      "joint_audit_sha256": "94e3fc88727caed3dab9c94698b3149570917ebcb92313fcc22bfbdf63a7c5f9"
+    },
+    {
+      "name": "candidate0_root0",
+      "unchanged_actions": 520,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "1762aa453bef9c392edf63fdbc8e9da1b17819e9078522e96322c246ce9cff80",
+      "joint_audit_sha256": "2e2618f4307a4c749a4344ed92f9413d592f78c3ecc4e840d3138fa59178bd27"
+    },
+    {
+      "name": "candidate1_root0",
+      "unchanged_actions": 520,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "a307fc166d790dc66dd31bdb3c24c991a93a68d627122a6e8b39fbeffc12a55a",
+      "joint_audit_sha256": "f0890a5bf330822c527f81febc2ade7b2b674e96fd3cb1f6d0c0bb9d87399773"
+    },
+    {
+      "name": "candidate2_root0",
+      "unchanged_actions": 520,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "3797bb3c99159699058113b13ad5b8b0b4243161adba9ac090bc27cbcade31cc",
+      "joint_audit_sha256": "34691ddf75dc782fca686b46285af4e1b199dbd70d6e7b7c7ddbe563dd7b548b"
+    },
+    {
+      "name": "candidate3_root0",
+      "unchanged_actions": 520,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "9d943637fc8bf738bb496ae3de9d73b81fdd4472052e078f3bd6980367b00a3c",
+      "joint_audit_sha256": "50de3d7cdb6e1055f96aa412e8427e9bdf872c53b4bb6d1055836e2d5137aed3"
+    },
+    {
+      "name": "candidate0_root4",
+      "unchanged_actions": 520,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "1d7bb1d2967f20267ba031966447d3a4bd5fe986eb00dde0830653f1ab27a4d7",
+      "joint_audit_sha256": "e527084c21d578f1c856b0cfd31c40bebcbb9745aea0596ec4677b28ced64be1"
+    },
+    {
+      "name": "candidate1_root4",
+      "unchanged_actions": 520,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "f12d52895812c5510a1a0ec4898a33ccf799a57d84647986d5753cfdeb81a5ca",
+      "joint_audit_sha256": "6f13526cf6650e8d94ef71e5e904078f0bdbe91fcb0d2ec3651807c1ec14bd3d"
+    },
+    {
+      "name": "candidate2_root4",
+      "unchanged_actions": 520,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "71bee48b8ffe0f384d683bc1b44b1054c1348a1b1f2f3629e3818a79e8cd8714",
+      "joint_audit_sha256": "c2842374ae7e6977e1a82b3c5831c573499f5acfad7389739037aab573578e46"
+    },
+    {
+      "name": "candidate3_root4",
+      "unchanged_actions": 506,
+      "initial_state_and_scene_matched": true,
+      "query_accounting": true,
+      "replay_sha256": "5e04c7cf91db11c08103c881a3cea4576e7b8da62e0b256be45197f1fe79649d",
+      "joint_audit_sha256": "20bb007f646c20925c36535540d05e4009aa75627b316dfba4d3c6cfe8ffd37b"
+    }
+  ],
+  "successful_recovery": {
+    "root": 4,
+    "slot": 3,
+    "repair_entry": 148,
+    "local_condition": 153,
+    "verified_exit": 158,
+    "actual_handoff": 159,
+    "nominal_continuation_actions": 347,
+    "containment_preserved_through_completion": true,
+    "completion_action_index": 505,
+    "complete_task_actions": 506,
+    "actor_queries": 509,
+    "first_action_changed_coordinates": [
+      3,
+      5
+    ]
+  }
+}

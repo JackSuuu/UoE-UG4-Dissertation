@@ -1,0 +1,240 @@
+{
+  "schema": "repair_candidate_coverage_study_v1",
+  "mainline": "verification -> bounded model-generated repair -> reverification -> verified resumption",
+  "hypothesis": "At first measured repair admission, policy samples may contain a useful alternative to greedy",
+  "development_only": true,
+  "plan": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/plan.json",
+  "plan_sha256": "3b763db8f11d3f1893d94183c19087530eeaeb34b5a31962188beff965d1bd5d",
+  "generator": {
+    "schema": "repair_candidate_probe_v1",
+    "size": 4,
+    "max_pools": 1,
+    "schedule": "first_executed_repair_action",
+    "base_seed": 20261022,
+    "action_cap": 520,
+    "nominal_query_cap": 520,
+    "additional_query_cap": 3,
+    "total_query_cap": 523,
+    "modification": "select_unchanged_model_proposal",
+    "collection": "fixed_slot_not_learned_ranking",
+    "continuation": "existing_controller"
+  },
+  "jobs": [
+    {
+      "name": "candidate0_root0",
+      "root": 0,
+      "slot": 0,
+      "cell": {
+        "name": "v2_root0",
+        "root": 0,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root0",
+      "status": "queued"
+    },
+    {
+      "name": "candidate1_root0",
+      "root": 0,
+      "slot": 1,
+      "cell": {
+        "name": "v2_root0",
+        "root": 0,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root0",
+      "status": "queued"
+    },
+    {
+      "name": "candidate2_root0",
+      "root": 0,
+      "slot": 2,
+      "cell": {
+        "name": "v2_root0",
+        "root": 0,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root0",
+      "status": "queued"
+    },
+    {
+      "name": "candidate3_root0",
+      "root": 0,
+      "slot": 3,
+      "cell": {
+        "name": "v2_root0",
+        "root": 0,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root0",
+      "status": "queued"
+    },
+    {
+      "name": "candidate0_root1",
+      "root": 1,
+      "slot": 0,
+      "cell": {
+        "name": "v2_root1",
+        "root": 1,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+        "lane": {
+          "gpu": 2,
+          "egl_device": 1,
+          "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root1",
+      "status": "queued"
+    },
+    {
+      "name": "candidate1_root1",
+      "root": 1,
+      "slot": 1,
+      "cell": {
+        "name": "v2_root1",
+        "root": 1,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+        "lane": {
+          "gpu": 2,
+          "egl_device": 1,
+          "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root1",
+      "status": "queued"
+    },
+    {
+      "name": "candidate0_root4",
+      "root": 4,
+      "slot": 0,
+      "cell": {
+        "name": "v2_root4",
+        "root": 4,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root4",
+      "status": "queued"
+    },
+    {
+      "name": "candidate1_root4",
+      "root": 4,
+      "slot": 1,
+      "cell": {
+        "name": "v2_root4",
+        "root": 4,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root4",
+      "status": "queued"
+    },
+    {
+      "name": "candidate2_root4",
+      "root": 4,
+      "slot": 2,
+      "cell": {
+        "name": "v2_root4",
+        "root": 4,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root4",
+      "status": "queued"
+    },
+    {
+      "name": "candidate3_root4",
+      "root": 4,
+      "slot": 3,
+      "cell": {
+        "name": "v2_root4",
+        "root": 4,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4",
+      "status": "queued"
+    }
+  ],
+  "cases": "roots0/4 four fixed slots each; successful root1 two inactive-path sentinels",
+  "selection": "fixed_slot_for_data_collection; no learned-ranking efficacy claim",
+  "primary": "Complete native task success; paired rescues and harms against slot0",
+  "labels": [
+    "local recovery",
+    "verified exit",
+    "actual handoff",
+    "8-step stable nominal continuation",
+    "completion after handoff",
+    "complete native task success"
+  ],
+  "matching": "Full original reset and prefix; every slot queries the same first-repair pool before selection",
+  "budgets": "520 executed actions; 520 nominal requests plus at most3candidate queries =523 total",
+  "scope": "One H1 candidate only; all later repair requests, actions and handoff checks use existing controller",
+  "training": "Retain failed/unknown outcomes; split by root group, not frame or candidate; no training on evaluated outcomes",
+  "stopping": "Complete all ten declared episodes; retain infrastructure failures; no efficacy stopping or automatic retries"
+}

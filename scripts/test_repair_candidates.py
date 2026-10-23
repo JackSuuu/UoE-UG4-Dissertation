@@ -42,7 +42,8 @@ class CandidateTests(unittest.TestCase):
     def test_scorer_receives_candidates_not_future_and_cannot_edit_them(self):
         class Scorer:
             provenance = dict(artifact_sha256='b'*64, training_split='development/train')
-            def score_candidates(self, vision_feat, physics_feat, candidates):
+            def score_candidates(self, vision_feat, physics_feat, candidates,
+                                 evidence_list=None):
                 self.vision_feat = vision_feat
                 self.physics_feat = physics_feat
                 scores = [c['decode']['action'][0] for c in candidates]
@@ -61,7 +62,8 @@ class CandidateTests(unittest.TestCase):
     def test_reject_bad_scores_and_ambiguous_selection(self):
         class Scorer:
             provenance = dict(artifact_sha256='b'*64, training_split='train')
-            def score_candidates(self, vision_feat, physics_feat, candidates): return [float('nan')]*4
+            def score_candidates(self, vision_feat, physics_feat, candidates,
+                                 evidence_list=None): return [float('nan')]*4
         with self.assertRaises(ValueError): select(self.candidates, self.context, scorer=Scorer(),
             vision_feat=np.zeros(384, dtype=np.float32), physics_feat=np.zeros(24, dtype=np.float32))
         with self.assertRaises(ValueError): select(self.candidates, self.context, scorer=Scorer(),

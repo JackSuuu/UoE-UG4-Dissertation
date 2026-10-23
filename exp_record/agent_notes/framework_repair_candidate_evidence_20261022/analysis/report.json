@@ -1,0 +1,245 @@
+{
+  "schema": "repair_candidate_coverage_report_v1",
+  "cases": [
+    {
+      "name": "candidate0_root1",
+      "root": 1,
+      "slot": 0,
+      "valid": true,
+      "success": true,
+      "actions": 444,
+      "queries": 444,
+      "repair_actions": 0,
+      "pools": 0,
+      "replay_frames": 456,
+      "joint_observations": 445,
+      "handoff_scores": 0
+    },
+    {
+      "name": "candidate1_root1",
+      "root": 1,
+      "slot": 1,
+      "valid": true,
+      "success": true,
+      "actions": 444,
+      "queries": 444,
+      "repair_actions": 0,
+      "pools": 0,
+      "replay_frames": 456,
+      "joint_observations": 445,
+      "handoff_scores": 0
+    },
+    {
+      "name": "candidate0_root0",
+      "root": 0,
+      "slot": 0,
+      "valid": true,
+      "success": false,
+      "actions": 520,
+      "queries": 523,
+      "repair_actions": 96,
+      "pools": 1,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "handoff_scores": 96
+    },
+    {
+      "name": "candidate1_root0",
+      "root": 0,
+      "slot": 1,
+      "valid": true,
+      "success": false,
+      "actions": 520,
+      "queries": 523,
+      "repair_actions": 96,
+      "pools": 1,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "handoff_scores": 96
+    },
+    {
+      "name": "candidate2_root0",
+      "root": 0,
+      "slot": 2,
+      "valid": true,
+      "success": false,
+      "actions": 520,
+      "queries": 523,
+      "repair_actions": 96,
+      "pools": 1,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "handoff_scores": 96
+    },
+    {
+      "name": "candidate3_root0",
+      "root": 0,
+      "slot": 3,
+      "valid": true,
+      "success": false,
+      "actions": 520,
+      "queries": 523,
+      "repair_actions": 96,
+      "pools": 1,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "handoff_scores": 96
+    },
+    {
+      "name": "candidate0_root4",
+      "root": 4,
+      "slot": 0,
+      "valid": true,
+      "success": false,
+      "actions": 520,
+      "queries": 523,
+      "repair_actions": 80,
+      "pools": 1,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "handoff_scores": 80
+    },
+    {
+      "name": "candidate1_root4",
+      "root": 4,
+      "slot": 1,
+      "valid": true,
+      "success": false,
+      "actions": 520,
+      "queries": 523,
+      "repair_actions": 96,
+      "pools": 1,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "handoff_scores": 96
+    },
+    {
+      "name": "candidate2_root4",
+      "root": 4,
+      "slot": 2,
+      "valid": true,
+      "success": false,
+      "actions": 520,
+      "queries": 523,
+      "repair_actions": 85,
+      "pools": 1,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "handoff_scores": 85
+    },
+    {
+      "name": "candidate3_root4",
+      "root": 4,
+      "slot": 3,
+      "valid": true,
+      "success": true,
+      "actions": 506,
+      "queries": 509,
+      "repair_actions": 11,
+      "pools": 1,
+      "replay_frames": 518,
+      "joint_observations": 507,
+      "handoff_scores": 11
+    }
+  ],
+  "contrasts": [
+    {
+      "root": 0,
+      "slot": 1,
+      "first_probe": 254,
+      "matched_pool": true,
+      "rescue": false,
+      "harm": false,
+      "action_tape_equal": true
+    },
+    {
+      "root": 0,
+      "slot": 2,
+      "first_probe": 254,
+      "matched_pool": true,
+      "rescue": false,
+      "harm": false,
+      "action_tape_equal": true
+    },
+    {
+      "root": 0,
+      "slot": 3,
+      "first_probe": 254,
+      "matched_pool": true,
+      "rescue": false,
+      "harm": false,
+      "action_tape_equal": true
+    },
+    {
+      "root": 1,
+      "slot": 1,
+      "first_probe": null,
+      "matched_pool": null,
+      "rescue": false,
+      "harm": false,
+      "action_tape_equal": true
+    },
+    {
+      "root": 4,
+      "slot": 1,
+      "first_probe": 148,
+      "matched_pool": true,
+      "rescue": false,
+      "harm": false,
+      "action_tape_equal": false
+    },
+    {
+      "root": 4,
+      "slot": 2,
+      "first_probe": 148,
+      "matched_pool": true,
+      "rescue": false,
+      "harm": false,
+      "action_tape_equal": false
+    },
+    {
+      "root": 4,
+      "slot": 3,
+      "first_probe": 148,
+      "matched_pool": true,
+      "rescue": true,
+      "harm": false,
+      "action_tape_equal": false
+    }
+  ],
+  "development_only": true,
+  "learned_ranking_tested": false,
+  "infrastructure_failures": [],
+  "limitations": [
+    "single H1 alternative at first repair only",
+    "two reused failed development roots",
+    "root1 sentinel does not test repair selection because no repair is expected",
+    "coverage is an offline upper bound, not a deployable oracle selector"
+  ],
+  "candidate_coverage": [
+    {
+      "root": 0,
+      "unique_first_actions": 1,
+      "evaluated": 4,
+      "successful_slots": []
+    },
+    {
+      "root": 4,
+      "unique_first_actions": 4,
+      "evaluated": 4,
+      "successful_slots": [
+        3
+      ]
+    }
+  ],
+  "totals": {
+    "actions": 5034,
+    "queries": 5058,
+    "repair_actions": 656,
+    "replay_frames": 5154,
+    "joint_observations": 5044,
+    "handoff_scores": 656
+  },
+  "status": "passed",
+  "dataset_sha256": "1710668ad07972d32b728f4997cc7fd10182779940f2a54f273d085cf77a63ea"
+}

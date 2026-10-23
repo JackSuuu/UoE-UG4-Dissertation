@@ -1,8 +1,22 @@
 # 框架独立包装计划 (Framework Package Plan)
 
 日期：2026-10-23  
-状态：规划中，未实施  
+状态：原方案已被下述生成式任务方案取代；打包尚未实施
 相关记录：`src_architecture_evaluation_20261023.md`, `literature_comparison_20261023.md`
+
+## 更正：用户确认的通用化设计
+
+下文的逐任务 `TaskAdapter`、手工阶段配置，以及另建目录复制核心实现的方案不再采用。
+用户只给自然语言任务；MLLM 根据图像、场景实体和已测历史生成内部 `TaskSpec` 与
+`RecoveryPlan`。环境桥接负责实体 ID 和通用测量，controller 负责预算、复核和实际交接。
+`Session` 是唯一 `env.step` 与策略查询拥有者。
+
+当前实现入口为 `scripts/run_task.py`，代码为 `src/planning/`、`src/controller.py`、
+`src/runtime.py`。旧 microwave controller 移至 `src/legacy/`。无用户手填的逐任务配置。
+完整接口和验证边界见 [`docs/task_runtime.md`](../../../docs/task_runtime.md)。
+后续安装包应封装现有单一实现；CPU 集成通过不等同于 GPU 或任务泛化实验通过。
+
+以下内容保留为被取代的历史提案。
 
 ## 一、为什么要包装
 

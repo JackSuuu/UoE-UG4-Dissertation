@@ -74,21 +74,22 @@ def main():
 
     Xv = torch.tensor(np.stack(X_v), dtype=torch.float32)
     Xp = torch.tensor(np.stack(X_p), dtype=torch.float32)
+    Xe = torch.zeros(len(y), 4, dtype=torch.float32)  # physics evidence placeholder
     Y = torch.tensor(y, dtype=torch.float32)
 
     model = HandoffScorerMLP().to(args.device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
     criterion = nn.BCELoss()
-    ds = TensorDataset(Xv, Xp, Y)
+    ds = TensorDataset(Xv, Xp, Xe, Y)
     dl = DataLoader(ds, batch_size=args.batch_size, shuffle=True)
 
     model.train()
     for epoch in range(args.epochs):
         total = 0.0
-        for vv, pp, yy in dl:
-            vv, pp, yy = vv.to(args.device), pp.to(args.device), yy.to(args.device)
+        for vv, pp, ee, yy in dl:
+            vv, pp, ee, yy = vv.to(args.device), pp.to(args.device), ee.to(args.device), yy.to(args.device)
             opt.zero_grad()
-            pred = model(vv, pp)
+            pred = model(vv, pp, ee)
             loss = criterion(pred, yy)
             loss.backward()
             opt.step()

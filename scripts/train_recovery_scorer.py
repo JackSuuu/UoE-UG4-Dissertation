@@ -88,21 +88,22 @@ def main():
     Xv = torch.tensor(np.stack(X_v), dtype=torch.float32)
     Xp = torch.tensor(np.stack(X_p), dtype=torch.float32)
     Xa = torch.tensor(np.stack(X_a), dtype=torch.float32)
+    Xe = torch.zeros(len(y), 4, dtype=torch.float32)  # physics evidence placeholder
     Y = torch.tensor(y, dtype=torch.float32)
 
     model = RecoveryScorerMLP().to(args.device)
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
     criterion = nn.BCELoss()
-    ds = TensorDataset(Xv, Xp, Xa, Y)
+    ds = TensorDataset(Xv, Xp, Xa, Xe, Y)
     dl = DataLoader(ds, batch_size=args.batch_size, shuffle=True)
 
     model.train()
     for epoch in range(args.epochs):
         total = 0.0
-        for vv, pp, aa, yy in dl:
-            vv, pp, aa, yy = vv.to(args.device), pp.to(args.device), aa.to(args.device), yy.to(args.device)
+        for vv, pp, aa, ee, yy in dl:
+            vv, pp, aa, ee, yy = vv.to(args.device), pp.to(args.device), aa.to(args.device), ee.to(args.device), yy.to(args.device)
             opt.zero_grad()
-            pred = model(vv, pp, aa)
+            pred = model(vv, pp, aa, ee)
             loss = criterion(pred, yy)
             loss.backward()
             opt.step()

@@ -1,0 +1,129 @@
+{
+  "files": {
+    "admission/protocol.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/protocol.json",
+      "sha256": "671150e33bf2b3157c1320f96d7324271ef16b092817f9ff61e55853433d94d6",
+      "bytes": 4681
+    },
+    "admission/results.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/results.json",
+      "sha256": "c835aafd9910c147774a8de6e529e3e523c12594fa2799ec6b16344c9001cfd5",
+      "bytes": 4965
+    },
+    "admission/launcher.py": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/launcher.py",
+      "sha256": "9865650f8ee91f5667461860ac6af877b69eb3696cac8a4b7db1cdb1e401a72e",
+      "bytes": 8145
+    },
+    "admission_validation.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission_validation.json",
+      "sha256": "bd3815fb8af4f720ec45ab7c3339dd629d95c64a9e57e296e01e26b9cfea3427",
+      "bytes": 2927
+    },
+    "default_compatibility.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/default_compatibility.json",
+      "sha256": "12b0be91aa451ae835821070849ac5116388d8390e4c4a45588279dafbdb886e",
+      "bytes": 5928
+    },
+    "pre_repair_compatibility24.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/pre_repair_compatibility24.json",
+      "sha256": "8addd84c5817830d4ec21c48fb7f760ce0ec862695f7362188186da7fe31d4bb",
+      "bytes": 7884
+    },
+    "analysis24/report.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/analysis24/report.json",
+      "sha256": "a11f1802536d53698a19c04b8acffd86cebe93a953e67749a5c36610d7eb1434",
+      "bytes": 205182
+    },
+    "analysis24/report.md": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/analysis24/report.md",
+      "sha256": "2f3ecf29cd749975d7f743b0f9097bfab58b7e8f81022918536abbb40b2b48cf",
+      "bytes": 6056
+    },
+    "analysis_sources/analyze_framework_diagnostics.py": {
+      "source": "/home/ami/UoE-UG4-Dissertation/scripts/analyze_framework_diagnostics.py",
+      "sha256": "c5171df5f8ea51f21fa11d0a9c2c5677810c65451a10dd8b0c99dd76e1c2882c",
+      "bytes": 17428
+    },
+    "compatibility_source/admission/src/controller.py": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/plan/source/src/controller.py",
+      "sha256": "aa61aac3c75ef7389312961755d45881f7290e0f76204388f679e994bc4080fe",
+      "bytes": 36561
+    },
+    "compatibility_source/admission/scripts/check_framework_trace_compatibility.py": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/plan/source/scripts/check_framework_trace_compatibility.py",
+      "sha256": "392e5545394c82d2b0b2fbe491e99ba1108170e0303b1a134232fa94ba369823",
+      "bytes": 2834
+    },
+    "compatibility_source/repair/src/controller.py": {
+      "source": "/home/ami/scratch/framework_contract_repair_20261022_r1/plan/source/src/controller.py",
+      "sha256": "afeea0374eb5b811f708e6d9bd93c8e6a30066170b1254a0b787dc71a562b003",
+      "bytes": 38710
+    },
+    "compatibility_source/repair/scripts/check_framework_trace_compatibility.py": {
+      "source": "/home/ami/scratch/framework_contract_repair_20261022_r1/plan/source/scripts/check_framework_trace_compatibility.py",
+      "sha256": "f057e215c9f09c7ae827ba31c46cf8bbd93bf34f15305c6ed3b44764dc0b8fdb",
+      "bytes": 2926
+    },
+    "audits/joint_admission_root1/verification.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/replays/joint_admission_root1/verification.json",
+      "sha256": "7c8be3ecdce3427920c8d730b66b56f0c87819560400d159ad6d9c2d00da43c9",
+      "bytes": 869
+    },
+    "audits/joint_admission_root1/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root1/joint_recomputation.json",
+      "sha256": "03f1a9a8fa6e6a86730dc2872a3c710f1d33d7a6ed861ef27fb772dac0b121ef",
+      "bytes": 392
+    },
+    "audits/joint_admission_root3/verification.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/replays/joint_admission_root3/verification.json",
+      "sha256": "cced31b83e412c8834820ecf82d50aaf414a09fbadb0ce4fc9d450cc24304e4c",
+      "bytes": 870
+    },
+    "audits/joint_admission_root3/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root3/joint_recomputation.json",
+      "sha256": "14b28a92b9ed425681605d704d3233627146bd618dfbcd404951ffb5d53e09c1",
+      "bytes": 392
+    },
+    "audits/joint_admission_root5/verification.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/replays/joint_admission_root5/verification.json",
+      "sha256": "8c9eb6c8fa64e1eb36f09ad952d633363428ec7ff98ef965000612e99d839e44",
+      "bytes": 870
+    },
+    "audits/joint_admission_root5/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root5/joint_recomputation.json",
+      "sha256": "8b50c79d5b6fda3d0721def67f988245248abb63271cfcfad4b01111be6f2648",
+      "bytes": 392
+    },
+    "audits/joint_admission_root0/verification.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/replays/joint_admission_root0/verification.json",
+      "sha256": "1eb3531e9c58161a35af5dfb43da6009d1020cc36b737f1e2bd8079aec18c64f",
+      "bytes": 869
+    },
+    "audits/joint_admission_root0/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root0/joint_recomputation.json",
+      "sha256": "9f1a254a93468529a9297ffedb23684f7aeb66fa5c3e63ff37558b019ea17bb2",
+      "bytes": 393
+    },
+    "audits/joint_admission_root2/verification.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/replays/joint_admission_root2/verification.json",
+      "sha256": "0ed6de55f9d86d74fe183eb7442a429784a0341b014b154149612f380ed09e78",
+      "bytes": 870
+    },
+    "audits/joint_admission_root2/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root2/joint_recomputation.json",
+      "sha256": "7979f89ad37a11eb3c3f6df042d92fcb72a8413ef27fa28612dd2c6eaf8418a7",
+      "bytes": 392
+    },
+    "audits/joint_admission_root4/verification.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/replays/joint_admission_root4/verification.json",
+      "sha256": "80bea5b57daa48d7883d72d69488b783760db4864c7e425eca4239504afb1fb6",
+      "bytes": 870
+    },
+    "audits/joint_admission_root4/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root4/joint_recomputation.json",
+      "sha256": "1d59006d35f5e231058749d2bb8f6edbbe84a11f4cf75e387eb0e446dafa430b",
+      "bytes": 393
+    }
+  }
+}

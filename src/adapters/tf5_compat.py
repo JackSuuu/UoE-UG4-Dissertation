@@ -38,10 +38,9 @@ builds the LLM from its config instead. That interception is a genuine
 behavioural deviation from the vendored code and is asserted too, for the same
 reason.
 
-This module is a *compatibility layer*, not a rewrite. The action head is
-untouched here -- replacing it with a chunked 2-D planar head is
-``adapters/openvla_policy.py``'s job, and keeping the two concerns apart is what
-makes both testable.
+This is the historical transformers-5 compatibility layer. The current
+``adapters/openvla_policy.py`` uses official H1 prediction on transformers 4.40.1;
+it does not use this shim or replace the action head.
 """
 from __future__ import annotations
 

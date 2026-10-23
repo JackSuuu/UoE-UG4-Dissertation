@@ -4,9 +4,31 @@ The objective is cross-task visual–physical verification, bounded repair,
 reverification and reliable handoff around frozen OpenVLA. Current validation
 is limited to development microwave trajectories; generalization is untested.
 
-## Active controller
+## Active generated-task runtime (23 October 2026)
 
-- `controller.py`: measured task stages, triggers, budgets and handoff.
+- `planning/multimodal.py`: vision chat endpoint client; generates grounded task
+  and local recovery records from language, images and scene metadata.
+- `planning/schema.py`: typed, bounded output grammar; no hand-authored task configs.
+- `controller.py`: task-independent progress loss/stagnation, fixed recovery
+  contracts, preservation, budgets, reverification and actual handoff tracking.
+- `runtime.py`: executes unchanged frozen-policy proposals; optional A candidate
+  ranking and B nominal-action-conditioned assessment interfaces.
+- `verification/physical_verifier.py`: integrated tri-state checks and four
+  causal measured features with explicit validity flags.
+- `adapters/libero_environment.py`: shared environment bridge; privileged scene
+  IDs/measurements, no per-task classes. `adapters/openvla_policy.py`: frozen
+  official OpenVLA backend (transformers 4.40.1).
+- `scripts/run_task.py`: main entry point. CPU integration coverage; GPU rollout
+  and actual MLLM grounding quality remain unvalidated. Generic A/B training is
+  pending; old checkpoints are not compatible substitutes.
+
+See [runtime guide](../docs/task_runtime.md). The sections below describe the
+historical microwave studies/prototypes, not components automatically loaded by
+the new path.
+
+## Historical controller
+
+- `legacy/microwave_controller.py`: measured task stages, triggers, budgets and handoff.
   This remains the actual stage/repair controller. Optional `fusion_mode='gate'`
   additionally vetoes measured verified exits; `log` has no decision effect.
 - `adapters/libero_openvla.py`, `adapters/tf5_compat.py`: actor/image and compatibility utilities.
@@ -16,7 +38,7 @@ is limited to development microwave trajectories; generalization is untested.
 
 `--joint-components checkpoints/joint_components_v1_20261022/joint_components.pt`
 with a pinned fusion model and `--fusion-mode gate` connects the components in
-**one** execution path. It must not be combined with the legacy `--use-v5` path.
+**one** historical execution path. The old numeric-correction launch path has been removed.
 
 - `verification/joint_runtime.py`: one pretrained encoding per observation,
   shared by visual stage inference, episodic retrieval, outcome risk and fusion.
@@ -39,7 +61,7 @@ with a pinned fusion model and `--fusion-mode gate` connects the components in
 - `repair/receding_horizon_repair.py`: remaining stage-plan revisions with one
   fresh frozen-policy H1 query per executed action. No hand-written offsets;
   no unexecuted numeric action chunk is claimed to exist.
-- `controller.py`: v6 combines native and learned/predictive triggers, fixed
+- `legacy/microwave_controller.py`: v6 combines native and learned/predictive triggers, fixed
   measured contracts, MLP acceptance and risk/prediction vetoes. Original action,
   query, repair caps and unverified capped exits are unchanged.
 
@@ -50,7 +72,7 @@ triggers and blocked exits. Full-task efficacy still uses original native In AND
 Close, not component scores. Geometry remains privileged; no reconstructed
 physical scene, learned simulator, RL or held-out task generalization is claimed.
 
-## Experimental components (`--use-v5`)
+## Historical experimental components (v5 launch path removed)
 
 | File | Current status |
 | --- | --- |
@@ -66,8 +88,8 @@ physical scene, learned simulator, RL or held-out task generalization is claimed
 | `memory/keyframe_bank.py` | Storage/read APIs; successful-memory retrieval is not causally integrated into control. |
 | `verification/vision_physical_monitor.py` | Evidence aggregation; its triggers do not themselves enter native repair mode. No-lift evidence can activate the runner's separate numeric correction. |
 
-Default actions must equal official VLA proposals. The opt-in
-`bounded_translation_v1` diagnostic treatment separately records proposal,
+Default actions must equal official VLA proposals. The archived
+`bounded_translation_v1` diagnostic treatment separately recorded proposal,
 executed action, reason and delta. Validation preserves official proposal
 mapping, allows only translation changes with L2 delta at most 0.10 normalized
 action units, and requires explicit caller permission. Corrections have a

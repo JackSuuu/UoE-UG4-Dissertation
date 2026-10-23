@@ -1,0 +1,26 @@
+{
+  "status": "exact_replay_passed",
+  "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root1",
+  "started": 1792699387.6221447,
+  "actor_queries": 0,
+  "mismatches": [],
+  "frames_checked": 456,
+  "max_state_gap": 0.0,
+  "max_integration_gap": 0.0,
+  "actor_constructor_attempts": 0,
+  "actor_query_attempts": 0,
+  "subprocesses": [
+    "['/sbin/ldconfig', '-p']",
+    "['nvidia-smi', '-i', '2', '--query-gpu=index,uuid,name,pci.bus_id', '--format=csv,noheader']",
+    "['uname', '-p']",
+    "['fc-list', '--help']",
+    "['fc-list', '--format=%{file}\\\\n']"
+  ],
+  "worker_spawn_attempts": 0,
+  "model_weight_open_attempts": 0,
+  "fusion_scores_recomputed": false,
+  "steps": 444,
+  "original_status": "completed",
+  "ended": 1792699424.5783896,
+  "total_wall_s": 36.95624589920044
+}

@@ -1,0 +1,137 @@
+{
+  "status": "passed",
+  "actor_queries": 0,
+  "simulator_replayed": false,
+  "models_recomputed": false,
+  "script_sha256": "392e5545394c82d2b0b2fbe491e99ba1108170e0303b1a134232fa94ba369823",
+  "new_controller_sha256": "aa61aac3c75ef7389312961755d45881f7290e0f76204388f679e994bc4080fe",
+  "report_sha256": "4ed8111b2db77a0ab8b236006dec0a6fd6abb4f0c893115f638012cad7340f8b",
+  "episodes": [
+    {
+      "name": "baseline_root0",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root0",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "joint_root0",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root0",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "measured_fusion_root0",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root0",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "baseline_root1",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root1",
+      "actions": 444,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "joint_root1",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root1",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "measured_fusion_root1",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root1",
+      "actions": 444,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "baseline_root2",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root2",
+      "actions": 397,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "joint_root2",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root2",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "measured_fusion_root2",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root2",
+      "actions": 397,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "baseline_root3",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/baseline_root3",
+      "actions": 352,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "joint_root3",
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root3",
+      "actions": 352,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "measured_fusion_root3",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root3",
+      "actions": 352,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "baseline_root4",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/baseline_root4",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "joint_root4",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/joint_root4",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "measured_fusion_root4",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root4",
+      "actions": 520,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "baseline_root5",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/baseline_root5",
+      "actions": 298,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "joint_root5",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/joint_root5",
+      "actions": 298,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    },
+    {
+      "name": "measured_fusion_root5",
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root5",
+      "actions": 298,
+      "status": "exact_controller_trace_match",
+      "controller_sha256": "2f4d47b60378a5327822ac1b7a40b0bc354ed535371756dee7bceb8e2657e44c"
+    }
+  ]
+}

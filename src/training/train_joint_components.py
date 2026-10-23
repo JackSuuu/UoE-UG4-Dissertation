@@ -8,7 +8,7 @@ import numpy as np
 import torch
 from PIL import Image
 
-from ..controller import NativeFramework
+from ..legacy.microwave_controller import NativeFramework
 from ..perception.frozen_visual_encoder import FrozenVisualEncoder, file_sha
 from ..verification.calibrated_risk_head import RiskHeadMLP
 from ..verification.fusion_mlp import extract_physics_features, STAGES

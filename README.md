@@ -8,7 +8,7 @@ University of Edinburgh UG4 dissertation: **runtime verification coupled to boun
 
 The **verifier–repair loop is the method**, **full-task completion is the primary outcome**, and **unstructured microwave/refrigerator manipulation is the application and generalization setting**. The five-layer architecture below implements this research subject.
 
-The current microwave benchmark is a controlled development setting. Generalization to unstructured object placements, layouts and contact conditions requires subsequent held-out evaluation.
+The current microwave benchmark is a controlled development setting. The new runtime generates task semantics and recovery contracts from **natural-language instructions, images and a scene entity inventory** using a vision-capable language model. Its controller is task-independent; real-model task transfer remains to be evaluated.
 
 **[Research plan](core_research_plan.md)** · **[Current protocol and run status](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md)** · **[Week 5](exp_record/week5.md)**
 
@@ -38,7 +38,16 @@ flowchart TD
     Exec --> End[Complete-task outcome]
 ```
 
-**Verification is central.** Physical prediction can contribute alongside measured contact, geometric constraints and task progress within this framework. Current native runs use privileged measured verification; a learned microwave/fridge predictor is not enabled. High-level subgoals are declared task semantics, and every task/repair numerical action comes from OpenVLA.
+**Verification is central.** The planner proposes semantic goals; measured predicates determine whether they hold. Unknown evidence never verifies a contract. Every task/repair numerical action comes from frozen OpenVLA. A learned physical predictor is not enabled. Historical microwave results below used manually declared semantics, not the new generated-task implementation.
+
+## Task-agnostic runtime
+
+- Entry point: [`scripts/run_task.py`](scripts/run_task.py).
+- Architecture, GPU-machine command and scorer interfaces: [runtime guide](docs/task_runtime.md).
+- CPU integration checks: `python -B scripts/test_task_runtime.py` (standard library only).
+- Main components: `src/planning/`, `src/controller.py`, `src/runtime.py`, `src/verification/physical_verifier.py` and environment/model bridges in `src/adapters/`.
+- No per-task Python adapter or JSON goal configuration. The LIBERO bridge supplies scene IDs and measurements for any supported task; the MLLM generates the task and recovery records.
+- The new path has CPU integration coverage. Real MLLM/OpenVLA rollouts, grounding accuracy, and general-purpose learned A/B artifacts are pending GPU validation.
 
 ## Experiments and Evidence
 
@@ -48,7 +57,7 @@ flowchart TD
 - [First comparison: one rescue and one harm](backups/framework_comparison_20261019/README.md)
 - [Historical refrigerator R2](exp_record/agent_notes/fridge_r2_results_20261019.md): geometric correction actions, local extraction progress, no full completion; separate from the current model-generated repair method.
 
-**Current experiment after v2 (running):** a complete-task 2×2 placement-prompt / measured-resumption-gate comparison plus bare VLA: six development roots × five cohorts, 30 fresh episodes. Frozen source `528a91c` is running detached on GPUs 2/3. This separates the prompt and exit-condition hypotheses raised by root4's regression before handoff. The same per-episode budgets and frozen VLA apply; 25 CPU checks and 5,062 saved v2 decision-equivalence checks pass. Exact freeze, launch status and eventual results are maintained in the [current record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md). Refrigerator retrieval remains the next task extension.
+**Historical post-v2 study:** a complete-task placement-prompt / measured-resumption-gate comparison was launched from frozen source `528a91c`. Its launch and results belong to that archived protocol; see the [experiment record](exp_record/agent_notes/current_goal_and_experiment_queue_20261019.md) and [session recovery status](exp_record/agent_notes/session_recovery_status_20261023.md). These outcomes are not results of the generated-task runtime.
 
 Every treatment run uses the real five-layer framework. Paired arms share initial conditions, actor inputs and resource limits; all repair queries count against the lifetime budget. Full videos show baseline left/framework right, synchronized simulation time, control ownership, evidence, verification, exits and actual handoffs. Failures and harms remain included.
 
@@ -57,8 +66,10 @@ Every treatment run uses the real five-layer framework. Paired arms share initia
 | Path | Purpose |
 |---|---|
 | [`core_research_plan.md`](core_research_plan.md) | Current objective, method, experiment sequence and evaluation |
-| [`scripts/run_framework_comparison.py`](scripts/run_framework_comparison.py) | Canonical preparation, execution, replay, reporting and video runner |
-| [`src/controller.py`](src/controller.py) | Current five-layer measured controller |
+| [`scripts/run_task.py`](scripts/run_task.py) | Generated-task runtime and LIBERO execution |
+| [`scripts/run_framework_comparison.py`](scripts/run_framework_comparison.py) | Historical microwave preparation, execution and replay |
+| [`src/controller.py`](src/controller.py) | Task-independent budgets, repair verification and handoff |
+| [`src/legacy/microwave_controller.py`](src/legacy/microwave_controller.py) | Historical measured microwave controller |
 | [`src/README.md`](src/README.md) | Component layout, implementation status and Phase 1 history |
 | [`scripts/test_native_framework.py`](scripts/test_native_framework.py) | Model-free recovery and execution-contract checks |
 | [`exp_record/`](exp_record/agent_notes/experiment_record_index.md) | Weekly summaries; detailed protocols and results under `agent_notes/` |
@@ -66,7 +77,7 @@ Every treatment run uses the real five-layer framework. Paired arms share initia
 | [`third_party/LIBERO`](third_party/LIBERO) | Pinned benchmark submodule |
 | `notes/` | Proposals, literature and historical planning |
 
-Run controller checks with `python -B scripts/test_native_framework.py`. Experiment execution uses the pinned server environments and source manifests documented in the current record; inspect runner options with `--help`.
+Run current controller checks with `python -B scripts/test_task_runtime.py`; `scripts/test_native_framework.py` checks the historical protocol. Old source-pinned experiments require their archived sources. Inspect runner options with `--help`.
 
 Large artifacts use Git LFS. Clone with submodules and follow each backup's scoped LFS recovery instructions.
 

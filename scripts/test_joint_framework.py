@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import torch
 
-from src.controller import NativeFramework
+from src.legacy.microwave_controller import NativeFramework
 from src.perception.vision_subgoal_inference import VisionSubgoalInference
 from src.repair.receding_horizon_repair import RecedingHorizonRepair
 from src.training.train_joint_components import risk_label
@@ -49,6 +49,50 @@ class JointTests(unittest.TestCase):
             self.assertEqual(decision['recovery_acceptance'], ['held_clear', 'contained'])
             requests.append(RecedingHorizonRepair().request(decision)[0]['language'])
         self.assertNotEqual(*requests)
+
+    def test_admission_only_keeps_joint_diagnosis_but_requests_nominal(self):
+        for trigger in ('joint_no_lift', 'joint_predicted_exit', 'joint_outcome_risk'):
+            c = NativeFramework('framework', LANGUAGE, fusion_mode='gate', joint_mode=True,
+                joint_admission='measured_only')
+            d = c.before(0, state(), evidence(0, 'transfer', trigger))
+            self.assertEqual(d['owner'], 'nominal')
+            self.assertEqual(d['language'], LANGUAGE)
+            self.assertEqual(d['trigger'], trigger)
+            self.assertEqual(d['subgoal'], 'transfer')
+            self.assertEqual(d['intervention_blocked'], 'joint_trigger_advisory')
+            self.assertEqual(d['evidence']['joint'], evidence(0, 'transfer', trigger))
+
+    def test_measured_entry_keeps_joint_stage_refeed_and_handoff_veto(self):
+        c = NativeFramework('framework', LANGUAGE, fusion_mode='gate', joint_mode=True,
+            joint_admission='measured_only')
+        before = state()
+        high = state(z=.93, table=False)
+        lost = state(z=.93, table=False, grasp=False)
+        for i, post in enumerate((high, lost)):
+            d = c.before(i, before, evidence(i, trigger='joint_no_lift'))
+            self.assertEqual(d['owner'], 'nominal')
+            c.after(i, post, ACTION, d)
+            before = post
+        for i in range(2, 5):
+            stage = 'acquire' if i == 2 else 'transfer'
+            d = c.before(i, before, evidence(i, stage, 'joint_outcome_risk'))
+            self.assertEqual(d['owner'], 'repair')
+            self.assertEqual(d['subgoal'], stage)
+            self.assertEqual(d['recovery_goal'], 'acquire')
+            if i == 2:
+                self.assertEqual(d['trigger'], 'elevated_grasp_lost')
+            f = dict(probability=.99, threshold=.8, stage='acquire', feature_schema=FEATURE_SCHEMA,
+                model_sha256='a'*64, joint_prediction_veto=False, joint_risk_veto=True)
+            result = c.after(i, high, ACTION, d, f)
+            before = high
+        self.assertTrue(result['verification']['exit_condition_met'])
+        self.assertTrue(result['verification']['fusion']['blocked_verified_exit'])
+        self.assertFalse(result['verification']['repair_verified'])
+
+    def test_admission_mode_cannot_silently_apply_to_other_protocols(self):
+        for kwargs in ({}, dict(joint_mode=True, fusion_mode='gate', recovery_options=True)):
+            with self.assertRaises(ValueError):
+                NativeFramework('framework', LANGUAGE, joint_admission='measured_only', **kwargs)
 
     def test_visual_prototypes_physically_constrained(self):
         module = VisionSubgoalInference(None)

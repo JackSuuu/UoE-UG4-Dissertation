@@ -1,0 +1,91 @@
+{
+  "status": "passed",
+  "cases": [
+    {
+      "root": 0,
+      "success": false,
+      "actions": 520,
+      "repair_actions": 96,
+      "joint_only_advisory_steps": 150,
+      "measured_fusion_tape_identical": true,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "replay_sha256": "1eb3531e9c58161a35af5dfb43da6009d1020cc36b737f1e2bd8079aec18c64f",
+      "joint_audit_sha256": "9f1a254a93468529a9297ffedb23684f7aeb66fa5c3e63ff37558b019ea17bb2"
+    },
+    {
+      "root": 1,
+      "success": true,
+      "actions": 444,
+      "repair_actions": 0,
+      "joint_only_advisory_steps": 158,
+      "measured_fusion_tape_identical": true,
+      "replay_frames": 456,
+      "joint_observations": 445,
+      "replay_sha256": "7c8be3ecdce3427920c8d730b66b56f0c87819560400d159ad6d9c2d00da43c9",
+      "joint_audit_sha256": "03f1a9a8fa6e6a86730dc2872a3c710f1d33d7a6ed861ef27fb772dac0b121ef"
+    },
+    {
+      "root": 2,
+      "success": true,
+      "actions": 397,
+      "repair_actions": 0,
+      "joint_only_advisory_steps": 45,
+      "measured_fusion_tape_identical": true,
+      "replay_frames": 409,
+      "joint_observations": 398,
+      "replay_sha256": "0ed6de55f9d86d74fe183eb7442a429784a0341b014b154149612f380ed09e78",
+      "joint_audit_sha256": "7979f89ad37a11eb3c3f6df042d92fcb72a8413ef27fa28612dd2c6eaf8418a7"
+    },
+    {
+      "root": 3,
+      "success": true,
+      "actions": 352,
+      "repair_actions": 0,
+      "joint_only_advisory_steps": 0,
+      "measured_fusion_tape_identical": true,
+      "replay_frames": 364,
+      "joint_observations": 353,
+      "replay_sha256": "cced31b83e412c8834820ecf82d50aaf414a09fbadb0ce4fc9d450cc24304e4c",
+      "joint_audit_sha256": "14b28a92b9ed425681605d704d3233627146bd618dfbcd404951ffb5d53e09c1"
+    },
+    {
+      "root": 4,
+      "success": false,
+      "actions": 520,
+      "repair_actions": 80,
+      "joint_only_advisory_steps": 2,
+      "measured_fusion_tape_identical": true,
+      "replay_frames": 532,
+      "joint_observations": 521,
+      "replay_sha256": "80bea5b57daa48d7883d72d69488b783760db4864c7e425eca4239504afb1fb6",
+      "joint_audit_sha256": "1d59006d35f5e231058749d2bb8f6edbbe84a11f4cf75e387eb0e446dafa430b"
+    },
+    {
+      "root": 5,
+      "success": true,
+      "actions": 298,
+      "repair_actions": 0,
+      "joint_only_advisory_steps": 0,
+      "measured_fusion_tape_identical": true,
+      "replay_frames": 310,
+      "joint_observations": 299,
+      "replay_sha256": "8c9eb6c8fa64e1eb36f09ad952d633363428ec7ff98ef965000612e99d839e44",
+      "joint_audit_sha256": "8b50c79d5b6fda3d0721def67f988245248abb63271cfcfad4b01111be6f2648"
+    }
+  ],
+  "successes": 4,
+  "replay_frames": 2603,
+  "joint_observations": 2537,
+  "repair_scores": 176,
+  "paired_rescues_vs_baseline": 0,
+  "paired_harms_vs_baseline": 0,
+  "baseline_harms_avoided_relative_to_joint": [
+    1,
+    2
+  ],
+  "remaining_failed_roots": [
+    0,
+    4
+  ]
+}

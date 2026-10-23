@@ -1,0 +1,10 @@
+{
+  "status": "joint_recomputation_passed",
+  "actor_queries": 0,
+  "observations_recomputed": 299,
+  "handoff_scores_recomputed": 0,
+  "mismatches": [],
+  "numeric_absolute_tolerance": 1e-05,
+  "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root5",
+  "source_plan_sha256": "e5c3bb087afeced3c4c140a36badc8f372a757d9464b1aa53c3cf48917bb78a9"
+}

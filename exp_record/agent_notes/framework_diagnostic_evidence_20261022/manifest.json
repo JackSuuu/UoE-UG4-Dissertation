@@ -1,0 +1,210 @@
+{
+  "study": "/home/ami/scratch/framework_diagnostic_20261022_r1",
+  "files": {
+    "analysis_final18/report.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/analysis_final18/report.json",
+      "sha256": "4ed8111b2db77a0ab8b236006dec0a6fd6abb4f0c893115f638012cad7340f8b",
+      "bytes": 161966
+    },
+    "analysis_final18/report.md": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/analysis_final18/report.md",
+      "sha256": "2a2ab146b619fac39dba1964f29118fbd9c2d2a767ad1a8e7019e7998ab26ae7",
+      "bytes": 4488
+    },
+    "final_validation.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/final_validation.json",
+      "sha256": "ff005f365f5494a266b2df1644bcda014e1ea71859371977819f7b1aac759266",
+      "bytes": 9176
+    },
+    "gpu_shadow_entry_agreement.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/gpu_shadow_entry_agreement.json",
+      "sha256": "c9fdaba309fe22bc178ba21c472e09993b958704563d14f7f25e7814739f1afa",
+      "bytes": 664
+    },
+    "cpu_gpu_shadow_discrepancy.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/cpu_gpu_shadow_discrepancy.json",
+      "sha256": "495549aad40a8fb32324e9379f25f0bba3d26cad0f84550e78b3c8c8c5aef9af",
+      "bytes": 638
+    },
+    "nominal_risk_gpu6/report.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/nominal_risk_gpu6/report.json",
+      "sha256": "45f491d962412d95eeb909b53717da9c25f93c6ca6456c64ef77d3c385bc7d83",
+      "bytes": 7286
+    },
+    "controls/protocol.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/protocol.json",
+      "sha256": "57b855f087353b632b39db795d59052970a974d3b7fcdb1fe67b2dd27b1b27f8",
+      "bytes": 8130
+    },
+    "controls/results.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/results.json",
+      "sha256": "f7dfcf1798f794d33cb362634d81679ea7a08d3d77d6e4c6f84d9e97f52a05f3",
+      "bytes": 9169
+    },
+    "controls/launcher.py": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/launcher.py",
+      "sha256": "197cb989da62324acdf5ac4cc8c4d35a4bdfed7b6b572b367322d81b65ebd807",
+      "bytes": 6803
+    },
+    "measured/protocol.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/protocol.json",
+      "sha256": "1c0b6abe9733e3a80bb85fdd0427f6e96ae4595169b0d1e29d084ec6180aa6cf",
+      "bytes": 4694
+    },
+    "measured/results.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/results.json",
+      "sha256": "d2af824c2514d4e9c42f9afa949f9f9c57f9871ddb83b98db70c333f1bf52b6a",
+      "bytes": 5201
+    },
+    "measured/launcher.py": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/launcher.py",
+      "sha256": "06c770715a99342cfc9f709a20d96bdfacdc342832d2ef69df2ffd1a0842d74c",
+      "bytes": 7485
+    },
+    "analysis_sources/analyze_framework_diagnostics.py": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/analysis_sources/analyze_framework_diagnostics.py",
+      "sha256": "d202910eb6e157009fd3e9af72ff35609d581104c3781c03aa4ef5c6e542ec1c",
+      "bytes": 16820
+    },
+    "analysis_sources/audit_framework_nominal_risk.py": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/analysis_sources/audit_framework_nominal_risk.py",
+      "sha256": "96c38c9116ee437c18ad0e4ee90082ef155d0de1aab3d4fc3befb45cf849a2a5",
+      "bytes": 5099
+    },
+    "analysis_sources/plot_framework_diagnostics.py": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/analysis_sources/plot_framework_diagnostics.py",
+      "sha256": "67a6c35bab2c377b6837ae48d1194550fd090370b272b8a16fdf88f7e8fec450",
+      "bytes": 3541
+    },
+    "audits/baseline_root0/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/baseline_root0/verification.json",
+      "sha256": "3b8a2c4622b2a150006ebd1f1d51a5439ed590e87d7d2b1b5f93434d2e2e2f2d",
+      "bytes": 772
+    },
+    "audits/joint_root1/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/joint_root1/verification.json",
+      "sha256": "068d3c2379f496b0d4e26690e70f5a8d1055f42483ff7f3a8cefe47897f347ac",
+      "bytes": 842
+    },
+    "audits/joint_root1/joint_recomputation.json": {
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root1/joint_recomputation.json",
+      "sha256": "7e902197dcf14af67f0e7b763b9a5135fe5fe6ce123020cca1a1520af2c4d644",
+      "bytes": 366
+    },
+    "audits/baseline_root2/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/baseline_root2/verification.json",
+      "sha256": "640421b33592bef25e11122297d0a3482a1f1cee66093e88b1dcae10cacec62d",
+      "bytes": 775
+    },
+    "audits/joint_root3/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/joint_root3/verification.json",
+      "sha256": "3bfd4d09869407ca0a4ed581f1a449c2dd86983e34c7bb21e202f9ec98d36e58",
+      "bytes": 842
+    },
+    "audits/joint_root3/joint_recomputation.json": {
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root3/joint_recomputation.json",
+      "sha256": "899e818288a1b95463e573fc229c9b05674d7cf82dbe3ba6048cb4ad617d965b",
+      "bytes": 364
+    },
+    "audits/baseline_root4/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/baseline_root4/verification.json",
+      "sha256": "3c3572940a35f1f5d1ad2f81abb8de161ec715fbf7dd25dc1152ef32193863ee",
+      "bytes": 791
+    },
+    "audits/joint_root5/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/joint_root5/verification.json",
+      "sha256": "9ff5305675c24f3d872c757cdf8c097b190fd7c06040945b86c79461944f4193",
+      "bytes": 860
+    },
+    "audits/joint_root5/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/joint_root5/joint_recomputation.json",
+      "sha256": "9c48ae2d5001443a314d4d0459eb481aa8de55bf31d81a21242e8324a5a37a76",
+      "bytes": 382
+    },
+    "audits/joint_root0/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/joint_root0/verification.json",
+      "sha256": "17151ca1f8e5e98669d3b6655b8bad2fc9dc32c8dc1607001707d3835aa8126b",
+      "bytes": 842
+    },
+    "audits/joint_root0/joint_recomputation.json": {
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root0/joint_recomputation.json",
+      "sha256": "5aa40136dc14660b7a83e426e953aa5878e2d7510a09631e9c1017b8d3c7f9b0",
+      "bytes": 366
+    },
+    "audits/baseline_root1/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/baseline_root1/verification.json",
+      "sha256": "4fdf69c6dc8fb1fb2e0e01c5f317c47dc7ceaad5ec91f22b3da77f85ea5f3ba9",
+      "bytes": 776
+    },
+    "audits/joint_root2/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/joint_root2/verification.json",
+      "sha256": "03ae4013d35d6eacb6070484d5df0579f562214fd67bf3c72c616e6601cbc0dc",
+      "bytes": 840
+    },
+    "audits/joint_root2/joint_recomputation.json": {
+      "source": "/home/ami/scratch/multi_root_control_general_20261022/v2_root2/joint_recomputation.json",
+      "sha256": "3884e5524176bf2e47fd8cbac46643ee774e86b041bc86ce452cd900238e93e2",
+      "bytes": 366
+    },
+    "audits/baseline_root3/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/baseline_root3/verification.json",
+      "sha256": "22e528f54f8a289260ecbdb81cd1c6e27ad9b8826d352d5f489bab076f68af2c",
+      "bytes": 775
+    },
+    "audits/joint_root4/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/joint_root4/verification.json",
+      "sha256": "a99c847303a698e864b1b91272a6832b533b43012da8932934fdd778664e0c9b",
+      "bytes": 860
+    },
+    "audits/joint_root4/joint_recomputation.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/episodes/joint_root4/joint_recomputation.json",
+      "sha256": "ef716a3bbcb81e9295f000da70874da22016c1bd08111c68f34c485eeba3d7cc",
+      "bytes": 384
+    },
+    "audits/baseline_root5/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/controls/replays/baseline_root5/verification.json",
+      "sha256": "417959c7be2a390faa8f3a6b106b72fc1f6f8787d1a63f4d6c9d85a7730a8bd0",
+      "bytes": 790
+    },
+    "audits/measured_fusion_root1/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/replays/measured_fusion_root1/verification.json",
+      "sha256": "e44d5b28bc137a5e8446d227586a43ecb08ef35463f9d81cc9f53d82d911b40a",
+      "bytes": 834
+    },
+    "audits/measured_fusion_root3/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/replays/measured_fusion_root3/verification.json",
+      "sha256": "e0bae8887beb45d821a605f9eb444901fd5b87f150ef9b244e56a9f8d6a2eef9",
+      "bytes": 833
+    },
+    "audits/measured_fusion_root5/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/replays/measured_fusion_root5/verification.json",
+      "sha256": "d5b202d91437b8cd16e31017affc4de434898709e524d86bc5c70020d180a590",
+      "bytes": 835
+    },
+    "audits/measured_fusion_root0/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/replays/measured_fusion_root0/verification.json",
+      "sha256": "b72067c3566c9f26ef08a28302c5b522a714f436c10daecf3eb224db7455052d",
+      "bytes": 834
+    },
+    "audits/measured_fusion_root0/fusion_recomputation.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root0/fusion_recomputation.json",
+      "sha256": "7614aa6e1f6247c9dfc38be4900fe77dc55b3eb470ff57f397504e6bf7dcf965",
+      "bytes": 131
+    },
+    "audits/measured_fusion_root2/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/replays/measured_fusion_root2/verification.json",
+      "sha256": "dd94cc12d3d77566430267a0d2e0dc5d91423db9a64d00ce195e7a085a0d2108",
+      "bytes": 834
+    },
+    "audits/measured_fusion_root4/verification.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/replays/measured_fusion_root4/verification.json",
+      "sha256": "cd438b022d24f2968a8598ce96dcf78d84875f8c5500b59b3983ebd18edbc588",
+      "bytes": 833
+    },
+    "audits/measured_fusion_root4/fusion_recomputation.json": {
+      "source": "/home/ami/scratch/framework_diagnostic_20261022_r1/measured/episodes/measured_fusion_root4/fusion_recomputation.json",
+      "sha256": "b6c4bbf86cc1f3d29bee3b1e762683f5b5c186240e79b008c6c06b9ccbbd8148",
+      "bytes": 131
+    }
+  }
+}

@@ -2,7 +2,7 @@
 
 **Period:** October 2026 – September 2027
 
-**Updated:** 21 October 2026
+**Updated:** 23 October 2026
 
 **Registered dissertation topic:** *Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization*
 
@@ -40,6 +40,13 @@ Native LIBERO microwave initial states currently provide a **controlled developm
 - Develop physical prediction within the existing verifier interface and assess its actual value. Measured verification remains a legitimate configuration while task-specific prediction is being adapted.
 - Keep cloth, additional platforms and a second backbone outside the immediate execution queue. They are conditional extensions, not substitutes for improving the current method.
 - Distinguish implemented components, research hypotheses and future milestones throughout the dissertation.
+- Generate task goals and local recovery contracts from instruction + current
+  image + grounded scene inventory using an external vision-language planner.
+  Users do not write per-task adapters/configs. The frozen VLA remains the action
+  generator; measured verification, not planner assertions, decides recovery.
+  The new task-independent runtime has CPU integration coverage; GPU efficacy,
+  grounding reliability and task-general learned scorers remain to be validated.
+  See [runtime architecture and launch guide](docs/task_runtime.md).
 
 ## 1. Main Contribution and Boundaries
 
@@ -97,7 +104,7 @@ The dates below are planning targets for the original one-year horizon. Progress
 
 | Phase | Calendar target | Main work | Deliverable / decision gate |
 |---|---|---|---|
-| **P1 — Establish and improve the real loop** | Oct–Nov2026 | Iterate the existing microwave controller; integrate refrigerator task adapters | Reproducible full paired trajectories; distinguish verified recovery, budget exit, actual handoff and completion |
+| **P1 — Establish and improve the real loop** | Oct–Nov2026 | Validate generated-task runtime on microwave, then task transfer through shared environment measurements | Reproducible full paired trajectories; distinguish verified recovery, budget exit, actual handoff and completion |
 | **P2 — Mechanism attribution** | Nov2026–Jan2027 | Within-framework monitoring, preservation, reverification and retry ablations | Evidence about which verifier–repair mechanisms explain net gains and harms |
 | **P3 — Physical-prediction contribution** | Dec2026–Mar2027 | Adapt state/action contract, train/calibrate applicable predictor, integrate into verifier | Forecast fidelity and decision-use analysis plus a matched complete-task predictor-on/off comparison |
 | **P4 — Robustness and transfer** | Feb–Jun2027 | Freeze a chosen configuration; evaluate reserved states and declared task/condition shifts | Held-out reliability results with task-wise uncertainty and failure categories |

@@ -8,7 +8,7 @@ import subprocess
 import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.repair.recovery_options import RecoveryOptions, CONFIG, SCHEMA, validate_skill
-from src.controller import NativeFramework
+from src.legacy.microwave_controller import NativeFramework
 from test_native_framework import state, ACTION, LANGUAGE
 from test_joint_framework import evidence
 

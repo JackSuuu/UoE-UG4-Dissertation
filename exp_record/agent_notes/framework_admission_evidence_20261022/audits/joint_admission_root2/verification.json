@@ -1,0 +1,27 @@
+{
+  "status": "exact_replay_passed",
+  "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root2",
+  "started": 1792701776.4125395,
+  "actor_queries": 0,
+  "mismatches": [],
+  "frames_checked": 409,
+  "max_state_gap": 0.0,
+  "max_integration_gap": 0.0,
+  "actor_constructor_attempts": 0,
+  "actor_query_attempts": 0,
+  "subprocesses": [
+    "['/sbin/ldconfig', '-p']",
+    "['nvidia-smi', '-i', '3', '--query-gpu=index,uuid,name,pci.bus_id', '--format=csv,noheader']",
+    "['uname', '-p']",
+    "['fc-list', '--help']",
+    "['fc-list', '--format=%{file}\\\\n']"
+  ],
+  "worker_spawn_attempts": 0,
+  "model_weight_open_attempts": 0,
+  "fusion_scores_recomputed": false,
+  "joint_models_recomputed": false,
+  "steps": 397,
+  "original_status": "completed",
+  "ended": 1792701811.2272627,
+  "total_wall_s": 34.81472396850586
+}

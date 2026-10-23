@@ -3,7 +3,7 @@ import importlib.util
 from pathlib import Path
 import unittest
 
-SOURCE = Path(__file__).resolve().parents[1]/'src/controller.py'
+SOURCE = Path(__file__).resolve().parents[1]/'src/legacy/microwave_controller.py'
 spec = importlib.util.spec_from_file_location('framework_controller', SOURCE)
 module = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(module)

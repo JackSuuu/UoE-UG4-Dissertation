@@ -109,7 +109,7 @@ def main():
     environment = comparison.environment(cell['lane'])
     state = dict(status='started', pid=os.getpid(), started=time.time(), actors=1,
         plan=str(args.plan.resolve()), plan_sha256=comparison.sha(args.plan), lane=cell['lane'],
-        modes=['off', 'log', 'gate'], use_v5=True, model=plan['fusion'], commands=[])
+        modes=['off', 'log', 'gate'], action_protocol='unchanged_vla', model=plan['fusion'], commands=[])
     save = lambda: comparison.save(out/'supervisor_status.json', state)
 
     def run(command, logfile, timeout):
@@ -132,7 +132,7 @@ def main():
             state.update(mode=mode, phase='episode')
             save()
             rc = run(base + ['--worker', '--plan', str(args.plan.resolve()), '--cell', cell['name'],
-                '--out', str(out/mode), '--use-v5', '--fusion-mode', mode,
+                '--out', str(out/mode), '--fusion-mode', mode,
                 '--mlp-path', plan['fusion']['model']], f'episode_{mode}.log', comparison.LIMITS['outer_seconds'])
             state[f'{mode}_episode_returncode'] = rc
             if rc == 0:

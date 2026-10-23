@@ -1,0 +1,282 @@
+[
+  {
+    "name": "candidate0_root1",
+    "root": 1,
+    "slot": 0,
+    "cell": {
+      "name": "v2_root1",
+      "root": 1,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root1",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": true,
+    "actions": 444,
+    "queries": 444,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate1_root1",
+    "root": 1,
+    "slot": 1,
+    "cell": {
+      "name": "v2_root1",
+      "root": 1,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+      "lane": {
+        "gpu": 2,
+        "egl_device": 1,
+        "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root1",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": true,
+    "actions": 444,
+    "queries": 444,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate0_root0",
+    "root": 0,
+    "slot": 0,
+    "cell": {
+      "name": "v2_root0",
+      "root": 0,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root0",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": false,
+    "actions": 520,
+    "queries": 523,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate1_root0",
+    "root": 0,
+    "slot": 1,
+    "cell": {
+      "name": "v2_root0",
+      "root": 0,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root0",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": false,
+    "actions": 520,
+    "queries": 523,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate2_root0",
+    "root": 0,
+    "slot": 2,
+    "cell": {
+      "name": "v2_root0",
+      "root": 0,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root0",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": false,
+    "actions": 520,
+    "queries": 523,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate3_root0",
+    "root": 0,
+    "slot": 3,
+    "cell": {
+      "name": "v2_root0",
+      "root": 0,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root0",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": false,
+    "actions": 520,
+    "queries": 523,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate0_root4",
+    "root": 4,
+    "slot": 0,
+    "cell": {
+      "name": "v2_root4",
+      "root": 4,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root4",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": false,
+    "actions": 520,
+    "queries": 523,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate1_root4",
+    "root": 4,
+    "slot": 1,
+    "cell": {
+      "name": "v2_root4",
+      "root": 4,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root4",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": false,
+    "actions": 520,
+    "queries": 523,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate2_root4",
+    "root": 4,
+    "slot": 2,
+    "cell": {
+      "name": "v2_root4",
+      "root": 4,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root4",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": false,
+    "actions": 520,
+    "queries": 523,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  },
+  {
+    "name": "candidate3_root4",
+    "root": 4,
+    "slot": 3,
+    "cell": {
+      "name": "v2_root4",
+      "root": 4,
+      "cohort": "v2",
+      "arm": "framework",
+      "variant": "v2",
+      "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+      "lane": {
+        "gpu": 3,
+        "egl_device": 0,
+        "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+      }
+    },
+    "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4",
+    "status": "finished",
+    "actor_returncode": 0,
+    "valid_episode": true,
+    "episode_status": "completed",
+    "success": true,
+    "actions": 506,
+    "queries": 509,
+    "replay_returncode": 0,
+    "audit_returncode": 0
+  }
+]

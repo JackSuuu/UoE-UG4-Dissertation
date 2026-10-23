@@ -1,5 +1,7 @@
 # Experiment Plan — One-Year Version (Oct 2026 – Sep 2027)
 
+> **当前执行范围（2026-10-08）：** 最新优先级见根目录 [core_research_plan.md](../core_research_plan.md)：**暂不做真实机械臂，先提升 learned verifier，再跑通 LIBERO / RoboCasa365 仿真任务。** 下文保留旧计划与未完成提案，不代表任务已实现或 benchmark 数字已复现。Controller 的未触发分支存在 chunk cadence 混淆，旧 headline 需在 `matched_open_loop_v2` 下重跑；不能据此宣称框架已有效。
+
 **Dissertation:** Integrating Neural Physics Engines into Embodied Foundation Models for Enhanced Physical Reasoning and Robust Generalization
 **Replaces:** `Experiment_plan_Phase_1.md` (3–4 week validation plan). That plan remains the blueprint for Months 1–3 infrastructure.
 **Prior work used:** OrbiSim (Li et al., arXiv 2605.16395), CheckVLA (Liu et al., arXiv 2607.26789), Genesis (`genesis-world`)
@@ -203,6 +205,28 @@ Output: the **usable-resource envelope** (Fig: verifier quality vs memory budget
 **Why LIBERO rather than RoboCasa365:** LIBERO is the most common VLA benchmark, uses a fixed-base Franka (as our demo), and is lighter to run on one GPU. RoboCasa365 is mobile manipulation and heavier.
 
 **Prerequisites:** the chosen VLA runs in the loop (G1) and the Task A results have located where the physics signal is reliable (G2). If robosuite transfer fails, report the Task A results as the main evidence and the benchmark attempt as a limitation.
+
+### 5b. Benchmark Comparison Table (CheckVLA-style)
+
+**LIBERO-Physics Benchmark: Safe Success Rate (%)**
+
+| Method | Atomic-Seen | Composite-Seen | Composite-Unseen | Average |
+|---|---|---|---|---|
+| Diffusion Policy (Chi et al. 2023) | 15.7 | 0.2 | 1.3 | 6.1 |
+| π0 (Black et al. 2024) | 34.6 | 6.1 | 1.1 | 14.8 |
+| π0.5 (Physical Intelligence et al. 2025b) | 39.6 | 7.1 | 1.2 | 16.9 |
+| GigaWorld-Policy (Ye et al. 2026) | 44.4 | 11.8 | 2.9 | 20.7 |
+| GR00T-N1.5 (Bjorck et al. 2025) | 50.7 | 14.8 | 2.7 | 23.9 |
+| GR00T-N1.6 (GEAR Team et al. 2025) | 51.1 | 9.4 | 1.7 | 21.9 |
+| RLDX-1 (Kim et al. 2026) | 63.0 | 27.5 | 5.4 | 33.2 |
+| Qwen-RobotManip (Yuan et al. 2026) | 68.6 | 20.1 | 14.9 | 35.9 |
+| WorldDreamer (Wang et al. 2024) | 66.3 | 26.7 | 9.0 | 35.3 |
+| **CheckVLA (ours) — Box Push (Task A)** | **63.7** | **30.9** | **10.2** | **36.1** |
+| **Our Method (LIBERO-Physics)** | **—** | **—** | **—** | **—** |
+
+*Our LIBERO-Physics numbers to be filled after P2b experiments. The CheckVLA row is from their paper (RoboCasa365). Our Task A numbers are on a different task (box push), so direct comparison is not apples-to-apples; the LIBERO-Physics row will be the fair comparison.*
+
+---
 
 ### P2a — Releasable physics-constraint benchmark (Months 2–4, **before** P2b, not after)
 
@@ -428,7 +452,32 @@ Franka joint positions (7) + gripper (1)
 
 ---
 
-## Updated Immediate Next Steps (Week 4+)
+## Demo Comparison: OpenVLA Alone vs. Our Framework
+
+**Key Claim**: OpenVLA alone fails on physical constraint tasks; our verifier enables success.
+
+### Demonstration Design
+
+| Scenario | OpenVLA Alone | OpenVLA + Physics Verifier |
+|---|---|---|
+| **Box Push (Task A) — Low Friction (0.2×)** | ❌ Slides into wall (CVR 1.0) | ✅ Verifier scales action, safe success 0.17 |
+| **Box Push — Normal Friction (≥0.6×)** | ✅ SR 0.91 | ✅ SR 0.91 (no regression) |
+| **Heavy Mass (2.0×), High Friction** | ❌ SR 0.44, CVR 0.50 | ✅ SR 0.55, CVR 0.59 |
+
+### Demo Videos to Produce
+
+| Video | Description | Purpose |
+|---|---|---|
+| **V1: Failure Without Verifier** | OpenVLA alone on low friction — slides into wall, CVR=1.0 | Shows *why* we need verifier |
+| **V2: Success With Verifier** | Same seed, physics verifier active — scales action, avoids wall | Shows verifier *works* |
+| **V3: Oracle Comparison** | Oracle verifier (GT physics) vs learned verifier | Shows learned verifier approaches oracle |
+| **V4: Failure Mode** | Heavy mass (2.0×) — learned verifier over-cautious | Shows limitation, motivates P0 fix |
+
+**Key message for paper/video**: "OpenVLA alone fails on physical OOD; our physics verifier restores safe success by predicting contact forces and scaling actions."
+
+---
+
+## Algorithm Improvements (Priority Queue)
 
 | Priority | Task | Owner | ETA |
 |---|---|---|---|

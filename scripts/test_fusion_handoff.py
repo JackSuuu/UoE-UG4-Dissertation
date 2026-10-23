@@ -9,7 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import torch
 
-from src.controller import NativeFramework
+from src.legacy.microwave_controller import NativeFramework
 from src.training.handoff_dataset import outcome_label, root_split
 from src.training.train_fusion_mlp import select_threshold
 from src.verification.fusion_mlp import (VerificationFusionMLP, extract_physics_features,

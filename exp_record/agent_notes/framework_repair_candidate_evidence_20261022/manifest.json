@@ -1,0 +1,284 @@
+{
+  "schema": "compact_candidate_evidence_v1",
+  "raw_root": "/home/ami/scratch/framework_repair_candidates_20261022_r1",
+  "files": [
+    {
+      "path": "plan/plan.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/plan.json",
+      "bytes": 174295,
+      "sha256": "3b763db8f11d3f1893d94183c19087530eeaeb34b5a31962188beff965d1bd5d"
+    },
+    {
+      "path": "pre_candidate_compatibility28.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/pre_candidate_compatibility28.json",
+      "bytes": 9204,
+      "sha256": "9e42d4ff5fb94c64ec0e7f15faa5866def591d1cd323396b5bf0dd08e716e492"
+    },
+    {
+      "path": "study/protocol.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/protocol.json",
+      "bytes": 7878,
+      "sha256": "1586df029304b15bcbe86c40d05a730d63e51a59d547ebe87be36b53f9638cdf"
+    },
+    {
+      "path": "study/results.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/results.json",
+      "bytes": 7600,
+      "sha256": "4a3d77e9492c4823ca75c206aefec698de9b4825cf6af278a9d3400640b18378"
+    },
+    {
+      "path": "analysis/candidate_validation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/analysis/candidate_validation.json",
+      "bytes": 4523,
+      "sha256": "c1dc2c743e73d9215d05e8ce69c7a80d297c939bf0639a3dc74a2b98c9800840"
+    },
+    {
+      "path": "analysis/recovery_dataset.jsonl",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/analysis/recovery_dataset.jsonl",
+      "bytes": 162131,
+      "sha256": "1710668ad07972d32b728f4997cc7fd10182779940f2a54f273d085cf77a63ea"
+    },
+    {
+      "path": "analysis/report.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/analysis/report.json",
+      "bytes": 5296,
+      "sha256": "02fd14f21cf83d1c0e57bc22280339d08e017873c5f6ce33320cb9f1fec93907"
+    },
+    {
+      "path": "analysis/report.md",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/analysis/report.md",
+      "bytes": 688,
+      "sha256": "c9a8fce4b9cca19bc269cd37bc59f80b7848fefa3acf174dbee7cb39bc15d7de"
+    },
+    {
+      "path": "analysis/verified_recovery_root4_slot3.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/analysis/verified_recovery_root4_slot3.json",
+      "bytes": 66391,
+      "sha256": "60d40874b7977a5ba0e59721a05f20abb09198946f081580e6e1bc2d01b1c065"
+    },
+    {
+      "path": "study/episodes/candidate0_root0/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root0/status.json",
+      "bytes": 19399,
+      "sha256": "2c386e0d3532793637ca01faee43e83d7a287060d231ffcba7ba918a236774fa"
+    },
+    {
+      "path": "study/episodes/candidate0_root0/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root0/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "2e2618f4307a4c749a4344ed92f9413d592f78c3ecc4e840d3138fa59178bd27"
+    },
+    {
+      "path": "study/replays/candidate0_root0/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate0_root0/verification.json",
+      "bytes": 870,
+      "sha256": "1762aa453bef9c392edf63fdbc8e9da1b17819e9078522e96322c246ce9cff80"
+    },
+    {
+      "path": "study/episodes/candidate0_root1/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root1/status.json",
+      "bytes": 17436,
+      "sha256": "22084ada6991ae81550a1512eb0d71fbb97f48da676406c0fb32b4e9368daa2c"
+    },
+    {
+      "path": "study/episodes/candidate0_root1/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root1/joint_recomputation.json",
+      "bytes": 391,
+      "sha256": "da8663c6b12c2c66fa142a7752fe12dcd7ede81f29a64cf37267d54394c33d64"
+    },
+    {
+      "path": "study/replays/candidate0_root1/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate0_root1/verification.json",
+      "bytes": 869,
+      "sha256": "ff2eee50026c20d1b7be641d7f102b29a606c1fa4087a01f86820bc58b242b86"
+    },
+    {
+      "path": "study/episodes/candidate0_root4/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root4/status.json",
+      "bytes": 19436,
+      "sha256": "d4e379337989d8418b2880757ae421819e189c4ee8cf0ab674ca0fc679982b08"
+    },
+    {
+      "path": "study/episodes/candidate0_root4/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root4/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "e527084c21d578f1c856b0cfd31c40bebcbb9745aea0596ec4677b28ced64be1"
+    },
+    {
+      "path": "study/replays/candidate0_root4/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate0_root4/verification.json",
+      "bytes": 868,
+      "sha256": "1d7bb1d2967f20267ba031966447d3a4bd5fe986eb00dde0830653f1ab27a4d7"
+    },
+    {
+      "path": "study/episodes/candidate1_root0/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root0/status.json",
+      "bytes": 19398,
+      "sha256": "dc9d3446211d32564dd5e274e61563a4629f6a645b774abaaf91e3d6fe112086"
+    },
+    {
+      "path": "study/episodes/candidate1_root0/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root0/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "f0890a5bf330822c527f81febc2ade7b2b674e96fd3cb1f6d0c0bb9d87399773"
+    },
+    {
+      "path": "study/replays/candidate1_root0/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate1_root0/verification.json",
+      "bytes": 868,
+      "sha256": "a307fc166d790dc66dd31bdb3c24c991a93a68d627122a6e8b39fbeffc12a55a"
+    },
+    {
+      "path": "study/episodes/candidate1_root1/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root1/status.json",
+      "bytes": 17437,
+      "sha256": "e41072d5548acaa5433252c6680dc6f9dae4ff67e2519483baf139d1daba6e2e"
+    },
+    {
+      "path": "study/episodes/candidate1_root1/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root1/joint_recomputation.json",
+      "bytes": 391,
+      "sha256": "94e3fc88727caed3dab9c94698b3149570917ebcb92313fcc22bfbdf63a7c5f9"
+    },
+    {
+      "path": "study/replays/candidate1_root1/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate1_root1/verification.json",
+      "bytes": 869,
+      "sha256": "066398717b0522bc8391b9511527e23413b78b78fdd9aedd5e3c159c13dc4bd1"
+    },
+    {
+      "path": "study/episodes/candidate1_root4/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root4/status.json",
+      "bytes": 19100,
+      "sha256": "1d6ad43d95ab17a017f81a84f1421e7e336a3c04fbaf082e0260ee980fb247c2"
+    },
+    {
+      "path": "study/episodes/candidate1_root4/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate1_root4/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "6f13526cf6650e8d94ef71e5e904078f0bdbe91fcb0d2ec3651807c1ec14bd3d"
+    },
+    {
+      "path": "study/replays/candidate1_root4/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate1_root4/verification.json",
+      "bytes": 869,
+      "sha256": "f12d52895812c5510a1a0ec4898a33ccf799a57d84647986d5753cfdeb81a5ca"
+    },
+    {
+      "path": "study/episodes/candidate2_root0/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root0/status.json",
+      "bytes": 19398,
+      "sha256": "4141e5afcf29cb518791f32513d3c252021bebac2ea507037b67468d2817b189"
+    },
+    {
+      "path": "study/episodes/candidate2_root0/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root0/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "34691ddf75dc782fca686b46285af4e1b199dbd70d6e7b7c7ddbe563dd7b548b"
+    },
+    {
+      "path": "study/replays/candidate2_root0/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate2_root0/verification.json",
+      "bytes": 866,
+      "sha256": "3797bb3c99159699058113b13ad5b8b0b4243161adba9ac090bc27cbcade31cc"
+    },
+    {
+      "path": "study/episodes/candidate2_root4/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root4/status.json",
+      "bytes": 21207,
+      "sha256": "2ab1ad96b05b3dced65139f4c58d9125581223441829477986a4da0b6f2e75be"
+    },
+    {
+      "path": "study/episodes/candidate2_root4/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root4/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "c2842374ae7e6977e1a82b3c5831c573499f5acfad7389739037aab573578e46"
+    },
+    {
+      "path": "study/replays/candidate2_root4/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate2_root4/verification.json",
+      "bytes": 870,
+      "sha256": "71bee48b8ffe0f384d683bc1b44b1054c1348a1b1f2f3629e3818a79e8cd8714"
+    },
+    {
+      "path": "study/episodes/candidate3_root0/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root0/status.json",
+      "bytes": 19401,
+      "sha256": "300af599e4ffaf292df5907e0e371097ef00a74830cd5d45f14fd44d75b0bdae"
+    },
+    {
+      "path": "study/episodes/candidate3_root0/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root0/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "50de3d7cdb6e1055f96aa412e8427e9bdf872c53b4bb6d1055836e2d5137aed3"
+    },
+    {
+      "path": "study/replays/candidate3_root0/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate3_root0/verification.json",
+      "bytes": 869,
+      "sha256": "9d943637fc8bf738bb496ae3de9d73b81fdd4472052e078f3bd6980367b00a3c"
+    },
+    {
+      "path": "study/episodes/candidate3_root4/status.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/status.json",
+      "bytes": 18251,
+      "sha256": "61de0911837f6303416d9e6ff2f47469320be12f0ce21faf35b0a11ec4e9fe55"
+    },
+    {
+      "path": "study/episodes/candidate3_root4/joint_recomputation.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/joint_recomputation.json",
+      "bytes": 392,
+      "sha256": "20bb007f646c20925c36535540d05e4009aa75627b316dfba4d3c6cfe8ffd37b"
+    },
+    {
+      "path": "study/replays/candidate3_root4/verification.json",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/replays/candidate3_root4/verification.json",
+      "bytes": 868,
+      "sha256": "5e04c7cf91db11c08103c881a3cea4576e7b8da62e0b256be45197f1fe79649d"
+    },
+    {
+      "path": "plan/source/scripts/run_framework_comparison.py",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/source/scripts/run_framework_comparison.py",
+      "bytes": 81751,
+      "sha256": "df49fbf2df51b1ae10d7277cd5282ac0df8764310a578a7391375408797da387"
+    },
+    {
+      "path": "plan/source/scripts/run_repair_candidate_study.py",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/source/scripts/run_repair_candidate_study.py",
+      "bytes": 5861,
+      "sha256": "4e1a68ab96ec639730b7bc43e5683b45c8eef5bae4c2d56f70be6585cd79a1d9"
+    },
+    {
+      "path": "plan/source/scripts/analyze_repair_candidates.py",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/source/scripts/analyze_repair_candidates.py",
+      "bytes": 6652,
+      "sha256": "1b3a1a9675eb6349dc86252ccdcc9da2826485f0640eee259f83666d11d9baef"
+    },
+    {
+      "path": "plan/source/scripts/test_repair_candidates.py",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/source/scripts/test_repair_candidates.py",
+      "bytes": 6614,
+      "sha256": "0231f8351984f83dd83b66bbe63eb081caa3aaf5951efc6304028a8a60200b93"
+    },
+    {
+      "path": "plan/source/src/repair/candidate_pool.py",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/source/src/repair/candidate_pool.py",
+      "bytes": 4123,
+      "sha256": "294d18a0e95ae0cf20607125c768482458efd66531d70013a393890a4a3d253a"
+    },
+    {
+      "path": "plan/source/src/training/recovery_dataset.py",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/source/src/training/recovery_dataset.py",
+      "bytes": 4708,
+      "sha256": "163e5ee33e1b603589b2cf1fddd24b3c38f8f19126d6e7048cbacfc2c2a20238"
+    },
+    {
+      "path": "plan/source/src/controller.py",
+      "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/plan/source/src/controller.py",
+      "bytes": 38710,
+      "sha256": "afeea0374eb5b811f708e6d9bd93c8e6a30066170b1254a0b787dc71a562b003"
+    }
+  ],
+  "source_pins": "plan/plan.json",
+  "scope": "compact evidence; full images, physical tapes and per-query logs retained at raw_root"
+}

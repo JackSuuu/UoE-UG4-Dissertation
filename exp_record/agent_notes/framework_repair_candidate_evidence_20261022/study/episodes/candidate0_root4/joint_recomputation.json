@@ -1,0 +1,10 @@
+{
+  "status": "joint_recomputation_passed",
+  "actor_queries": 0,
+  "observations_recomputed": 521,
+  "handoff_scores_recomputed": 80,
+  "mismatches": [],
+  "numeric_absolute_tolerance": 1e-05,
+  "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate0_root4",
+  "source_plan_sha256": "3b763db8f11d3f1893d94183c19087530eeaeb34b5a31962188beff965d1bd5d"
+}

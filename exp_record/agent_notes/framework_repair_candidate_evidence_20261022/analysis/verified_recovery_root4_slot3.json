@@ -1,0 +1,2258 @@
+{
+  "schema": "executed_verified_recovery_segment_v1",
+  "split_group": "microwave_root4",
+  "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4",
+  "repair": {
+    "repair_id": 1,
+    "entry_step": 148,
+    "trigger": "elevated_grasp_lost",
+    "subgoal": "contain_release",
+    "used": 11,
+    "streak": 8,
+    "recovery_goal": "acquire",
+    "acceptance": [
+      "held_clear",
+      "contained"
+    ],
+    "acceptance_streaks": {
+      "held_clear": 0,
+      "contained": 8
+    },
+    "local_recovery_step": 153,
+    "resumption_by": "not_required_v2_contract",
+    "verified_by": "contained",
+    "completed_during_repair": false,
+    "preserve": [
+      "in_goal"
+    ],
+    "lost_entry_goals": [],
+    "preservation_unknown": false,
+    "verified": true,
+    "exit_step": 158,
+    "exit_reason": "measured_progress_verified",
+    "handoff_step": 159,
+    "recurrence_step": null,
+    "post_handoff_goal_loss_step": null,
+    "completed_after_handoff": true
+  },
+  "demonstration_provenance": "frozen_policy_sample_then_greedy_not_oracle_script",
+  "steps": [
+    {
+      "step": 148,
+      "action": [
+        0.2668329968171961,
+        0.8114758416718126,
+        0.2204569291834737,
+        -0.015321426531847787,
+        -0.00031470433169719647,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "sample",
+      "seed": 20661617,
+      "tokens": [
+        31836,
+        31750,
+        31852,
+        31911,
+        31877,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000148.png",
+      "image_sha256": "fb309c40c4573de73a7c19636af2a332f7c03308bae642093b67b534a1574b27",
+      "before": {
+        "integration": "e07584c7b51f908f78586002b2b9f8bd34d722d19f9b27b6097785e2ad46e8c3",
+        "controller": "0e0397949ee7898f4dfbb9043f789e5fe7287fd9243e5a100ceb17756fc773e8",
+        "images": {
+          "agentview_image": "2a1360ee5ff51f93cc61b5ed68a87710016e7b3def5e2e7a213a5f4867527a44",
+          "robot0_eye_in_hand_image": "5160cabbf5118a31196de9fc2147a61cdc6108d4e397559e2c072b0a4c2b4cfb"
+        }
+      },
+      "after": {
+        "integration": "de5e5f9d5c6b23126c5bec62a50987781e3fd58b9f9d5ccd4ca5fb654887335c",
+        "controller": "419d4ebe9639080b4c42d189f50e241b4a0aa0e98085f21051ca5ec376a467aa",
+        "images": {
+          "agentview_image": "29fb06bbcdc125c5915a69f97c1bf986edfe5662c3edc4dff41619bc522358c0",
+          "robot0_eye_in_hand_image": "f2d2bd42b05e257ae976b152c91b2411f0dcf0bff7bd9cb4e3be2f62b699af46"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": false,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": true
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            -0.0015125132397853533,
+            0.25779079507315333,
+            0.9816733116076651
+          ],
+          "white_yellow_mug_1_quat": [
+            0.07794181069862902,
+            0.0892877784884823,
+            0.7359547608990564,
+            -0.6665758446475726
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.04022689337359053,
+            0.0013503708578098406,
+            0.0716117411334245
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8698537945747375,
+            0.0009111464023590088,
+            -0.49326589703559875,
+            0.0065082465298473835
+          ]
+        },
+        "eef_position": [
+          -0.005587844419608206,
+          0.23507070993905538,
+          1.060511517261392
+        ],
+        "eef_quat": [
+          0.6250439230055632,
+          -0.6774306380759287,
+          -0.24641304215494908,
+          -0.2994802790932939
+        ],
+        "gripper_qpos": [
+          0.009347524721377811,
+          -0.009206519876720404
+        ],
+        "gripper_qvel": [
+          -0.010624961322267985,
+          0.01040232680737167
+        ],
+        "gripper_current_action": [
+          -0.7499999999999998,
+          0.7499999999999998
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.00933015803945729
+            ],
+            "qvel": [
+              -0.008683340960260312
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.009189372317669668
+            ],
+            "qvel": [
+              0.00857377952536809
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              -0.001578756479867147,
+              0.2575433861445262,
+              0.9816484667925519,
+              -0.6660421271644527,
+              0.08224542319773225,
+              0.09112464422151925,
+              0.7357444355350437
+            ],
+            "qvel": [
+              -0.024316388702790723,
+              -0.048478941305858794,
+              -0.004898902014020006,
+              -1.106008311735058,
+              -2.0086543697939496,
+              -0.6332331716458409
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00014431945360862133
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -2.852749281127961e-05
+          }
+        ],
+        "sim_time": 7.9499999999993465
+      }
+    },
+    {
+      "step": 149,
+      "action": [
+        0.21720064387601956,
+        0.7733455891702687,
+        0.00034138186305165963,
+        -0.00046428395252602617,
+        -0.05101823425059221,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31845,
+        31756,
+        31885,
+        31895,
+        31919,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000149.png",
+      "image_sha256": "358494cee89ccb42ef949103afb8cbd38616653b14ca71534a76c1746450e46e",
+      "before": {
+        "integration": "de5e5f9d5c6b23126c5bec62a50987781e3fd58b9f9d5ccd4ca5fb654887335c",
+        "controller": "419d4ebe9639080b4c42d189f50e241b4a0aa0e98085f21051ca5ec376a467aa",
+        "images": {
+          "agentview_image": "29fb06bbcdc125c5915a69f97c1bf986edfe5662c3edc4dff41619bc522358c0",
+          "robot0_eye_in_hand_image": "f2d2bd42b05e257ae976b152c91b2411f0dcf0bff7bd9cb4e3be2f62b699af46"
+        }
+      },
+      "after": {
+        "integration": "9ae8bd7fa0ba04e52ffdf64fc39131a3bb70bce72444f5fae3f0ee8f02868a0a",
+        "controller": "02b7a704d71c1f0ca26a7169ff9f7c7c66f149ec904ba1870052f7f148272178",
+        "images": {
+          "agentview_image": "e898876dce986017815b2a76d6e043cdce02a4c869991de94e4e97ea8ac29f2e",
+          "robot0_eye_in_hand_image": "d46a2c9bd0726303d32f41c2e8129b2410cf960e34cc6b2a28df7b715d7be617"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": false,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": false
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            -0.001694626388062448,
+            0.2638390594417918,
+            0.981588017141318
+          ],
+          "white_yellow_mug_1_quat": [
+            0.08193593942174707,
+            0.08950699992978825,
+            0.7390215985425331,
+            -0.6626628672879485
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.04091105381503746,
+            0.003789269270559975,
+            0.07107724958842754
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8674806952476501,
+            0.00678706169128418,
+            -0.4973476827144623,
+            0.008749311789870262
+          ]
+        },
+        "eef_position": [
+          -0.0035849145388268337,
+          0.24153418967957685,
+          1.060575129754899
+        ],
+        "eef_quat": [
+          0.6250959361725223,
+          -0.676556987846046,
+          -0.24601834654043733,
+          -0.3016631995169301
+        ],
+        "gripper_qpos": [
+          0.01135621455314554,
+          -0.0076295554405521855
+        ],
+        "gripper_qvel": [
+          0.036887641698379395,
+          0.0396058238339487
+        ],
+        "gripper_current_action": [
+          -1.0,
+          1.0
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.011436838745789565
+            ],
+            "qvel": [
+              0.0403120963220125
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.007554008620354025
+            ],
+            "qvel": [
+              0.03777341009908017
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              -0.0016422970339631626,
+              0.26449287535259813,
+              0.9815138580705015,
+              -0.6624981574302933,
+              0.08146798468804359,
+              0.08912887015172251,
+              0.7392666659452556
+            ],
+            "qvel": [
+              0.01946956098244862,
+              0.15866098850879554,
+              -0.019736136647215064,
+              -0.013474751120620312,
+              0.2667335496727656,
+              -0.29109315424346477
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0002525396572944625
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0002415706518317609
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00020361846277177975
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -6.694956050591059e-05
+          },
+          {
+            "geom1": "white_yellow_mug_1_g5",
+            "geom2": "gripper0_finger2_collision",
+            "distance": -3.516063883423516e-05
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.000818950241399473
+          },
+          {
+            "geom1": "white_yellow_mug_1_g10",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0009512157465232356
+          }
+        ],
+        "sim_time": 7.999999999999341
+      }
+    },
+    {
+      "step": 150,
+      "action": [
+        0.2668329968171961,
+        0.7733455891702687,
+        0.00034138186305165963,
+        -0.00046428395252602617,
+        -0.00031470433169719647,
+        0.0369222789418463,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31836,
+        31756,
+        31885,
+        31895,
+        31877,
+        31867,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000150.png",
+      "image_sha256": "910952af10ead3a28714c0661efb297bd3a73125e1edc01ef8e43a15b843b358",
+      "before": {
+        "integration": "9ae8bd7fa0ba04e52ffdf64fc39131a3bb70bce72444f5fae3f0ee8f02868a0a",
+        "controller": "02b7a704d71c1f0ca26a7169ff9f7c7c66f149ec904ba1870052f7f148272178",
+        "images": {
+          "agentview_image": "e898876dce986017815b2a76d6e043cdce02a4c869991de94e4e97ea8ac29f2e",
+          "robot0_eye_in_hand_image": "d46a2c9bd0726303d32f41c2e8129b2410cf960e34cc6b2a28df7b715d7be617"
+        }
+      },
+      "after": {
+        "integration": "9e7dbeffc44a78b89994b7b27c4c9e24044811c6ba94693a4e14ef4c16c7415a",
+        "controller": "cdde958bd90219af07b0150f52b3e2fb0a6075ff409fea3331dce5d595e1fd1c",
+        "images": {
+          "agentview_image": "8b8f64c8bb38d1e79e23d20ad51a9cf4306b0364fe9ae7870d22fd280a9fac90",
+          "robot0_eye_in_hand_image": "085d1a57911c51470d10311cf83694fbc7f8579846a6d1a1ddc9fe6ea1a17367"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": false,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": false
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            -0.002003818555405943,
+            0.2747142354409495,
+            0.9802455044927573
+          ],
+          "white_yellow_mug_1_quat": [
+            0.07070833539555323,
+            0.07315724897876981,
+            0.7406789065442387,
+            -0.6641107630718532
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.03825185894994665,
+            0.006169316789936638,
+            0.07263467483458164
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8765758275985718,
+            0.010447442531585693,
+            -0.48093724250793457,
+            0.014318004250526428
+          ]
+        },
+        "eef_position": [
+          -0.0020311731801625314,
+          0.2491506796175061,
+          1.0584987909628762
+        ],
+        "eef_quat": [
+          0.626078101402199,
+          -0.6752817721425859,
+          -0.2454014182552252,
+          -0.30298330494419956
+        ],
+        "gripper_qpos": [
+          0.01287153838519752,
+          -0.005862649914895259
+        ],
+        "gripper_qvel": [
+          0.029245435940793207,
+          0.032435388181759374
+        ],
+        "gripper_current_action": [
+          -1.0,
+          1.0
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.01291954165458637
+            ],
+            "qvel": [
+              0.024001634694424952
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.005792517997327077
+            ],
+            "qvel": [
+              0.03506595878409051
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              -0.0021518415371795173,
+              0.2756698503104194,
+              0.9801437841693844,
+              -0.6643866431409013,
+              0.06965387597022685,
+              0.07145793330060769,
+              0.7406972996755794
+            ],
+            "qvel": [
+              -0.04796531943286722,
+              0.2485330190095341,
+              -0.022472073460183584,
+              -0.2600419356242857,
+              1.0436414516069603,
+              0.35385302689420317
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0001995059654464832
+          },
+          {
+            "geom1": "white_yellow_mug_1_g5",
+            "geom2": "gripper0_finger2_collision",
+            "distance": -0.00010951256298150476
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0006303395542989537
+          },
+          {
+            "geom1": "white_yellow_mug_1_g10",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0007654922644126146
+          }
+        ],
+        "sim_time": 8.049999999999358
+      }
+    },
+    {
+      "step": 151,
+      "action": [
+        0.21720064387601956,
+        0.7733455891702687,
+        0.00034138186305165963,
+        -0.00046428395252602617,
+        -0.06188327637606972,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31845,
+        31756,
+        31885,
+        31895,
+        31928,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000151.png",
+      "image_sha256": "89fb16b33de630d48450c8b9866a50a866db4b0209719a38f35ec1b59d026f5b",
+      "before": {
+        "integration": "9e7dbeffc44a78b89994b7b27c4c9e24044811c6ba94693a4e14ef4c16c7415a",
+        "controller": "cdde958bd90219af07b0150f52b3e2fb0a6075ff409fea3331dce5d595e1fd1c",
+        "images": {
+          "agentview_image": "8b8f64c8bb38d1e79e23d20ad51a9cf4306b0364fe9ae7870d22fd280a9fac90",
+          "robot0_eye_in_hand_image": "085d1a57911c51470d10311cf83694fbc7f8579846a6d1a1ddc9fe6ea1a17367"
+        }
+      },
+      "after": {
+        "integration": "99efa5dc6be5e28cc369eb06344ae2a6dd006d13524ebe636885ed1525a0b8b8",
+        "controller": "3f6f44f9fe6edd138b4995191c67aa63ca12ced49f8b0c964a1da08d340cb185",
+        "images": {
+          "agentview_image": "6a89e2fb1ab7a0dec2a6e57e2a04241d13bd1476bc699d0f3a1c41ecda9bbb91",
+          "robot0_eye_in_hand_image": "1d6b14ada990f20a0fe0f13d746d06d321d754a8f9a65c27107e970894bf001c"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": false
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            -0.0015078416494353941,
+            0.2854949019572676,
+            0.9791258403670711
+          ],
+          "white_yellow_mug_1_quat": [
+            0.056491255778554045,
+            0.06066097024902066,
+            0.7414760646839252,
+            -0.6658394928283019
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.035382118885017966,
+            0.008077788741326954,
+            0.07393227306110539
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8852981925010681,
+            0.01179349422454834,
+            -0.46458813548088074,
+            0.016302278265357018
+          ]
+        },
+        "eef_position": [
+          -0.00020519523059368827,
+          0.25679891770242136,
+          1.0563137388156423
+        ],
+        "eef_quat": [
+          0.62731444977979,
+          -0.6738311220237403,
+          -0.24421660043904075,
+          -0.30460868694064425
+        ],
+        "gripper_qpos": [
+          0.014310234804618027,
+          -0.004237154727916557
+        ],
+        "gripper_qvel": [
+          0.028922040934162296,
+          0.03603410628730435
+        ],
+        "gripper_current_action": [
+          -1.0,
+          1.0
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.014357629441716925
+            ],
+            "qvel": [
+              0.023697318549449474
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.004166085090711153
+            ],
+            "qvel": [
+              0.03553481860270198
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              -0.0013747434095089993,
+              0.28628596946365725,
+              0.9790471054425043,
+              -0.6663038794705719,
+              0.055087474464522744,
+              0.060231514533098315,
+              0.7411994839559973
+            ],
+            "qvel": [
+              0.012992353018889902,
+              0.2110975989241774,
+              -0.01624516522217435,
+              0.23877360677251902,
+              0.7857566416594353,
+              0.47269687634935015
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0003246550332393179
+          },
+          {
+            "geom1": "white_yellow_mug_1_g5",
+            "geom2": "gripper0_finger2_collision",
+            "distance": -4.451977365650291e-05
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0005882959817027095
+          },
+          {
+            "geom1": "white_yellow_mug_1_g10",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0007440762081500534
+          }
+        ],
+        "sim_time": 8.099999999999374
+      }
+    },
+    {
+      "step": 152,
+      "action": [
+        -0.019931709065156844,
+        0.7415703787523158,
+        -0.012998954338185986,
+        -0.030178569111169562,
+        -0.02083756167982137,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31888,
+        31761,
+        31887,
+        31927,
+        31894,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000152.png",
+      "image_sha256": "3abcd0d6cc4f075d4e83a7d92140274d6dcbe528342c7441b0b14944a0e799ea",
+      "before": {
+        "integration": "99efa5dc6be5e28cc369eb06344ae2a6dd006d13524ebe636885ed1525a0b8b8",
+        "controller": "3f6f44f9fe6edd138b4995191c67aa63ca12ced49f8b0c964a1da08d340cb185",
+        "images": {
+          "agentview_image": "6a89e2fb1ab7a0dec2a6e57e2a04241d13bd1476bc699d0f3a1c41ecda9bbb91",
+          "robot0_eye_in_hand_image": "1d6b14ada990f20a0fe0f13d746d06d321d754a8f9a65c27107e970894bf001c"
+        }
+      },
+      "after": {
+        "integration": "04e56d1af819d6573d40db2477fa323b63cb206a96d1e43b67c1ec62ac1d7f0f",
+        "controller": "b46a01fa09a4d82367ece40d6ab5630db00a0f4a642a7555f41973a5a32350a9",
+        "images": {
+          "agentview_image": "4800edc4680d35a5ccf39e0ceccf783c5835c9b1d95f8d8bf248d282cc68d976",
+          "robot0_eye_in_hand_image": "b06d353aa3f74d4d3db1a871afbcda44ffd00f52ebe425bd8afe011a5763b455"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": true
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            -0.0006674280279709306,
+            0.2944144488862724,
+            0.9774851367602151
+          ],
+          "white_yellow_mug_1_quat": [
+            0.04500775321065504,
+            0.0560030928686909,
+            0.740098896028893,
+            -0.6686490707664856
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.033495973521914246,
+            0.00809113409381132,
+            0.07474686393142577
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8908153772354126,
+            0.00956222414970398,
+            -0.4540290832519531,
+            0.014635657891631126
+          ]
+        },
+        "eef_position": [
+          0.00033382152720847977,
+          0.26388687355621643,
+          1.053915549731466
+        ],
+        "eef_quat": [
+          0.6288055595985592,
+          -0.6725128946629138,
+          -0.24329621905415377,
+          -0.3051834276693338
+        ],
+        "gripper_qpos": [
+          0.014685720564360578,
+          -0.003796859270806603
+        ],
+        "gripper_qvel": [
+          -0.012507598801860918,
+          -0.020809300420634558
+        ],
+        "gripper_current_action": [
+          -1.0,
+          1.0
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.014664217701395919
+            ],
+            "qvel": [
+              -0.010751431482329502
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.0038388716007912585
+            ],
+            "qvel": [
+              -0.02100616499232781
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              -0.0005426843209139668,
+              0.2950179282810006,
+              0.9773483238252625,
+              -0.668781241427974,
+              0.044470015080728405,
+              0.05615348748768857,
+              0.740000577510416
+            ],
+            "qvel": [
+              0.031379356764448744,
+              0.1525668042682179,
+              -0.03296864547628687,
+              0.27190518168340283,
+              0.17369396238632212,
+              0.06595822700489208
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00016727265883787246
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00016799861912529995
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00014540960339649639
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0001441778179418699
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00014426737320689852
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0009473926265562782
+          }
+        ],
+        "sim_time": 8.149999999999391
+      }
+    },
+    {
+      "step": 153,
+      "action": [
+        -0.053019944359274485,
+        0.5890493687461404,
+        -0.26646534216170226,
+        -0.017178569354263,
+        -0.00031470433169719647,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31894,
+        31785,
+        31925,
+        31913,
+        31877,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000153.png",
+      "image_sha256": "56b798e5bb63bb5534e2c911dbac9d55fefa62836e6dc06230d046b34f761dff",
+      "before": {
+        "integration": "04e56d1af819d6573d40db2477fa323b63cb206a96d1e43b67c1ec62ac1d7f0f",
+        "controller": "b46a01fa09a4d82367ece40d6ab5630db00a0f4a642a7555f41973a5a32350a9",
+        "images": {
+          "agentview_image": "4800edc4680d35a5ccf39e0ceccf783c5835c9b1d95f8d8bf248d282cc68d976",
+          "robot0_eye_in_hand_image": "b06d353aa3f74d4d3db1a871afbcda44ffd00f52ebe425bd8afe011a5763b455"
+        }
+      },
+      "after": {
+        "integration": "6445baf61d0c42830317531aa24518f0251f5db97f5af2b39f3f25122d31b530",
+        "controller": "6435cc96fbfdf728fc3ce5225a11b97eaf659b48f14553455a1ad9238ba0df88",
+        "images": {
+          "agentview_image": "dcd7de678a43a27c9a7de9af5324ed6280817d0cce0141162b4bb46b56b3468a",
+          "robot0_eye_in_hand_image": "1f7373c16bc60de48317403d9a2a1039b26cdae9c6d30fe56b8876247a72e0c1"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": true
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            0.0021808096617959172,
+            0.29559583127387856,
+            0.9762816675074385
+          ],
+          "white_yellow_mug_1_quat": [
+            0.0363259315265003,
+            0.06007456201510097,
+            0.736681056884371,
+            -0.6725864213059557
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.032455397636301675,
+            0.00667129115408565,
+            0.0752942426049627
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8939639329910278,
+            -0.0007728040218353271,
+            -0.44799312949180603,
+            0.011402041651308537
+          ]
+        },
+        "eef_position": [
+          0.0012183921442468649,
+          0.2645436604416388,
+          1.0524520207214325
+        ],
+        "eef_quat": [
+          0.6280259005170573,
+          -0.6746748939151095,
+          -0.2391818440292153,
+          -0.3052692275470256
+        ],
+        "gripper_qpos": [
+          0.013747867770465555,
+          -0.0046115736901641766
+        ],
+        "gripper_qvel": [
+          -0.008057844244259746,
+          -0.016094704840155873
+        ],
+        "gripper_current_action": [
+          -1.0,
+          1.0
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.013733695298741558
+            ],
+            "qvel": [
+              -0.007086235861998251
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.004643363691649851
+            ],
+            "qvel": [
+              -0.015895000742837156
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              0.0023668096501329706,
+              0.2956046770274574,
+              0.9762017836538831,
+              -0.6726991500862233,
+              0.035687288453872916,
+              0.06046645773928154,
+              0.7365772725278369
+            ],
+            "qvel": [
+              0.04748326867425108,
+              0.008465410232620863,
+              -0.02150656541555976,
+              0.3732653309551431,
+              0.11840890131041075,
+              -0.03237132408369378
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0003305678270010648
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0001421080788443481
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0001718681204944766
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -9.53396061385326e-05
+          },
+          {
+            "geom1": "white_yellow_mug_1_g8",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0005758807616235151
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.00015803482413916884
+          },
+          {
+            "geom1": "white_yellow_mug_1_g10",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0005594291446998738
+          }
+        ],
+        "sim_time": 8.199999999999408
+      }
+    },
+    {
+      "step": 154,
+      "action": [
+        -0.053019944359274485,
+        0.6525997895820468,
+        -0.18642332495427594,
+        -0.030178569111169562,
+        -0.02325201548548303,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31894,
+        31775,
+        31913,
+        31927,
+        31896,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000154.png",
+      "image_sha256": "ad3e0f2a36ae8fac22c8c0394d4a8c822441fb411a611a623cc92b82021248a1",
+      "before": {
+        "integration": "6445baf61d0c42830317531aa24518f0251f5db97f5af2b39f3f25122d31b530",
+        "controller": "6435cc96fbfdf728fc3ce5225a11b97eaf659b48f14553455a1ad9238ba0df88",
+        "images": {
+          "agentview_image": "dcd7de678a43a27c9a7de9af5324ed6280817d0cce0141162b4bb46b56b3468a",
+          "robot0_eye_in_hand_image": "1f7373c16bc60de48317403d9a2a1039b26cdae9c6d30fe56b8876247a72e0c1"
+        }
+      },
+      "after": {
+        "integration": "46df28f332710e5dc750dbe2a5c4d4198309703cdda4b71eea65629ecfa36945",
+        "controller": "d80aa5f9bbe5622758bc8fe2438947048bfe8dd9ffcf94f84ef658fe72c2c7f6",
+        "images": {
+          "agentview_image": "4eccc413baba7383ff7165a58c3320d2978e6266968e9dc85c84c87a4aa7981c",
+          "robot0_eye_in_hand_image": "97f06f96e525c446217ada6b49979f140cec426a7919d64992961b51dca75d6f"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": true
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            0.0046229967405087774,
+            0.296227608226817,
+            0.9751814970849947
+          ],
+          "white_yellow_mug_1_quat": [
+            0.02733552340523603,
+            0.06532546171048555,
+            0.7372600048364736,
+            -0.6718876680524788
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.03161612571312866,
+            0.005448864616452775,
+            0.07570374118334972
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8964748978614807,
+            -0.0058422088623046875,
+            -0.4430231750011444,
+            0.005400989204645157
+          ]
+        },
+        "eef_position": [
+          0.0018017580541773714,
+          0.26481144862134137,
+          1.0511116735000245
+        ],
+        "eef_quat": [
+          0.6271115234857256,
+          -0.6766178192112995,
+          -0.23495751555545183,
+          -0.30612812631505404
+        ],
+        "gripper_qpos": [
+          0.013691459027182013,
+          -0.004836968686514202
+        ],
+        "gripper_qvel": [
+          -0.00028491208438315136,
+          0.0005665039921304113
+        ],
+        "gripper_current_action": [
+          -1.0,
+          1.0
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.013690733762052834
+            ],
+            "qvel": [
+              -0.00036263256458956346
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.004835763021576434
+            ],
+            "qvel": [
+              0.0006028324688840502
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              0.00479453331064686,
+              0.2962787587561333,
+              0.9750985892482746,
+              -0.6717251526452204,
+              0.026667874872395574,
+              0.06576188064931586,
+              0.7373937339081558
+            ],
+            "qvel": [
+              0.04287408396384856,
+              0.0183920499006143,
+              -0.02211512337025465,
+              0.3875983942887827,
+              0.11566508734755077,
+              -0.19191752465426262
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00018526830646438676
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00017977701050185494
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00010858783157040403
+          },
+          {
+            "geom1": "white_yellow_mug_1_g8",
+            "geom2": "microwave_1_g4",
+            "distance": 0.00020681993457264845
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0005927175276941813
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": -0.0002128173930958893
+          },
+          {
+            "geom1": "white_yellow_mug_1_g10",
+            "geom2": "microwave_1_g4",
+            "distance": 0.00012919594979247202
+          }
+        ],
+        "sim_time": 8.249999999999424
+      }
+    },
+    {
+      "step": 155,
+      "action": [
+        0.0021271144642549533,
+        -0.6184086271360809,
+        0.4339023084032769,
+        0.05246428648630777,
+        -0.00031470433169719647,
+        -0.0006575529481850362,
+        -1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31884,
+        31975,
+        31820,
+        31838,
+        31877,
+        31883,
+        31744
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000155.png",
+      "image_sha256": "93ff0efedc59ee498ad18854fc70d24098c07b64190c6317c871f7a5db77cc49",
+      "before": {
+        "integration": "46df28f332710e5dc750dbe2a5c4d4198309703cdda4b71eea65629ecfa36945",
+        "controller": "d80aa5f9bbe5622758bc8fe2438947048bfe8dd9ffcf94f84ef658fe72c2c7f6",
+        "images": {
+          "agentview_image": "4eccc413baba7383ff7165a58c3320d2978e6266968e9dc85c84c87a4aa7981c",
+          "robot0_eye_in_hand_image": "97f06f96e525c446217ada6b49979f140cec426a7919d64992961b51dca75d6f"
+        }
+      },
+      "after": {
+        "integration": "eb5b78e04c9e1105965525116e0462c94d7459f32804cc315e2fabb1d0b1208d",
+        "controller": "104ec08a0f6175699d8fde1181fd8e2981ff9ac02beddfa829af1df0bc579acf",
+        "images": {
+          "agentview_image": "0e7bce58e26a2732e1b2c81eecbf07aed153672e70191a2f5d635aa4622304d6",
+          "robot0_eye_in_hand_image": "919923732a3d26ac12985dbd961eba4b4d9cf5cc2084062e3493f0ed0c3ba59d"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": true
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            0.003361007453032853,
+            0.2933448850695251,
+            0.9762629111063958
+          ],
+          "white_yellow_mug_1_quat": [
+            0.03608004698266656,
+            0.06883351170084508,
+            0.7315362023040952,
+            -0.677358813772406
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.03276973731183719,
+            0.006493347667259425,
+            0.07519949652774838
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8927541971206665,
+            -0.013129323720932007,
+            -0.4501493275165558,
+            0.013530660420656204
+          ]
+        },
+        "eef_position": [
+          0.001334724651397362,
+          0.2630877431784606,
+          1.052757241978122
+        ],
+        "eef_quat": [
+          0.6265839185115194,
+          -0.6772853243740435,
+          -0.23308936091459598,
+          -0.30715880628547854
+        ],
+        "gripper_qpos": [
+          0.013537825855189088,
+          -0.005590530535758459
+        ],
+        "gripper_qvel": [
+          -0.005106081509796242,
+          -0.025634332686539762
+        ],
+        "gripper_current_action": [
+          -0.7499999999999998,
+          0.7499999999999998
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.0135274273165391
+            ],
+            "qvel": [
+              -0.005199269324993525
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.005642241414599161
+            ],
+            "qvel": [
+              -0.025855439420350727
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              0.0030536429080058342,
+              0.2928258711191646,
+              0.9765177281677175,
+              -0.6781707545367386,
+              0.03806010403331318,
+              0.06904202416668186,
+              0.7306634348802548
+            ],
+            "qvel": [
+              -0.07764200077084563,
+              -0.13145551824222484,
+              0.06465826471695477,
+              -0.5572508566060623,
+              -0.7904728736194301,
+              0.6631369850760789
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00011870092649180093
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.00010833469813488296
+          },
+          {
+            "geom1": "gripper0_finger2_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -7.336188331227246e-06
+          },
+          {
+            "geom1": "white_yellow_mug_1_g8",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0009551544714654181
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0005458262500412222
+          }
+        ],
+        "sim_time": 8.299999999999441
+      }
+    },
+    {
+      "step": 156,
+      "action": [
+        0.0021271144642549533,
+        -0.6184086271360809,
+        0.4339023084032769,
+        0.05246428648630777,
+        -0.00031470433169719647,
+        -0.026493687372581648,
+        -1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31884,
+        31975,
+        31820,
+        31838,
+        31877,
+        31894,
+        31744
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000156.png",
+      "image_sha256": "27f30ac421e5b2668baf9fab821c15c31adca3944e9e1820452742a458d81915",
+      "before": {
+        "integration": "eb5b78e04c9e1105965525116e0462c94d7459f32804cc315e2fabb1d0b1208d",
+        "controller": "104ec08a0f6175699d8fde1181fd8e2981ff9ac02beddfa829af1df0bc579acf",
+        "images": {
+          "agentview_image": "0e7bce58e26a2732e1b2c81eecbf07aed153672e70191a2f5d635aa4622304d6",
+          "robot0_eye_in_hand_image": "919923732a3d26ac12985dbd961eba4b4d9cf5cc2084062e3493f0ed0c3ba59d"
+        }
+      },
+      "after": {
+        "integration": "911793d67a007e398d412c096499073556799a3e1c5aea3b857eac440fec0458",
+        "controller": "8447c071f9a2366da8ec7d45c15b34964c35cac417bf953bdc045eac6a309cdf",
+        "images": {
+          "agentview_image": "7e1745ac5625e0738c533fd0d076493f24326c1286a01550f75cc6772e6632d3",
+          "robot0_eye_in_hand_image": "c3227457e191e2a77480a4c0523c004a1a50f698bcfd04a24a763f9340475023"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": false
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            0.0016844857748861447,
+            0.28533603972398175,
+            0.9806978439890696
+          ],
+          "white_yellow_mug_1_quat": [
+            0.05464320597515542,
+            0.07736128878441671,
+            0.7232972864709779,
+            -0.6840105163095753
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.03564232477840956,
+            0.007397005423859508,
+            0.07368298284958175
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8829594254493713,
+            -0.022614359855651855,
+            -0.46827563643455505,
+            0.02426978386938572
+          ]
+        },
+        "eef_position": [
+          0.0006430674950288953,
+          0.25785419389813824,
+          1.0581441899288242
+        ],
+        "eef_quat": [
+          0.6251491762444334,
+          -0.6778212193177731,
+          -0.23320866304087484,
+          -0.3088051514566437
+        ],
+        "gripper_qpos": [
+          0.012953505216756768,
+          -0.006889574028344022
+        ],
+        "gripper_qvel": [
+          0.0009613105112770558,
+          -0.031526141037468786
+        ],
+        "gripper_current_action": [
+          -0.49999999999999956,
+          0.49999999999999956
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.012963552333667657
+            ],
+            "qvel": [
+              0.0050235584554452276
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.00694956196253648
+            ],
+            "qvel": [
+              -0.02999396709622901
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              0.0014711938139548154,
+              0.28376056381692494,
+              0.980803550175774,
+              -0.6835400560568227,
+              0.06019100053466303,
+              0.08163547252673978,
+              0.7228317126730183
+            ],
+            "qvel": [
+              -0.05817878151600033,
+              -0.41134386203070256,
+              0.01868843748794155,
+              -0.36482735036673475,
+              -3.714711493446907,
+              0.12377404914846198
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "white_yellow_mug_1_g4",
+            "geom2": "gripper0_finger1_collision",
+            "distance": -3.207971300122844e-05
+          },
+          {
+            "geom1": "white_yellow_mug_1_g4",
+            "geom2": "gripper0_finger1_collision",
+            "distance": -1.046328240014876e-05
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -2.4331756250016217e-05
+          },
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -7.653613805476541e-06
+          },
+          {
+            "geom1": "white_yellow_mug_1_g4",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0003497644865504787
+          },
+          {
+            "geom1": "white_yellow_mug_1_g4",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0008577659996532848
+          },
+          {
+            "geom1": "white_yellow_mug_1_g4",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0009891556068410887
+          },
+          {
+            "geom1": "white_yellow_mug_1_g5",
+            "geom2": "microwave_1_g6",
+            "distance": 0.00027609448059073214
+          },
+          {
+            "geom1": "white_yellow_mug_1_g5",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0007842956863425012
+          },
+          {
+            "geom1": "white_yellow_mug_1_g5",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0009126652383539579
+          },
+          {
+            "geom1": "white_yellow_mug_1_g6",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0008687665418019752
+          },
+          {
+            "geom1": "white_yellow_mug_1_g22",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0009965250783113588
+          }
+        ],
+        "sim_time": 8.349999999999458
+      }
+    },
+    {
+      "step": 157,
+      "action": [
+        -0.053019944359274485,
+        0.6525997895820468,
+        -0.033009458640042455,
+        -0.00046428395252602617,
+        -0.022044788582652186,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31894,
+        31775,
+        31890,
+        31895,
+        31895,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000157.png",
+      "image_sha256": "0ae20344f6a38b97d9443c73ad8443eb3364b8ba97d945391f5899629d55d943",
+      "before": {
+        "integration": "911793d67a007e398d412c096499073556799a3e1c5aea3b857eac440fec0458",
+        "controller": "8447c071f9a2366da8ec7d45c15b34964c35cac417bf953bdc045eac6a309cdf",
+        "images": {
+          "agentview_image": "7e1745ac5625e0738c533fd0d076493f24326c1286a01550f75cc6772e6632d3",
+          "robot0_eye_in_hand_image": "c3227457e191e2a77480a4c0523c004a1a50f698bcfd04a24a763f9340475023"
+        }
+      },
+      "after": {
+        "integration": "8fabd807d8e8d1687dc31dba5b6ac4dc07de9fe06c83de4839e65bf2d851966f",
+        "controller": "d780e3fc9337c5f9df432422d49d17604cdaefe4319eab9a25fceb3132f7e548",
+        "images": {
+          "agentview_image": "1fb0230294e6934651a7a0e22eab67bee032f75f744c1e99f0de3732c92e3ceb",
+          "robot0_eye_in_hand_image": "65a42b9bdab3157fe73c7b2c004b87a3a5c362c0275cefb6c148b3e05d4f77bf"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": false
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            -0.0009678842045343826,
+            0.28343726040046496,
+            0.9804660738693924
+          ],
+          "white_yellow_mug_1_quat": [
+            0.07073923655474065,
+            0.07420609296926181,
+            0.7272577876043919,
+            -0.6786645169350286
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.03845991697144113,
+            0.00899506798213616,
+            0.07384565627905881
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8769404888153076,
+            -0.012259036302566528,
+            -0.4792330265045166,
+            0.03406960517168045
+          ]
+        },
+        "eef_position": [
+          -0.00042661560434783564,
+          0.2572749705228502,
+          1.060017977057802
+        ],
+        "eef_quat": [
+          0.6242050181141623,
+          -0.6774539744292617,
+          -0.23451956933752838,
+          -0.3105233960409991
+        ],
+        "gripper_qpos": [
+          0.012673553997963691,
+          -0.007389157016907611
+        ],
+        "gripper_qvel": [
+          -0.010594906521265955,
+          0.004609279136058065
+        ],
+        "gripper_current_action": [
+          -0.7499999999999998,
+          0.7499999999999998
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.01265257864050051
+            ],
+            "qvel": [
+              -0.01048767873159096
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.007376984366920124
+            ],
+            "qvel": [
+              0.006086324993743612
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              -0.00136426237203582,
+              0.2842952247647174,
+              0.980466656584927,
+              -0.6783025628458375,
+              0.06988552262716698,
+              0.06989846800699781,
+              0.7281042858919126
+            ],
+            "qvel": [
+              -0.09868559479408057,
+              0.2182174849965888,
+              -0.00036169899528866174,
+              -1.328555734286477,
+              1.8171439135915015,
+              -0.31673888833425184
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0001274699590037665
+          },
+          {
+            "geom1": "white_yellow_mug_1_g4",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0006728528657518523
+          },
+          {
+            "geom1": "white_yellow_mug_1_g4",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0008385611133201744
+          },
+          {
+            "geom1": "white_yellow_mug_1_g5",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0006636739603357781
+          },
+          {
+            "geom1": "white_yellow_mug_1_g8",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0009248831115841096
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": 0.0005208638431518677
+          },
+          {
+            "geom1": "white_yellow_mug_1_g22",
+            "geom2": "microwave_1_g6",
+            "distance": 0.0008693828537529578
+          }
+        ],
+        "sim_time": 8.399999999999475
+      }
+    },
+    {
+      "step": 158,
+      "action": [
+        -0.053019944359274485,
+        0.5191439058266434,
+        -0.012998954338185986,
+        0.05246428648630777,
+        -0.030495376902468035,
+        -0.0006575529481850362,
+        1.0
+      ],
+      "source": "greedy",
+      "seed": 0,
+      "tokens": [
+        31894,
+        31796,
+        31887,
+        31838,
+        31902,
+        31883,
+        31872
+      ],
+      "image": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root4/model_inputs/000158.png",
+      "image_sha256": "95f2acc5cdcee73248decf1b9beecb44a98a4ef7301e81ebc2c2a0a99a52f2f6",
+      "before": {
+        "integration": "8fabd807d8e8d1687dc31dba5b6ac4dc07de9fe06c83de4839e65bf2d851966f",
+        "controller": "d780e3fc9337c5f9df432422d49d17604cdaefe4319eab9a25fceb3132f7e548",
+        "images": {
+          "agentview_image": "1fb0230294e6934651a7a0e22eab67bee032f75f744c1e99f0de3732c92e3ceb",
+          "robot0_eye_in_hand_image": "65a42b9bdab3157fe73c7b2c004b87a3a5c362c0275cefb6c148b3e05d4f77bf"
+        }
+      },
+      "after": {
+        "integration": "1bcc1b3cf4eecc3d28ad7cb39f120628b4858a7e1eeb48b7e92f04d3bc367778",
+        "controller": "9cb40e64edf89734bc9f7ffc371db08d70eae5f9c424c9f79307c12426d08eef",
+        "images": {
+          "agentview_image": "4d96efb6b38ee20f3b3ad92761c29b9b57fade311693ac12968bd5a6f06a6868",
+          "robot0_eye_in_hand_image": "254763952aa11bf6b6ef24f39770d5b8d78735e34b57092c244560616ece4b93"
+        }
+      },
+      "diagnostics": {
+        "predicates": {
+          "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": true,
+          "[\"close\",\"microwave_1\"]": false
+        },
+        "native_success": false,
+        "grasped": {
+          "white_yellow_mug_1": false
+        },
+        "object_observations": {
+          "white_yellow_mug_1_pos": [
+            -0.0027509003094695937,
+            0.29090311734410956,
+            0.9798702628716445
+          ],
+          "white_yellow_mug_1_quat": [
+            0.0622462260431453,
+            0.05134244471732041,
+            0.7455809735058806,
+            -0.661512186327553
+          ],
+          "white_yellow_mug_1_to_robot0_eef_pos": [
+            0.036366902057510475,
+            0.009876175778421793,
+            0.07515952535968373
+          ],
+          "white_yellow_mug_1_to_robot0_eef_quat": [
+            0.8853234648704529,
+            0.016723722219467163,
+            -0.4633658230304718,
+            0.03485402837395668
+          ]
+        },
+        "eef_position": [
+          -0.0016403802323190862,
+          0.2618228737691609,
+          1.0587508248996598
+        ],
+        "eef_quat": [
+          0.6240810414460951,
+          -0.6760706604574502,
+          -0.23612193754901462,
+          -0.3125663871632427
+        ],
+        "gripper_qpos": [
+          0.012945923555098908,
+          -0.0061225420398463345
+        ],
+        "gripper_qvel": [
+          0.018071809134272962,
+          0.043167101271810275
+        ],
+        "gripper_current_action": [
+          -1.0,
+          1.0
+        ],
+        "joints": {
+          "gripper0_finger_joint1": {
+            "qpos": [
+              0.012981504686404698
+            ],
+            "qvel": [
+              0.017790565652895565
+            ],
+            "limited": true,
+            "range": [
+              0.0,
+              0.04
+            ],
+            "type": 2
+          },
+          "gripper0_finger_joint2": {
+            "qpos": [
+              -0.006033639645756597
+            ],
+            "qvel": [
+              0.04445119704486862
+            ],
+            "limited": true,
+            "range": [
+              -0.04,
+              0.0
+            ],
+            "type": 2
+          },
+          "white_yellow_mug_1_joint0": {
+            "qpos": [
+              -0.002685261987205449,
+              0.291240565172847,
+              0.9797551317474861,
+              -0.659549725926136,
+              0.061560368191121914,
+              0.05168472326519927,
+              0.74735076736425
+            ],
+            "qvel": [
+              0.017989383694058024,
+              0.08242328502728516,
+              -0.029246355990846788,
+              0.2710316178112231,
+              0.13085908114961584,
+              -1.3492662841870446
+            ],
+            "limited": false,
+            "range": [
+              0.0,
+              0.0
+            ],
+            "type": 0
+          },
+          "microwave_1_microjoint": {
+            "qpos": [
+              -1.9603788711045116
+            ],
+            "qvel": [
+              0.0
+            ],
+            "limited": true,
+            "range": [
+              -2.094,
+              0.0
+            ],
+            "type": 3
+          }
+        },
+        "contacts_endpoint": [
+          {
+            "geom1": "gripper0_finger1_pad_collision",
+            "geom2": "white_yellow_mug_1_g3",
+            "distance": -0.0003826202730195276
+          },
+          {
+            "geom1": "white_yellow_mug_1_g8",
+            "geom2": "microwave_1_g4",
+            "distance": -4.9666936335971724e-05
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": -9.80121668219527e-05
+          },
+          {
+            "geom1": "white_yellow_mug_1_g9",
+            "geom2": "microwave_1_g4",
+            "distance": -0.00048394943347373955
+          },
+          {
+            "geom1": "white_yellow_mug_1_g10",
+            "geom2": "microwave_1_g4",
+            "distance": -0.0005447447781610753
+          }
+        ],
+        "sim_time": 8.449999999999491
+      }
+    }
+  ],
+  "continuation": {
+    "root": 4,
+    "slot": 3,
+    "repair_entry": 148,
+    "local_condition": 153,
+    "verified_exit": 158,
+    "actual_handoff": 159,
+    "nominal_continuation_actions": 347,
+    "containment_preserved_through_completion": true,
+    "completion_action_index": 505,
+    "complete_task_actions": 506,
+    "actor_queries": 509,
+    "first_action_changed_coordinates": [
+      3,
+      5
+    ]
+  }
+}

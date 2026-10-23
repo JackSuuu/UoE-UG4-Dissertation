@@ -1,10 +1,9 @@
-"""Native microwave resumption factorial: CPU prepare, thirty episodes, exact replay.
+"""Historical microwave factorial runner. New task-agnostic runs use run_task.py.
 
 The five-layer controller uses privileged measured verification, not a learned
 predictor. Every post-initialization action is one frozen official VLA proposal.
 
-With --use-v5, experimental advisory evidence and bounded normalized translation
-edits are enabled. --fusion-mode log/gate uses a pinned trained fusion artifact
+--fusion-mode log/gate uses a pinned trained fusion artifact
 to record scores or additionally veto verified exits (budget exits stay bounded).
 
 This entry point is foreground/setsid compatible; only --launch starts models.
@@ -43,11 +42,15 @@ def _load_scorer_modules():
     sys.path.insert(0, str(REPO))
     from src.perception.frozen_visual_encoder import FrozenVisualEncoder
     from src.verification.fusion_mlp import extract_physics_features
+    from src.verification.physical_verifier import PhysicalVerifier
+    from src.repair.physics_evidence import extract_physics_evidence
     from src.repair.recovery_scorer import RecoveryScorer
     from src.repair.handoff_scorer import HandoffScorer
     _SCORER_MODULES = dict(
         FrozenVisualEncoder=FrozenVisualEncoder,
         extract_physics_features=extract_physics_features,
+        PhysicalVerifier=PhysicalVerifier,
+        extract_physics_evidence=extract_physics_evidence,
         RecoveryScorer=RecoveryScorer,
         HandoffScorer=HandoffScorer,
     )
@@ -59,7 +62,7 @@ LIMITS = dict(roots=6, cells=36, seed=0, initialization_noops=10, actions=520,
               queries=520, total_queries=18720, batch=1, parallel=2,
               readiness_seconds=180, query_seconds=30, rollout_seconds=1200,
               outer_seconds=1800, replay_seconds=300, phase_seconds=14400, retries=0)
-SOURCES = ('scripts/run_framework_comparison.py', 'src/controller.py', 'src/__init__.py',
+SOURCES = ('scripts/run_framework_comparison.py', 'src/legacy/microwave_controller.py', 'src/legacy/__init__.py', 'src/__init__.py',
            'scripts/run_native_long_branch.py', 'scripts/native_long_candidate_worker.py',
             'scripts/test_native_framework.py', 'scripts/test_action_correction.py',
            'scripts/test_fusion_handoff.py',
@@ -79,41 +82,6 @@ DESCRIPTION = ('Five-layer deterministic framework with privileged measured veri
                 'no learned predictor. Native In & Close only. Frozen official greedy H1 VLA, '
                 'batch one; scoped language during bounded repair; no numeric action edits. '
                 'Full-task prompt-refinement study focused on contain_release direction; no gate changes.')
-
-# Lazy-loaded v5 components (only imported when --use-v5 is set)
-_V5_MODULES = None
-
-
-def _load_v5_modules():
-    global _V5_MODULES
-    if _V5_MODULES is not None:
-        return _V5_MODULES
-    sys.path.insert(0, str(REPO))
-    from src.verification.physical_verifier import PhysicalVerifier, extract_physics_state
-    from src.perception.visual_grounding import make_grounding
-    from src.verification.vision_physical_monitor import make_monitor
-    from src.perception.vision_subgoal_inference import make_subgoal_inference
-    from src.verification.fusion_mlp import VerificationFusionMLP, load_model, extract_physics_features
-    from src.prediction.short_term_predictor import make_short_term_predictor
-    from src.verification.calibrated_risk_head import make_risk_head
-    from src.repair.action_suffix_corrector import make_action_suffix_corrector
-    from src.memory.keyframe_bank import make_keyframe_bank
-    _V5_MODULES = dict(
-        PhysicalVerifier=PhysicalVerifier,
-        extract_physics_state=extract_physics_state,
-        make_grounding=make_grounding,
-        make_monitor=make_monitor,
-        make_subgoal_inference=make_subgoal_inference,
-        VerificationFusionMLP=VerificationFusionMLP,
-        load_model=load_model,
-        extract_physics_features=extract_physics_features,
-        make_short_term_predictor=make_short_term_predictor,
-        make_risk_head=make_risk_head,
-        make_action_suffix_corrector=make_action_suffix_corrector,
-        make_keyframe_bank=make_keyframe_bank,
-    )
-    return _V5_MODULES
-
 
 def require(condition, message):
     if not condition:
@@ -165,7 +133,7 @@ def framework_class():
     if str(REPO) not in sys.path:
         sys.path.append(str(REPO))
     spec = importlib.util.spec_from_file_location('comparison_controller',
-                                                 REPO/'src/controller.py')
+                                                 REPO/'src/legacy/microwave_controller.py')
     module = importlib.util.module_from_spec(spec)
     sys.modules[spec.name] = module
     spec.loader.exec_module(module)
@@ -401,9 +369,9 @@ def episode(args):
         require(args.mlp_path is not None and plan.get('fusion') is not None and
                 str(args.mlp_path.resolve()) == plan['fusion']['model'], 'Fusion model must be pinned in plan')
     if args.joint_components is not None:
-        require(not args.use_v5 and args.fusion_mode == 'gate' and plan.get('joint') is not None and
+        require(args.fusion_mode == 'gate' and plan.get('joint') is not None and
             str(args.joint_components.resolve()) == plan['joint']['artifact'],
-            'Joint mode needs pinned components, gate mode, and no legacy/fallback v5 path')
+            'Joint mode needs pinned components and gate mode')
     require(not args.recovery_options or args.joint_components is not None,
             'Recovery options require pinned joint components')
     require(args.joint_admission == 'all' or (args.joint_components is not None and not args.recovery_options),
@@ -413,12 +381,10 @@ def episode(args):
     candidate_enabled = args.candidate_slot is not None
     require(not candidate_enabled or (plan.get('repair_candidates') is not None and
         args.joint_components is not None and args.joint_admission == 'measured_only' and
-        args.repair_control == 'existing' and not args.recovery_options and not args.use_v5),
+        args.repair_control == 'existing' and not args.recovery_options),
         'Candidate collection requires pinned measured-admission existing repair with no action edits')
     query_cap = plan['repair_candidates']['total_query_cap'] if candidate_enabled or plan.get('training_data') else 520
     cell = next(c for c in plan['cells'] if c['name'] == args.cell)
-    require(not args.use_v5 or cell['arm'] == 'framework',
-            'Numeric-correction prototype cannot be used as bare-VLA baseline')
     runner, baseline_manifest = runtime(cell)
     from adapters.libero_openvla import policy_image
     original = argparse.Namespace(**load(Path(cell['baseline'])/'status.json')['args'])
@@ -433,10 +399,8 @@ def episode(args):
     save(out/'plan.json', plan)
     status = dict(status='started', cell=cell, args=vars(original), started=time.time(),
                   actor_queries=0, steps_executed=0, initialization_actions=0,
-                  description=(DESCRIPTION if not args.use_v5 else
-                      'Development-only bounded normalized-action translation correction; '
-                       'not genuine suffix regeneration; legacy monitor evidence remains advisory.'),
-                  action_protocol='bounded_translation_v1' if args.use_v5 else 'unchanged_vla',
+                  description=DESCRIPTION,
+                  action_protocol='unchanged_vla',
                   fusion_mode=args.fusion_mode,
                   joint_mode=args.joint_components is not None,
                   recovery_options=args.recovery_options,
@@ -494,9 +458,6 @@ def episode(args):
                                          args.repair_control)
             status.update(language=language, goal_clauses=diag.clauses)
 
-            # --- v5 vision+physical verification layer (optional) ---
-            v5_monitor = None
-            v5_subgoal = None
             fusion_verifier = None
             joint_runtime = joint_evidence = suffix = None
             recovery = None
@@ -521,14 +482,6 @@ def episode(args):
                 status['fusion_model'] = dict(path=str(args.mlp_path.resolve()),
                     sha256=fusion_verifier.model_sha256, threshold=fusion_verifier.threshold,
                     encoder=fusion_verifier.encoder.provenance)
-            correction_actions = 0
-            correction_streak = 0
-            if args.use_v5:
-                v5m = _load_v5_modules()
-                v5_monitor = v5m['make_monitor'](offline=True, device='cuda:0', lift_threshold_m=0.02,
-                                               target=active.config['target'])
-                v5_subgoal = v5m['make_subgoal_inference'](offline=True, device='cuda:0')
-                status['use_v5'] = True
             recorder = runner.ContactRecorder(env.sim, keywords=(*diag.relevant, 'gripper'))
             settle = runner.Tape(out/'initialization')
             settle.capture(env, obs, diag.measure(obs))
@@ -550,13 +503,14 @@ def episode(args):
             if joint_runtime is not None:
                 (out/'joint_inputs').mkdir()
             status['phase'] = 'actor'
-            v5_evidence = None
             vision_encoder = recovery_scorer = handoff_scorer = scorer_modules = None
+            physics_verifier = None
             if args.recovery_scorer is not None or args.handoff_scorer is not None:
                 scorer_modules = _load_scorer_modules()
                 vision_encoder = scorer_modules['FrozenVisualEncoder'](
                     args.encoder_checkpoint, args.encoder_source, device='cuda:0',
                     expected_sha=args.encoder_sha)
+                physics_verifier = scorer_modules['PhysicalVerifier']()
                 if args.recovery_scorer is not None:
                     recovery_scorer = scorer_modules['RecoveryScorer'](args.recovery_scorer, device='cuda:0')
                 if args.handoff_scorer is not None:
@@ -564,23 +518,17 @@ def episode(args):
                 status['scorer_modules'] = dict(
                     encoder=vision_encoder.provenance,
                     recovery_scorer=recovery_scorer.metadata if recovery_scorer else None,
-                    handoff_scorer=handoff_scorer.metadata if handoff_scorer else None)
+                    handoff_scorer=handoff_scorer.metadata if handoff_scorer else None,
+                    physics_verifier=dict(
+                        contact_threshold_n=physics_verifier.contact_threshold_n,
+                        grasp_force_threshold_n=physics_verifier.grasp_force_threshold_n,
+                        support_margin_m=physics_verifier.support_margin_m,
+                    ))
             if initial['native_success']:
                 status['termination'] = 'native_success'
             else:
                 for step in range(520):
                     measured = tape.last['diagnostics']
-
-                    # --- v5: vision+physical evidence before controller decision ---
-                    if v5_monitor is not None and v5_evidence is None:
-                        import numpy as np
-                        img_arr = np.ascontiguousarray(obs['agentview_image'])
-                        v5_evidence = v5_monitor.evaluate(
-                            current_image=img_arr,
-                            diagnostics=measured,
-                            proposed_action=None,
-                            step=step,
-                        )
 
                     if joint_runtime is not None and joint_evidence is None:
                         joint_image = policy_image(obs['agentview_image'])
@@ -591,8 +539,6 @@ def episode(args):
                         joint_evidence['recovery_admission'] = recovery.admission(
                             active.preview_fusion_state(measured), step)
                     decision = active.before(step, deepcopy(measured), joint_evidence=joint_evidence)
-                    if v5_evidence is not None:
-                        decision['v5_evidence'] = v5_evidence
                     shadow_decision = shadow.before(step, deepcopy(measured))
                     validate_decision(decision, cell['arm'], language)
                     validate_decision(shadow_decision,
@@ -619,6 +565,7 @@ def episode(args):
                     requests = [query_request]
                     scoring_context = selection = None
                     vision_feat = physics_feat = None
+                    evidence_list = None
                     if probe:
                         from src.repair import candidate_pool
                         requests = candidate_pool.requests(decision, cell['root'], step)
@@ -627,7 +574,7 @@ def episode(args):
                             post_state, metadata['policy_png_sha256'],
                             [r['action'] for r in executed[-6:]])
                         if recovery_scorer is not None:
-                            img_arr = np.ascontiguousarray(obs['agentview_image'])
+                            img_arr = np.ascontiguousarray(image)
                             vision_feat = vision_encoder.encode(img_arr)
                             physics_feat = scorer_modules['extract_physics_features'](post_state)
                         if repair_replanning is not None:
@@ -656,10 +603,18 @@ def episode(args):
                         candidates.append(dict(candidate_id=len(candidates), metadata=query_metadata, decode=decode))
                     if probe:
                         if recovery_scorer is not None:
+                            # Measured evidence is common to all unexecuted candidates.
+                            evidence_list = []
+                            for c in candidates:
+                                ev = scorer_modules['extract_physics_evidence'](
+                                    measured, active.config['target'],
+                                    verifier=physics_verifier)
+                                evidence_list.append(ev)
                             decode, selection = candidate_pool.select(
                                 candidates, scoring_context,
                                 scorer=recovery_scorer,
-                                vision_feat=vision_feat, physics_feat=physics_feat)
+                                vision_feat=vision_feat, physics_feat=physics_feat,
+                                evidence_list=evidence_list)
                         else:
                             decode, selection = candidate_pool.select(
                                 candidates, scoring_context, collection_slot=args.candidate_slot)
@@ -674,53 +629,9 @@ def episode(args):
                         extra['candidate_selection'] = selection
                     if repair_replanning is not None:
                         extra['repair_replanning'] = repair_replanning
-                    # --- v5: action suffix correction before execution (CheckVLA Module 3) ---
                     executed_action = list(decode['action'])
                     action_modified = False
                     correction_reason = None
-                    if v5_monitor is not None and v5_evidence is not None:
-                        ap_consistent = v5_evidence.get('action_physics_consistent')
-                        ap_score = v5_evidence.get('action_physics_score')
-                        short_term_exit = v5_evidence.get('short_term_exit')
-                        short_term_lift = v5_evidence.get('short_term_lift')
-                        # Correct if: action-physics inconsistent, pre-emptive exit,
-                        # or no-lift after grasp (root0 acquire-phase failure)
-                        need_correct = False
-                        if ap_consistent is False:
-                            need_correct = True
-                            correction_reason = 'action_physics_inconsistent'
-                        elif short_term_exit is not None and short_term_exit.get('exit_predicted'):
-                            need_correct = True
-                            correction_reason = 'preemptive_exit'
-                        elif short_term_lift is not None and short_term_lift.get('no_lift_predicted'):
-                            need_correct = True
-                            correction_reason = 'no_lift_after_grasp'
-                        if need_correct and correction_actions < 160 and correction_streak < 32:
-                            phys_state = v5_evidence.get('physics_state', {})
-                            prev_pos = v5_monitor._prev_object_pos  # last stored pos
-                            curr_pos = phys_state.get('object_pos')
-                            receptacle_bounds = phys_state.get('receptacle_bounds')
-                            corrected = v5_monitor.correct_action_with_physics(
-                                executed_action, prev_pos, curr_pos, receptacle_bounds,
-                            )
-                            # Additional lift correction for no-lift case: nudge Z upward
-                            if correction_reason == 'no_lift_after_grasp' and curr_pos is not None:
-                                z_rise = short_term_lift.get('z_rise_m', 0.0)
-                                if z_rise < 0.02:  # below lift threshold
-                                    corrected[2] = float(np.clip(
-                                        corrected[2] + 0.05, -1.0, 1.0  # nudge upward
-                                    ))
-                            if corrected != executed_action:
-                                delta = np.asarray(corrected) - np.asarray(executed_action)
-                                norm = np.linalg.norm(delta[:3])
-                                if norm > 0.10:
-                                    delta[:3] *= 0.10 / norm
-                                corrected = (np.asarray(executed_action) + delta).tolist()
-                                executed_action = corrected
-                                action_modified = True
-                                extra['action_modified'] = True
-                                extra['original_action'] = list(decode['action'])
-                                extra['correction_reason'] = correction_reason
                     if recovery is not None:
                         executed_action, skill_record = recovery.command(decision, measured, decode['action'])
                         if skill_record is not None:
@@ -735,31 +646,17 @@ def episode(args):
                     extra['action_protocol'] = status['action_protocol']
                     extra['correction_delta'] = (np.asarray(executed_action) -
                                                  np.asarray(decode['action'])).tolist()
-                    correction_actions += int(action_modified and recovery is None)
-                    correction_streak = correction_streak + 1 if action_modified else 0
-                    status['numeric_correction_actions'] = correction_actions
+                    status['numeric_correction_actions'] = 0
                     if recovery is not None:
                         status['oracle_skill_actions'] = status.get('oracle_skill_actions', 0)+int(extra.get('recovery_action') is not None)
 
                     validate_action(dict(step=step, action=executed_action,
                         executed_mapped_action=executed_action, **extra), step,
-                         allow_correction=args.use_v5, allow_recovery=args.recovery_options)
+                         allow_correction=False, allow_recovery=args.recovery_options)
                     obs, row = runner.step_once(env, obs, executed_action, diag, recorder,
                                                 tape, stream, step, 'actor', extra)
                     executed.append(row)
                     status['steps_executed'] = len(executed)
-
-                    # --- v5: re-evaluate with executed action for action-physics consistency ---
-                    if v5_monitor is not None:
-                        import numpy as np
-                        img_arr = np.ascontiguousarray(obs['agentview_image'])
-                        v5_evidence_after = v5_monitor.evaluate(
-                            current_image=img_arr,
-                            diagnostics=row['diagnostics'],
-                            proposed_action=list(executed_action),
-                            step=step + 1,
-                        )
-                        v5_evidence = v5_evidence_after  # overwrite with post-execution evidence
 
                     fusion_evidence = None
                     if joint_runtime is not None:
@@ -777,10 +674,18 @@ def episode(args):
                     handoff_evidence = dict(fusion_evidence or {})
                     if handoff_scorer is not None and decision['owner'] == 'repair':
                         post_state = active.preview_fusion_state(row['diagnostics'])
-                        img_arr = np.ascontiguousarray(obs['agentview_image'])
+                        img_arr = np.ascontiguousarray(policy_image(obs['agentview_image']))
                         vf = vision_encoder.encode(img_arr)
                         pf = scorer_modules['extract_physics_features'](post_state)
-                        handoff_result = handoff_scorer.score(vf, pf)
+                        # Physics evidence for handoff (after execution).
+                        curr_pos = post_state.get('position')
+                        prev_pos = active.preview_fusion_state(measured).get('position')
+                        ev = scorer_modules['extract_physics_evidence'](
+                            row['diagnostics'], active.config['target'],
+                            executed_action=list(row['action']),
+                            prev_pos=prev_pos, curr_pos=curr_pos,
+                            verifier=physics_verifier)
+                        handoff_result = handoff_scorer.score(vf, pf, ev)
                         handoff_evidence['handoff_scorer'] = handoff_result
                     recovery_feedback = None if recovery is None else recovery.observe(
                         row['diagnostics'], active.preview_fusion_state(row['diagnostics']))
@@ -793,18 +698,6 @@ def episode(args):
                         verification['joint_after'] = deepcopy(joint_evidence)
                     shadow_verification = shadow.after(step, deepcopy(row['diagnostics']),
                         list(row['action']), deepcopy(shadow_decision))
-                    if v5_evidence is not None:
-                        verification['v5'] = {
-                            'trigger': v5_evidence.get('trigger'),
-                            'vision_in_goal': v5_evidence.get('vision_evidence', {}).get('in_goal_vision'),
-                            'vision_score': v5_evidence.get('vision_evidence', {}).get('score'),
-                            'physical_in_goal': v5_evidence.get('physical_evidence', {}).get('in_goal'),
-                            'physical_score': v5_evidence.get('physical_evidence', {}).get('score'),
-                            'action_physics_consistent': v5_evidence.get('action_physics_consistent'),
-                            'action_physics_score': v5_evidence.get('action_physics_score'),
-                            'short_term_exit': v5_evidence.get('short_term_exit'),
-                            'short_term_lift': v5_evidence.get('short_term_lift'),
-                        }
                     handoff = bool(last_decision and is_repair(last_decision) and not is_repair(decision))
                     control = dict(event='after', step=step, decision=decision,
                         verification=verification, shadow_verification=shadow_verification,
@@ -1355,8 +1248,6 @@ def parse_args(argv=None):
     parser.add_argument('--plan', type=Path)
     parser.add_argument('--out', type=Path, help='New output directory')
     parser.add_argument('--cell', help=argparse.SUPPRESS)
-    parser.add_argument('--use-v5', action='store_true',
-                        help='Enable experimental visual/physical evidence and bounded numeric corrections')
     parser.add_argument('--recovery-options', action='store_true',
                         help='Oracle-state closed-loop recovery skills; NOT unchanged VLA actions')
     parser.add_argument('--mlp-path', type=Path, metavar='PT',

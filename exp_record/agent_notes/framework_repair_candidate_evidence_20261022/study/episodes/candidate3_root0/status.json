@@ -1,0 +1,662 @@
+{
+  "status": "completed",
+  "cell": {
+    "name": "v2_root0",
+    "root": 0,
+    "cohort": "v2",
+    "arm": "framework",
+    "variant": "v2",
+    "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+    "lane": {
+      "gpu": 3,
+      "egl_device": 0,
+      "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+    }
+  },
+  "args": {
+    "out": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate3_root0",
+    "root": "/home/ami/scratch/LIBERO",
+    "task": "KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it",
+    "init_index": 0,
+    "seed": 0,
+    "gpu": 3,
+    "egl_device": 0,
+    "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+    "pinned_python": "/home/ami/scratch/openvla_tf440_audit_20261019/venv/bin/python",
+    "steps": 520,
+    "smoke": false,
+    "replay": null,
+    "readiness_seconds": 180,
+    "query_seconds": 30
+  },
+  "started": 1792705129.2335534,
+  "actor_queries": 523,
+  "steps_executed": 520,
+  "initialization_actions": 10,
+  "description": "Joint real-vision/physical/prediction/trained-risk/episodic-memory controller; frozen-policy H1 repair and fusion/risk/prediction handoff veto; no numeric offsets.",
+  "action_protocol": "selected_unchanged_vla_candidate_v1",
+  "fusion_mode": "gate",
+  "joint_mode": true,
+  "recovery_options": false,
+  "joint_admission": "measured_only",
+  "repair_control": "existing",
+  "repair_protocol": "frozen_policy_h1_remaining_execution_v1",
+  "plan_sha256": "3b763db8f11d3f1893d94183c19087530eeaeb34b5a31962188beff965d1bd5d",
+  "pid": 173928,
+  "candidate_protocol": {
+    "schema": "repair_candidate_probe_v1",
+    "size": 4,
+    "max_pools": 1,
+    "schedule": "first_executed_repair_action",
+    "base_seed": 20261022,
+    "action_cap": 520,
+    "nominal_query_cap": 520,
+    "additional_query_cap": 3,
+    "total_query_cap": 523,
+    "modification": "select_unchanged_model_proposal",
+    "collection": "fixed_slot_not_learned_ranking",
+    "continuation": "existing_controller"
+  },
+  "candidate_slot": 3,
+  "candidate_pools": 1,
+  "candidate_extra_queries": 3,
+  "actor_query_cap": 523,
+  "query_accounting": "controller counts executed H1 requests; actor_queries includes every candidate",
+  "phase": "actor",
+  "actor_build": {
+    "ready": true,
+    "snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b-finetuned-libero-10/snapshots/80970322773f81baa2e22fe495d0487b93a05cfa",
+    "code_snapshot": "/home/ami/.cache/huggingface/hub/models--openvla--openvla-7b/snapshots/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+    "unnorm_key": "libero_10",
+    "transformers": "4.40.1",
+    "torch": "2.6.0+cu124",
+    "batch": 1,
+    "frozen": true,
+    "H": 1,
+    "official_predict_action": true,
+    "device_identity": {
+      "physical_gpu": 3,
+      "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b",
+      "cuda_ordinal": 0,
+      "cuda_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b",
+      "egl_device": 0,
+      "pci_bus_id": "00000000:C1:00.0"
+    },
+    "worker_pid": 173935,
+    "generation_kwargs": {
+      "greedy": {
+        "do_sample": false,
+        "top_k": 50,
+        "num_beams": 1,
+        "num_return_sequences": 1
+      },
+      "sample": {
+        "do_sample": true,
+        "top_k": 50,
+        "num_beams": 1,
+        "num_return_sequences": 1,
+        "temperature": 0.7,
+        "top_p": 0.95
+      }
+    },
+    "greedy": "official_predict_action_explicit_single_beam_single_return",
+    "generation_config": {
+      "max_length": 20,
+      "max_new_tokens": null,
+      "min_length": 0,
+      "min_new_tokens": null,
+      "early_stopping": false,
+      "max_time": null,
+      "do_sample": false,
+      "num_beams": 1,
+      "num_beam_groups": 1,
+      "penalty_alpha": null,
+      "use_cache": true,
+      "temperature": 1.0,
+      "top_k": 50,
+      "top_p": 1.0,
+      "typical_p": 1.0,
+      "epsilon_cutoff": 0.0,
+      "eta_cutoff": 0.0,
+      "diversity_penalty": 0.0,
+      "repetition_penalty": 1.0,
+      "encoder_repetition_penalty": 1.0,
+      "length_penalty": 1.0,
+      "no_repeat_ngram_size": 0,
+      "bad_words_ids": null,
+      "force_words_ids": null,
+      "renormalize_logits": false,
+      "constraints": null,
+      "forced_bos_token_id": null,
+      "forced_eos_token_id": null,
+      "remove_invalid_values": false,
+      "exponential_decay_length_penalty": null,
+      "suppress_tokens": null,
+      "begin_suppress_tokens": null,
+      "forced_decoder_ids": null,
+      "sequence_bias": null,
+      "guidance_scale": null,
+      "low_memory": null,
+      "num_return_sequences": 1,
+      "output_attentions": false,
+      "output_hidden_states": false,
+      "output_scores": false,
+      "output_logits": null,
+      "return_dict_in_generate": false,
+      "pad_token_id": 32000,
+      "bos_token_id": 1,
+      "eos_token_id": 2,
+      "encoder_no_repeat_ngram_size": 0,
+      "decoder_start_token_id": null,
+      "num_assistant_tokens": 5,
+      "num_assistant_tokens_schedule": "heuristic",
+      "cache_implementation": null,
+      "prompt_lookup_num_tokens": null,
+      "max_matching_ngram_size": null,
+      "generation_kwargs": {},
+      "_from_model_config": true,
+      "transformers_version": "4.40.1"
+    }
+  },
+  "model_load_s": 6.696443141205236,
+  "language": "put the yellow and white mug in the microwave and close it",
+  "goal_clauses": [
+    [
+      "in",
+      "white_yellow_mug_1",
+      "microwave_1_heating_region"
+    ],
+    [
+      "close",
+      "microwave_1"
+    ]
+  ],
+  "joint_components": {
+    "artifact": "/home/ami/UoE-UG4-Dissertation/src/checkpoints/joint_components_v1_20261022/joint_components.pt",
+    "sha256": "cc2535a07f27871e34695acaa9f3607b384a7925f11e1c0bf0f1a3e2dbd6b5bf",
+    "report": {
+      "encoder": {
+        "name": "dinov2_vits14",
+        "checkpoint": "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth",
+        "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+        "source": "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main",
+        "source_sha256": "00e7d5d0bc030a7e1fee248650f3ff861e8a6b6ba2ef6ceac18740129a8d0fe5",
+        "transform": "policy_rgb_pil_bicubic_224_imagenet_l2_v1",
+        "feature_dim": 384,
+        "pretrained": true
+      },
+      "risk_schema": "masked_state24_history8_stage4_observed_nominal24_v1",
+      "threshold": 0.2741200923919678,
+      "calibration": "validation_negative_sample_95percent_quantile_not_conformal_coverage",
+      "train_labels": {
+        "0": 92,
+        "1": 17
+      },
+      "validation_labels": {
+        "0": 145,
+        "1": 146
+      },
+      "validation": {
+        "n": 291,
+        "positives": 146,
+        "negatives": 145,
+        "tp": 0,
+        "fp": 6,
+        "tn": 139,
+        "fn": 146,
+        "false_accept_rate": 0.041379310344827586,
+        "false_reject_rate": 1.0,
+        "unsafe_among_accepted": 1.0,
+        "accuracy": 0.47766323024054985
+      },
+      "bank_entries": 144,
+      "bank_stages": {
+        "acquire": 77,
+        "transfer": 14,
+        "contain_release": 11,
+        "close": 42
+      },
+      "roots": {
+        "train": [
+          1,
+          2,
+          5
+        ],
+        "validation": [
+          3,
+          4
+        ],
+        "excluded_evaluation": [
+          0
+        ]
+      },
+      "definition": "24 nominal actions: preserved predicate/lift loss or sustained acquisition stagnation",
+      "risk_artifact_sha256": "cc2535a07f27871e34695acaa9f3607b384a7925f11e1c0bf0f1a3e2dbd6b5bf"
+    },
+    "schema": "joint_visual_physical_prediction_memory_risk_h1_v1"
+  },
+  "fusion_model": {
+    "path": "/home/ami/UoE-UG4-Dissertation/src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt",
+    "sha256": "68efc4bf103c6baac634401a36091e758fb94d5762a8610f20719a9baa61c08b",
+    "threshold": 0.993425726890564,
+    "encoder": {
+      "name": "dinov2_vits14",
+      "checkpoint": "/home/ami/.cache/torch/hub/checkpoints/dinov2_vits14_pretrain.pth",
+      "sha256": "b938bf1bc15cd2ec0feacfe3a1bb553fe8ea9ca46a7e1d8d00217f29aef60cd9",
+      "source": "/home/ami/.cache/torch/hub/facebookresearch_dinov2_main",
+      "source_sha256": "00e7d5d0bc030a7e1fee248650f3ff861e8a6b6ba2ef6ceac18740129a8d0fe5",
+      "transform": "policy_rgb_pil_bicubic_224_imagenet_l2_v1",
+      "feature_dim": 384,
+      "pretrained": true
+    }
+  },
+  "numeric_correction_actions": 0,
+  "joint_counters": {
+    "observations": 521,
+    "visual_stage_evaluations": 521,
+    "memory_retrievals": 968,
+    "risk_evaluations": 521,
+    "prediction_evaluations": 521,
+    "online_memory_writes": 0,
+    "risk_trigger_observations": 0,
+    "prediction_trigger_observations": 417,
+    "handoff_scores": 96
+  },
+  "termination": "action_budget",
+  "episode_wall_s": 191.37359973182902,
+  "goals": {
+    "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": {
+      "initial": false,
+      "final": false,
+      "ever": false,
+      "first_true_frame": null,
+      "attainment_steps": [],
+      "loss_steps": []
+    },
+    "[\"close\",\"microwave_1\"]": {
+      "initial": false,
+      "final": false,
+      "ever": false,
+      "first_true_frame": null,
+      "attainment_steps": [],
+      "loss_steps": []
+    }
+  },
+  "any_grasp": {
+    "white_yellow_mug_1": true
+  },
+  "any_native_success": false,
+  "final": {
+    "predicates": {
+      "[\"in\",\"white_yellow_mug_1\",\"microwave_1_heating_region\"]": false,
+      "[\"close\",\"microwave_1\"]": false
+    },
+    "native_success": false,
+    "grasped": {
+      "white_yellow_mug_1": true
+    },
+    "object_observations": {
+      "white_yellow_mug_1_pos": [
+        0.05805380250697771,
+        0.013872208733676016,
+        0.9083553970075459
+      ],
+      "white_yellow_mug_1_quat": [
+        -0.04571467835396749,
+        -0.18955465729880797,
+        0.7926485221472358,
+        -0.5776569227639606
+      ],
+      "white_yellow_mug_1_to_robot0_eef_pos": [
+        -0.04799619799774135,
+        0.03274381831356796,
+        0.06728882620080567
+      ],
+      "white_yellow_mug_1_to_robot0_eef_quat": [
+        0.9742335677146912,
+        0.029153525829315186,
+        -0.02081102691590786,
+        0.2226790487766266
+      ]
+    },
+    "eef_position": [
+      0.05568921260026134,
+      -0.05785031292878218,
+      0.9608327117849247
+    ],
+    "eef_quat": [
+      0.5717567176301018,
+      -0.7966425385984852,
+      -0.01885320459102334,
+      -0.1951908763668534
+    ],
+    "gripper_qpos": [
+      0.010345446403129007,
+      -0.009761493720050897
+    ],
+    "gripper_qvel": [
+      -0.002018349519913271,
+      0.0009056713328808485
+    ],
+    "gripper_current_action": [
+      -1.0,
+      1.0
+    ],
+    "joints": {
+      "gripper0_finger_joint1": {
+        "qpos": [
+          0.010341428980285802
+        ],
+        "qvel": [
+          -0.0020087114216027955
+        ],
+        "limited": true,
+        "range": [
+          0.0,
+          0.04
+        ],
+        "type": 2
+      },
+      "gripper0_finger_joint2": {
+        "qpos": [
+          -0.009759670782508554
+        ],
+        "qvel": [
+          0.0009114687711717599
+        ],
+        "limited": true,
+        "range": [
+          -0.04,
+          0.0
+        ],
+        "type": 2
+      },
+      "white_yellow_mug_1_joint0": {
+        "qpos": [
+          0.05805678802628244,
+          0.013893054717111648,
+          0.9083413979570856,
+          -0.5775942516518183,
+          -0.04567315724134002,
+          -0.1895413950548746,
+          0.7926997557253542
+        ],
+        "qvel": [
+          0.0006495446967427769,
+          0.005241193834803295,
+          -0.0035071976240062266,
+          -0.0007530099962103176,
+          -0.015979281701412242,
+          -0.042098508364400045
+        ],
+        "limited": false,
+        "range": [
+          0.0,
+          0.0
+        ],
+        "type": 0
+      },
+      "microwave_1_microjoint": {
+        "qpos": [
+          -1.5791466274702097
+        ],
+        "qvel": [
+          0.0
+        ],
+        "limited": true,
+        "range": [
+          -2.094,
+          0.0
+        ],
+        "type": 3
+      }
+    },
+    "contacts_endpoint": [
+      {
+        "geom1": "gripper0_finger1_pad_collision",
+        "geom2": "white_yellow_mug_1_g3",
+        "distance": -0.00011989986128966362
+      },
+      {
+        "geom1": "gripper0_finger1_pad_collision",
+        "geom2": "white_yellow_mug_1_g3",
+        "distance": -0.0001244424035303267
+      },
+      {
+        "geom1": "gripper0_finger2_pad_collision",
+        "geom2": "white_yellow_mug_1_g3",
+        "distance": -0.00011910586728155632
+      },
+      {
+        "geom1": "gripper0_finger2_pad_collision",
+        "geom2": "white_yellow_mug_1_g3",
+        "distance": -0.0001236484095222194
+      }
+    ],
+    "sim_time": 26.49999999999619
+  },
+  "controller_summary": {
+    "version": "joint_v6_measured_admission_h1",
+    "arm": "framework",
+    "config": {
+      "version": "joint_v6_measured_admission_h1",
+      "variant": "v2",
+      "prompt_factor": false,
+      "resumption_factor": false,
+      "resumption_motion_m": 0.003,
+      "resumption_endpoints": 3,
+      "target": "white_yellow_mug_1",
+      "receptacle": "microwave_1",
+      "region": "microwave_1_heating_region",
+      "action_cap": 520,
+      "query_cap": 520,
+      "local_cap": 32,
+      "repair_cap": 160,
+      "rechecks": 3,
+      "cooldown": 8,
+      "lift_m": 0.02,
+      "motion_m": 0.003,
+      "contact_window": 12,
+      "acquisition_window": 180,
+      "release_radius_m": 0.05,
+      "release_flight_steps": 3,
+      "retry_motion_m": 0.02,
+      "recovery_contracts": {
+        "acquire": [
+          "held_clear",
+          "contained"
+        ],
+        "transfer": [
+          "contained"
+        ],
+        "contain_release": [
+          "contained_detached"
+        ],
+        "close": [
+          "native_complete"
+        ]
+      },
+      "verification": "privileged_current_past_endpoint_measurements",
+      "subgoal_source": "pretrained_visual_episodic_memory_physical_constraints",
+      "learned_predictor": false,
+      "future_simulation": false,
+      "prompts": {
+        "acquire": "pick up the yellow and white mug",
+        "transfer": "put the yellow and white mug in the microwave",
+        "contain_release": "release the yellow and white mug in the microwave",
+        "close": "close the microwave"
+      },
+      "fusion_mode": "gate",
+      "joint_mode": true,
+      "learned_risk": true,
+      "repair_generation": "frozen_policy_h1_remaining_execution_v1",
+      "joint_admission": "measured_only"
+    },
+    "queries": 520,
+    "actions": 520,
+    "repair_actions": 96,
+    "native_complete": false,
+    "milestones": {
+      "first_grasp": 73
+    },
+    "repairs": [
+      {
+        "repair_id": 1,
+        "entry_step": 254,
+        "trigger": "persistent_low_grasp",
+        "subgoal": "acquire",
+        "used": 32,
+        "streak": 0,
+        "recovery_goal": "acquire",
+        "acceptance": [
+          "held_clear",
+          "contained"
+        ],
+        "acceptance_streaks": {
+          "held_clear": 0,
+          "contained": 0
+        },
+        "local_recovery_step": null,
+        "resumption_by": null,
+        "verified_by": null,
+        "completed_during_repair": false,
+        "preserve": [],
+        "lost_entry_goals": [],
+        "preservation_unknown": false,
+        "verified": false,
+        "exit_step": 285,
+        "exit_reason": "local_budget_exit_unverified",
+        "handoff_step": 286,
+        "recurrence_step": 286,
+        "post_handoff_goal_loss_step": null,
+        "completed_after_handoff": false
+      },
+      {
+        "repair_id": 2,
+        "entry_step": 411,
+        "trigger": "persistent_low_grasp",
+        "subgoal": "acquire",
+        "used": 32,
+        "streak": 0,
+        "recovery_goal": "acquire",
+        "acceptance": [
+          "held_clear",
+          "contained"
+        ],
+        "acceptance_streaks": {
+          "held_clear": 0,
+          "contained": 0
+        },
+        "local_recovery_step": null,
+        "resumption_by": null,
+        "verified_by": null,
+        "completed_during_repair": false,
+        "preserve": [],
+        "lost_entry_goals": [],
+        "preservation_unknown": false,
+        "verified": false,
+        "exit_step": 442,
+        "exit_reason": "local_budget_exit_unverified",
+        "handoff_step": 443,
+        "recurrence_step": 443,
+        "post_handoff_goal_loss_step": null,
+        "completed_after_handoff": false
+      },
+      {
+        "repair_id": 3,
+        "entry_step": 473,
+        "trigger": "persistent_low_grasp",
+        "subgoal": "acquire",
+        "used": 32,
+        "streak": 0,
+        "recovery_goal": "acquire",
+        "acceptance": [
+          "held_clear",
+          "contained"
+        ],
+        "acceptance_streaks": {
+          "held_clear": 0,
+          "contained": 0
+        },
+        "local_recovery_step": null,
+        "resumption_by": null,
+        "verified_by": null,
+        "completed_during_repair": false,
+        "preserve": [],
+        "lost_entry_goals": [],
+        "preservation_unknown": false,
+        "verified": false,
+        "exit_step": 504,
+        "exit_reason": "local_budget_exit_unverified",
+        "handoff_step": 505,
+        "recurrence_step": 505,
+        "post_handoff_goal_loss_step": null,
+        "completed_after_handoff": false
+      }
+    ]
+  },
+  "shadow_summary": {
+    "version": "native_microwave_measured_framework_v4_prompt_refine",
+    "arm": "baseline",
+    "config": {
+      "version": "native_microwave_measured_framework_v4_prompt_refine",
+      "variant": "v2",
+      "prompt_factor": false,
+      "resumption_factor": false,
+      "resumption_motion_m": 0.003,
+      "resumption_endpoints": 3,
+      "target": "white_yellow_mug_1",
+      "receptacle": "microwave_1",
+      "region": "microwave_1_heating_region",
+      "action_cap": 520,
+      "query_cap": 520,
+      "local_cap": 32,
+      "repair_cap": 160,
+      "rechecks": 3,
+      "cooldown": 8,
+      "lift_m": 0.02,
+      "motion_m": 0.003,
+      "contact_window": 12,
+      "acquisition_window": 180,
+      "release_radius_m": 0.05,
+      "release_flight_steps": 3,
+      "retry_motion_m": 0.02,
+      "recovery_contracts": {
+        "acquire": [
+          "held_clear",
+          "contained"
+        ],
+        "transfer": [
+          "contained"
+        ],
+        "contain_release": [
+          "contained_detached"
+        ],
+        "close": [
+          "native_complete"
+        ]
+      },
+      "verification": "privileged_current_past_endpoint_measurements",
+      "subgoal_source": "declared_task_semantics_not_model_generated",
+      "learned_predictor": false,
+      "future_simulation": false,
+      "prompts": {
+        "acquire": "pick up the yellow and white mug",
+        "transfer": "put the yellow and white mug in the microwave",
+        "contain_release": "release the yellow and white mug in the microwave",
+        "close": "close the microwave"
+      }
+    },
+    "queries": 520,
+    "actions": 520,
+    "repair_actions": 0,
+    "native_complete": false,
+    "milestones": {
+      "first_grasp": 73
+    },
+    "repairs": []
+  },
+  "ended": 1792705334.6483119,
+  "total_wall_s": 205.41475868225098,
+  "valid_episode": true
+}

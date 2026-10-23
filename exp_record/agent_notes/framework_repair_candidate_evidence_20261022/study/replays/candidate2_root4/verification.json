@@ -1,0 +1,27 @@
+{
+  "status": "exact_replay_passed",
+  "source": "/home/ami/scratch/framework_repair_candidates_20261022_r1/study/episodes/candidate2_root4",
+  "started": 1792706117.5196106,
+  "actor_queries": 0,
+  "mismatches": [],
+  "frames_checked": 532,
+  "max_state_gap": 0.0,
+  "max_integration_gap": 0.0,
+  "actor_constructor_attempts": 0,
+  "actor_query_attempts": 0,
+  "subprocesses": [
+    "['/sbin/ldconfig', '-p']",
+    "['nvidia-smi', '-i', '3', '--query-gpu=index,uuid,name,pci.bus_id', '--format=csv,noheader']",
+    "['uname', '-p']",
+    "['fc-list', '--help']",
+    "['fc-list', '--format=%{file}\\\\n']"
+  ],
+  "worker_spawn_attempts": 0,
+  "model_weight_open_attempts": 0,
+  "fusion_scores_recomputed": false,
+  "joint_models_recomputed": false,
+  "steps": 520,
+  "original_status": "completed",
+  "ended": 1792706160.4026918,
+  "total_wall_s": 42.883081912994385
+}

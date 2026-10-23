@@ -1,15 +1,24 @@
 # Source layout
 
-Components are grouped by responsibility, not collected in `adapters/`.
-The objective is a cross-task verifier–repair framework around frozen OpenVLA;
-the measured controller is currently microwave-specific and the visual–physical
-extensions remain experimental. See [implementation status](COMPONENT_STATUS.md).
+The active path is generated-task understanding → task-independent controller →
+frozen OpenVLA → measured reverification. See the [runtime guide](../docs/task_runtime.md)
+and [implementation status](COMPONENT_STATUS.md). Real-model validation is pending;
+the historical microwave protocol is explicitly retained under `legacy/`.
 
 ```text
 src/
-├── controller.py                 # Stage tracking, triggers, budgets, repair/handoff
+├── controller.py                 # Generic transactions, rechecks, budgets, handoff
+├── runtime.py                    # Sole policy-query and env.step owner
+├── observation.py                # Environment-neutral measured endpoints
+├── journal.py                    # Append-only audit events and exact input PNGs
+├── planning/                     # MLLM task/recovery generation and output grammar
+│   ├── multimodal.py
+│   └── schema.py
+├── legacy/microwave_controller.py # Historical fixed-stage experimental protocol
 ├── adapters/                     # External model/runtime integration only
 │   ├── libero_openvla.py
+│   ├── libero_environment.py      # Shared scene inventory and predicate measurements
+│   ├── openvla_policy.py          # Official frozen H1 prediction for new runtime
 │   └── tf5_compat.py
 ├── perception/                   # Visual features and subgoal inference
 │   ├── visual_grounding.py
@@ -36,10 +45,19 @@ src/
 └── results/                      # Existing output directory (left untouched)
 ```
 
-## Entry points and imports
+## Current entry points
+
+- Run: `python -B scripts/run_task.py --help`.
+- Public orchestration: `from src.runtime import Session`.
+- Controller: `from src.controller import Controller, Limits`.
+- Generated records: `src.planning.schema.TaskSpec` and `RecoveryPlan`.
+- CPU checks: `python -B scripts/test_task_runtime.py`.
+- The controller has no object names, fixed task stages, task prompts or model loading.
+
+## Historical experiment entry points
 
 - Run/prepare/replay: [`../scripts/run_framework_comparison.py`](../scripts/run_framework_comparison.py).
-- Controller: `from src.controller import NativeFramework` (class API unchanged).
+- Historical controller: `from src.legacy.microwave_controller import NativeFramework`.
 - Components use `src.perception`, `src.verification`, `src.prediction`,
   `src.repair` and `src.memory`; package initializers do not load model weights.
 - CPU checks: `python -B scripts/test_native_framework.py` and
@@ -54,11 +72,13 @@ For the matched off/log/gate experiment, prepare a new canonical plan with
 `--prepare NEW_PLAN --mlp-path src/checkpoints/fusion_handoff_v2_20261022/fusion_mlp_v2.pt`.
 Then run `scripts/run_fusion_handoff_ablation.py --plan NEW_PLAN/plan.json --out NEW_RUN`.
 It launches one actor at a time on the recorded root0 GPU3 lane, with identical
-520-action/query limits and bounded-correction treatment in all three arms.
+520-action/query limits and unchanged VLA proposals in all three arms. The old
+numeric-correction launch flag has been removed; historical bounded-correction
+results refer to their archived source, not this updated launcher.
 `gate` only vetoes verified exits; unchanged local/total caps can still force
 an explicitly **unverified** handoff. No unbounded wait or extra action budget.
 
-## Joint framework experiment
+## Historical joint framework experiment
 
 The unified v6 path connects **real visual stage inference + physical contracts
 + short-term prediction + trained risk + episodic retrieval + policy-generated
@@ -78,8 +98,9 @@ numeric offsets. H1 repair is generated step by step by frozen OpenVLA, not a
 pretended native multi-action chunk. See [artifact limits and measured risk
 performance](checkpoints/joint_components_v1_20261022/README.md).
 
-`native_framework.py` was moved to `controller.py` without changing controller
-logic during the layout migration. Old import-path aliases are not retained.
+The old `native_framework.py` first moved to `controller.py`, then the fixed-stage
+controller moved to `legacy/microwave_controller.py` during the generated-task refactor.
+Old import-path aliases are not retained.
 Prepare a fresh source-pinned plan after migration; old plans/artifacts retain
 their original paths and should use their archived source tree, not be rewritten.
 

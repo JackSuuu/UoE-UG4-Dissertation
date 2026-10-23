@@ -1,0 +1,150 @@
+{
+  "hypothesis": "Joint-only anomaly entry may cause harm; isolate admission from stage selection and handoff.",
+  "development_only": true,
+  "roots": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "primary": "Complete native In AND Close success under matched 520 actions/queries",
+  "arms": [
+    "joint_admission"
+  ],
+  "contrast": "Only joint-only repair ENTRY is disabled; joint stage, memory, risk/prediction and handoff veto remain active.",
+  "stopping": "All declared cases; no efficacy early stopping; invalid execution retained separately",
+  "plan": "/home/ami/scratch/framework_admission_20261022_r1/plan/plan.json",
+  "plan_sha256": "e5c3bb087afeced3c4c140a36badc8f372a757d9464b1aa53c3cf48917bb78a9",
+  "launcher_sha256": "9865650f8ee91f5667461860ac6af877b69eb3696cac8a4b7db1cdb1e401a72e",
+  "jobs": [
+    {
+      "name": "joint_admission_root0",
+      "arm": "joint_admission",
+      "root": 0,
+      "cell": {
+        "name": "v2_root0",
+        "root": 0,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root0",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root0",
+      "reused": false,
+      "status": "queued"
+    },
+    {
+      "name": "joint_admission_root1",
+      "arm": "joint_admission",
+      "root": 1,
+      "cell": {
+        "name": "v2_root1",
+        "root": 1,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root1",
+        "lane": {
+          "gpu": 2,
+          "egl_device": 1,
+          "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+        }
+      },
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root1",
+      "reused": false,
+      "status": "queued"
+    },
+    {
+      "name": "joint_admission_root2",
+      "arm": "joint_admission",
+      "root": 2,
+      "cell": {
+        "name": "v2_root2",
+        "root": 2,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_a/microwave_root2",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root2",
+      "reused": false,
+      "status": "queued"
+    },
+    {
+      "name": "joint_admission_root3",
+      "arm": "joint_admission",
+      "root": 3,
+      "cell": {
+        "name": "v2_root3",
+        "root": 3,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root3",
+        "lane": {
+          "gpu": 2,
+          "egl_device": 1,
+          "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+        }
+      },
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root3",
+      "reused": false,
+      "status": "queued"
+    },
+    {
+      "name": "joint_admission_root4",
+      "arm": "joint_admission",
+      "root": 4,
+      "cell": {
+        "name": "v2_root4",
+        "root": 4,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root4",
+        "lane": {
+          "gpu": 3,
+          "egl_device": 0,
+          "physical_uuid": "GPU-c164f9d9-f157-daeb-d7be-5c98029c2a2b"
+        }
+      },
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root4",
+      "reused": false,
+      "status": "queued"
+    },
+    {
+      "name": "joint_admission_root5",
+      "arm": "joint_admission",
+      "root": 5,
+      "cell": {
+        "name": "v2_root5",
+        "root": 5,
+        "cohort": "v2",
+        "arm": "framework",
+        "variant": "v2",
+        "baseline": "/home/ami/scratch/native_long_l1_20261019_b/microwave_root5",
+        "lane": {
+          "gpu": 2,
+          "egl_device": 1,
+          "physical_uuid": "GPU-99b39a1b-5fdd-1acb-398a-426672ebc1a8"
+        }
+      },
+      "source": "/home/ami/scratch/framework_admission_20261022_r1/admission/episodes/joint_admission_root5",
+      "reused": false,
+      "status": "queued"
+    }
+  ],
+  "joint_admission": "measured_only"
+}

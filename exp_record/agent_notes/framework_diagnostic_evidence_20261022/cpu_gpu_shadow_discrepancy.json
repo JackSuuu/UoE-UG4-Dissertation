@@ -1,0 +1,25 @@
+{
+  "status": "numerical_mismatch_pending_matched_device_check",
+  "cases": [
+    {
+      "root": 1,
+      "action_index": 89,
+      "cpu_score": 0.5695159435272217,
+      "recorded_gpu_score": 0.5682440996170044,
+      "absolute_gap": 0.0012718439102172852,
+      "tolerance": 1e-05,
+      "score_match": false,
+      "entry_decision_match": true
+    },
+    {
+      "root": 2,
+      "action_index": 145,
+      "cpu_score": 0.2821708917617798,
+      "recorded_gpu_score": 0.2818678021430969,
+      "absolute_gap": 0.00030308961868286133,
+      "tolerance": 1e-05,
+      "score_match": false,
+      "entry_decision_match": true
+    }
+  ]
+}
